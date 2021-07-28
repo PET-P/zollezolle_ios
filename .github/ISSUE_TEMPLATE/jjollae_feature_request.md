@@ -8,8 +8,8 @@ assignees: ''
 ---
 
 ---
-name: DooRi Feature Template
-about: 두리번 기능 이슈 템플릿
+name: jjollae Feature Template
+about: 쫄래쫄래 기능 이슈 템플릿
 title: '[FEAT]'
 labels: 'Feat, P1 / Priority High'
 assignees: ''
