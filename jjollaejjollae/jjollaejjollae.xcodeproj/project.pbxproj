@@ -108,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				2827C89126B03C3E0001E077 /* Assets.xcassets */,
-				28FF9FE526B930570062BC28 /* launch screen-3.pdf */,
+				28FF9FE926B93BD40062BC28 /* Photos */,
 				2827C89626B03C3E0001E077 /* Info.plist */,
 				28EA825226B42B9D00785666 /* Font */,
 				28EA825126B42B8100785666 /* Delegate */,
@@ -185,6 +185,14 @@
 				2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */,
 			);
 			path = Screen;
+			sourceTree = "<group>";
+		};
+		28FF9FE926B93BD40062BC28 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				28FF9FE526B930570062BC28 /* launch screen-3.pdf */,
+			);
+			path = Photos;
 			sourceTree = "<group>";
 		};
 		989109A03B3B49A16D1A366F /* Pods */ = {
