@@ -4,4 +4,5 @@ included:
 
 excluded:
  - Pods
- - 
+ - SceneDelegate.swift
+

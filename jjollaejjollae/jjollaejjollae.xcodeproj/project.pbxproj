@@ -3,14 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2827C88926B03C390001E077 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C88826B03C390001E077 /* AppDelegate.swift */; };
 		2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C88A26B03C390001E077 /* SceneDelegate.swift */; };
-		2827C88D26B03C390001E077 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C88C26B03C390001E077 /* ViewController.swift */; };
-		2827C89026B03C390001E077 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2827C88E26B03C390001E077 /* Main.storyboard */; };
 		2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89126B03C3E0001E077 /* Assets.xcassets */; };
 		2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */; };
 		285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */; };
@@ -36,8 +34,6 @@
 		2827C88526B03C390001E077 /* jjollaejjollae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jjollaejjollae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2827C88826B03C390001E077 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2827C88A26B03C390001E077 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2827C88C26B03C390001E077 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2827C88F26B03C390001E077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2827C89126B03C3E0001E077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2827C89426B03C3E0001E077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2827C89626B03C3E0001E077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -154,8 +150,6 @@
 		28EA825126B42B8100785666 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				2827C88C26B03C390001E077 /* ViewController.swift */,
-				2827C88E26B03C390001E077 /* Main.storyboard */,
 				2827C88826B03C390001E077 /* AppDelegate.swift */,
 				2827C88A26B03C390001E077 /* SceneDelegate.swift */,
 			);
@@ -212,8 +206,6 @@
 			buildConfigurationList = 2827C89926B03C3E0001E077 /* Build configuration list for PBXNativeTarget "jjollaejjollae" */;
 			buildPhases = (
 				44929AA05B63AB633372B4C1 /* [CP] Check Pods Manifest.lock */,
-				285CE12526B856BB0022DA2E /* SwiftLint Script */,
-				285CE12626B858300022DA2E /* ShellScript */,
 				2827C88126B03C390001E077 /* Sources */,
 				2827C88226B03C390001E077 /* Frameworks */,
 				2827C88326B03C390001E077 /* Resources */,
@@ -277,7 +269,6 @@
 				2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */,
 				285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
-				2827C89026B03C390001E077 /* Main.storyboard in Resources */,
 				28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,41 +276,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		285CE12526B856BB0022DA2E /* SwiftLint Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "SwiftLint Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		285CE12626B858300022DA2E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
-		};
 		44929AA05B63AB633372B4C1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,7 +324,6 @@
 			files = (
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
-				2827C88D26B03C390001E077 /* ViewController.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
@@ -380,14 +335,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		2827C88E26B03C390001E077 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2827C88F26B03C390001E077 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
