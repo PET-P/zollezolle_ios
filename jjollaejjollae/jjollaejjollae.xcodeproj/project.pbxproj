@@ -27,6 +27,8 @@
 		28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */; };
 		28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */; };
 		28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */; };
+		28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 28FF9FE526B930570062BC28 /* launch screen-3.pdf */; };
+		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		92E5FDFA77402D0883912716 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F63BBCFA8FF9788BF06B2B /* Pods_jjollaejjollae.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Bold Italic for Powerline.ttf"; sourceTree = "<group>"; };
 		28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Light Italic for Powerline.ttf"; sourceTree = "<group>"; };
 		28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Thin for Powerline.ttf"; sourceTree = "<group>"; };
+		28FF9FE526B930570062BC28 /* launch screen-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "launch screen-3.pdf"; sourceTree = "<group>"; };
+		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		55EF9B31A593B19C9ADCB341 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		A1C57785DFE570952F20D30E /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
 		E5F63BBCFA8FF9788BF06B2B /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				2827C89126B03C3E0001E077 /* Assets.xcassets */,
+				28FF9FE526B930570062BC28 /* launch screen-3.pdf */,
 				2827C89626B03C3E0001E077 /* Info.plist */,
 				28EA825226B42B9D00785666 /* Font */,
 				28EA825126B42B8100785666 /* Delegate */,
@@ -136,6 +141,7 @@
 		28EA824D26B3EDAB00785666 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				28FF9FE726B931650062BC28 /* DeviceConfig.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -259,6 +265,7 @@
 			files = (
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
+				28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
@@ -325,6 +332,7 @@
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
+				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
