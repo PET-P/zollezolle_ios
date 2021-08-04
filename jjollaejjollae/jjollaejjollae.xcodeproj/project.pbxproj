@@ -104,6 +104,22 @@
 			path = jjollaejjollae;
 			sourceTree = "<group>";
 		};
+		2837FC4126BA6CF400C1C0B0 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				2837FC4226BA6D0100C1C0B0 /* Storyboard */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		2837FC4226BA6D0100C1C0B0 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		28EA824626B3C73C00785666 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +198,7 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */,
+				2837FC4126BA6CF400C1C0B0 /* Splash */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
