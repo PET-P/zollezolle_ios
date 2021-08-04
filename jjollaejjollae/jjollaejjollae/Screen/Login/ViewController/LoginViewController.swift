@@ -9,7 +9,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-
     @IBOutlet var jlTextField: UITextField! {
         didSet {
             jlTextField.addLeftPadding()
@@ -95,7 +94,6 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
-    
     @IBAction private func didTapContinueButton(_ sender: UIButton) {
         
     }
@@ -111,8 +109,6 @@ class LoginViewController: UIViewController {
     @IBAction private func didTapAppleLoginButton(_ sender: UIButton) {
         
     }
-    
-
 }
 
 extension LoginViewController: UITextFieldDelegate {
