@@ -13,6 +13,7 @@
 		2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */; };
 		2841598E26BA745700F027DB /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2841598D26BA745700F027DB /* LoginView.storyboard */; };
 		2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599526BA7BDD00F027DB /* LoginViewController.swift */; };
+		2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599726BA8A3F00F027DB /* UITextField+extension.swift */; };
 		285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */; };
 		285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285CE11026B7DED30022DA2E /* Date+Extension.swift */; };
 		285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 285CE12726B858B80022DA2E /* .swiftlint.yml */; };
@@ -43,6 +44,7 @@
 		2827C89626B03C3E0001E077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = jjollaejjollae/Support/Info.plist; sourceTree = SOURCE_ROOT; };
 		2841598D26BA745700F027DB /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
 		2841599526BA7BDD00F027DB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2841599726BA8A3F00F027DB /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
 		285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		285CE11026B7DED30022DA2E /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		285CE12726B858B80022DA2E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				28EA824A26B3D32600785666 /* UIButton+Extension.swift */,
 				285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */,
 				285CE11026B7DED30022DA2E /* Date+Extension.swift */,
+				2841599726BA8A3F00F027DB /* UITextField+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
+				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
