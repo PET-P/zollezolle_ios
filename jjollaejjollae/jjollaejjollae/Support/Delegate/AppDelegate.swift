@@ -9,9 +9,28 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var isLogged = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        var window: UIWindow?
+        
+        if #available(iOS 13, *){
+            
+        } else {
+            window = UIWindow()
+            let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
+            if !isLogged {
+                guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return false}
+                window?.rootViewController = loginVC
+            } else {
+                //TODO: 여기다가 homeVC에 대한 내용 작성
+                guard let homeVC = storyboard.instantiateViewController(identifier: "homeView") as? LoginViewController else {return false}
+                window?.rootViewController = homeVC
+            }
+            window?.makeKeyAndVisible()
+        }
+        
         return true
     }
 

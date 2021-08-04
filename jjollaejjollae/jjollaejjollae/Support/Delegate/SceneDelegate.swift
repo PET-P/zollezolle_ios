@@ -8,6 +8,8 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    //for test
+    var isLogged: Bool = false
 
     var window: UIWindow?
 
@@ -18,9 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let mainViewController = UIViewController()
-        mainViewController.view.backgroundColor = UIColor.red
-        window?.rootViewController = mainViewController
+        let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
+        if !isLogged {
+            guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return}
+            window?.rootViewController = loginVC
+        } else {
+            //TODO: 여기다가 homeVC에 대한 내용 작성
+            guard let homeVC = storyboard.instantiateViewController(identifier: "homeView") as? LoginViewController else {return}
+            window?.rootViewController = homeVC
+        }
         window?.makeKeyAndVisible()
         
     }
