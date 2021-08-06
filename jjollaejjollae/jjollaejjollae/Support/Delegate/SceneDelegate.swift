@@ -21,9 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
+        
         if !isLogged {
             guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return}
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            navigationController.setNavigationBarHidden(true, animated: false)
             window?.rootViewController = loginVC
+            window?.rootViewController = navigationController
         } else {
             //TODO: 여기다가 homeVC에 대한 내용 작성
             guard let homeVC = storyboard.instantiateViewController(identifier: "homeView") as? LoginViewController else {return}
