@@ -68,5 +68,8 @@ extension UIColor {
     @nonobjc class var 색e8: UIColor {
         return UIColor(rgb: 0xE8E8E8)
     }
+    @nonobjc class var errorColor: UIColor {
+        return UIColor(rgb: 0xFF7373)
+    }
 }
 
