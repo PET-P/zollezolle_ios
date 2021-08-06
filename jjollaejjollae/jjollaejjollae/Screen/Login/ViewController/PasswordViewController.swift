@@ -9,21 +9,21 @@ import UIKit
 
 class PasswordViewController: UIViewController {
     
-    @IBOutlet var topPasswordLabel: UILabel! {
+    @IBOutlet weak var topPasswordLabel: UILabel! {
       didSet {
         topPasswordLabel.text = "비밀번호를"
         topPasswordLabel.font = UIFont.robotoBold(size: 30)
         topPasswordLabel.textColor = UIColor.쥐색383838
       }
     }
-    @IBOutlet var bottomPasswordLabel: UILabel! {
+    @IBOutlet weak var bottomPasswordLabel: UILabel! {
       didSet {
         bottomPasswordLabel.text = "입력해주세요"
         bottomPasswordLabel.font = UIFont.robotoBold(size: 30)
         bottomPasswordLabel.textColor = UIColor.쥐색383838
       }
     }
-    @IBOutlet var passwordTextField: UITextField! {
+    @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
             passwordTextField.underlineStyle(
                 textColor: UIColor.회,
@@ -31,7 +31,7 @@ class PasswordViewController: UIViewController {
             passwordTextField.addLeftPadding()
         }
     }
-    @IBOutlet var LoginButton: UIButton! {
+    @IBOutlet weak var LoginButton: UIButton! {
         didSet {
             LoginButton.setTitle("로그인", for: .normal)
             LoginButton.titleLabel?.font = UIFont.robotoBold(size: 18)
@@ -41,26 +41,31 @@ class PasswordViewController: UIViewController {
             LoginButton.backgroundColor = UIColor.쫄래그린
         }
     }
-    @IBOutlet var passwordErrorLabel: UILabel! {
+    @IBOutlet weak var passwordErrorLabel: UILabel! {
         didSet {
             passwordErrorLabel.isHidden = true
             passwordErrorLabel.textColor = UIColor.errorColor
             passwordErrorLabel.font = UIFont.robotoMedium(size: 14)
         }
     }
-    @IBOutlet var findPasswordButton: UIButton! {
+    @IBOutlet weak var findPasswordButton: UIButton! {
         didSet {
-//            findPasswordButton.isHidden = true
+            findPasswordButton.isHidden = true
             findPasswordButton.underLine(buttonString: "비밀번호를 잊으셨나요?")
         }
     }
+
     
+    private var keyHeight: CGFloat?
     private var passwordError = "" {
         didSet {
             passwordErrorLabel.text = "\(passwordError)"
         }
     }
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var stackView: UIStackView!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTextField.delegate = self
@@ -68,7 +73,39 @@ class PasswordViewController: UIViewController {
           target: view,
           action: #selector(view.endEditing(_:)))
         view.addGestureRecognizer(tapGesture)
-        // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { (notification) in
+            guard let userInfo = notification.userInfo else {
+                return
+            }
+            guard let keyboardFrame =
+                    userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+            
+            let contentInset = UIEdgeInsets(
+                top: 0.0,
+                left: 0.0,
+                bottom: keyboardFrame.size.height,
+                right: 0.0
+            )
+            self.scrollView.contentInset = contentInset
+            self.scrollView.scrollIndicatorInsets = contentInset
+            guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main) { (notification) in
+            guard let userInfo = notification.userInfo else {
+                return
+            }
+            let contentInset = UIEdgeInsets.zero
+            self.scrollView.contentInset = contentInset
+            self.scrollView.scrollIndicatorInsets = contentInset
+            guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
 }
 
@@ -76,13 +113,8 @@ extension PasswordViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.becomeFirstResponder()
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        self.view.endEditing(true)
     }
 }
