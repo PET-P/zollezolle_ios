@@ -25,9 +25,7 @@ class PasswordViewController: UIViewController {
     }
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
-            passwordTextField.underlineStyle(
-                textColor: UIColor.회,
-                borderColor: UIColor.쫄래페일그린)
+           
             passwordTextField.addLeftPadding()
         }
     }
@@ -43,9 +41,10 @@ class PasswordViewController: UIViewController {
     }
     @IBOutlet weak var passwordErrorLabel: UILabel! {
         didSet {
-            passwordErrorLabel.isHidden = true
+            passwordErrorLabel.isHidden = false
             passwordErrorLabel.textColor = UIColor.errorColor
             passwordErrorLabel.font = UIFont.robotoMedium(size: 14)
+            passwordErrorLabel.text = "잘못된 비밀번호 입니다."
         }
     }
     @IBOutlet weak var findPasswordButton: UIButton! {
@@ -54,16 +53,11 @@ class PasswordViewController: UIViewController {
             findPasswordButton.underLine(buttonString: "비밀번호를 잊으셨나요?")
         }
     }
-
-    
-    private var keyHeight: CGFloat?
-    private var passwordError = "" {
-        didSet {
-            passwordErrorLabel.text = "\(passwordError)"
-        }
-    }
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var stackView: UIStackView!
+
+    
+
 
     
     override func viewDidLoad() {
@@ -73,6 +67,9 @@ class PasswordViewController: UIViewController {
           target: view,
           action: #selector(view.endEditing(_:)))
         view.addGestureRecognizer(tapGesture)
+        passwordTextField.underlineStyle(
+            textColor: UIColor.회,
+            borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
         
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { (notification) in
             guard let userInfo = notification.userInfo else {

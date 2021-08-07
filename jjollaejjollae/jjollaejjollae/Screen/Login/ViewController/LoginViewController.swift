@@ -12,9 +12,6 @@ class LoginViewController: UIViewController {
     @IBOutlet var jlTextField: UITextField! {
       didSet {
         jlTextField.addLeftPadding()
-        jlTextField.underlineStyle(
-            textColor: UIColor.회,
-            borderColor: UIColor.쫄래페일그린)
       }
     }
     @IBOutlet var topLoginTitle: UILabel! {
@@ -89,6 +86,14 @@ class LoginViewController: UIViewController {
         provisionLabel.textColor = .black
       }
     }
+    @IBOutlet var errorLabel: UILabel! {
+        didSet {
+            errorLabel.text = "가입되지 않은 이메일입니다."
+            errorLabel.textColor = UIColor.errorColor
+            errorLabel.isHidden = false
+            errorLabel.font = UIFont.robotoMedium(size: 14)
+        }
+    }
     
     override func viewDidLoad() {
       super.viewDidLoad()
@@ -96,15 +101,20 @@ class LoginViewController: UIViewController {
         target: view,
         action: #selector(view.endEditing(_:)))
       view.addGestureRecognizer(tapGesture)
+        jlTextField.underlineStyle(
+            textColor: UIColor.회,
+            borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
     }
     
     @IBAction private func didTapContinueButton(_ sender: UIButton) {
         let passwordStoryboard = UIStoryboard.init(name: "Password", bundle: nil)
         guard let passwordVC = passwordStoryboard.instantiateViewController(identifier: "PasswordViewController") as? PasswordViewController else {return}
-        if self.navigationController == nil {
-            print("navigationController is nil")
-        }
-        self.navigationController?.pushViewController(passwordVC, animated: true)
+        let signUpStoryBoard = UIStoryboard.init(name: "SignUp", bundle: nil)
+        guard let signUpVC = signUpStoryBoard.instantiateViewController(identifier: "SignUpViewController") as? SignUpViewController else {return}
+        
+        
+//        self.navigationController?.pushViewController(passwordVC, animated: true)
+        self.navigationController?.pushViewController(signUpVC, animated: true)
     }
     @IBAction private func didTapGotoHome(_ sender: UIButton) {
         
