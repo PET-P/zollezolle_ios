@@ -16,6 +16,9 @@
 		2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599726BA8A3F00F027DB /* UITextField+extension.swift */; };
 		284159A426BC50F500F027DB /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284159A326BC50F400F027DB /* Password.storyboard */; };
 		284159A626BC515700F027DB /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284159A526BC515700F027DB /* PasswordViewController.swift */; };
+		284159A826BE508D00F027DB /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284159A726BE508D00F027DB /* SignUp.storyboard */; };
+		284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284159A926BE522A00F027DB /* SignUpViewController.swift */; };
+		284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284159AB26BE52FD00F027DB /* UILabel+Extension.swift */; };
 		285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */; };
 		285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285CE11026B7DED30022DA2E /* Date+Extension.swift */; };
 		285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 285CE12726B858B80022DA2E /* .swiftlint.yml */; };
@@ -49,6 +52,9 @@
 		2841599726BA8A3F00F027DB /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
 		284159A326BC50F400F027DB /* Password.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
 		284159A526BC515700F027DB /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		284159A726BE508D00F027DB /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		284159A926BE522A00F027DB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		284159AB26BE52FD00F027DB /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		285CE11026B7DED30022DA2E /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		285CE12726B858B80022DA2E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			children = (
 				2841598D26BA745700F027DB /* LoginView.storyboard */,
 				284159A326BC50F400F027DB /* Password.storyboard */,
+				284159A726BE508D00F027DB /* SignUp.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -153,6 +160,7 @@
 			children = (
 				2841599526BA7BDD00F027DB /* LoginViewController.swift */,
 				284159A526BC515700F027DB /* PasswordViewController.swift */,
+				284159A926BE522A00F027DB /* SignUpViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */,
 				285CE11026B7DED30022DA2E /* Date+Extension.swift */,
 				2841599726BA8A3F00F027DB /* UITextField+extension.swift */,
+				284159AB26BE52FD00F027DB /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -330,6 +339,7 @@
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
+				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
 				28EA826126B42BF700785666 /* Roboto Mono Medium for Powerline.ttf in Resources */,
@@ -402,8 +412,10 @@
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
+				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
+				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
