@@ -9,9 +9,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet var jlTextField: UITextField! {
+    @IBOutlet var emailTextField: UITextField! {
       didSet {
-        jlTextField.addLeftPadding()
+        emailTextField.addLeftPadding()
       }
     }
     @IBOutlet var topLoginTitle: UILabel! {
@@ -90,10 +90,18 @@ class LoginViewController: UIViewController {
         didSet {
             errorLabel.text = "가입되지 않은 이메일입니다."
             errorLabel.textColor = UIColor.errorColor
-            errorLabel.isHidden = false
+            errorLabel.isHidden = true
             errorLabel.font = UIFont.robotoMedium(size: 14)
         }
     }
+    
+    private let loginManager = LoginManager()
+    private var errorText: String = "가입되지 않은 이메일입니다."{
+        didSet {
+            errorLabel.text = "\(errorText)"
+        }
+    }
+    
     
     override func viewDidLoad() {
       super.viewDidLoad()
@@ -101,12 +109,18 @@ class LoginViewController: UIViewController {
         target: view,
         action: #selector(view.endEditing(_:)))
       view.addGestureRecognizer(tapGesture)
-        jlTextField.underlineStyle(
+        emailTextField.underlineStyle(
             textColor: UIColor.회,
             borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
+        
+        emailTextField.addTarget(self, action: #selector(updateEmailValidationUI(_:)), for: .editingChanged)
     }
     
     @IBAction private func didTapContinueButton(_ sender: UIButton) {
+        
+       //TODO: 이메일
+        
+        
         let passwordStoryboard = UIStoryboard.init(name: "Password", bundle: nil)
         guard let passwordVC = passwordStoryboard.instantiateViewController(identifier: "PasswordViewController") as? PasswordViewController else {return}
         let signUpStoryBoard = UIStoryboard.init(name: "SignUp", bundle: nil)
@@ -142,5 +156,20 @@ extension LoginViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.view.endEditing(true)
+    }
+}
+
+extension LoginViewController {
+    //MARK: - updateUI Methods
+    @objc func updateEmailValidationUI(_ sender: Any?){
+        guard let emailStr = self.emailTextField.text else {return}
+        if !loginManager.isValidEmail(email: emailStr) {
+            errorLabel.isHidden = false
+            emailTextField.changeUnderLine(borderColor: .errorColor, width: self.view.frame.size.width)
+            self.errorText = "올바른 형식의 email이 아닙니다."
+        } else {
+            emailTextField.changeUnderLine(borderColor: .쫄래페일그린, width: self.view.frame.size.width)
+            self.errorText = ""
+        }
     }
 }
