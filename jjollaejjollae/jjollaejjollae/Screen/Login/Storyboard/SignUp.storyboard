@@ -65,7 +65,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvC-ih-nD2">
-                                                <rect key="frame" x="32" y="301.5" width="311" height="20.5"/>
+                                                <rect key="frame" x="42" y="301.5" width="291" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-Ls-JFg">
-                                                <rect key="frame" x="32" y="386" width="311" height="20.5"/>
+                                                <rect key="frame" x="42" y="386" width="291" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -109,10 +109,10 @@
                                             <constraint firstAttribute="trailing" secondItem="OXt-pS-Mj8" secondAttribute="trailing" constant="32" id="1I5-j1-4XJ"/>
                                             <constraint firstItem="goj-hg-FkX" firstAttribute="leading" secondItem="Ge3-Lc-8Fm" secondAttribute="leading" constant="32" id="AEq-qY-2uR"/>
                                             <constraint firstItem="OXt-pS-Mj8" firstAttribute="leading" secondItem="Ge3-Lc-8Fm" secondAttribute="leading" constant="32" id="GoH-61-MwD"/>
-                                            <constraint firstItem="CvC-ih-nD2" firstAttribute="leading" secondItem="d1K-pF-Kj9" secondAttribute="leading" id="Xbe-2o-4Ra"/>
+                                            <constraint firstItem="CvC-ih-nD2" firstAttribute="leading" secondItem="d1K-pF-Kj9" secondAttribute="leading" constant="10" id="Xbe-2o-4Ra"/>
                                             <constraint firstAttribute="bottom" secondItem="bru-bE-B9u" secondAttribute="bottom" id="d2m-re-G8x"/>
                                             <constraint firstAttribute="trailing" secondItem="goj-hg-FkX" secondAttribute="trailing" constant="32" id="r3f-1m-rfs"/>
-                                            <constraint firstItem="9cv-Ls-JFg" firstAttribute="leading" secondItem="FHX-cQ-YVf" secondAttribute="leading" id="s61-Ll-s8X"/>
+                                            <constraint firstItem="9cv-Ls-JFg" firstAttribute="leading" secondItem="FHX-cQ-YVf" secondAttribute="leading" constant="10" id="s61-Ll-s8X"/>
                                             <constraint firstItem="OXt-pS-Mj8" firstAttribute="leading" secondItem="goj-hg-FkX" secondAttribute="leading" id="uEU-1P-2Vh"/>
                                         </constraints>
                                     </stackView>

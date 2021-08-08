@@ -59,7 +59,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uui-Qa-b8p">
-                                                <rect key="frame" x="32" y="300.66666666666669" width="350" height="20.333333333333314"/>
+                                                <rect key="frame" x="42" y="300.66666666666669" width="330" height="20.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -157,7 +157,7 @@
                                             <constraint firstItem="JsE-hL-DsA" firstAttribute="leading" secondItem="bi6-kX-rHb" secondAttribute="leading" id="Nca-PR-yaQ"/>
                                             <constraint firstItem="bi6-kX-rHb" firstAttribute="leading" secondItem="ykB-Be-zo5" secondAttribute="leading" constant="32" id="Qmp-g6-jQ1"/>
                                             <constraint firstItem="jF5-bg-f2j" firstAttribute="height" secondItem="eUo-f4-eHz" secondAttribute="height" id="U6d-WK-Y2h"/>
-                                            <constraint firstItem="uui-Qa-b8p" firstAttribute="leading" secondItem="bi6-kX-rHb" secondAttribute="leading" id="ejp-09-6M0"/>
+                                            <constraint firstItem="uui-Qa-b8p" firstAttribute="leading" secondItem="bi6-kX-rHb" secondAttribute="leading" constant="10" id="ejp-09-6M0"/>
                                             <constraint firstAttribute="trailing" secondItem="bi6-kX-rHb" secondAttribute="trailing" constant="32" id="uKZ-hd-Lrp"/>
                                             <constraint firstItem="j3k-VZ-1ye" firstAttribute="leading" secondItem="eUo-f4-eHz" secondAttribute="leading" id="xqn-g6-3Mz"/>
                                         </constraints>
@@ -189,9 +189,9 @@
                         <outlet property="appleLoginButton" destination="Ter-F4-NA1" id="1fv-mr-IwE"/>
                         <outlet property="bottomLoginTitle" destination="CUZ-Jg-eWx" id="V7p-M0-is9"/>
                         <outlet property="continueButton" destination="eUo-f4-eHz" id="ii2-Tg-7jD"/>
+                        <outlet property="emailTextField" destination="bi6-kX-rHb" id="YoH-Wa-b9W"/>
                         <outlet property="errorLabel" destination="uui-Qa-b8p" id="IUd-u0-Ju2"/>
                         <outlet property="goToHomeButton" destination="m8h-Z9-vpB" id="J6w-Co-Eof"/>
-                        <outlet property="jlTextField" destination="bi6-kX-rHb" id="keF-3f-tMx"/>
                         <outlet property="kakaoLoginButton" destination="SnX-Ar-NI7" id="Sxt-mq-JC6"/>
                         <outlet property="naverLoginButton" destination="jF5-bg-f2j" id="hS0-rn-rCn"/>
                         <outlet property="provisionLabel" destination="SX0-bx-sbK" id="WDg-c3-q1u"/>
