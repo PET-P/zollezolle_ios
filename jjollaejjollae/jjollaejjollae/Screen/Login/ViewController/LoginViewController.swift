@@ -18,14 +18,14 @@ class LoginViewController: UIViewController {
     didSet {
       topLoginTitle.text = "반려동물과"
       topLoginTitle.font = UIFont.robotoBold(size: 30)
-      topLoginTitle.textColor = UIColor.쥐색383838
+      topLoginTitle.textColor = UIColor.쥐색38
     }
   }
   @IBOutlet var bottomLoginTitle: UILabel! {
     didSet {
       bottomLoginTitle.text = "여행을 떠나 볼까요?"
       bottomLoginTitle.font = UIFont.robotoBold(size: 30)
-      bottomLoginTitle.textColor = UIColor.쥐색383838
+      bottomLoginTitle.textColor = UIColor.쥐색38
     }
   }
   @IBOutlet var continueButton: UIButton! {

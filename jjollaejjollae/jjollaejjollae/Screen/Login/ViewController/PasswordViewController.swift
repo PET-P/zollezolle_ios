@@ -8,19 +8,21 @@
 import UIKit
 
 class PasswordViewController: UIViewController {
+  
+  private lazy var loginManager = LoginManager()
     
   @IBOutlet weak var topPasswordLabel: UILabel! {
     didSet {
       topPasswordLabel.text = "비밀번호를"
       topPasswordLabel.font = UIFont.robotoBold(size: 30)
-      topPasswordLabel.textColor = UIColor.쥐색383838
+      topPasswordLabel.textColor = UIColor.쥐색38
     }
   }
   @IBOutlet weak var bottomPasswordLabel: UILabel! {
     didSet {
       bottomPasswordLabel.text = "입력해주세요"
       bottomPasswordLabel.font = UIFont.robotoBold(size: 30)
-      bottomPasswordLabel.textColor = UIColor.쥐색383838
+      bottomPasswordLabel.textColor = UIColor.쥐색38
     }
   }
   @IBOutlet weak var passwordTextField: UITextField! {
@@ -40,7 +42,7 @@ class PasswordViewController: UIViewController {
   }
   @IBOutlet weak var passwordErrorLabel: UILabel! {
     didSet {
-      passwordErrorLabel.isHidden = false
+      passwordErrorLabel.isHidden = true
       passwordErrorLabel.textColor = UIColor.errorColor
       passwordErrorLabel.font = UIFont.robotoMedium(size: 14)
       passwordErrorLabel.text = "잘못된 비밀번호 입니다."
@@ -56,14 +58,23 @@ class PasswordViewController: UIViewController {
   @IBOutlet var stackView: UIStackView!
 
   
+  private var passwordErrorText: String = "" {
+    didSet {
+      passwordErrorLabel.text = "\(passwordErrorText)"
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    passwordTextField.underlineStyle(
+      textColor: UIColor.회,
+      borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
     setKeyboard()
   }
   
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
       
-  }
+  }  
 }
 
 extension PasswordViewController: UITextFieldDelegate {
@@ -80,10 +91,6 @@ extension PasswordViewController: UITextFieldDelegate {
       target: view,
       action: #selector(view.endEditing(_:)))
     view.addGestureRecognizer(tapGesture)
-    passwordTextField.underlineStyle(
-      textColor: UIColor.회,
-      borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
-    
     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { (notification) in
       guard let userInfo = notification.userInfo else { return }
       guard let keyboardFrame =

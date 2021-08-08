@@ -11,6 +11,13 @@
 		2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C88A26B03C390001E077 /* SceneDelegate.swift */; };
 		2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89126B03C3E0001E077 /* Assets.xcassets */; };
 		2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */; };
+		2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0626BFE46700E948B0 /* LoginManager.swift */; };
+		2834ED0926BFE47D00E948B0 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0826BFE47D00E948B0 /* LoginModel.swift */; };
+		2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2834ED0A26C0004400E948B0 /* DogInfo.storyboard */; };
+		2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */; };
+		2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */; };
+		2834ED1126C036F200E948B0 /* IMG_4930.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2834ED1026C036F200E948B0 /* IMG_4930.jpeg */; };
+		2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */; };
 		2841598E26BA745700F027DB /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2841598D26BA745700F027DB /* LoginView.storyboard */; };
 		2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599526BA7BDD00F027DB /* LoginViewController.swift */; };
 		2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599726BA8A3F00F027DB /* UITextField+extension.swift */; };
@@ -24,7 +31,6 @@
 		285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 285CE12726B858B80022DA2E /* .swiftlint.yml */; };
 		286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286011A126BEA58E002774EA /* AdditionalInfo.storyboard */; };
 		286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */; };
-		286011A626BEB00C002774EA /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286011A526BEB00C002774EA /* LoginManager.swift */; };
 		286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286011C926BFBF16002774EA /* FindPassword.storyboard */; };
 		286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286011CB26BFBF56002774EA /* FindPasswordViewController.swift */; };
 		28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824826B3C76D00785666 /* UIColor+Extension.swift */; };
@@ -52,6 +58,13 @@
 		2827C89126B03C3E0001E077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2827C89426B03C3E0001E077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2827C89626B03C3E0001E077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = jjollaejjollae/Support/Info.plist; sourceTree = SOURCE_ROOT; };
+		2834ED0626BFE46700E948B0 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		2834ED0826BFE47D00E948B0 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		2834ED0A26C0004400E948B0 /* DogInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DogInfo.storyboard; sourceTree = "<group>"; };
+		2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfoViewController.swift; sourceTree = "<group>"; };
+		2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJollaeSwitch.swift; sourceTree = "<group>"; };
+		2834ED1026C036F200E948B0 /* IMG_4930.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_4930.jpeg; sourceTree = "<group>"; };
+		2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		2841598D26BA745700F027DB /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
 		2841599526BA7BDD00F027DB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2841599726BA8A3F00F027DB /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
@@ -65,7 +78,6 @@
 		285CE12726B858B80022DA2E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		286011A126BEA58E002774EA /* AdditionalInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdditionalInfo.storyboard; sourceTree = "<group>"; };
 		286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoViewController.swift; sourceTree = "<group>"; };
-		286011A526BEB00C002774EA /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginManager.swift; path = jjollaejjollae/Screen/Login/ViewController/LoginManager.swift; sourceTree = SOURCE_ROOT; };
 		286011C926BFBF16002774EA /* FindPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FindPassword.storyboard; sourceTree = "<group>"; };
 		286011CB26BFBF56002774EA /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
 		28EA824826B3C76D00785666 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -130,6 +142,15 @@
 			path = jjollaejjollae;
 			sourceTree = "<group>";
 		};
+		2834ED0526BFE39600E948B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2834ED0626BFE46700E948B0 /* LoginManager.swift */,
+				2834ED0826BFE47D00E948B0 /* LoginModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2837FC4126BA6CF400C1C0B0 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +184,7 @@
 				284159A726BE508D00F027DB /* SignUp.storyboard */,
 				286011A126BEA58E002774EA /* AdditionalInfo.storyboard */,
 				286011C926BFBF16002774EA /* FindPassword.storyboard */,
+				2834ED0A26C0004400E948B0 /* DogInfo.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -175,6 +197,7 @@
 				284159A926BE522A00F027DB /* SignUpViewController.swift */,
 				286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */,
 				286011CB26BFBF56002774EA /* FindPasswordViewController.swift */,
+				2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -194,7 +217,7 @@
 		28EA824726B3C75900785666 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				28EA824E26B3EDC100785666 /* Model */,
+				2834ED0526BFE39600E948B0 /* Model */,
 				28EA824D26B3EDAB00785666 /* Service */,
 				28EA824C26B3ED9B00785666 /* Extension */,
 			);
@@ -211,6 +234,8 @@
 				285CE11026B7DED30022DA2E /* Date+Extension.swift */,
 				2841599726BA8A3F00F027DB /* UITextField+extension.swift */,
 				284159AB26BE52FD00F027DB /* UILabel+Extension.swift */,
+				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
+				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -221,14 +246,6 @@
 				28FF9FE726B931650062BC28 /* DeviceConfig.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		28EA824E26B3EDC100785666 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				286011A526BEB00C002774EA /* LoginManager.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		28EA825126B42B8100785666 /* Delegate */ = {
@@ -269,6 +286,7 @@
 		28FF9FE926B93BD40062BC28 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				2834ED1026C036F200E948B0 /* IMG_4930.jpeg */,
 				28FF9FE526B930570062BC28 /* launch screen-3.pdf */,
 			);
 			path = Photos;
@@ -365,6 +383,8 @@
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
 				2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */,
 				284159A426BC50F500F027DB /* Password.storyboard in Resources */,
+				2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */,
+				2834ED1126C036F200E948B0 /* IMG_4930.jpeg in Resources */,
 				285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */,
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
@@ -422,18 +442,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
+				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
+				2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
-				286011A626BEB00C002774EA /* LoginManager.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
+				2834ED0926BFE47D00E948B0 /* LoginModel.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
+				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
+				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
