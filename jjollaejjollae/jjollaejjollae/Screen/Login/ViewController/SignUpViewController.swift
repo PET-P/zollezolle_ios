@@ -8,9 +8,7 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
-    
-  var containerWidth: CGFloat = 0.0
-
+  //MARK: - IBOUTLET
   @IBOutlet weak var topSignUpLabel: UILabel! {
     didSet {
       topSignUpLabel.titleStyle(text: "처음이시군요!")
@@ -28,7 +26,6 @@ class SignUpViewController: UIViewController {
   }
   @IBOutlet weak var passwordTextField: UITextField! {
     didSet {
-      passwordTextField.textColor = UIColor.연회
       passwordTextField.addLeftPadding()
     }
   }
@@ -38,6 +35,7 @@ class SignUpViewController: UIViewController {
       passwordStyleErrorLabel.textColor = UIColor.errorColor
       passwordStyleErrorLabel.font = UIFont.robotoMedium(size: 14)
       passwordStyleErrorLabel.isHidden = false
+      passwordStyleErrorLabel.alpha = 0
     }
   }
   
@@ -51,7 +49,7 @@ class SignUpViewController: UIViewController {
       confirmationStyleErrorLabel.text = "비밀번호와 동일하지 않습니다"
       confirmationStyleErrorLabel.textColor = UIColor.errorColor
       confirmationStyleErrorLabel.font = UIFont.robotoMedium(size: 14)
-      confirmationStyleErrorLabel.isHidden = false
+      confirmationStyleErrorLabel.isHidden = true
     }
   }
   
@@ -69,13 +67,23 @@ class SignUpViewController: UIViewController {
   @IBOutlet var stackView: UIStackView!
   @IBOutlet var scrollView: UIScrollView!
   
+  //MARK: - 변수
+  var containerWidth: CGFloat = 0.0
+  private lazy var loginManager = LoginManager()
+  private var passwordStyleErrorText: String = "" {
+    didSet {
+      passwordStyleErrorLabel.text = "\(passwordStyleErrorText)"
+    }
+  }
+  
   override func viewDidLoad() {
-      super.viewDidLoad()
-      containerWidth = self.view.frame.size.width
-      passwordTextField.underlineStyle(textColor: UIColor.회, borderColor: UIColor.쫄래페일그린, width: containerWidth)
-      confirmationTextField.underlineStyle(textColor: UIColor.회, borderColor: UIColor.쫄래페일그린, width: containerWidth)
-      confirmationTextField.addTarget(self, action: #selector(updateConfirmationUI(_:)), for: .editingChanged)
-      setKeyboard()
+    super.viewDidLoad()
+    containerWidth = self.view.frame.size.width
+    passwordTextField.underlineStyle(textColor: UIColor.회, borderColor: UIColor.쫄래페일그린, width: containerWidth)
+    confirmationTextField.underlineStyle(textColor: UIColor.회, borderColor: UIColor.쫄래페일그린, width: containerWidth)
+    confirmationTextField.addTarget(self, action: #selector(updateConfirmationUI(_:)), for: .editingChanged)
+    setKeyboard()
+    passwordTextField.addTarget(self, action: #selector(updatePasswordStyleErrorLabelUI(_:)), for: .editingChanged)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +102,18 @@ class SignUpViewController: UIViewController {
   @objc private func updateConfirmationUI(_ sender: Any?) {
       
   }
-    
+  
+  @objc private func updatePasswordStyleErrorLabelUI(_ sender: Any?) {
+    guard let passwordStr = passwordTextField.text else {return}
+    if !loginManager.isValidPassword(password: passwordStr) {
+      passwordStyleErrorLabel.alpha = 1
+      passwordTextField.changeUnderLine(borderColor: .errorColor, width: self.view.frame.size.width)
+      self.passwordStyleErrorText = "올바른 형식의 password를 입력해주세요"
+    } else {
+      passwordTextField.changeUnderLine(borderColor: .쫄래페일그린, width: self.view.frame.size.width)
+      self.passwordStyleErrorText = ""
+    }
+  }
 }
 
 extension SignUpViewController: UITextFieldDelegate {
