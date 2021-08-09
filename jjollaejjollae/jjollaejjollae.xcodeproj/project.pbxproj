@@ -35,6 +35,19 @@
 		28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 28FF9FE526B930570062BC28 /* launch screen-3.pdf */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		92E5FDFA77402D0883912716 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F63BBCFA8FF9788BF06B2B /* Pods_jjollaejjollae.framework */; };
+		DD172FD626BDC31800DD36A3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD172FD526BDC31800DD36A3 /* MainTabBarController.swift */; };
+		DD172FEE26BDD0F000DD36A3 /* HomeTabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD172FED26BDD0F000DD36A3 /* HomeTabNavigationController.swift */; };
+		DD172FF526BF82D100DD36A3 /* HomeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD172FF426BF82D100DD36A3 /* HomeMainViewController.swift */; };
+		DD172FF726BF845900DD36A3 /* MyNeighborhoodNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD172FF626BF845900DD36A3 /* MyNeighborhoodNavigationController.swift */; };
+		DD17300126BF84FC00DD36A3 /* WishListMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD17300026BF84FC00DD36A3 /* WishListMainViewController.swift */; };
+		DD17300326BF855300DD36A3 /* WishListNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD17300226BF855300DD36A3 /* WishListNavigationController.swift */; };
+		DD17300526BF85D000DD36A3 /* MyInfoTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD17300426BF85D000DD36A3 /* MyInfoTab.storyboard */; };
+		DD17300726BF85E400DD36A3 /* MyInfoTabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD17300626BF85E400DD36A3 /* MyInfoTabNavigationController.swift */; };
+		DD17300926BF862300DD36A3 /* MyInfoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD17300826BF862300DD36A3 /* MyInfoMainViewController.swift */; };
+		DD17300D26C0C1C500DD36A3 /* HomeMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD17300C26C0C1C500DD36A3 /* HomeMain.storyboard */; };
+		DD17300F26C0E63900DD36A3 /* MyNeighborhoodMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD17300E26C0E63900DD36A3 /* MyNeighborhoodMain.storyboard */; };
+		DD17301126C0E7C700DD36A3 /* MyNeighborhoodMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD17301026C0E7C700DD36A3 /* MyNeighborhoodMainViewController.swift */; };
+		DD17301326C0F29E00DD36A3 /* WishListMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD17301226C0F29E00DD36A3 /* WishListMain.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +82,19 @@
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		55EF9B31A593B19C9ADCB341 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		A1C57785DFE570952F20D30E /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
+		DD172FD526BDC31800DD36A3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = jjollaejjollae/Screen/MainTabBar/MainTabBarController.swift; sourceTree = SOURCE_ROOT; usesTabs = 0; wrapsLines = 0; };
+		DD172FED26BDD0F000DD36A3 /* HomeTabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabNavigationController.swift; sourceTree = "<group>"; };
+		DD172FF426BF82D100DD36A3 /* HomeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainViewController.swift; sourceTree = "<group>"; };
+		DD172FF626BF845900DD36A3 /* MyNeighborhoodNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyNeighborhoodNavigationController.swift; path = jjollaejjollae/Screen/Tabs/MyNeighborhoodTab/ViewController/MyNeighborhoodNavigationController.swift; sourceTree = SOURCE_ROOT; };
+		DD17300026BF84FC00DD36A3 /* WishListMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListMainViewController.swift; sourceTree = "<group>"; };
+		DD17300226BF855300DD36A3 /* WishListNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListNavigationController.swift; sourceTree = "<group>"; };
+		DD17300426BF85D000DD36A3 /* MyInfoTab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyInfoTab.storyboard; sourceTree = "<group>"; };
+		DD17300626BF85E400DD36A3 /* MyInfoTabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoTabNavigationController.swift; sourceTree = "<group>"; };
+		DD17300826BF862300DD36A3 /* MyInfoMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoMainViewController.swift; sourceTree = "<group>"; };
+		DD17300C26C0C1C500DD36A3 /* HomeMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeMain.storyboard; sourceTree = "<group>"; };
+		DD17300E26C0E63900DD36A3 /* MyNeighborhoodMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyNeighborhoodMain.storyboard; sourceTree = "<group>"; };
+		DD17301026C0E7C700DD36A3 /* MyNeighborhoodMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNeighborhoodMainViewController.swift; sourceTree = "<group>"; };
+		DD17301226C0F29E00DD36A3 /* WishListMain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishListMain.storyboard; sourceTree = "<group>"; };
 		E5F63BBCFA8FF9788BF06B2B /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -197,15 +223,17 @@
 			children = (
 				28FF9FE726B931650062BC28 /* DeviceConfig.swift */,
 			);
-			path = Service;
-			sourceTree = "<group>";
+			name = Service;
+			path = jjollaejjollae/Global/Service;
+			sourceTree = SOURCE_ROOT;
 		};
 		28EA824E26B3EDC100785666 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
-			sourceTree = "<group>";
+			name = Model;
+			path = jjollaejjollae/Global/Model;
+			sourceTree = SOURCE_ROOT;
 		};
 		28EA825126B42B8100785666 /* Delegate */ = {
 			isa = PBXGroup;
@@ -236,6 +264,8 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				DD172FD426BDC2F600DD36A3 /* MainTabBar */,
+				DD172FDA26BDC6A400DD36A3 /* Tabs */,
 				2841598A26BA73C600F027DB /* Login */,
 				2837FC4126BA6CF400C1C0B0 /* Splash */,
 			);
@@ -257,6 +287,132 @@
 				55EF9B31A593B19C9ADCB341 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DD172FD426BDC2F600DD36A3 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				DD172FD526BDC31800DD36A3 /* MainTabBarController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		DD172FD826BDC4F700DD36A3 /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				DD172FDE26BDC72000DD36A3 /* Stroyboard */,
+				DD172FDD26BDC71200DD36A3 /* ViewController */,
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		DD172FD926BDC68100DD36A3 /* MyNeighborhoodTab */ = {
+			isa = PBXGroup;
+			children = (
+				DD172FDF26BDC7F000DD36A3 /* Storyboard */,
+				DD172FE026BDC7F700DD36A3 /* ViewController */,
+			);
+			name = MyNeighborhoodTab;
+			path = jjollaejjollae/Screen/Tabs/MyNeighborhoodTab;
+			sourceTree = SOURCE_ROOT;
+		};
+		DD172FDA26BDC6A400DD36A3 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				DD172FD826BDC4F700DD36A3 /* HomeTab */,
+				DD172FD926BDC68100DD36A3 /* MyNeighborhoodTab */,
+				DD172FDB26BDC6F600DD36A3 /* WishListTab */,
+				DD172FDC26BDC6FD00DD36A3 /* MyInfoTab */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		DD172FDB26BDC6F600DD36A3 /* WishListTab */ = {
+			isa = PBXGroup;
+			children = (
+				DD172FFB26BF84A200DD36A3 /* Storyboard */,
+				DD172FFA26BF849A00DD36A3 /* ViewController */,
+			);
+			name = WishListTab;
+			path = jjollaejjollae/Screen/Tabs/WishListTab;
+			sourceTree = SOURCE_ROOT;
+		};
+		DD172FDC26BDC6FD00DD36A3 /* MyInfoTab */ = {
+			isa = PBXGroup;
+			children = (
+				DD172FFD26BF84B200DD36A3 /* Storyboard */,
+				DD172FFC26BF84AC00DD36A3 /* ViewController */,
+			);
+			name = MyInfoTab;
+			path = jjollaejjollae/Screen/Tabs/MyInfoTab;
+			sourceTree = SOURCE_ROOT;
+		};
+		DD172FDD26BDC71200DD36A3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DD172FED26BDD0F000DD36A3 /* HomeTabNavigationController.swift */,
+				DD172FF426BF82D100DD36A3 /* HomeMainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DD172FDE26BDC72000DD36A3 /* Stroyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DD17300C26C0C1C500DD36A3 /* HomeMain.storyboard */,
+			);
+			path = Stroyboard;
+			sourceTree = "<group>";
+		};
+		DD172FDF26BDC7F000DD36A3 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DD17300E26C0E63900DD36A3 /* MyNeighborhoodMain.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DD172FE026BDC7F700DD36A3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DD172FF626BF845900DD36A3 /* MyNeighborhoodNavigationController.swift */,
+				DD17301026C0E7C700DD36A3 /* MyNeighborhoodMainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DD172FFA26BF849A00DD36A3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DD17300226BF855300DD36A3 /* WishListNavigationController.swift */,
+				DD17300026BF84FC00DD36A3 /* WishListMainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DD172FFB26BF84A200DD36A3 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DD17301226C0F29E00DD36A3 /* WishListMain.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DD172FFC26BF84AC00DD36A3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DD17300626BF85E400DD36A3 /* MyInfoTabNavigationController.swift */,
+				DD17300826BF862300DD36A3 /* MyInfoMainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DD172FFD26BF84B200DD36A3 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DD17300426BF85D000DD36A3 /* MyInfoTab.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		E0B0D5EE69D83ADBFA407326 /* Frameworks */ = {
@@ -326,14 +482,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD17300D26C0C1C500DD36A3 /* HomeMain.storyboard in Resources */,
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
+				DD17300F26C0E63900DD36A3 /* MyNeighborhoodMain.storyboard in Resources */,
 				28EA826126B42BF700785666 /* Roboto Mono Medium for Powerline.ttf in Resources */,
 				28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */,
+				DD17301326C0F29E00DD36A3 /* WishListMain.storyboard in Resources */,
 				2841598E26BA745700F027DB /* LoginView.storyboard in Resources */,
 				2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */,
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
@@ -341,6 +500,7 @@
 				284159A426BC50F500F027DB /* Password.storyboard in Resources */,
 				285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
+				DD17300526BF85D000DD36A3 /* MyInfoTab.storyboard in Resources */,
 				28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,15 +556,24 @@
 			files = (
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
+				DD172FD626BDC31800DD36A3 /* MainTabBarController.swift in Sources */,
+				DD17300726BF85E400DD36A3 /* MyInfoTabNavigationController.swift in Sources */,
+				DD172FEE26BDD0F000DD36A3 /* HomeTabNavigationController.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
+				DD17301126C0E7C700DD36A3 /* MyNeighborhoodMainViewController.swift in Sources */,
+				DD172FF726BF845900DD36A3 /* MyNeighborhoodNavigationController.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
+				DD172FF526BF82D100DD36A3 /* HomeMainViewController.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
+				DD17300126BF84FC00DD36A3 /* WishListMainViewController.swift in Sources */,
+				DD17300926BF862300DD36A3 /* MyInfoMainViewController.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
+				DD17300326BF855300DD36A3 /* WishListNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
