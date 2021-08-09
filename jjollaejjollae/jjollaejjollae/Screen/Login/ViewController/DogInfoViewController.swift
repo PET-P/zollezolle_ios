@@ -162,7 +162,6 @@ class DogInfoViewController: UIViewController {
     setKeyboard()
       // Do any additional setup after loading the view.
   }
-  
 }
 
 extension DogInfoViewController: UITextFieldDelegate {
@@ -172,9 +171,16 @@ extension DogInfoViewController: UITextFieldDelegate {
     petTypeTextField.delegate = self
     petWeightTextField.delegate = self
     
+    let tapGesture = UITapGestureRecognizer(
+      target: view,
+      action: #selector(view.endEditing(_:)))
+
+    tapGesture.cancelsTouchesInView = false
+    view.addGestureRecognizer(tapGesture)
     
-    
-  NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { (notification) in
+  NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                         object: nil,
+                                         queue: OperationQueue.main) { (notification) in
       guard let userInfo = notification.userInfo else {
           return
       }
@@ -189,12 +195,15 @@ extension DogInfoViewController: UITextFieldDelegate {
       )
       self.scrollView.contentInset = contentInset
       self.scrollView.scrollIndicatorInsets = contentInset
-      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
+              as? TimeInterval else {return}
       UIView.animate(withDuration: duration) {
           self.view.layoutIfNeeded()
       }
     }
-  NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main) { (notification) in
+  NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                         object: nil,
+                                         queue: OperationQueue.main) { (notification) in
       guard let userInfo = notification.userInfo else {
           return
       }

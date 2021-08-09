@@ -74,6 +74,7 @@ class JJollaeSwitch: UIButton {
   private var isAnimated: Bool = false
   
   override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesEnded(touches, with: event)
     self.setOn(on: !self.isOn, animated: true)
   }
   
