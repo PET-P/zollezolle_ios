@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,14 +11,28 @@
 		2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C88A26B03C390001E077 /* SceneDelegate.swift */; };
 		2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89126B03C3E0001E077 /* Assets.xcassets */; };
 		2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */; };
+		2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0626BFE46700E948B0 /* LoginManager.swift */; };
+		2834ED0926BFE47D00E948B0 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0826BFE47D00E948B0 /* LoginModel.swift */; };
+		2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2834ED0A26C0004400E948B0 /* DogInfo.storyboard */; };
+		2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */; };
+		2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */; };
+		2834ED1126C036F200E948B0 /* IMG_4930.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2834ED1026C036F200E948B0 /* IMG_4930.jpeg */; };
+		2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */; };
 		2841598E26BA745700F027DB /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2841598D26BA745700F027DB /* LoginView.storyboard */; };
 		2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599526BA7BDD00F027DB /* LoginViewController.swift */; };
 		2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599726BA8A3F00F027DB /* UITextField+extension.swift */; };
 		284159A426BC50F500F027DB /* Password.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284159A326BC50F400F027DB /* Password.storyboard */; };
 		284159A626BC515700F027DB /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284159A526BC515700F027DB /* PasswordViewController.swift */; };
+		284159A826BE508D00F027DB /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 284159A726BE508D00F027DB /* SignUp.storyboard */; };
+		284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284159A926BE522A00F027DB /* SignUpViewController.swift */; };
+		284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284159AB26BE52FD00F027DB /* UILabel+Extension.swift */; };
 		285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */; };
 		285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285CE11026B7DED30022DA2E /* Date+Extension.swift */; };
 		285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 285CE12726B858B80022DA2E /* .swiftlint.yml */; };
+		286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286011A126BEA58E002774EA /* AdditionalInfo.storyboard */; };
+		286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */; };
+		286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286011C926BFBF16002774EA /* FindPassword.storyboard */; };
+		286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286011CB26BFBF56002774EA /* FindPasswordViewController.swift */; };
 		28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824826B3C76D00785666 /* UIColor+Extension.swift */; };
 		28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824A26B3D32600785666 /* UIButton+Extension.swift */; };
 		28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824F26B429F900785666 /* UIFont+Extension.swift */; };
@@ -34,24 +48,39 @@
 		28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */; };
 		28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 28FF9FE526B930570062BC28 /* launch screen-3.pdf */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
-		92E5FDFA77402D0883912716 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F63BBCFA8FF9788BF06B2B /* Pods_jjollaejjollae.framework */; };
+		663E9F5A170D8624F35B16A1 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23202FDA81C32E3AD80B3D4F /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
 		2827C88526B03C390001E077 /* jjollaejjollae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jjollaejjollae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2827C88826B03C390001E077 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2827C88A26B03C390001E077 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2827C89126B03C3E0001E077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2827C89426B03C3E0001E077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2827C89626B03C3E0001E077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = jjollaejjollae/Support/Info.plist; sourceTree = SOURCE_ROOT; };
+		2834ED0626BFE46700E948B0 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		2834ED0826BFE47D00E948B0 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		2834ED0A26C0004400E948B0 /* DogInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DogInfo.storyboard; sourceTree = "<group>"; };
+		2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfoViewController.swift; sourceTree = "<group>"; };
+		2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJollaeSwitch.swift; sourceTree = "<group>"; };
+		2834ED1026C036F200E948B0 /* IMG_4930.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_4930.jpeg; sourceTree = "<group>"; };
+		2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		2841598D26BA745700F027DB /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
 		2841599526BA7BDD00F027DB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2841599726BA8A3F00F027DB /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
 		284159A326BC50F400F027DB /* Password.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Password.storyboard; sourceTree = "<group>"; };
 		284159A526BC515700F027DB /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		284159A726BE508D00F027DB /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		284159A926BE522A00F027DB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		284159AB26BE52FD00F027DB /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		285CE11026B7DED30022DA2E /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		285CE12726B858B80022DA2E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		286011A126BEA58E002774EA /* AdditionalInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdditionalInfo.storyboard; sourceTree = "<group>"; };
+		286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoViewController.swift; sourceTree = "<group>"; };
+		286011C926BFBF16002774EA /* FindPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FindPassword.storyboard; sourceTree = "<group>"; };
+		286011CB26BFBF56002774EA /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
 		28EA824826B3C76D00785666 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		28EA824A26B3D32600785666 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		28EA824F26B429F900785666 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -67,9 +96,8 @@
 		28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Thin for Powerline.ttf"; sourceTree = "<group>"; };
 		28FF9FE526B930570062BC28 /* launch screen-3.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "launch screen-3.pdf"; sourceTree = "<group>"; };
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
-		55EF9B31A593B19C9ADCB341 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
-		A1C57785DFE570952F20D30E /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
-		E5F63BBCFA8FF9788BF06B2B /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E3349D548C3FA191B037D66 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Pods/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
+		D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,20 +105,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92E5FDFA77402D0883912716 /* Pods_jjollaejjollae.framework in Frameworks */,
+				663E9F5A170D8624F35B16A1 /* Pods_jjollaejjollae.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08B0D4FFFB1021B4C5D51DD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2827C87C26B03C390001E077 = {
 			isa = PBXGroup;
 			children = (
 				285CE12726B858B80022DA2E /* .swiftlint.yml */,
 				2827C88726B03C390001E077 /* jjollaejjollae */,
-				989109A03B3B49A16D1A366F /* Pods */,
-				E0B0D5EE69D83ADBFA407326 /* Frameworks */,
+				3DF03C7B71BC76003C92F5F0 /* Pods */,
+				08B0D4FFFB1021B4C5D51DD2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +148,15 @@
 				28EA824626B3C73C00785666 /* Support */,
 			);
 			path = jjollaejjollae;
+			sourceTree = "<group>";
+		};
+		2834ED0526BFE39600E948B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2834ED0626BFE46700E948B0 /* LoginManager.swift */,
+				2834ED0826BFE47D00E948B0 /* LoginModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2837FC4126BA6CF400C1C0B0 /* Splash */ = {
@@ -144,6 +189,10 @@
 			children = (
 				2841598D26BA745700F027DB /* LoginView.storyboard */,
 				284159A326BC50F400F027DB /* Password.storyboard */,
+				284159A726BE508D00F027DB /* SignUp.storyboard */,
+				286011A126BEA58E002774EA /* AdditionalInfo.storyboard */,
+				286011C926BFBF16002774EA /* FindPassword.storyboard */,
+				2834ED0A26C0004400E948B0 /* DogInfo.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -153,6 +202,10 @@
 			children = (
 				2841599526BA7BDD00F027DB /* LoginViewController.swift */,
 				284159A526BC515700F027DB /* PasswordViewController.swift */,
+				284159A926BE522A00F027DB /* SignUpViewController.swift */,
+				286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */,
+				286011CB26BFBF56002774EA /* FindPasswordViewController.swift */,
+				2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -172,7 +225,7 @@
 		28EA824726B3C75900785666 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				28EA824E26B3EDC100785666 /* Model */,
+				2834ED0526BFE39600E948B0 /* Model */,
 				28EA824D26B3EDAB00785666 /* Service */,
 				28EA824C26B3ED9B00785666 /* Extension */,
 			);
@@ -188,6 +241,9 @@
 				285CE10C26B7D4A30022DA2E /* UIView+Extension.swift */,
 				285CE11026B7DED30022DA2E /* Date+Extension.swift */,
 				2841599726BA8A3F00F027DB /* UITextField+extension.swift */,
+				284159AB26BE52FD00F027DB /* UILabel+Extension.swift */,
+				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
+				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -198,13 +254,6 @@
 				28FF9FE726B931650062BC28 /* DeviceConfig.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		28EA824E26B3EDC100785666 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		28EA825126B42B8100785666 /* Delegate */ = {
@@ -245,26 +294,19 @@
 		28FF9FE926B93BD40062BC28 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				2834ED1026C036F200E948B0 /* IMG_4930.jpeg */,
 				28FF9FE526B930570062BC28 /* launch screen-3.pdf */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
 		};
-		989109A03B3B49A16D1A366F /* Pods */ = {
+		3DF03C7B71BC76003C92F5F0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A1C57785DFE570952F20D30E /* Pods-jjollaejjollae.debug.xcconfig */,
-				55EF9B31A593B19C9ADCB341 /* Pods-jjollaejjollae.release.xcconfig */,
+				23202FDA81C32E3AD80B3D4F /* Pods-jjollaejjollae.debug.xcconfig */,
+				8E3349D548C3FA191B037D66 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		E0B0D5EE69D83ADBFA407326 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E5F63BBCFA8FF9788BF06B2B /* Pods_jjollaejjollae.framework */,
-			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,11 +316,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2827C89926B03C3E0001E077 /* Build configuration list for PBXNativeTarget "jjollaejjollae" */;
 			buildPhases = (
-				44929AA05B63AB633372B4C1 /* [CP] Check Pods Manifest.lock */,
+				583EC49E32BF0D67B27A14D9 /* [CP] Check Pods Manifest.lock */,
 				2827C88126B03C390001E077 /* Sources */,
 				2827C88226B03C390001E077 /* Frameworks */,
 				2827C88326B03C390001E077 /* Resources */,
-				AECF45BFEB5718EA254783B7 /* [CP] Embed Pods Frameworks */,
+				171C33A94FE4F8C126CE9CA6 /* [CP] Embed Pods Frameworks */,
+				D446B051E31055021259D98E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -327,9 +370,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
+				286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */,
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
+				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
 				28EA826126B42BF700785666 /* Roboto Mono Medium for Powerline.ttf in Resources */,
@@ -339,7 +384,10 @@
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
 				2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */,
 				284159A426BC50F500F027DB /* Password.storyboard in Resources */,
+				2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */,
+				2834ED1126C036F200E948B0 /* IMG_4930.jpeg in Resources */,
 				285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */,
+				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
 				28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */,
 			);
@@ -348,7 +396,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		44929AA05B63AB633372B4C1 /* [CP] Check Pods Manifest.lock */ = {
+		171C33A94FE4F8C126CE9CA6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		583EC49E32BF0D67B27A14D9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -370,21 +444,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AECF45BFEB5718EA254783B7 /* [CP] Embed Pods Frameworks */ = {
+		D446B051E31055021259D98E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -395,15 +471,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
+				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
+				2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
+				2834ED0926BFE47D00E948B0 /* LoginModel.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
+				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
+				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
+				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
+				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
+				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
+				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,7 +625,7 @@
 		};
 		2827C89A26B03C3E0001E077 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1C57785DFE570952F20D30E /* Pods-jjollaejjollae.debug.xcconfig */;
+			baseConfigurationReference = 23202FDA81C32E3AD80B3D4F /* Pods-jjollaejjollae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -559,7 +644,7 @@
 		};
 		2827C89B26B03C3E0001E077 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55EF9B31A593B19C9ADCB341 /* Pods-jjollaejjollae.release.xcconfig */;
+			baseConfigurationReference = 8E3349D548C3FA191B037D66 /* Pods-jjollaejjollae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
