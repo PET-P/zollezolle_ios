@@ -40,14 +40,17 @@ class JJollaeSwitch: UIButton {
   }
   
   private func buttonInit(frame: CGRect) {
+    
+    print(frame.width)
     let barViewHeight = frame.height - (barViewTopBottomMargin * 2)
-    barView = UIView(frame: CGRect(x: 0, y: barViewTopBottomMargin, width: frame.size.width - 12, height: barViewHeight))
+    barView = UIView(frame: CGRect(x: 0, y: barViewTopBottomMargin, width: frame.width, height: barViewHeight))
+    
     barView.backgroundColor = UIColor.clear
     barView.layer.borderColor = UIColor.쫄래페일그린.cgColor
     barView.layer.borderWidth = 1
     barView.layer.masksToBounds = true
+    barView.clipsToBounds = true
     barView.layer.cornerRadius = barViewHeight / 2
-    
     self.addSubview(barView)
     
     circleView = UIView(frame: CGRect(x: 0, y: 0, width: frame.height * 11 / 6, height: frame.height))
@@ -60,12 +63,18 @@ class JJollaeSwitch: UIButton {
     self.addSubview(circleLabel)
     circleLabel.centerXAnchor.constraint(equalTo: circleView.centerXAnchor).isActive = true
     circleLabel.centerYAnchor.constraint(equalTo: circleView.centerYAnchor).isActive = true
+    print(superview ?? "0")
+    print(subviews)
   }
   
   var isOn: Bool = false {
     didSet {
       self.changeState()
     }
+  }
+  
+  func changeFrame(newWidth: CGFloat) {
+    barView.frame = CGRect(x: 0, y: barViewTopBottomMargin, width: newWidth, height: frame.height)
   }
   
   var gender: String = "남"
@@ -114,3 +123,4 @@ class JJollaeSwitch: UIButton {
   }
   
 }
+

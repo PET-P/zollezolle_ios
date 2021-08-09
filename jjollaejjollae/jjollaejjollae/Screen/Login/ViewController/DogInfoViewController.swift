@@ -29,6 +29,7 @@ class DogInfoViewController: UIViewController {
       myPetImageView.setRounded(radius: nil)
       myPetImageView.layer.borderWidth = 1
       myPetImageView.layer.borderColor = UIColor.clear.cgColor
+      myPetImageView.clipsToBounds = true
     }
   }
   @IBOutlet weak var myPetNameTextField: UITextField! {
@@ -102,7 +103,8 @@ class DogInfoViewController: UIViewController {
   @IBOutlet weak var petTypeButton: UIButton! {
     didSet {
       petTypeButton.layer.cornerRadius = petTypeButton.frame.height / 2
-      petTypeButton.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMinXMaxYCorner)
+      petTypeButton.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner,
+                                                       .layerMinXMaxYCorner)
       petTypeButton.layer.borderColor = UIColor.쫄래페일그린.cgColor
       petTypeButton.layer.borderWidth = 1
       petTypeButton.setTitle("강아지", for: .normal)
@@ -119,7 +121,8 @@ class DogInfoViewController: UIViewController {
       petTypeTextField.font = .robotoMedium(size: 16)
       petTypeTextField.textColor = UIColor.쥐색38
       petTypeTextField.layer.cornerRadius = petTypeTextField.layer.frame.height / 2
-      petTypeTextField.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner, .layerMaxXMinYCorner)
+      petTypeTextField.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner,
+                                                          .layerMaxXMinYCorner)
     }
   }
   @IBOutlet weak var saveButton: UIButton! {
@@ -143,6 +146,7 @@ class DogInfoViewController: UIViewController {
   }
   @IBOutlet var stackView: UIStackView!
   @IBOutlet var scrollView: UIScrollView!
+  @IBOutlet var targetStackview: UIStackView!
 
   private var sizeText: String = "소형" {
     didSet {
@@ -155,12 +159,12 @@ class DogInfoViewController: UIViewController {
       petTypeButton.setTitle("\(typeText)", for: .normal)
     }
   }
-  
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setKeyboard()
-      // Do any additional setup after loading the view.
+    petGenderSwitch.changeFrame(newWidth: self.view.frame.width / 2 - 52.5)
   }
 }
 
