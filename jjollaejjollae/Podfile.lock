@@ -12,13 +12,6 @@ DEPENDENCIES:
   - Moya (~> 14.0)
   - SwiftLint
 
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - Alamofire
-    - Kingfisher
-    - Moya
-    - SwiftLint
-
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
@@ -27,4 +20,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b86e3ba94e2878131fe9ff9c76559bf1703a35f0
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.4.0

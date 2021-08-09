@@ -72,9 +72,12 @@ class FindPasswordViewController: UIViewController {
   
   @IBAction private func didTapGoToLoginButton(_ sender: UIButton){
     //TODO 로그인 화면으로 이동
-    let loginViewStoryboard = UIStoryboard.init(name: "LoginView", bundle: nil)
-    guard let loginVC = loginViewStoryboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {return}
-    self.navigationController?.popToViewController(loginVC, animated: true)
+//    let loginViewStoryboard = UIStoryboard.init(name: "LoginView", bundle: nil)
+//    guard let loginVC = loginViewStoryboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {return}
+//    self.navigationController?.popToViewController(loginVC, animated: true)
+    let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
+    guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
+    self.navigationController?.pushViewController(dogInfoVC, animated: true)
   }
   
   @objc func didTapSendCodeButton(_ sender: Any?){
