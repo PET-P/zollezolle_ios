@@ -225,6 +225,7 @@
 		28EA824726B3C75900785666 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				28F9E8ED26C15B3D00D9E693 /* Custom */,
 				2834ED0526BFE39600E948B0 /* Model */,
 				28EA824D26B3EDAB00785666 /* Service */,
 				28EA824C26B3ED9B00785666 /* Extension */,
@@ -242,8 +243,6 @@
 				285CE11026B7DED30022DA2E /* Date+Extension.swift */,
 				2841599726BA8A3F00F027DB /* UITextField+extension.swift */,
 				284159AB26BE52FD00F027DB /* UILabel+Extension.swift */,
-				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
-				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -289,6 +288,15 @@
 				2837FC4126BA6CF400C1C0B0 /* Splash */,
 			);
 			path = Screen;
+			sourceTree = "<group>";
+		};
+		28F9E8ED26C15B3D00D9E693 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
+				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		28FF9FE926B93BD40062BC28 /* Photos */ = {
