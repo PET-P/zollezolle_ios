@@ -164,7 +164,6 @@ class DogInfoViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setKeyboard()
-    petGenderSwitch.changeFrame(newWidth: self.view.frame.width / 2 - 52.5)
   }
 }
 

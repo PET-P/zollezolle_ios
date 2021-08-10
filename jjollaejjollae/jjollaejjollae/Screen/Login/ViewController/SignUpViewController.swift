@@ -85,13 +85,7 @@ class SignUpViewController: UIViewController {
     setKeyboard()
     passwordTextField.addTarget(self, action: #selector(updatePasswordStyleErrorLabelUI(_:)), for: .editingChanged)
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    containerWidth = self.view.frame.size.width
-  }
-  
-  
+
   @IBAction private func didTapSignUpContinueButton(_ sender: UIButton) {
     // pop the controller
     let additionalInfoStoryboard = UIStoryboard.init(name: "AdditionalInfo", bundle: nil)
