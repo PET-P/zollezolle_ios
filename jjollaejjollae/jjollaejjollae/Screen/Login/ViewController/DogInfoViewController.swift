@@ -147,6 +147,7 @@ class DogInfoViewController: UIViewController {
   @IBOutlet var stackView: UIStackView!
   @IBOutlet var scrollView: UIScrollView!
   @IBOutlet var targetStackview: UIStackView!
+  private let imagePickerController: UIImagePickerController = UIImagePickerController()
 
   private var sizeText: String = "소형" {
     didSet {
@@ -163,7 +164,21 @@ class DogInfoViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    addGestureAboveImageView()
     setKeyboard()
+  }
+  
+  private func addGestureAboveImageView(){
+    let tapImageView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImageView(_:)))
+    myPetImageView.addGestureRecognizer(tapImageView)
+    myPetImageView.isUserInteractionEnabled = true
+  }
+  
+  @objc private func didTapImageView(_ sender: Any?){
+    let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
+    myPetImagePickerController.allowsEditing = true
+    myPetImagePickerController.delegate = self
+    present(myPetImagePickerController, animated: true, completion: nil)
   }
 }
 
@@ -223,5 +238,21 @@ extension DogInfoViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
+  }
+}
+
+//MARK: - ImagePicker 제공
+
+extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+      self.myPetImageView.image = originalImage
+      //TODO: 이미지 저장할 모델링
+      //TODO: 정한 이미지 pan gesture
+    }
+    self.dismiss(animated: true, completion: nil)
   }
 }
