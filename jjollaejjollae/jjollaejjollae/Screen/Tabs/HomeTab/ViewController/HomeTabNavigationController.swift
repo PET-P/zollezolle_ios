@@ -20,7 +20,8 @@ class HomeTabNavigationController: UINavigationController {
   private let homeMainVC: HomeMainViewController = {
     
     guard let homeMainVieController =
-            HomeMainViewController.loadFromStoryboard(fileName: "HomeMain") as? HomeMainViewController
+            HomeMainViewController.loadFromStoryboard(fileName: "HomeMain")
+            as? HomeMainViewController
     else {
       return HomeMainViewController()
     }

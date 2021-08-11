@@ -8,11 +8,49 @@
 import UIKit
 
 class HomeMainViewController: UIViewController {
-	
-	// MARK: - Life Cycle
+  
+	// MARK: - IBOutlets
+  
+  @IBOutlet weak var mainImageView: UIImageView!
+  @IBOutlet weak var searchField: UITextField!
+  
+  // TODO: CollectionView 연결
+  
+  lazy var searchButton: UIButton = {
+    
+    let button = UIButton()
+    
+    button.setImage(UIImage(named: "Search"), for: UIControl.State.normal)
+    button.contentEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    
+    return button
+  }()
+  
+  // MARK: - Life Cycle
   override func viewDidLoad() {
-		
+    
     super.viewDidLoad()
+    setSearchField()
+  }
+  
+  // MARK: - Custom
+  
+  private func setSearchField() {
+    
+    searchField.layer.cornerRadius = searchField.frame.height / 2
+    searchField.layer.masksToBounds = true
+    
+    searchField.rightView = searchButton
+    searchField.rightViewMode = .always
+    
+    searchField.addSubview(searchButton)
+    
+    searchButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
+    searchButton.heightAnchor.constraint(equalTo: searchButton.widthAnchor, multiplier: 1.0).isActive = true
+    
+    searchButton.centerYAnchor.constraint(equalTo: searchField.centerYAnchor).isActive = true
+    searchButton.trailingAnchor.constraint(equalTo: searchField.trailingAnchor, constant: -20).isActive = true
   }
 }
 
