@@ -56,7 +56,7 @@ extension UIColor {
     @nonobjc class var 회: UIColor {
         return UIColor(rgb: 0x828282)
     }
-    @nonobjc class var 쥐색383838: UIColor {
+    @nonobjc class var 쥐색38: UIColor {
         return UIColor(rgb: 0x383838)
     }
     @nonobjc class var 연회랑38사이: UIColor {

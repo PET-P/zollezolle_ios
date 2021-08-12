@@ -9,13 +9,12 @@ import UIKit
 
 extension UITextField {
     
-    func underlineStyle(textColor: UIColor, borderColor: UIColor) {
+    func underlineStyle(textColor: UIColor, borderColor: UIColor, width: CGFloat) {
         self.borderStyle = .none
         let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0, y: self.frame.size.height-1, width: self.frame.size.width, height: 2)
+        bottomLine.frame = CGRect(x: 0, y: self.frame.size.height-10, width: width - 64 , height: 2)
         bottomLine.backgroundColor = borderColor.cgColor
         self.layer.addSublayer(bottomLine)
-//        self.textAlignment = .right
         self.textColor = textColor
     }
     
@@ -24,4 +23,17 @@ extension UITextField {
         self.leftView = paddingView
         self.leftViewMode = ViewMode.always
     }
+        
+    func changeUnderLine(borderColor: UIColor, width: CGFloat) {
+        self.layer.sublayers?[0].removeFromSuperlayer()
+        self.borderStyle = .none
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0, y: self.frame.size.height+5, width: width - 64 , height: 2)
+        bottomLine.backgroundColor = borderColor.cgColor
+        self.textColor = UIColor.회
+        self.layer.insertSublayer(bottomLine, at: 0)
+        self.setNeedsDisplay()
+    }
+
 }
+
