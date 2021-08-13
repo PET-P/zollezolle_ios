@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,6 +47,19 @@
 		28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 28FF9FE526B930570062BC28 /* launch screen-3.pdf */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		663E9F5A170D8624F35B16A1 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */; };
+		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
+		DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */; };
+		DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */; };
+		DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9E26C6D61D007AB642 /* MyInfoTabNavigationController.swift */; };
+		DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */; };
+		DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */; };
+		DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */; };
+		DDF24BB726C6D61D007AB642 /* WishListMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BA726C6D61D007AB642 /* WishListMain.storyboard */; };
+		DDF24BB826C6D61D007AB642 /* WishListMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA926C6D61D007AB642 /* WishListMainViewController.swift */; };
+		DDF24BB926C6D61D007AB642 /* WishListNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BAA26C6D61D007AB642 /* WishListNavigationController.swift */; };
+		DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BAD26C6D61D007AB642 /* MyNeighborhoodMain.storyboard */; };
+		DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BAF26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift */; };
+		DDF24BBC26C6D61D007AB642 /* MyNeighborhoodNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BB026C6D61D007AB642 /* MyNeighborhoodNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +107,19 @@
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		8E3349D548C3FA191B037D66 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Pods/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyInfoTab.storyboard; sourceTree = "<group>"; };
+		DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainViewController.swift; sourceTree = "<group>"; };
+		DDF24B9E26C6D61D007AB642 /* MyInfoTabNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoTabNavigationController.swift; sourceTree = "<group>"; };
+		DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeMain.storyboard; sourceTree = "<group>"; };
+		DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMainViewController.swift; sourceTree = "<group>"; };
+		DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabNavigationController.swift; sourceTree = "<group>"; };
+		DDF24BA726C6D61D007AB642 /* WishListMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishListMain.storyboard; sourceTree = "<group>"; };
+		DDF24BA926C6D61D007AB642 /* WishListMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListMainViewController.swift; sourceTree = "<group>"; };
+		DDF24BAA26C6D61D007AB642 /* WishListNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListNavigationController.swift; sourceTree = "<group>"; };
+		DDF24BAD26C6D61D007AB642 /* MyNeighborhoodMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyNeighborhoodMain.storyboard; sourceTree = "<group>"; };
+		DDF24BAF26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNeighborhoodMainViewController.swift; sourceTree = "<group>"; };
+		DDF24BB026C6D61D007AB642 /* MyNeighborhoodNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNeighborhoodNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +305,7 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
 				2841598A26BA73C600F027DB /* Login */,
 				2837FC4126BA6CF400C1C0B0 /* Splash */,
 			);
@@ -309,6 +336,131 @@
 				8E3349D548C3FA191B037D66 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DDF24B9526C6D5E4007AB642 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */,
+				DDF24B9826C6D61D007AB642 /* Tabs */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		DDF24B9826C6D61D007AB642 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24B9926C6D61D007AB642 /* MyInfoTab */,
+				DDF24B9F26C6D61D007AB642 /* HomeTab */,
+				DDF24BA526C6D61D007AB642 /* WishListTab */,
+				DDF24BAB26C6D61D007AB642 /* MyNeighborhoodTab */,
+			);
+			name = Tabs;
+			path = jjollaejjollae/Screen/Tabs;
+			sourceTree = SOURCE_ROOT;
+		};
+		DDF24B9926C6D61D007AB642 /* MyInfoTab */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24B9A26C6D61D007AB642 /* Storyboard */,
+				DDF24B9C26C6D61D007AB642 /* ViewController */,
+			);
+			path = MyInfoTab;
+			sourceTree = "<group>";
+		};
+		DDF24B9A26C6D61D007AB642 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DDF24B9C26C6D61D007AB642 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */,
+				DDF24B9E26C6D61D007AB642 /* MyInfoTabNavigationController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DDF24B9F26C6D61D007AB642 /* HomeTab */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BA026C6D61D007AB642 /* Stroyboard */,
+				DDF24BA226C6D61D007AB642 /* ViewController */,
+			);
+			path = HomeTab;
+			sourceTree = "<group>";
+		};
+		DDF24BA026C6D61D007AB642 /* Stroyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */,
+			);
+			path = Stroyboard;
+			sourceTree = "<group>";
+		};
+		DDF24BA226C6D61D007AB642 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
+				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DDF24BA526C6D61D007AB642 /* WishListTab */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BA626C6D61D007AB642 /* Storyboard */,
+				DDF24BA826C6D61D007AB642 /* ViewController */,
+			);
+			path = WishListTab;
+			sourceTree = "<group>";
+		};
+		DDF24BA626C6D61D007AB642 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BA726C6D61D007AB642 /* WishListMain.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DDF24BA826C6D61D007AB642 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BA926C6D61D007AB642 /* WishListMainViewController.swift */,
+				DDF24BAA26C6D61D007AB642 /* WishListNavigationController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DDF24BAB26C6D61D007AB642 /* MyNeighborhoodTab */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BAC26C6D61D007AB642 /* Storyboard */,
+				DDF24BAE26C6D61D007AB642 /* ViewController */,
+			);
+			path = MyNeighborhoodTab;
+			sourceTree = "<group>";
+		};
+		DDF24BAC26C6D61D007AB642 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BAD26C6D61D007AB642 /* MyNeighborhoodMain.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DDF24BAE26C6D61D007AB642 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDF24BAF26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift */,
+				DDF24BB026C6D61D007AB642 /* MyNeighborhoodNavigationController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +527,9 @@
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
+				DDF24BB726C6D61D007AB642 /* WishListMain.storyboard in Resources */,
+				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
+				DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
@@ -387,6 +542,7 @@
 				284159A426BC50F500F027DB /* Password.storyboard in Resources */,
 				2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */,
 				285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */,
+				DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */,
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
 				28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */,
@@ -444,21 +600,30 @@
 			files = (
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
+				DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */,
+				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
+				DDF24BB926C6D61D007AB642 /* WishListNavigationController.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
+				DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */,
 				2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
+				DDF24BBC26C6D61D007AB642 /* MyNeighborhoodNavigationController.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
+				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
+				DDF24BB826C6D61D007AB642 /* WishListMainViewController.swift in Sources */,
 				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
+				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
+				DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 			);
