@@ -180,6 +180,19 @@ class DogInfoViewController: UIViewController {
     myPetImagePickerController.delegate = self
     present(myPetImagePickerController, animated: true, completion: nil)
   }
+  
+  @IBAction private func didTapContinueWithoutSaveButton(_ sender: UIButton) {
+    let SearchStoryboard = UIStoryboard(name: "Search", bundle: nil)
+    guard let searchVC = SearchStoryboard
+            .instantiateViewController(identifier: "SearchViewController") as? SearchViewController
+    else {
+      print("fuck???")
+      return}
+    if self.navigationController == nil {
+      print("nil")
+    }
+    self.navigationController?.pushViewController(searchVC, animated: true)
+  }
 }
 
 extension DogInfoViewController: UITextFieldDelegate {
