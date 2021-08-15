@@ -32,10 +32,17 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
     }
   }
   
+  private lazy var searchManager = SearchManager()
+  
   override func viewDidLoad() {
     buttonBarView.addBorder([.bottom], color: .색e8, width: 1)
     setUpButton()
     super.viewDidLoad()
+    let tapGesture = UITapGestureRecognizer(
+      target: view,
+      action: #selector(view.endEditing(_:)))
+    tapGesture.cancelsTouchesInView = false
+    view.addGestureRecognizer(tapGesture)
   }
   
   private func setUpButton() {
@@ -52,7 +59,6 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
     settings.style.buttonBarHeight = 1.0
     settings.style.selectedBarHeight = 4.0
   
-    
     changeCurrentIndexProgressive = {
       (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage:
       CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
@@ -61,16 +67,11 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
       oldCell?.label.font = .robotoMedium(size: 14)
       oldCell?.contentView.addBorder([.bottom], color: .색e8, width: 1)
       newCell?.contentView.addBorder([.bottom], color: .색e8, width: 1)
-      
-      
       newCell?.label.textColor = .쥐색38
       newCell?.label.font = .robotoBold(size: 14)
-      
-      
     }
   }
-  
-  
+
   override func viewControllers(for pagerTabStripController: PagerTabStripViewController)
   -> [UIViewController] {
     let recentStoryboard = UIStoryboard(name: "Recent", bundle: nil)
@@ -81,26 +82,17 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
     guard let starVC = starStoryboard
             .instantiateViewController(withIdentifier: "StarsSearchViewController")
             as? StarsSearchViewController else {return []}
-//    searchVC.menuStr = "인기키워드"
-//    recentVC.menuStr = "최근 검색어"
     return [starVC, recentVC]
   }
-  
-  
 }
-//
-//extension SearchViewController: UITableViewDelegate {
-//
-//}
-//
-//extension SearchViewController: UITableViewDataSource {
-//  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    0
-//  }
-//
-//  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    return UITableViewCell()
-//  }
-//
-//
-//}
+
+//MARK: - Actions
+extension SearchViewController {
+  @IBAction private func didTapSearchButton(_ sender: UIButton) {
+    //TODO 검색결과 화면으로 이동
+    searchManager.saveSearchHistory(with: searchTextField.text)
+  }
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+  }
+}
+

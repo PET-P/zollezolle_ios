@@ -26,6 +26,9 @@
                                             <constraint firstAttribute="height" constant="25" id="wdu-FX-nrN"/>
                                         </constraints>
                                         <state key="normal" image="magnifyingglass" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapSearchButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ve5-Ti-www"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cym-vv-4a9">
                                         <rect key="frame" x="16" y="75" width="25" height="25"/>
@@ -34,6 +37,9 @@
                                             <constraint firstAttribute="height" constant="25" id="y1w-1j-fzB"/>
                                         </constraints>
                                         <state key="normal" image="chevron.backward" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ub6-Ea-Mkh"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제주도" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ega-C3-iB2">
                                         <rect key="frame" x="54" y="70.5" width="306" height="34"/>
@@ -54,7 +60,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isf-UL-Zad">
-                                <rect key="frame" x="0.0" y="208.5" width="414" height="687.5"/>
+                                <rect key="frame" x="0.0" y="256.5" width="414" height="639.5"/>
                             </scrollView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="faw-Fr-3ab" customClass="ButtonBarView" customModule="XLPagerTabStrip">
                                 <rect key="frame" x="40" y="168.5" width="334" height="40"/>
@@ -74,7 +80,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="faw-Fr-3ab" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-40" id="02E-lC-aGK"/>
-                            <constraint firstItem="Isf-UL-Zad" firstAttribute="top" secondItem="faw-Fr-3ab" secondAttribute="bottom" id="4DY-pf-0Ba"/>
+                            <constraint firstItem="Isf-UL-Zad" firstAttribute="top" secondItem="faw-Fr-3ab" secondAttribute="bottom" constant="48" id="4DY-pf-0Ba"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AJZ-7t-NhQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AEd-L9-hp5" secondAttribute="trailing" id="CQT-3N-qda"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="HLM-9Y-MXb"/>
