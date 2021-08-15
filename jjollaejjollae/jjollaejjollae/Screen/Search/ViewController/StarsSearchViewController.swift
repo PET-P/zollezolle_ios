@@ -17,13 +17,12 @@ class StarsSearchViewController: UIViewController, IndicatorInfoProvider {
     }
   }
   
-  private lazy var searchManager = SearchManager()
+  private lazy var searchManager = SearchManager.shared
   private var list = [String]()
   
   func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
     return IndicatorInfo(title: "인기키워드")
   }
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,8 +34,6 @@ class StarsSearchViewController: UIViewController, IndicatorInfoProvider {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-  
 }
 
 extension StarsSearchViewController: UITableViewDelegate {
@@ -53,6 +50,4 @@ extension StarsSearchViewController: UITableViewDataSource {
     cell.recommendLabel.text = list[indexPath.row]
     return cell
   }
-  
-  
 }

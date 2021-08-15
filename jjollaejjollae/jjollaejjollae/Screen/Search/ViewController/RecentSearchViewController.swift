@@ -10,7 +10,7 @@ import XLPagerTabStrip
 
 class RecentSearchViewController: UIViewController, IndicatorInfoProvider {
   
-  private lazy var searchManager = SearchManager()
+  private lazy var searchManager = SearchManager.shared
   private var list = [String]()
   
   @IBOutlet weak var recentTableView: UITableView! {
@@ -30,6 +30,7 @@ class RecentSearchViewController: UIViewController, IndicatorInfoProvider {
     recentTableView.dataSource = self
     super.viewDidLoad()
     list = searchManager.retrieveSearchHistory()
+    
     NotificationCenter.default.addObserver(self, selector: #selector(updateList(_:)), name: Notification.Name("updateListNotification"), object: nil)
   }
   override func didReceiveMemoryWarning() {
@@ -41,8 +42,11 @@ class RecentSearchViewController: UIViewController, IndicatorInfoProvider {
     list = searchManager.retrieveSearchHistory()
     recentTableView.reloadData()
   }
+  
   @objc private func updateList(_ notification: Notification) {
     list = searchManager.retrieveSearchHistory()
+    print(#function)
+    print(list)
     recentTableView.reloadData()
   }
 }

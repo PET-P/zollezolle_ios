@@ -32,7 +32,7 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
     }
   }
   
-  private lazy var searchManager = SearchManager()
+  private lazy var searchManager = SearchManager.shared
   
   override func viewDidLoad() {
     buttonBarView.addBorder([.bottom], color: .색e8, width: 1)
@@ -93,6 +93,7 @@ extension SearchViewController {
     searchManager.saveSearchHistory(with: searchTextField.text)
   }
   @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
   }
 }
 

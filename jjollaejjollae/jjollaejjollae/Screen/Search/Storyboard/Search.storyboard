@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-L9-hp5">
-                                <rect key="frame" x="0.0" y="44" width="414" height="124.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="124.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTr-cy-z5c">
                                         <rect key="frame" x="373" y="75" width="25" height="25"/>
@@ -60,10 +60,10 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isf-UL-Zad">
-                                <rect key="frame" x="0.0" y="256.5" width="414" height="639.5"/>
+                                <rect key="frame" x="0.0" y="212.5" width="414" height="683.5"/>
                             </scrollView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="faw-Fr-3ab" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="40" y="168.5" width="334" height="40"/>
+                                <rect key="frame" x="40" y="124.5" width="334" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="LvJ-5z-W6y"/>
                                 </constraints>
@@ -83,7 +83,7 @@
                             <constraint firstItem="Isf-UL-Zad" firstAttribute="top" secondItem="faw-Fr-3ab" secondAttribute="bottom" constant="48" id="4DY-pf-0Ba"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AJZ-7t-NhQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AEd-L9-hp5" secondAttribute="trailing" id="CQT-3N-qda"/>
-                            <constraint firstItem="AEd-L9-hp5" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="HLM-9Y-MXb"/>
+                            <constraint firstItem="AEd-L9-hp5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HLM-9Y-MXb"/>
                             <constraint firstItem="Isf-UL-Zad" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="HhZ-p9-ZjD"/>
                             <constraint firstItem="faw-Fr-3ab" firstAttribute="top" secondItem="AEd-L9-hp5" secondAttribute="bottom" id="NvL-zS-DdI"/>
                             <constraint firstItem="faw-Fr-3ab" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="YgV-nE-9q5"/>
