@@ -11,42 +11,70 @@ import XLPagerTabStrip
 
 class SearchViewController: ButtonBarPagerTabStripViewController  {
   
-  var menuStr: String = ""
-  @IBOutlet weak var starTableView: UITableView!
+  @IBOutlet weak var headView: UIView! {
+    didSet {
+      headView.backgroundColor = .쫄래페일그린
+    }
+  }
+  @IBOutlet weak var searchTextField: UITextField!{
+    didSet {
+      searchTextField.setRounded(radius: nil)
+    }
+  }
+  @IBOutlet weak var backButton: UIButton! {
+    didSet {
+      backButton.tintColor = .쥐색38
+    }
+  }
+  @IBOutlet weak var searchButton: UIButton! {
+    didSet {
+      searchButton.tintColor = .쥐색38
+    }
+  }
   
   override func viewDidLoad() {
-    super.viewDidLoad()
-//    starTableView.delegate = self
-//    starTableView.dataSource = self
+    buttonBarView.addBorder([.bottom], color: .색e8, width: 1)
     setUpButton()
+    super.viewDidLoad()
   }
   
   private func setUpButton() {
-    settings.style.buttonBarBackgroundColor = .색e8
+    settings.style.buttonBarBackgroundColor = .쥐색38
     settings.style.buttonBarItemBackgroundColor = .white
-    settings.style.buttonBarItemFont = .robotoBold(size: 14)
     settings.style.selectedBarBackgroundColor = .쫄래페일그린
+    settings.style.buttonBarItemFont = .robotoBold(size: 14)
     settings.style.buttonBarItemTitleColor = .쥐색38
     settings.style.buttonBarMinimumLineSpacing = 0
+    settings.style.buttonBarItemLeftRightMargin = 0
     settings.style.buttonBarLeftContentInset = 0
     settings.style.buttonBarRightContentInset = 0
     settings.style.buttonBarItemsShouldFillAvailableWidth = true
-    settings.style.buttonBarHeight = 2.0
+    settings.style.buttonBarHeight = 1.0
+    settings.style.selectedBarHeight = 4.0
+  
     
     changeCurrentIndexProgressive = {
       (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage:
       CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
       guard changeCurrentIndex == true else { return }
       oldCell?.label.textColor = .쥐색38
-      newCell?.label.textColor = .쫄래페일그린
+      oldCell?.label.font = .robotoMedium(size: 14)
+      oldCell?.contentView.addBorder([.bottom], color: .색e8, width: 1)
+      newCell?.contentView.addBorder([.bottom], color: .색e8, width: 1)
+      
+      
+      newCell?.label.textColor = .쥐색38
+      newCell?.label.font = .robotoBold(size: 14)
+      
+      
     }
   }
   
   
   override func viewControllers(for pagerTabStripController: PagerTabStripViewController)
   -> [UIViewController] {
-    let searchStoryboard = UIStoryboard(name: "Search", bundle: nil)
-    guard let recentVC = searchStoryboard
+    let recentStoryboard = UIStoryboard(name: "Recent", bundle: nil)
+    guard let recentVC = recentStoryboard
             .instantiateViewController(withIdentifier: "RecentSearchViewController")
             as? RecentSearchViewController else {return []}
     let starStoryboard = UIStoryboard(name: "Stars", bundle: nil)
