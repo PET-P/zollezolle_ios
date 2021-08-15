@@ -182,16 +182,7 @@ class DogInfoViewController: UIViewController {
   }
   
   @IBAction private func didTapContinueWithoutSaveButton(_ sender: UIButton) {
-    let SearchStoryboard = UIStoryboard(name: "Search", bundle: nil)
-    guard let searchVC = SearchStoryboard
-            .instantiateViewController(identifier: "SearchViewController") as? SearchViewController
-    else {
-      print("fuck???")
-      return}
-    if self.navigationController == nil {
-      print("nil")
-    }
-    self.navigationController?.pushViewController(searchVC, animated: true)
+    
   }
 }
 

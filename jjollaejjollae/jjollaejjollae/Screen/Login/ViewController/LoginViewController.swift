@@ -131,7 +131,11 @@ class LoginViewController: UIViewController {
     self.navigationController?.pushViewController(signUpVC, animated: true)
   }
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
-    
+    let SearchStoryboard = UIStoryboard(name: "Search", bundle: nil)
+    guard let searchVC = SearchStoryboard
+            .instantiateViewController(identifier: "SearchViewController") as? SearchViewController
+    else { return }
+    self.navigationController?.pushViewController(searchVC, animated: true)
   }
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
     
