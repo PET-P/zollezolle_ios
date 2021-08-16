@@ -24,10 +24,10 @@ class SearchManager {
   func saveSearchHistory(with content: String?) {
     if let content = content {
       if recentSearchArray.count > 9 {
-        self.recentSearchArray.removeFirst()
-        self.recentSearchArray.append(content)
+        self.recentSearchArray.removeLast()
+        self.recentSearchArray.insert(content, at: 0)
       } else {
-        self.recentSearchArray.append(content)
+        self.recentSearchArray.insert(content, at: 0)
       }
     }
     defaults.set(recentSearchArray, forKey: searchKey.recentHistoryKey.rawValue)
