@@ -26,12 +26,7 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
       backButton.tintColor = .쥐색38
     }
   }
-  @IBOutlet weak var searchButton: UIButton! {
-    didSet {
-      searchButton.tintColor = .쥐색38
-    }
-  }
-  
+ 
   private lazy var searchManager = SearchManager.shared
   
   override func viewDidLoad() {
@@ -43,6 +38,8 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
       action: #selector(view.endEditing(_:)))
     tapGesture.cancelsTouchesInView = false
     view.addGestureRecognizer(tapGesture)
+    searchTextField.returnKeyType = .search
+    searchTextField.delegate = self
   }
   
   private func setUpButton() {
@@ -88,12 +85,18 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
 
 //MARK: - Actions
 extension SearchViewController {
-  @IBAction private func didTapSearchButton(_ sender: UIButton) {
-    //TODO 검색결과 화면으로 이동
-    searchManager.saveSearchHistory(with: searchTextField.text)
-  }
   @IBAction private func didTapBackButton(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true)
   }
 }
+
+//MARK: - delegate
+extension SearchViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    searchManager.saveSearchHistory(with: searchTextField.text)
+    textField.resignFirstResponder()
+    return true
+  }
+}
+
 

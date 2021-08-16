@@ -19,17 +19,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-L9-hp5">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="124.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTr-cy-z5c">
-                                        <rect key="frame" x="373" y="75" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="LTr-cy-z5c" secondAttribute="height" multiplier="1:1" id="jjN-xR-cWW"/>
-                                            <constraint firstAttribute="height" constant="25" id="wdu-FX-nrN"/>
-                                        </constraints>
-                                        <state key="normal" image="magnifyingglass" catalog="system"/>
-                                        <connections>
-                                            <action selector="didTapSearchButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ve5-Ti-www"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cym-vv-4a9">
                                         <rect key="frame" x="16" y="75" width="25" height="25"/>
                                         <constraints>
@@ -44,7 +33,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제주도" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ega-C3-iB2">
                                         <rect key="frame" x="54" y="70.5" width="306" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
@@ -52,10 +41,8 @@
                                     <constraint firstAttribute="bottom" secondItem="ega-C3-iB2" secondAttribute="bottom" constant="20" id="C3y-CA-hGe"/>
                                     <constraint firstItem="ega-C3-iB2" firstAttribute="height" secondItem="AEd-L9-hp5" secondAttribute="height" multiplier="35:128" id="JUh-9E-B0y"/>
                                     <constraint firstItem="Cym-vv-4a9" firstAttribute="leading" secondItem="AEd-L9-hp5" secondAttribute="leading" constant="16" id="K7N-Pa-F9f"/>
-                                    <constraint firstItem="LTr-cy-z5c" firstAttribute="leading" secondItem="ega-C3-iB2" secondAttribute="trailing" constant="13" id="RDu-AV-DMu"/>
                                     <constraint firstItem="ega-C3-iB2" firstAttribute="centerX" secondItem="AEd-L9-hp5" secondAttribute="centerX" id="T8a-dT-lF8"/>
                                     <constraint firstItem="ega-C3-iB2" firstAttribute="leading" secondItem="Cym-vv-4a9" secondAttribute="trailing" constant="13" id="h07-aX-ADe"/>
-                                    <constraint firstItem="LTr-cy-z5c" firstAttribute="centerY" secondItem="ega-C3-iB2" secondAttribute="centerY" id="hwe-HB-CWU"/>
                                     <constraint firstItem="Cym-vv-4a9" firstAttribute="centerY" secondItem="ega-C3-iB2" secondAttribute="centerY" id="oaX-TH-jr9"/>
                                 </constraints>
                             </view>
@@ -96,7 +83,6 @@
                         <outlet property="buttonBarView" destination="faw-Fr-3ab" id="Yrc-Q7-nmi"/>
                         <outlet property="containerView" destination="Isf-UL-Zad" id="SJX-2Z-QnS"/>
                         <outlet property="headView" destination="AEd-L9-hp5" id="Z4v-hA-PMF"/>
-                        <outlet property="searchButton" destination="LTr-cy-z5c" id="bxS-wz-alM"/>
                         <outlet property="searchTextField" destination="ega-C3-iB2" id="LNp-mi-ejd"/>
                     </connections>
                 </viewController>
@@ -107,7 +93,6 @@
     </scenes>
     <resources>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
