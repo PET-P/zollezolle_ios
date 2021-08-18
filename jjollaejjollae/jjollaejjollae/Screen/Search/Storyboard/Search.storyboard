@@ -47,7 +47,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isf-UL-Zad">
-                                <rect key="frame" x="0.0" y="212.5" width="414" height="683.5"/>
+                                <rect key="frame" x="0.0" y="164.5" width="414" height="731.5"/>
                             </scrollView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="faw-Fr-3ab" customClass="ButtonBarView" customModule="XLPagerTabStrip">
                                 <rect key="frame" x="40" y="124.5" width="334" height="40"/>
@@ -67,7 +67,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="faw-Fr-3ab" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-40" id="02E-lC-aGK"/>
-                            <constraint firstItem="Isf-UL-Zad" firstAttribute="top" secondItem="faw-Fr-3ab" secondAttribute="bottom" constant="48" id="4DY-pf-0Ba"/>
+                            <constraint firstItem="Isf-UL-Zad" firstAttribute="top" secondItem="faw-Fr-3ab" secondAttribute="bottom" id="4DY-pf-0Ba"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AJZ-7t-NhQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AEd-L9-hp5" secondAttribute="trailing" id="CQT-3N-qda"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HLM-9Y-MXb"/>

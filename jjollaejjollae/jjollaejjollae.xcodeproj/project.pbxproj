@@ -41,6 +41,7 @@
 		2884A30C26CA406C004596C3 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30B26CA406B004596C3 /* SearchResultViewController.swift */; };
 		2884A31126CA43E6004596C3 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30F26CA43E6004596C3 /* SearchResultTableViewCell.swift */; };
 		2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2884A31026CA43E6004596C3 /* SearchResultTableViewCell.xib */; };
+		2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A31526CD6F50004596C3 /* SearchResultDataSource.swift */; };
 		28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824826B3C76D00785666 /* UIColor+Extension.swift */; };
 		28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824A26B3D32600785666 /* UIButton+Extension.swift */; };
 		28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824F26B429F900785666 /* UIFont+Extension.swift */; };
@@ -110,6 +111,7 @@
 		2884A30B26CA406B004596C3 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		2884A30F26CA43E6004596C3 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		2884A31026CA43E6004596C3 /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
+		2884A31526CD6F50004596C3 /* SearchResultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDataSource.swift; sourceTree = "<group>"; };
 		28EA824826B3C76D00785666 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		28EA824A26B3D32600785666 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		28EA824F26B429F900785666 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				2884A30626C91CD0004596C3 /* SearchTableViewCell.swift */,
 				2884A30F26CA43E6004596C3 /* SearchResultTableViewCell.swift */,
 				2884A31026CA43E6004596C3 /* SearchResultTableViewCell.xib */,
+				2884A31526CD6F50004596C3 /* SearchResultDataSource.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
 				DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
+				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
 				2884A30C26CA406C004596C3 /* SearchResultViewController.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,

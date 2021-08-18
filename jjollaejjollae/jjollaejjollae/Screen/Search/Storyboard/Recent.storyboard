@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c9a-S4-mVD">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recentCell" id="P6w-UZ-bLK" customClass="SearchTableViewCell" customModule="jjollaejjollae" customModuleProvider="target">
@@ -52,7 +52,7 @@
                             <constraint firstItem="c9a-S4-mVD" firstAttribute="leading" secondItem="hCp-uT-a09" secondAttribute="leading" id="TEa-a2-zm5"/>
                             <constraint firstItem="hCp-uT-a09" firstAttribute="trailing" secondItem="c9a-S4-mVD" secondAttribute="trailing" id="Ym1-HA-9xl"/>
                             <constraint firstItem="hCp-uT-a09" firstAttribute="bottom" secondItem="c9a-S4-mVD" secondAttribute="bottom" id="kDI-d4-F80"/>
-                            <constraint firstItem="c9a-S4-mVD" firstAttribute="top" secondItem="hCp-uT-a09" secondAttribute="top" id="ty3-yh-QZP"/>
+                            <constraint firstItem="c9a-S4-mVD" firstAttribute="top" secondItem="hCp-uT-a09" secondAttribute="top" constant="48" id="ty3-yh-QZP"/>
                         </constraints>
                     </view>
                     <connections>
