@@ -75,11 +75,15 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
     guard let recentVC = recentStoryboard
             .instantiateViewController(withIdentifier: "RecentSearchViewController")
             as? RecentSearchViewController else {return []}
+    
     let starStoryboard = UIStoryboard(name: "Stars", bundle: nil)
     guard let starVC = starStoryboard
             .instantiateViewController(withIdentifier: "StarsSearchViewController")
             as? StarsSearchViewController else {return []}
-    return [starVC, recentVC]
+    
+    let resultStoryboard = UIStoryboard(name: "SearchResult", bundle: nil)
+    guard let resultVC = resultStoryboard.instantiateViewController(identifier: "SearchResultViewController") as? SearchResultViewController else {return []}
+    return [resultVC, recentVC]
   }
 }
 
@@ -93,6 +97,7 @@ extension SearchViewController {
 //MARK: - delegate
 extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    guard searchTextField.text != "" else {return true}
     searchManager.saveSearchHistory(with: searchTextField.text)
     textField.resignFirstResponder()
     return true
