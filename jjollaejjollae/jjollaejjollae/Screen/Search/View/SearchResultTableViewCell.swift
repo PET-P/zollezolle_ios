@@ -31,7 +31,7 @@ class SearchResultTableViewCell: UITableViewCell {
   @IBOutlet weak var locationNameLabel: UILabel! {
     didSet {
       locationNameLabel.font = .robotoBold(size: 16)
-      locationNameLabel.textColor = .쥐색38
+      locationNameLabel.textColor = .쫄래블랙
     }
   }
   @IBOutlet weak var locationTypeLabel: UILabel! {
@@ -56,7 +56,7 @@ class SearchResultTableViewCell: UITableViewCell {
   @IBOutlet weak var priceLabel: UILabel! {
     didSet {
       priceLabel.isHidden = true
-      priceLabel.textColor = .쥐색38
+      priceLabel.textColor = .쫄래블랙
       priceLabel.font = .robotoBold(size: 16)
     }
   }

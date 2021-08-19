@@ -53,7 +53,7 @@ class DogInfoViewController: UIViewController {
       petAgeTextField.layer.borderColor = UIColor.쫄래페일그린.cgColor
       petAgeTextField.font = .robotoMedium(size: 16)
       petAgeTextField.placeholder = "4살"
-      petAgeTextField.textColor = UIColor.쥐색38
+      petAgeTextField.textColor = UIColor.쫄래블랙
     }
   }
   @IBOutlet weak var petGenderLabel: PaddingLabel! {
@@ -75,7 +75,7 @@ class DogInfoViewController: UIViewController {
       petSizeButton.layer.borderColor = UIColor.쫄래페일그린.cgColor
       petSizeButton.layer.borderWidth = 1
       petSizeButton.setTitle("소형", for: .normal)
-      petSizeButton.tintColor = UIColor.쥐색38
+      petSizeButton.tintColor = UIColor.쫄래블랙
       petSizeButton.titleLabel?.font = .robotoMedium(size: 16)
     }
   }
@@ -91,7 +91,7 @@ class DogInfoViewController: UIViewController {
       petWeightTextField.layer.borderWidth = 1
       petWeightTextField.layer.borderColor = UIColor.쫄래페일그린.cgColor
       petWeightTextField.font = .robotoMedium(size: 16)
-      petWeightTextField.textColor = UIColor.쥐색38
+      petWeightTextField.textColor = UIColor.쫄래블랙
     }
   }
   @IBOutlet weak var petTypeLabel: PaddingLabel! {
@@ -108,7 +108,7 @@ class DogInfoViewController: UIViewController {
       petTypeButton.layer.borderColor = UIColor.쫄래페일그린.cgColor
       petTypeButton.layer.borderWidth = 1
       petTypeButton.setTitle("강아지", for: .normal)
-      petTypeButton.tintColor = UIColor.쥐색38
+      petTypeButton.tintColor = UIColor.쫄래블랙
       petTypeButton.titleLabel?.font = .robotoMedium(size: 16)
     }
   }
@@ -119,7 +119,7 @@ class DogInfoViewController: UIViewController {
       petTypeTextField.layer.borderWidth = 1
       petTypeTextField.layer.borderColor = UIColor.쫄래페일그린.cgColor
       petTypeTextField.font = .robotoMedium(size: 16)
-      petTypeTextField.textColor = UIColor.쥐색38
+      petTypeTextField.textColor = UIColor.쫄래블랙
       petTypeTextField.layer.cornerRadius = petTypeTextField.layer.frame.height / 2
       petTypeTextField.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner,
                                                           .layerMaxXMinYCorner)

@@ -66,3 +66,5 @@ extension SearchManager {
     case starSearchKey
   }
 }
+
+

@@ -15,14 +15,14 @@ class PasswordViewController: UIViewController {
     didSet {
       topPasswordLabel.text = "비밀번호를"
       topPasswordLabel.font = UIFont.robotoBold(size: 30)
-      topPasswordLabel.textColor = UIColor.쥐색38
+      topPasswordLabel.textColor = UIColor.쫄래블랙
     }
   }
   @IBOutlet weak var bottomPasswordLabel: UILabel! {
     didSet {
       bottomPasswordLabel.text = "입력해주세요"
       bottomPasswordLabel.font = UIFont.robotoBold(size: 30)
-      bottomPasswordLabel.textColor = UIColor.쥐색38
+      bottomPasswordLabel.textColor = UIColor.쫄래블랙
     }
   }
   @IBOutlet weak var passwordTextField: UITextField! {
