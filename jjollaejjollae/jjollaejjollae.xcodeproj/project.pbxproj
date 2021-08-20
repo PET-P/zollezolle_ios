@@ -268,6 +268,13 @@
 				2884A30626C91CD0004596C3 /* SearchTableViewCell.swift */,
 				2884A30F26CA43E6004596C3 /* SearchResultTableViewCell.swift */,
 				2884A31026CA43E6004596C3 /* SearchResultTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2884A32526D0052F004596C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				2884A31526CD6F50004596C3 /* SearchResultDataSource.swift */,
 				2884A31B26CE8E41004596C3 /* AccommodationDataSource.swift */,
 				2884A31D26CE91E1004596C3 /* RestaurantDataSource.swift */,
@@ -275,7 +282,7 @@
 				2884A32126CE933A004596C3 /* CafeDataSource.swift */,
 				2884A32326CECE81004596C3 /* DropDownDataSource.swift */,
 			);
-			path = View;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		28EA824626B3C73C00785666 /* Support */ = {
@@ -371,6 +378,7 @@
 		28F9E93B26C8024700D9E693 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				2884A32526D0052F004596C3 /* Model */,
 				2884A30826C91D37004596C3 /* View */,
 				28F9E93D26C8025C00D9E693 /* Storyboard */,
 				28F9E93C26C8025200D9E693 /* ViewController */,

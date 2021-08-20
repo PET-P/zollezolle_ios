@@ -50,28 +50,28 @@
                                         <rect key="frame" x="0.0" y="0.0" width="77.5" height="30"/>
                                         <state key="normal" title="맛집"/>
                                         <connections>
-                                            <action selector="didTapRestaurantButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="eIs-fG-dK2"/>
+                                            <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XGZ-JL-xm0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUy-Se-Byq">
                                         <rect key="frame" x="101.5" y="0.0" width="77.5" height="30"/>
                                         <state key="normal" title="관광지"/>
                                         <connections>
-                                            <action selector="didTapLandmarkButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="DQD-8R-nPD"/>
+                                            <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="z6b-dx-T6Y"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sc6-pS-5Td">
                                         <rect key="frame" x="203" y="0.0" width="77.5" height="30"/>
                                         <state key="normal" title="카페"/>
                                         <connections>
-                                            <action selector="didTapCafeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="E0Z-yR-weu"/>
+                                            <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="umh-Fk-K3J"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhU-lG-inJ">
                                         <rect key="frame" x="304.5" y="0.0" width="77.5" height="30"/>
                                         <state key="normal" title="숙소"/>
                                         <connections>
-                                            <action selector="didTapAccommodationButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Eqr-Hh-0gp"/>
+                                            <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YEo-me-c0M"/>
                                         </connections>
                                     </button>
                                 </subviews>

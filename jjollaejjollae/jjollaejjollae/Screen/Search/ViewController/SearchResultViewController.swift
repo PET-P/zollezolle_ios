@@ -7,18 +7,6 @@
 
 import UIKit
 
-class CellClass: UITableViewCell {
-  
-}
-
-//MARK: - 임시로 모델만들기
-class ModelController: NSObject {
-  var accommoList = [SearchResultInfo(name: "여기는 숙소"), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(),]
-  var cafeList = [SearchResultInfo(name: "여기는 카페"), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(),]
-  var landmarkList = [SearchResultInfo(name: "여기는 관광지"), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(),]
-  var restaurantList = [SearchResultInfo(name: "여기는 맛집"), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(), SearchResultInfo(),]
-}
-
 class SearchResultViewController: UIViewController {
   //MARK: - IBOUTLET
   @IBOutlet weak var headView: UIView! {
@@ -92,7 +80,6 @@ class SearchResultViewController: UIViewController {
     }
   }
   
-  
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
   var searchResultDataSources: [UITableViewDataSource] = []
   var dataList = [SearchResultInfo]()
@@ -107,6 +94,9 @@ class SearchResultViewController: UIViewController {
   let modelController = ModelController()
   var defaultHeight: CGFloat  = 0
   var buttons : [UIButton] = []
+  let transparentView = UIView()
+  let dropDownTableView = UITableView()
+  var selectedButton = UIButton()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -121,7 +111,6 @@ class SearchResultViewController: UIViewController {
     resultTableView.dataSource = searchResultDataSources[0]
     resultTableView.tableFooterView = UIView(frame: CGRect.zero)
     dropDownTableView.dataSource = dropdownDataSource
-//    dropDownTableView.contentInset = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
     dropDownTableView.separatorStyle = .none
     dropDownTableView.delegate = self
     setLocationFilterButtonUI()
@@ -138,6 +127,7 @@ class SearchResultViewController: UIViewController {
       button.tintColor = .쫄래블랙
       button.titleLabel?.font = .robotoMedium(size: 13)
     }
+    buttons.last?.backgroundColor = UIColor.쫄래페일그린
   }
   
   private func updateButtonUI(_ sender: UIButton) {
@@ -149,43 +139,37 @@ class SearchResultViewController: UIViewController {
       }
     }
   }
-  
-  @IBAction private func didTapRestaurantButton(_ sender: UIButton) {
-    resultTableView.dataSource = searchResultDataSources[1]
-    scheduleStackView.isHidden = true
-    HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
-    updateButtonUI(sender)
-    resultTableView.reloadData()
-  }
-  @IBAction private func didTapLandmarkButton(_ sender: UIButton) {
-    resultTableView.dataSource = searchResultDataSources[3]
-    scheduleStackView.isHidden = true
-    HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
-    updateButtonUI(sender)
-    resultTableView.reloadData()
-  }
-  @IBAction private func didTapCafeButton(_ sender: UIButton) {
-    resultTableView.dataSource = searchResultDataSources[2]
-    scheduleStackView.isHidden = true
-    print(setFilterButton.frame.height)
-    print(HeightTobeDynamioc.constant)
-    HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
-    updateButtonUI(sender)
-    resultTableView.reloadData()
-  }
-  @IBAction private func didTapAccommodationButton(_ sender: UIButton) {
-    resultTableView.dataSource = searchResultDataSources[0]
-    scheduleStackView.isHidden = false
-    HeightTobeDynamioc.constant = defaultHeight
+    
+  @IBAction private func didTapFilterButtons(_ sender: UIButton) {
+    switch sender {
+    case restaurantButton:
+      resultTableView.dataSource = searchResultDataSources[1]
+      HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
+      scheduleStackView.isHidden = true
+    case landMarkButton:
+      resultTableView.dataSource = searchResultDataSources[3]
+      HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
+      scheduleStackView.isHidden = true
+    case cafeButton:
+      resultTableView.dataSource = searchResultDataSources[2]
+      HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
+      scheduleStackView.isHidden = true
+    case accommodationButton:
+      resultTableView.dataSource = searchResultDataSources[0]
+      scheduleStackView.isHidden = false
+      HeightTobeDynamioc.constant = defaultHeight
+    default:
+      return
+    }
     updateButtonUI(sender)
     resultTableView.reloadData()
   }
   
-  let transparentView = UIView()
-  let dropDownTableView = UITableView()
-  
-  var selectedButton = UIButton()
-  
+ 
+}
+//MARK: - DropDownMenu
+
+extension SearchResultViewController {
   func addTransparentView(frames: CGRect) {
     let window = UIApplication.shared.windows.first {$0.isKeyWindow}
     transparentView.frame = window?.frame ?? self.view.frame
@@ -205,7 +189,6 @@ class SearchResultViewController: UIViewController {
       self.transparentView.alpha = 0.5
       self.dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: CGFloat(self.dropdownDataSource.dataList.count * 50))
     }, completion: nil)
-
   }
   
   @objc func removeTransparentView() {

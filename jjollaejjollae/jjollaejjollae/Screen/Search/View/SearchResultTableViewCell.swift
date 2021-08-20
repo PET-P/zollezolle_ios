@@ -8,11 +8,12 @@
 import UIKit
 
 protocol SearchResultCellDelegate {
-  func didTapHeart(for index: Int, like: Bool)
+  func didTapHeart(for placeId: Int, like: Bool)
 }
 
 class SearchResultTableViewCell: UITableViewCell {
   //MARK: - IBOUTLET
+  
   @IBOutlet weak var cellImageView: UIImageView! {
     didSet {
       cellImageView.setRounded(radius: 8)
@@ -52,7 +53,7 @@ class SearchResultTableViewCell: UITableViewCell {
       numberOfReviewsLabel.textColor = .회
     }
   }
-  @IBOutlet weak var likeButton: UIButton!
+  @IBOutlet weak var heartButton: UIButton!
   @IBOutlet weak var priceLabel: UILabel! {
     didSet {
       priceLabel.isHidden = true
@@ -72,24 +73,25 @@ class SearchResultTableViewCell: UITableViewCell {
   var isWish: Bool? {
     didSet {
       if isWish == true {
-        likeButton.setImage(UIImage(named: "pinkLike"), for: .normal)
+        heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
       } else {
-        likeButton.setImage(UIImage(named: "grayLike"), for: .normal)
+        heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
       }
     }
   }
   
   var delegate : SearchResultCellDelegate?
-  var index : Int?
+  var index : Int? //얘를 key(디비에 장소의 id)
+  var placeId: Int = -1
   
-  @IBAction func didTapHeart(_ sender: UIButton) {
-    guard let index = index else {return}
+  @IBAction func didTapHeartButton(_ sender: UIButton) {
+//    guard let index = index else {return}
     if sender.isSelected {
       isWish = true
-      delegate?.didTapHeart(for: index, like: true)
+      delegate?.didTapHeart(for: placeId, like: true)
     } else {
       isWish = false
-      delegate?.didTapHeart(for: index, like: false)
+      delegate?.didTapHeart(for: placeId, like: false)
     }
     sender.isSelected = !sender.isSelected
   }

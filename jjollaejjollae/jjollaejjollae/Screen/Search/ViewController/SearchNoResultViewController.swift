@@ -8,13 +8,7 @@
 import UIKit
 import XLPagerTabStrip
 
-struct SearchResultInfo {
-  var name = "아지멍카페"
-  var type = "커피/브런치"
-  var points = 4.9
-  var numbers = 52
-  var like = false
-}
+
 
 class SearchNoResultViewController: UIViewController, IndicatorInfoProvider {
   

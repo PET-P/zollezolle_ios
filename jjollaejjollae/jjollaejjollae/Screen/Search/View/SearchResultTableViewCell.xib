@@ -31,7 +31,7 @@
                         <state key="normal" image="grayLike"/>
                         <state key="selected" image="grayLike"/>
                         <connections>
-                            <action selector="didTapHeart:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="InQ-gQ-wPL"/>
+                            <action selector="didTapHeartButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="InQ-gQ-wPL"/>
                         </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="CC3-4J-RiZ">
@@ -114,7 +114,7 @@
                 <outlet property="DaysLabel" destination="MA6-77-n2s" id="YGy-bz-T76"/>
                 <outlet property="addressLabel" destination="BZP-Xm-O9f" id="BjJ-9c-jTr"/>
                 <outlet property="cellImageView" destination="DaY-mO-6Dq" id="HiO-sb-opp"/>
-                <outlet property="likeButton" destination="OLe-Qw-xeC" id="wZz-oH-tPe"/>
+                <outlet property="heartButton" destination="OLe-Qw-xeC" id="wZz-oH-tPe"/>
                 <outlet property="locationNameLabel" destination="KYp-gt-QDU" id="j4F-Fv-ZE8"/>
                 <outlet property="locationTypeLabel" destination="lFJ-dt-7oE" id="mKE-ok-stz"/>
                 <outlet property="numberOfReviewsLabel" destination="LkC-pn-u4S" id="o0q-eF-VZ1"/>

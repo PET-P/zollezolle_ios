@@ -57,7 +57,6 @@ class SearchManager {
   func retrieveStarSearchArray() -> [String] {
     return starSearchArray
   }
-  
 }
 
 extension SearchManager {
@@ -67,4 +66,18 @@ extension SearchManager {
   }
 }
 
+struct SearchResultInfo {
+  var id = 1 //여기는 다다를예정
+  var name = "아지멍카페"
+  var type = "커피/브런치"
+  var points = 4.9
+  var numbers = 52
+  var like = false
+}
 
+class ModelController: NSObject {
+  var accommoList = [SearchResultInfo(id: 0, name: "여기는 숙소"), SearchResultInfo(id: 1), SearchResultInfo(id: 2), SearchResultInfo(id: 3), SearchResultInfo(id: 666), SearchResultInfo(id: 333), SearchResultInfo(id: 99), SearchResultInfo(id: 12), SearchResultInfo(id: 37), SearchResultInfo(id: 1123123)]
+  var cafeList = [SearchResultInfo(id: 0, name: "여기는 카페"), SearchResultInfo(id: 1), SearchResultInfo(id: 2), SearchResultInfo(id: 3), SearchResultInfo(id: 666), SearchResultInfo(id: 333), SearchResultInfo(id: 99), SearchResultInfo(id: 12), SearchResultInfo(id: 37), SearchResultInfo(id: 1123123)]
+  var landmarkList = [SearchResultInfo(id: 0, name: "여기는 관광지"), SearchResultInfo(id: 1), SearchResultInfo(id: 2), SearchResultInfo(id: 3), SearchResultInfo(id: 666), SearchResultInfo(id: 333), SearchResultInfo(id: 99), SearchResultInfo(id: 12), SearchResultInfo(id: 37), SearchResultInfo(id: 1123123)]
+  var restaurantList = [SearchResultInfo(id: 0, name: "여기는 맛집"), SearchResultInfo(id: 1), SearchResultInfo(id: 2), SearchResultInfo(id: 3), SearchResultInfo(id: 666), SearchResultInfo(id: 333), SearchResultInfo(id: 99), SearchResultInfo(id: 12), SearchResultInfo(id: 37), SearchResultInfo(id: 1123123)]
+}
