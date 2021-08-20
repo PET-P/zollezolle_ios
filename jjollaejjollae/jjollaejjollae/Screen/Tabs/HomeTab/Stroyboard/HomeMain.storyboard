@@ -68,26 +68,25 @@
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UMu-dl-I3a">
                                                 <rect key="frame" x="0.0" y="73" width="390" height="100"/>
-                                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="GwC-F6-v5Y"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RiE-Sy-ahd">
-                                                    <size key="itemSize" width="128" height="72"/>
-                                                    <size key="estimatedItemSize" width="128" height="100"/>
+                                                    <size key="itemSize" width="138" height="72"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="16" minY="16" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XkN-OI-qpF">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="recommendedPlaceCell" id="XkN-OI-qpF" customClass="RecommendedPlaceCell" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="16" width="138" height="72"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DLl-an-3hv">
                                                             <rect key="frame" x="0.0" y="0.0" width="138" height="72"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b3Z-z9-1kJ">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recommendedPlace" translatesAutoresizingMaskIntoConstraints="NO" id="b3Z-z9-1kJ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="138" height="72"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="속초" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wa-jO-9m3">
@@ -106,7 +105,12 @@
                                                                 <constraint firstItem="b3Z-z9-1kJ" firstAttribute="leading" secondItem="DLl-an-3hv" secondAttribute="leading" id="wG5-rF-PAb"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
+                                                        <color key="backgroundColor" red="0.80392156859999997" green="0.8980392157" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <size key="customSize" width="138" height="72"/>
+                                                        <connections>
+                                                            <outlet property="imageView" destination="b3Z-z9-1kJ" id="HPC-H1-PBc"/>
+                                                            <outlet property="label" destination="4Wa-jO-9m3" id="igY-cY-x80"/>
+                                                        </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
@@ -129,7 +133,7 @@
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FVU-zH-9GF">
                                                 <rect key="frame" x="0.0" y="246" width="390" height="145"/>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="145" id="x8q-RW-B9r"/>
                                                 </constraints>
@@ -141,7 +145,7 @@
                                                     <inset key="sectionInset" minX="16" minY="12" maxX="0.0" maxY="12"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="EyF-5J-AQ6">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="honeyTipCell" id="EyF-5J-AQ6">
                                                         <rect key="frame" x="16" y="12" width="116" height="120"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ORs-RY-8aP">
@@ -193,24 +197,42 @@
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ouK-DV-d2R">
                                                 <rect key="frame" x="0.0" y="464" width="390" height="100"/>
-                                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="TPl-h5-3ni"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CyU-T5-hu7">
                                                     <size key="itemSize" width="128" height="72"/>
-                                                    <size key="estimatedItemSize" width="128" height="100"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="16" minY="16" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PE8-Ct-ibk">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="popularPlaceCell" id="PE8-Ct-ibk">
                                                         <rect key="frame" x="16" y="16" width="138" height="72"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NN6-yK-RkV">
                                                             <rect key="frame" x="0.0" y="0.0" width="138" height="72"/>
                                                             <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popularPlace" translatesAutoresizingMaskIntoConstraints="NO" id="Tky-WJ-KLz">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="72"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카페" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="all-lP-d7U">
+                                                                    <rect key="frame" x="7.9999999999999982" y="52.333333333333336" width="24.333333333333329" height="16.666666666666664"/>
+                                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="14"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="Tky-WJ-KLz" secondAttribute="trailing" id="GEa-oV-3qg"/>
+                                                                <constraint firstAttribute="bottom" secondItem="all-lP-d7U" secondAttribute="bottom" constant="3" id="ZM8-dI-iIq"/>
+                                                                <constraint firstItem="Tky-WJ-KLz" firstAttribute="top" secondItem="NN6-yK-RkV" secondAttribute="top" id="hqT-kU-aT7"/>
+                                                                <constraint firstItem="Tky-WJ-KLz" firstAttribute="leading" secondItem="NN6-yK-RkV" secondAttribute="leading" id="oiU-UR-KVV"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Tky-WJ-KLz" secondAttribute="bottom" id="sY1-I4-Oxj"/>
+                                                                <constraint firstItem="all-lP-d7U" firstAttribute="leading" secondItem="NN6-yK-RkV" secondAttribute="leading" constant="8" id="uxh-aH-3xh"/>
+                                                            </constraints>
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="138" height="72"/>
                                                     </collectionViewCell>
@@ -250,7 +272,10 @@
                     </view>
                     <size key="freeformSize" width="390" height="1200"/>
                     <connections>
+                        <outlet property="honeyTipCollectionView" destination="FVU-zH-9GF" id="P0O-eK-MQ1"/>
                         <outlet property="mainImageView" destination="3kh-8w-yL1" id="wFr-gF-atn"/>
+                        <outlet property="popularPlaceCollectionView" destination="ouK-DV-d2R" id="dLR-Im-yQS"/>
+                        <outlet property="recommendedPlaceCollectionView" destination="UMu-dl-I3a" id="2bb-AD-M0v"/>
                         <outlet property="searchField" destination="lOm-JS-YRE" id="lJ0-19-8z9"/>
                     </connections>
                 </viewController>
@@ -262,17 +287,13 @@
     <resources>
         <image name="HoneyTipCell" width="116" height="120"/>
         <image name="MainLogo" width="130" height="32"/>
+        <image name="popularPlace" width="325.5" height="256"/>
+        <image name="recommendedPlace" width="500" height="332.5"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

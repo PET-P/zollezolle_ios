@@ -14,7 +14,7 @@ class MyNeighborhoodNavigationController: UINavigationController {
   let myNeighborhoodMainVC: MyNeighborhoodMainViewController = {
     
     guard let myNeighborhoodMainVC =
-            MyNeighborhoodMainViewController.loadFromStoryboard(fileName: "MyNeighborhoodMain")
+            MyNeighborhoodMainViewController.loadFromStoryboard()
             as? MyNeighborhoodMainViewController
     else {
         return MyNeighborhoodMainViewController()

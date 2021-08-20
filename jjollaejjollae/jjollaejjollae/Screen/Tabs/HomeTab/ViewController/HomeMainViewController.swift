@@ -16,6 +16,11 @@ class HomeMainViewController: UIViewController {
   
   // TODO: CollectionView 연결
   
+  @IBOutlet weak var recommendedPlaceCollectionView: UICollectionView!
+  @IBOutlet weak var honeyTipCollectionView: UICollectionView!
+  @IBOutlet weak var popularPlaceCollectionView: UICollectionView!
+  
+  
   lazy var searchButton: UIButton = {
     
     let button = UIButton()
@@ -32,6 +37,7 @@ class HomeMainViewController: UIViewController {
     
     super.viewDidLoad()
     setSearchField()
+    setCollectionViews()
   }
   
   // MARK: - Custom
@@ -52,18 +58,104 @@ class HomeMainViewController: UIViewController {
     searchButton.centerYAnchor.constraint(equalTo: searchField.centerYAnchor).isActive = true
     searchButton.trailingAnchor.constraint(equalTo: searchField.trailingAnchor, constant: -20).isActive = true
   }
+  private func setCollectionViews() {
+    
+    recommendedPlaceCollectionView.delegate = self
+    recommendedPlaceCollectionView.dataSource = self
+    
+    honeyTipCollectionView.delegate = self
+    honeyTipCollectionView.dataSource = self
+    
+    popularPlaceCollectionView.delegate = self
+    popularPlaceCollectionView.dataSource = self
+  }
 }
 
-// MARK: - Storyborad
+// MARK: - Storyboradable
 extension HomeMainViewController: Storyboardable{
   
-  static func loadFromStoryboard(fileName name: String) -> UIViewController {
+//  static func loadFromStoryboard() -> UIViewController {
+//    
+//    let storyboard = UIStoryboard(name: fileName, bundle: nil)
+//    
+//    let homeMainVC = storyboard.instantiateViewController(identifier: storyboardIdentifier)
+//    
+//    return homeMainVC
+//  }
+}
+
+// MARK: - UICollectionViewDataSource
+extension HomeMainViewController: UICollectionViewDataSource {
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
-    let identifier = "\(name)ViewController"
+    if collectionView === recommendedPlaceCollectionView {
+      
+      return 1
+    }
     
-    let storyboard = UIStoryboard(name: name, bundle: nil)
-    let homeMainVC = storyboard.instantiateViewController(identifier: identifier)
+    if collectionView === honeyTipCollectionView {
+      
+      return 1
+    }
     
-    return homeMainVC
+    if collectionView === popularPlaceCollectionView {
+      
+      return 1
+    }
+    
+    return 0
+  }
+  
+  func collectionView(_ collectionView: UICollectionView,
+                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    if collectionView === recommendedPlaceCollectionView {
+      
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.recommendedPlaceCellID,
+                                                    for: indexPath)
+      return cell
+    }
+    
+    if collectionView === honeyTipCollectionView {
+      
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.honeyTipCellID,
+                                                    for: indexPath)
+      return cell
+    }
+    
+    if collectionView === popularPlaceCollectionView {
+      
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.popularPlaceCellID,
+                                                    for: indexPath)
+      return cell
+    }
+    
+    return UICollectionViewCell()
+  }
+}
+
+extension HomeMainViewController: UICollectionViewDelegate {
+  
+}
+
+// MARK: - UICollectionvViewDelegateFlowLayout
+extension HomeMainViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
+    if collectionView === recommendedPlaceCollectionView {
+      return CGSize(width: 138, height: 72)
+    }
+    
+    if collectionView === honeyTipCollectionView {
+      return CGSize(width: 116, height: 120)
+    }
+    
+    if collectionView === popularPlaceCollectionView {
+      return CGSize(width: 138, height: 72)
+    }
+    
+    // Default Value
+    return CGSize(width: 50, height: 50)
   }
 }

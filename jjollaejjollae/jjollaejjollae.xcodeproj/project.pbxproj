@@ -47,8 +47,14 @@
 		28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 28FF9FE526B930570062BC28 /* launch screen-3.pdf */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		663E9F5A170D8624F35B16A1 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */; };
+		DDB958B026CB7D1B006B30BC /* DetailAccomodations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB958AF26CB7D1B006B30BC /* DetailAccomodations.storyboard */; };
+		DDB958B226CB7D31006B30BC /* DetailAccomodationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958B126CB7D31006B30BC /* DetailAccomodationsViewController.swift */; };
+		DDB958B926CCD870006B30BC /* RecommendedPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958B826CCD870006B30BC /* RecommendedPlaceCell.swift */; };
+		DDB958BB26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958BA26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift */; };
+		DDB958BD26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958BC26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift */; };
+		DDB958BF26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958BE26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
-		DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */; };
+		DDF24BB126C6D61D007AB642 /* MyInfoMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24B9B26C6D61D007AB642 /* MyInfoMain.storyboard */; };
 		DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */; };
 		DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9E26C6D61D007AB642 /* MyInfoTabNavigationController.swift */; };
 		DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */; };
@@ -107,8 +113,14 @@
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		8E3349D548C3FA191B037D66 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Pods/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDB958AF26CB7D1B006B30BC /* DetailAccomodations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailAccomodations.storyboard; sourceTree = "<group>"; };
+		DDB958B126CB7D31006B30BC /* DetailAccomodationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAccomodationsViewController.swift; sourceTree = "<group>"; };
+		DDB958B826CCD870006B30BC /* RecommendedPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceCell.swift; sourceTree = "<group>"; };
+		DDB958BA26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyTipCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDB958BC26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDB958BE26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyInfoTab.storyboard; sourceTree = "<group>"; };
+		DDF24B9B26C6D61D007AB642 /* MyInfoMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyInfoMain.storyboard; sourceTree = "<group>"; };
 		DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainViewController.swift; sourceTree = "<group>"; };
 		DDF24B9E26C6D61D007AB642 /* MyInfoTabNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoTabNavigationController.swift; sourceTree = "<group>"; };
 		DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeMain.storyboard; sourceTree = "<group>"; };
@@ -264,6 +276,7 @@
 				285CE11026B7DED30022DA2E /* Date+Extension.swift */,
 				2841599726BA8A3F00F027DB /* UITextField+extension.swift */,
 				284159AB26BE52FD00F027DB /* UILabel+Extension.swift */,
+				DDB958BE26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -305,6 +318,7 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				DDB958AB26CB7AFA006B30BC /* Detail */,
 				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
 				2841598A26BA73C600F027DB /* Login */,
 				2837FC4126BA6CF400C1C0B0 /* Splash */,
@@ -336,6 +350,49 @@
 				8E3349D548C3FA191B037D66 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		DDB958AB26CB7AFA006B30BC /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DDB958AC26CB7B0B006B30BC /* Accomodations */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		DDB958AC26CB7B0B006B30BC /* Accomodations */ = {
+			isa = PBXGroup;
+			children = (
+				DDB958AD26CB7BE7006B30BC /* Storyboard */,
+				DDB958AE26CB7BEE006B30BC /* ViewController */,
+			);
+			path = Accomodations;
+			sourceTree = "<group>";
+		};
+		DDB958AD26CB7BE7006B30BC /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DDB958AF26CB7D1B006B30BC /* DetailAccomodations.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DDB958AE26CB7BEE006B30BC /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDB958B126CB7D31006B30BC /* DetailAccomodationsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DDB958B726CCD84D006B30BC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DDB958B826CCD870006B30BC /* RecommendedPlaceCell.swift */,
+				DDB958BA26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift */,
+				DDB958BC26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		DDF24B9526C6D5E4007AB642 /* MainTabBar */ = {
@@ -371,7 +428,7 @@
 		DDF24B9A26C6D61D007AB642 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */,
+				DDF24B9B26C6D61D007AB642 /* MyInfoMain.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -388,6 +445,7 @@
 		DDF24B9F26C6D61D007AB642 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
+				DDB958B726CCD84D006B30BC /* Cell */,
 				DDF24BA026C6D61D007AB642 /* Stroyboard */,
 				DDF24BA226C6D61D007AB642 /* ViewController */,
 			);
@@ -528,7 +586,7 @@
 				28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
 				DDF24BB726C6D61D007AB642 /* WishListMain.storyboard in Resources */,
-				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
+				DDF24BB126C6D61D007AB642 /* MyInfoMain.storyboard in Resources */,
 				DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
@@ -542,6 +600,7 @@
 				284159A426BC50F500F027DB /* Password.storyboard in Resources */,
 				2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */,
 				285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */,
+				DDB958B026CB7D1B006B30BC /* DetailAccomodations.storyboard in Resources */,
 				DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */,
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
@@ -599,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
+				DDB958BB26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
 				DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */,
 				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
@@ -611,7 +671,10 @@
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
+				DDB958BD26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift in Sources */,
+				DDB958B926CCD870006B30BC /* RecommendedPlaceCell.swift in Sources */,
 				DDF24BBC26C6D61D007AB642 /* MyNeighborhoodNavigationController.swift in Sources */,
+				DDB958B226CB7D31006B30BC /* DetailAccomodationsViewController.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
@@ -626,6 +689,7 @@
 				DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
+				DDB958BF26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

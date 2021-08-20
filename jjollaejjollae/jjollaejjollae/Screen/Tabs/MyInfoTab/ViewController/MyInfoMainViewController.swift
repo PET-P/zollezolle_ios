@@ -8,10 +8,11 @@
 import UIKit
 
 class MyInfoMainViewController: UIViewController {
-
+  
   override func viewDidLoad() {
       super.viewDidLoad()
 
   }
 }
 
+extension MyInfoMainViewController: Storyboardable { }

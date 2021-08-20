@@ -12,7 +12,7 @@ class WishListNavigationController: UINavigationController {
   let wishListMainVC: WishListMainViewController = {
     
     guard let wishListMainVC =
-            WishListMainViewController.loadFromStoryboard(fileName: "WishListMain")
+            WishListMainViewController.loadFromStoryboard()
             as? WishListMainViewController
     else {
       return WishListMainViewController()

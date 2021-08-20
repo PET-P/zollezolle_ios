@@ -10,7 +10,34 @@ import UIKit
 // TODO: 이 프로토콜 적절한 파일로 옮기기
 protocol Storyboardable: AnyObject {
   
-  static func loadFromStoryboard(fileName: String) -> UIViewController
+  static func loadFromStoryboard() -> UIViewController
+}
+
+extension Storyboardable {
+  
+  /// 우리 팀은 Storyboard 의 작명규칙을
+  /// ViewController 를 제외한 이름으로 정하기로 결정했다.
+  static var fileName: String {
+    
+    let className = String(describing: self)
+    
+    // "ViewController".count is 14
+    return String(className.prefix(className.count - 14))
+  }
+  
+  static var storyboardIdentifier: String {
+    
+    return String(describing: self)
+  }
+  
+  static func loadFromStoryboard() -> UIViewController {
+    
+    let storyboard = UIStoryboard(name: Self.fileName, bundle: nil)
+    
+    let homeMainVC = storyboard.instantiateViewController(identifier: Self.storyboardIdentifier)
+    
+    return homeMainVC
+  }
 }
 
 class HomeTabNavigationController: UINavigationController {
@@ -20,7 +47,7 @@ class HomeTabNavigationController: UINavigationController {
   private let homeMainVC: HomeMainViewController = {
     
     guard let homeMainVieController =
-            HomeMainViewController.loadFromStoryboard(fileName: "HomeMain")
+            HomeMainViewController.loadFromStoryboard()
             as? HomeMainViewController
     else {
       return HomeMainViewController()
