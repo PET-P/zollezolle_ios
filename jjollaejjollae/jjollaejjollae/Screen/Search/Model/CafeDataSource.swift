@@ -1,5 +1,5 @@
 //
-//  LandmarkDataSource.swift
+//  CafeDataSource.swift
 //  jjollaejjollae
 //
 //  Created by abc on 2021/08/19.
@@ -7,23 +7,23 @@
 
 import UIKit
 
-class LandmarkDataSource: NSObject, UITableViewDataSource {
+class CafeDataSource: NSObject, UITableViewDataSource {
   var dataList: [SearchResultInfo] = []
-  lazy var likes: [Int: Int] = [:]
+  lazy var likes: [Int: Bool] = [:]
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //return landmarkDataList.count
+    //return dataList.count
     return 10
   }
 }
 
-extension LandmarkDataSource: SearchResultCellDelegate {
+extension CafeDataSource: SearchResultCellDelegate {
   
-  func didTapHeart(for index: Int, like: Bool) {
+  func didTapHeart(for placeId: Int, like: Bool) {
     if like {
-      likes[index] = 1
+      likes[placeId] = true
     } else {
-      likes[index] = 0
+      likes[placeId] = false
     }
   }
   
@@ -33,6 +33,7 @@ extension LandmarkDataSource: SearchResultCellDelegate {
     
     cell.delegate = self
     cell.index = indexPath.row
+    cell.placeId = dataList[indexPath.row].id
     
     let item = dataList[indexPath.row]
     cell.locationNameLabel.text = item.name
@@ -40,9 +41,8 @@ extension LandmarkDataSource: SearchResultCellDelegate {
     cell.numberOfReviewsLabel.text = "(\(item.numbers))"
     cell.starPointLabel.text = "\(item.points)"
     
-    cell.isWish = likes[indexPath.row] == 1 ? true : false
-    dataList[indexPath.row].like = likes[indexPath.row] == 1 ? true : false
-    
+    cell.isWish = likes[indexPath.row] == true
+    dataList[indexPath.row].like = likes[indexPath.row] == true
     
     return cell
   }

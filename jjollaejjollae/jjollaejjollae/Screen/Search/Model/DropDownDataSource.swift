@@ -7,6 +7,10 @@
 
 import UIKit
 
+class CellClass: UITableViewCell {
+  
+}
+
 class DropDownDataSource: NSObject, UITableViewDataSource {
   var dataList = ["리뷰 많은순", "최근 등록순", "별점 높은순"]
   
