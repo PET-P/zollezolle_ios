@@ -29,7 +29,7 @@ class HomeMainViewController: UIViewController {
   
   // MARK: - Life Cycle
   override func viewDidLoad() {
-    
+    searchField.delegate = self
     super.viewDidLoad()
     setSearchField()
   }
@@ -66,4 +66,18 @@ extension HomeMainViewController: Storyboardable{
     
     return homeMainVC
   }
+ 
 }
+
+extension HomeMainViewController: UITextFieldDelegate {
+  func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    if textField == searchField {
+      self.navigationController?.pushViewController(HomeMainViewController
+                                                      .loadFromStoryboard(fileName: "Search")
+                                                    , animated: true)
+    }
+    return false
+  }
+}
+
+

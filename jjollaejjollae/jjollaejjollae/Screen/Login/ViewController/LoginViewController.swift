@@ -18,14 +18,14 @@ class LoginViewController: UIViewController {
     didSet {
       topLoginTitle.text = "반려동물과"
       topLoginTitle.font = UIFont.robotoBold(size: 30)
-      topLoginTitle.textColor = UIColor.쥐색38
+      topLoginTitle.textColor = UIColor.쫄래블랙
     }
   }
   @IBOutlet var bottomLoginTitle: UILabel! {
     didSet {
       bottomLoginTitle.text = "여행을 떠나 볼까요?"
       bottomLoginTitle.font = UIFont.robotoBold(size: 30)
-      bottomLoginTitle.textColor = UIColor.쥐색38
+      bottomLoginTitle.textColor = UIColor.쫄래블랙
     }
   }
   @IBOutlet var continueButton: UIButton! {
@@ -131,7 +131,11 @@ class LoginViewController: UIViewController {
     self.navigationController?.pushViewController(signUpVC, animated: true)
   }
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
-    
+    let SearchStoryboard = UIStoryboard(name: "Search", bundle: nil)
+    guard let searchVC = SearchStoryboard
+            .instantiateViewController(identifier: "SearchViewController") as? SearchViewController
+    else { return }
+    self.navigationController?.pushViewController(searchVC, animated: true)
   }
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
     

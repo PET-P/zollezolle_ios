@@ -11,6 +11,6 @@ extension UILabel {
     func titleStyle(text: String) {
         self.text = "\(text)"
         self.font = UIFont.robotoBold(size: 30)
-        self.textColor = UIColor.쥐색38
+        self.textColor = UIColor.쫄래블랙
     }
 }
