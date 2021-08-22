@@ -16,6 +16,7 @@ class SearchResultTableViewCell: UITableViewCell {
   
   @IBOutlet weak var cellImageView: UIImageView! {
     didSet {
+      cellImageView.translatesAutoresizingMaskIntoConstraints = false
       cellImageView.setRounded(radius: 8)
       cellImageView.isUserInteractionEnabled = true
     }
@@ -23,7 +24,8 @@ class SearchResultTableViewCell: UITableViewCell {
   
   @IBOutlet weak var addressLabel: UILabel! {
     didSet {
-      addressLabel.isHidden = true
+      addressLabel.translatesAutoresizingMaskIntoConstraints = false
+      addressLabel.text = "제주 애월읍"
       addressLabel.font = .robotoMedium(size: 12)
       addressLabel.textColor = .회
     }
@@ -31,12 +33,14 @@ class SearchResultTableViewCell: UITableViewCell {
   
   @IBOutlet weak var locationNameLabel: UILabel! {
     didSet {
+      locationNameLabel.translatesAutoresizingMaskIntoConstraints = false
       locationNameLabel.font = .robotoBold(size: 16)
       locationNameLabel.textColor = .쫄래블랙
     }
   }
   @IBOutlet weak var locationTypeLabel: UILabel! {
     didSet {
+      locationTypeLabel.translatesAutoresizingMaskIntoConstraints = false
       locationTypeLabel.font = .robotoMedium(size: 12)
       locationTypeLabel.textColor = .회
     }
@@ -56,7 +60,7 @@ class SearchResultTableViewCell: UITableViewCell {
   @IBOutlet weak var heartButton: UIButton!
   @IBOutlet weak var priceLabel: UILabel! {
     didSet {
-      priceLabel.isHidden = true
+      priceLabel.text = "85,000원"
       priceLabel.textColor = .쫄래블랙
       priceLabel.font = .robotoBold(size: 16)
     }
@@ -64,7 +68,7 @@ class SearchResultTableViewCell: UITableViewCell {
   
   @IBOutlet weak var DaysLabel: UILabel! {
     didSet {
-      DaysLabel.isHidden = true
+      DaysLabel.text = "1박 요금"
       DaysLabel.textColor = .회
       DaysLabel.font = .robotoMedium(size: 10)
     }
@@ -80,12 +84,18 @@ class SearchResultTableViewCell: UITableViewCell {
     }
   }
   
+  override func prepareForReuse() {
+    DaysLabel.isHidden = true
+    priceLabel.isHidden = true
+    contentStackView.insertArrangedSubview(addressLabel, at: 0)
+    addressLabel.isHidden = true
+  }
+  
   var delegate : SearchResultCellDelegate?
   var index : Int? //얘를 key(디비에 장소의 id)
   var placeId: Int = -1
   
   @IBAction func didTapHeartButton(_ sender: UIButton) {
-//    guard let index = index else {return}
     if sender.isSelected {
       isWish = true
       delegate?.didTapHeart(for: placeId, like: true)
@@ -95,7 +105,11 @@ class SearchResultTableViewCell: UITableViewCell {
     }
     sender.isSelected = !sender.isSelected
   }
-
+  
+  @IBOutlet weak var contentStackView: UIStackView!
+  @IBOutlet weak var LocationStackView: UIStackView!
+  @IBOutlet weak var starStackView: UIStackView!
+  
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -104,14 +118,6 @@ class SearchResultTableViewCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
-  
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    let padding = UIEdgeInsets(top: 0, left: 0, bottom: 42, right: 0)
-    contentView.frame = contentView.frame.inset(by: padding)
-  }
-  
-  
 }
 
 

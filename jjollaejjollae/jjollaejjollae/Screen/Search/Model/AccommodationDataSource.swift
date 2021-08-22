@@ -42,24 +42,38 @@ extension AccommodationDataSource: SearchResultCellDelegate {
     }
   }
   
-  
-  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? SearchResultTableViewCell
     else { return UITableViewCell() }
     
+    //    cell.sizeToFit()
     cell.delegate = self
-//    cell.index = indexPath.row
+    //    cell.index = indexPath.row
     cell.placeId = dataList[indexPath.row].id
+    
     // index랑
     // cell에 들어있는 정보는 위 함수에서 indexpath.row 접근할 수 밖에 없지않나요?
     // cell에서 하트를 누르면 tableview[indexpath.row]의 하트가 눌린거죠
     // 그거랑 프로퍼티리스트에서 가져오는 likes랑 어떻게 연결하죠..
     let item = dataList[indexPath.row]
+    if let day = item.days, let address = item.location, let price = item.prices {
+      cell.DaysLabel.isHidden = false
+      cell.addressLabel.isHidden = false
+      cell.priceLabel.isHidden = false
+      cell.DaysLabel.text = "\(day)박 요금"
+      cell.addressLabel.text = address
+      cell.priceLabel.text = "\(price)원"
+    } else {
+      cell.addressLabel.text = nil
+      cell.DaysLabel.text = nil
+      cell.priceLabel.text = nil
+      cell.contentStackView.removeArrangedSubview(cell.addressLabel)
+    }
+    
     cell.locationNameLabel.text = item.name
-    cell.locationTypeLabel.text = item.type
-    cell.numberOfReviewsLabel.text = "(\(item.numbers))"
-    cell.starPointLabel.text = "\(item.points)"
+    cell.locationTypeLabel.text = item.type ?? ""
+    cell.numberOfReviewsLabel.text = "(\(item.numbers ?? 0))"
+    cell.starPointLabel.text = " \(item.points ?? 0)"
     
     cell.isWish = likes[cell.placeId] == true
     dataList[indexPath.row].like = likes[cell.placeId] == true

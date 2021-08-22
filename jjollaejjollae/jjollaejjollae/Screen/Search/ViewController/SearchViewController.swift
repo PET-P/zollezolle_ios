@@ -26,7 +26,7 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
       backButton.tintColor = .쫄래블랙
     }
   }
- 
+  
   private lazy var searchManager = SearchManager.shared
   
   override func viewDidLoad() {
@@ -55,10 +55,10 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
     settings.style.buttonBarItemsShouldFillAvailableWidth = true
     settings.style.buttonBarHeight = 1.0
     settings.style.selectedBarHeight = 4.0
-  
+    
     changeCurrentIndexProgressive = {
       (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage:
-      CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
+        CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
       guard changeCurrentIndex == true else { return }
       oldCell?.label.textColor = .쫄래블랙
       oldCell?.label.font = .robotoMedium(size: 14)
@@ -68,7 +68,7 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
       newCell?.label.font = .robotoBold(size: 14)
     }
   }
-
+  
   override func viewControllers(for pagerTabStripController: PagerTabStripViewController)
   -> [UIViewController] {
     let recentStoryboard = UIStoryboard(name: "Recent", bundle: nil)

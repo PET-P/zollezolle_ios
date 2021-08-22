@@ -80,6 +80,19 @@ class SearchResultViewController: UIViewController {
     }
   }
   
+  let goToMapButton: UIButton = {
+    let goButton = UIButton()
+    goButton.backgroundColor = UIColor.쫄래앨로우
+    goButton.titleLabel?.font = UIFont.robotoBold(size: 14)
+    goButton.setTitle("지도로보기", for: .normal)
+    goButton.setTitleColor(.색44444, for: .normal)
+    goButton.titleLabel?.textColor = .색44444
+    goButton.titleLabel?.textAlignment = .center
+    
+    
+    return goButton
+  }()
+  
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
   var searchResultDataSources: [UITableViewDataSource] = []
   var dataList = [SearchResultInfo]()
@@ -100,6 +113,7 @@ class SearchResultViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     resultTableView.delegate = self
     dropDownTableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
     resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
@@ -110,11 +124,41 @@ class SearchResultViewController: UIViewController {
     searchResultDataSources = [accommodationDataSource, restaurantDataSource, cafeDataSource, landmarkDataSource]
     resultTableView.dataSource = searchResultDataSources[0]
     resultTableView.tableFooterView = UIView(frame: CGRect.zero)
+    
+    
+    
+    //    resultTableView.estimatedRowHeight = 250
+    resultTableView.separatorStyle = .none
+    //    resultTableView.estimatedRowHeight = resultTableView.frame.width / 336 * 236
+    
     dropDownTableView.dataSource = dropdownDataSource
     dropDownTableView.separatorStyle = .none
     dropDownTableView.delegate = self
+    dropDownTableView.rowHeight = 50
     setLocationFilterButtonUI()
     defaultHeight = HeightTobeDynamioc.constant
+    
+    
+    view.addSubview(goToMapButton)
+    resultTableView.isUserInteractionEnabled = true
+    goToMapButton.translatesAutoresizingMaskIntoConstraints = false
+    goToMapButton.roundedButton(cornerRadius: nil)
+    goToMapButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -78).isActive = true
+    goToMapButton.widthAnchor.constraint(equalToConstant: 121).isActive = true
+    goToMapButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
+    goToMapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    goToMapButton.addTarget(self, action: #selector(tapGoToMapButton), for: .touchUpInside)
+    
+  }
+  
+  override func viewDidLayoutSubviews() {
+    goToMapButton.setRounded(radius: nil)
+    goToMapButton.addShadow()
+  }
+  
+  @objc private func tapGoToMapButton() {
+    // TODO Map으로 넘어가기
+    print("touched")
   }
   
   private func setLocationFilterButtonUI() {
@@ -139,7 +183,7 @@ class SearchResultViewController: UIViewController {
       }
     }
   }
-    
+  
   @IBAction private func didTapFilterButtons(_ sender: UIButton) {
     switch sender {
     case restaurantButton:
@@ -165,7 +209,7 @@ class SearchResultViewController: UIViewController {
     resultTableView.reloadData()
   }
   
- 
+  
 }
 //MARK: - DropDownMenu
 
@@ -205,14 +249,10 @@ extension SearchResultViewController {
   }
 }
 
+
 extension SearchResultViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if tableView == resultTableView {
-      return tableView.frame.width / 343 * 245
-    } else {
-      return CGFloat(50)
-    }
-  }
+  
+  
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if tableView == dropDownTableView {

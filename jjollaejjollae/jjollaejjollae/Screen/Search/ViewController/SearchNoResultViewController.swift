@@ -87,8 +87,4 @@ extension SearchNoResultViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 80
   }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return tableView.frame.width / 343 * 245
-  }
 }
