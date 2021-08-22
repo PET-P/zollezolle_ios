@@ -19,7 +19,7 @@ class JJollaeSwitch: UIButton {
     let label = UILabel()
     label.text = "여"
     label.font = .robotoMedium(size: 16)
-    label.textColor = UIColor.쥐색38
+    label.textColor = UIColor.쫄래블랙
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()

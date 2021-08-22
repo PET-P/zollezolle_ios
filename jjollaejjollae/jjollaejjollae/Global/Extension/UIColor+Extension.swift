@@ -41,10 +41,10 @@ extension UIColor {
     @nonobjc class var 쫄래앨로우: UIColor {
         return UIColor(rgb: 0xFFDB94)
     }
-    @nonobjc class var 쫄래브라운: UIColor {
+    @nonobjc class var 쫄래브라운2: UIColor {
         return UIColor(rgb: 0x967D60)
     }
-    @nonobjc class var 진브라운: UIColor {
+    @nonobjc class var 쫄래브라운: UIColor {
         return UIColor(rgb: 0x78644D)
     }
     @nonobjc class var 쫄래브라운40: UIColor {
@@ -56,7 +56,7 @@ extension UIColor {
     @nonobjc class var 회: UIColor {
         return UIColor(rgb: 0x828282)
     }
-    @nonobjc class var 쥐색38: UIColor {
+    @nonobjc class var 쫄래블랙: UIColor {
         return UIColor(rgb: 0x383838)
     }
     @nonobjc class var 연회랑38사이: UIColor {
