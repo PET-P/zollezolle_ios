@@ -49,6 +49,9 @@
 		2884A32026CE926F004596C3 /* LandmarkDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A31F26CE926F004596C3 /* LandmarkDataSource.swift */; };
 		2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A32126CE933A004596C3 /* CafeDataSource.swift */; };
 		2884A32426CECE82004596C3 /* DropDownDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A32326CECE81004596C3 /* DropDownDataSource.swift */; };
+		2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A32826D3FC6E004596C3 /* FilterViewController.swift */; };
+		2884A32B26D3FC8B004596C3 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A32A26D3FC8B004596C3 /* Filter.storyboard */; };
+		2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A32C26D3FF07004596C3 /* RoundButton.swift */; };
 		28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824826B3C76D00785666 /* UIColor+Extension.swift */; };
 		28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824A26B3D32600785666 /* UIButton+Extension.swift */; };
 		28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824F26B429F900785666 /* UIFont+Extension.swift */; };
@@ -126,6 +129,9 @@
 		2884A31F26CE926F004596C3 /* LandmarkDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDataSource.swift; sourceTree = "<group>"; };
 		2884A32126CE933A004596C3 /* CafeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeDataSource.swift; sourceTree = "<group>"; };
 		2884A32326CECE81004596C3 /* DropDownDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownDataSource.swift; sourceTree = "<group>"; };
+		2884A32826D3FC6E004596C3 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		2884A32A26D3FC8B004596C3 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
+		2884A32C26D3FF07004596C3 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		28EA824826B3C76D00785666 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		28EA824A26B3D32600785666 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		28EA824F26B429F900785666 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -371,6 +377,7 @@
 			children = (
 				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
 				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
+				2884A32C26D3FF07004596C3 /* RoundButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -389,6 +396,7 @@
 		28F9E93C26C8025200D9E693 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2884A32826D3FC6E004596C3 /* FilterViewController.swift */,
 				28F9E93E26C8027000D9E693 /* SearchViewController.swift */,
 				2877830E26C811B6001BF582 /* RecentSearchViewController.swift */,
 				2877831226C824BE001BF582 /* StarsSearchViewController.swift */,
@@ -406,6 +414,7 @@
 				2884A30426C90CD4004596C3 /* Recent.storyboard */,
 				2884A30926CA404D004596C3 /* SearchNoResult.storyboard */,
 				2884A31926CE696B004596C3 /* SearchResult.storyboard */,
+				2884A32A26D3FC8B004596C3 /* Filter.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -613,6 +622,7 @@
 			files = (
 				2884A31A26CE696B004596C3 /* SearchResult.storyboard in Resources */,
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
+				2884A32B26D3FC8B004596C3 /* Filter.storyboard in Resources */,
 				286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */,
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */,
@@ -696,10 +706,12 @@
 				2884A31C26CE8E42004596C3 /* AccommodationDataSource.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
 				DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */,
+				2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */,
 				2884A31826CE532E004596C3 /* SearchResultViewController.swift in Sources */,
 				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
 				DDF24BB926C6D61D007AB642 /* WishListNavigationController.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
+				2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */,
 				2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				2884A31E26CE91E1004596C3 /* RestaurantDataSource.swift in Sources */,
