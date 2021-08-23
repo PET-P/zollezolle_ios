@@ -43,32 +43,32 @@
                                     <constraint firstAttribute="bottom" secondItem="qML-6u-3nr" secondAttribute="bottom" constant="20" id="u0E-fJ-KXb"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Shf-vx-ncI">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Shf-vx-ncI">
                                 <rect key="frame" x="16" y="139.5" width="382" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh7-BN-G4e">
-                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh7-BN-G4e" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="89.5" height="30"/>
                                         <state key="normal" title="맛집"/>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XGZ-JL-xm0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUy-Se-Byq">
-                                        <rect key="frame" x="101.5" y="0.0" width="77.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUy-Se-Byq" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="97.5" y="0.0" width="89.5" height="30"/>
                                         <state key="normal" title="관광지"/>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="z6b-dx-T6Y"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sc6-pS-5Td">
-                                        <rect key="frame" x="203" y="0.0" width="77.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sc6-pS-5Td" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="195" y="0.0" width="89.5" height="30"/>
                                         <state key="normal" title="카페"/>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="umh-Fk-K3J"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhU-lG-inJ">
-                                        <rect key="frame" x="304.5" y="0.0" width="77.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhU-lG-inJ" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="292.5" y="0.0" width="89.5" height="30"/>
                                         <state key="normal" title="숙소"/>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YEo-me-c0M"/>

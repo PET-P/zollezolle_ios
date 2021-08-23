@@ -25,10 +25,10 @@ class SearchResultViewController: UIViewController {
       searchTextField.setRounded(radius: nil)
     }
   }
-  @IBOutlet weak var restaurantButton: UIButton!
-  @IBOutlet weak var landMarkButton: UIButton!
-  @IBOutlet weak var cafeButton: UIButton!
-  @IBOutlet weak var accommodationButton: UIButton!
+  @IBOutlet weak var restaurantButton: RoundButton!
+  @IBOutlet weak var landMarkButton: RoundButton!
+  @IBOutlet weak var cafeButton: RoundButton!
+  @IBOutlet weak var accommodationButton: RoundButton!
   @IBOutlet weak var setScheduleButton: UIButton! {
     didSet {
       setScheduleButton.setRounded(radius: 4)
@@ -164,7 +164,7 @@ class SearchResultViewController: UIViewController {
   private func setLocationFilterButtonUI() {
     buttons = [restaurantButton, landMarkButton, cafeButton, accommodationButton]
     buttons.forEach { (button) in
-      button.setRounded(radius: nil)
+//      button.setRounded(radius: nil)
       button.layer.borderColor = UIColor.쫄래페일그린.cgColor
       button.layer.borderWidth = 1.0
       button.backgroundColor = .white
