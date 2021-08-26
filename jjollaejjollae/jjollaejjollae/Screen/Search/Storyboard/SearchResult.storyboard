@@ -90,6 +90,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gc-qy-eQK">
                                         <rect key="frame" x="361" y="0.0" width="21" height="30"/>
                                         <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapFilterButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Kay-pP-gFP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
