@@ -249,7 +249,8 @@ extension SearchResultViewController {
   }
   
   @IBAction func didTapFilterButton(_ sender: UIButton) {
-    let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
+    let bundle = Bundle(identifier: "P.TEP.jjollaejjollae")
+    let filterStoryboard = UIStoryboard(name: "Filter", bundle: bundle )
     guard let filterVC = filterStoryboard.instantiateViewController(identifier: "FilterViewController") as? FilterViewController else {return}
 //    self.navigationController?.pushViewController(filterVC, animated: true)
     self.navigationController?.present(filterVC, animated: true, completion: nil)

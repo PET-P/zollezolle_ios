@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c27-KT-C41">
-                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="34" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="1IC-We-WWQ">
                                         <barButtonItem key="rightBarButtonItem" title="초기화" id="7HC-9y-2tn">
@@ -28,7 +28,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxH-cl-htj">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxH-cl-htj">
                                 <rect key="frame" x="0.0" y="725" width="375" height="87"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="pNK-Rh-687">
-                                <rect key="frame" x="16" y="133" width="217" height="470"/>
+                                <rect key="frame" x="16" y="195" width="217" height="470"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="l03-Xp-kyq">
                                         <rect key="frame" x="0.0" y="0.0" width="217" height="102.33333333333333"/>
@@ -55,10 +55,11 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="h2z-in-TBb">
                                                 <rect key="frame" x="0.0" y="31.333333333333343" width="217" height="30"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9x-SR-ld4" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9x-SR-ld4" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
-                                                            <color key="titleColor" red="0.1016788855" green="0.23997503519999999" blue="0.26116967200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <state key="selected">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -69,6 +70,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgI-7S-ylo" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="57" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -81,6 +83,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZ8-Hp-EBS" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="114" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -93,6 +96,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nL1-fo-h5U" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="171" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -106,10 +110,11 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ysh-rS-Vya">
-                                                <rect key="frame" x="0.0" y="72.333333333333343" width="160" height="30"/>
+                                                <rect key="frame" x="0.0" y="72.333333333333314" width="160" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meJ-Tg-Dhp" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -122,6 +127,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-Nh-YAr" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="57" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -134,6 +140,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrw-gp-VP6" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="114" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -167,6 +174,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ri-SR-oYD" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -179,6 +187,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHJ-vh-zl9" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="57" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -191,6 +200,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NL-kx-Ef1" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="114" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -208,6 +218,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAg-9E-d7V" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -220,6 +231,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6Z-Ok-1j7" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="57" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -232,6 +244,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOj-yP-ZJW" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="114" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -247,7 +260,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Ssc-1g-R7S">
-                                        <rect key="frame" x="0.0" y="326.66666666666669" width="160" height="143.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="326.66666666666663" width="160" height="143.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bnu-Xm-uKm" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
@@ -261,10 +274,11 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="qsc-BO-Tz3">
-                                                <rect key="frame" x="0.0" y="31.333333333333314" width="160" height="30"/>
+                                                <rect key="frame" x="0.0" y="31.333333333333371" width="160" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAd-gV-72n" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -277,6 +291,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3W-sX-vSM" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="57" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -289,6 +304,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afL-Us-BbZ" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="114" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -302,10 +318,11 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="gUB-hX-Ugf">
-                                                <rect key="frame" x="0.0" y="72.333333333333314" width="160" height="30"/>
+                                                <rect key="frame" x="0.0" y="72.333333333333371" width="160" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXB-pg-iVV" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -318,6 +335,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeD-8C-BY9" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="57" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -330,6 +348,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNq-Y4-3t1" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="114" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -343,10 +362,11 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="2L7-RG-1To">
-                                                <rect key="frame" x="0.0" y="113.33333333333331" width="103" height="30"/>
+                                                <rect key="frame" x="0.0" y="113.33333333333337" width="103" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jno-dW-omQ" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -359,6 +379,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yG-pm-sdN" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="57" y="0.0" width="46" height="30"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -382,16 +403,19 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="c27-KT-C41" secondAttribute="trailing" id="2eo-hW-xfL"/>
                             <constraint firstItem="jxH-cl-htj" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="87:812" id="6z5-00-Wgl"/>
                             <constraint firstAttribute="bottom" secondItem="jxH-cl-htj" secondAttribute="bottom" id="IHG-21-RuM"/>
+                            <constraint firstItem="jxH-cl-htj" firstAttribute="top" secondItem="pNK-Rh-687" secondAttribute="bottom" priority="750" constant="60" id="KAl-hI-x96"/>
                             <constraint firstItem="jxH-cl-htj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pNK-Rh-687" secondAttribute="bottom" constant="30" id="Ohv-fk-1d9"/>
                             <constraint firstItem="jxH-cl-htj" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="XsZ-Qk-mph"/>
-                            <constraint firstItem="c27-KT-C41" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="eBN-9M-o5H"/>
+                            <constraint firstItem="c27-KT-C41" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="34" id="eBN-9M-o5H"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="jxH-cl-htj" secondAttribute="trailing" id="mxf-aj-kXb"/>
-                            <constraint firstItem="l03-Xp-kyq" firstAttribute="top" secondItem="c27-KT-C41" secondAttribute="bottom" constant="45" id="pmv-Cz-9vD"/>
+                            <constraint firstItem="l03-Xp-kyq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="c27-KT-C41" secondAttribute="bottom" constant="20" id="pmv-Cz-9vD"/>
                             <constraint firstItem="pNK-Rh-687" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="sE3-OE-bvG"/>
                             <constraint firstItem="c27-KT-C41" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="unK-Rb-caO"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="NavbarTopConstraint" destination="eBN-9M-o5H" id="rCB-Yw-OA4"/>
+                        <outlet property="contentStackView" destination="pNK-Rh-687" id="bfQ-cy-6AK"/>
                         <outlet property="navBar" destination="c27-KT-C41" id="v2r-5V-xQ6"/>
                         <outlet property="refreshButton" destination="7HC-9y-2tn" id="Zsh-Ar-qPk"/>
                         <outlet property="submitButton" destination="jxH-cl-htj" id="FbE-0y-PoF"/>
