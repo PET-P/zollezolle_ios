@@ -46,7 +46,7 @@ class FilterViewController: UIViewController {
   @IBOutlet var submitButton: UIButton! {
     didSet {
       submitButton.setTitle("필터적용", for: .normal)
-      submitButton.backgroundColor = UIColor.쫄래그린
+      submitButton.backgroundColor = UIColor.쫄래페일그린
       submitButton.tintColor = UIColor.white
       submitButton.titleLabel?.font = UIFont.robotoBold(size: 18)
     }
@@ -106,7 +106,15 @@ class FilterViewController: UIViewController {
     }
   }
   
-  private var selectedList = Set<String>()
+  private var selectedList = Set<String>() {
+    didSet {
+      if selectedList.count > 0 {
+        submitButton.backgroundColor = .쫄래그린
+      } else {
+        submitButton.backgroundColor = .쫄래페일그린
+      }
+    }
+  }
   
   @IBAction func didTapFilterButtons(_ sender: RoundButton) {
     if sender.isSelected {
