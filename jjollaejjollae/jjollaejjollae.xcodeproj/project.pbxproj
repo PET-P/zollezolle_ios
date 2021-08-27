@@ -53,6 +53,8 @@
 		2884A32B26D3FC8B004596C3 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A32A26D3FC8B004596C3 /* Filter.storyboard */; };
 		2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A32C26D3FF07004596C3 /* RoundButton.swift */; };
 		2884A37726D7F3D4004596C3 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A37626D7F3D3004596C3 /* Filters.swift */; };
+		2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A3BA26D91F56004596C3 /* CalendarViewController.swift */; };
+		2884A3BD26D91FFD004596C3 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A3BC26D91FFD004596C3 /* Calendar.storyboard */; };
 		28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824826B3C76D00785666 /* UIColor+Extension.swift */; };
 		28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824A26B3D32600785666 /* UIButton+Extension.swift */; };
 		28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EA824F26B429F900785666 /* UIFont+Extension.swift */; };
@@ -134,6 +136,8 @@
 		2884A32A26D3FC8B004596C3 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		2884A32C26D3FF07004596C3 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		2884A37626D7F3D3004596C3 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		2884A3BA26D91F56004596C3 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		2884A3BC26D91FFD004596C3 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		28EA824826B3C76D00785666 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		28EA824A26B3D32600785666 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		28EA824F26B429F900785666 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 		28F9E93C26C8025200D9E693 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2884A3BA26D91F56004596C3 /* CalendarViewController.swift */,
 				2884A32826D3FC6E004596C3 /* FilterViewController.swift */,
 				28F9E93E26C8027000D9E693 /* SearchViewController.swift */,
 				2877830E26C811B6001BF582 /* RecentSearchViewController.swift */,
@@ -418,6 +423,7 @@
 				2884A30926CA404D004596C3 /* SearchNoResult.storyboard */,
 				2884A31926CE696B004596C3 /* SearchResult.storyboard */,
 				2884A32A26D3FC8B004596C3 /* Filter.storyboard */,
+				2884A3BC26D91FFD004596C3 /* Calendar.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -642,6 +648,7 @@
 				28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */,
 				2841598E26BA745700F027DB /* LoginView.storyboard in Resources */,
 				28F9E94126C802A000D9E693 /* Search.storyboard in Resources */,
+				2884A3BD26D91FFD004596C3 /* Calendar.storyboard in Resources */,
 				2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */,
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
 				2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */,
@@ -709,6 +716,7 @@
 				2884A31C26CE8E42004596C3 /* AccommodationDataSource.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
 				DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */,
+				2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */,
 				2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */,
 				2884A31826CE532E004596C3 /* SearchResultViewController.swift in Sources */,
 				2884A37726D7F3D4004596C3 /* Filters.swift in Sources */,

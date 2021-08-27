@@ -49,6 +49,7 @@ class FilterViewController: UIViewController {
       submitButton.backgroundColor = UIColor.쫄래페일그린
       submitButton.tintColor = UIColor.white
       submitButton.titleLabel?.font = UIFont.robotoBold(size: 18)
+      submitButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
     }
   }
   @IBOutlet var refreshButton: UIBarButtonItem! {
@@ -110,8 +111,10 @@ class FilterViewController: UIViewController {
     didSet {
       if selectedList.count > 0 {
         submitButton.backgroundColor = .쫄래그린
+        submitButton.isEnabled = true
       } else {
         submitButton.backgroundColor = .쫄래페일그린
+        submitButton.isEnabled = false
       }
     }
   }

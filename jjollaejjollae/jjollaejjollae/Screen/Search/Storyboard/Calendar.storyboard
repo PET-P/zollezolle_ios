@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Filter View Controller-->
+        <scene sceneID="e6R-ug-Fof">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" id="bvE-gr-TCA" customClass="FilterViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t8y-E3-3v3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWK-Xr-a8Q">
+                                <rect key="frame" x="0.0" y="34" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="날짜선택" id="wUr-y5-HGL">
+                                        <barButtonItem key="rightBarButtonItem" title="초기화" id="v9u-7b-GoH">
+                                            <connections>
+                                                <action selector="didTapRefreshButton:" destination="bvE-gr-TCA" id="kI7-Qe-RUj"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4y-st-omr">
+                                <rect key="frame" x="0.0" y="800" width="414" height="96"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTapSubmitButton:" destination="bvE-gr-TCA" eventType="touchUpInside" id="S22-kL-md7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqF-xj-NS6">
+                                <rect key="frame" x="31" y="113" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eNs-8R-wFr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DWK-Xr-a8Q" firstAttribute="leading" secondItem="eNs-8R-wFr" secondAttribute="leading" id="6Bb-80-xme"/>
+                            <constraint firstItem="DWK-Xr-a8Q" firstAttribute="top" secondItem="t8y-E3-3v3" secondAttribute="top" constant="34" id="6om-fr-VRv"/>
+                            <constraint firstAttribute="bottom" secondItem="u4y-st-omr" secondAttribute="bottom" id="FCu-7t-ATO"/>
+                            <constraint firstItem="eNs-8R-wFr" firstAttribute="trailing" secondItem="u4y-st-omr" secondAttribute="trailing" id="UPS-84-1C1"/>
+                            <constraint firstItem="bqF-xj-NS6" firstAttribute="leading" secondItem="eNs-8R-wFr" secondAttribute="leading" constant="31" id="XAy-rr-DIg"/>
+                            <constraint firstItem="u4y-st-omr" firstAttribute="leading" secondItem="eNs-8R-wFr" secondAttribute="leading" id="fTj-BP-gQh"/>
+                            <constraint firstItem="u4y-st-omr" firstAttribute="height" secondItem="t8y-E3-3v3" secondAttribute="height" multiplier="87:812" id="hff-Om-YzF"/>
+                            <constraint firstItem="bqF-xj-NS6" firstAttribute="top" secondItem="DWK-Xr-a8Q" secondAttribute="bottom" constant="35" id="sNc-9d-bEH"/>
+                            <constraint firstItem="eNs-8R-wFr" firstAttribute="trailing" secondItem="DWK-Xr-a8Q" secondAttribute="trailing" id="v4q-2l-Fkn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="NavbarTopConstraint" destination="6om-fr-VRv" id="atd-bk-ZDD"/>
+                        <outlet property="navBar" destination="DWK-Xr-a8Q" id="oAS-c7-VH3"/>
+                        <outlet property="refreshButton" destination="v9u-7b-GoH" id="qeV-sX-cOl"/>
+                        <outlet property="submitButton" destination="u4y-st-omr" id="Sdm-uL-CbF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Nk-Li-Hwr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="137.4384236453202"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

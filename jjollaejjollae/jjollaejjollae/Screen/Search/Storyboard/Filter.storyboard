@@ -28,7 +28,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxH-cl-htj">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxH-cl-htj">
                                 <rect key="frame" x="0.0" y="725" width="375" height="87"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -450,17 +450,6 @@
             <point key="canvasLocation" x="136.80000000000001" y="137.4384236453202"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="2gw-iu-rMe">
-            <size key="intrinsicContentSize" width="41.333333333333336" height="20.333333333333332"/>
-        </designable>
-        <designable name="Bnu-Xm-uKm">
-            <size key="intrinsicContentSize" width="41.333333333333336" height="20.333333333333332"/>
-        </designable>
-        <designable name="wLI-bL-INi">
-            <size key="intrinsicContentSize" width="41.333333333333336" height="20.333333333333332"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
