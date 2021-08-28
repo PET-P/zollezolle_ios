@@ -82,6 +82,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJI-dx-5SJ">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="didTapSetScheduleButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="OrH-gI-cug"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0o-BT-0gK">
                                         <rect key="frame" x="306" y="0.0" width="46" height="30"/>

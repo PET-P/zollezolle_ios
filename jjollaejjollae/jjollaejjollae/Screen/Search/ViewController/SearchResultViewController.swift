@@ -209,7 +209,19 @@ class SearchResultViewController: UIViewController {
     resultTableView.reloadData()
   }
   
+  var schedulingCompletionHandler: ((String) -> String)?
   
+  @IBAction private func didTapSetScheduleButton(_ sender: UIButton) {
+    let calendarStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
+    guard let calendarVC = calendarStoryboard.instantiateViewController(identifier: "CalendarViewController") as? CalendarViewController else {return}
+    _ = schedulingCompletionHandler?(sender.currentTitle ?? "원하는 날짜를 입력해주세요")
+    calendarVC.dateCompletionHandler = {
+      text in
+      self.setScheduleButton.setTitle(text, for: .normal)
+      return text
+    }
+    present(calendarVC, animated: true, completion: nil)
+  }
 }
 //MARK: - DropDownMenu
 
@@ -256,15 +268,10 @@ extension SearchResultViewController {
     self.navigationController?.present(filterVC, animated: true, completion: nil)
     // completion에서 data 보내줘야함
   }
-  
-  
 }
 
 
 extension SearchResultViewController: UITableViewDelegate {
-  
-  
-  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if tableView == dropDownTableView {
       guard var oldValue = selectedButton.currentTitle else {
