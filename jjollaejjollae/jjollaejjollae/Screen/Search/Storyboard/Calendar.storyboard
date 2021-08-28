@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -8,28 +8,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Filter View Controller-->
+        <!--Calendar View Controller-->
         <scene sceneID="e6R-ug-Fof">
             <objects>
-                <viewController storyboardIdentifier="FilterViewController" id="bvE-gr-TCA" customClass="FilterViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarViewController" id="bvE-gr-TCA" customClass="CalendarViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t8y-E3-3v3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWK-Xr-a8Q">
-                                <rect key="frame" x="0.0" y="34" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="34" width="390" height="44"/>
                                 <items>
                                     <navigationItem title="날짜선택" id="wUr-y5-HGL">
-                                        <barButtonItem key="rightBarButtonItem" title="초기화" id="v9u-7b-GoH">
-                                            <connections>
-                                                <action selector="didTapRefreshButton:" destination="bvE-gr-TCA" id="kI7-Qe-RUj"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="초기화" id="v9u-7b-GoH"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4y-st-omr">
-                                <rect key="frame" x="0.0" y="800" width="414" height="96"/>
+                                <rect key="frame" x="0.0" y="753.66666666666663" width="390" height="90.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="didTapSubmitButton:" destination="bvE-gr-TCA" eventType="touchUpInside" id="S22-kL-md7"/>
@@ -41,31 +37,40 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96H-pK-xbO" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="164" width="390" height="589.66666666666663"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eNs-8R-wFr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="DWK-Xr-a8Q" firstAttribute="leading" secondItem="eNs-8R-wFr" secondAttribute="leading" id="6Bb-80-xme"/>
                             <constraint firstItem="DWK-Xr-a8Q" firstAttribute="top" secondItem="t8y-E3-3v3" secondAttribute="top" constant="34" id="6om-fr-VRv"/>
+                            <constraint firstItem="eNs-8R-wFr" firstAttribute="trailing" secondItem="96H-pK-xbO" secondAttribute="trailing" id="Auw-1S-PLP"/>
                             <constraint firstAttribute="bottom" secondItem="u4y-st-omr" secondAttribute="bottom" id="FCu-7t-ATO"/>
+                            <constraint firstItem="96H-pK-xbO" firstAttribute="leading" secondItem="eNs-8R-wFr" secondAttribute="leading" id="PWM-zb-PF7"/>
                             <constraint firstItem="eNs-8R-wFr" firstAttribute="trailing" secondItem="u4y-st-omr" secondAttribute="trailing" id="UPS-84-1C1"/>
                             <constraint firstItem="bqF-xj-NS6" firstAttribute="leading" secondItem="eNs-8R-wFr" secondAttribute="leading" constant="31" id="XAy-rr-DIg"/>
                             <constraint firstItem="u4y-st-omr" firstAttribute="leading" secondItem="eNs-8R-wFr" secondAttribute="leading" id="fTj-BP-gQh"/>
                             <constraint firstItem="u4y-st-omr" firstAttribute="height" secondItem="t8y-E3-3v3" secondAttribute="height" multiplier="87:812" id="hff-Om-YzF"/>
                             <constraint firstItem="bqF-xj-NS6" firstAttribute="top" secondItem="DWK-Xr-a8Q" secondAttribute="bottom" constant="35" id="sNc-9d-bEH"/>
                             <constraint firstItem="eNs-8R-wFr" firstAttribute="trailing" secondItem="DWK-Xr-a8Q" secondAttribute="trailing" id="v4q-2l-Fkn"/>
+                            <constraint firstItem="96H-pK-xbO" firstAttribute="top" secondItem="bqF-xj-NS6" secondAttribute="bottom" constant="30" id="wvF-Q9-ScP"/>
+                            <constraint firstItem="u4y-st-omr" firstAttribute="top" secondItem="96H-pK-xbO" secondAttribute="bottom" id="xYz-Qv-wOv"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="NavbarTopConstraint" destination="6om-fr-VRv" id="atd-bk-ZDD"/>
+                        <outlet property="calendar" destination="96H-pK-xbO" id="91B-uy-j4P"/>
                         <outlet property="navBar" destination="DWK-Xr-a8Q" id="oAS-c7-VH3"/>
                         <outlet property="refreshButton" destination="v9u-7b-GoH" id="qeV-sX-cOl"/>
                         <outlet property="submitButton" destination="u4y-st-omr" id="Sdm-uL-CbF"/>
+                        <outlet property="travelDateLabel" destination="bqF-xj-NS6" id="tZ2-0i-pPq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Nk-Li-Hwr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="137.4384236453202"/>
+            <point key="canvasLocation" x="136.23188405797103" y="137.27678571428569"/>
         </scene>
     </scenes>
     <resources>
