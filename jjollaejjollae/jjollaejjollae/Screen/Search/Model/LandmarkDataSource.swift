@@ -13,7 +13,7 @@ class LandmarkDataSource: NSObject, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //return landmarkDataList.count
-    return 10
+    return 4
   }
 }
 

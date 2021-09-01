@@ -60,7 +60,7 @@ class SearchNoResultViewController: UIViewController, IndicatorInfoProvider {
     SearchResultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     SearchResultTableView.rowHeight = UITableView.automaticDimension
     for _ in 0..<10 {
-      dataList.append(SearchResultInfo())
+      dataList.append(SearchResultInfo(sector: .accommodation))
     }
     searchResultDataSource.dataList = dataList
   }

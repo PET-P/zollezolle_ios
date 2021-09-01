@@ -79,7 +79,9 @@ class SearchResultViewController: UIViewController {
       separateLine.backgroundColor = .색e8
     }
   }
-  
+
+  //MARK: - variable & constant
+
   let goToMapButton: UIButton = {
     let goButton = UIButton()
     goButton.backgroundColor = UIColor.쫄래앨로우
@@ -88,14 +90,12 @@ class SearchResultViewController: UIViewController {
     goButton.setTitleColor(.색44444, for: .normal)
     goButton.titleLabel?.textColor = .색44444
     goButton.titleLabel?.textAlignment = .center
-    
-    
     return goButton
   }()
   
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
-  var searchResultDataSources: [UITableViewDataSource] = []
-  var dataList = [SearchResultInfo]()
+  private var searchResultDataSources: [UITableViewDataSource] = []
+  private var dataList = [SearchResultInfo]()
   lazy var likes: [Int : Int] = [:]
   
   let accommodationDataSource = AccommodationDataSource()
@@ -105,32 +105,32 @@ class SearchResultViewController: UIViewController {
   let dropdownDataSource = DropDownDataSource()
   
   let modelController = ModelController()
-  var defaultHeight: CGFloat  = 0
-  var buttons : [UIButton] = []
-  let transparentView = UIView()
+  private var defaultHeight: CGFloat  = 0
+  private var buttons : [UIButton] = []
+  private let transparentView = UIView()
   let dropDownTableView = UITableView()
-  var selectedButton = UIButton()
+  private var selectedButton = UIButton()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    //MARK: - resultTableView setup
     resultTableView.delegate = self
-    dropDownTableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
     resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
+    resultTableView.isUserInteractionEnabled = true
     accommodationDataSource.dataList = modelController.accommoList
     restaurantDataSource.dataList = modelController.restaurantList
     cafeDataSource.dataList = modelController.cafeList
     landmarkDataSource.dataList = modelController.landmarkList
     searchResultDataSources = [accommodationDataSource, restaurantDataSource, cafeDataSource, landmarkDataSource]
     resultTableView.dataSource = searchResultDataSources[0]
+    self.dataList = accommodationDataSource.dataList
     resultTableView.tableFooterView = UIView(frame: CGRect.zero)
-    
-    
-    
-    //    resultTableView.estimatedRowHeight = 250
     resultTableView.separatorStyle = .none
-    //    resultTableView.estimatedRowHeight = resultTableView.frame.width / 336 * 236
     
+    //MARK: - dropdown setup
+
+    dropDownTableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
     dropDownTableView.dataSource = dropdownDataSource
     dropDownTableView.separatorStyle = .none
     dropDownTableView.delegate = self
@@ -138,9 +138,8 @@ class SearchResultViewController: UIViewController {
     setLocationFilterButtonUI()
     defaultHeight = HeightTobeDynamioc.constant
     
-    
+    //MARK: - gotoMapButton setting
     view.addSubview(goToMapButton)
-    resultTableView.isUserInteractionEnabled = true
     goToMapButton.translatesAutoresizingMaskIntoConstraints = false
     goToMapButton.roundedButton(cornerRadius: nil)
     goToMapButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -78).isActive = true
@@ -148,7 +147,6 @@ class SearchResultViewController: UIViewController {
     goToMapButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
     goToMapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     goToMapButton.addTarget(self, action: #selector(tapGoToMapButton), for: .touchUpInside)
-    
   }
   
   override func viewDidLayoutSubviews() {
@@ -158,13 +156,19 @@ class SearchResultViewController: UIViewController {
   
   @objc private func tapGoToMapButton() {
     // TODO Map으로 넘어가기
-    print("touched")
+    let searchMapStoryboard = UIStoryboard(name: "SearchMap", bundle: nil)
+    guard let searchMapVC = searchMapStoryboard.instantiateViewController(identifier: "SearchMapViewController") as? SearchMapViewController else {
+      return
+    }
+    searchMapVC.modalPresentationStyle = .fullScreen
+    searchMapVC.setDataList(with: self.dataList)
+    
+    present(searchMapVC, animated: true)
   }
   
   private func setLocationFilterButtonUI() {
     buttons = [restaurantButton, landMarkButton, cafeButton, accommodationButton]
     buttons.forEach { (button) in
-//      button.setRounded(radius: nil)
       button.layer.borderColor = UIColor.쫄래페일그린.cgColor
       button.layer.borderWidth = 1.0
       button.backgroundColor = .white
@@ -183,23 +187,27 @@ class SearchResultViewController: UIViewController {
       }
     }
   }
-  
+
   @IBAction private func didTapFilterButtons(_ sender: UIButton) {
     switch sender {
     case restaurantButton:
       resultTableView.dataSource = searchResultDataSources[1]
+      dataList = restaurantDataSource.dataList
       HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
       scheduleStackView.isHidden = true
     case landMarkButton:
       resultTableView.dataSource = searchResultDataSources[3]
+      dataList = landmarkDataSource.dataList
       HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
       scheduleStackView.isHidden = true
     case cafeButton:
       resultTableView.dataSource = searchResultDataSources[2]
+      dataList = cafeDataSource.dataList
       HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
       scheduleStackView.isHidden = true
     case accommodationButton:
       resultTableView.dataSource = searchResultDataSources[0]
+      dataList = accommodationDataSource.dataList
       scheduleStackView.isHidden = false
       HeightTobeDynamioc.constant = defaultHeight
     default:
@@ -270,6 +278,7 @@ extension SearchResultViewController {
   }
 }
 
+//MARK: - tableviewDelegate
 
 extension SearchResultViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
