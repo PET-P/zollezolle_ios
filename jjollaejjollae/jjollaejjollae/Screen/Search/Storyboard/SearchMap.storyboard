@@ -25,22 +25,7 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhJ-fr-jun" customClass="NMFMapView">
                                 <rect key="frame" x="0.0" y="88" width="390" height="756"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kYM-5p-YME" customClass="InfoView" customModule="jjollaejjollae" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="418" width="358" height="250"/>
-                                        <viewLayoutGuide key="safeArea" id="lMy-e2-ch4"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="250" id="jMN-hC-83a"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="kYM-5p-YME" firstAttribute="leading" secondItem="xhJ-fr-jun" secondAttribute="leading" constant="16" id="61T-Nf-APH"/>
-                                    <constraint firstAttribute="bottom" secondItem="kYM-5p-YME" secondAttribute="bottom" constant="88" id="j6S-4Y-RmW"/>
-                                    <constraint firstAttribute="trailing" secondItem="kYM-5p-YME" secondAttribute="trailing" constant="16" id="lSa-PW-34j"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

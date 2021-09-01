@@ -12,19 +12,32 @@ class SearchMapViewController: MapViewController {
   
   private(set) var dataList: [SearchResultInfo]?
   
+  var customInfoWindowDataSource = CustomInfoWindowDataSource()
+  
   internal func setDataList(with data: [SearchResultInfo]) {
     self.dataList = data
   }
   
-  @IBOutlet weak var infoView: InfoView!
-  
   private var markers: [NMFMarker]?
   let infoWindow = NMFInfoWindow()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setMarker()
     getInfoMessageWithHandler()
+    infoWindow.anchor = CGPoint(x: 0, y: 1)
+    infoWindow.dataSource = customInfoWindowDataSource
+    infoWindow.offsetX = -40
+    infoWindow.offsetY = -5
+    infoWindow.touchHandler = {
+      [weak self] (overlay: NMFOverlay) -> Bool in
+      self?.infoWindow.close()
+      return true
+    }
     mapView.isRotateGestureEnabled = false
   }
   
@@ -41,16 +54,21 @@ class SearchMapViewController: MapViewController {
     })
     self.markers = markers
   }
-
+  
   
   func getInfoMessageWithHandler() {
     var number = 0
     markers?.forEach({ marker in
       marker.userInfo = ["tag": number]
       marker.userInfo.updateValue(dataList?[number], forKey: "data")
-      marker.touchHandler = {(overlay: NMFOverlay) -> Bool in
+      marker.touchHandler = {[weak self] (overlay: NMFOverlay) -> Bool in
+        if marker.infoWindow == nil {
+          self?.infoWindow.open(with: marker)
+        } else {
+          self?.infoWindow.close()
+        }
         print("마커 \(overlay.userInfo["tag"] ?? "tag") 터치됨 ")
-        return false
+        return true
       }
       number += 1
     })
@@ -58,10 +76,5 @@ class SearchMapViewController: MapViewController {
   }
 }
 
-extension SearchMapViewController: NMFMapViewTouchDelegate {
-  func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
-    infoWindow.close()
-    infoWindow.open(with: mapView)
-  }
-}
+
 
