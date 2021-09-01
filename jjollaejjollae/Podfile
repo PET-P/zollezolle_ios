@@ -8,5 +8,6 @@ target 'jjollaejjollae' do
   pod 'Moya', '~> 14.0'
   pod 'XLPagerTabStrip', '~> 9.0'
   pod 'FSCalendar'
+  pod 'NMapsMap'
 
 end

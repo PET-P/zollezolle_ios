@@ -6,6 +6,7 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - NMapsMap (3.13.0)
   - SwiftLint (0.43.1)
   - XLPagerTabStrip (9.0.0)
 
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - FSCalendar
   - Kingfisher (~> 6.0)
   - Moya (~> 14.0)
+  - NMapsMap
   - SwiftLint
   - XLPagerTabStrip (~> 9.0)
 
@@ -22,6 +24,7 @@ SPEC REPOS:
     - FSCalendar
     - Kingfisher
     - Moya
+    - NMapsMap
     - SwiftLint
     - XLPagerTabStrip
 
@@ -30,9 +33,10 @@ SPEC CHECKSUMS:
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 0c2fb8a0e02f0cf14ac3ffec09453ad1ceb8fefd
+PODFILE CHECKSUM: bd18b8c17c17b816e69ffd8743b33609478191fe
 
 COCOAPODS: 1.10.2
