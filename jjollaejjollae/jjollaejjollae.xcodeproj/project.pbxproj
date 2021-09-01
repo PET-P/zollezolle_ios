@@ -11,6 +11,12 @@
 		2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C88A26B03C390001E077 /* SceneDelegate.swift */; };
 		2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89126B03C3E0001E077 /* Assets.xcassets */; };
 		2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */; };
+		28331CB426DB76730062B29D /* SearchMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28331CB326DB76730062B29D /* SearchMapViewController.swift */; };
+		28331CB626DB7A050062B29D /* SearchMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28331CB526DB7A050062B29D /* SearchMap.storyboard */; };
+		28331CBE26DCD6F40062B29D /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28331CBD26DCD6F40062B29D /* InfoView.swift */; };
+		28331CC026DCD70F0062B29D /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28331CBF26DCD70F0062B29D /* InfoView.xib */; };
+		28331D0A26DF5A950062B29D /* CustomInfoWindowDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28331D0926DF5A950062B29D /* CustomInfoWindowDataSource.swift */; };
+		28331D0E26DF681F0062B29D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28331D0D26DF681F0062B29D /* MapViewController.swift */; };
 		2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0626BFE46700E948B0 /* LoginManager.swift */; };
 		2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2834ED0A26C0004400E948B0 /* DogInfo.storyboard */; };
 		2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */; };
@@ -94,6 +100,12 @@
 		2827C89126B03C3E0001E077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2827C89426B03C3E0001E077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2827C89626B03C3E0001E077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = jjollaejjollae/Support/Info.plist; sourceTree = SOURCE_ROOT; };
+		28331CB326DB76730062B29D /* SearchMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchMapViewController.swift; path = jjollaejjollae/Screen/Search/ViewController/SearchMapViewController.swift; sourceTree = SOURCE_ROOT; };
+		28331CB526DB7A050062B29D /* SearchMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchMap.storyboard; sourceTree = "<group>"; };
+		28331CBD26DCD6F40062B29D /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		28331CBF26DCD70F0062B29D /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
+		28331D0926DF5A950062B29D /* CustomInfoWindowDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoWindowDataSource.swift; sourceTree = "<group>"; };
+		28331D0D26DF681F0062B29D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		2834ED0626BFE46700E948B0 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		2834ED0A26C0004400E948B0 /* DogInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DogInfo.storyboard; sourceTree = "<group>"; };
 		2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfoViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +306,7 @@
 				2884A31F26CE926F004596C3 /* LandmarkDataSource.swift */,
 				2884A32126CE933A004596C3 /* CafeDataSource.swift */,
 				2884A32326CECE81004596C3 /* DropDownDataSource.swift */,
+				28331D0926DF5A950062B29D /* CustomInfoWindowDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +398,8 @@
 				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
 				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
 				2884A32C26D3FF07004596C3 /* RoundButton.swift */,
+				28331CBD26DCD6F40062B29D /* InfoView.swift */,
+				28331CBF26DCD70F0062B29D /* InfoView.xib */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -403,6 +418,7 @@
 		28F9E93C26C8025200D9E693 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				28331CB326DB76730062B29D /* SearchMapViewController.swift */,
 				2884A3BA26D91F56004596C3 /* CalendarViewController.swift */,
 				2884A32826D3FC6E004596C3 /* FilterViewController.swift */,
 				28F9E93E26C8027000D9E693 /* SearchViewController.swift */,
@@ -410,6 +426,7 @@
 				2877831226C824BE001BF582 /* StarsSearchViewController.swift */,
 				2884A30B26CA406B004596C3 /* SearchNoResultViewController.swift */,
 				2884A31726CE532E004596C3 /* SearchResultViewController.swift */,
+				28331D0D26DF681F0062B29D /* MapViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -424,6 +441,7 @@
 				2884A31926CE696B004596C3 /* SearchResult.storyboard */,
 				2884A32A26D3FC8B004596C3 /* Filter.storyboard */,
 				2884A3BC26D91FFD004596C3 /* Calendar.storyboard */,
+				28331CB526DB7A050062B29D /* SearchMap.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -636,6 +654,7 @@
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
+				28331CC026DCD70F0062B29D /* InfoView.xib in Resources */,
 				DDF24BB726C6D61D007AB642 /* WishListMain.storyboard in Resources */,
 				2877831126C824A2001BF582 /* Stars.storyboard in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
@@ -660,6 +679,7 @@
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
 				28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */,
+				28331CB626DB7A050062B29D /* SearchMap.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,8 +747,10 @@
 				2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				2884A31E26CE91E1004596C3 /* RestaurantDataSource.swift in Sources */,
+				28331D0E26DF681F0062B29D /* MapViewController.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
 				DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */,
+				28331D0A26DF5A950062B29D /* CustomInfoWindowDataSource.swift in Sources */,
 				2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
@@ -745,6 +767,7 @@
 				2884A32026CE926F004596C3 /* LandmarkDataSource.swift in Sources */,
 				2884A31126CA43E6004596C3 /* SearchResultTableViewCell.swift in Sources */,
 				DDF24BB826C6D61D007AB642 /* WishListMainViewController.swift in Sources */,
+				28331CBE26DCD6F40062B29D /* InfoView.swift in Sources */,
 				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
@@ -755,6 +778,7 @@
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
 				2884A30C26CA406C004596C3 /* SearchNoResultViewController.swift in Sources */,
+				28331CB426DB76730062B29D /* SearchMapViewController.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
