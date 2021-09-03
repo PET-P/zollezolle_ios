@@ -11,8 +11,7 @@ extension Date {
     func datePickerToString() -> String {
         //date -> String
         let formatter = DateFormatter()
-        let format = "yyyy/MM/DD"
-        formatter.locale = Locale(identifier: "ko")
+        let format = "yyyy-MM-dd"
         formatter.dateFormat = format
         let dateString = formatter.string(from: self)
         
@@ -32,4 +31,9 @@ extension Date {
         }
     }
     
+  var firstDayOfTheMonth: Date {
+    get {
+      Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
+    }
+  }
 }
