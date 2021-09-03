@@ -8,7 +8,11 @@
 import UIKit
 import NMapsMap
 
-public let DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 33.41663178725384, lng: 126.54812514934162), zoom: 12, tilt: 0, heading: 0)
+public let DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 33.41663178725384,
+                                                                 lng: 126.54812514934162),
+                                                       zoom: 20,
+                                                       tilt: 0,
+                                                       heading: 0)
 
 
 class MapViewController: UIViewController {
@@ -23,7 +27,15 @@ class MapViewController: UIViewController {
     navTitle.font = .robotoBold(size: 20)
     navTitle.text = "제주도"
     navigationController?.navigationItem.titleView = navTitle
+    mapView.extent = NMGLatLngBounds(southWestLat: 31.43, southWestLng: 122.37,
+                                     northEastLat: 44.35, northEastLng: 132)
     mapView.moveCamera(NMFCameraUpdate(position: DEFAULT_CAMERA_POSITION))
+    mapView.minZoomLevel = 5.0
+    mapView.maxZoomLevel = 18.0
+    mapView.logoAlign = .rightTop
+    mapView.gestureRecognizers?.forEach({ (gesture) in
+      gesture.delaysTouchesEnded = false
+    })
   }
   
 }
