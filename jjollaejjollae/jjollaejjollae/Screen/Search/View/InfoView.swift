@@ -36,34 +36,63 @@ class InfoView: UIView {
   @IBOutlet weak var locationImageView: UIImageView!
   @IBOutlet weak var heartButton: UIButton!
   
-//  var data: SearchResultInfo? = nil {
-//    didSet {
-//      addressLabel.text = data?.location
-//      locationNameLabel.text = data?.name
-//      starPointLabel.text = "\(data?.points ?? 0)"
-//      numberOfReviewLabel.text = "\(data?.numbers ?? 0)"
-//      locationImageView.image = UIImage(named: "IMG_4930")
-//      if data?.like == true{
-//        heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
-//      } else {
-//        heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
-//      }
-//    }
-//  }
-
+  var isWish: Bool? {
+    didSet {
+      if isWish == true {
+        heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
+      } else {
+        heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
+      }
+    }
+  }
+  
+  override var isHidden: Bool {
+    didSet {
+      if isHidden {
+        //data 보내기
+        heartButton?.isSelected = false
+      }
+    }
+  }
+  
+  var data: SearchResultInfo? = nil {
+    didSet {
+      addressLabel.text = data?.location
+      locationNameLabel.text = data?.name
+      starPointLabel.text = "\(data?.points ?? 0)"
+      numberOfReviewLabel.text = "\(data?.numbers ?? 0)"
+      locationImageView.image = UIImage(named: "IMG_4930")
+      if data?.like == true{
+        heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
+      } else {
+        heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
+      }
+    }
+  }
+  @IBAction func didTapHearButton(_ sender: UIButton) {
+    //여기서 db와통신? 해야하는지?
+    if sender.isSelected == true {
+      isWish = false
+    } else  {
+      isWish = true
+    }
+    sender.isSelected = !sender.isSelected
+  }
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     setUpView()
   }
-
+  
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     setUpView()
   }
-
+  
   private func setUpView() {
     let nib = UINib(nibName: "InfoView", bundle: Bundle.main)
     guard let infoView = nib.instantiate(withOwner: self, options: nil).first as? UIView else {return}
+    addressLabel.sizeToFit()
     infoView.frame = self.bounds
     infoView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     self.addSubview(infoView)

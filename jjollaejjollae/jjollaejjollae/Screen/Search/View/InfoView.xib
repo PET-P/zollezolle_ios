@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="324" height="151"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_4930" translatesAutoresizingMaskIntoConstraints="NO" id="5ce-41-ldo">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_4930" translatesAutoresizingMaskIntoConstraints="NO" id="5ce-41-ldo">
                     <rect key="frame" x="0.0" y="0.0" width="324" height="96"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="96" id="kqw-0Z-KH5"/>
@@ -36,18 +36,21 @@
                         <constraint firstAttribute="width" constant="21" id="XgZ-OG-nFQ"/>
                     </constraints>
                     <state key="normal" image="grayLike"/>
+                    <connections>
+                        <action selector="didTapHearButton:" destination="-1" eventType="touchUpInside" id="ILn-Js-Tbz"/>
+                    </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="LGe-ey-C8m">
-                    <rect key="frame" x="13" y="106" width="151.5" height="32"/>
+                    <rect key="frame" x="13" y="104" width="151.5" height="39"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihr-lL-MG9">
-                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="12"/>
+                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="19"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="l4o-jG-Bwb">
-                            <rect key="frame" x="0.0" y="14" width="151.5" height="18"/>
+                            <rect key="frame" x="0.0" y="21" width="151.5" height="18"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4a7-2J-jzL">
                                     <rect key="frame" x="0.0" y="0.0" width="41.5" height="18"/>
@@ -87,9 +90,9 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5ce-41-ldo" secondAttribute="trailing" id="HY7-u9-fRV"/>
                 <constraint firstItem="5ce-41-ldo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ned-eU-tfE"/>
                 <constraint firstItem="wm1-e4-l4p" firstAttribute="trailing" secondItem="5ce-41-ldo" secondAttribute="trailing" constant="-15" id="g9g-7L-CE8"/>
-                <constraint firstItem="LGe-ey-C8m" firstAttribute="top" secondItem="5ce-41-ldo" secondAttribute="bottom" constant="10" id="p7C-Lq-mm5"/>
+                <constraint firstItem="LGe-ey-C8m" firstAttribute="top" secondItem="5ce-41-ldo" secondAttribute="bottom" constant="8" id="p7C-Lq-mm5"/>
                 <constraint firstItem="LGe-ey-C8m" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="13" id="srw-5s-A4z"/>
-                <constraint firstAttribute="bottom" secondItem="LGe-ey-C8m" secondAttribute="bottom" constant="13" id="tCa-v1-KSm"/>
+                <constraint firstAttribute="bottom" secondItem="LGe-ey-C8m" secondAttribute="bottom" constant="8" id="tCa-v1-KSm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="494.20289855072468" y="-215.95982142857142"/>
