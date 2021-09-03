@@ -15,8 +15,8 @@
 		28331CB626DB7A050062B29D /* SearchMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28331CB526DB7A050062B29D /* SearchMap.storyboard */; };
 		28331CBE26DCD6F40062B29D /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28331CBD26DCD6F40062B29D /* InfoView.swift */; };
 		28331CC026DCD70F0062B29D /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28331CBF26DCD70F0062B29D /* InfoView.xib */; };
-		28331D0A26DF5A950062B29D /* CustomInfoWindowDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28331D0926DF5A950062B29D /* CustomInfoWindowDataSource.swift */; };
 		28331D0E26DF681F0062B29D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28331D0D26DF681F0062B29D /* MapViewController.swift */; };
+		28331D1026E216720062B29D /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28331D0F26E216720062B29D /* CalendarCell.swift */; };
 		2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0626BFE46700E948B0 /* LoginManager.swift */; };
 		2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2834ED0A26C0004400E948B0 /* DogInfo.storyboard */; };
 		2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */; };
@@ -104,8 +104,8 @@
 		28331CB526DB7A050062B29D /* SearchMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchMap.storyboard; sourceTree = "<group>"; };
 		28331CBD26DCD6F40062B29D /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		28331CBF26DCD70F0062B29D /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
-		28331D0926DF5A950062B29D /* CustomInfoWindowDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoWindowDataSource.swift; sourceTree = "<group>"; };
 		28331D0D26DF681F0062B29D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		28331D0F26E216720062B29D /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		2834ED0626BFE46700E948B0 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		2834ED0A26C0004400E948B0 /* DogInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DogInfo.storyboard; sourceTree = "<group>"; };
 		2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfoViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +295,7 @@
 				2884A31026CA43E6004596C3 /* SearchResultTableViewCell.xib */,
 				28331CBD26DCD6F40062B29D /* InfoView.swift */,
 				28331CBF26DCD70F0062B29D /* InfoView.xib */,
+				28331D0F26E216720062B29D /* CalendarCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -308,7 +309,6 @@
 				2884A31F26CE926F004596C3 /* LandmarkDataSource.swift */,
 				2884A32126CE933A004596C3 /* CafeDataSource.swift */,
 				2884A32326CECE81004596C3 /* DropDownDataSource.swift */,
-				28331D0926DF5A950062B29D /* CustomInfoWindowDataSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -750,7 +750,6 @@
 				28331D0E26DF681F0062B29D /* MapViewController.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
 				DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */,
-				28331D0A26DF5A950062B29D /* CustomInfoWindowDataSource.swift in Sources */,
 				2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
@@ -779,6 +778,7 @@
 				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
 				2884A30C26CA406C004596C3 /* SearchNoResultViewController.swift in Sources */,
 				28331CB426DB76730062B29D /* SearchMapViewController.swift in Sources */,
+				28331D1026E216720062B29D /* CalendarCell.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
