@@ -12,6 +12,7 @@ class FilterViewController: UIViewController {
   var dogAmentiesFilter = DogAmenties(type: [(.놀이터, false), (.드라이룸, false), (.샤워장, false), (.스파, false), (.실내수영장, false), (.운동장, false)])
   var peopleAmentiesFilter = PeopleAmenties(type: [(.개별바베큐, false), (.노래방, false), (.수영장, false), (.스파, false), (.아침식사, false), (.엘리베이터, false), (.주방, false), (.피트니스, false)])
   
+   
   @IBOutlet var headers: [PaddingLabel]! {
     didSet {
       headers.forEach { header in
@@ -59,9 +60,14 @@ class FilterViewController: UIViewController {
     }
   }
   
-  @IBOutlet weak var NavbarTopConstraint: NSLayoutConstraint!
+  @IBOutlet weak var Xbutton: UIBarButtonItem! {
+    didSet {
+      Xbutton.tintColor = .쫄래그린
+    }
+  }
+  
   @IBOutlet weak var navBar: UINavigationBar!
-  @IBOutlet weak var contentStackView: UIStackView!
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -173,5 +179,9 @@ class FilterViewController: UIViewController {
         peopleAmentiesFilter.type[index].checked = false
       }
     }
+  }
+  
+  @IBAction func didTapXbutton(_ sender: Any) {
+    self.dismiss(animated: true, completion: nil)
   }
 }
