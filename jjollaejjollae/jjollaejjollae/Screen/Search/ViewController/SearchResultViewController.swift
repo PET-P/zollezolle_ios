@@ -122,7 +122,10 @@ class SearchResultViewController: UIViewController {
     restaurantDataSource.dataList = modelController.restaurantList
     cafeDataSource.dataList = modelController.cafeList
     landmarkDataSource.dataList = modelController.landmarkList
-    searchResultDataSources = [accommodationDataSource, restaurantDataSource, cafeDataSource, landmarkDataSource]
+    searchResultDataSources = [accommodationDataSource,
+                               restaurantDataSource,
+                               cafeDataSource,
+                               landmarkDataSource]
     resultTableView.dataSource = searchResultDataSources[0]
     self.dataList = accommodationDataSource.dataList
     resultTableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -142,7 +145,8 @@ class SearchResultViewController: UIViewController {
     view.addSubview(goToMapButton)
     goToMapButton.translatesAutoresizingMaskIntoConstraints = false
     goToMapButton.roundedButton(cornerRadius: nil)
-    goToMapButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -78).isActive = true
+    goToMapButton.bottomAnchor.constraint(
+      equalTo: view.bottomAnchor, constant: -78).isActive = true
     goToMapButton.widthAnchor.constraint(equalToConstant: 121).isActive = true
     goToMapButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
     goToMapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -157,12 +161,11 @@ class SearchResultViewController: UIViewController {
   @objc private func tapGoToMapButton() {
     // TODO Map으로 넘어가기
     let searchMapStoryboard = UIStoryboard(name: "SearchMap", bundle: nil)
-    guard let searchMapVC = searchMapStoryboard.instantiateViewController(identifier: "SearchMapViewController") as? SearchMapViewController else {
+    guard let searchMapVC = searchMapStoryboard.instantiateViewController(
+            identifier: "SearchMapViewController") as? SearchMapViewController else {
       return
     }
-    searchMapVC.modalPresentationStyle = .fullScreen
     searchMapVC.setDataList(with: self.dataList)
-    
     present(searchMapVC, animated: true)
   }
   
@@ -221,7 +224,8 @@ class SearchResultViewController: UIViewController {
   
   @IBAction private func didTapSetScheduleButton(_ sender: UIButton) {
     let calendarStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
-    guard let calendarVC = calendarStoryboard.instantiateViewController(identifier: "CalendarViewController") as? CalendarViewController else {return}
+    guard let calendarVC = calendarStoryboard.instantiateViewController(
+            identifier: "CalendarViewController") as? CalendarViewController else {return}
     _ = schedulingCompletionHandler?(sender.currentTitle ?? "원하는 날짜를 입력해주세요")
     calendarVC.dateCompletionHandler = {
       text in
@@ -239,7 +243,8 @@ extension SearchResultViewController {
     transparentView.frame = window?.frame ?? self.view.frame
     view.addSubview(transparentView)
     
-    dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
+    dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height,
+                                     width: frames.width, height: 0)
     view.addSubview(dropDownTableView)
     dropDownTableView.layer.cornerRadius = 5
     
@@ -249,17 +254,24 @@ extension SearchResultViewController {
     let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
     transparentView.addGestureRecognizer(tapgesture)
     transparentView.alpha = 0
-    UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations:{
+    UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0,
+                   initialSpringVelocity: 1.0, options: .curveEaseInOut, animations:{
       self.transparentView.alpha = 0.5
-      self.dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: CGFloat(self.dropdownDataSource.dataList.count * 50))
+      self.dropDownTableView.frame = CGRect(x: frames.origin.x,
+                                            y: frames.origin.y + frames.height + 5,
+                                            width: frames.width,
+                                            height:
+                                              CGFloat(self.dropdownDataSource.dataList.count * 50))
     }, completion: nil)
   }
   
   @objc func removeTransparentView() {
     let frames = selectedButton.frame
-    UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations:{
+    UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0,
+                   initialSpringVelocity: 1.0, options: .curveEaseInOut, animations:{
       self.transparentView.alpha = 0.0
-      self.dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y, width: frames.width, height: 0)
+      self.dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y,
+                                            width: frames.width, height: 0)
     }, completion: nil)
   }
   
@@ -271,7 +283,8 @@ extension SearchResultViewController {
   @IBAction func didTapFilterButton(_ sender: UIButton) {
     let bundle = Bundle(identifier: "P.TEP.jjollaejjollae")
     let filterStoryboard = UIStoryboard(name: "Filter", bundle: bundle )
-    guard let filterVC = filterStoryboard.instantiateViewController(identifier: "FilterViewController") as? FilterViewController else {return}
+    guard let filterVC = filterStoryboard.instantiateViewController(
+            identifier: "FilterViewController") as? FilterViewController else {return}
 //    self.navigationController?.pushViewController(filterVC, animated: true)
     self.navigationController?.present(filterVC, animated: true, completion: nil)
     // completion에서 data 보내줘야함
