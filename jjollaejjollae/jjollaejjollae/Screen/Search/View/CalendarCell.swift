@@ -18,7 +18,6 @@ enum SelectionType: Int {
 
 class CalendarCell: FSCalendarCell {
   
-//  weak var circleImageView: UIImageView!
   weak var selectionLayer: CAShapeLayer!
   
   var selectionType: SelectionType = .none {
@@ -29,10 +28,6 @@ class CalendarCell: FSCalendarCell {
   
   override init!(frame: CGRect) {
     super.init(frame: frame)
-//    let circleImageView = UIImageView(image: UIImage(named: "circle")!)
-//    self.contentView.insertSubview(circleImageView, at: 0)
-//    self.circleImageView = circleImageView
-    
     let selectionLayer = CAShapeLayer()
     selectionLayer.fillColor = UIColor.쫄래페일그린.cgColor
     selectionLayer.actions = ["hidden": NSNull()]
@@ -53,26 +48,51 @@ class CalendarCell: FSCalendarCell {
   override func layoutSubviews() {
     super.layoutSubviews()
     //서클뷰의 frame을 cell의 바운드와 맞추자
-//    self.circleImageView.frame = self.contentView.bounds
-    // backgroundview
     self.backgroundView?.frame = self.bounds.insetBy(dx: 1, dy: 1)
-//    self.backgroundView?.backgroundColor = UIColor.red
-//    self.selectionLayer.frame = self.contentView.bounds
-    self.selectionLayer.frame = CGRect(x: 0, y: 0, width: self.contentView.bounds.width, height: self.contentView.bounds.height / 1.5)
+    self.selectionLayer.frame = CGRect(x: 0,
+                                       y: 0,
+                                       width: self.contentView.bounds.width,
+                                       height: self.contentView.bounds.height / 1.5)
     
     switch selectionType {
     case .middle:
-      let diameter: CGFloat = min(self.selectionLayer.frame.height, self.selectionLayer.frame.width)
-      self.selectionLayer.path = UIBezierPath(rect: CGRect(x: 0, y: self.contentView.frame.height / 2 - diameter / 1.5, width: self.selectionLayer.bounds.width, height: self.selectionLayer.bounds.height)).cgPath
+      let diameter: CGFloat = min(self.selectionLayer.frame.height,
+                                  self.selectionLayer.frame.width)
+      self.selectionLayer.path = UIBezierPath(
+        rect: CGRect(x: 0,
+                     y: self.contentView.frame.height / 2 - diameter / 1.5,
+                     width: self.selectionLayer.bounds.width,
+                     height: self.selectionLayer.bounds.height)).cgPath
     case .leftBorder:
-      let diameter: CGFloat = min(self.selectionLayer.frame.height, self.selectionLayer.frame.width)
-      self.selectionLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: self.contentView.frame.height / 2 - diameter / 1.5, width: self.selectionLayer.bounds.width, height: self.selectionLayer.bounds.height), byRoundingCorners: [.topLeft, .bottomLeft], cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2, height: self.selectionLayer.frame.width / 2)).cgPath
+      let diameter: CGFloat = min(self.selectionLayer.frame.height,
+                                  self.selectionLayer.frame.width)
+      self.selectionLayer.path = UIBezierPath(
+        roundedRect: CGRect(x: 0,
+                            y: self.contentView.frame.height / 2 - diameter / 1.5,
+                            width: self.selectionLayer.bounds.width,
+                            height: self.selectionLayer.bounds.height),
+        byRoundingCorners: [.topLeft, .bottomLeft],
+        cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2,
+                            height: self.selectionLayer.frame.width / 2)).cgPath
     case .rightBorder:
-      let diameter: CGFloat = min(self.selectionLayer.frame.height, self.selectionLayer.frame.width)
-      self.selectionLayer.path = UIBezierPath(roundedRect: CGRect(x: 0, y: self.contentView.frame.height / 2 - diameter / 1.5, width: self.selectionLayer.bounds.width, height: self.selectionLayer.bounds.height), byRoundingCorners: [.topRight, .bottomRight], cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2, height: self.selectionLayer.frame.width / 2)).cgPath
+      let diameter: CGFloat = min(self.selectionLayer.frame.height,
+                                  self.selectionLayer.frame.width)
+      self.selectionLayer.path = UIBezierPath(
+        roundedRect: CGRect(x: 0,
+                            y: self.contentView.frame.height / 2 - diameter / 1.5,
+                            width: self.selectionLayer.bounds.width,
+                            height: self.selectionLayer.bounds.height),
+        byRoundingCorners: [.topRight, .bottomRight],
+        cornerRadii: CGSize(width: self.selectionLayer.frame.width / 2,
+                            height: self.selectionLayer.frame.width / 2)).cgPath
     case .single:
-      let diameter: CGFloat = min(self.selectionLayer.frame.height, self.selectionLayer.frame.width)
-      self.selectionLayer.path = UIBezierPath(ovalIn: CGRect(x: self.contentView.frame.width / 2 - diameter / 2, y: self.contentView.frame.height / 2 - diameter / 1.5, width: diameter, height: diameter)).cgPath
+      let diameter: CGFloat = min(self.selectionLayer.frame.height,
+                                  self.selectionLayer.frame.width)
+      self.selectionLayer.path = UIBezierPath(
+        ovalIn: CGRect(x: self.contentView.frame.width / 2 - diameter / 2,
+                       y: self.contentView.frame.height / 2 - diameter / 1.5,
+                       width: diameter,
+                       height: diameter)).cgPath
     case .none:
       return
     }

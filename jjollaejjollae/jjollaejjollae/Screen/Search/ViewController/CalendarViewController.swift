@@ -42,23 +42,18 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
   
   @IBOutlet weak var calendar: FSCalendar!
   var dateCompletionHandler: ((String) -> String)?
-  fileprivate let gregorian = Calendar(identifier: .gregorian)
-  
+  fileprivate var gregorian = Calendar(identifier: .gregorian)
+  var selectedDate: [Date]?
+  private var firstDate: Date?
+  private var lastDate: Date?
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setUpNavigationBar()
+    gregorian.locale = Locale(identifier: "ko_KR")
     calendar.delegate = self
     calendar.dataSource = self
     setUpCalendar()
-    let dates = [
-      self.gregorian.date(byAdding: .day, value: -1, to: Date()),
-      Date(),
-      self.gregorian.date(byAdding: .day, value: 1, to: Date())
-    ]
-    dates.forEach { (date) in
-      self.calendar.select(date)
-    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -102,11 +97,10 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     calendar.appearance.titleDefaultColor = UIColor(rgb: 0x454545)
     calendar.appearance.headerDateFormat = "YYYY.M"
     calendar.appearance.headerTitleColor = .쫄래그린
-    
-    print("\(Date().firstDayOfTheMonth.weekDay())")
     calendar.headerHeight = 70
+    print("titleoffset", calendar.appearance.titleOffset)
     calendar.appearance.headerTitleAlignment = .left
-    calendar.appearance.headerTitleOffset = CGPoint(x: 0, y: -20)
+    calendar.appearance.headerTitleOffset = CGPoint(x: 7, y: -5)
     calendar.appearance.headerSeparatorColor = UIColor.clear.withAlphaComponent(0)
     calendar.appearance.headerTitleFont = .robotoBold(size: 18)
     calendar.appearance.titleFont = .robotoRegular(size: 14)
@@ -122,43 +116,83 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
   
   //MARK: - CalandarDataSource
   
-  func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+  func minimumDate(for calendar: FSCalendar) -> Date {
+    return Date()
+  }
+  func maximumDate(for calendar: FSCalendar) -> Date {
+    return gregorian.date(byAdding: .month, value: 3, to: Date())!
+  }
+  
+  func calendar(_ calendar: FSCalendar, cellFor date: Date,
+                at position: FSCalendarMonthPosition) -> FSCalendarCell {
     let cell = calendar.dequeueReusableCell(withIdentifier: "cell", for: date, at: position)
     return cell
   }
   
-  func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+  func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date,
+                at monthPosition: FSCalendarMonthPosition) {
     self.configure(cell: cell, for: date, at: monthPosition)
-  }
-  
-  func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-    let firstWeekDay = calendar.currentPage.firstDayOfTheMonth.weekDay()
-    if firstWeekDay != "일" || firstWeekDay != "월" {
-      calendar.appearance.headerTitleOffset = CGPoint(x: 0, y: 5)
-    } else {
-      calendar.appearance.headerTitleOffset = CGPoint(x: 0, y: 10)
-    }
   }
   
   //MARK: - CalandarDelegate
   func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+    
     self.calendar.frame.size.height = bounds.height
   }
   
-  func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+  func calendar(_ calendar: FSCalendar, shouldSelect date: Date,
+                at monthPosition: FSCalendarMonthPosition) -> Bool {
     return monthPosition == .current
   }
   
-  func calendar(_ calendar: FSCalendar, shouldDeselect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
+  func calendar(_ calendar: FSCalendar, shouldDeselect date: Date,
+                at monthPosition: FSCalendarMonthPosition) -> Bool {
     return monthPosition == .current
   }
   
-  func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-    print("date \(date.datePickerToString())")
+  func calendar(_ calendar: FSCalendar, didSelect date: Date,
+                at monthPosition: FSCalendarMonthPosition) {
+    if firstDate == nil {
+      firstDate = date
+      self.selectedDate = [firstDate!]
+      return
+    }
+    if firstDate != nil && lastDate == nil {
+      // firstDate 보다 더 전꺼나 같은거를를선택한다면?
+      if date <= firstDate! {
+        calendar.deselect(firstDate!)
+        firstDate = date
+        self.selectedDate = [firstDate!]
+      } else {
+        let range = datesRange(from: firstDate!, to: date)
+        lastDate = range.last
+        for day in range {
+          calendar.select(day)
+        }
+        self.selectedDate = range
+      }
+    } else if firstDate != nil && lastDate != nil {
+      for day in calendar.selectedDates {
+        calendar.deselect(day)
+      }
+      firstDate = nil
+      lastDate = nil
+      self.selectedDate = []
+     }
+    
     self.configureVisibleCells()
   }
   
-  func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+  func calendar(_ calendar: FSCalendar, didDeselect date: Date,
+                at monthPosition: FSCalendarMonthPosition) {
+    if firstDate != nil && lastDate != nil {
+      for day in calendar.selectedDates {
+        calendar.deselect(day)
+      }
+      firstDate = nil
+      lastDate = nil
+      self.selectedDate = []
+    }
     self.configureVisibleCells()
   }
     
@@ -173,11 +207,38 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
   }
 
-  private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
+  private func configure(cell: FSCalendarCell, for date: Date,
+                         at position: FSCalendarMonthPosition) {
     let customCell = cell as! CalendarCell
     //만약 date가 오늘이라면 hidden 없애기
-//    customCell.circleImageView.isHidden = !self.gregorian.isDateInToday(date)
     //selectionLayer configuree - 자세히봐야할껏
+    
+    if position == .current {
+      
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     if position == .current {
       
       var selectionType = SelectionType.none
@@ -186,44 +247,52 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         let previousDate = self.gregorian.date(byAdding: .day, value: -1, to: date)!
         let nextDate = self.gregorian.date(byAdding: .day, value: 1, to: date)!
         if calendar.selectedDates.contains(date) {
-          if calendar.selectedDates.contains(previousDate) && calendar.selectedDates.contains(nextDate) {
+          if calendar.selectedDates.contains(previousDate) &&
+              calendar.selectedDates.contains(nextDate) {
             selectionType = .middle
-//            print("selectionType == middle \(date)")
           }
-          else if calendar.selectedDates.contains(previousDate) && calendar.selectedDates.contains(date) {
+          else if calendar.selectedDates.contains(previousDate) &&
+                    calendar.selectedDates.contains(date) {
+//            selectionType = .rightBorder
             selectionType = .rightBorder
-//            print("selectionType == rightBorder + \(date)")
           }
           else if calendar.selectedDates.contains(nextDate) {
+//            selectionType = .leftBorder
             selectionType = .leftBorder
-//            print("selectionType = leftborder + \(date) ")
           }
           else {
+//            selectionType = .single
             selectionType = .single
           }
         }
+        
       } else {
         selectionType = .none
       }
       if selectionType == .none {
         customCell.selectionLayer.isHidden = true
-//        print("selectionType == none")
         return
       }
       customCell.selectionLayer.isHidden = false
       customCell.selectionType = selectionType
     } else {
-//      customCell.circleImageView.isHidden = true
       customCell.selectionLayer.isHidden = true
     }
   }
 
-//  func startOfMonth() {
-//    let components = gregorian.dateComponents([.year, .month], from: Date())
-//    let startofMonth = gregorian.date(from: components)!
-//
-//
-//  }
+  func datesRange(from: Date, to: Date) -> [Date] {
+    if from > to {
+      return [Date]()
+    }
+    var tempDate = from
+    var array = [tempDate]
+    
+    while tempDate < to {
+      tempDate = gregorian.date(byAdding: .day, value: 1, to: tempDate)!
+      array.append(tempDate)
+    }
+    return array
+  }
   
 }
 
