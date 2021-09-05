@@ -132,14 +132,25 @@ class DetailAccomodationsViewController: UIViewController {
     imageTopConstraintOnTheOthers = imageContentView.topAnchor.constraint(equalTo: contentView.topAnchor)
   }
   
+  // MARK: - 스택 뷰의 서브뷰 추가 작업
+  
   private func setUpVerticalStackView() {
     
     let mainInfoView = DetailPlaceMainInfoView.instantiateFromNib()
     
     verticalStackView.addArrangedSubview(mainInfoView)
+    
+    let basicInfoView = DetailPlaceBasicInfoView.instantiateFromNib()
+    
+    basicInfoView.setPhoneNumberLabelText(with: "010-1234-5678")
+    
+    verticalStackView.addArrangedSubview(basicInfoView)
+    
+    
+    
   }
   
-  @objc func didTapLoveButton(sender: UIButton) {
+  @objc private func didTapLoveButton(sender: UIButton) {
     
     sender.isSelected = sender.isSelected ? false : true
     

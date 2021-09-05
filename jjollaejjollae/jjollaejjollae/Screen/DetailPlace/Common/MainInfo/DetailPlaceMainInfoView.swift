@@ -59,15 +59,15 @@ final class DetailPlaceMainInfoView: UIView {
   
   // MARK: - Public Customs
   
-  public func setUpNameLabelText(with name: String?) {
+  internal func setUpNameLabelText(with name: String?) {
     self.nameLabel.text = name ?? "로딩에 실패하였습니다."
   }
   
-  public func setUpLocationLabelText(with location: String?) {
+  internal func setUpLocationLabelText(with location: String?) {
     self.locationLabel.text = location ?? "로딩에 실패하였습니다."
   }
   
-  public func setUpAverageRatingLabelText(ratingValue: Float, numOfReviews: Int) {
+  internal func setUpAverageRatingLabelText(ratingValue: Float, numOfReviews: Int) {
     
     let ratingValue = String(ratingValue)
     let numOfReviews = "(\(String(numOfReviews)))"
