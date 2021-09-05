@@ -33,7 +33,7 @@ class SearchResultViewController: UIViewController {
     didSet {
       setScheduleButton.setRounded(radius: 4)
       setScheduleButton.backgroundColor = UIColor(rgb: 0xF4F4F4)
-      setScheduleButton.setTitle("8월 10일 (화) - 8월 14일 (토)", for: .normal)
+      setScheduleButton.setTitle("\(Date().dateForSeachResult()) - \(Calendar.current.date(byAdding: .day, value: 1, to: Date())?.dateForSeachResult() ?? "\(Date().dateForSeachResult())")", for: .normal)
       setScheduleButton.tintColor = .색44444
       setScheduleButton.titleLabel?.font = .robotoRegular(size: 12)
       setScheduleButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
@@ -79,9 +79,9 @@ class SearchResultViewController: UIViewController {
       separateLine.backgroundColor = .색e8
     }
   }
-
+  
   //MARK: - variable & constant
-
+  
   let goToMapButton: UIButton = {
     let goButton = UIButton()
     goButton.backgroundColor = UIColor.쫄래앨로우
@@ -97,6 +97,21 @@ class SearchResultViewController: UIViewController {
   private var searchResultDataSources: [UITableViewDataSource] = []
   private var dataList = [SearchResultInfo]()
   lazy var likes: [Int : Int] = [:]
+  private var oldDates: [Date?] = [Date(), Calendar.current.date(byAdding: .day, value: 1, to: Date())]
+  private var dates: [Date?] = [Date(), Calendar.current.date(byAdding: .day, value: 1, to: Date())] {
+    didSet {
+      if !dates.contains(nil) {
+        let firstDay = (dates.first!)!
+        let lastDay = (dates.last!)!
+        setScheduleButton.setTitle("\(firstDay.dateForSeachResult()) - \(lastDay.dateForSeachResult())", for: .normal)
+        oldDates = dates
+      } else {
+        let oldFirstDay = (oldDates.first!)!
+        let oldLastDay = (oldDates.last!)!
+        setScheduleButton.setTitle("\(oldFirstDay.dateForSeachResult()) - \(oldLastDay.dateForSeachResult())", for: .normal)
+      }
+    }
+  }
   
   let accommodationDataSource = AccommodationDataSource()
   let restaurantDataSource = RestaurantDataSource()
@@ -113,7 +128,6 @@ class SearchResultViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     //MARK: - resultTableView setup
     resultTableView.delegate = self
     resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
@@ -132,7 +146,7 @@ class SearchResultViewController: UIViewController {
     resultTableView.separatorStyle = .none
     
     //MARK: - dropdown setup
-
+    
     dropDownTableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
     dropDownTableView.dataSource = dropdownDataSource
     dropDownTableView.separatorStyle = .none
@@ -190,7 +204,7 @@ class SearchResultViewController: UIViewController {
       }
     }
   }
-
+  
   @IBAction private func didTapFilterButtons(_ sender: UIButton) {
     switch sender {
     case restaurantButton:
@@ -220,19 +234,21 @@ class SearchResultViewController: UIViewController {
     resultTableView.reloadData()
   }
   
-  var schedulingCompletionHandler: ((String) -> String)?
-  
   @IBAction private func didTapSetScheduleButton(_ sender: UIButton) {
     let calendarStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
     guard let calendarVC = calendarStoryboard.instantiateViewController(
             identifier: "CalendarViewController") as? CalendarViewController else {return}
-    _ = schedulingCompletionHandler?(sender.currentTitle ?? "원하는 날짜를 입력해주세요")
-    calendarVC.dateCompletionHandler = {
-      text in
-      self.setScheduleButton.setTitle(text, for: .normal)
-      return text
+    if !dates.contains(nil) {
+      calendarVC.setDefaultDateLabel(defaultDate: dates)
+    } else {
+      calendarVC.setDefaultDateLabel(defaultDate: oldDates)
     }
-    present(calendarVC, animated: true, completion: nil)
+    calendarVC.dateCompletionHandler = {
+      [weak self] days in
+      self?.dates = days
+      return days
+    }
+    present(calendarVC, animated: true)
   }
 }
 //MARK: - DropDownMenu
@@ -256,23 +272,23 @@ extension SearchResultViewController {
     transparentView.alpha = 0
     UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0,
                    initialSpringVelocity: 1.0, options: .curveEaseInOut, animations:{
-      self.transparentView.alpha = 0.5
-      self.dropDownTableView.frame = CGRect(x: frames.origin.x,
-                                            y: frames.origin.y + frames.height + 5,
-                                            width: frames.width,
-                                            height:
-                                              CGFloat(self.dropdownDataSource.dataList.count * 50))
-    }, completion: nil)
+                    self.transparentView.alpha = 0.5
+                    self.dropDownTableView.frame = CGRect(x: frames.origin.x,
+                                                          y: frames.origin.y + frames.height + 5,
+                                                          width: frames.width,
+                                                          height:
+                                                            CGFloat(self.dropdownDataSource.dataList.count * 50))
+                   }, completion: nil)
   }
   
   @objc func removeTransparentView() {
     let frames = selectedButton.frame
     UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0,
                    initialSpringVelocity: 1.0, options: .curveEaseInOut, animations:{
-      self.transparentView.alpha = 0.0
-      self.dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y,
-                                            width: frames.width, height: 0)
-    }, completion: nil)
+                    self.transparentView.alpha = 0.0
+                    self.dropDownTableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y,
+                                                          width: frames.width, height: 0)
+                   }, completion: nil)
   }
   
   @IBAction func didTapSetOrderButton(_ sender: UIButton) {
@@ -285,7 +301,7 @@ extension SearchResultViewController {
     let filterStoryboard = UIStoryboard(name: "Filter", bundle: bundle )
     guard let filterVC = filterStoryboard.instantiateViewController(
             identifier: "FilterViewController") as? FilterViewController else {return}
-//    self.navigationController?.pushViewController(filterVC, animated: true)
+    //    self.navigationController?.pushViewController(filterVC, animated: true)
     self.navigationController?.present(filterVC, animated: true, completion: nil)
     // completion에서 data 보내줘야함
   }

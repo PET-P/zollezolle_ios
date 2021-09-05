@@ -10,7 +10,15 @@ import FSCalendar
 
 class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
   
-  @IBOutlet weak var travelDateLabel: UILabel!
+  @IBOutlet weak var travelDateLabel: UILabel! {
+    didSet {
+      travelDateLabel.font = .robotoMedium(size: 16)
+      travelDateLabel.textColor = .쫄래블랙
+      travelDateLabel.text = ""
+    }
+  }
+  
+  
   @IBOutlet weak var submitButton: UIButton! {
     didSet {
       submitButton.setTitle("날짜를 선택해주세요", for: .normal)
@@ -28,27 +36,57 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
   }
   @IBOutlet weak var navBar: UINavigationBar!
   
-  private var travelStartDateText: String = "" {
-    didSet {
-      travelDateLabel.text = "\(travelStartDateText) ~ \(travelEndDateText)"
-    }
-  }
-  
-  private var travelEndDateText: String = "" {
-    didSet {
-      travelDateLabel.text = "\(travelStartDateText) ~ \(travelEndDateText)"
-    }
-  }
-  
+
   @IBOutlet weak var calendar: FSCalendar!
-  var dateCompletionHandler: ((String) -> String)?
   fileprivate var gregorian = Calendar(identifier: .gregorian)
-  var selectedDate: [Date]?
-  private var firstDate: Date?
-  private var lastDate: Date?
+  var dates: [Date]? {
+    didSet {
+      if let dates = dates {
+        if dates.count >  1 {
+          submitButton.backgroundColor = .쫄래그린
+          submitButton.setTitle("\(dates.count-1)박 선택", for: .normal)
+        } else {
+          submitButton.backgroundColor = .쫄래페일그린
+          submitButton.setTitle("1박 이상을 선택해주세요", for: .normal)}
+      } else {
+        submitButton.backgroundColor = .쫄래페일그린
+        submitButton.setTitle("날짜를 선택해주세요", for: .normal)
+      }
+    }
+  }
+  
+  private var firstDate: Date? {
+    didSet {
+      travelStartDateText = firstDate?.dateForCalendar() ?? " "
+    }
+  }
+  private var lastDate: Date? {
+    didSet {
+      travelEndDateText = lastDate?.dateForCalendar() ?? " "
+    }
+  }
+  
+  private var travelStartDateText: String = "" {
+     didSet {
+       travelDateLabel.text = "\(travelStartDateText) ~ \(travelEndDateText)"
+     }
+   }
+
+   private var travelEndDateText: String = "" {
+     didSet {
+       travelDateLabel.text = "\(travelStartDateText) ~ \(travelEndDateText)"
+     }
+   }
+  
+  private(set) var defaultdays: [Date?] = []
+  internal func setDefaultDateLabel(defaultDate: [Date?]) {
+        self.defaultdays = defaultDate
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    firstDate = defaultdays.first!
+    lastDate = defaultdays.last!
     setUpNavigationBar()
     gregorian.locale = Locale(identifier: "ko_KR")
     calendar.delegate = self
@@ -58,20 +96,21 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    let defaultDates = datesRange(from: (defaultdays.first!)! , to: (defaultdays.last!)!)
+    defaultDates.forEach { (date) in
+      self.calendar.select(date, scrollToDate: false)
+    }
+
   }
   
+  var dateCompletionHandler: (([Date?]) -> [Date?])?
   @IBAction private func didTapSubmitButton(_ sender: UIButton) {
-    _ = dateCompletionHandler?(self.travelDateLabel.text ?? "no data")
-    let searchResultStoryboard = UIStoryboard(name: "SearchResult", bundle: nil)
-    guard let searchResultVC = searchResultStoryboard.instantiateViewController(identifier: "SearchResultViewController") as? SearchResultViewController else {
-      return
-    }
-    searchResultVC.schedulingCompletionHandler = {
-      text in
-      self.travelDateLabel.text = text
-      return text
-    }
+    _ = dateCompletionHandler?([firstDate, lastDate])
     dismiss(animated: true, completion: nil)
+  }
+  
+  @IBAction private func didTapXButton(_ sender: Any?){
+    self.dismiss(animated: true, completion: nil)
   }
   
   private func setUpNavigationBar() {
@@ -94,11 +133,9 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     calendar.appearance.selectionColor = .쫄래페일그린
     calendar.appearance.headerMinimumDissolvedAlpha = 0.0
     calendar.appearance.todayColor = .쫄래그린
-    calendar.appearance.titleDefaultColor = UIColor(rgb: 0x454545)
     calendar.appearance.headerDateFormat = "YYYY.M"
     calendar.appearance.headerTitleColor = .쫄래그린
     calendar.headerHeight = 70
-    print("titleoffset", calendar.appearance.titleOffset)
     calendar.appearance.headerTitleAlignment = .left
     calendar.appearance.headerTitleOffset = CGPoint(x: 7, y: -5)
     calendar.appearance.headerSeparatorColor = UIColor.clear.withAlphaComponent(0)
@@ -134,6 +171,14 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     self.configure(cell: cell, for: date, at: monthPosition)
   }
   
+  func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+    if date.weekDay() == "일" {
+      return UIColor.쫄래그린
+    }
+    return UIColor(rgb: 0x454545)
+  }
+  
+  
   //MARK: - CalandarDelegate
   func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
     
@@ -154,33 +199,36 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
                 at monthPosition: FSCalendarMonthPosition) {
     if firstDate == nil {
       firstDate = date
-      self.selectedDate = [firstDate!]
-      return
+      self.dates = [firstDate!]
     }
-    if firstDate != nil && lastDate == nil {
+    else if firstDate != nil && lastDate == nil {
       // firstDate 보다 더 전꺼나 같은거를를선택한다면?
       if date <= firstDate! {
         calendar.deselect(firstDate!)
         firstDate = date
-        self.selectedDate = [firstDate!]
+        self.dates = [firstDate!]
+        travelStartDateText = firstDate!.dateForCalendar()
       } else {
         let range = datesRange(from: firstDate!, to: date)
         lastDate = range.last
         for day in range {
           calendar.select(day)
         }
-        self.selectedDate = range
+        self.dates = range
       }
     } else if firstDate != nil && lastDate != nil {
       for day in calendar.selectedDates {
         calendar.deselect(day)
       }
-      firstDate = nil
       lastDate = nil
-      self.selectedDate = []
+      firstDate = date
+      calendar.select(firstDate!)
+      self.dates = [firstDate!]
      }
-    
     self.configureVisibleCells()
+    if let firstDate = firstDate {
+      calendar.setCurrentPage(firstDate, animated: true)
+    }
   }
   
   func calendar(_ calendar: FSCalendar, didDeselect date: Date,
@@ -189,9 +237,18 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
       for day in calendar.selectedDates {
         calendar.deselect(day)
       }
-      firstDate = nil
       lastDate = nil
-      self.selectedDate = []
+      firstDate = date
+      calendar.select(firstDate!)
+      self.dates = [firstDate!]
+    } else if lastDate == nil && firstDate == date {
+      for day in calendar.selectedDates {
+        calendar.deselect(day)
+      }
+      lastDate = nil
+      firstDate = date
+      calendar.select(firstDate!)
+      self.dates = [firstDate!]
     }
     self.configureVisibleCells()
   }
@@ -210,35 +267,6 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
   private func configure(cell: FSCalendarCell, for date: Date,
                          at position: FSCalendarMonthPosition) {
     let customCell = cell as! CalendarCell
-    //만약 date가 오늘이라면 hidden 없애기
-    //selectionLayer configuree - 자세히봐야할껏
-    
-    if position == .current {
-      
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     if position == .current {
       
       var selectionType = SelectionType.none
@@ -250,27 +278,28 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
           if calendar.selectedDates.contains(previousDate) &&
               calendar.selectedDates.contains(nextDate) {
             selectionType = .middle
+            cell.titleLabel.font = .robotoRegular(size: 14)
           }
           else if calendar.selectedDates.contains(previousDate) &&
                     calendar.selectedDates.contains(date) {
-//            selectionType = .rightBorder
             selectionType = .rightBorder
+            cell.titleLabel.font = .robotoBold(size: 14)
           }
           else if calendar.selectedDates.contains(nextDate) {
-//            selectionType = .leftBorder
             selectionType = .leftBorder
+            cell.titleLabel.font = .robotoBold(size: 14)
           }
           else {
-//            selectionType = .single
             selectionType = .single
+            cell.titleLabel.font = .robotoBold(size: 14)
           }
         }
-        
       } else {
         selectionType = .none
       }
       if selectionType == .none {
         customCell.selectionLayer.isHidden = true
+        cell.titleLabel.font = .robotoRegular(size: 14)
         return
       }
       customCell.selectionLayer.isHidden = false

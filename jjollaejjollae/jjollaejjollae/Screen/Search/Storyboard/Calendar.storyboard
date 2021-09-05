@@ -20,6 +20,12 @@
                                 <rect key="frame" x="0.0" y="34" width="390" height="44"/>
                                 <items>
                                     <navigationItem title="날짜선택" id="wUr-y5-HGL">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="mYH-Uf-S27">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="didTapXButton:" destination="bvE-gr-TCA" id="wEu-8G-KhM"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="초기화" id="v9u-7b-GoH"/>
                                     </navigationItem>
                                 </items>
@@ -80,6 +86,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
