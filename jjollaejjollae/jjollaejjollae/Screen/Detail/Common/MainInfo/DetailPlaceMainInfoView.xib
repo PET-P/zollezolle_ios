@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto Mono Bold for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Bold</string>
+        </array>
+        <array key="Roboto Mono for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="U8L-06-AKZ" customClass="DetailPlaceMainInfoView" customModule="jjollaejjollae" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="398"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주코기네" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFE-Ya-DSY">
+                    <rect key="frame" x="20" y="44" width="374" height="39"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="j2I-X2-41h"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="33"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주시 애월읍 신엄안 3길" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xA2-Ew-Tto">
+                    <rect key="frame" x="20" y="88" width="170.33333333333334" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="220" id="d2X-gH-2DC"/>
+                        <constraint firstAttribute="height" constant="21" id="sEk-JF-Esx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmf-ji-Eh5">
+                    <rect key="frame" x="198.33333333333334" y="90" width="65.333333333333343" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="tintColor" red="0.38431372549999998" green="0.56078431370000004" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="지도보기">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageReference key="image" image="arrow.right" catalog="system" symbolScale="small"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapViewMapButton:" destination="U8L-06-AKZ" eventType="touchUpInside" id="vsm-87-02R"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.9 (51)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DcI-gV-qlM">
+                    <rect key="frame" x="43.999999999999993" y="122.33333333333333" width="67.333333333333314" height="16.666666666666671"/>
+                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RatingStar" translatesAutoresizingMaskIntoConstraints="NO" id="QlF-Xj-mDI">
+                    <rect key="frame" x="20" y="120" width="20" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Fmk-vJ-ANs"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="시설안내" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8l-Ft-Rtn">
+                    <rect key="frame" x="20.000000000000004" y="254.00000000000003" width="62.333333333333343" height="21.333333333333343"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21.333333333333371" id="9Xf-il-tcK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qiW-BN-Amd">
+                    <rect key="frame" x="20" y="166" width="394" height="50"/>
+                    <color key="backgroundColor" red="0.80392156859999997" green="0.8980392157" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="BdU-UH-cPU"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6Z-Wb-c0y">
+                    <rect key="frame" x="20" y="285.33333333333331" width="374" height="51.666666666666686"/>
+                    <string key="text">힐링공간 제주코기네 입니다.
+
+소형견 기준 2마리까지 동반 가능합니다. 중대형 견은 예약전에 별도 문의 해주세요. 마당이 있어 뛰어 놀기 적합하고 반려동물 전용 수영장이 있습니다. 
+차량 5분거리에 해변이 있습니다.
+
+소형견 기준 2마리까지 동반 가능합니다. 중대형 견은 예약전에 별도 문의 해주세요. 마당이 있어 뛰어 놀기 적합하고 반려동물 전용 수영장이 있습니다. 
+차량 5분거리에 해변이 있습니다.</string>
+                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tiy-QI-SiP">
+                    <rect key="frame" x="20" y="345" width="374" height="53"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQw-vy-bHb">
+                            <rect key="frame" x="167.66666666666666" y="11.666666666666686" width="39" height="30"/>
+                            <state key="normal" title="더보기"/>
+                            <connections>
+                                <action selector="didTapExpandButton:" destination="U8L-06-AKZ" eventType="touchUpInside" id="xu2-ch-ZBD"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="pQw-vy-bHb" firstAttribute="centerY" secondItem="Tiy-QI-SiP" secondAttribute="centerY" id="6EK-Xo-HjD"/>
+                        <constraint firstAttribute="height" constant="53" id="FWZ-Y6-vZ9"/>
+                        <constraint firstItem="pQw-vy-bHb" firstAttribute="centerX" secondItem="Tiy-QI-SiP" secondAttribute="centerX" id="SjU-o1-s6w"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Dix-hc-VbI"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Tiy-QI-SiP" secondAttribute="bottom" id="1Oz-Y5-vT9"/>
+                <constraint firstItem="Dix-hc-VbI" firstAttribute="trailing" secondItem="Tiy-QI-SiP" secondAttribute="trailing" constant="20" id="3uM-tE-YQV"/>
+                <constraint firstItem="a8l-Ft-Rtn" firstAttribute="top" secondItem="qiW-BN-Amd" secondAttribute="bottom" constant="38" id="D4A-Aa-KjL"/>
+                <constraint firstItem="DcI-gV-qlM" firstAttribute="leading" secondItem="QlF-Xj-mDI" secondAttribute="trailing" constant="4" id="REe-Po-6Ub"/>
+                <constraint firstItem="Dix-hc-VbI" firstAttribute="trailing" secondItem="qiW-BN-Amd" secondAttribute="trailing" id="WLv-Dx-3PA"/>
+                <constraint firstItem="rmf-ji-Eh5" firstAttribute="leading" secondItem="xA2-Ew-Tto" secondAttribute="trailing" constant="8" id="au4-yx-iE7"/>
+                <constraint firstItem="xA2-Ew-Tto" firstAttribute="leading" secondItem="YFE-Ya-DSY" secondAttribute="leading" id="bPQ-4w-9ec"/>
+                <constraint firstAttribute="trailingMargin" secondItem="YFE-Ya-DSY" secondAttribute="trailing" id="gJS-zE-vMG"/>
+                <constraint firstItem="qiW-BN-Amd" firstAttribute="top" secondItem="QlF-Xj-mDI" secondAttribute="bottom" constant="25" id="gaM-a2-U3a"/>
+                <constraint firstItem="Tiy-QI-SiP" firstAttribute="top" secondItem="d6Z-Wb-c0y" secondAttribute="bottom" constant="8" symbolic="YES" id="ixY-Pn-Kb4"/>
+                <constraint firstItem="a8l-Ft-Rtn" firstAttribute="leading" secondItem="YFE-Ya-DSY" secondAttribute="leading" id="jeF-CN-wFJ"/>
+                <constraint firstItem="d6Z-Wb-c0y" firstAttribute="top" secondItem="a8l-Ft-Rtn" secondAttribute="bottom" constant="10" id="m8N-VI-EbJ"/>
+                <constraint firstItem="xA2-Ew-Tto" firstAttribute="top" secondItem="YFE-Ya-DSY" secondAttribute="bottom" constant="5" id="mGy-Uu-p21"/>
+                <constraint firstItem="DcI-gV-qlM" firstAttribute="centerY" secondItem="QlF-Xj-mDI" secondAttribute="centerY" id="qMW-gq-56C"/>
+                <constraint firstItem="YFE-Ya-DSY" firstAttribute="top" secondItem="U8L-06-AKZ" secondAttribute="topMargin" id="r6a-3Z-Rt7"/>
+                <constraint firstItem="d6Z-Wb-c0y" firstAttribute="leading" secondItem="U8L-06-AKZ" secondAttribute="leadingMargin" id="rUF-tt-yqM"/>
+                <constraint firstItem="rmf-ji-Eh5" firstAttribute="centerY" secondItem="xA2-Ew-Tto" secondAttribute="centerY" id="s2d-Cu-Ujm"/>
+                <constraint firstItem="QlF-Xj-mDI" firstAttribute="top" secondItem="xA2-Ew-Tto" secondAttribute="bottom" constant="11" id="sbo-Cu-iDu"/>
+                <constraint firstItem="YFE-Ya-DSY" firstAttribute="leading" secondItem="U8L-06-AKZ" secondAttribute="leadingMargin" id="u2v-8M-aLO"/>
+                <constraint firstItem="Tiy-QI-SiP" firstAttribute="leading" secondItem="Dix-hc-VbI" secondAttribute="leading" constant="20" id="uT0-33-qz6"/>
+                <constraint firstAttribute="trailingMargin" secondItem="d6Z-Wb-c0y" secondAttribute="trailing" id="uj1-3r-aeC"/>
+                <constraint firstItem="QlF-Xj-mDI" firstAttribute="leading" secondItem="YFE-Ya-DSY" secondAttribute="leading" id="yET-Dx-f4a"/>
+                <constraint firstItem="qiW-BN-Amd" firstAttribute="leading" secondItem="YFE-Ya-DSY" secondAttribute="leading" id="ymD-3G-pFC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
+            <connections>
+                <outlet property="averageRatingLabel" destination="DcI-gV-qlM" id="f20-3c-F9C"/>
+                <outlet property="customInfoLabel" destination="d6Z-Wb-c0y" id="oHT-W7-1gD"/>
+                <outlet property="expandButton" destination="pQw-vy-bHb" id="6JZ-AI-dGS"/>
+                <outlet property="locationLabel" destination="xA2-Ew-Tto" id="4TM-PN-Tbd"/>
+                <outlet property="nameLabel" destination="YFE-Ya-DSY" id="2mw-Sp-qiH"/>
+                <outlet property="viewMapButton" destination="rmf-ji-Eh5" id="hKI-B6-nNW"/>
+            </connections>
+            <point key="canvasLocation" x="224" y="-459"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="RatingStar" width="20" height="21"/>
+        <image name="arrow.right" catalog="system" width="128" height="98"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
