@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto Mono Bold for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="DetailPlaceBasicInfoView" customModule="jjollaejjollae" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="393"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQL-nL-NC5">
+                    <rect key="frame" x="0.0" y="20" width="414" height="149"/>
+                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="149" id="H33-GQ-QEe"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기본 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VZ-9T-NwC">
+                    <rect key="frame" x="20" y="200" width="81.5" height="23.5"/>
+                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전화" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxv-Ws-RKd">
+                    <rect key="frame" x="20" y="231.5" width="30" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVz-hj-d2i">
+                    <rect key="frame" x="20" y="279.5" width="30" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주시 애월읍 신엄안 3길" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dv8-Zh-7Jw">
+                    <rect key="frame" x="69" y="279.5" width="171" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주특별자치도 제주시 애월읍 고내리 11-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkK-Fy-dCA">
+                    <rect key="frame" x="69" y="308.5" width="283" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEL-Dp-Kpz">
+                    <rect key="frame" x="69" y="227" width="130" height="30"/>
+                    <state key="normal">
+                        <attributedString key="attributedTitle">
+                            <fragment content="070 - 0000 - 0000">
+                                <attributes>
+                                    <font key="NSFont" metaFont="system" size="15"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="VkK-Fy-dCA" firstAttribute="top" secondItem="Dv8-Zh-7Jw" secondAttribute="bottom" constant="8" symbolic="YES" id="24L-Oa-V54"/>
+                <constraint firstItem="OQL-nL-NC5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="6Yc-Vs-XDu"/>
+                <constraint firstItem="rVz-hj-d2i" firstAttribute="top" secondItem="yxv-Ws-RKd" secondAttribute="bottom" constant="27" id="ALv-NA-AXc"/>
+                <constraint firstItem="6VZ-9T-NwC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="DAu-c7-9d8"/>
+                <constraint firstItem="VkK-Fy-dCA" firstAttribute="leading" secondItem="JEL-Dp-Kpz" secondAttribute="leading" id="DRF-MH-Sxt"/>
+                <constraint firstItem="OQL-nL-NC5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="E1W-im-wR2"/>
+                <constraint firstItem="JEL-Dp-Kpz" firstAttribute="centerY" secondItem="yxv-Ws-RKd" secondAttribute="centerY" id="JnE-a0-pIF"/>
+                <constraint firstItem="rVz-hj-d2i" firstAttribute="leading" secondItem="6VZ-9T-NwC" secondAttribute="leading" id="L1r-nW-lYs"/>
+                <constraint firstItem="yxv-Ws-RKd" firstAttribute="top" secondItem="6VZ-9T-NwC" secondAttribute="bottom" constant="8" symbolic="YES" id="UKL-ff-cXw"/>
+                <constraint firstItem="yxv-Ws-RKd" firstAttribute="leading" secondItem="6VZ-9T-NwC" secondAttribute="leading" id="X0W-jj-Xtr"/>
+                <constraint firstAttribute="trailing" secondItem="OQL-nL-NC5" secondAttribute="trailing" id="Zgy-UR-xEa"/>
+                <constraint firstItem="JEL-Dp-Kpz" firstAttribute="leading" secondItem="yxv-Ws-RKd" secondAttribute="trailing" constant="19" id="c6H-uk-3dp"/>
+                <constraint firstItem="6VZ-9T-NwC" firstAttribute="top" secondItem="OQL-nL-NC5" secondAttribute="bottom" constant="31" id="goa-Fh-qta"/>
+                <constraint firstItem="Dv8-Zh-7Jw" firstAttribute="centerY" secondItem="rVz-hj-d2i" secondAttribute="centerY" id="x5Q-CW-kXa"/>
+                <constraint firstItem="Dv8-Zh-7Jw" firstAttribute="leading" secondItem="JEL-Dp-Kpz" secondAttribute="leading" id="yxp-gQ-0FG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="134.78260869565219" y="76.004464285714278"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
