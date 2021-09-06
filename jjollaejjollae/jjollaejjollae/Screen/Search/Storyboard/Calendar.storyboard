@@ -26,7 +26,11 @@
                                                 <action selector="didTapXButton:" destination="bvE-gr-TCA" id="wEu-8G-KhM"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="초기화" id="v9u-7b-GoH"/>
+                                        <barButtonItem key="rightBarButtonItem" title="초기화" style="plain" id="v9u-7b-GoH">
+                                            <connections>
+                                                <action selector="didTapRefreshButton:" destination="bvE-gr-TCA" id="FAn-EX-0f4"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

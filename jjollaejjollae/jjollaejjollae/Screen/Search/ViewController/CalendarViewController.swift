@@ -94,13 +94,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
     setUpCalendar()
   }
   
+  
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     let defaultDates = datesRange(from: (defaultdays.first!)! , to: (defaultdays.last!)!)
     defaultDates.forEach { (date) in
       self.calendar.select(date, scrollToDate: false)
     }
-
+    self.dates = defaultDates
   }
   
   var dateCompletionHandler: (([Date?]) -> [Date?])?
@@ -123,6 +125,20 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
     navBar.isTranslucent = true
     navBar.backgroundColor = .clear
     navBar.items?[0].titleView = navTitle
+  }
+  
+  @IBAction func didTapRefreshButton(_ sender: UIBarButtonItem) {
+    for day in calendar.selectedDates {
+      calendar.deselect(day)
+    }
+    let defaultDates = datesRange(from: (defaultdays.first!)! , to: (defaultdays.last!)!)
+    firstDate = defaultDates.first!
+    lastDate = defaultDates.last!
+    defaultDates.forEach { (date) in
+      self.calendar.select(date, scrollToDate: false)
+    }
+    configureVisibleCells()
+    self.dates = defaultDates
   }
   
 }
