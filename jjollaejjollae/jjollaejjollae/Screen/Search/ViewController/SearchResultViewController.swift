@@ -97,18 +97,22 @@ class SearchResultViewController: UIViewController {
   private var searchResultDataSources: [UITableViewDataSource] = []
   private var dataList = [SearchResultInfo]()
   lazy var likes: [Int : Int] = [:]
-  private var oldDates: [Date?] = [Date(), Calendar.current.date(byAdding: .day, value: 1, to: Date())]
-  private var dates: [Date?] = [Date(), Calendar.current.date(byAdding: .day, value: 1, to: Date())] {
+  private var oldDates: [Date?] = [Date()
+                                   , Calendar.current.date(byAdding: .day, value: 1, to: Date())]
+  private var dates: [Date?] = [Date(),
+                                Calendar.current.date(byAdding: .day, value: 1, to: Date())] {
     didSet {
       if !dates.contains(nil) {
         let firstDay = (dates.first!)!
         let lastDay = (dates.last!)!
-        setScheduleButton.setTitle("\(firstDay.dateForSeachResult()) - \(lastDay.dateForSeachResult())", for: .normal)
+        setScheduleButton.setTitle(
+          "\(firstDay.dateForSeachResult()) - \(lastDay.dateForSeachResult())", for: .normal)
         oldDates = dates
       } else {
         let oldFirstDay = (oldDates.first!)!
         let oldLastDay = (oldDates.last!)!
-        setScheduleButton.setTitle("\(oldFirstDay.dateForSeachResult()) - \(oldLastDay.dateForSeachResult())", for: .normal)
+        setScheduleButton.setTitle(
+          "\(oldFirstDay.dateForSeachResult()) - \(oldLastDay.dateForSeachResult())", for: .normal)
       }
     }
   }
@@ -160,9 +164,11 @@ class SearchResultViewController: UIViewController {
     goToMapButton.translatesAutoresizingMaskIntoConstraints = false
     goToMapButton.roundedButton(cornerRadius: nil)
     goToMapButton.bottomAnchor.constraint(
-      equalTo: view.bottomAnchor, constant: -78).isActive = true
-    goToMapButton.widthAnchor.constraint(equalToConstant: 121).isActive = true
-    goToMapButton.heightAnchor.constraint(equalToConstant: 52).isActive = true
+      equalTo: self.view.bottomAnchor, constant: -78).isActive = true
+    goToMapButton.widthAnchor.constraint(
+      equalToConstant: self.view.frame.width * 121 / 375).isActive = true
+    goToMapButton.heightAnchor.constraint(equalTo: goToMapButton.widthAnchor,
+                                         multiplier: 52 / 121).isActive = true
     goToMapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     goToMapButton.addTarget(self, action: #selector(tapGoToMapButton), for: .touchUpInside)
   }
@@ -232,6 +238,10 @@ class SearchResultViewController: UIViewController {
     }
     updateButtonUI(sender)
     resultTableView.reloadData()
+  }
+  
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popToRootViewController(animated: true)
   }
   
   @IBAction private func didTapSetScheduleButton(_ sender: UIButton) {
