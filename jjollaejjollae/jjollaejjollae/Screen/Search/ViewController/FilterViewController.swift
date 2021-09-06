@@ -56,13 +56,14 @@ class FilterViewController: UIViewController {
   @IBOutlet var refreshButton: UIBarButtonItem! {
     didSet {
       refreshButton.tintColor = .쫄래그린
-      refreshButton.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.robotoMedium(size: 14)], for: .normal)
+      refreshButton.setTitleTextAttributes(
+        [NSAttributedString.Key.font : UIFont.robotoMedium(size: 14)], for: .normal)
     }
   }
   
   @IBOutlet weak var Xbutton: UIBarButtonItem! {
     didSet {
-      Xbutton.tintColor = .쫄래그린
+      Xbutton.tintColor = .black
     }
   }
   
@@ -165,18 +166,21 @@ class FilterViewController: UIViewController {
       if accommodationButtons[index].isSelected {
         accommodationButtons[index].isSelected = false
         accommodationFilter.type[index].checked = false
+        accommodationButtons[index].setBorder(borderColor:UIColor(rgb: 0xDADADA), borderWidth: 1)
       }
     }
     for index in dogAmentiesButtons.indices {
       if dogAmentiesButtons[index].isSelected {
         dogAmentiesButtons[index].isSelected = false
         dogAmentiesFilter.type[index].checked = false
+        dogAmentiesButtons[index].setBorder(borderColor:UIColor(rgb: 0xDADADA), borderWidth: 1)
       }
     }
     for index in peopleAmentiesButtons.indices {
       if peopleAmentiesButtons[index].isSelected {
         peopleAmentiesButtons[index].isSelected = false
         peopleAmentiesFilter.type[index].checked = false
+        peopleAmentiesButtons[index].setBorder(borderColor:UIColor(rgb: 0xDADADA), borderWidth: 1)
       }
     }
   }
