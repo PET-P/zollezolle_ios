@@ -124,6 +124,7 @@ class SearchResultViewController: UIViewController {
   let dropdownDataSource = DropDownDataSource()
   
   let modelController = ModelController()
+  let searchManager = SearchManager.shared
   private var defaultHeight: CGFloat  = 0
   private var buttons : [UIButton] = []
   private let transparentView = UIView()
@@ -132,6 +133,15 @@ class SearchResultViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    //MARK: - KEYBOARD
+    let tapGesture = UITapGestureRecognizer(
+      target: view,
+      action: #selector(view.endEditing(_:)))
+    tapGesture.cancelsTouchesInView = false
+    view.addGestureRecognizer(tapGesture)
+    searchTextField.returnKeyType = .search
+    searchTextField.delegate = self
+    
     //MARK: - resultTableView setup
     resultTableView.delegate = self
     resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
@@ -334,4 +344,14 @@ extension SearchResultViewController: UITableViewDelegate {
   }
 }
 
+//MARK: - KEYBOARD
+extension SearchResultViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//    var flag = false
+    guard searchTextField.text != "" else {return true}
+    searchManager.saveSearchHistory(with: searchTextField.text)
+    textField.resignFirstResponder()
+    return true
+  }
+}
 
