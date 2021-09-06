@@ -81,9 +81,10 @@ class LoginViewController: UIViewController {
   }
   @IBOutlet var provisionLabel: UILabel! {
     didSet {
-      provisionLabel.text = "계속 진행하면 쫄래쫄래의 서비스 약관 및 개인정보 보호정책에 동의한 것으로 간주됩니다."
-      provisionLabel.font = UIFont.robotoMedium(size: 12)
-      provisionLabel.textColor = .black
+      provisionLabel.numberOfLines = 2
+      provisionLabel.text = "계속 진행하면 쫄래쫄래의\n 서비스 약관 및 개인정보 보호정책에 동의한 것으로 간주됩니다."
+      provisionLabel.font = UIFont.robotoRegular(size: 12)
+      provisionLabel.textColor = .쫄래블랙
     }
   }
   @IBOutlet var errorLabel: UILabel! {
@@ -112,8 +113,21 @@ class LoginViewController: UIViewController {
     emailTextField.underlineStyle(
       textColor: UIColor.회,
       borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
-    
+    privacyLinkLabel()
     emailTextField.addTarget(self, action: #selector(updateEmailValidationUI(_:)), for: .editingChanged)
+  }
+  
+  private func privacyLinkLabel() {
+    let fontsize = UIFont.robotoBold(size: 12)
+    let attributedStr = NSMutableAttributedString(string: provisionLabel.text!)
+    attributedStr.addAttributes([.font : fontsize,
+                                 .underlineStyle: NSUnderlineStyle.single.rawValue,
+                                 .underlineColor: UIColor.쫄래블랙],
+                                range:  (provisionLabel.text! as NSString)
+                                  .range(of: "서비스 약관 및 개인정보 보호정책"))
+    attributedStr.addAttribute(.kern, value: -0.5,
+                               range: NSRange(location: 0, length: attributedStr.length))
+    provisionLabel.attributedText = attributedStr
   }
   
   @IBAction private func didTapContinueButton(_ sender: UIButton) {
