@@ -73,7 +73,9 @@ class PasswordViewController: UIViewController {
   }
   
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
-      
+    let findPasswordStoryboard = UIStoryboard(name: "FindPassword", bundle: nil)
+    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else {return}
+    self.navigationController?.pushViewController(findPasswordVC, animated: true)
   }  
 }
 
