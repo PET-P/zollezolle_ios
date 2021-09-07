@@ -41,18 +41,28 @@
 		28EA826126B42BF700785666 /* Roboto Mono Medium for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825726B42BF600785666 /* Roboto Mono Medium for Powerline.ttf */; };
 		28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825826B42BF700785666 /* Roboto Mono for Powerline.ttf */; };
 		28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825926B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf */; };
-		28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */; };
 		28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */; };
 		28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */; };
 		28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 28FF9FE526B930570062BC28 /* launch screen-3.pdf */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		663E9F5A170D8624F35B16A1 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */; };
+		DD1E805F26E4F9DF00622792 /* DetailPlaceBasicInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1E805E26E4F9DF00622792 /* DetailPlaceBasicInfoView.swift */; };
+		DD1E806126E4FA1800622792 /* DetailPlaceBasicInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD1E806026E4FA1800622792 /* DetailPlaceBasicInfoView.xib */; };
+		DD3935EB26D3A6A80032476F /* DetailPlaceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3935EA26D3A6A80032476F /* DetailPlaceProtocols.swift */; };
+		DD3935EE26D3AC990032476F /* DetailPlaceMainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3935ED26D3AC990032476F /* DetailPlaceMainInfoView.swift */; };
+		DD3935F026D3ACC90032476F /* DetailPlaceMainInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD3935EF26D3ACC90032476F /* DetailPlaceMainInfoView.xib */; };
+		DD3935F326D3C34A0032476F /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3935F226D3C34A0032476F /* NibInstantiatable.swift */; };
+		DD8CAC4326D4AB1300149704 /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CAC4226D4AB1300149704 /* DefaultViewController.swift */; };
 		DDB958B026CB7D1B006B30BC /* DetailAccomodations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB958AF26CB7D1B006B30BC /* DetailAccomodations.storyboard */; };
 		DDB958B226CB7D31006B30BC /* DetailAccomodationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958B126CB7D31006B30BC /* DetailAccomodationsViewController.swift */; };
 		DDB958B926CCD870006B30BC /* RecommendedPlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958B826CCD870006B30BC /* RecommendedPlaceCell.swift */; };
 		DDB958BB26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958BA26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift */; };
 		DDB958BD26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958BC26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift */; };
 		DDB958BF26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958BE26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift */; };
+		DDB958C126CFBB9F006B30BC /* TestNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958C026CFBB9F006B30BC /* TestNavigationController.swift */; };
+		DDB958C326CFBBDB006B30BC /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB958C226CFBBDB006B30BC /* Test.storyboard */; };
+		DDB958C526CFBBF5006B30BC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958C426CFBBF5006B30BC /* TestViewController.swift */; };
+		DDB958C826D025D0006B30BC /* Roboto Mono Bold Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
 		DDF24BB126C6D61D007AB642 /* MyInfoMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24B9B26C6D61D007AB642 /* MyInfoMain.storyboard */; };
 		DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */; };
@@ -113,12 +123,22 @@
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		8E3349D548C3FA191B037D66 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Pods/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		D7F07B4F1FAA6197E4E2C9AB /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD1E805E26E4F9DF00622792 /* DetailPlaceBasicInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlaceBasicInfoView.swift; sourceTree = "<group>"; };
+		DD1E806026E4FA1800622792 /* DetailPlaceBasicInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPlaceBasicInfoView.xib; sourceTree = "<group>"; };
+		DD3935EA26D3A6A80032476F /* DetailPlaceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlaceProtocols.swift; sourceTree = "<group>"; };
+		DD3935ED26D3AC990032476F /* DetailPlaceMainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlaceMainInfoView.swift; sourceTree = "<group>"; };
+		DD3935EF26D3ACC90032476F /* DetailPlaceMainInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPlaceMainInfoView.xib; sourceTree = "<group>"; };
+		DD3935F226D3C34A0032476F /* NibInstantiatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
+		DD8CAC4226D4AB1300149704 /* DefaultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
 		DDB958AF26CB7D1B006B30BC /* DetailAccomodations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailAccomodations.storyboard; sourceTree = "<group>"; };
 		DDB958B126CB7D31006B30BC /* DetailAccomodationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAccomodationsViewController.swift; sourceTree = "<group>"; };
 		DDB958B826CCD870006B30BC /* RecommendedPlaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceCell.swift; sourceTree = "<group>"; };
 		DDB958BA26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyTipCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDB958BC26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularPlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		DDB958BE26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extension.swift"; sourceTree = "<group>"; };
+		DDB958C026CFBB9F006B30BC /* TestNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNavigationController.swift; sourceTree = "<group>"; };
+		DDB958C226CFBBDB006B30BC /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		DDB958C426CFBBF5006B30BC /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF24B9B26C6D61D007AB642 /* MyInfoMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyInfoMain.storyboard; sourceTree = "<group>"; };
 		DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +278,7 @@
 		28EA824726B3C75900785666 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				DD3935F126D3C3300032476F /* Protocol */,
 				28F9E8ED26C15B3D00D9E693 /* Custom */,
 				2834ED0526BFE39600E948B0 /* Model */,
 				28EA824D26B3EDAB00785666 /* Service */,
@@ -318,7 +339,8 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				DDB958AB26CB7AFA006B30BC /* Detail */,
+				DDB958C926D029C2006B30BC /* Test */,
+				DDB958AB26CB7AFA006B30BC /* DetailPlace */,
 				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
 				2841598A26BA73C600F027DB /* Login */,
 				2837FC4126BA6CF400C1C0B0 /* Splash */,
@@ -352,12 +374,56 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		DDB958AB26CB7AFA006B30BC /* Detail */ = {
+		DD1E805C26E4F9BB00622792 /* MainInfo */ = {
 			isa = PBXGroup;
 			children = (
+				DD3935EF26D3ACC90032476F /* DetailPlaceMainInfoView.xib */,
+				DD3935ED26D3AC990032476F /* DetailPlaceMainInfoView.swift */,
+			);
+			path = MainInfo;
+			sourceTree = "<group>";
+		};
+		DD1E805D26E4F9CA00622792 /* BasicInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DD1E806026E4FA1800622792 /* DetailPlaceBasicInfoView.xib */,
+				DD1E805E26E4F9DF00622792 /* DetailPlaceBasicInfoView.swift */,
+			);
+			path = BasicInfo;
+			sourceTree = "<group>";
+		};
+		DD3935E926D3A68E0032476F /* TestModel */ = {
+			isa = PBXGroup;
+			children = (
+				DD3935EA26D3A6A80032476F /* DetailPlaceProtocols.swift */,
+			);
+			path = TestModel;
+			sourceTree = "<group>";
+		};
+		DD3935EC26D3A7870032476F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DD1E805D26E4F9CA00622792 /* BasicInfo */,
+				DD1E805C26E4F9BB00622792 /* MainInfo */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DD3935F126D3C3300032476F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DD3935F226D3C34A0032476F /* NibInstantiatable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		DDB958AB26CB7AFA006B30BC /* DetailPlace */ = {
+			isa = PBXGroup;
+			children = (
+				DD3935EC26D3A7870032476F /* Common */,
 				DDB958AC26CB7B0B006B30BC /* Accomodations */,
 			);
-			path = Detail;
+			path = DetailPlace;
 			sourceTree = "<group>";
 		};
 		DDB958AC26CB7B0B006B30BC /* Accomodations */ = {
@@ -393,6 +459,18 @@
 				DDB958BC26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		DDB958C926D029C2006B30BC /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				DD3935E926D3A68E0032476F /* TestModel */,
+				DDB958C226CFBBDB006B30BC /* Test.storyboard */,
+				DDB958C426CFBBF5006B30BC /* TestViewController.swift */,
+				DDB958C026CFBB9F006B30BC /* TestNavigationController.swift */,
+				DD8CAC4226D4AB1300149704 /* DefaultViewController.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		DDF24B9526C6D5E4007AB642 /* MainTabBar */ = {
@@ -583,6 +661,7 @@
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
 				286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */,
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
+				DD3935F026D3ACC90032476F /* DetailPlaceMainInfoView.xib in Resources */,
 				28FF9FE626B930570062BC28 /* launch screen-3.pdf in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
 				DDF24BB726C6D61D007AB642 /* WishListMain.storyboard in Resources */,
@@ -590,10 +669,12 @@
 				DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
-				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
 				28EA826126B42BF700785666 /* Roboto Mono Medium for Powerline.ttf in Resources */,
+				DDB958C326CFBBDB006B30BC /* Test.storyboard in Resources */,
+				DD1E806126E4FA1800622792 /* DetailPlaceBasicInfoView.xib in Resources */,
 				28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */,
 				2841598E26BA745700F027DB /* LoginView.storyboard in Resources */,
+				DDB958C826D025D0006B30BC /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
 				2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */,
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
 				2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */,
@@ -657,6 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDB958C526CFBBF5006B30BC /* TestViewController.swift in Sources */,
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				DDB958BB26CD2A2F006B30BC /* HoneyTipCollectionViewCell.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
@@ -670,6 +752,7 @@
 				2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
+				DDB958C126CFBB9F006B30BC /* TestNavigationController.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
 				DDB958BD26CD2A3D006B30BC /* PopularPlaceCollectionViewCell.swift in Sources */,
 				DDB958B926CCD870006B30BC /* RecommendedPlaceCell.swift in Sources */,
@@ -677,6 +760,8 @@
 				DDB958B226CB7D31006B30BC /* DetailAccomodationsViewController.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
+				DD3935F326D3C34A0032476F /* NibInstantiatable.swift in Sources */,
+				DD1E805F26E4F9DF00622792 /* DetailPlaceBasicInfoView.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
@@ -687,8 +772,11 @@
 				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
 				DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */,
+				DD8CAC4326D4AB1300149704 /* DefaultViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
+				DD3935EE26D3AC990032476F /* DetailPlaceMainInfoView.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
+				DD3935EB26D3A6A80032476F /* DetailPlaceProtocols.swift in Sources */,
 				DDB958BF26CD2AC5006B30BC /* UICollectionViewCell+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

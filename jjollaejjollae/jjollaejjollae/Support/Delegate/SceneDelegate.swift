@@ -30,8 +30,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = navigationController
         } else {
           
-          let mainTabBarController = MainTabBarController()
-          window?.rootViewController = mainTabBarController
+//          let mainTabBarController = MainTabBarController()
+//          window?.rootViewController = mainTabBarController
+          
+          let testNaviVC = TestNavigationController()
+          
+          window?.rootViewController = testNaviVC
         }
         window?.makeKeyAndVisible()
         
