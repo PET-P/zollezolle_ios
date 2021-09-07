@@ -97,6 +97,9 @@ class SignUpViewController: UIViewController {
       
   }
   
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
+  }
   @objc private func updatePasswordStyleErrorLabelUI(_ sender: Any?) {
     guard let passwordStr = passwordTextField.text else {return}
     if !loginManager.isValidPassword(password: passwordStr) {
