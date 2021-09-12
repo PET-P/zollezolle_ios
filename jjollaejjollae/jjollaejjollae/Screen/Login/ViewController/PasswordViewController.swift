@@ -54,8 +54,8 @@ class PasswordViewController: UIViewController {
       findPasswordButton.underLine(buttonString: "비밀번호를 잊으셨나요?")
     }
   }
-  @IBOutlet var scrollView: UIScrollView!
-  @IBOutlet var stackView: UIStackView!
+  @IBOutlet weak var scrollView: UIScrollView!
+  @IBOutlet weak var stackView: UIStackView!
 
   
   private var passwordErrorText: String = "" {
@@ -74,7 +74,8 @@ class PasswordViewController: UIViewController {
   
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
     let findPasswordStoryboard = UIStoryboard(name: "FindPassword", bundle: nil)
-    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else {return}
+    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(
+            identifier: "FindPasswordViewController") as? FindPasswordViewController else {return}
     self.navigationController?.pushViewController(findPasswordVC, animated: true)
   }  
 }
@@ -93,7 +94,9 @@ extension PasswordViewController: UITextFieldDelegate {
       target: view,
       action: #selector(view.endEditing(_:)))
     view.addGestureRecognizer(tapGesture)
-    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { (notification) in
+    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                           object: nil,
+                                           queue: OperationQueue.main) { (notification) in
       guard let userInfo = notification.userInfo else { return }
       guard let keyboardFrame =
         userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
@@ -106,17 +109,21 @@ extension PasswordViewController: UITextFieldDelegate {
       )
       self.scrollView.contentInset = contentInset
       self.scrollView.scrollIndicatorInsets = contentInset
-      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
+              as? TimeInterval else {return}
       UIView.animate(withDuration: duration) {
         self.view.layoutIfNeeded()
       }
     }
-    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main) { (notification) in
+    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                           object: nil,
+                                           queue: OperationQueue.main) { (notification) in
       guard let userInfo = notification.userInfo else { return }
       let contentInset = UIEdgeInsets.zero
       self.scrollView.contentInset = contentInset
       self.scrollView.scrollIndicatorInsets = contentInset
-      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
+              as? TimeInterval else {return}
       UIView.animate(withDuration: duration) {
         self.view.layoutIfNeeded()
       }

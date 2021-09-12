@@ -9,26 +9,26 @@ import UIKit
 
 class LoginViewController: UIViewController {
   
-  @IBOutlet var emailTextField: UITextField! {
+  @IBOutlet weak var emailTextField: UITextField! {
     didSet {
       emailTextField.addLeftPadding()
     }
   }
-  @IBOutlet var topLoginTitle: UILabel! {
+  @IBOutlet weak var topLoginTitle: UILabel! {
     didSet {
       topLoginTitle.text = "반려동물과"
       topLoginTitle.font = UIFont.robotoBold(size: 30)
       topLoginTitle.textColor = UIColor.쫄래블랙
     }
   }
-  @IBOutlet var bottomLoginTitle: UILabel! {
+  @IBOutlet weak var bottomLoginTitle: UILabel! {
     didSet {
       bottomLoginTitle.text = "여행을 떠나 볼까요?"
       bottomLoginTitle.font = UIFont.robotoBold(size: 30)
       bottomLoginTitle.textColor = UIColor.쫄래블랙
     }
   }
-  @IBOutlet var continueButton: UIButton! {
+  @IBOutlet weak var continueButton: UIButton! {
     didSet {
       //        continueButton.isEnabled = false
       continueButton.setTitle("계속하기", for: .normal)
@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
       continueButton.backgroundColor = UIColor.쫄래그린.withAlphaComponent(0.5)
     }
   }
-  @IBOutlet var goToHomeButton: UIButton! {
+  @IBOutlet weak var goToHomeButton: UIButton! {
     didSet {
       goToHomeButton.setTitle("맞춤정보 없이 둘러보기", for: .normal)
       goToHomeButton.titleLabel?.font = UIFont.robotoBold(size: 16)
@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
       goToHomeButton.layer.borderWidth = 0
     }
   }
-  @IBOutlet var naverLoginButton: UIButton! {
+  @IBOutlet weak var naverLoginButton: UIButton! {
     didSet {
       naverLoginButton.setTitle("네이버 로그인", for: .normal)
       naverLoginButton.roundedButton(cornerRadius: 25)
@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
       naverLoginButton.titleLabel?.textColor = UIColor.white
     }
   }
-  @IBOutlet var kakaoLoginButton: UIButton! {
+  @IBOutlet weak var kakaoLoginButton: UIButton! {
     didSet {
       kakaoLoginButton.setTitle("카카오 로그인", for: .normal)
       kakaoLoginButton.setRounded(radius: 25)
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController {
       kakaoLoginButton.titleLabel?.textColor = UIColor.black
     }
   }
-  @IBOutlet var appleLoginButton: UIButton! {
+  @IBOutlet weak var appleLoginButton: UIButton! {
     didSet {
       appleLoginButton.setTitle("애플 로그인", for: .normal)
       appleLoginButton.setRounded(radius: 25)
@@ -79,27 +79,27 @@ class LoginViewController: UIViewController {
       appleLoginButton.titleLabel?.textColor = UIColor.white
     }
   }
-  @IBOutlet var provisionLabel: UILabel! {
+  @IBOutlet weak var provisionLabel: UILabel! {
     didSet {
       provisionLabel.numberOfLines = 1
       provisionLabel.font = UIFont.robotoRegular(size: 12)
       provisionLabel.textColor = .쫄래블랙
     }
   }
-  @IBOutlet var provisionButton: UIButton! {
+  @IBOutlet weak var provisionButton: UIButton! {
     didSet {
       provisionButton.setTitleColor(.쫄래블랙, for: .normal)
       provisionButton.titleLabel?.font = .robotoBold(size: 12)
     }
   }
-  @IBOutlet var lastProvisionLabel: UILabel! {
+  @IBOutlet weak var lastProvisionLabel: UILabel! {
     didSet {
       lastProvisionLabel.numberOfLines = 1
       lastProvisionLabel.font = UIFont.robotoRegular(size: 12)
       lastProvisionLabel.textColor = .쫄래블랙
     }
   }
-  @IBOutlet var errorLabel: UILabel! {
+  @IBOutlet weak var errorLabel: UILabel! {
     didSet {
       errorLabel.text = "가입되지 않은 이메일입니다."
       errorLabel.textColor = UIColor.errorColor
@@ -126,17 +126,23 @@ class LoginViewController: UIViewController {
       textColor: UIColor.회,
       borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
     privacyLinkLabel()
-    emailTextField.addTarget(self, action: #selector(updateEmailValidationUI(_:)), for: .editingChanged)
+    emailTextField.addTarget(self, action: #selector(updateEmailValidationUI(_:)),
+                             for: .editingChanged)
   }
   
   private func privacyLinkLabel() {
     
     let buttonAttributedStr = NSMutableAttributedString(string: provisionButton.currentTitle!)
-    buttonAttributedStr.addAttributes([.kern: -0.5, .underlineStyle: NSUnderlineStyle.thick.rawValue, .underlineColor: UIColor.쫄래블랙], range: NSRange(location: 0, length: buttonAttributedStr.length))
+    buttonAttributedStr.addAttributes([.kern: -0.5,
+                                       .underlineStyle: NSUnderlineStyle.thick.rawValue,
+                                       .underlineColor: UIColor.쫄래블랙],
+                                      range: NSRange(location: 0,
+                                                     length: buttonAttributedStr.length))
     
     let attributedStr = NSMutableAttributedString(string: provisionLabel.text!)
     let lastAttributedStr = NSMutableAttributedString(string: lastProvisionLabel.text!)
-    lastAttributedStr.addAttribute(.kern, value: -0.5, range: NSRange(location: 0, length: lastAttributedStr.length))
+    lastAttributedStr.addAttribute(.kern, value: -0.5,
+                                   range: NSRange(location: 0, length: lastAttributedStr.length))
     lastProvisionLabel.attributedText = lastAttributedStr
     attributedStr.addAttribute(.kern, value: -0.5,
                                range: NSRange(location: 0, length: attributedStr.length))
@@ -145,7 +151,8 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction private func didTapProvisionButton(_ sender: UIButton) {
-    guard let provisionVC = storyboard?.instantiateViewController(identifier: "ProvisionViewController") as? ProvisionViewController else {
+    guard let provisionVC = storyboard?.instantiateViewController(
+            identifier: "ProvisionViewController") as? ProvisionViewController else {
       return
     }
     provisionVC.modalPresentationStyle = .fullScreen
@@ -158,9 +165,11 @@ class LoginViewController: UIViewController {
     
     
     let passwordStoryboard = UIStoryboard.init(name: "Password", bundle: nil)
-    guard let passwordVC = passwordStoryboard.instantiateViewController(identifier: "PasswordViewController") as? PasswordViewController else {return}
+    guard let passwordVC = passwordStoryboard.instantiateViewController(
+            identifier: "PasswordViewController") as? PasswordViewController else {return}
     let signUpStoryBoard = UIStoryboard.init(name: "SignUp", bundle: nil)
-    guard let signUpVC = signUpStoryBoard.instantiateViewController(identifier: "SignUpViewController") as? SignUpViewController else {return}
+    guard let signUpVC = signUpStoryBoard.instantiateViewController(
+            identifier: "SignUpViewController") as? SignUpViewController else {return}
     
     
             self.navigationController?.pushViewController(passwordVC, animated: true)
@@ -185,11 +194,11 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
-  func textFieldDidBeginEditing(_ textField: UITextField) {
+  internal func textFieldDidBeginEditing(_ textField: UITextField) {
     textField.becomeFirstResponder()
   }
   
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+  internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
   }
   
@@ -201,7 +210,7 @@ extension LoginViewController: UITextFieldDelegate {
 
 extension LoginViewController {
   //MARK: - updateUI Methods
-  @objc func updateEmailValidationUI(_ sender: Any?){
+  @objc private func updateEmailValidationUI(_ sender: Any?){
     guard let emailStr = self.emailTextField.text else {return}
     if !loginManager.isValidEmail(email: emailStr) {
       errorLabel.isHidden = false
