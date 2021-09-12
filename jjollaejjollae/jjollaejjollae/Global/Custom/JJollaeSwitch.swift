@@ -39,7 +39,6 @@ class JJollaeSwitch: UIButton {
   }
   
   private func buttonInit(frame: CGRect) {
-    print(frame.width)
     let barViewHeight = frame.height - (barViewTopBottomMargin * 2)
     barView = UIView(frame: CGRect(x: 0, y: barViewTopBottomMargin, width: frame.width, height: barViewHeight))
     
@@ -66,8 +65,6 @@ class JJollaeSwitch: UIButton {
     self.addSubview(circleLabel)
     circleLabel.centerXAnchor.constraint(equalTo: circleView.centerXAnchor).isActive = true
     circleLabel.centerYAnchor.constraint(equalTo: circleView.centerYAnchor).isActive = true
-    print(superview ?? "0")
-    print(subviews)
   }
   
   var isOn: Bool = false {

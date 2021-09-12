@@ -40,6 +40,9 @@
 		2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877830E26C811B6001BF582 /* RecentSearchViewController.swift */; };
 		2877831126C824A2001BF582 /* Stars.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2877831026C824A2001BF582 /* Stars.storyboard */; };
 		2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877831226C824BE001BF582 /* StarsSearchViewController.swift */; };
+		287AE21F26EC857B0038B39F /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287AE21E26EC857B0038B39F /* CarouselLayout.swift */; };
+		287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287AE22026EC85DF0038B39F /* CaraouselCell.swift */; };
+		287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287AE22226ECA5250038B39F /* DogInfoManager.swift */; };
 		2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A2FD26C8EC71004596C3 /* SearchManager.swift */; };
 		2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A30426C90CD4004596C3 /* Recent.storyboard */; };
 		2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30626C91CD0004596C3 /* SearchTableViewCell.swift */; };
@@ -130,6 +133,9 @@
 		2877830E26C811B6001BF582 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
 		2877831026C824A2001BF582 /* Stars.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Stars.storyboard; sourceTree = "<group>"; };
 		2877831226C824BE001BF582 /* StarsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsSearchViewController.swift; sourceTree = "<group>"; };
+		287AE21E26EC857B0038B39F /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
+		287AE22026EC85DF0038B39F /* CaraouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaraouselCell.swift; sourceTree = "<group>"; };
+		287AE22226ECA5250038B39F /* DogInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfoManager.swift; sourceTree = "<group>"; };
 		2884A2FD26C8EC71004596C3 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		2884A30426C90CD4004596C3 /* Recent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recent.storyboard; sourceTree = "<group>"; };
 		2884A30626C91CD0004596C3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -234,6 +240,7 @@
 				2834ED0626BFE46700E948B0 /* LoginManager.swift */,
 				2884A2FD26C8EC71004596C3 /* SearchManager.swift */,
 				2884A37626D7F3D3004596C3 /* Filters.swift */,
+				287AE22226ECA5250038B39F /* DogInfoManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +264,7 @@
 		2841598A26BA73C600F027DB /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				287AE21D26EC85500038B39F /* View */,
 				2841598C26BA73E200F027DB /* ViewController */,
 				2841598B26BA73D900F027DB /* Storyboard */,
 			);
@@ -288,6 +296,15 @@
 				28CF852A26E7882F00ED200F /* ProvisionViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		287AE21D26EC85500038B39F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				287AE21E26EC857B0038B39F /* CarouselLayout.swift */,
+				287AE22026EC85DF0038B39F /* CaraouselCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2884A30826C91D37004596C3 /* View */ = {
@@ -745,6 +762,7 @@
 				2884A37726D7F3D4004596C3 /* Filters.swift in Sources */,
 				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
 				DDF24BB926C6D61D007AB642 /* WishListNavigationController.swift in Sources */,
+				287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */,
 				2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */,
@@ -762,6 +780,7 @@
 				2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */,
 				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
+				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
@@ -778,6 +797,7 @@
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
 				DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
+				287AE21F26EC857B0038B39F /* CarouselLayout.swift in Sources */,
 				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
 				2884A30C26CA406C004596C3 /* SearchNoResultViewController.swift in Sources */,
 				28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */,
