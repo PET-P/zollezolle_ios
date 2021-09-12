@@ -7,6 +7,28 @@
 
 import UIKit
 
+
+class dogInfoCollectionView: UICollectionView {
+  // reloadData 이후에 일어날 일
+  private var reloadDataCompletionBlock: (() -> Void)?
+  
+  private var findCenterBlock: (()->Void)?
+  
+  
+  
+  func reloadDataWithCompletion(_ complete: @escaping () -> Void) {
+    reloadDataCompletionBlock = complete
+    super.reloadData()
+  }
+  
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    if let block = reloadDataCompletionBlock {
+      block()
+    }
+  }
+}
+
 class DogInfoViewController: UIViewController {
   //MARK: - IBOUTLET
 
@@ -24,14 +46,7 @@ class DogInfoViewController: UIViewController {
       infoSubTitleLabel.textColor = .black
     }
   }
-  @IBOutlet weak var myPetImageView: UIImageView! {
-    didSet {
-      myPetImageView.setRounded(radius: nil)
-      myPetImageView.layer.borderWidth = 1
-      myPetImageView.layer.borderColor = UIColor.clear.cgColor
-      myPetImageView.clipsToBounds = true
-    }
-  }
+
   @IBOutlet weak var myPetNameTextField: UITextField! {
     didSet {
       myPetNameTextField.setRounded(radius: nil)
@@ -103,8 +118,8 @@ class DogInfoViewController: UIViewController {
   @IBOutlet weak var petTypeButton: UIButton! {
     didSet {
       petTypeButton.layer.cornerRadius = petTypeButton.frame.height / 2
-      petTypeButton.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner,
-                                                       .layerMinXMaxYCorner)
+      petTypeButton.layer.maskedCorners = CACornerMask(
+        arrayLiteral: .layerMinXMinYCorner,.layerMinXMaxYCorner)
       petTypeButton.layer.borderColor = UIColor.쫄래페일그린.cgColor
       petTypeButton.layer.borderWidth = 1
       petTypeButton.setTitle("강아지", for: .normal)
@@ -121,8 +136,8 @@ class DogInfoViewController: UIViewController {
       petTypeTextField.font = .robotoMedium(size: 16)
       petTypeTextField.textColor = UIColor.쫄래블랙
       petTypeTextField.layer.cornerRadius = petTypeTextField.layer.frame.height / 2
-      petTypeTextField.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMaxXMaxYCorner,
-                                                          .layerMaxXMinYCorner)
+      petTypeTextField.layer.maskedCorners = CACornerMask(
+        arrayLiteral: .layerMaxXMaxYCorner, .layerMaxXMinYCorner)
     }
   }
   @IBOutlet weak var saveButton: UIButton! {
@@ -144,9 +159,12 @@ class DogInfoViewController: UIViewController {
       ContinueWithoutSaveButton.layer.borderWidth = 0
     }
   }
-  @IBOutlet var stackView: UIStackView!
-  @IBOutlet var scrollView: UIScrollView!
-  @IBOutlet var targetStackview: UIStackView!
+  @IBOutlet weak var scrollView: UIScrollView!
+  @IBOutlet weak var dogProfileCollectionView: dogInfoCollectionView!
+  
+  //MARK: - Variables
+
+  
   private let imagePickerController: UIImagePickerController = UIImagePickerController()
 
   private var sizeText: String = "소형" {
@@ -160,33 +178,62 @@ class DogInfoViewController: UIViewController {
       petTypeButton.setTitle("\(typeText)", for: .normal)
     }
   }
+  
+  private var dogProfile: [String] = ["camera", "plus"]
+  private var visibleIndex: [IndexPath] = []
+  private var clickedIndexPath: IndexPath?
+  private var images: [UIImage] = []
+  
+  //MARK: - View LifeCycle
 
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    addGestureAboveImageView()
     setKeyboard()
   }
   
-  private func addGestureAboveImageView(){
-    let tapImageView: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImageView(_:)))
-    myPetImageView.addGestureRecognizer(tapImageView)
-    myPetImageView.isUserInteractionEnabled = true
+  override func viewWillAppear(_ animated: Bool) {
+    addCollectionView()
   }
   
-  @objc private func didTapImageView(_ sender: Any?){
-    let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
-    myPetImagePickerController.allowsEditing = true
-    myPetImagePickerController.delegate = self
-    present(myPetImagePickerController, animated: true, completion: nil)
-  }
-  
+  //MARK: - Functions
+
   @IBAction private func didTapContinueWithoutSaveButton(_ sender: UIButton) {
     
   }
+  
+  @IBAction func didTapPetSizeButton(_ sender: UIButton) {
+    self.showAlertController(style: UIAlertController.Style.actionSheet)
+  }
+  
+  private func showAlertController(style: UIAlertController.Style) {
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
+    let bigSizeAction = UIAlertAction(title: "대형", style: .default) { result in self.sizeText = "대형"
+    }
+    let middleSizeAction = UIAlertAction(title: "중형", style: .default) { result in self.sizeText = "중형"
+    }
+    let smallSizeAction = UIAlertAction(title: "소형", style: .default) { result in
+      self.sizeText = "소형"
+    }
+    let subview = alertController.view.subviews.first! as UIView
+    let alertContentView = subview.subviews.first! as UIView
+    alertContentView.setRounded(radius: 10)
+    alertContentView.overrideUserInterfaceStyle = .light
+    alertContentView.backgroundColor = UIColor.white
+    alertController.view.setRounded(radius: 10)
+    alertController.view.tintColor = .쫄래그린
+    alertController.addAction(bigSizeAction)
+    alertController.addAction(middleSizeAction)
+    alertController.addAction(smallSizeAction)
+    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+    self.present(alertController, animated: true, completion: nil);
+  }
+  
 }
 
 extension DogInfoViewController: UITextFieldDelegate {
+  //MARK: - Keyboard
+
   private func setKeyboard() {
     myPetNameTextField.delegate = self
     petAgeTextField.delegate = self
@@ -200,9 +247,10 @@ extension DogInfoViewController: UITextFieldDelegate {
     tapGesture.cancelsTouchesInView = false
     view.addGestureRecognizer(tapGesture)
     
-  NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
-                                         object: nil,
-                                         queue: OperationQueue.main) { (notification) in
+  NotificationCenter.default.addObserver(
+    forName: UIResponder.keyboardWillShowNotification,
+    object: nil,
+    queue: OperationQueue.main) { (notification) in
       guard let userInfo = notification.userInfo else {
           return
       }
@@ -252,11 +300,131 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
     self.dismiss(animated: true, completion: nil)
   }
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    guard let clickedIndexPath = self.clickedIndexPath else {return}
     if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      self.myPetImageView.image = originalImage
+      images.append(originalImage)
+      self.dogProfile[clickedIndexPath.row] = "old"
       //TODO: 이미지 저장할 모델링
       //TODO: 정한 이미지 pan gesture
     }
-    self.dismiss(animated: true, completion: nil)
+    self.dismiss(animated: true) {
+      self.dogProfileCollectionView.scrollToItem(at: clickedIndexPath, at: .centeredHorizontally, animated: true)
+      self.dogProfileCollectionView.reloadData()
+    }
   }
 }
+
+//MARK: - CollectionView
+
+extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDelegate, CarouselCellTapDelegate {
+  
+  private func addCollectionView() {
+    let layout = CarouselLayout()
+    layout.itemSize = CGSize(width: dogProfileCollectionView.frame.size.width*0.796, height: dogProfileCollectionView.frame.size.height)
+    layout.sideItemScale = 1/3
+    layout.spacing = -100
+    layout.isPagingEnabled = true
+    layout.sideItemAlpha = 0.5
+    
+    dogProfileCollectionView.collectionViewLayout = layout
+    
+    self.dogProfileCollectionView?.delegate = self
+    self.dogProfileCollectionView?.dataSource = self
+    
+    self.dogProfileCollectionView.register(CaraouselCell.self, forCellWithReuseIdentifier: "carouseCell")
+    self.dogProfileCollectionView.showsHorizontalScrollIndicator = false
+  }
+  //MARK: - DataSource
+
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return 1
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return dogProfile.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "carouseCell", for: indexPath) as? CaraouselCell else {
+      return UICollectionViewCell()
+    }
+    print(dogProfile)
+    cell.dogImageView.isUserInteractionEnabled = true
+    if dogProfile[indexPath.row] == "camera" {
+      cell.dogImageView.image = UIImage(named: "camera")
+
+    }
+    else if dogProfile[indexPath.row] == "plus" {
+      cell.dogImageView.image = UIImage(named: "plus")
+    }
+    else {
+      cell.dogImageView.image = images[indexPath.row]
+    }
+    
+    
+    cell.delegate = self
+    cell.selectedIndexPath = indexPath
+    
+    
+    cell.dogImageView.layer.cornerRadius = cell.dogImageView.frame.size.height / 2
+    cell.dogImageView.layer.masksToBounds = true
+    cell.layer.cornerRadius = cell.frame.size.height / 2
+    cell.layer.masksToBounds = true
+    cell.dogImageView.clipsToBounds = true
+    return cell
+  }
+  
+  //scroll이 끝나면 해야할일
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    visibleCell()
+    dogProfileCollectionView.reloadData()
+  }
+  
+  func visibleCell() {
+    var indexArray: [IndexPath] = []
+    for cell in dogProfileCollectionView.visibleCells {
+      guard let indexPath = dogProfileCollectionView.indexPath(for: cell) else {
+        return
+      }
+      indexArray.append(indexPath)
+    }
+    visibleIndex = indexArray
+    print(visibleIndex)
+  }
+  
+  //MARK: - Delegate
+  
+  func didTapImageView(indexPath: IndexPath?) {
+    
+    if let indexPath = indexPath {
+      print(dogProfile[indexPath.row])
+      if indexPath.row == dogProfile.count - 1 && visibleIndex.count == 2 && dogProfile[indexPath.row] == "plus"{
+        print("\(dogProfile[indexPath.row]), \(indexPath)")
+        dogProfile.insert("camera", at: dogProfile.count - 1)
+      }
+      else if dogProfile[indexPath.row] == "camera" && visibleIndex.count == 3 && visibleIndex[1] == indexPath || visibleIndex.count == 0 && dogProfile[indexPath.row] == "camera" || visibleIndex.count == 2 && dogProfile[indexPath.row] == "camera"{ //이미지 피커 부르자
+        print("사진")
+        let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
+        myPetImagePickerController.allowsEditing = true
+        myPetImagePickerController.delegate = self
+        present(myPetImagePickerController, animated: true) {
+          self.clickedIndexPath = indexPath
+        }
+      } else if dogProfile[indexPath.row] == "old" && visibleIndex.count == 3 && visibleIndex[1] == indexPath || visibleIndex.count == 0 && dogProfile[indexPath.row] == "old" || visibleIndex.count == 2 && dogProfile[indexPath.row] == "old" {
+        print("다시")
+        let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
+        myPetImagePickerController.allowsEditing = true
+        myPetImagePickerController.delegate = self
+        present(myPetImagePickerController, animated: true) {
+          self.clickedIndexPath = indexPath
+        }
+      }
+      dogProfileCollectionView.reloadDataWithCompletion {
+        self.visibleCell()
+      }
+    }
+  }
+}
+
+
