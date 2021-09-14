@@ -7,28 +7,6 @@
 
 import UIKit
 
-
-class dogInfoCollectionView: UICollectionView {
-  // reloadData 이후에 일어날 일
-  private var reloadDataCompletionBlock: (() -> Void)?
-  
-  private var findCenterBlock: (()->Void)?
-  
-  
-  
-  func reloadDataWithCompletion(_ complete: @escaping () -> Void) {
-    reloadDataCompletionBlock = complete
-    super.reloadData()
-  }
-  
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    if let block = reloadDataCompletionBlock {
-      block()
-    }
-  }
-}
-
 class DogInfoViewController: UIViewController {
   //MARK: - IBOUTLET
   
@@ -164,42 +142,110 @@ class DogInfoViewController: UIViewController {
   
   //MARK: - Variables
   
-  
   private let imagePickerController: UIImagePickerController = UIImagePickerController()
   
   private var sizeText: String = "소형" {
     didSet {
       petSizeButton.setTitle("\(sizeText)", for: .normal)
+      if petSizeButton.currentTitle == "소형" {
+        dogProfile[middleIndex.row].size = .small
+      } else if petSizeButton.currentTitle == "중형" {
+        dogProfile[middleIndex.row].size = .middle
+      } else {
+        dogProfile[middleIndex.row].size = .big
+      }
     }
   }
-  
-  private var typeText: String = "강아지" {
-    didSet {
-      petTypeButton.setTitle("\(typeText)", for: .normal)
-    }
-  }
-  
-  private var dogProfile: [String] = ["camera", "plus"]
+
+  private var cellType: [String] = ["camera", "plus"]
+  private var dogProfile: [DogInfo] = []
   private var visibleIndex: [IndexPath] = []
   private var clickedIndexPath: IndexPath?
   private var images: [UIImage] = []
+  private var middleIndex: IndexPath = [0,0]
   
   //MARK: - View LifeCycle
   
-  
+  private lazy var dogInfoManager = DogInfoManager()
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     setKeyboard()
+    myPetNameTextField.addTarget(self, action: #selector(didChangePetName(_:)), for: .editingDidEnd)
+    petAgeTextField.addTarget(self, action: #selector(didChangePetAge(_:)), for: .editingDidEnd)
+    petWeightTextField.addTarget(self, action: #selector(didChangePetWeight(_:)), for: .editingDidEnd)
+    petTypeTextField.addTarget(self, action: #selector(didChangePetTypeName(_:)), for: .editingDidEnd)
   }
   
   override func viewWillAppear(_ animated: Bool) {
     addCollectionView()
+    // TODO: Userdata에서 가져오기
+    setUpDogProfile()
+  }
+  
+  private func setUpDogProfile() {
+    dogProfile = dogInfoManager.dogInfos
+    var tempCellType: [String] = []
+    if dogInfoManager.isDogInfosEmpty {
+      // dogprofile에 아무것도 없으면?? 처음들어가는 상황
+      tempCellType = ["camera", "plus"]
+      dogProfile = [DogInfo()]
+    } else {
+      // dogprofile에 처음들어가는 상황이 아님
+      for i in dogProfile.indices {
+        // 이미지 설정이 되어있지 않다면?
+        if dogProfile[i].imageURL == nil {
+          tempCellType.append("camera")
+        } else { //이미지설정이 되어있다면?
+          tempCellType.append("old")
+        }
+      }
+      //마지막은 plus로 마무리
+      tempCellType.append("plus")
+    }
+    cellType = tempCellType
   }
   
   //MARK: - Functions
   
+  private var typeText: String = "강아지" {
+    didSet {
+      petTypeButton.setTitle("\(typeText)", for: .normal)
+      dogProfile[middleIndex.row].type = petTypeButton.currentTitle ?? "강아지"
+    }
+  }
+  
+  @objc private func didChangePetName(_ sender: Any?) {
+    dogProfile[middleIndex.row].name = myPetNameTextField.text
+  }
+  
+  @objc private func didChangePetAge(_ sender: Any?) {
+    dogProfile[middleIndex.row].age = petAgeTextField.text
+  }
+  
+  @objc private func didChangePetWeight(_ sender: Any?) {
+    dogProfile[middleIndex.row].name = petWeightTextField.text
+  }
+  
+  @objc private func didChangePetTypeName(_ sender: Any?){
+    dogProfile[middleIndex.row].typeName = petTypeTextField.text
+  }
+  
+  @IBAction func didChangePetGender(_ sender: JJollaeSwitch) {
+    if dogProfile[middleIndex.row].gender == .female {
+      dogProfile[middleIndex.row].gender = .male
+    } else {
+      dogProfile[middleIndex.row].gender = .female
+    }
+  }
+  
   @IBAction private func didTapContinueWithoutSaveButton(_ sender: UIButton) {
-    
+    self.dismiss(animated: true, completion: nil)
+    let homeStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
+    guard let homeVC = homeStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {
+      return
+    }
+    self.navigationController?.pushViewController(homeVC, animated: true)
   }
   
   @IBAction func didTapPetSizeButton(_ sender: UIButton) {
@@ -227,6 +273,69 @@ class DogInfoViewController: UIViewController {
     alertController.addAction(smallSizeAction)
     alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
     self.present(alertController, animated: true, completion: nil);
+  }
+  
+  private func showAlertController(style: UIAlertController.Style, typeList: [String]) {
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
+    typeList.forEach { (type) in
+      alertController.addAction(UIAlertAction(title: type, style: .default) { result in
+        self.typeText = type
+      })
+    }
+    let subview = alertController.view.subviews.first! as UIView
+    let alertContentView = subview.subviews.first! as UIView
+    alertContentView.setRounded(radius: 10)
+    alertContentView.overrideUserInterfaceStyle = .light
+    alertContentView.backgroundColor = UIColor.white
+    alertController.view.setRounded(radius: 10)
+    alertController.view.tintColor = .쫄래그린
+    
+    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+    self.present(alertController, animated: true, completion: nil);
+  }
+  
+  @IBAction func didTapPetTypeButton(_ sender: UIButton) {
+    self.showAlertController(style: UIAlertController.Style.actionSheet, typeList: ["강아지", "고양이"])
+  }
+  
+  @IBAction func didTapSaveButton(_ sender: UIButton) {
+    dogProfile.forEach { dogInfo in
+      if dogInfo.name == nil {
+        print("fuck")
+        return
+      }
+    }
+  }
+  
+  private func updateForm(cellType: String) {
+    if cellType == "plus" {
+     clearForm()
+    } else {
+      let data = dogProfile[middleIndex.row]
+      myPetNameTextField.text = data.name
+      petAgeTextField.text = data.age
+      if data.gender.rawValue == 1 {
+        petGenderSwitch.isOn = true
+      } else {
+        petGenderSwitch.isOn = false
+      }
+//      petGenderSwitch.isOn = data.gender.rawValue == 1 ? true : false
+      petSizeButton.setTitle(data.size.rawValue, for: .normal)
+      petWeightTextField.text = data.weight
+      petTypeButton.setTitle(data.type, for: .normal)
+      petTypeTextField.text = data.typeName
+    }
+  }
+  
+  private func clearForm() {
+    myPetNameTextField.text = nil
+    petAgeTextField.text = nil
+    petGenderSwitch.isOn = true
+    petSizeButton.setTitle(DogInfo.Size.small.rawValue, for: .normal)
+    petWeightTextField.text = nil
+    petTypeButton.setTitle("강아지", for: .normal)
+    petTypeTextField.text = nil
+    
   }
   
 }
@@ -300,15 +409,13 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
     self.dismiss(animated: true, completion: nil)
   }
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    guard let clickedIndexPath = self.clickedIndexPath else {return}
     if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      images.append(originalImage)
-      self.dogProfile[clickedIndexPath.row] = "old"
+      self.dogProfile[self.middleIndex.row].imageURL = originalImage
+      self.cellType[self.middleIndex.row] = "old"
       //TODO: 이미지 저장할 모델링
       //TODO: 정한 이미지 pan gesture
     }
     self.dismiss(animated: true) {
-      self.dogProfileCollectionView.scrollToItem(at: clickedIndexPath, at: .centeredHorizontally, animated: true)
       self.dogProfileCollectionView.reloadData()
     }
   }
@@ -317,7 +424,70 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
 //MARK: - CollectionView
 
 extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDelegate, CarouselCellTapDelegate {
+ 
+  //MARK: - DataSource
   
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return 1
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return cellType.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "carouseCell", for: indexPath) as? CaraouselCell else {
+      return UICollectionViewCell()
+    }
+    cell.dogImageView.isUserInteractionEnabled = true
+    if cellType[indexPath.row] == "camera" {
+      cell.dogImageView.image = UIImage(named: "camera")
+    }
+    else if cellType[indexPath.row] == "plus" {
+      cell.dogImageView.image = UIImage(named: "plus")
+    }
+    else {
+        cell.dogImageView.image = dogProfile[indexPath.row].imageURL
+    }
+    setMiddleIndex(cell, indexPath: indexPath)
+    
+    //+버튼일 경우 다른 곳은 터치가 안되서 기입할 수가 없음
+    if cellType[indexPath.row] == "plus" && indexPath == middleIndex {
+      self.myPetNameTextField.isUserInteractionEnabled = false
+      self.petTypeButton.isUserInteractionEnabled = false
+      self.petTypeTextField.isUserInteractionEnabled = false
+      self.petSizeButton.isUserInteractionEnabled = false
+      self.petWeightTextField.isUserInteractionEnabled = false
+      self.petAgeTextField.isUserInteractionEnabled = false
+    } else {
+      print(dogProfile[middleIndex.row].gender)
+      self.myPetNameTextField.isUserInteractionEnabled = true
+      self.petTypeButton.isUserInteractionEnabled = true
+      self.petTypeTextField.isUserInteractionEnabled = true
+      self.petSizeButton.isUserInteractionEnabled = true
+      self.petWeightTextField.isUserInteractionEnabled = true
+      self.petAgeTextField.isUserInteractionEnabled = true
+    }
+    updateForm(cellType: cellType[middleIndex.row])
+    
+    
+    
+    
+    cell.delegate = self
+    cell.selectedIndexPath = indexPath
+    
+    cell.dogImageView.layer.cornerRadius = cell.dogImageView.frame.size.height / 2
+    cell.dogImageView.layer.masksToBounds = true
+    cell.layer.cornerRadius = cell.frame.size.height / 2
+    cell.layer.masksToBounds = true
+    cell.dogImageView.clipsToBounds = true
+    return cell
+  }
+  
+  //MARK: - Functions
+  
+  // collectionView 초기화
   private func addCollectionView() {
     let layout = CarouselLayout()
     layout.itemSize = CGSize(width: dogProfileCollectionView.frame.size.width*0.796, height: dogProfileCollectionView.frame.size.height)
@@ -334,49 +504,18 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
     self.dogProfileCollectionView.register(CaraouselCell.self, forCellWithReuseIdentifier: "carouseCell")
     self.dogProfileCollectionView.showsHorizontalScrollIndicator = false
   }
-  //MARK: - DataSource
-  
-  func numberOfSections(in collectionView: UICollectionView) -> Int {
-    return 1
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return dogProfile.count
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "carouseCell", for: indexPath) as? CaraouselCell else {
-      return UICollectionViewCell()
-    }
-    cell.dogImageView.isUserInteractionEnabled = true
-    if dogProfile[indexPath.row] == "camera" {
-      cell.dogImageView.image = UIImage(named: "camera")
-      
-    }
-    else if dogProfile[indexPath.row] == "plus" {
-      cell.dogImageView.image = UIImage(named: "plus")
-    }
-    else {
-      cell.dogImageView.image = images[indexPath.row]
-    }
-    
-    cell.delegate = self
-    cell.selectedIndexPath = indexPath
-    
-    cell.dogImageView.layer.cornerRadius = cell.dogImageView.frame.size.height / 2
-    cell.dogImageView.layer.masksToBounds = true
-    cell.layer.cornerRadius = cell.frame.size.height / 2
-    cell.layer.masksToBounds = true
-    cell.dogImageView.clipsToBounds = true
-    return cell
-  }
   
   //scroll이 끝나면 해야할일
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     visibleCell()
     dogProfileCollectionView.reloadData()
-    
+  }
+  
+  //가운데 인덱스 구하기
+  func setMiddleIndex(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+    if cell.alpha > 0.9 {
+      middleIndex = indexPath
+    }
   }
   
   func visibleCell() {
@@ -395,23 +534,20 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   func didTapImageView(indexPath: IndexPath?) {
     
     if let indexPath = indexPath {
-      print("indexpath \(indexPath)")
-      if dogProfile[indexPath.row] == "plus" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
-        dogProfile.insert("camera", at: dogProfile.count - 1)
-      } else if dogProfile[indexPath.row] == "camera" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
+      if cellType[indexPath.row] == "plus" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
+        cellType.insert("camera", at: cellType.count - 1)
+        
+        dogProfile.append(DogInfo())
+      } else if cellType[indexPath.row] == "camera" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
         myPetImagePickerController.allowsEditing = true
         myPetImagePickerController.delegate = self
-        present(myPetImagePickerController, animated: true) {
-          self.clickedIndexPath = indexPath
-        }
-      } else if dogProfile[indexPath.row] == "old" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
+        present(myPetImagePickerController, animated: true)
+      } else if cellType[indexPath.row] == "old" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
         myPetImagePickerController.allowsEditing = true
         myPetImagePickerController.delegate = self
-        present(myPetImagePickerController, animated: true) {
-          self.clickedIndexPath = indexPath
-        }
+        present(myPetImagePickerController, animated: true)
       } else {
         return
       }

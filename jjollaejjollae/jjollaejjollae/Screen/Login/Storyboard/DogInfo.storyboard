@@ -156,6 +156,9 @@
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdo-kZ-lGe" customClass="JJollaeSwitch" customModule="jjollaejjollae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="25.5" width="154.5" height="40"/>
+                                                                <connections>
+                                                                    <action selector="didChangePetGender:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VZY-IU-khq"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -271,6 +274,9 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-U9-tY3">
                                                                 <rect key="frame" x="0.0" y="0.0" width="99" height="40"/>
                                                                 <state key="normal" title="Button"/>
+                                                                <connections>
+                                                                    <action selector="didTapPetTypeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bf6-Cu-krI"/>
+                                                                </connections>
                                                             </button>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="et0-TA-zMj">
                                                                 <rect key="frame" x="99" y="0.0" width="231" height="40"/>
@@ -297,6 +303,9 @@
                                                     <constraint firstAttribute="height" constant="50" id="3Hu-yS-iaG"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="didTapSaveButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ECd-Mn-YJc"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2V-sj-Nm1">
                                                 <rect key="frame" x="87" y="640.5" width="240" height="14"/>
