@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import PhotosUI
 
-class DogInfoViewController: UIViewController {
+class FixModalViewController: UIViewController {
+  override func viewDidLoad() {
+    self.preferredContentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height - 10);
+  }
+}
+
+class DogInfoViewController: FixModalViewController {
   //MARK: - IBOUTLET
   
   @IBOutlet weak var infoTitleLabel: UILabel! {
@@ -161,7 +168,7 @@ class DogInfoViewController: UIViewController {
   private var dogProfile: [DogInfo] = []
   private var visibleIndex: [IndexPath] = []
   private var clickedIndexPath: IndexPath?
-  private var images: [UIImage] = []
+  private var images: [UIImage?] = []
   private var middleIndex: IndexPath = [0,0]
   
   //MARK: - View LifeCycle
@@ -189,13 +196,15 @@ class DogInfoViewController: UIViewController {
     var tempCellType: [String] = []
     if dogInfoManager.isDogInfosEmpty {
       // dogprofile에 아무것도 없으면?? 처음들어가는 상황
+      print("1번?")
       tempCellType = ["camera", "plus"]
       dogProfile = [DogInfo()]
     } else {
       // dogprofile에 처음들어가는 상황이 아님
+      print("2번?")
       for i in dogProfile.indices {
         // 이미지 설정이 되어있지 않다면?
-        if dogProfile[i].imageURL == nil {
+        if dogProfile[i].imageData == nil {
           tempCellType.append("camera")
         } else { //이미지설정이 되어있다면?
           tempCellType.append("old")
@@ -249,12 +258,14 @@ class DogInfoViewController: UIViewController {
   
   private func showAlertController(style: UIAlertController.Style) {
     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
-    let bigSizeAction = UIAlertAction(title: "대형", style: .default) { result in self.sizeText = "대형"
+    let bigSizeAction = UIAlertAction(title: "대형", style: .default) { [weak self]
+      result in self?.sizeText = "대형"
     }
-    let middleSizeAction = UIAlertAction(title: "중형", style: .default) { result in self.sizeText = "중형"
+    let middleSizeAction = UIAlertAction(title: "중형", style: .default) {
+      [weak self] result in self?.sizeText = "중형"
     }
-    let smallSizeAction = UIAlertAction(title: "소형", style: .default) { result in
-      self.sizeText = "소형"
+    let smallSizeAction = UIAlertAction(title: "소형", style: .default) { [weak self] result in
+      self?.sizeText = "소형"
     }
     let subview = alertController.view.subviews.first! as UIView
     let alertContentView = subview.subviews.first! as UIView
@@ -273,8 +284,8 @@ class DogInfoViewController: UIViewController {
   private func showAlertController(style: UIAlertController.Style, AlertList: [String]) {
     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
     AlertList.forEach { (type) in
-      alertController.addAction(UIAlertAction(title: type, style: .default) { result in
-        self.typeText = type
+      alertController.addAction(UIAlertAction(title: type, style: .default) { [weak self] result in
+        self?.typeText = type
       })
     }
     let subview = alertController.view.subviews.first! as UIView
@@ -294,11 +305,26 @@ class DogInfoViewController: UIViewController {
   }
   
   @IBAction func didTapSaveButton(_ sender: UIButton) {
+    var flag = false
     dogProfile.forEach { dogInfo in
       if dogInfo.name == nil {
-        print("fuck")
+        let alertController = UIAlertController(title: nil, message: "이름을 입력하개", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        let subview = alertController.view.subviews.first! as UIView
+        let alertContentView = subview.subviews.first! as UIView
+        alertContentView.setRounded(radius: 10)
+        alertContentView.overrideUserInterfaceStyle = .light
+        alertContentView.backgroundColor = UIColor.white
+        alertController.view.setRounded(radius: 10)
+        alertController.view.tintColor = .쫄래그린
+        self.present(alertController, animated: true, completion: nil)
         return
+      } else {
+        flag = true
       }
+    }
+    if flag {
+      dogInfoManager.dogInfos = dogProfile
     }
   }
   
@@ -400,7 +426,7 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
   }
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      self.dogProfile[self.middleIndex.row].imageURL = originalImage
+      self.dogProfile[middleIndex.row].imageData = originalImage.jpegData(compressionQuality: 0.1)
       self.cellType[self.middleIndex.row] = "old"
       //TODO: 이미지 저장할 모델링
       //TODO: 정한 이미지 pan gesture
@@ -438,7 +464,12 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
       cell.dogImageView.image = UIImage(named: "plus")
     }
     else {
-        cell.dogImageView.image = dogProfile[indexPath.row].imageURL
+//      cell.dogImageView.image = UIImage(named: "IMG_4930")
+      if let data = self.dogProfile[indexPath.row].imageData {
+        cell.dogImageView.image = UIImage(data: data)
+      } else {
+        cell.dogImageView.image = UIImage(named: "camera")
+      }
     }
     setMiddleIndex(cell, indexPath: indexPath)
     
@@ -452,7 +483,6 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
       self.petAgeTextField.isUserInteractionEnabled = false
       self.petGenderSwitch.isUserInteractionEnabled = false
     } else {
-//      print(dogProfile[middleIndex.row].gender)
       self.myPetNameTextField.isUserInteractionEnabled = true
       self.petTypeButton.isUserInteractionEnabled = true
       self.petTypeTextField.isUserInteractionEnabled = true
@@ -557,9 +587,7 @@ extension DogInfoViewController: JJollaeButtonDelegate {
       } else {
         dogProfile[middleIndex.row].gender = .female
       }
-      print(dogProfile[middleIndex.row].gender, middleIndex.row)
     }
-    
   }
 }
 

@@ -11,13 +11,19 @@ class DogInfoManager {
   
   private let defaults = UserDefaults.standard
   private let key = "dogInfo"
+  
     
   var dogInfos: [DogInfo] {
     get {
-      return defaults.array(forKey: key) as? [DogInfo] ?? []
+      var dogInfoList: [DogInfo]?
+      if let data = defaults.value(forKey: key) as? Data {
+        dogInfoList = try? PropertyListDecoder().decode(Array<DogInfo>.self, from: data)
+      }
+      return dogInfoList ?? []
     }
     set(new) {
-      defaults.set(new, forKey: key)
+      print(new)
+      defaults.setValue(try? PropertyListEncoder().encode(new), forKey: key)
       defaults.synchronize()
     }
   }

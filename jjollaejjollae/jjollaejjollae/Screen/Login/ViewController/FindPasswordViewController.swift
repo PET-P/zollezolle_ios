@@ -80,7 +80,12 @@ class FindPasswordViewController: UIViewController {
 //    self.navigationController?.popToViewController(loginVC, animated: true)
     let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
     guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
-//    self.navigationController?.pushViewController(dogInfoVC, animated: true)
+
+//    if #available(iOS 13, *) {
+//      dogInfoVC.isModalInPresentation = true
+//    } else {
+//      dogInfoVC.modalPresentationStyle = .currentContext
+//    }
     self.present(dogInfoVC, animated: true, completion: nil)
   }
   
