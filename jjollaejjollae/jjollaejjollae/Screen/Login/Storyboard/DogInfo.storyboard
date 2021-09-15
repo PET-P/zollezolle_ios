@@ -81,9 +81,10 @@
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yc2-uY-SJG">
-                                                <rect key="frame" x="90" y="217" width="234" height="40"/>
+                                                <rect key="frame" x="139.5" y="217" width="135" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="5v4-93-2Ns"/>
+                                                    <constraint firstAttribute="width" constant="135" id="ho2-H8-amV"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -156,9 +157,6 @@
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdo-kZ-lGe" customClass="JJollaeSwitch" customModule="jjollaejjollae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="25.5" width="154.5" height="40"/>
-                                                                <connections>
-                                                                    <action selector="didChangePetGender:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VZY-IU-khq"/>
-                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -331,11 +329,9 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="tVl-5y-ceV" firstAttribute="leading" secondItem="r3l-yC-u9m" secondAttribute="leading" constant="20" id="BeM-UD-NzW"/>
-                                            <constraint firstAttribute="trailing" secondItem="Yc2-uY-SJG" secondAttribute="trailing" constant="90" id="Fdh-H1-bDh"/>
                                             <constraint firstAttribute="trailing" secondItem="YOr-98-M0V" secondAttribute="trailing" constant="42" id="Om1-tE-UN3"/>
                                             <constraint firstItem="oLa-pK-lvG" firstAttribute="trailing" secondItem="syw-6Z-B1D" secondAttribute="trailing" id="StF-F7-gjo"/>
                                             <constraint firstItem="oLa-pK-lvG" firstAttribute="leading" secondItem="syw-6Z-B1D" secondAttribute="leading" id="Zni-3p-Afx"/>
-                                            <constraint firstItem="Yc2-uY-SJG" firstAttribute="leading" secondItem="r3l-yC-u9m" secondAttribute="leading" constant="90" id="j9U-co-qA7"/>
                                             <constraint firstItem="syw-6Z-B1D" firstAttribute="leading" secondItem="5uI-Be-LwU" secondAttribute="leading" id="kGt-Jg-gOn"/>
                                             <constraint firstItem="5uI-Be-LwU" firstAttribute="trailing" secondItem="YOr-98-M0V" secondAttribute="trailing" id="nsz-ms-2da"/>
                                             <constraint firstItem="5uI-Be-LwU" firstAttribute="leading" secondItem="YOr-98-M0V" secondAttribute="leading" id="tAH-n8-S91"/>

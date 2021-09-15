@@ -175,6 +175,7 @@ class DogInfoViewController: UIViewController {
     petAgeTextField.addTarget(self, action: #selector(didChangePetAge(_:)), for: .editingDidEnd)
     petWeightTextField.addTarget(self, action: #selector(didChangePetWeight(_:)), for: .editingDidEnd)
     petTypeTextField.addTarget(self, action: #selector(didChangePetTypeName(_:)), for: .editingDidEnd)
+    petGenderSwitch.delegate = self
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -231,13 +232,7 @@ class DogInfoViewController: UIViewController {
     dogProfile[middleIndex.row].typeName = petTypeTextField.text
   }
   
-  @IBAction func didChangePetGender(_ sender: JJollaeSwitch) {
-    if dogProfile[middleIndex.row].gender == .female {
-      dogProfile[middleIndex.row].gender = .male
-    } else {
-      dogProfile[middleIndex.row].gender = .female
-    }
-  }
+  
   
   @IBAction private func didTapContinueWithoutSaveButton(_ sender: UIButton) {
     self.dismiss(animated: true, completion: nil)
@@ -275,9 +270,9 @@ class DogInfoViewController: UIViewController {
     self.present(alertController, animated: true, completion: nil);
   }
   
-  private func showAlertController(style: UIAlertController.Style, typeList: [String]) {
+  private func showAlertController(style: UIAlertController.Style, AlertList: [String]) {
     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
-    typeList.forEach { (type) in
+    AlertList.forEach { (type) in
       alertController.addAction(UIAlertAction(title: type, style: .default) { result in
         self.typeText = type
       })
@@ -295,7 +290,7 @@ class DogInfoViewController: UIViewController {
   }
   
   @IBAction func didTapPetTypeButton(_ sender: UIButton) {
-    self.showAlertController(style: UIAlertController.Style.actionSheet, typeList: ["강아지", "고양이"])
+    self.showAlertController(style: UIAlertController.Style.actionSheet, AlertList: ["강아지", "고양이"])
   }
   
   @IBAction func didTapSaveButton(_ sender: UIButton) {
@@ -314,12 +309,7 @@ class DogInfoViewController: UIViewController {
       let data = dogProfile[middleIndex.row]
       myPetNameTextField.text = data.name
       petAgeTextField.text = data.age
-      if data.gender.rawValue == 1 {
-        petGenderSwitch.isOn = true
-      } else {
-        petGenderSwitch.isOn = false
-      }
-//      petGenderSwitch.isOn = data.gender.rawValue == 1 ? true : false
+      petGenderSwitch.isOn = data.gender.rawValue == 1 ? true : false
       petSizeButton.setTitle(data.size.rawValue, for: .normal)
       petWeightTextField.text = data.weight
       petTypeButton.setTitle(data.type, for: .normal)
@@ -460,18 +450,21 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
       self.petSizeButton.isUserInteractionEnabled = false
       self.petWeightTextField.isUserInteractionEnabled = false
       self.petAgeTextField.isUserInteractionEnabled = false
+      self.petGenderSwitch.isUserInteractionEnabled = false
     } else {
-      print(dogProfile[middleIndex.row].gender)
+//      print(dogProfile[middleIndex.row].gender)
       self.myPetNameTextField.isUserInteractionEnabled = true
       self.petTypeButton.isUserInteractionEnabled = true
       self.petTypeTextField.isUserInteractionEnabled = true
       self.petSizeButton.isUserInteractionEnabled = true
       self.petWeightTextField.isUserInteractionEnabled = true
       self.petAgeTextField.isUserInteractionEnabled = true
+      self.petGenderSwitch.isUserInteractionEnabled = true
     }
-    updateForm(cellType: cellType[middleIndex.row])
     
-    
+    if indexPath == middleIndex {
+      updateForm(cellType: cellType[middleIndex.row])
+    }
     
     
     cell.delegate = self
@@ -553,6 +546,20 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
       }
       dogProfileCollectionView.reloadData()
     }
+  }
+}
+
+extension DogInfoViewController: JJollaeButtonDelegate {
+  func isOnValueChage(isOn: Bool) {
+    if cellType[middleIndex.row] != "plus" {
+      if isOn == true {
+        dogProfile[middleIndex.row].gender = .male
+      } else {
+        dogProfile[middleIndex.row].gender = .female
+      }
+      print(dogProfile[middleIndex.row].gender, middleIndex.row)
+    }
+    
   }
 }
 
