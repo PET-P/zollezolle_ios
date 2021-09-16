@@ -60,7 +60,7 @@ class SignUpViewController: UIViewController {
       SignUpContinueButton.titleLabel?.textColor = UIColor.white
       SignUpContinueButton.tintColor = UIColor.white
       SignUpContinueButton.setRounded(radius: 25)
-      SignUpContinueButton.backgroundColor = UIColor.쫄래그린
+      SignUpContinueButton.backgroundColor = UIColor.themeGreen
     }
   }
   
@@ -79,8 +79,8 @@ class SignUpViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     containerWidth = self.view.frame.size.width
-    passwordTextField.underlineStyle(textColor: UIColor.회, borderColor: UIColor.쫄래페일그린, width: containerWidth)
-    confirmationTextField.underlineStyle(textColor: UIColor.회, borderColor: UIColor.쫄래페일그린, width: containerWidth)
+    passwordTextField.underlineStyle(textColor: UIColor.gray03, borderColor: UIColor.themePaleGreen, width: containerWidth)
+    confirmationTextField.underlineStyle(textColor: UIColor.gray03, borderColor: UIColor.themePaleGreen, width: containerWidth)
     confirmationTextField.addTarget(self, action: #selector(updateConfirmationUI(_:)), for: .editingChanged)
     setKeyboard()
     passwordTextField.addTarget(self, action: #selector(updatePasswordStyleErrorLabelUI(_:)), for: .editingChanged)
@@ -107,7 +107,7 @@ class SignUpViewController: UIViewController {
       passwordTextField.changeUnderLine(borderColor: .errorColor, width: self.view.frame.size.width)
       self.passwordStyleErrorText = "올바른 형식의 password를 입력해주세요"
     } else {
-      passwordTextField.changeUnderLine(borderColor: .쫄래페일그린, width: self.view.frame.size.width)
+      passwordTextField.changeUnderLine(borderColor: .themePaleGreen, width: self.view.frame.size.width)
       self.passwordStyleErrorText = ""
     }
   }

@@ -15,14 +15,14 @@ class PasswordViewController: UIViewController {
     didSet {
       topPasswordLabel.text = "비밀번호를"
       topPasswordLabel.font = UIFont.robotoBold(size: 30)
-      topPasswordLabel.textColor = UIColor.쫄래블랙
+      topPasswordLabel.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var bottomPasswordLabel: UILabel! {
     didSet {
       bottomPasswordLabel.text = "입력해주세요"
       bottomPasswordLabel.font = UIFont.robotoBold(size: 30)
-      bottomPasswordLabel.textColor = UIColor.쫄래블랙
+      bottomPasswordLabel.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var passwordTextField: UITextField! {
@@ -37,7 +37,7 @@ class PasswordViewController: UIViewController {
       LoginButton.titleLabel?.textColor = UIColor.white
       LoginButton.tintColor = UIColor.white
       LoginButton.setRounded(radius: 25)
-      LoginButton.backgroundColor = UIColor.쫄래그린
+      LoginButton.backgroundColor = UIColor.themeGreen
     }
   }
   @IBOutlet weak var passwordErrorLabel: UILabel! {
@@ -67,8 +67,8 @@ class PasswordViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     passwordTextField.underlineStyle(
-      textColor: UIColor.회,
-      borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
+      textColor: UIColor.gray03,
+      borderColor: UIColor.themePaleGreen, width: self.view.frame.width)
     setKeyboard()
   }
   

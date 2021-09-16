@@ -12,7 +12,7 @@ class SearchTableViewCell: UITableViewCell {
   @IBOutlet weak var recommendLabel: UILabel! {
     didSet {
       recommendLabel.font = .robotoRegular(size: 16)
-      recommendLabel.textColor = .쫄래블랙
+      recommendLabel.textColor = .gray01
     }
   }
   

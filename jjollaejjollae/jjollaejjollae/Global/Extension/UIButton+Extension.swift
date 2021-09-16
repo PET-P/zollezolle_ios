@@ -20,7 +20,7 @@ extension UIButton {
   func underLine(buttonString: String){
     let attributes: [NSAttributedString.Key : Any] = [
       .underlineStyle : NSUnderlineStyle.thick.rawValue,
-      .foregroundColor : UIColor.회
+      .foregroundColor : UIColor.gray03
     ]
     let attributeString = NSAttributedString(string: buttonString, attributes: attributes)
     self.setAttributedTitle(attributeString, for: .normal)

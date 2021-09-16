@@ -18,14 +18,14 @@ class LoginViewController: UIViewController {
     didSet {
       topLoginTitle.text = "반려동물과"
       topLoginTitle.font = UIFont.robotoBold(size: 30)
-      topLoginTitle.textColor = UIColor.쫄래블랙
+      topLoginTitle.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var bottomLoginTitle: UILabel! {
     didSet {
       bottomLoginTitle.text = "여행을 떠나 볼까요?"
       bottomLoginTitle.font = UIFont.robotoBold(size: 30)
-      bottomLoginTitle.textColor = UIColor.쫄래블랙
+      bottomLoginTitle.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var continueButton: UIButton! {
@@ -36,15 +36,15 @@ class LoginViewController: UIViewController {
       continueButton.titleLabel?.textColor = UIColor.white
       continueButton.tintColor = UIColor.white
       continueButton.setRounded(radius: 25)
-      continueButton.backgroundColor = UIColor.쫄래그린.withAlphaComponent(0.5)
+      continueButton.backgroundColor = UIColor.themeGreen.withAlphaComponent(0.5)
     }
   }
   @IBOutlet weak var goToHomeButton: UIButton! {
     didSet {
       goToHomeButton.setTitle("맞춤정보 없이 둘러보기", for: .normal)
       goToHomeButton.titleLabel?.font = UIFont.robotoBold(size: 16)
-      goToHomeButton.titleLabel?.textColor = UIColor.연회
-      goToHomeButton.tintColor = UIColor.연회
+      goToHomeButton.titleLabel?.textColor = UIColor.gray04
+      goToHomeButton.tintColor = UIColor.gray04
       goToHomeButton.backgroundColor = .none
       goToHomeButton.layer.borderWidth = 0
     }
@@ -83,12 +83,12 @@ class LoginViewController: UIViewController {
     didSet {
       provisionLabel.numberOfLines = 1
       provisionLabel.font = UIFont.robotoRegular(size: 12)
-      provisionLabel.textColor = .쫄래블랙
+      provisionLabel.textColor = .gray01
     }
   }
   @IBOutlet weak var provisionButton: UIButton! {
     didSet {
-      provisionButton.setTitleColor(.쫄래블랙, for: .normal)
+      provisionButton.setTitleColor(.gray01, for: .normal)
       provisionButton.titleLabel?.font = .robotoBold(size: 12)
     }
   }
@@ -96,7 +96,7 @@ class LoginViewController: UIViewController {
     didSet {
       lastProvisionLabel.numberOfLines = 1
       lastProvisionLabel.font = UIFont.robotoRegular(size: 12)
-      lastProvisionLabel.textColor = .쫄래블랙
+      lastProvisionLabel.textColor = .gray01
     }
   }
   @IBOutlet weak var errorLabel: UILabel! {
@@ -123,8 +123,8 @@ class LoginViewController: UIViewController {
       action: #selector(view.endEditing(_:)))
     view.addGestureRecognizer(tapGesture)
     emailTextField.underlineStyle(
-      textColor: UIColor.회,
-      borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
+      textColor: UIColor.gray03,
+      borderColor: UIColor.themePaleGreen, width: self.view.frame.width)
     privacyLinkLabel()
     emailTextField.addTarget(self, action: #selector(updateEmailValidationUI(_:)),
                              for: .editingChanged)
@@ -135,7 +135,7 @@ class LoginViewController: UIViewController {
     let buttonAttributedStr = NSMutableAttributedString(string: provisionButton.currentTitle!)
     buttonAttributedStr.addAttributes([.kern: -0.5,
                                        .underlineStyle: NSUnderlineStyle.thick.rawValue,
-                                       .underlineColor: UIColor.쫄래블랙],
+                                       .underlineColor: UIColor.gray01],
                                       range: NSRange(location: 0,
                                                      length: buttonAttributedStr.length))
     
@@ -217,7 +217,7 @@ extension LoginViewController {
       emailTextField.changeUnderLine(borderColor: .errorColor, width: self.view.frame.size.width)
       self.errorText = "올바른 형식의 email이 아닙니다."
     } else {
-      emailTextField.changeUnderLine(borderColor: .쫄래페일그린, width: self.view.frame.size.width)
+      emailTextField.changeUnderLine(borderColor: .themePaleGreen, width: self.view.frame.size.width)
       self.errorText = ""
     }
   }

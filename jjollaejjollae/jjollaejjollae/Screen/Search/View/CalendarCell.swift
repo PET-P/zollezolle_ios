@@ -29,7 +29,7 @@ class CalendarCell: FSCalendarCell {
   override init!(frame: CGRect) {
     super.init(frame: frame)
     let selectionLayer = CAShapeLayer()
-    selectionLayer.fillColor = UIColor.쫄래페일그린.cgColor
+    selectionLayer.fillColor = UIColor.themePaleGreen.cgColor
     selectionLayer.actions = ["hidden": NSNull()]
     self.contentView.layer.insertSublayer(selectionLayer, below: self.titleLabel!.layer)
     self.selectionLayer = selectionLayer

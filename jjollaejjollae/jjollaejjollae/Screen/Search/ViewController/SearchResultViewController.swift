@@ -11,12 +11,12 @@ class SearchResultViewController: UIViewController {
   //MARK: - IBOUTLET
   @IBOutlet weak var headView: UIView! {
     didSet {
-      headView.backgroundColor = .쫄래페일그린
+      headView.backgroundColor = .themePaleGreen
     }
   }
   @IBOutlet weak var backButton: UIButton! {
     didSet {
-      backButton.tintColor = .쫄래블랙
+      backButton.tintColor = .gray01
     }
   }
   
@@ -76,7 +76,7 @@ class SearchResultViewController: UIViewController {
   
   @IBOutlet weak var separateLine: UIView! {
     didSet {
-      separateLine.backgroundColor = .색e8
+      separateLine.backgroundColor = .gray05
     }
   }
   
@@ -84,7 +84,7 @@ class SearchResultViewController: UIViewController {
   
   let goToMapButton: UIButton = {
     let goButton = UIButton()
-    goButton.backgroundColor = UIColor.쫄래앨로우
+    goButton.backgroundColor = UIColor.themeYellow
     goButton.titleLabel?.font = UIFont.robotoBold(size: 14)
     goButton.setTitle("지도로보기", for: .normal)
     goButton.setTitleColor(.색44444, for: .normal)
@@ -202,19 +202,19 @@ class SearchResultViewController: UIViewController {
   private func setLocationFilterButtonUI() {
     buttons = [restaurantButton, landMarkButton, cafeButton, accommodationButton]
     buttons.forEach { (button) in
-      button.layer.borderColor = UIColor.쫄래페일그린.cgColor
+      button.layer.borderColor = UIColor.themePaleGreen.cgColor
       button.layer.borderWidth = 1.0
       button.backgroundColor = .white
-      button.tintColor = .쫄래블랙
+      button.tintColor = .gray01
       button.titleLabel?.font = .robotoMedium(size: 13)
     }
-    buttons.last?.backgroundColor = UIColor.쫄래페일그린
+    buttons.last?.backgroundColor = UIColor.themePaleGreen
   }
   
   private func updateButtonUI(_ sender: UIButton) {
     buttons.forEach { button in
       if button == sender {
-        button.backgroundColor = .쫄래페일그린
+        button.backgroundColor = .themePaleGreen
       } else {
         button.backgroundColor = .white
       }

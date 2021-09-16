@@ -35,7 +35,7 @@ class DogInfoViewController: FixModalViewController {
   @IBOutlet weak var myPetNameTextField: UITextField! {
     didSet {
       myPetNameTextField.setRounded(radius: nil)
-      myPetNameTextField.backgroundColor = .쫄래페일그린
+      myPetNameTextField.backgroundColor = .themePaleGreen
       myPetNameTextField.font = .robotoBold(size: 18)
       myPetNameTextField.placeholder = "쪼꼬"
     }
@@ -50,10 +50,10 @@ class DogInfoViewController: FixModalViewController {
     didSet {
       petAgeTextField.setRounded(radius: nil)
       petAgeTextField.layer.borderWidth = 1
-      petAgeTextField.layer.borderColor = UIColor.쫄래페일그린.cgColor
+      petAgeTextField.layer.borderColor = UIColor.themePaleGreen.cgColor
       petAgeTextField.font = .robotoMedium(size: 16)
       petAgeTextField.placeholder = "4살"
-      petAgeTextField.textColor = UIColor.쫄래블랙
+      petAgeTextField.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var petGenderLabel: PaddingLabel! {
@@ -72,10 +72,10 @@ class DogInfoViewController: FixModalViewController {
   @IBOutlet weak var petSizeButton: UIButton! {
     didSet {
       petSizeButton.setRounded(radius: nil)
-      petSizeButton.layer.borderColor = UIColor.쫄래페일그린.cgColor
+      petSizeButton.layer.borderColor = UIColor.themePaleGreen.cgColor
       petSizeButton.layer.borderWidth = 1
       petSizeButton.setTitle("소형", for: .normal)
-      petSizeButton.tintColor = UIColor.쫄래블랙
+      petSizeButton.tintColor = UIColor.gray01
       petSizeButton.titleLabel?.font = .robotoMedium(size: 16)
     }
   }
@@ -89,9 +89,9 @@ class DogInfoViewController: FixModalViewController {
     didSet {
       petWeightTextField.setRounded(radius: nil)
       petWeightTextField.layer.borderWidth = 1
-      petWeightTextField.layer.borderColor = UIColor.쫄래페일그린.cgColor
+      petWeightTextField.layer.borderColor = UIColor.themePaleGreen.cgColor
       petWeightTextField.font = .robotoMedium(size: 16)
-      petWeightTextField.textColor = UIColor.쫄래블랙
+      petWeightTextField.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var petTypeLabel: PaddingLabel! {
@@ -105,10 +105,10 @@ class DogInfoViewController: FixModalViewController {
       petTypeButton.layer.cornerRadius = petTypeButton.frame.height / 2
       petTypeButton.layer.maskedCorners = CACornerMask(
         arrayLiteral: .layerMinXMinYCorner,.layerMinXMaxYCorner)
-      petTypeButton.layer.borderColor = UIColor.쫄래페일그린.cgColor
+      petTypeButton.layer.borderColor = UIColor.themePaleGreen.cgColor
       petTypeButton.layer.borderWidth = 1
       petTypeButton.setTitle("강아지", for: .normal)
-      petTypeButton.tintColor = UIColor.쫄래블랙
+      petTypeButton.tintColor = UIColor.gray01
       petTypeButton.titleLabel?.font = .robotoMedium(size: 16)
     }
   }
@@ -117,9 +117,9 @@ class DogInfoViewController: FixModalViewController {
     didSet {
       petTypeTextField.placeholder = "아기의 품종을 써주세요!"
       petTypeTextField.layer.borderWidth = 1
-      petTypeTextField.layer.borderColor = UIColor.쫄래페일그린.cgColor
+      petTypeTextField.layer.borderColor = UIColor.themePaleGreen.cgColor
       petTypeTextField.font = .robotoMedium(size: 16)
-      petTypeTextField.textColor = UIColor.쫄래블랙
+      petTypeTextField.textColor = UIColor.gray01
       petTypeTextField.layer.cornerRadius = petTypeTextField.layer.frame.height / 2
       petTypeTextField.layer.maskedCorners = CACornerMask(
         arrayLiteral: .layerMaxXMaxYCorner, .layerMaxXMinYCorner)
@@ -132,14 +132,14 @@ class DogInfoViewController: FixModalViewController {
       saveButton.titleLabel?.textColor = UIColor.white
       saveButton.tintColor = UIColor.white
       saveButton.setRounded(radius: 25)
-      saveButton.backgroundColor = UIColor.쫄래그린
+      saveButton.backgroundColor = UIColor.themeGreen
     }
   }
   @IBOutlet weak var ContinueWithoutSaveButton: UIButton! {
     didSet {
       ContinueWithoutSaveButton.setTitle("맞춤정보 없이 둘러보기", for: .normal)
-      ContinueWithoutSaveButton.titleLabel?.textColor = UIColor.연회
-      ContinueWithoutSaveButton.tintColor = UIColor.연회
+      ContinueWithoutSaveButton.titleLabel?.textColor = UIColor.gray04
+      ContinueWithoutSaveButton.tintColor = UIColor.gray04
       ContinueWithoutSaveButton.backgroundColor = .none
       ContinueWithoutSaveButton.layer.borderWidth = 0
     }
@@ -273,7 +273,7 @@ class DogInfoViewController: FixModalViewController {
     alertContentView.overrideUserInterfaceStyle = .light
     alertContentView.backgroundColor = UIColor.white
     alertController.view.setRounded(radius: 10)
-    alertController.view.tintColor = .쫄래그린
+    alertController.view.tintColor = .themeGreen
     alertController.addAction(bigSizeAction)
     alertController.addAction(middleSizeAction)
     alertController.addAction(smallSizeAction)
@@ -294,7 +294,7 @@ class DogInfoViewController: FixModalViewController {
     alertContentView.overrideUserInterfaceStyle = .light
     alertContentView.backgroundColor = UIColor.white
     alertController.view.setRounded(radius: 10)
-    alertController.view.tintColor = .쫄래그린
+    alertController.view.tintColor = .themeGreen
     
     alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
     self.present(alertController, animated: true, completion: nil);
@@ -316,7 +316,7 @@ class DogInfoViewController: FixModalViewController {
         alertContentView.overrideUserInterfaceStyle = .light
         alertContentView.backgroundColor = UIColor.white
         alertController.view.setRounded(radius: 10)
-        alertController.view.tintColor = .쫄래그린
+        alertController.view.tintColor = .themeGreen
         self.present(alertController, animated: true, completion: nil)
         return
       } else {

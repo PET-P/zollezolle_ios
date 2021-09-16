@@ -13,7 +13,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
   @IBOutlet weak var travelDateLabel: UILabel! {
     didSet {
       travelDateLabel.font = .robotoMedium(size: 16)
-      travelDateLabel.textColor = .쫄래블랙
+      travelDateLabel.textColor = .gray01
       travelDateLabel.text = ""
     }
   }
@@ -22,7 +22,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
   @IBOutlet weak var submitButton: UIButton! {
     didSet {
       submitButton.setTitle("날짜를 선택해주세요", for: .normal)
-      submitButton.backgroundColor = UIColor.쫄래페일그린
+      submitButton.backgroundColor = UIColor.themePaleGreen
       submitButton.tintColor = UIColor.white
       submitButton.titleLabel?.font = UIFont.robotoBold(size: 18)
       submitButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
@@ -30,7 +30,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
   }
   @IBOutlet weak var refreshButton: UIBarButtonItem! {
     didSet {
-      refreshButton.tintColor = .쫄래그린
+      refreshButton.tintColor = .themeGreen
       refreshButton.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.robotoMedium(size: 14)], for: .normal)
     }
   }
@@ -43,13 +43,13 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
     didSet {
       if let dates = dates {
         if dates.count >  1 {
-          submitButton.backgroundColor = .쫄래그린
+          submitButton.backgroundColor = .themeGreen
           submitButton.setTitle("\(dates.count-1)박 선택", for: .normal)
         } else {
-          submitButton.backgroundColor = .쫄래페일그린
+          submitButton.backgroundColor = .themePaleGreen
           submitButton.setTitle("1박 이상을 선택해주세요", for: .normal)}
       } else {
-        submitButton.backgroundColor = .쫄래페일그린
+        submitButton.backgroundColor = .themePaleGreen
         submitButton.setTitle("날짜를 선택해주세요", for: .normal)
       }
     }
@@ -146,18 +146,18 @@ class CalendarViewController: UIViewController, FSCalendarDelegateAppearance {
 //MARK: - FSCalender
 extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
   private func setUpCalendar() {
-    calendar.appearance.selectionColor = .쫄래페일그린
+    calendar.appearance.selectionColor = .themePaleGreen
     calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-    calendar.appearance.todayColor = .쫄래그린
+    calendar.appearance.todayColor = .themeGreen
     calendar.appearance.headerDateFormat = "YYYY.M"
-    calendar.appearance.headerTitleColor = .쫄래그린
+    calendar.appearance.headerTitleColor = .themeGreen
     calendar.headerHeight = 70
     calendar.appearance.headerTitleAlignment = .left
     calendar.appearance.headerTitleOffset = CGPoint(x: 7, y: -5)
     calendar.appearance.headerSeparatorColor = UIColor.clear.withAlphaComponent(0)
     calendar.appearance.headerTitleFont = .robotoBold(size: 18)
     calendar.appearance.titleFont = .robotoRegular(size: 14)
-    calendar.appearance.titleSelectionColor = .쫄래그린
+    calendar.appearance.titleSelectionColor = .themeGreen
     calendar.weekdayHeight = 0
     calendar.placeholderType = .none
     calendar.allowsMultipleSelection = true
@@ -189,7 +189,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
   
   func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
     if date.weekDay() == "일" {
-      return UIColor.쫄래그린
+      return UIColor.themeGreen
     }
     return UIColor(rgb: 0x454545)
   }

@@ -28,7 +28,7 @@ extension UIView {
     if let borderColor_ = borderColor {
       self.layer.borderColor = borderColor_.cgColor
     } else {
-      self.layer.borderColor = UIColor.쫄래페일그린.cgColor
+      self.layer.borderColor = UIColor.themePaleGreen.cgColor
     }
     
     // UIView의 테두리 두께 설정

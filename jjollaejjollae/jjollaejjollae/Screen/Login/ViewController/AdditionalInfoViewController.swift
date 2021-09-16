@@ -47,7 +47,7 @@ class AdditionalInfoViewController: UIViewController {
       startButton.titleLabel?.textColor = UIColor.white
       startButton.tintColor = UIColor.white
       startButton.setRounded(radius: 25)
-      startButton.backgroundColor = UIColor.쫄래그린
+      startButton.backgroundColor = UIColor.themeGreen
     }
   }
   @IBOutlet weak var stackView: UIStackView!
@@ -57,8 +57,8 @@ class AdditionalInfoViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     let containerViewWidth = self.view.frame.size.width
-    nickNameTextField.underlineStyle(textColor: UIColor.연회, borderColor: UIColor.쫄래페일그린, width: containerViewWidth)
-    phoneNumberTextField.underlineStyle(textColor: UIColor.연회, borderColor: UIColor.쫄래페일그린, width: containerViewWidth)
+    nickNameTextField.underlineStyle(textColor: UIColor.gray04, borderColor: UIColor.themePaleGreen, width: containerViewWidth)
+    phoneNumberTextField.underlineStyle(textColor: UIColor.gray04, borderColor: UIColor.themePaleGreen, width: containerViewWidth)
     let tapGesture = UITapGestureRecognizer(
       target: view,
       action: #selector(view.endEditing(_:)))

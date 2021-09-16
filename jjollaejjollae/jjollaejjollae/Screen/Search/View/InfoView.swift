@@ -12,24 +12,24 @@ class InfoView: UIView {
   @IBOutlet weak var addressLabel: UILabel! {
     didSet {
       addressLabel.font = .robotoMedium(size: 11)
-      addressLabel.textColor = .회
+      addressLabel.textColor = .gray03
     }
   }
   @IBOutlet weak var locationNameLabel: UILabel! {
     didSet {
       addressLabel.font = .robotoBold(size: 14)
-      addressLabel.textColor = .쫄래블랙
+      addressLabel.textColor = .gray01
     }
   }
   @IBOutlet weak var starPointLabel: UILabel! {
     didSet {
       starPointLabel.font = .robotoBold(size: 12)
-      starPointLabel.textColor = .회
+      starPointLabel.textColor = .gray03
     }
   }
   @IBOutlet weak var numberOfReviewLabel: UILabel! {
     didSet {
-      numberOfReviewLabel.textColor = .회
+      numberOfReviewLabel.textColor = .gray03
       numberOfReviewLabel.font = .robotoRegular(size: 10)
     }
   }

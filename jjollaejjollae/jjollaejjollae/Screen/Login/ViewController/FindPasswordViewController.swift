@@ -40,7 +40,7 @@ class FindPasswordViewController: UIViewController {
       goToLoginButton.titleLabel?.textColor = UIColor.white
       goToLoginButton.tintColor = UIColor.white
       goToLoginButton.setRounded(radius: 25)
-      goToLoginButton.backgroundColor = UIColor.쫄래그린
+      goToLoginButton.backgroundColor = UIColor.themeGreen
     }
   }
   
@@ -51,7 +51,7 @@ class FindPasswordViewController: UIViewController {
     button.setTitle("코드전송", for: .normal)
     button.titleLabel?.font = UIFont.robotoMedium(size: 12)
     button.tintColor = UIColor.black
-    button.backgroundColor = UIColor.쫄래페일그린
+    button.backgroundColor = UIColor.themePaleGreen
     button.frame = CGRect(x: CGFloat(findEmailTextField.frame.size.width-200), y: 5, width: 78, height: 27)
     button.contentEdgeInsets = UIEdgeInsets(top: 5, left: spacing, bottom: 5, right: spacing)
     findEmailTextField.rightView = button
@@ -63,8 +63,8 @@ class FindPasswordViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     let containerWidth = self.view.frame.size.width
-    findEmailTextField.underlineStyle(textColor: .회, borderColor: .쫄래페일그린, width: containerWidth)
-    codeTextField.underlineStyle(textColor: .회, borderColor: .쫄래페일그린, width: containerWidth)
+    findEmailTextField.underlineStyle(textColor: .gray03, borderColor: .themePaleGreen, width: containerWidth)
+    codeTextField.underlineStyle(textColor: .gray03, borderColor: .themePaleGreen, width: containerWidth)
     findEmailTextField.addSubview(SendCodeBUtton)
     setKeyboard()
   }

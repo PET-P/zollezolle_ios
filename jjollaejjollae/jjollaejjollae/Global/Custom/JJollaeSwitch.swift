@@ -19,7 +19,7 @@ class JJollaeSwitch: UIButton {
     let label = UILabel()
     label.text = "여"
     label.font = .robotoMedium(size: 16)
-    label.textColor = UIColor.쫄래블랙
+    label.textColor = UIColor.gray01
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -42,8 +42,8 @@ class JJollaeSwitch: UIButton {
     let barViewHeight = frame.height - (barViewTopBottomMargin * 2)
     barView = UIView(frame: CGRect(x: 0, y: barViewTopBottomMargin, width: frame.width, height: barViewHeight))
     
-    barView.backgroundColor = UIColor.쫄래페일그린
-    barView.layer.borderColor = UIColor.쫄래페일그린.cgColor
+    barView.backgroundColor = UIColor.themePaleGreen
+    barView.layer.borderColor = UIColor.themePaleGreen.cgColor
     barView.layer.borderWidth = 1
     barView.layer.masksToBounds = true
     barView.clipsToBounds = true
@@ -107,7 +107,7 @@ class JJollaeSwitch: UIButton {
     UIView.animate(withDuration: duration) { [weak self] in
       guard let self = self else {return}
       self.circleView.center.x = circleCenter
-      self.barView.backgroundColor = UIColor.쫄래페일그린
+      self.barView.backgroundColor = UIColor.themePaleGreen
       self.circleView.backgroundColor = UIColor.white
     } completion: { [weak self] _ in
       guard let self = self else { return }

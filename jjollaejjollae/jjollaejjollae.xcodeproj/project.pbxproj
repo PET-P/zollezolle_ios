@@ -64,6 +64,8 @@
 		2884A37726D7F3D4004596C3 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A37626D7F3D3004596C3 /* Filters.swift */; };
 		2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A3BA26D91F56004596C3 /* CalendarViewController.swift */; };
 		2884A3BD26D91FFD004596C3 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A3BC26D91FFD004596C3 /* Calendar.storyboard */; };
+		2889207F26F389DD00673A36 /* WishList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2889207E26F389DD00673A36 /* WishList.storyboard */; };
+		2889208126F394CA00673A36 /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2889208026F394CA00673A36 /* WishListViewController.swift */; };
 		28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF852A26E7882F00ED200F /* ProvisionViewController.swift */; };
 		28E910BB26F0E1DA0093BF7C /* dogInfoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E910BA26F0E1DA0093BF7C /* dogInfoCollectionView.swift */; };
 		28E910BD26F0E2390093BF7C /* DogInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E910BC26F0E2390093BF7C /* DogInfo.swift */; };
@@ -159,6 +161,8 @@
 		2884A37626D7F3D3004596C3 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		2884A3BA26D91F56004596C3 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		2884A3BC26D91FFD004596C3 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		2889207E26F389DD00673A36 /* WishList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishList.storyboard; sourceTree = "<group>"; };
+		2889208026F394CA00673A36 /* WishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
 		28CF852A26E7882F00ED200F /* ProvisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisionViewController.swift; sourceTree = "<group>"; };
 		28E910BA26F0E1DA0093BF7C /* dogInfoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dogInfoCollectionView.swift; sourceTree = "<group>"; };
 		28E910BC26F0E2390093BF7C /* DogInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfo.swift; sourceTree = "<group>"; };
@@ -339,6 +343,31 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2889207926F3841B00673A36 /* WishList */ = {
+			isa = PBXGroup;
+			children = (
+				2889207D26F389A700673A36 /* Storyboard */,
+				2889207A26F3843300673A36 /* ViewController */,
+			);
+			path = WishList;
+			sourceTree = "<group>";
+		};
+		2889207A26F3843300673A36 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2889208026F394CA00673A36 /* WishListViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		2889207D26F389A700673A36 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				2889207E26F389DD00673A36 /* WishList.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		28EA824626B3C73C00785666 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +441,7 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				2889207926F3841B00673A36 /* WishList */,
 				28F9E93B26C8024700D9E693 /* Search */,
 				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
 				2841598A26BA73C600F027DB /* Login */,
@@ -686,6 +716,7 @@
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
 				2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */,
 				DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */,
+				2889207F26F389DD00673A36 /* WishList.storyboard in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
@@ -771,6 +802,7 @@
 				287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */,
+				2889208126F394CA00673A36 /* WishListViewController.swift in Sources */,
 				2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				2884A31E26CE91E1004596C3 /* RestaurantDataSource.swift in Sources */,

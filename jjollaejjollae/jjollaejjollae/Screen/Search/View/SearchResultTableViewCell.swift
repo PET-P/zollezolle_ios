@@ -27,7 +27,7 @@ class SearchResultTableViewCell: UITableViewCell {
       addressLabel.translatesAutoresizingMaskIntoConstraints = false
       addressLabel.text = "제주 애월읍"
       addressLabel.font = .robotoMedium(size: 12)
-      addressLabel.textColor = .회
+      addressLabel.textColor = .gray03
     }
   }
   
@@ -35,33 +35,33 @@ class SearchResultTableViewCell: UITableViewCell {
     didSet {
       locationNameLabel.translatesAutoresizingMaskIntoConstraints = false
       locationNameLabel.font = .robotoBold(size: 16)
-      locationNameLabel.textColor = .쫄래블랙
+      locationNameLabel.textColor = .gray01
     }
   }
   @IBOutlet weak var locationTypeLabel: UILabel! {
     didSet {
       locationTypeLabel.translatesAutoresizingMaskIntoConstraints = false
       locationTypeLabel.font = .robotoMedium(size: 12)
-      locationTypeLabel.textColor = .회
+      locationTypeLabel.textColor = .gray03
     }
   }
   @IBOutlet weak var starPointLabel: UILabel! {
     didSet {
       starPointLabel.font = .robotoBold(size: 12)
-      starPointLabel.textColor = .회
+      starPointLabel.textColor = .gray03
     }
   }
   @IBOutlet weak var numberOfReviewsLabel: UILabel! {
     didSet {
       numberOfReviewsLabel.font = .robotoRegular(size: 10)
-      numberOfReviewsLabel.textColor = .회
+      numberOfReviewsLabel.textColor = .gray03
     }
   }
   @IBOutlet weak var heartButton: UIButton!
   @IBOutlet weak var priceLabel: UILabel! {
     didSet {
       priceLabel.text = "85,000원"
-      priceLabel.textColor = .쫄래블랙
+      priceLabel.textColor = .gray01
       priceLabel.font = .robotoBold(size: 16)
     }
   }
@@ -69,7 +69,7 @@ class SearchResultTableViewCell: UITableViewCell {
   @IBOutlet weak var DaysLabel: UILabel! {
     didSet {
       DaysLabel.text = "1박 요금"
-      DaysLabel.textColor = .회
+      DaysLabel.textColor = .gray03
       DaysLabel.font = .robotoMedium(size: 10)
     }
   }

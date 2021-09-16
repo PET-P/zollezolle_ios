@@ -17,7 +17,7 @@ class ProvisionViewController: UIViewController {
   
   @IBOutlet weak var titleLabel: UILabel! {
     didSet {
-      titleLabel.textColor = .쫄래블랙
+      titleLabel.textColor = .gray01
       titleLabel.font = .robotoMedium(size: 16)
     }
   }

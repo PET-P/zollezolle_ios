@@ -16,7 +16,7 @@ class FilterViewController: UIViewController {
   @IBOutlet var headers: [PaddingLabel]! {
     didSet {
       headers.forEach { header in
-        header.textColor = .쫄래블랙
+        header.textColor = .gray01
         header.font = .robotoBold(size: 16)
       }
     }
@@ -25,21 +25,21 @@ class FilterViewController: UIViewController {
   @IBOutlet var accommodationButtons: [RoundButton]! {
     didSet {
       accommodationButtons.forEach { button in
-        button.setBackgroundColor(color: .쫄래페일그린, stokeColor: .쫄래그린, forState: .selected)
+        button.setBackgroundColor(color: .themePaleGreen, stokeColor: .themeGreen, forState: .selected)
       }
     }
   }
   @IBOutlet var dogAmentiesButtons: [RoundButton]!{
     didSet {
       dogAmentiesButtons.forEach { button in
-        button.setBackgroundColor(color: .쫄래페일그린, stokeColor: .쫄래그린, forState: .selected)
+        button.setBackgroundColor(color: .themePaleGreen, stokeColor: .themeGreen, forState: .selected)
       }
     }
   }
   @IBOutlet var peopleAmentiesButtons: [RoundButton]!{
     didSet {
       peopleAmentiesButtons.forEach { button in
-        button.setBackgroundColor(color: .쫄래페일그린, stokeColor: .쫄래그린, forState: .selected)
+        button.setBackgroundColor(color: .themePaleGreen, stokeColor: .themeGreen, forState: .selected)
       }
     }
   }
@@ -47,7 +47,7 @@ class FilterViewController: UIViewController {
   @IBOutlet var submitButton: UIButton! {
     didSet {
       submitButton.setTitle("필터적용", for: .normal)
-      submitButton.backgroundColor = UIColor.쫄래페일그린
+      submitButton.backgroundColor = UIColor.themePaleGreen
       submitButton.tintColor = UIColor.white
       submitButton.titleLabel?.font = UIFont.robotoBold(size: 18)
       submitButton.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
@@ -55,7 +55,7 @@ class FilterViewController: UIViewController {
   }
   @IBOutlet var refreshButton: UIBarButtonItem! {
     didSet {
-      refreshButton.tintColor = .쫄래그린
+      refreshButton.tintColor = .themeGreen
       refreshButton.setTitleTextAttributes(
         [NSAttributedString.Key.font : UIFont.robotoMedium(size: 14)], for: .normal)
     }
@@ -117,10 +117,10 @@ class FilterViewController: UIViewController {
   private var selectedList = Set<String>() {
     didSet {
       if selectedList.count > 0 {
-        submitButton.backgroundColor = .쫄래그린
+        submitButton.backgroundColor = .themeGreen
         submitButton.isEnabled = true
       } else {
-        submitButton.backgroundColor = .쫄래페일그린
+        submitButton.backgroundColor = .themePaleGreen
         submitButton.isEnabled = false
       }
     }
@@ -132,7 +132,7 @@ class FilterViewController: UIViewController {
       sender.setBorder(borderColor:UIColor(rgb: 0xDADADA), borderWidth: 1)
     } else {
       selectedList.insert(sender.currentTitle!)
-      sender.setBorder(borderColor: .쫄래그린, borderWidth: 1)
+      sender.setBorder(borderColor: .themeGreen, borderWidth: 1)
     }
     sender.isSelected = !sender.isSelected
   }
