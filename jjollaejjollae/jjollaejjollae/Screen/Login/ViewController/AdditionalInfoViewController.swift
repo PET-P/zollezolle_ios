@@ -104,4 +104,8 @@ class AdditionalInfoViewController: UIViewController {
     guard let FindPasswordVC = FindPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else { return }
     self.navigationController?.pushViewController(FindPasswordVC, animated: true)
     }
+  
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true);
+  }
 }

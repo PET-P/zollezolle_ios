@@ -29,9 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = loginVC
             window?.rootViewController = navigationController
         } else {
-            //TODO: 여기다가 homeVC에 대한 내용 작성
-            guard let homeVC = storyboard.instantiateViewController(identifier: "homeView") as? LoginViewController else {return}
-            window?.rootViewController = homeVC
+          
+          let mainTabBarController = MainTabBarController()
+          window?.rootViewController = mainTabBarController
         }
         window?.makeKeyAndVisible()
         

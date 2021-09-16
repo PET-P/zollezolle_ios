@@ -18,14 +18,14 @@ class LoginViewController: UIViewController {
     didSet {
       topLoginTitle.text = "반려동물과"
       topLoginTitle.font = UIFont.robotoBold(size: 30)
-      topLoginTitle.textColor = UIColor.쥐색38
+      topLoginTitle.textColor = UIColor.쫄래블랙
     }
   }
   @IBOutlet var bottomLoginTitle: UILabel! {
     didSet {
       bottomLoginTitle.text = "여행을 떠나 볼까요?"
       bottomLoginTitle.font = UIFont.robotoBold(size: 30)
-      bottomLoginTitle.textColor = UIColor.쥐색38
+      bottomLoginTitle.textColor = UIColor.쫄래블랙
     }
   }
   @IBOutlet var continueButton: UIButton! {
@@ -81,9 +81,22 @@ class LoginViewController: UIViewController {
   }
   @IBOutlet var provisionLabel: UILabel! {
     didSet {
-      provisionLabel.text = "계속 진행하면 쫄래쫄래의 서비스 약관 및 개인정보 보호정책에 동의한 것으로 간주됩니다."
-      provisionLabel.font = UIFont.robotoMedium(size: 12)
-      provisionLabel.textColor = .black
+      provisionLabel.numberOfLines = 1
+      provisionLabel.font = UIFont.robotoRegular(size: 12)
+      provisionLabel.textColor = .쫄래블랙
+    }
+  }
+  @IBOutlet var provisionButton: UIButton! {
+    didSet {
+      provisionButton.setTitleColor(.쫄래블랙, for: .normal)
+      provisionButton.titleLabel?.font = .robotoBold(size: 12)
+    }
+  }
+  @IBOutlet var lastProvisionLabel: UILabel! {
+    didSet {
+      lastProvisionLabel.numberOfLines = 1
+      lastProvisionLabel.font = UIFont.robotoRegular(size: 12)
+      lastProvisionLabel.textColor = .쫄래블랙
     }
   }
   @IBOutlet var errorLabel: UILabel! {
@@ -112,8 +125,31 @@ class LoginViewController: UIViewController {
     emailTextField.underlineStyle(
       textColor: UIColor.회,
       borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
-    
+    privacyLinkLabel()
     emailTextField.addTarget(self, action: #selector(updateEmailValidationUI(_:)), for: .editingChanged)
+  }
+  
+  private func privacyLinkLabel() {
+    
+    let buttonAttributedStr = NSMutableAttributedString(string: provisionButton.currentTitle!)
+    buttonAttributedStr.addAttributes([.kern: -0.5, .underlineStyle: NSUnderlineStyle.thick.rawValue, .underlineColor: UIColor.쫄래블랙], range: NSRange(location: 0, length: buttonAttributedStr.length))
+    
+    let attributedStr = NSMutableAttributedString(string: provisionLabel.text!)
+    let lastAttributedStr = NSMutableAttributedString(string: lastProvisionLabel.text!)
+    lastAttributedStr.addAttribute(.kern, value: -0.5, range: NSRange(location: 0, length: lastAttributedStr.length))
+    lastProvisionLabel.attributedText = lastAttributedStr
+    attributedStr.addAttribute(.kern, value: -0.5,
+                               range: NSRange(location: 0, length: attributedStr.length))
+    provisionLabel.attributedText = attributedStr
+    provisionButton.setAttributedTitle(buttonAttributedStr, for: .normal)
+  }
+  
+  @IBAction private func didTapProvisionButton(_ sender: UIButton) {
+    guard let provisionVC = storyboard?.instantiateViewController(identifier: "ProvisionViewController") as? ProvisionViewController else {
+      return
+    }
+    provisionVC.modalPresentationStyle = .fullScreen
+    self.present(provisionVC, animated: true, completion: nil);
   }
   
   @IBAction private func didTapContinueButton(_ sender: UIButton) {
@@ -127,11 +163,15 @@ class LoginViewController: UIViewController {
     guard let signUpVC = signUpStoryBoard.instantiateViewController(identifier: "SignUpViewController") as? SignUpViewController else {return}
     
     
-    //        self.navigationController?.pushViewController(passwordVC, animated: true)
-    self.navigationController?.pushViewController(signUpVC, animated: true)
+            self.navigationController?.pushViewController(passwordVC, animated: true)
+//    self.navigationController?.pushViewController(signUpVC, animated: true)
   }
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
-    
+    let SearchStoryboard = UIStoryboard(name: "Search", bundle: nil)
+    guard let searchVC = SearchStoryboard
+            .instantiateViewController(identifier: "SearchViewController") as? SearchViewController
+    else { return }
+    self.navigationController?.pushViewController(searchVC, animated: true)
   }
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
     

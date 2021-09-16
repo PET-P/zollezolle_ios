@@ -69,6 +69,9 @@ class FindPasswordViewController: UIViewController {
     setKeyboard()
   }
   
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
+  }
   
   @IBAction private func didTapGoToLoginButton(_ sender: UIButton){
     //TODO 로그인 화면으로 이동

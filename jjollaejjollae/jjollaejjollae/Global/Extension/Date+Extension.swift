@@ -11,8 +11,7 @@ extension Date {
     func datePickerToString() -> String {
         //date -> String
         let formatter = DateFormatter()
-        let format = "yyyy/MM/DD"
-        formatter.locale = Locale(identifier: "ko")
+        let format = "yyyy-MM-dd"
         formatter.dateFormat = format
         let dateString = formatter.string(from: self)
         
@@ -31,5 +30,26 @@ extension Date {
             return "잘못된 날짜"
         }
     }
+  
+  func dateForCalendar() -> String {
+    let formatter = DateFormatter()
+    let format = "MM.dd"
+    formatter.dateFormat = format
+    let dateString = formatter.string(from: self)
+    return "\(dateString) (\(self.weekDay()))"
+  }
     
+  func dateForSeachResult() -> String {
+    let formatter = DateFormatter()
+    let format = "M월 dd일"
+    formatter.dateFormat = format
+    let dateString = formatter.string(from: self)
+    return "\(dateString) (\(self.weekDay()))"
+  }
+  
+  var firstDayOfTheMonth: Date {
+    get {
+      Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
+    }
+  }
 }

@@ -286,6 +286,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KkK-Eq-S7P">
                                                 <rect key="frame" x="184" y="678.5" width="46" height="30"/>
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="didTapContinueWithoutSaveButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lOR-uR-Jdm"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwI-pj-iLS">
                                                 <rect key="frame" x="87" y="715.5" width="240" height="25"/>
