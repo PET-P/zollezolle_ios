@@ -8,8 +8,6 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    //for test
-    var isLogged: Bool = false
 
     var window: UIWindow?
 
@@ -20,19 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
-        
-        if !isLogged {
-            guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return}
-            let navigationController = UINavigationController(rootViewController: loginVC)
-            navigationController.setNavigationBarHidden(true, animated: false)
-            window?.rootViewController = loginVC
-            window?.rootViewController = navigationController
-        } else {
-          
-          let mainTabBarController = MainTabBarController()
-          window?.rootViewController = mainTabBarController
-        }
+        let mainViewController = UIViewController()
+        mainViewController.view.backgroundColor = UIColor.red
+        window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
         
     }
