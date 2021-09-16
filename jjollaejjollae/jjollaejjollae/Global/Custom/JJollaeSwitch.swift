@@ -39,11 +39,10 @@ class JJollaeSwitch: UIButton {
   }
   
   private func buttonInit(frame: CGRect) {
-    print(frame.width)
     let barViewHeight = frame.height - (barViewTopBottomMargin * 2)
     barView = UIView(frame: CGRect(x: 0, y: barViewTopBottomMargin, width: frame.width, height: barViewHeight))
     
-    barView.backgroundColor = UIColor.clear
+    barView.backgroundColor = UIColor.쫄래페일그린
     barView.layer.borderColor = UIColor.쫄래페일그린.cgColor
     barView.layer.borderWidth = 1
     barView.layer.masksToBounds = true
@@ -56,8 +55,8 @@ class JJollaeSwitch: UIButton {
     barView.heightAnchor.constraint(equalToConstant: 40).isActive = true
     barView.translatesAutoresizingMaskIntoConstraints = false
     
-    circleView = UIView(frame: CGRect(x: 0, y: 0, width: frame.height * 11 / 6, height: frame.height))
-    circleView.backgroundColor = UIColor.쫄래페일그린
+    circleView = UIView(frame: CGRect(x: 10, y: 2, width: frame.height * 11 / 6 - 4, height: frame.height - 4))
+    circleView.backgroundColor = UIColor.white
     circleView.layer.masksToBounds = true
     circleView.layer.cornerRadius = frame.height / 2
     
@@ -66,8 +65,6 @@ class JJollaeSwitch: UIButton {
     self.addSubview(circleLabel)
     circleLabel.centerXAnchor.constraint(equalTo: circleView.centerXAnchor).isActive = true
     circleLabel.centerYAnchor.constraint(equalTo: circleView.centerYAnchor).isActive = true
-    print(superview ?? "0")
-    print(subviews)
   }
   
   var isOn: Bool = false {
@@ -98,10 +95,10 @@ class JJollaeSwitch: UIButton {
     self.circleLabel.alpha = 0
     
     if self.isOn {
-      circleCenter = self.frame.width - (self.circleView.frame.width / 2)
+      circleCenter = self.frame.width - (self.circleView.frame.width / 2) - 2
       self.gender = "남"
     } else {
-      circleCenter = self.circleView.frame.width / 2
+      circleCenter = self.circleView.frame.width / 2 + 2
       self.gender = "여"
     }
     
@@ -110,8 +107,8 @@ class JJollaeSwitch: UIButton {
     UIView.animate(withDuration: duration) { [weak self] in
       guard let self = self else {return}
       self.circleView.center.x = circleCenter
-      self.barView.backgroundColor = UIColor.clear
-      self.circleView.backgroundColor = UIColor.쫄래페일그린
+      self.barView.backgroundColor = UIColor.쫄래페일그린
+      self.circleView.backgroundColor = UIColor.white
     } completion: { [weak self] _ in
       guard let self = self else { return }
       self.circleLabel.alpha = 1

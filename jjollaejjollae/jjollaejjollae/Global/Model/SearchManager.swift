@@ -66,8 +66,44 @@ extension SearchManager {
   }
 }
 
+enum sectorType: String {
+  case accommodation
+  case cafe
+  case landmark
+  case restaurant
+}
+
+extension sectorType {
+  var ImageDecription: String {
+    switch self {
+    case .accommodation:
+      return "\(self.rawValue)Pin"
+    case .cafe:
+      return "\(self.rawValue)Pin"
+    case .landmark:
+      return "\(self.rawValue)Pin"
+    case .restaurant:
+      return "\(self.rawValue)Pin"
+    }
+  }
+  
+  var selectedImageDescription: String {
+    switch self {
+    case .accommodation:
+      return "\(self.rawValue)PinSelect"
+    case .cafe:
+      return "\(self.rawValue)PinSelect"
+    case .landmark:
+      return "\(self.rawValue)PinSelect"
+    case .restaurant:
+      return "\(self.rawValue)PinSelect"
+    }
+  }
+}
+
 struct SearchResultInfo {
   var id: Int = 1 //여기는 다다를예정
+  var sector: sectorType
   var name: String = "아지멍카페"
   var location: String?
   var type: String?
@@ -76,11 +112,21 @@ struct SearchResultInfo {
   var like: Bool = false
   var days: Int?
   var prices: Int?
+  var coordinate: (Double, Double)
 }
+//33.40614574885367, 126.44407420606885
+//33.45396467876801, 126.62250815524442
+//33.37028990621459, 126.6005931315723
+//33.33681539828487, 126.48195577546937
+
+//33.20332246996189, 126.27162176088024
+//33.557625145656985, 126.79332133931995
+//33.32381351706008, 126.84402360014019
+//33.35279578591668, 126.18489420947724
 
 class ModelController: NSObject {
-  var accommoList = [SearchResultInfo(id: 0, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000), SearchResultInfo(id: 1, name: "아지멍카페", location: nil, type: "커피/브런치", points: 4.9, numbers: 52, days: nil, prices: nil), SearchResultInfo(id: 2, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000), SearchResultInfo(id: 3, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000), SearchResultInfo(id: 666, name: "아지멍카페", location: nil, type: "커피/브런치", points: 4.9, numbers: 52, days: nil, prices: nil), SearchResultInfo(id: 333, name: "아지멍카페", location: nil, type: "커피/브런치", points: 4.9, numbers: 52, days: nil, prices: nil), SearchResultInfo(id: 99), SearchResultInfo(id: 12, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000), SearchResultInfo(id: 37, name: "아지멍카페", location: nil, type: "커피/브런치", points: 4.9, numbers: 52, days: nil, prices: nil), SearchResultInfo(id: 1123123, name: "아지멍카페", location: nil, type: "커피/브런치", points: 4.9, numbers: 52, days: nil, prices: nil)]
-  var cafeList = [SearchResultInfo(id: 0, name: "여기는 카페"), SearchResultInfo(id: 1), SearchResultInfo(id: 2), SearchResultInfo(id: 3), SearchResultInfo(id: 666), SearchResultInfo(id: 333), SearchResultInfo(id: 99), SearchResultInfo(id: 12), SearchResultInfo(id: 37), SearchResultInfo(id: 1123123)]
-  var landmarkList = [SearchResultInfo(id: 0, name: "여기는 관광지"), SearchResultInfo(id: 1), SearchResultInfo(id: 2), SearchResultInfo(id: 3), SearchResultInfo(id: 666), SearchResultInfo(id: 333), SearchResultInfo(id: 99), SearchResultInfo(id: 12), SearchResultInfo(id: 37), SearchResultInfo(id: 1123123)]
-  var restaurantList = [SearchResultInfo(id: 0, name: "여기는 맛집"), SearchResultInfo(id: 1), SearchResultInfo(id: 2), SearchResultInfo(id: 3), SearchResultInfo(id: 666), SearchResultInfo(id: 333), SearchResultInfo(id: 99), SearchResultInfo(id: 12), SearchResultInfo(id: 37), SearchResultInfo(id: 1123123)]
+  var accommoList = [SearchResultInfo(id: 0, sector: .accommodation, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000, coordinate: (33.40614574885367, 126.44407420606885)), SearchResultInfo(id: 1, sector: .accommodation, name: "아지멍카페", location: nil, type: "커피/브런치", points: 4.9, numbers: 52, days: nil, prices: nil, coordinate: (33.45396467876801, 126.62250815524442)), SearchResultInfo(id: 2, sector: .accommodation, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000, coordinate: (33.37028990621459, 126.6005931315723)), SearchResultInfo(id: 3, sector: .accommodation, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000, coordinate: (33.33681539828487, 126.48195577546937))]
+  var cafeList = [SearchResultInfo(id: 0, sector: .cafe, name: "여기는 카페", coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 1, sector: .cafe, coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 2, sector: .cafe, coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 3, sector: .cafe, coordinate: (37.58677761710804, 37.58677761710804))]
+  var landmarkList = [SearchResultInfo(id: 0, sector: .landmark, name: "여기는 관광지", coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 1, sector: .landmark, coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 2, sector: .landmark, coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 3, sector: .landmark, coordinate: (37.58677761710804, 37.58677761710804))]
+  var restaurantList = [SearchResultInfo(id: 0, sector: .restaurant, name: "여기는 맛집", coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 1, sector: .restaurant, coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 2, sector: .restaurant, coordinate: (37.58677761710804, 37.58677761710804)), SearchResultInfo(id: 3, sector: .restaurant, coordinate: (37.58677761710804, 37.58677761710804))]
 }

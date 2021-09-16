@@ -31,9 +31,9 @@ class FindPasswordViewController: UIViewController {
       codeTextField.addLeftPadding()
     }
   }
-  @IBOutlet var stackView: UIStackView!
-  @IBOutlet var scrollView: UIScrollView!
-  @IBOutlet var goToLoginButton: UIButton! {
+  @IBOutlet weak var stackView: UIStackView!
+  @IBOutlet weak var scrollView: UIScrollView!
+  @IBOutlet weak var goToLoginButton: UIButton! {
     didSet {
       goToLoginButton.setTitle("로그인", for: .normal)
       goToLoginButton.titleLabel?.font = UIFont.robotoBold(size: 18)
@@ -69,6 +69,9 @@ class FindPasswordViewController: UIViewController {
     setKeyboard()
   }
   
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
+  }
   
   @IBAction private func didTapGoToLoginButton(_ sender: UIButton){
     //TODO 로그인 화면으로 이동
@@ -77,10 +80,16 @@ class FindPasswordViewController: UIViewController {
 //    self.navigationController?.popToViewController(loginVC, animated: true)
     let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
     guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
-    self.navigationController?.pushViewController(dogInfoVC, animated: true)
+
+    if #available(iOS 13, *) {
+      dogInfoVC.isModalInPresentation = true
+    } else {
+      dogInfoVC.modalPresentationStyle = .currentContext
+    }
+    self.present(dogInfoVC, animated: true, completion: nil)
   }
   
-  @objc func didTapSendCodeButton(_ sender: Any?){
+  @objc private func didTapSendCodeButton(_ sender: Any?){
     //TODO 이메일 서버와 연결
     guard let sender = sender as? UIButton else {return}
     sender.setTitle("재전송", for: .normal)

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Map View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SearchMapViewController" id="Y6W-OH-hqX" customClass="SearchMapViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wr7-81-Srv">
+                                <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem title="Title" id="nkO-gd-iov">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="qcD-VR-ZUv">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhJ-fr-jun" customClass="NMFMapView">
+                                <rect key="frame" x="0.0" y="88" width="390" height="756"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QW6-oo-2fA" customClass="InfoView" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="566" width="358" height="148"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="148" id="BaQ-3G-1Ch"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="QW6-oo-2fA" firstAttribute="leading" secondItem="xhJ-fr-jun" secondAttribute="leading" constant="16" id="WY3-gX-kPc"/>
+                                    <constraint firstAttribute="bottom" secondItem="QW6-oo-2fA" secondAttribute="bottom" constant="42" id="dif-7N-Ks3"/>
+                                    <constraint firstAttribute="trailing" secondItem="QW6-oo-2fA" secondAttribute="trailing" constant="16" id="y4M-LM-KaQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="xhJ-fr-jun" secondAttribute="bottom" id="0Rz-G4-jhG"/>
+                            <constraint firstItem="xhJ-fr-jun" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3B1-Mb-pXM"/>
+                            <constraint firstItem="wr7-81-Srv" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="HaZ-Oy-AXK"/>
+                            <constraint firstItem="wr7-81-Srv" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="TAN-Mo-tiu"/>
+                            <constraint firstItem="xhJ-fr-jun" firstAttribute="top" secondItem="wr7-81-Srv" secondAttribute="bottom" id="aUl-88-BAK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="xhJ-fr-jun" secondAttribute="trailing" id="qXX-qj-bVx"/>
+                            <constraint firstItem="wr7-81-Srv" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="vzp-8k-POm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapInfoView" destination="QW6-oo-2fA" id="ssF-5b-yT4"/>
+                        <outlet property="mapView" destination="xhJ-fr-jun" id="i71-mY-ZCp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="89"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

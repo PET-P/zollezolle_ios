@@ -26,6 +26,9 @@
                                             <constraint firstAttribute="height" constant="25" id="ovm-jP-Le5"/>
                                         </constraints>
                                         <state key="normal" image="chevron.backward" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="UTv-zG-XpT"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제주도" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qML-6u-3nr">
                                         <rect key="frame" x="54" y="70.5" width="306" height="34"/>
@@ -43,32 +46,32 @@
                                     <constraint firstAttribute="bottom" secondItem="qML-6u-3nr" secondAttribute="bottom" constant="20" id="u0E-fJ-KXb"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Shf-vx-ncI">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Shf-vx-ncI">
                                 <rect key="frame" x="16" y="139.5" width="382" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh7-BN-G4e">
-                                        <rect key="frame" x="0.0" y="0.0" width="77.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh7-BN-G4e" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="89.5" height="30"/>
                                         <state key="normal" title="맛집"/>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XGZ-JL-xm0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUy-Se-Byq">
-                                        <rect key="frame" x="101.5" y="0.0" width="77.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUy-Se-Byq" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="97.5" y="0.0" width="89.5" height="30"/>
                                         <state key="normal" title="관광지"/>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="z6b-dx-T6Y"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sc6-pS-5Td">
-                                        <rect key="frame" x="203" y="0.0" width="77.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sc6-pS-5Td" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="195" y="0.0" width="89.5" height="30"/>
                                         <state key="normal" title="카페"/>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="umh-Fk-K3J"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhU-lG-inJ">
-                                        <rect key="frame" x="304.5" y="0.0" width="77.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhU-lG-inJ" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
+                                        <rect key="frame" x="292.5" y="0.0" width="89.5" height="30"/>
                                         <state key="normal" title="숙소"/>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YEo-me-c0M"/>
@@ -82,6 +85,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJI-dx-5SJ">
                                         <rect key="frame" x="0.0" y="0.0" width="297" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="didTapSetScheduleButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="OrH-gI-cug"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0o-BT-0gK">
                                         <rect key="frame" x="306" y="0.0" width="46" height="30"/>
@@ -90,6 +96,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gc-qy-eQK">
                                         <rect key="frame" x="361" y="0.0" width="21" height="30"/>
                                         <state key="normal" image="slider.horizontal.3" catalog="system"/>
+                                        <connections>
+                                            <action selector="didTapFilterButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Kay-pP-gFP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

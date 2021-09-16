@@ -50,8 +50,8 @@ class AdditionalInfoViewController: UIViewController {
       startButton.backgroundColor = UIColor.쫄래그린
     }
   }
-  @IBOutlet var stackView: UIStackView!
-  @IBOutlet var scrollView: UIScrollView!
+  @IBOutlet weak var stackView: UIStackView!
+  @IBOutlet weak var scrollView: UIScrollView!
   
   
   override func viewDidLoad() {
@@ -104,4 +104,8 @@ class AdditionalInfoViewController: UIViewController {
     guard let FindPasswordVC = FindPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else { return }
     self.navigationController?.pushViewController(FindPasswordVC, animated: true)
     }
+  
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true);
+  }
 }

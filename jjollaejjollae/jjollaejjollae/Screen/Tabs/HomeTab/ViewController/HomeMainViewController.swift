@@ -62,7 +62,7 @@ extension HomeMainViewController: Storyboardable{
     let identifier = "\(name)ViewController"
     
     let storyboard = UIStoryboard(name: name, bundle: nil)
-    let homeMainVC = storyboard.instantiateViewController(identifier: identifier)
+    let homeMainVC = storyboard.instantiateViewController(identifier: identifier) 
     
     return homeMainVC
   }

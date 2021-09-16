@@ -82,9 +82,14 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
             as? StarsSearchViewController else {return []}
     
     let resultStoryboard = UIStoryboard(name: "SearchNoResult", bundle: nil)
-    guard let resultVC = resultStoryboard.instantiateViewController(identifier: "SearchNoResultViewController") as? SearchNoResultViewController else {return []}
-    return [resultVC, recentVC]
+    guard let resultVC = resultStoryboard.instantiateViewController(
+            identifier: "SearchNoResultViewController")
+            as? SearchNoResultViewController else {return []}
+    return [starVC, recentVC]
   }
+  
+  
+  
 }
 
 //MARK: - Actions
@@ -97,14 +102,18 @@ extension SearchViewController {
 //MARK: - delegate
 extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//    var flag = false
     guard searchTextField.text != "" else {return true}
     searchManager.saveSearchHistory(with: searchTextField.text)
     textField.resignFirstResponder()
     let searchResultStoryboard = UIStoryboard(name: "SearchResult", bundle: nil)
-    guard let resultVC = searchResultStoryboard.instantiateViewController(identifier: "SearchResultViewController") as? SearchResultViewController else {
+    guard let resultVC = searchResultStoryboard
+            .instantiateViewController(identifier: "SearchResultViewController")
+            as? SearchResultViewController else {
       return true
     }
     self.navigationController?.pushViewController(resultVC, animated: true)
+    self.hidesBottomBarWhenPushed = true
     return true
   }
 }
