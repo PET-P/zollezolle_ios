@@ -81,11 +81,11 @@ class FindPasswordViewController: UIViewController {
     let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
     guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
 
-//    if #available(iOS 13, *) {
-//      dogInfoVC.isModalInPresentation = true
-//    } else {
-//      dogInfoVC.modalPresentationStyle = .currentContext
-//    }
+    if #available(iOS 13, *) {
+      dogInfoVC.isModalInPresentation = true
+    } else {
+      dogInfoVC.modalPresentationStyle = .currentContext
+    }
     self.present(dogInfoVC, animated: true, completion: nil)
   }
   

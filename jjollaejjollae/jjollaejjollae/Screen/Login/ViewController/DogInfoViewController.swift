@@ -464,7 +464,6 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
       cell.dogImageView.image = UIImage(named: "plus")
     }
     else {
-//      cell.dogImageView.image = UIImage(named: "IMG_4930")
       if let data = self.dogProfile[indexPath.row].imageData {
         cell.dogImageView.image = UIImage(data: data)
       } else {
