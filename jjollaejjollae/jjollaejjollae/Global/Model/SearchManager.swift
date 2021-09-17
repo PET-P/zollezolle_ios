@@ -74,30 +74,30 @@ enum sectorType: String {
 }
 
 extension sectorType {
-  var ImageDecription: String {
-    switch self {
-    case .accommodation:
-      return "\(self.rawValue)Pin"
-    case .cafe:
-      return "\(self.rawValue)Pin"
-    case .landmark:
-      return "\(self.rawValue)Pin"
-    case .restaurant:
-      return "\(self.rawValue)Pin"
-    }
+  var ImageDescription: String {
+//    switch self {
+//    case .accommodation:
+//      return "\(self.rawValue)Pin"
+//    case .cafe:
+//      return "\(self.rawValue)Pin"
+//    case .landmark:
+//      return "\(self.rawValue)Pin"
+//    case .restaurant:
+//      return "\(self.rawValue)Pin"
+//    }
+    return "\(self.rawValue)Pin"
   }
   
   var selectedImageDescription: String {
-    switch self {
-    case .accommodation:
-      return "\(self.rawValue)PinSelect"
-    case .cafe:
-      return "\(self.rawValue)PinSelect"
-    case .landmark:
-      return "\(self.rawValue)PinSelect"
-    case .restaurant:
-      return "\(self.rawValue)PinSelect"
-    }
+    return "\(self.ImageDescription)Select"
+  }
+  
+  var wishImageDescription: String {
+    return "\(self.rawValue)Wish"
+  }
+  
+  var selectedWishImageDescription: String {
+    return "\(self.wishImageDescription)Select"
   }
 }
 
