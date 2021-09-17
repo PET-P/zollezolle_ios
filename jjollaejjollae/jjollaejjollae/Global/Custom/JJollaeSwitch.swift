@@ -73,7 +73,14 @@ class JJollaeSwitch: UIButton {
     }
   }
   
-  var gender: String = "남"
+  func setButtonTitle(isOn: String?, isOff: String?) {
+    self.isOnButtonTitle  = isOn
+    self.isOffButtonTitle = isOff
+  }
+  private var isOnButtonTitle: String?
+  private var isOffButtonTitle: String?
+  
+  private var buttonTitle: String = "남"
   
   // 스위치 isOn 값 변경시 애니메이션 여부
   private var isAnimated: Bool = false
@@ -96,10 +103,10 @@ class JJollaeSwitch: UIButton {
     
     if self.isOn {
       circleCenter = self.frame.width - (self.circleView.frame.width / 2) - 2
-      self.gender = "남"
+      self.buttonTitle = isOnButtonTitle ?? ""
     } else {
       circleCenter = self.circleView.frame.width / 2 + 2
-      self.gender = "여"
+      self.buttonTitle = isOffButtonTitle ?? ""
     }
     
     let duration = self.isAnimated ? self.animationDuration : 0
@@ -112,7 +119,7 @@ class JJollaeSwitch: UIButton {
     } completion: { [weak self] _ in
       guard let self = self else { return }
       self.circleLabel.alpha = 1
-      self.circleLabel.text = "\(self.gender)"
+      self.circleLabel.text = "\(self.buttonTitle)"
       self.delegate?.isOnValueChage(isOn: self.isOn)
       self.isAnimated = false
     }

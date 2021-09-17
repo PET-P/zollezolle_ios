@@ -82,6 +82,10 @@
 		28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */; };
 		28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */; };
 		28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */; };
+		28F5BC3426F4B8BF009500BA /* WishMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F5BC3326F4B8BF009500BA /* WishMap.storyboard */; };
+		28F5BC3626F4B9C9009500BA /* WishMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5BC3526F4B9C9009500BA /* WishMapViewController.swift */; };
+		28F5BC3826F4D85F009500BA /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5BC3726F4D85E009500BA /* WishCalendarViewController.swift */; };
+		28F5BC3A26F4D875009500BA /* WishCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F5BC3926F4D875009500BA /* WishCalendar.storyboard */; };
 		28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F9E93E26C8027000D9E693 /* SearchViewController.swift */; };
 		28F9E94126C802A000D9E693 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F9E94026C802A000D9E693 /* Search.storyboard */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
@@ -179,6 +183,10 @@
 		28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Bold Italic for Powerline.ttf"; sourceTree = "<group>"; };
 		28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Light Italic for Powerline.ttf"; sourceTree = "<group>"; };
 		28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Thin for Powerline.ttf"; sourceTree = "<group>"; };
+		28F5BC3326F4B8BF009500BA /* WishMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishMap.storyboard; sourceTree = "<group>"; };
+		28F5BC3526F4B9C9009500BA /* WishMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishMapViewController.swift; sourceTree = "<group>"; };
+		28F5BC3726F4D85E009500BA /* WishCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WishCalendarViewController.swift; path = jjollaejjollae/Screen/WishList/ViewController/WishCalendarViewController.swift; sourceTree = SOURCE_ROOT; };
+		28F5BC3926F4D875009500BA /* WishCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishCalendar.storyboard; sourceTree = "<group>"; };
 		28F9E93E26C8027000D9E693 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		28F9E94026C802A000D9E693 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
@@ -355,7 +363,9 @@
 		2889207A26F3843300673A36 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				28F5BC3726F4D85E009500BA /* WishCalendarViewController.swift */,
 				2889208026F394CA00673A36 /* WishListViewController.swift */,
+				28F5BC3526F4B9C9009500BA /* WishMapViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -364,6 +374,8 @@
 			isa = PBXGroup;
 			children = (
 				2889207E26F389DD00673A36 /* WishList.storyboard */,
+				28F5BC3326F4B8BF009500BA /* WishMap.storyboard */,
+				28F5BC3926F4D875009500BA /* WishCalendar.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -703,6 +715,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28F5BC3426F4B8BF009500BA /* WishMap.storyboard in Resources */,
 				2884A31A26CE696B004596C3 /* SearchResult.storyboard in Resources */,
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
 				2884A32B26D3FC8B004596C3 /* Filter.storyboard in Resources */,
@@ -713,6 +726,7 @@
 				28331CC026DCD70F0062B29D /* InfoView.xib in Resources */,
 				DDF24BB726C6D61D007AB642 /* WishListMain.storyboard in Resources */,
 				2877831126C824A2001BF582 /* Stars.storyboard in Resources */,
+				28F5BC3A26F4D875009500BA /* WishCalendar.storyboard in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
 				2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */,
 				DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */,
@@ -801,6 +815,8 @@
 				DDF24BB926C6D61D007AB642 /* WishListNavigationController.swift in Sources */,
 				287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
+				28F5BC3826F4D85F009500BA /* WishCalendarViewController.swift in Sources */,
+				28F5BC3626F4B9C9009500BA /* WishMapViewController.swift in Sources */,
 				2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */,
 				2889208126F394CA00673A36 /* WishListViewController.swift in Sources */,
 				2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */,
