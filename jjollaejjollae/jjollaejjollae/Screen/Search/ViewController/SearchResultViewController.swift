@@ -87,8 +87,8 @@ class SearchResultViewController: UIViewController {
     goButton.backgroundColor = UIColor.themeYellow
     goButton.titleLabel?.font = UIFont.robotoBold(size: 14)
     goButton.setTitle("지도로보기", for: .normal)
-    goButton.setTitleColor(.색44444, for: .normal)
-    goButton.titleLabel?.textColor = .색44444
+    goButton.setTitleColor(.gray02, for: .normal)
+    goButton.titleLabel?.textColor = .gray02
     goButton.titleLabel?.textAlignment = .center
     return goButton
   }()

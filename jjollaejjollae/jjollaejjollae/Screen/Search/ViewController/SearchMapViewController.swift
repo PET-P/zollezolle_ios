@@ -52,7 +52,7 @@ class SearchMapViewController: MapViewController {
       let lat = info.coordinate.0
       let lng = info.coordinate.1
       let marker = NMFMarker(position: NMGLatLng(lat: lat, lng: lng))
-      let imageName = info.sector.ImageDecription
+      let imageName = info.sector.ImageDescription
       marker.iconImage = NMFOverlayImage(image: UIImage(named: imageName)!)
       markers.append(marker)
       marker.mapView = mapView
@@ -66,7 +66,7 @@ class SearchMapViewController: MapViewController {
     markers?.forEach { marker in
       marker.userInfo = ["tag": number]
       marker.userInfo.updateValue(dataList?[number] as Any, forKey: "data")
-      marker.userInfo.updateValue(dataList?[number].sector.ImageDecription as Any, forKey: "pin")
+      marker.userInfo.updateValue(dataList?[number].sector.ImageDescription as Any, forKey: "pin")
       marker.userInfo.updateValue(dataList?[number].sector.selectedImageDescription as Any,
                                   forKey: "selectedPin")
       marker.touchHandler = {[weak self] (overlay: NMFOverlay) -> Bool in
