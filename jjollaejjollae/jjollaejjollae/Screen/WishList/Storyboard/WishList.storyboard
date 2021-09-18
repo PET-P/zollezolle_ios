@@ -11,7 +11,7 @@
         <!--Wish List View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="WishListViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WishListViewController" id="Y6W-OH-hqX" customClass="WishListViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,7 +92,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TAv-jE-8BJ">
-                                <rect key="frame" x="0.0" y="189.5" width="414" height="706.5"/>
+                                <rect key="frame" x="0.0" y="193.5" width="414" height="702.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DT7-mc-9h0">
@@ -110,17 +110,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="TAv-jE-8BJ" secondAttribute="bottom" id="AlC-9K-g7m"/>
+                            <constraint firstItem="TAv-jE-8BJ" firstAttribute="top" secondItem="bCy-RY-gCv" secondAttribute="bottom" constant="4" id="CQw-yX-Rqn"/>
                             <constraint firstItem="bCy-RY-gCv" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="EcY-OW-0yG"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bCy-RY-gCv" secondAttribute="trailing" id="LrD-W1-8b3"/>
                             <constraint firstItem="bCy-RY-gCv" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="MKj-ic-Okt"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="TAv-jE-8BJ" secondAttribute="trailing" id="bCy-EP-Pno"/>
                             <constraint firstItem="TAv-jE-8BJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cg2-va-7tp"/>
-                            <constraint firstItem="TAv-jE-8BJ" firstAttribute="top" secondItem="bCy-RY-gCv" secondAttribute="bottom" id="mSk-xu-Ogy"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="locationAndDateLabel" destination="oV0-4A-50J" id="675-Cm-pDb"/>
+                        <outlet property="travelInfoView" destination="bCy-RY-gCv" id="lXH-bC-cfG"/>
                         <outlet property="wishListCountLabel" destination="CZa-Jk-WIf" id="chZ-Ld-QgJ"/>
+                        <outlet property="wishListTableView" destination="TAv-jE-8BJ" id="T8N-yK-edz"/>
                         <outlet property="wishListTitle" destination="nOf-q8-mzw" id="yt6-4v-Pi8"/>
                     </connections>
                 </viewController>
