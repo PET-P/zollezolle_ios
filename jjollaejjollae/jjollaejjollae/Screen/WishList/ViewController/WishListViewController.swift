@@ -168,6 +168,9 @@ class WishListViewController: UIViewController, Storyboardable {
   
   @IBAction private func didTapOptionButton(_ sender: UIButton) {
     //TODO:option 화면 구현
+    let wishCalendarStoryBoard = UIStoryboard(name: "WishCalendar", bundle: nil)
+    guard let wishCalendarVC = wishCalendarStoryBoard.instantiateViewController(identifier: "WishCalendarViewController") as? WishCalendarViewController else {return}
+    present(wishCalendarVC, animated: true, completion: nil)
   }
   
   
