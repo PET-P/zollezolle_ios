@@ -39,7 +39,6 @@ class WishCalendarViewController: UIViewController {
       ListView.setRounded(radius: 10)
       ListView.setBorder(borderColor: .gray03, borderWidth: 1)
       ListView.backgroundColor = .clear
-      
     }
   }
   
@@ -75,6 +74,11 @@ class WishCalendarViewController: UIViewController {
     }
   }
   
+  @IBOutlet weak var buttonsView: UIView! {
+    didSet {
+      buttonsView.addBorder([.top], color: .gray06, width: 1)
+    }
+  }
   
   @IBOutlet weak var calendarSwitch: JJollaeSwitch! {
     didSet {
@@ -104,34 +108,72 @@ class WishCalendarViewController: UIViewController {
   }
   
   @IBOutlet weak var calendar: FSCalendar!
-  fileprivate var gregorian = Calendar(identifier: .gregorian)
+  
+  @IBOutlet weak var calendarStackView: UIStackView!
+  
   
   //MARK: - Variables
+  
+  fileprivate var gregorian = Calendar(identifier: .gregorian)
+  
+  var data: Wish?
+  
+  func setData(data: Wish?){
+    self.data = data
+  }
+  
+  
   var dates: [Date]? {
     didSet {
-      if let dates = dates {
-        if dates.count >  1 {
-          saveButton.backgroundColor = .themeGreen
-          saveButton.setTitle("\(dates.count-1)박 선택", for: .normal)
+      if calendarSwitch.isOn == true {
+        if let dates = dates {
+          if dates.count >  1 {
+            saveButton.backgroundColor = .themeGreen
+            savebuttonTitle = "\(dates.count-1)박 선택"
+            saveButton.isEnabled = true
+          } else {
+            saveButton.backgroundColor = .themePaleGreen
+            savebuttonTitle = "1박 이상을 선택해주세요"
+            self.saveButton.isEnabled = false
+          }
         } else {
           saveButton.backgroundColor = .themePaleGreen
-          saveButton.setTitle("1박 이상을 선택해주세요", for: .normal)}
+          savebuttonTitle = "날짜를 선택해주세요"
+          self.saveButton.isEnabled = false
+        }
       } else {
-        saveButton.backgroundColor = .themePaleGreen
-        saveButton.setTitle("날짜를 선택해주세요", for: .normal)
+        self.saveButton.isEnabled = true
       }
     }
   }
   
   private var firstDate: Date? {
     didSet {
-      
+      startDateLabelText = firstDate?.dateForCalendar() ?? " "
     }
   }
   
   private var lastDate: Date? {
     didSet {
-      
+      endDateLabelText = lastDate?.dateForCalendar() ?? " "
+    }
+  }
+  
+  private var savebuttonTitle: String = "저장" {
+    didSet {
+      self.saveButton.setTitle(savebuttonTitle, for: .normal)
+    }
+  }
+  
+  private var startDateLabelText: String = "" {
+    didSet {
+      startEndDateLabel.text = "\(startDateLabelText) ~ \(endDateLabelText)"
+    }
+  }
+  
+  private var endDateLabelText: String = "" {
+    didSet {
+      startEndDateLabel.text = "\(startDateLabelText) ~ \(endDateLabelText)"
     }
   }
   
@@ -149,7 +191,22 @@ class WishCalendarViewController: UIViewController {
   }
   
   @IBAction func didTapRefreshButton(_ sender: UIButton) {
-    
+   refreshDates()
+  }
+  
+  private func refreshDates(){
+    for day in calendar.selectedDates {
+      calendar.deselect(day)
+    }
+    firstDate = nil
+    lastDate = nil
+    self.dates = nil
+    self.configureVisibleCells()
+    if calendarSwitch.isOn {
+      self.startEndDateLabel.text = "날짜를 선택해주세요"
+    } else {
+      self.startEndDateLabel.text = ""
+    }
   }
   
   //MARK: - LIFECYCLE
@@ -159,25 +216,55 @@ class WishCalendarViewController: UIViewController {
     calendar.delegate = self
     calendar.dataSource = self
     calendarSwitch.delegate = self
+    keyboardSetting()
+    resetVC()
+//    let wishListStoryboard = UIStoryboard(name: "WishList", bundle: nil)
+//    guard let wishListVC = wishListStoryboard.instantiateViewController(identifier: "WishListViewController") as? WishListViewController else {
+//      return
+//    }
+//    wishListVC.wishCompletionHandler = {
+//      data in
+//      self.data = data
+//      print(data)
+//      return data
+//    }
+
     // Do any additional setup after loading the view.
+  }
+  
+  // 위시리스트 수정일지 .
+  private func resetVC() {
+    if data?.wishTitle == nil && data?.Dates == nil {
+      navTitle.text = "위시리스트 만들기"
+    } else {
+      navTitle.text = "위시리스트 수정하기"
+      self.firstDate = data?.Dates?.first
+      self.lastDate = data?.Dates?.last
+      if let firstDay = data?.Dates?.first, let lastDay = data?.Dates?.last {
+        let dates = datesRange(from: firstDay, to: lastDay)
+        for date in dates {
+          calendar.select(date)
+        }
+        self.dates = dates
+      }
+      self.listTitleTextField.text = data?.wishTitle
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setUpCalendar()
   }
-  
 }
 
 //MARK: - Switch Delegate
 
-
 extension WishCalendarViewController: JJollaeButtonDelegate {
   
   func addTransparentView() {
-    transParentView.frame = calendar.frame
+    transParentView.frame = calendarStackView.frame
     view.addSubview(transParentView)
-    transParentView.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
+    transParentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
     
     transParentView.alpha = 0
     UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
@@ -194,14 +281,21 @@ extension WishCalendarViewController: JJollaeButtonDelegate {
   
   func isOnValueChage(isOn: Bool) {
     if isOn {
+      // 처음부터 ison 이 불리기 때문에 이때는 아래 코드가 실행되면 안되서 걍 return
+      if firstDate != nil && lastDate != nil {
+        return
+      }
       removeTransparentView()
+      self.refreshDates()
+      self.saveButton.isEnabled = false
+      self.saveButton.backgroundColor = .themePaleGreen
     } else {
       addTransparentView()
+      self.saveButton.backgroundColor = .themeGreen
+      self.savebuttonTitle = "저장"
+      self.refreshDates()
     }
-    
   }
-  
-  
 }
 
 
@@ -399,3 +493,15 @@ extension WishCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
   }
   
 }
+
+//MARK: - KEYBOARD
+extension WishCalendarViewController {
+  func keyboardSetting() {
+    let tapGesture = UITapGestureRecognizer(
+      target: view,
+      action: #selector(view.endEditing(_:)))
+    tapGesture.cancelsTouchesInView = false
+    view.addGestureRecognizer(tapGesture)
+  }
+}
+

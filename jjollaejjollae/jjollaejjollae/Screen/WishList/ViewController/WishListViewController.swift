@@ -123,6 +123,10 @@ class WishListViewController: UIViewController, Storyboardable {
     )
   }
   
+  deinit {
+    print("wishListvc deinit")
+  }
+  
   //MARK: - Functions
   override func viewDidLayoutSubviews() {
     goToMapButton.setRounded(radius: nil)
@@ -166,11 +170,41 @@ class WishListViewController: UIViewController, Storyboardable {
     self.navigationController?.popViewController(animated: true)
   }
   
+  var wishCompletionHandler: ((Wish?) -> (Wish?))?
+  
   @IBAction private func didTapOptionButton(_ sender: UIButton) {
     //TODO:option 화면 구현
     let wishCalendarStoryBoard = UIStoryboard(name: "WishCalendar", bundle: nil)
     guard let wishCalendarVC = wishCalendarStoryBoard.instantiateViewController(identifier: "WishCalendarViewController") as? WishCalendarViewController else {return}
-    present(wishCalendarVC, animated: true, completion: nil)
+    
+    
+    let optionActionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    let editOption = UIAlertAction(title: "수정", style: .default, handler: { [self] _ in
+      // 둘다 있거나 둘다 없거나
+      var wishModel: Wish?
+      if let startDate = self.travelInfo?.startDate, let endDate = self.travelInfo?.endDate {
+        wishModel = Wish(wishTitle: self.travelInfo?.title, Dates: [startDate, endDate])
+      } else {
+        wishModel = Wish(wishTitle: self.travelInfo?.title, Dates: nil)
+      }
+//      _ = wishCompletionHandler?(wishModel)
+      wishCalendarVC.setData(data: Wish())
+      present(wishCalendarVC, animated: true)
+    })
+    let deleteOption = UIAlertAction(title: "삭제", style: .destructive) {_ in 
+      print("삭제하기")
+    }
+    optionActionSheetController.addAction(editOption)
+    optionActionSheetController.addAction(deleteOption)
+    optionActionSheetController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+    let subview = optionActionSheetController.view.subviews.first! as UIView
+    let alertContentView = subview.subviews.first! as UIView
+    alertContentView.setRounded(radius: 10)
+    alertContentView.overrideUserInterfaceStyle = .light
+    alertContentView.backgroundColor = UIColor.white
+    optionActionSheetController.view.setRounded(radius: 10)
+    optionActionSheetController.view.tintColor = .themeGreen
+    self.present(optionActionSheetController, animated: true, completion: nil)
   }
   
   
