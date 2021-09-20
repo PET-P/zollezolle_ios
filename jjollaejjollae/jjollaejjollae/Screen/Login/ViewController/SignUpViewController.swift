@@ -76,6 +76,12 @@ class SignUpViewController: UIViewController {
     }
   }
   
+  private var signUpModel: SignUp = SignUp()
+  
+  internal func setEmail(email: String) {
+    signUpModel.email = email
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     containerWidth = self.view.frame.size.width
@@ -88,8 +94,10 @@ class SignUpViewController: UIViewController {
 
   @IBAction private func didTapSignUpContinueButton(_ sender: UIButton) {
     // pop the controller
+    signUpModel.password = passwordTextField.text ?? "imshipassword??"
     let additionalInfoStoryboard = UIStoryboard.init(name: "AdditionalInfo", bundle: nil)
     guard let additionalInfoVC = additionalInfoStoryboard.instantiateViewController(identifier: "AdditionalInfoViewController") as? AdditionalInfoViewController else {return}
+    additionalInfoVC.setData(data: signUpModel)
     self.navigationController?.pushViewController(additionalInfoVC, animated: true)
   }
   
@@ -100,6 +108,7 @@ class SignUpViewController: UIViewController {
   @IBAction private func didTapBackButton(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true)
   }
+  
   @objc private func updatePasswordStyleErrorLabelUI(_ sender: Any?) {
     guard let passwordStr = passwordTextField.text else {return}
     if !loginManager.isValidPassword(password: passwordStr) {
