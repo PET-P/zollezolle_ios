@@ -10,6 +10,12 @@ import UIKit
 class PasswordViewController: UIViewController {
   
   private lazy var loginManager = LoginManager()
+  var loginData: LoginData?
+  private var email: String = ""
+  
+  func setEmail(email: String) {
+    self.email = email
+  }
     
   @IBOutlet weak var topPasswordLabel: UILabel! {
     didSet {
@@ -73,10 +79,26 @@ class PasswordViewController: UIViewController {
   }
   
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
-    let findPasswordStoryboard = UIStoryboard(name: "FindPassword", bundle: nil)
-    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(
-            identifier: "FindPasswordViewController") as? FindPasswordViewController else {return}
-    self.navigationController?.pushViewController(findPasswordVC, animated: true)
+    APIService.shared.login(email, passwordTextField.text ?? "") { [self] result in
+      switch result {
+      case .success(let data):
+        loginData = data
+        print(loginData)
+        let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
+        guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
+        self.navigationController?.pushViewController(homeMainVC, animated: true)
+      case .failure(let error):
+        print(error)
+        if error >= 400 && error < 500 {
+          passwordErrorText = "잘못된 비밀번호입니다."
+        }
+      }
+    }
+    
+//    let findPasswordStoryboard = UIStoryboard(name: "FindPassword", bundle: nil)
+//    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(
+//            identifier: "FindPasswordViewController") as? FindPasswordViewController else {return}
+//    self.navigationController?.pushViewController(findPasswordVC, animated: true)
   }  
 }
 
