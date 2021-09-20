@@ -211,6 +211,26 @@ class WishCalendarViewController: UIViewController {
   
   //MARK: - LIFECYCLE
 
+  var wishCompletionHandler: ((Wish?) -> (Wish?))?
+  
+  init(nibName: String?, bundle: Bundle){
+    super.init(nibName: nibName, bundle: bundle)
+    wishCompletionHandler = {
+      data in
+      self.data = data
+      return data
+    }
+  }
+  
+  required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    wishCompletionHandler = {
+      data in
+      self.data = data
+      return data
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     calendar.delegate = self
@@ -218,17 +238,7 @@ class WishCalendarViewController: UIViewController {
     calendarSwitch.delegate = self
     keyboardSetting()
     resetVC()
-//    let wishListStoryboard = UIStoryboard(name: "WishList", bundle: nil)
-//    guard let wishListVC = wishListStoryboard.instantiateViewController(identifier: "WishListViewController") as? WishListViewController else {
-//      return
-//    }
-//    wishListVC.wishCompletionHandler = {
-//      data in
-//      self.data = data
-//      print(data)
-//      return data
-//    }
-
+    
     // Do any additional setup after loading the view.
   }
   

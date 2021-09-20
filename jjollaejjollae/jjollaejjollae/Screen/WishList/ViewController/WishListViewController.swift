@@ -170,7 +170,7 @@ class WishListViewController: UIViewController, Storyboardable {
     self.navigationController?.popViewController(animated: true)
   }
   
-  var wishCompletionHandler: ((Wish?) -> (Wish?))?
+//  var wishCompletionHandler: ((Wish?) -> (Wish?))?
   
   @IBAction private func didTapOptionButton(_ sender: UIButton) {
     //TODO:option 화면 구현
@@ -187,8 +187,8 @@ class WishListViewController: UIViewController, Storyboardable {
       } else {
         wishModel = Wish(wishTitle: self.travelInfo?.title, Dates: nil)
       }
-//      _ = wishCompletionHandler?(wishModel)
-      wishCalendarVC.setData(data: Wish())
+      _ = wishCalendarVC.wishCompletionHandler?(wishModel)
+//      wishCalendarVC.setData(data: Wish())
       present(wishCalendarVC, animated: true)
     })
     let deleteOption = UIAlertAction(title: "삭제", style: .destructive) {_ in 
