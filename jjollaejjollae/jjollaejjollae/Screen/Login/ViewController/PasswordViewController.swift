@@ -48,7 +48,7 @@ class PasswordViewController: UIViewController {
   }
   @IBOutlet weak var passwordErrorLabel: UILabel! {
     didSet {
-      passwordErrorLabel.isHidden = true
+      passwordErrorLabel.alpha = 0
       passwordErrorLabel.textColor = UIColor.errorColor
       passwordErrorLabel.font = UIFont.robotoMedium(size: 14)
       passwordErrorLabel.text = "잘못된 비밀번호 입니다."
@@ -67,6 +67,11 @@ class PasswordViewController: UIViewController {
   private var passwordErrorText: String = "" {
     didSet {
       passwordErrorLabel.text = "\(passwordErrorText)"
+      if passwordErrorText == "잘못된 비밀번호입니다." {
+        passwordErrorLabel.alpha = 1
+      } else {
+        passwordErrorLabel.alpha = 0
+      }
     }
   }
   
@@ -76,6 +81,16 @@ class PasswordViewController: UIViewController {
       textColor: UIColor.gray03,
       borderColor: UIColor.themePaleGreen, width: self.view.frame.width)
     setKeyboard()
+    passwordTextField.addTarget(self, action: #selector(updatedPasswordTextfieldUI(_:)),
+                             for: .editingChanged)
+  }
+  
+  
+  @objc private func updatedPasswordTextfieldUI(_ sender: Any?) {
+    if passwordErrorText == "잘못된 비밀번호입니다." {
+      passwordTextField.changeUnderLine(borderColor: UIColor.themePaleGreen, width: self.view.frame.width)
+      passwordErrorText = ""
+    }
   }
   
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
@@ -83,17 +98,27 @@ class PasswordViewController: UIViewController {
       switch result {
       case .success(let data):
         loginData = data
-        print(loginData)
         let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
         guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
         self.navigationController?.pushViewController(homeMainVC, animated: true)
       case .failure(let error):
         print(error)
         if error >= 400 && error < 500 {
+          passwordTextField.changeUnderLine(borderColor: UIColor.errorColor, width: self.view.frame.width)
           passwordErrorText = "잘못된 비밀번호입니다."
+          findPasswordButton.isHidden = false
         }
       }
     }
+  }
+  //
+  @IBAction private func didTapFindPasswordButton(_ sender: UIButton) {
+    let findPasswordStoryboard = UIStoryboard(name: "FindPassword", bundle: nil)
+    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else {
+      return
+    }
+    findPasswordVC.setEmail(email: self.email)
+    self.navigationController?.pushViewController(findPasswordVC, animated: true)
   }
   
   @IBAction private func didTapBackButton(_ sender: UIButton) {
