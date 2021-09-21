@@ -116,10 +116,15 @@ class AdditionalInfoViewController: UIViewController {
       switch result {
       case .success(let data):
         self.signUpData = data
-//        print(self.signUpData)
-        let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-        guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
-        self.navigationController?.pushViewController(homeMainVC, animated: true)
+        let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
+        guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
+
+        if #available(iOS 13, *) {
+          dogInfoVC.isModalInPresentation = true
+        } else {
+          dogInfoVC.modalPresentationStyle = .currentContext
+        }
+        self.present(dogInfoVC, animated: true, completion: nil)
       case .failure(let error):
         print(error)
         if error >= 400 && error < 500 {
