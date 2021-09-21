@@ -6,13 +6,11 @@ PODS:
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
   - SwiftLint (0.43.1)
-  - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 6.0)
   - Moya (~> 14.0)
   - SwiftLint
-  - XLPagerTabStrip (~> 9.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -20,15 +18,13 @@ SPEC REPOS:
     - Kingfisher
     - Moya
     - SwiftLint
-    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
-  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 15ffe494710e7b70734ada0139040e3ad5d9cecb
+PODFILE CHECKSUM: 90cbd4e06776453a0d19e876278650898c26ebba
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.10.1

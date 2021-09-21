@@ -31,14 +31,11 @@
 		286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */; };
 		286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286011C926BFBF16002774EA /* FindPassword.storyboard */; };
 		286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286011CB26BFBF56002774EA /* FindPasswordViewController.swift */; };
-		2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877830E26C811B6001BF582 /* RecentSearchViewController.swift */; };
 		2877831126C824A2001BF582 /* Stars.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2877831026C824A2001BF582 /* Stars.storyboard */; };
-		2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877831226C824BE001BF582 /* StarsSearchViewController.swift */; };
 		2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A2FD26C8EC71004596C3 /* SearchManager.swift */; };
 		2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A30426C90CD4004596C3 /* Recent.storyboard */; };
 		2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30626C91CD0004596C3 /* SearchTableViewCell.swift */; };
 		2884A30A26CA404D004596C3 /* SearchNoResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A30926CA404D004596C3 /* SearchNoResult.storyboard */; };
-		2884A30C26CA406C004596C3 /* SearchNoResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30B26CA406B004596C3 /* SearchNoResultViewController.swift */; };
 		2884A31126CA43E6004596C3 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30F26CA43E6004596C3 /* SearchResultTableViewCell.swift */; };
 		2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2884A31026CA43E6004596C3 /* SearchResultTableViewCell.xib */; };
 		2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A31526CD6F50004596C3 /* SearchResultDataSource.swift */; };
@@ -62,7 +59,6 @@
 		28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */; };
 		28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */; };
 		28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */; };
-		28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F9E93E26C8027000D9E693 /* SearchViewController.swift */; };
 		28F9E94126C802A000D9E693 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F9E94026C802A000D9E693 /* Search.storyboard */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		98741072C8D0E4C0996E8807 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEDB2C613AA522D86780D2D /* Pods_jjollaejjollae.framework */; };
@@ -108,14 +104,11 @@
 		286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalInfoViewController.swift; sourceTree = "<group>"; };
 		286011C926BFBF16002774EA /* FindPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FindPassword.storyboard; sourceTree = "<group>"; };
 		286011CB26BFBF56002774EA /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
-		2877830E26C811B6001BF582 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
 		2877831026C824A2001BF582 /* Stars.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Stars.storyboard; sourceTree = "<group>"; };
-		2877831226C824BE001BF582 /* StarsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsSearchViewController.swift; sourceTree = "<group>"; };
 		2884A2FD26C8EC71004596C3 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		2884A30426C90CD4004596C3 /* Recent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recent.storyboard; sourceTree = "<group>"; };
 		2884A30626C91CD0004596C3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		2884A30926CA404D004596C3 /* SearchNoResult.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchNoResult.storyboard; sourceTree = "<group>"; };
-		2884A30B26CA406B004596C3 /* SearchNoResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNoResultViewController.swift; sourceTree = "<group>"; };
 		2884A30F26CA43E6004596C3 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		2884A31026CA43E6004596C3 /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
 		2884A31526CD6F50004596C3 /* SearchResultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDataSource.swift; sourceTree = "<group>"; };
@@ -139,7 +132,6 @@
 		28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Bold Italic for Powerline.ttf"; sourceTree = "<group>"; };
 		28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Light Italic for Powerline.ttf"; sourceTree = "<group>"; };
 		28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Thin for Powerline.ttf"; sourceTree = "<group>"; };
-		28F9E93E26C8027000D9E693 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		28F9E94026C802A000D9E693 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		6BC5EF4DA1A6C26BC0300CBB /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
@@ -389,10 +381,6 @@
 		28F9E93C26C8025200D9E693 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				28F9E93E26C8027000D9E693 /* SearchViewController.swift */,
-				2877830E26C811B6001BF582 /* RecentSearchViewController.swift */,
-				2877831226C824BE001BF582 /* StarsSearchViewController.swift */,
-				2884A30B26CA406B004596C3 /* SearchNoResultViewController.swift */,
 				2884A31726CE532E004596C3 /* SearchResultViewController.swift */,
 			);
 			path = ViewController;
@@ -713,7 +701,6 @@
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */,
 				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
-				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
@@ -723,16 +710,13 @@
 				DDF24BB826C6D61D007AB642 /* WishListMainViewController.swift in Sources */,
 				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
-				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
 				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
 				DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
-				2884A30C26CA406C004596C3 /* SearchNoResultViewController.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
-				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -874,6 +858,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -893,6 +878,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
