@@ -22,6 +22,20 @@
 		2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */; };
 		2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */; };
 		2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */; };
+		283F23F126F7117C00CD8339 /* WishListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23F026F7117C00CD8339 /* WishListManager.swift */; };
+		283F23F326F7133400CD8339 /* Wish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23F226F7133400CD8339 /* Wish.swift */; };
+		283F23FD26F865E000CD8339 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23FC26F865E000CD8339 /* LoginData.swift */; };
+		283F23FE26F8687400CD8339 /* APITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23F426F83E5500CD8339 /* APITarget.swift */; };
+		283F23FF26F8687600CD8339 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23F626F84CB900CD8339 /* APIService.swift */; };
+		283F240026F8687800CD8339 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23F826F8503700CD8339 /* NetworkResult.swift */; };
+		283F240126F8687F00CD8339 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23FA26F852E300CD8339 /* GenericResponse.swift */; };
+		283F240326F869C900CD8339 /* EmailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240226F869C900CD8339 /* EmailData.swift */; };
+		283F240526F8713400CD8339 /* FindPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240426F8713400CD8339 /* FindPasswordData.swift */; };
+		283F240726F8716200CD8339 /* TempPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240626F8716200CD8339 /* TempPasswordData.swift */; };
+		283F240926F8725C00CD8339 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240826F8725C00CD8339 /* SignUpData.swift */; };
+		283F240B26F8732E00CD8339 /* RefreshTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240A26F8732E00CD8339 /* RefreshTokenData.swift */; };
+		283F240D26F87F9C00CD8339 /* SimpleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240C26F87F9C00CD8339 /* SimpleResponse.swift */; };
+		283F241026F8AE8C00CD8339 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240F26F8AE8C00CD8339 /* LaunchScreenViewController.swift */; };
 		2841598E26BA745700F027DB /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2841598D26BA745700F027DB /* LoginView.storyboard */; };
 		2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599526BA7BDD00F027DB /* LoginViewController.swift */; };
 		2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599726BA8A3F00F027DB /* UITextField+extension.swift */; };
@@ -123,6 +137,20 @@
 		2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfoViewController.swift; sourceTree = "<group>"; };
 		2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JJollaeSwitch.swift; sourceTree = "<group>"; };
 		2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		283F23F026F7117C00CD8339 /* WishListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListManager.swift; sourceTree = "<group>"; };
+		283F23F226F7133400CD8339 /* Wish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wish.swift; sourceTree = "<group>"; };
+		283F23F426F83E5500CD8339 /* APITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITarget.swift; sourceTree = "<group>"; };
+		283F23F626F84CB900CD8339 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		283F23F826F8503700CD8339 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		283F23FA26F852E300CD8339 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		283F23FC26F865E000CD8339 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
+		283F240226F869C900CD8339 /* EmailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailData.swift; sourceTree = "<group>"; };
+		283F240426F8713400CD8339 /* FindPasswordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordData.swift; sourceTree = "<group>"; };
+		283F240626F8716200CD8339 /* TempPasswordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPasswordData.swift; sourceTree = "<group>"; };
+		283F240826F8725C00CD8339 /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
+		283F240A26F8732E00CD8339 /* RefreshTokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenData.swift; sourceTree = "<group>"; };
+		283F240C26F87F9C00CD8339 /* SimpleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleResponse.swift; sourceTree = "<group>"; };
+		283F240F26F8AE8C00CD8339 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		2841598D26BA745700F027DB /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
 		2841599526BA7BDD00F027DB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2841599726BA8A3F00F027DB /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
@@ -258,6 +286,16 @@
 				2884A37626D7F3D3004596C3 /* Filters.swift */,
 				287AE22226ECA5250038B39F /* DogInfoManager.swift */,
 				28E910BC26F0E2390093BF7C /* DogInfo.swift */,
+				283F23F026F7117C00CD8339 /* WishListManager.swift */,
+				283F23F226F7133400CD8339 /* Wish.swift */,
+				283F23FA26F852E300CD8339 /* GenericResponse.swift */,
+				283F240C26F87F9C00CD8339 /* SimpleResponse.swift */,
+				283F23FC26F865E000CD8339 /* LoginData.swift */,
+				283F240A26F8732E00CD8339 /* RefreshTokenData.swift */,
+				283F240226F869C900CD8339 /* EmailData.swift */,
+				283F240426F8713400CD8339 /* FindPasswordData.swift */,
+				283F240626F8716200CD8339 /* TempPasswordData.swift */,
+				283F240826F8725C00CD8339 /* SignUpData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,6 +303,7 @@
 		2837FC4126BA6CF400C1C0B0 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				283F240E26F8AE7600CD8339 /* ViewController */,
 				2837FC4226BA6D0100C1C0B0 /* Storyboard */,
 			);
 			path = Splash;
@@ -276,6 +315,14 @@
 				2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		283F240E26F8AE7600CD8339 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				283F240F26F8AE8C00CD8339 /* LaunchScreenViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		2841598A26BA73C600F027DB /* Login */ = {
@@ -420,6 +467,9 @@
 			isa = PBXGroup;
 			children = (
 				28FF9FE726B931650062BC28 /* DeviceConfig.swift */,
+				283F23F426F83E5500CD8339 /* APITarget.swift */,
+				283F23F626F84CB900CD8339 /* APIService.swift */,
+				283F23F826F8503700CD8339 /* NetworkResult.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -803,12 +853,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				283F240D26F87F9C00CD8339 /* SimpleResponse.swift in Sources */,
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				2884A31C26CE8E42004596C3 /* AccommodationDataSource.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
 				DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */,
 				2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */,
 				2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */,
+				283F240026F8687800CD8339 /* NetworkResult.swift in Sources */,
 				2884A31826CE532E004596C3 /* SearchResultViewController.swift in Sources */,
 				2884A37726D7F3D4004596C3 /* Filters.swift in Sources */,
 				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
@@ -824,12 +876,15 @@
 				2884A31E26CE91E1004596C3 /* RestaurantDataSource.swift in Sources */,
 				28331D0E26DF681F0062B29D /* MapViewController.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
+				283F240B26F8732E00CD8339 /* RefreshTokenData.swift in Sources */,
 				DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */,
+				283F23FF26F8687600CD8339 /* APIService.swift in Sources */,
 				2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				28E910BD26F0E2390093BF7C /* DogInfo.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
+				283F240526F8713400CD8339 /* FindPasswordData.swift in Sources */,
 				DDF24BBC26C6D61D007AB642 /* MyNeighborhoodNavigationController.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */,
@@ -837,6 +892,8 @@
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
+				283F240126F8687F00CD8339 /* GenericResponse.swift in Sources */,
+				283F240726F8716200CD8339 /* TempPasswordData.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
 				2884A32426CECE82004596C3 /* DropDownDataSource.swift in Sources */,
@@ -844,14 +901,20 @@
 				2884A31126CA43E6004596C3 /* SearchResultTableViewCell.swift in Sources */,
 				DDF24BB826C6D61D007AB642 /* WishListMainViewController.swift in Sources */,
 				28331CBE26DCD6F40062B29D /* InfoView.swift in Sources */,
+				283F23FE26F8687400CD8339 /* APITarget.swift in Sources */,
 				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
+				283F23F126F7117C00CD8339 /* WishListManager.swift in Sources */,
+				283F240926F8725C00CD8339 /* SignUpData.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
+				283F23F326F7133400CD8339 /* Wish.swift in Sources */,
+				283F240326F869C900CD8339 /* EmailData.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
 				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
 				DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
+				283F241026F8AE8C00CD8339 /* LaunchScreenViewController.swift in Sources */,
 				287AE21F26EC857B0038B39F /* CarouselLayout.swift in Sources */,
 				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
 				2884A30C26CA406C004596C3 /* SearchNoResultViewController.swift in Sources */,
@@ -862,6 +925,7 @@
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
+				283F23FD26F865E000CD8339 /* LoginData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
