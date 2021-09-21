@@ -94,12 +94,11 @@ class PasswordViewController: UIViewController {
         }
       }
     }
-    
-//    let findPasswordStoryboard = UIStoryboard(name: "FindPassword", bundle: nil)
-//    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(
-//            identifier: "FindPasswordViewController") as? FindPasswordViewController else {return}
-//    self.navigationController?.pushViewController(findPasswordVC, animated: true)
-  }  
+  }
+  
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
+  }
 }
 
 extension PasswordViewController: UITextFieldDelegate {

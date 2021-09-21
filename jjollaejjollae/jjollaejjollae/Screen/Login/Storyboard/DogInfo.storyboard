@@ -157,6 +157,9 @@
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdo-kZ-lGe" customClass="JJollaeSwitch" customModule="jjollaejjollae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="25.5" width="154.5" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="BEy-BD-Zxz"/>
+                                                                </constraints>
                                                             </button>
                                                         </subviews>
                                                     </stackView>

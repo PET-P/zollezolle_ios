@@ -93,7 +93,6 @@ class FindPasswordViewController: UIViewController {
     //TODO 이메일 서버와 연결
     guard let sender = sender as? UIButton else {return}
     sender.setTitle("재전송", for: .normal)
-    
   }
 }
 

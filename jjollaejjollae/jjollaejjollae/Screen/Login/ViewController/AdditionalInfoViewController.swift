@@ -101,6 +101,7 @@ class AdditionalInfoViewController: UIViewController {
               self.view.layoutIfNeeded()
       }
     }
+    
   }
   
   @IBAction private func didTapStartButton(_ sender: UIButton) {
