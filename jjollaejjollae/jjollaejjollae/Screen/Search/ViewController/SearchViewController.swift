@@ -13,7 +13,7 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
   
   @IBOutlet weak var headView: UIView! {
     didSet {
-      headView.backgroundColor = .쫄래페일그린
+      headView.backgroundColor = .themePaleGreen
     }
   }
   @IBOutlet weak var searchTextField: UITextField!{
@@ -23,14 +23,14 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
   }
   @IBOutlet weak var backButton: UIButton! {
     didSet {
-      backButton.tintColor = .쫄래블랙
+      backButton.tintColor = .gray01
     }
   }
   
   private lazy var searchManager = SearchManager.shared
   
   override func viewDidLoad() {
-    buttonBarView.addBorder([.bottom], color: .색e8, width: 1)
+    buttonBarView.addBorder([.bottom], color: .gray05, width: 1)
     setUpButton()
     super.viewDidLoad()
     let tapGesture = UITapGestureRecognizer(
@@ -43,11 +43,11 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
   }
   
   private func setUpButton() {
-    settings.style.buttonBarBackgroundColor = .쫄래블랙
+    settings.style.buttonBarBackgroundColor = .gray01
     settings.style.buttonBarItemBackgroundColor = .white
-    settings.style.selectedBarBackgroundColor = .쫄래페일그린
+    settings.style.selectedBarBackgroundColor = .themePaleGreen
     settings.style.buttonBarItemFont = .robotoBold(size: 14)
-    settings.style.buttonBarItemTitleColor = .쫄래블랙
+    settings.style.buttonBarItemTitleColor = .gray01
     settings.style.buttonBarMinimumLineSpacing = 0
     settings.style.buttonBarItemLeftRightMargin = 0
     settings.style.buttonBarLeftContentInset = 0
@@ -60,11 +60,11 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
       (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage:
         CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
       guard changeCurrentIndex == true else { return }
-      oldCell?.label.textColor = .쫄래블랙
+      oldCell?.label.textColor = .gray01
       oldCell?.label.font = .robotoMedium(size: 14)
-      oldCell?.contentView.addBorder([.bottom], color: .색e8, width: 1)
-      newCell?.contentView.addBorder([.bottom], color: .색e8, width: 1)
-      newCell?.label.textColor = .쫄래블랙
+      oldCell?.contentView.addBorder([.bottom], color: .gray05, width: 1)
+      newCell?.contentView.addBorder([.bottom], color: .gray05, width: 1)
+      newCell?.label.textColor = .gray01
       newCell?.label.font = .robotoBold(size: 14)
     }
   }
@@ -82,9 +82,14 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
             as? StarsSearchViewController else {return []}
     
     let resultStoryboard = UIStoryboard(name: "SearchNoResult", bundle: nil)
-    guard let resultVC = resultStoryboard.instantiateViewController(identifier: "SearchNoResultViewController") as? SearchNoResultViewController else {return []}
-    return [resultVC, recentVC]
+    guard let resultVC = resultStoryboard.instantiateViewController(
+            identifier: "SearchNoResultViewController")
+            as? SearchNoResultViewController else {return []}
+    return [starVC, recentVC]
   }
+  
+  
+  
 }
 
 //MARK: - Actions
@@ -97,14 +102,18 @@ extension SearchViewController {
 //MARK: - delegate
 extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//    var flag = false
     guard searchTextField.text != "" else {return true}
     searchManager.saveSearchHistory(with: searchTextField.text)
     textField.resignFirstResponder()
     let searchResultStoryboard = UIStoryboard(name: "SearchResult", bundle: nil)
-    guard let resultVC = searchResultStoryboard.instantiateViewController(identifier: "SearchResultViewController") as? SearchResultViewController else {
+    guard let resultVC = searchResultStoryboard
+            .instantiateViewController(identifier: "SearchResultViewController")
+            as? SearchResultViewController else {
       return true
     }
     self.navigationController?.pushViewController(resultVC, animated: true)
+    self.hidesBottomBarWhenPushed = true
     return true
   }
 }

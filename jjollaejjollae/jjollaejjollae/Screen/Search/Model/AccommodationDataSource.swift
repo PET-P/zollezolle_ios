@@ -25,7 +25,7 @@ class AccommodationDataSource: NSObject, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //return accommoDataList.count
-    return 10
+    return 4
   }
 }
 

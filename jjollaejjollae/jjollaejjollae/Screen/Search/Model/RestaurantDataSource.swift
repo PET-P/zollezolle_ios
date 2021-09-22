@@ -13,7 +13,7 @@ class RestaurantDataSource: NSObject, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //return dataList.count
-    return 10
+    return 4
   }
 }
 

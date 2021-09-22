@@ -13,7 +13,7 @@ class SearchResultDataSource: NSObject, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //    return list.count
-    return 10
+    return 4
   }
 }
 

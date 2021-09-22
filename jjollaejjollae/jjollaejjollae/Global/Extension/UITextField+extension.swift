@@ -30,7 +30,7 @@ extension UITextField {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: self.frame.size.height+5, width: width - 64 , height: 2)
         bottomLine.backgroundColor = borderColor.cgColor
-        self.textColor = UIColor.회
+        self.textColor = UIColor.gray03
         self.layer.insertSublayer(bottomLine, at: 0)
         self.setNeedsDisplay()
     }

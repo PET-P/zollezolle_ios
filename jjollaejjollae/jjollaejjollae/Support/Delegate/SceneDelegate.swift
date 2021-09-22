@@ -9,7 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     //for test
-    var isLogged: Bool = true
+    var isLogged: Bool = false
 
     var window: UIWindow?
 
