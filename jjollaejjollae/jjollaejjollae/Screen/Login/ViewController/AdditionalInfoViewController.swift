@@ -32,7 +32,7 @@ class AdditionalInfoViewController: UIViewController {
       nickNameSameErrorLabel.text = "닉네임이 중복되었습니다."
       nickNameSameErrorLabel.textColor = UIColor.errorColor
       nickNameSameErrorLabel.font = UIFont.robotoMedium(size: 14)
-      nickNameSameErrorLabel.isHidden = false
+      nickNameSameErrorLabel.isHidden = true
     }
   }
   @IBOutlet weak var phoneNumberTextField: UITextField! {

@@ -325,6 +325,10 @@ class DogInfoViewController: FixModalViewController {
     }
     if flag {
       dogInfoManager.dogInfos = dogProfile
+      //TODO 서버에 저장
+      let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
+      guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
+      self.navigationController?.pushViewController(homeMainVC, animated: true)
     }
   }
   
