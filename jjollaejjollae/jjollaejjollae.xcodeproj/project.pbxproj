@@ -103,6 +103,8 @@
 		28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F9E93E26C8027000D9E693 /* SearchViewController.swift */; };
 		28F9E94126C802A000D9E693 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F9E94026C802A000D9E693 /* Search.storyboard */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
+		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
+		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
 		DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */; };
 		DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */; };
@@ -221,6 +223,8 @@
 		3B381DAB5BFA04ADF2FF7813 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F54E5949B2AB3FE95C8155 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		93F6C20B1B7F11F548FE5E7E /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
+		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
+		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyInfoTab.storyboard; sourceTree = "<group>"; };
 		DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainViewController.swift; sourceTree = "<group>"; };
@@ -441,6 +445,7 @@
 		28EA824726B3C75900785666 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				DD741C2926FB04CC00776827 /* Protocol */,
 				28F9E8ED26C15B3D00D9E693 /* Custom */,
 				2834ED0526BFE39600E948B0 /* Model */,
 				28EA824D26B3EDAB00785666 /* Service */,
@@ -579,6 +584,15 @@
 				46F54E5949B2AB3FE95C8155 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DD741C2926FB04CC00776827 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */,
+				DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		DDF24B9526C6D5E4007AB642 /* MainTabBar */ = {
@@ -853,6 +867,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */,
 				283F240D26F87F9C00CD8339 /* SimpleResponse.swift in Sources */,
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				2884A31C26CE8E42004596C3 /* AccommodationDataSource.swift in Sources */,
@@ -924,6 +939,7 @@
 				28331D1026E216720062B29D /* CalendarCell.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
+				DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
 				283F23FD26F865E000CD8339 /* LoginData.swift in Sources */,
 			);

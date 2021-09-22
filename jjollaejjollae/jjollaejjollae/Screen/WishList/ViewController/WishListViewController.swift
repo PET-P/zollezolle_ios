@@ -13,7 +13,7 @@ struct TravelInfo {
   var locationList: [SearchResultInfo]?
 }
 
-class WishListViewController: UIViewController, Storyboardable {
+class WishListViewController: UIViewController, StoryboardInstantiable {
   
   static func loadFromStoryboard(fileName name: String) -> UIViewController {
     let identifier = "\(name)ViewController"

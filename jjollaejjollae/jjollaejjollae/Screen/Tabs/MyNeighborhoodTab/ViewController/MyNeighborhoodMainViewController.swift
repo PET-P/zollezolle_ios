@@ -16,14 +16,4 @@ class MyNeighborhoodMainViewController: UIViewController {
   }
 }
 
-extension MyNeighborhoodMainViewController: Storyboardable {
-  static func loadFromStoryboard(fileName: String) -> UIViewController {
-    
-    let identifier = "\(fileName)ViewController"
-    
-    let storyboard = UIStoryboard(name: fileName, bundle: nil)
-    let myNeighborhoodVC = storyboard.instantiateViewController(identifier: identifier)
-    
-    return myNeighborhoodVC
-  }
-}
+extension MyNeighborhoodMainViewController: StoryboardInstantiable { }
