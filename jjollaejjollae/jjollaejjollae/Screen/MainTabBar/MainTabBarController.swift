@@ -19,14 +19,14 @@ class MainTabBarController: UITabBarController {
     
     return homeTabNavi
   }()
-  
-  let myNeighborhoodTab: MyNeighborhoodNavigationController = {
+
+  let mapTab: MapNavigationController = {
     
-    let myNeighborhoodTabNavi = MyNeighborhoodNavigationController()
+    let mapTabNavi = MapNavigationController()
     
-    myNeighborhoodTabNavi.setTabBarItem()
+    mapTabNavi.setTabBarItem()
     
-    return myNeighborhoodTabNavi
+    return mapTabNavi
   }()
   
   let wishListTab: WishListNavigationController = {
@@ -52,12 +52,23 @@ class MainTabBarController: UITabBarController {
     
     super.viewDidLoad()
 
-    self.setViewControllers( [homeTab, myNeighborhoodTab, wishListTab, myInfoTab], animated: true)
+    self.setViewControllers( [homeTab, mapTab, wishListTab, myInfoTab], animated: true)
     setTabBar()
   }
   
   func setTabBar() {
     self.tabBar.tintColor = UIColor.themeGreen
     self.tabBar.isTranslucent = false
+  }
+}
+
+extension MainTabBarController {
+  
+  override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+    
+    if item.title == mapTab.mapTabTitle {
+      
+      mapTab.mapMainVC.setInitialContainerViewHeight()
+    }
   }
 }

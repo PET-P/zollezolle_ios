@@ -118,6 +118,11 @@
 		DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BAD26C6D61D007AB642 /* MyNeighborhoodMain.storyboard */; };
 		DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BAF26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift */; };
 		DDF24BBC26C6D61D007AB642 /* MyNeighborhoodNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BB026C6D61D007AB642 /* MyNeighborhoodNavigationController.swift */; };
+		DDFFC11B26FB0734001FD04A /* MapMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC11626FB0734001FD04A /* MapMain.storyboard */; };
+		DDFFC11C26FB0734001FD04A /* MapMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11826FB0734001FD04A /* MapMainViewController.swift */; };
+		DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */; };
+		DDFFC11E26FB0734001FD04A /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */; };
+		DDFFC12026FB07D7001FD04A /* MapTabFilterTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */; };
 		EF286175114B742ED2428042 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B381DAB5BFA04ADF2FF7813 /* Pods_jjollaejjollae.framework */; };
 /* End PBXBuildFile section */
 
@@ -238,6 +243,11 @@
 		DDF24BAD26C6D61D007AB642 /* MyNeighborhoodMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyNeighborhoodMain.storyboard; sourceTree = "<group>"; };
 		DDF24BAF26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNeighborhoodMainViewController.swift; sourceTree = "<group>"; };
 		DDF24BB026C6D61D007AB642 /* MyNeighborhoodNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNeighborhoodNavigationController.swift; sourceTree = "<group>"; };
+		DDFFC11626FB0734001FD04A /* MapMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MapMain.storyboard; sourceTree = "<group>"; };
+		DDFFC11826FB0734001FD04A /* MapMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMainViewController.swift; sourceTree = "<group>"; };
+		DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceViewController.swift; sourceTree = "<group>"; };
+		DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
+		DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTabFilterTypeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -520,6 +530,7 @@
 		28F9E8ED26C15B3D00D9E693 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */,
 				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
 				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
 				2884A32C26D3FF07004596C3 /* RoundButton.swift */,
@@ -607,6 +618,7 @@
 		DDF24B9826C6D61D007AB642 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				DDFFC11426FB0734001FD04A /* MapTab */,
 				DDF24B9926C6D61D007AB642 /* MyInfoTab */,
 				DDF24B9F26C6D61D007AB642 /* HomeTab */,
 				DDF24BA526C6D61D007AB642 /* WishListTab */,
@@ -720,6 +732,33 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		DDFFC11426FB0734001FD04A /* MapTab */ = {
+			isa = PBXGroup;
+			children = (
+				DDFFC11526FB0734001FD04A /* Storyboard */,
+				DDFFC11726FB0734001FD04A /* ViewController */,
+			);
+			path = MapTab;
+			sourceTree = "<group>";
+		};
+		DDFFC11526FB0734001FD04A /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DDFFC11626FB0734001FD04A /* MapMain.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DDFFC11726FB0734001FD04A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDFFC11826FB0734001FD04A /* MapMainViewController.swift */,
+				DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */,
+				DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -802,6 +841,7 @@
 				28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */,
 				2841598E26BA745700F027DB /* LoginView.storyboard in Resources */,
 				28F9E94126C802A000D9E693 /* Search.storyboard in Resources */,
+				DDFFC11B26FB0734001FD04A /* MapMain.storyboard in Resources */,
 				2884A3BD26D91FFD004596C3 /* Calendar.storyboard in Resources */,
 				2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */,
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
@@ -871,6 +911,7 @@
 				283F240D26F87F9C00CD8339 /* SimpleResponse.swift in Sources */,
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				2884A31C26CE8E42004596C3 /* AccommodationDataSource.swift in Sources */,
+				DDFFC11C26FB0734001FD04A /* MapMainViewController.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
 				DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */,
 				2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */,
@@ -908,6 +949,7 @@
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				283F240126F8687F00CD8339 /* GenericResponse.swift in Sources */,
+				DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */,
 				283F240726F8716200CD8339 /* TempPasswordData.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
@@ -922,6 +964,7 @@
 				283F240926F8725C00CD8339 /* SignUpData.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
+				DDFFC12026FB07D7001FD04A /* MapTabFilterTypeButton.swift in Sources */,
 				283F23F326F7133400CD8339 /* Wish.swift in Sources */,
 				283F240326F869C900CD8339 /* EmailData.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
@@ -939,6 +982,7 @@
 				28331D1026E216720062B29D /* CalendarCell.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
+				DDFFC11E26FB0734001FD04A /* MapNavigationController.swift in Sources */,
 				DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
 				283F23FD26F865E000CD8339 /* LoginData.swift in Sources */,
