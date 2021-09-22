@@ -3,24 +3,163 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto Mono Bold for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Bold</string>
+        </array>
+        <array key="Roboto Mono Medium for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Wish List Main View Controller-->
+        <!--Wishlist Main View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="WishListMainViewController" id="Y6W-OH-hqX" customClass="WishListMainViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WishlistMainViewController" id="Y6W-OH-hqX" customClass="WishlistMainViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="위시리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gc3-iC-90R">
+                                <rect key="frame" x="16" y="119" width="122" height="33"/>
+                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13개의 폴더, 102개의 장소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ec0-Dg-v8X">
+                                <rect key="frame" x="16" y="157" width="172.5" height="17"/>
+                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inn-FR-Jda">
+                                <rect key="frame" x="16" y="228" width="382" height="43"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="G0R-oM-par"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemBlueColor"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="plus" catalog="system" renderingMode="original"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapAddWishlist:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ime-r6-3ae"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6G4-U9-YsM">
+                                <rect key="frame" x="16" y="291" width="382" height="86"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="4pL-Ug-W6G"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="위시리스트 전체보기"/>
+                                <connections>
+                                    <action selector="didTapShowEntireWishlist:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="j9b-tf-m2d"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BmA-pr-qor">
+                                <rect key="frame" x="16" y="397" width="382" height="465"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="UiX-hV-tmA">
+                                    <size key="itemSize" width="342" height="86"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="wishlistItem" id="eQX-Cn-keA" customClass="WishlistCollectionViewCell" customModule="jjollaejjollae">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="86"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vV7-QZ-seG">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="86"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021 쪼꼬랑 여름휴가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWo-Ut-6Ft">
+                                                    <rect key="frame" x="10" y="10" width="362" height="21"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주시/부산시 외 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2h-Mi-bNF">
+                                                    <rect key="frame" x="10" y="47" width="118.5" height="16"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08.10-08.14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGT-Ne-LtL">
+                                                    <rect key="frame" x="10" y="63" width="92.5" height="16"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NGT-Ne-LtL" firstAttribute="top" secondItem="O2h-Mi-bNF" secondAttribute="bottom" id="9ng-Od-Qao"/>
+                                                <constraint firstItem="NGT-Ne-LtL" firstAttribute="leading" secondItem="O2h-Mi-bNF" secondAttribute="leading" id="HDx-BL-AO5"/>
+                                                <constraint firstItem="O2h-Mi-bNF" firstAttribute="top" secondItem="QWo-Ut-6Ft" secondAttribute="bottom" constant="16" id="Wff-CS-pzH"/>
+                                                <constraint firstItem="QWo-Ut-6Ft" firstAttribute="leading" secondItem="vV7-QZ-seG" secondAttribute="leading" constant="10" id="XB2-rg-94t"/>
+                                                <constraint firstItem="O2h-Mi-bNF" firstAttribute="leading" secondItem="QWo-Ut-6Ft" secondAttribute="leading" id="ad4-cU-ihD"/>
+                                                <constraint firstItem="QWo-Ut-6Ft" firstAttribute="top" secondItem="vV7-QZ-seG" secondAttribute="top" constant="10" id="gVN-qM-Tyb"/>
+                                                <constraint firstAttribute="trailing" secondItem="QWo-Ut-6Ft" secondAttribute="trailing" constant="10" id="hXU-EH-jF9"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="382" height="86"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRl-s7-ORa">
+                                <rect key="frame" x="16" y="73" width="17.5" height="22"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="xmark" catalog="system" renderingMode="original"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" red="0.38431372549999998" green="0.56078431370000004" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ec0-Dg-v8X" firstAttribute="leading" secondItem="Gc3-iC-90R" secondAttribute="leading" id="13K-a1-BCt"/>
+                            <constraint firstItem="inn-FR-Jda" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="1kD-QA-wa5"/>
+                            <constraint firstItem="BmA-pr-qor" firstAttribute="top" secondItem="6G4-U9-YsM" secondAttribute="bottom" constant="20" id="4SZ-Tf-Xc8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BmA-pr-qor" secondAttribute="trailing" constant="16" id="5rE-h4-jgb"/>
+                            <constraint firstItem="Gc3-iC-90R" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="8Fg-FR-GVr"/>
+                            <constraint firstItem="6G4-U9-YsM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="I87-Xn-7NH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="inn-FR-Jda" secondAttribute="trailing" constant="16" id="OkN-Rc-GJL"/>
+                            <constraint firstItem="Gc3-iC-90R" firstAttribute="top" secondItem="wRl-s7-ORa" secondAttribute="bottom" constant="24" id="TZi-8U-I7n"/>
+                            <constraint firstItem="inn-FR-Jda" firstAttribute="top" secondItem="ec0-Dg-v8X" secondAttribute="bottom" constant="54" id="UKl-pc-tlh"/>
+                            <constraint firstItem="wRl-s7-ORa" firstAttribute="leading" secondItem="Gc3-iC-90R" secondAttribute="leading" id="Wk9-OL-YgX"/>
+                            <constraint firstItem="Gc3-iC-90R" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="75" id="axD-cX-yjf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="BmA-pr-qor" secondAttribute="bottom" id="dCS-mm-6Fi"/>
+                            <constraint firstItem="ec0-Dg-v8X" firstAttribute="top" secondItem="Gc3-iC-90R" secondAttribute="bottom" constant="5" id="eQd-5x-zBW"/>
+                            <constraint firstItem="6G4-U9-YsM" firstAttribute="top" secondItem="inn-FR-Jda" secondAttribute="bottom" constant="20" id="iTB-MI-9st"/>
+                            <constraint firstItem="BmA-pr-qor" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="lBb-wj-EJJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6G4-U9-YsM" secondAttribute="trailing" constant="16" id="uKb-07-T91"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addWishlistButton" destination="inn-FR-Jda" id="8q3-Mb-kUs"/>
+                        <outlet property="closeButton" destination="wRl-s7-ORa" id="Zfu-Na-d6g"/>
+                        <outlet property="showEntireWishlistButton" destination="6G4-U9-YsM" id="OZZ-E7-Nu5"/>
+                        <outlet property="wishlistCollectionView" destination="BmA-pr-qor" id="2pT-3M-vr2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="122" y="117"/>
+            <point key="canvasLocation" x="121.73913043478262" y="116.51785714285714"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

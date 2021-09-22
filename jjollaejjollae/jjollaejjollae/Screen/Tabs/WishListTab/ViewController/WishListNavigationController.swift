@@ -7,26 +7,19 @@
 
 import UIKit
 
-class WishListNavigationController: UINavigationController {
+class WishlistNavigationController: UINavigationController {
   
-  let wishListVC: WishListViewController = {
-    guard let wishListVC = WishListViewController.loadFromStoryboard(fileName: "WishList") as? WishListViewController else {return
-      WishListViewController()
+  let wishlistMainVC: WishlistMainViewController = {
+    
+    guard let wishListMainVC =
+            WishlistMainViewController.loadFromStoryboard()
+            as? WishlistMainViewController
+    else {
+      return WishlistMainViewController()
     }
-    return wishListVC
+    
+    return wishListMainVC
   }()
-  
-//  let wishListMainVC: WishListMainViewController = {
-//
-//    guard let wishListMainVC =
-//            WishListMainViewController.loadFromStoryboard(fileName: "WishListMain")
-//            as? WishListMainViewController
-//    else {
-//      return WishListMainViewController()
-//    }
-//
-//    return wishListMainVC
-//  }()
   
   
   // MARK: - Life Cycle
@@ -42,24 +35,24 @@ class WishListNavigationController: UINavigationController {
   
   func setTabBarItem() {
     
-    self.tabBarItem = UITabBarItem(title: wishListTabTitle,
-                                   image: wishListTabImage,
+    self.tabBarItem = UITabBarItem(title: wishlistTabTitle,
+                                   image: wishlistTabImage,
                                    selectedImage: nil)
   }
   
   private func setRootViewController() {
     
-    self.viewControllers.append(wishListVC)
+    self.viewControllers.append(wishlistMainVC)
   }
 }
 
 // MARK: - Resources
-extension WishListNavigationController {
-  private var wishListTabTitle: String {
+extension WishlistNavigationController {
+  private var wishlistTabTitle: String {
     return "위시리스트"
   }
   
-  private var wishListTabImage: UIImage? {
+  private var wishlistTabImage: UIImage? {
     return UIImage(named: "WishListTab")
   }
 }

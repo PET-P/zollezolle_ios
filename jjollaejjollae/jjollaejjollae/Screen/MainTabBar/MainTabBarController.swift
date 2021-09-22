@@ -29,13 +29,13 @@ class MainTabBarController: UITabBarController {
     return mapTabNavi
   }()
   
-  let wishListTab: WishListNavigationController = {
+  let wishlistTab: WishlistNavigationController = {
     
-    let wishListTabNavi = WishListNavigationController()
+    let wishlistTabNavi = WishlistNavigationController()
     
-    wishListTabNavi.setTabBarItem()
+    wishlistTabNavi.setTabBarItem()
     
-    return wishListTabNavi
+    return wishlistTabNavi
   }()
   
   let myInfoTab: MyInfoTabNavigationController = {
@@ -52,7 +52,7 @@ class MainTabBarController: UITabBarController {
     
     super.viewDidLoad()
 
-    self.setViewControllers( [homeTab, mapTab, wishListTab, myInfoTab], animated: true)
+    self.setViewControllers( [homeTab, mapTab, wishlistTab, myInfoTab], animated: true)
     setTabBar()
   }
   
