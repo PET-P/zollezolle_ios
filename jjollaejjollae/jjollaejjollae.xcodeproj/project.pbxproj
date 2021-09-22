@@ -78,8 +78,6 @@
 		2884A37726D7F3D4004596C3 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A37626D7F3D3004596C3 /* Filters.swift */; };
 		2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A3BA26D91F56004596C3 /* CalendarViewController.swift */; };
 		2884A3BD26D91FFD004596C3 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A3BC26D91FFD004596C3 /* Calendar.storyboard */; };
-		2889207F26F389DD00673A36 /* WishList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2889207E26F389DD00673A36 /* WishList.storyboard */; };
-		2889208126F394CA00673A36 /* WishListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2889208026F394CA00673A36 /* WishListViewController.swift */; };
 		28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF852A26E7882F00ED200F /* ProvisionViewController.swift */; };
 		28E910BB26F0E1DA0093BF7C /* dogInfoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E910BA26F0E1DA0093BF7C /* dogInfoCollectionView.swift */; };
 		28E910BD26F0E2390093BF7C /* DogInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E910BC26F0E2390093BF7C /* DogInfo.swift */; };
@@ -96,14 +94,11 @@
 		28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */; };
 		28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */; };
 		28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */; };
-		28F5BC3426F4B8BF009500BA /* WishMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F5BC3326F4B8BF009500BA /* WishMap.storyboard */; };
-		28F5BC3626F4B9C9009500BA /* WishMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5BC3526F4B9C9009500BA /* WishMapViewController.swift */; };
-		28F5BC3826F4D85F009500BA /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F5BC3726F4D85E009500BA /* WishCalendarViewController.swift */; };
-		28F5BC3A26F4D875009500BA /* WishCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F5BC3926F4D875009500BA /* WishCalendar.storyboard */; };
 		28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F9E93E26C8027000D9E693 /* SearchViewController.swift */; };
 		28F9E94126C802A000D9E693 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F9E94026C802A000D9E693 /* Search.storyboard */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
-		98741072C8D0E4C0996E8807 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFEDB2C613AA522D86780D2D /* Pods_jjollaejjollae.framework */; };
+		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
+		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
 		DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */; };
 		DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */; };
@@ -111,12 +106,22 @@
 		DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */; };
 		DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */; };
 		DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */; };
-		DDF24BB726C6D61D007AB642 /* WishListMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BA726C6D61D007AB642 /* WishListMain.storyboard */; };
-		DDF24BB826C6D61D007AB642 /* WishListMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA926C6D61D007AB642 /* WishListMainViewController.swift */; };
-		DDF24BB926C6D61D007AB642 /* WishListNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BAA26C6D61D007AB642 /* WishListNavigationController.swift */; };
-		DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BAD26C6D61D007AB642 /* MyNeighborhoodMain.storyboard */; };
-		DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BAF26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift */; };
-		DDF24BBC26C6D61D007AB642 /* MyNeighborhoodNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BB026C6D61D007AB642 /* MyNeighborhoodNavigationController.swift */; };
+		DDFFC11B26FB0734001FD04A /* MapMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC11626FB0734001FD04A /* MapMain.storyboard */; };
+		DDFFC11C26FB0734001FD04A /* MapMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11826FB0734001FD04A /* MapMainViewController.swift */; };
+		DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */; };
+		DDFFC11E26FB0734001FD04A /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */; };
+		DDFFC12026FB07D7001FD04A /* MapTabFilterTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */; };
+		DDFFC17326FB1C05001FD04A /* WishlistMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC16726FB1C05001FD04A /* WishlistMain.storyboard */; };
+		DDFFC17426FB1C05001FD04A /* WishCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC16826FB1C05001FD04A /* WishCalendar.storyboard */; };
+		DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC16926FB1C05001FD04A /* Wishlist.storyboard */; };
+		DDFFC17626FB1C05001FD04A /* WishMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC16A26FB1C05001FD04A /* WishMap.storyboard */; };
+		DDFFC17726FB1C05001FD04A /* WishlistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC16C26FB1C05001FD04A /* WishlistCollectionViewCell.swift */; };
+		DDFFC17826FB1C05001FD04A /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC16E26FB1C05001FD04A /* WishlistViewController.swift */; };
+		DDFFC17926FB1C05001FD04A /* WishMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC16F26FB1C05001FD04A /* WishMapViewController.swift */; };
+		DDFFC17A26FB1C05001FD04A /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */; };
+		DDFFC17B26FB1C05001FD04A /* WishlistMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */; };
+		DDFFC17C26FB1C05001FD04A /* WishlistNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */; };
+		EF286175114B742ED2428042 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B381DAB5BFA04ADF2FF7813 /* Pods_jjollaejjollae.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,8 +198,6 @@
 		2884A37626D7F3D3004596C3 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		2884A3BA26D91F56004596C3 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		2884A3BC26D91FFD004596C3 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
-		2889207E26F389DD00673A36 /* WishList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishList.storyboard; sourceTree = "<group>"; };
-		2889208026F394CA00673A36 /* WishListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListViewController.swift; sourceTree = "<group>"; };
 		28CF852A26E7882F00ED200F /* ProvisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisionViewController.swift; sourceTree = "<group>"; };
 		28E910BA26F0E1DA0093BF7C /* dogInfoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dogInfoCollectionView.swift; sourceTree = "<group>"; };
 		28E910BC26F0E2390093BF7C /* DogInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfo.swift; sourceTree = "<group>"; };
@@ -211,16 +214,14 @@
 		28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Bold Italic for Powerline.ttf"; sourceTree = "<group>"; };
 		28EA825B26B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Light Italic for Powerline.ttf"; sourceTree = "<group>"; };
 		28EA825C26B42BF700785666 /* Roboto Mono Thin for Powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto Mono Thin for Powerline.ttf"; sourceTree = "<group>"; };
-		28F5BC3326F4B8BF009500BA /* WishMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishMap.storyboard; sourceTree = "<group>"; };
-		28F5BC3526F4B9C9009500BA /* WishMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishMapViewController.swift; sourceTree = "<group>"; };
-		28F5BC3726F4D85E009500BA /* WishCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WishCalendarViewController.swift; path = jjollaejjollae/Screen/WishList/ViewController/WishCalendarViewController.swift; sourceTree = SOURCE_ROOT; };
-		28F5BC3926F4D875009500BA /* WishCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishCalendar.storyboard; sourceTree = "<group>"; };
 		28F9E93E26C8027000D9E693 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		28F9E94026C802A000D9E693 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
-		6BC5EF4DA1A6C26BC0300CBB /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
-		8FEF11191ADCF4AFCA65A609 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
-		CFEDB2C613AA522D86780D2D /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B381DAB5BFA04ADF2FF7813 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		46F54E5949B2AB3FE95C8155 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
+		93F6C20B1B7F11F548FE5E7E /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
+		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
+		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyInfoTab.storyboard; sourceTree = "<group>"; };
 		DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainViewController.swift; sourceTree = "<group>"; };
@@ -228,12 +229,21 @@
 		DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeMain.storyboard; sourceTree = "<group>"; };
 		DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMainViewController.swift; sourceTree = "<group>"; };
 		DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabNavigationController.swift; sourceTree = "<group>"; };
-		DDF24BA726C6D61D007AB642 /* WishListMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishListMain.storyboard; sourceTree = "<group>"; };
-		DDF24BA926C6D61D007AB642 /* WishListMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListMainViewController.swift; sourceTree = "<group>"; };
-		DDF24BAA26C6D61D007AB642 /* WishListNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListNavigationController.swift; sourceTree = "<group>"; };
-		DDF24BAD26C6D61D007AB642 /* MyNeighborhoodMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyNeighborhoodMain.storyboard; sourceTree = "<group>"; };
-		DDF24BAF26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNeighborhoodMainViewController.swift; sourceTree = "<group>"; };
-		DDF24BB026C6D61D007AB642 /* MyNeighborhoodNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNeighborhoodNavigationController.swift; sourceTree = "<group>"; };
+		DDFFC11626FB0734001FD04A /* MapMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MapMain.storyboard; sourceTree = "<group>"; };
+		DDFFC11826FB0734001FD04A /* MapMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMainViewController.swift; sourceTree = "<group>"; };
+		DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceViewController.swift; sourceTree = "<group>"; };
+		DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
+		DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTabFilterTypeButton.swift; sourceTree = "<group>"; };
+		DDFFC16726FB1C05001FD04A /* WishlistMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishlistMain.storyboard; sourceTree = "<group>"; };
+		DDFFC16826FB1C05001FD04A /* WishCalendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishCalendar.storyboard; sourceTree = "<group>"; };
+		DDFFC16926FB1C05001FD04A /* Wishlist.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wishlist.storyboard; sourceTree = "<group>"; };
+		DDFFC16A26FB1C05001FD04A /* WishMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishMap.storyboard; sourceTree = "<group>"; };
+		DDFFC16C26FB1C05001FD04A /* WishlistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDFFC16E26FB1C05001FD04A /* WishlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
+		DDFFC16F26FB1C05001FD04A /* WishMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishMapViewController.swift; sourceTree = "<group>"; };
+		DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishCalendarViewController.swift; sourceTree = "<group>"; };
+		DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistMainViewController.swift; sourceTree = "<group>"; };
+		DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98741072C8D0E4C0996E8807 /* Pods_jjollaejjollae.framework in Frameworks */,
+				EF286175114B742ED2428042 /* Pods_jjollaejjollae.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +264,7 @@
 				285CE12726B858B80022DA2E /* .swiftlint.yml */,
 				2827C88726B03C390001E077 /* jjollaejjollae */,
 				766BE68EF9C2E22146929949 /* Pods */,
-				A5555ACBCC07DF0ED7A09B1B /* Frameworks */,
+				3967F676002A87930F7BDE02 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -398,35 +408,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2889207926F3841B00673A36 /* WishList */ = {
-			isa = PBXGroup;
-			children = (
-				2889207D26F389A700673A36 /* Storyboard */,
-				2889207A26F3843300673A36 /* ViewController */,
-			);
-			path = WishList;
-			sourceTree = "<group>";
-		};
-		2889207A26F3843300673A36 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				28F5BC3726F4D85E009500BA /* WishCalendarViewController.swift */,
-				2889208026F394CA00673A36 /* WishListViewController.swift */,
-				28F5BC3526F4B9C9009500BA /* WishMapViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		2889207D26F389A700673A36 /* Storyboard */ = {
-			isa = PBXGroup;
-			children = (
-				2889207E26F389DD00673A36 /* WishList.storyboard */,
-				28F5BC3326F4B8BF009500BA /* WishMap.storyboard */,
-				28F5BC3926F4D875009500BA /* WishCalendar.storyboard */,
-			);
-			path = Storyboard;
-			sourceTree = "<group>";
-		};
 		28EA824626B3C73C00785666 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +422,7 @@
 		28EA824726B3C75900785666 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				DD741C2926FB04CC00776827 /* Protocol */,
 				28F9E8ED26C15B3D00D9E693 /* Custom */,
 				2834ED0526BFE39600E948B0 /* Model */,
 				28EA824D26B3EDAB00785666 /* Service */,
@@ -503,7 +485,6 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				2889207926F3841B00673A36 /* WishList */,
 				28F9E93B26C8024700D9E693 /* Search */,
 				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
 				2841598A26BA73C600F027DB /* Login */,
@@ -515,6 +496,7 @@
 		28F9E8ED26C15B3D00D9E693 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */,
 				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
 				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
 				2884A32C26D3FF07004596C3 /* RoundButton.swift */,
@@ -564,21 +546,30 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		3967F676002A87930F7BDE02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B381DAB5BFA04ADF2FF7813 /* Pods_jjollaejjollae.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		766BE68EF9C2E22146929949 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6BC5EF4DA1A6C26BC0300CBB /* Pods-jjollaejjollae.debug.xcconfig */,
-				8FEF11191ADCF4AFCA65A609 /* Pods-jjollaejjollae.release.xcconfig */,
+				93F6C20B1B7F11F548FE5E7E /* Pods-jjollaejjollae.debug.xcconfig */,
+				46F54E5949B2AB3FE95C8155 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A5555ACBCC07DF0ED7A09B1B /* Frameworks */ = {
+		DD741C2926FB04CC00776827 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				CFEDB2C613AA522D86780D2D /* Pods_jjollaejjollae.framework */,
+				DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */,
+				DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */,
 			);
-			name = Frameworks;
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		DDF24B9526C6D5E4007AB642 /* MainTabBar */ = {
@@ -593,10 +584,10 @@
 		DDF24B9826C6D61D007AB642 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				DDFFC16526FB1C05001FD04A /* WishlistTab */,
+				DDFFC11426FB0734001FD04A /* MapTab */,
 				DDF24B9926C6D61D007AB642 /* MyInfoTab */,
 				DDF24B9F26C6D61D007AB642 /* HomeTab */,
-				DDF24BA526C6D61D007AB642 /* WishListTab */,
-				DDF24BAB26C6D61D007AB642 /* MyNeighborhoodTab */,
 			);
 			name = Tabs;
 			path = jjollaejjollae/Screen/Tabs;
@@ -654,54 +645,70 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		DDF24BA526C6D61D007AB642 /* WishListTab */ = {
+		DDFFC11426FB0734001FD04A /* MapTab */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24BA626C6D61D007AB642 /* Storyboard */,
-				DDF24BA826C6D61D007AB642 /* ViewController */,
+				DDFFC11526FB0734001FD04A /* Storyboard */,
+				DDFFC11726FB0734001FD04A /* ViewController */,
 			);
-			path = WishListTab;
+			path = MapTab;
 			sourceTree = "<group>";
 		};
-		DDF24BA626C6D61D007AB642 /* Storyboard */ = {
+		DDFFC11526FB0734001FD04A /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24BA726C6D61D007AB642 /* WishListMain.storyboard */,
+				DDFFC11626FB0734001FD04A /* MapMain.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		DDF24BA826C6D61D007AB642 /* ViewController */ = {
+		DDFFC11726FB0734001FD04A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24BA926C6D61D007AB642 /* WishListMainViewController.swift */,
-				DDF24BAA26C6D61D007AB642 /* WishListNavigationController.swift */,
+				DDFFC11826FB0734001FD04A /* MapMainViewController.swift */,
+				DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */,
+				DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		DDF24BAB26C6D61D007AB642 /* MyNeighborhoodTab */ = {
+		DDFFC16526FB1C05001FD04A /* WishlistTab */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24BAC26C6D61D007AB642 /* Storyboard */,
-				DDF24BAE26C6D61D007AB642 /* ViewController */,
+				DDFFC16626FB1C05001FD04A /* Storyboard */,
+				DDFFC16B26FB1C05001FD04A /* View */,
+				DDFFC16D26FB1C05001FD04A /* ViewController */,
 			);
-			path = MyNeighborhoodTab;
+			path = WishlistTab;
 			sourceTree = "<group>";
 		};
-		DDF24BAC26C6D61D007AB642 /* Storyboard */ = {
+		DDFFC16626FB1C05001FD04A /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24BAD26C6D61D007AB642 /* MyNeighborhoodMain.storyboard */,
+				DDFFC16726FB1C05001FD04A /* WishlistMain.storyboard */,
+				DDFFC16826FB1C05001FD04A /* WishCalendar.storyboard */,
+				DDFFC16926FB1C05001FD04A /* Wishlist.storyboard */,
+				DDFFC16A26FB1C05001FD04A /* WishMap.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		DDF24BAE26C6D61D007AB642 /* ViewController */ = {
+		DDFFC16B26FB1C05001FD04A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DDF24BAF26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift */,
-				DDF24BB026C6D61D007AB642 /* MyNeighborhoodNavigationController.swift */,
+				DDFFC16C26FB1C05001FD04A /* WishlistCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDFFC16D26FB1C05001FD04A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DDFFC16E26FB1C05001FD04A /* WishlistViewController.swift */,
+				DDFFC16F26FB1C05001FD04A /* WishMapViewController.swift */,
+				DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */,
+				DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */,
+				DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -713,11 +720,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2827C89926B03C3E0001E077 /* Build configuration list for PBXNativeTarget "jjollaejjollae" */;
 			buildPhases = (
-				2F683414C288A09CEA214DD8 /* [CP] Check Pods Manifest.lock */,
+				600CDD3D4EC1129DA5374D49 /* [CP] Check Pods Manifest.lock */,
 				2827C88126B03C390001E077 /* Sources */,
 				2827C88226B03C390001E077 /* Frameworks */,
 				2827C88326B03C390001E077 /* Resources */,
-				8E8B1526C4772C6B4003E8E3 /* [CP] Embed Pods Frameworks */,
+				C1452725EC4493A1A40B5B17 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -765,7 +772,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28F5BC3426F4B8BF009500BA /* WishMap.storyboard in Resources */,
 				2884A31A26CE696B004596C3 /* SearchResult.storyboard in Resources */,
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
 				2884A32B26D3FC8B004596C3 /* Filter.storyboard in Resources */,
@@ -773,14 +779,13 @@
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
+				DDFFC17426FB1C05001FD04A /* WishCalendar.storyboard in Resources */,
 				28331CC026DCD70F0062B29D /* InfoView.xib in Resources */,
-				DDF24BB726C6D61D007AB642 /* WishListMain.storyboard in Resources */,
 				2877831126C824A2001BF582 /* Stars.storyboard in Resources */,
-				28F5BC3A26F4D875009500BA /* WishCalendar.storyboard in Resources */,
+				DDFFC17626FB1C05001FD04A /* WishMap.storyboard in Resources */,
+				DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
 				2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */,
-				DDF24BBA26C6D61D007AB642 /* MyNeighborhoodMain.storyboard in Resources */,
-				2889207F26F389DD00673A36 /* WishList.storyboard in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
@@ -788,7 +793,9 @@
 				28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */,
 				2841598E26BA745700F027DB /* LoginView.storyboard in Resources */,
 				28F9E94126C802A000D9E693 /* Search.storyboard in Resources */,
+				DDFFC11B26FB0734001FD04A /* MapMain.storyboard in Resources */,
 				2884A3BD26D91FFD004596C3 /* Calendar.storyboard in Resources */,
+				DDFFC17326FB1C05001FD04A /* WishlistMain.storyboard in Resources */,
 				2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */,
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
 				2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */,
@@ -807,7 +814,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2F683414C288A09CEA214DD8 /* [CP] Check Pods Manifest.lock */ = {
+		600CDD3D4EC1129DA5374D49 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -829,7 +836,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8E8B1526C4772C6B4003E8E3 /* [CP] Embed Pods Frameworks */ = {
+		C1452725EC4493A1A40B5B17 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -853,27 +860,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */,
 				283F240D26F87F9C00CD8339 /* SimpleResponse.swift in Sources */,
+				DDFFC17B26FB1C05001FD04A /* WishlistMainViewController.swift in Sources */,
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				2884A31C26CE8E42004596C3 /* AccommodationDataSource.swift in Sources */,
+				DDFFC11C26FB0734001FD04A /* MapMainViewController.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
 				DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */,
 				2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */,
 				2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */,
 				283F240026F8687800CD8339 /* NetworkResult.swift in Sources */,
 				2884A31826CE532E004596C3 /* SearchResultViewController.swift in Sources */,
+				DDFFC17726FB1C05001FD04A /* WishlistCollectionViewCell.swift in Sources */,
 				2884A37726D7F3D4004596C3 /* Filters.swift in Sources */,
 				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
-				DDF24BB926C6D61D007AB642 /* WishListNavigationController.swift in Sources */,
 				287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
-				28F5BC3826F4D85F009500BA /* WishCalendarViewController.swift in Sources */,
-				28F5BC3626F4B9C9009500BA /* WishMapViewController.swift in Sources */,
 				2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */,
-				2889208126F394CA00673A36 /* WishListViewController.swift in Sources */,
 				2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */,
+				DDFFC17A26FB1C05001FD04A /* WishCalendarViewController.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				2884A31E26CE91E1004596C3 /* RestaurantDataSource.swift in Sources */,
+				DDFFC17C26FB1C05001FD04A /* WishlistNavigationController.swift in Sources */,
 				28331D0E26DF681F0062B29D /* MapViewController.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
 				283F240B26F8732E00CD8339 /* RefreshTokenData.swift in Sources */,
@@ -885,34 +894,35 @@
 				28E910BD26F0E2390093BF7C /* DogInfo.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
 				283F240526F8713400CD8339 /* FindPasswordData.swift in Sources */,
-				DDF24BBC26C6D61D007AB642 /* MyNeighborhoodNavigationController.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */,
 				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
+				DDFFC17926FB1C05001FD04A /* WishMapViewController.swift in Sources */,
 				283F240126F8687F00CD8339 /* GenericResponse.swift in Sources */,
+				DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */,
 				283F240726F8716200CD8339 /* TempPasswordData.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
 				2884A32426CECE82004596C3 /* DropDownDataSource.swift in Sources */,
 				2884A32026CE926F004596C3 /* LandmarkDataSource.swift in Sources */,
 				2884A31126CA43E6004596C3 /* SearchResultTableViewCell.swift in Sources */,
-				DDF24BB826C6D61D007AB642 /* WishListMainViewController.swift in Sources */,
 				28331CBE26DCD6F40062B29D /* InfoView.swift in Sources */,
 				283F23FE26F8687400CD8339 /* APITarget.swift in Sources */,
 				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
 				283F23F126F7117C00CD8339 /* WishListManager.swift in Sources */,
+				DDFFC17826FB1C05001FD04A /* WishlistViewController.swift in Sources */,
 				283F240926F8725C00CD8339 /* SignUpData.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
+				DDFFC12026FB07D7001FD04A /* MapTabFilterTypeButton.swift in Sources */,
 				283F23F326F7133400CD8339 /* Wish.swift in Sources */,
 				283F240326F869C900CD8339 /* EmailData.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
 				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
-				DDF24BBB26C6D61D007AB642 /* MyNeighborhoodMainViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				283F241026F8AE8C00CD8339 /* LaunchScreenViewController.swift in Sources */,
 				287AE21F26EC857B0038B39F /* CarouselLayout.swift in Sources */,
@@ -924,6 +934,8 @@
 				28331D1026E216720062B29D /* CalendarCell.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
+				DDFFC11E26FB0734001FD04A /* MapNavigationController.swift in Sources */,
+				DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
 				283F23FD26F865E000CD8339 /* LoginData.swift in Sources */,
 			);
@@ -1061,7 +1073,7 @@
 		};
 		2827C89A26B03C3E0001E077 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BC5EF4DA1A6C26BC0300CBB /* Pods-jjollaejjollae.debug.xcconfig */;
+			baseConfigurationReference = 93F6C20B1B7F11F548FE5E7E /* Pods-jjollaejjollae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1080,7 +1092,7 @@
 		};
 		2827C89B26B03C3E0001E077 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8FEF11191ADCF4AFCA65A609 /* Pods-jjollaejjollae.release.xcconfig */;
+			baseConfigurationReference = 46F54E5949B2AB3FE95C8155 /* Pods-jjollaejjollae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

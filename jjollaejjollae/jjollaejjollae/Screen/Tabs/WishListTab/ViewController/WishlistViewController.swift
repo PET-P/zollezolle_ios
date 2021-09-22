@@ -13,15 +13,7 @@ struct TravelInfo {
   var locationList: [SearchResultInfo]?
 }
 
-class WishListViewController: UIViewController, Storyboardable {
-  
-  static func loadFromStoryboard(fileName name: String) -> UIViewController {
-    let identifier = "\(name)ViewController"
-    let storyboard  = UIStoryboard(name: name, bundle: nil)
-    let wishListVC = storyboard.instantiateViewController(identifier: identifier)
-    return wishListVC
-  }
-  
+class WishlistViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - IBOUTLET
   @IBOutlet weak var wishListTitle: UILabel! {
@@ -105,7 +97,7 @@ class WishListViewController: UIViewController, Storyboardable {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    hideTabBar()
+//    hideTabBar()
     goToMapButtonUISetting()
     wishListTableView.delegate = self
     wishListTableView.dataSource = self
@@ -167,7 +159,12 @@ class WishListViewController: UIViewController, Storyboardable {
   //MARK: - IBACTION
 
   @IBAction private func didTapBackButton(_ sender: UIButton) {
+    print(self.navigationController)
+    
+//    self.tabBarController?.tabBar.isHidden = false
+//    self.tabBarController?.tabBar.isTranslucent = false
     self.navigationController?.popViewController(animated: true)
+    
   }
   
 //  var wishCompletionHandler: ((Wish?) -> (Wish?))?
@@ -210,11 +207,11 @@ class WishListViewController: UIViewController, Storyboardable {
   
 }
 
-extension WishListViewController: UITableViewDelegate {
+extension WishlistViewController: UITableViewDelegate {
   //TODO: 그 장소 Detail화면으로 넘어가기
 }
 
-extension WishListViewController: UITableViewDataSource, SearchResultCellDelegate {
+extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegate {
   
   func didTapHeart(for placeId: Int, like: Bool) {
     likes[placeId] = like == true ? true : false

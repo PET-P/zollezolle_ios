@@ -99,8 +99,7 @@ class PasswordViewController: UIViewController {
       case .success(let data):
         loginData = data
         let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-        guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
-        self.navigationController?.pushViewController(homeMainVC, animated: true)
+        self.navigationController?.pushViewController(MainTabBarController(), animated: true)
       case .failure(let error):
         print(error)
         if error >= 400 && error < 500 {

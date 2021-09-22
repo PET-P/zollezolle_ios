@@ -55,25 +55,13 @@ class HomeMainViewController: UIViewController {
 }
 
 // MARK: - Storyborad
-extension HomeMainViewController: Storyboardable{
-  
-  static func loadFromStoryboard(fileName name: String) -> UIViewController {
-    
-    let identifier = "\(name)ViewController"
-    
-    let storyboard = UIStoryboard(name: name, bundle: nil)
-    let homeMainVC = storyboard.instantiateViewController(identifier: identifier) 
-    
-    return homeMainVC
-  }
- 
-}
+extension HomeMainViewController: StoryboardInstantiable{ }
 
 extension HomeMainViewController: UITextFieldDelegate {
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
     if textField == searchField {
       self.navigationController?.pushViewController(HomeMainViewController
-                                                      .loadFromStoryboard(fileName: "Search")
+                                                      .loadFromStoryboard()
                                                     , animated: true)
     }
     return false

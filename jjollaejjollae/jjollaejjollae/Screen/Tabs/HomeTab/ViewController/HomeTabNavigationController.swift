@@ -8,10 +8,10 @@
 import UIKit
 
 // TODO: 이 프로토콜 적절한 파일로 옮기기
-protocol Storyboardable: AnyObject {
-  
-  static func loadFromStoryboard(fileName: String) -> UIViewController
-}
+//protocol Storyboardable: AnyObject {
+//
+//  static func loadFromStoryboard(fileName: String) -> UIViewController
+//}
 
 class HomeTabNavigationController: UINavigationController {
   
@@ -20,7 +20,7 @@ class HomeTabNavigationController: UINavigationController {
   private let homeMainVC: HomeMainViewController = {
     
     guard let homeMainVieController =
-            HomeMainViewController.loadFromStoryboard(fileName: "HomeMain")
+            HomeMainViewController.loadFromStoryboard()
             as? HomeMainViewController
     else {
       return HomeMainViewController()
