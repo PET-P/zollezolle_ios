@@ -223,7 +223,7 @@ class DetailAccomodationsViewController: UIViewController {
 
 // MARK: - Stroyboardable
 
-extension DetailAccomodationsViewController: Storyboardable { }
+extension DetailAccomodationsViewController: StoryboardInstantiable { }
 
 // MARK: - UIScrollViewDelegate
 

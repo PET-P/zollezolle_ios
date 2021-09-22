@@ -52,6 +52,7 @@
 		DD3935EE26D3AC990032476F /* DetailPlaceMainInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3935ED26D3AC990032476F /* DetailPlaceMainInfoView.swift */; };
 		DD3935F026D3ACC90032476F /* DetailPlaceMainInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD3935EF26D3ACC90032476F /* DetailPlaceMainInfoView.xib */; };
 		DD3935F326D3C34A0032476F /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3935F226D3C34A0032476F /* NibInstantiatable.swift */; };
+		DD741C2826FB03CD00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2726FB03CD00776827 /* StoryboardInstantiable.swift */; };
 		DD8CAC4326D4AB1300149704 /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8CAC4226D4AB1300149704 /* DefaultViewController.swift */; };
 		DDB958B026CB7D1B006B30BC /* DetailAccomodations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB958AF26CB7D1B006B30BC /* DetailAccomodations.storyboard */; };
 		DDB958B226CB7D31006B30BC /* DetailAccomodationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB958B126CB7D31006B30BC /* DetailAccomodationsViewController.swift */; };
@@ -129,6 +130,7 @@
 		DD3935ED26D3AC990032476F /* DetailPlaceMainInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlaceMainInfoView.swift; sourceTree = "<group>"; };
 		DD3935EF26D3ACC90032476F /* DetailPlaceMainInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPlaceMainInfoView.xib; sourceTree = "<group>"; };
 		DD3935F226D3C34A0032476F /* NibInstantiatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
+		DD741C2726FB03CD00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD8CAC4226D4AB1300149704 /* DefaultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
 		DDB958AF26CB7D1B006B30BC /* DetailAccomodations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailAccomodations.storyboard; sourceTree = "<group>"; };
 		DDB958B126CB7D31006B30BC /* DetailAccomodationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAccomodationsViewController.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				DD3935F226D3C34A0032476F /* NibInstantiatable.swift */,
+				DD741C2726FB03CD00776827 /* StoryboardInstantiable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -763,6 +766,7 @@
 				DD3935F326D3C34A0032476F /* NibInstantiatable.swift in Sources */,
 				DD1E805F26E4F9DF00622792 /* DetailPlaceBasicInfoView.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
+				DD741C2826FB03CD00776827 /* StoryboardInstantiable.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
 				DDF24BB826C6D61D007AB642 /* WishListMainViewController.swift in Sources */,
