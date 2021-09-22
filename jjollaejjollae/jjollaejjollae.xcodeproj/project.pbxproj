@@ -111,16 +111,16 @@
 		DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */; };
 		DDFFC11E26FB0734001FD04A /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */; };
 		DDFFC12026FB07D7001FD04A /* MapTabFilterTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */; };
-		DDFFC12926FB0BFB001FD04A /* WishlistMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC12326FB0BFB001FD04A /* WishlistMain.storyboard */; };
-		DDFFC12A26FB0BFB001FD04A /* WishlistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC12526FB0BFB001FD04A /* WishlistCollectionViewCell.swift */; };
-		DDFFC12B26FB0BFB001FD04A /* WishlistMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC12726FB0BFB001FD04A /* WishlistMainViewController.swift */; };
-		DDFFC12C26FB0BFB001FD04A /* WishlistNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC12826FB0BFB001FD04A /* WishlistNavigationController.swift */; };
-		DDFFC13626FB0EF3001FD04A /* WishMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC13426FB0DAD001FD04A /* WishMapViewController.swift */; };
-		DDFFC13726FB0EF3001FD04A /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC13326FB0DAD001FD04A /* WishlistViewController.swift */; };
-		DDFFC13826FB0EF3001FD04A /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC13526FB0DAD001FD04A /* WishCalendarViewController.swift */; };
-		DDFFC16226FB12F3001FD04A /* Wishlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC12F26FB0DAD001FD04A /* Wishlist.storyboard */; };
-		DDFFC16326FB12F5001FD04A /* WishMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC13026FB0DAD001FD04A /* WishMap.storyboard */; };
-		DDFFC16426FB12F7001FD04A /* WishCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC13126FB0DAD001FD04A /* WishCalendar.storyboard */; };
+		DDFFC17326FB1C05001FD04A /* WishlistMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC16726FB1C05001FD04A /* WishlistMain.storyboard */; };
+		DDFFC17426FB1C05001FD04A /* WishCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC16826FB1C05001FD04A /* WishCalendar.storyboard */; };
+		DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC16926FB1C05001FD04A /* Wishlist.storyboard */; };
+		DDFFC17626FB1C05001FD04A /* WishMap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC16A26FB1C05001FD04A /* WishMap.storyboard */; };
+		DDFFC17726FB1C05001FD04A /* WishlistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC16C26FB1C05001FD04A /* WishlistCollectionViewCell.swift */; };
+		DDFFC17826FB1C05001FD04A /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC16E26FB1C05001FD04A /* WishlistViewController.swift */; };
+		DDFFC17926FB1C05001FD04A /* WishMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC16F26FB1C05001FD04A /* WishMapViewController.swift */; };
+		DDFFC17A26FB1C05001FD04A /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */; };
+		DDFFC17B26FB1C05001FD04A /* WishlistMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */; };
+		DDFFC17C26FB1C05001FD04A /* WishlistNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */; };
 		EF286175114B742ED2428042 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B381DAB5BFA04ADF2FF7813 /* Pods_jjollaejjollae.framework */; };
 /* End PBXBuildFile section */
 
@@ -234,16 +234,16 @@
 		DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceViewController.swift; sourceTree = "<group>"; };
 		DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
 		DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTabFilterTypeButton.swift; sourceTree = "<group>"; };
-		DDFFC12326FB0BFB001FD04A /* WishlistMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishlistMain.storyboard; sourceTree = "<group>"; };
-		DDFFC12526FB0BFB001FD04A /* WishlistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistCollectionViewCell.swift; sourceTree = "<group>"; };
-		DDFFC12726FB0BFB001FD04A /* WishlistMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistMainViewController.swift; sourceTree = "<group>"; };
-		DDFFC12826FB0BFB001FD04A /* WishlistNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistNavigationController.swift; sourceTree = "<group>"; };
-		DDFFC12F26FB0DAD001FD04A /* Wishlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wishlist.storyboard; sourceTree = "<group>"; };
-		DDFFC13026FB0DAD001FD04A /* WishMap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishMap.storyboard; sourceTree = "<group>"; };
-		DDFFC13126FB0DAD001FD04A /* WishCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WishCalendar.storyboard; sourceTree = "<group>"; };
-		DDFFC13326FB0DAD001FD04A /* WishlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
-		DDFFC13426FB0DAD001FD04A /* WishMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishMapViewController.swift; sourceTree = "<group>"; };
-		DDFFC13526FB0DAD001FD04A /* WishCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishCalendarViewController.swift; sourceTree = "<group>"; };
+		DDFFC16726FB1C05001FD04A /* WishlistMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishlistMain.storyboard; sourceTree = "<group>"; };
+		DDFFC16826FB1C05001FD04A /* WishCalendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishCalendar.storyboard; sourceTree = "<group>"; };
+		DDFFC16926FB1C05001FD04A /* Wishlist.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Wishlist.storyboard; sourceTree = "<group>"; };
+		DDFFC16A26FB1C05001FD04A /* WishMap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WishMap.storyboard; sourceTree = "<group>"; };
+		DDFFC16C26FB1C05001FD04A /* WishlistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDFFC16E26FB1C05001FD04A /* WishlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
+		DDFFC16F26FB1C05001FD04A /* WishMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishMapViewController.swift; sourceTree = "<group>"; };
+		DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishCalendarViewController.swift; sourceTree = "<group>"; };
+		DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistMainViewController.swift; sourceTree = "<group>"; };
+		DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -584,7 +584,7 @@
 		DDF24B9826C6D61D007AB642 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				DDFFC12126FB0BFB001FD04A /* WishlistTab */,
+				DDFFC16526FB1C05001FD04A /* WishlistTab */,
 				DDFFC11426FB0734001FD04A /* MapTab */,
 				DDF24B9926C6D61D007AB642 /* MyInfoTab */,
 				DDF24B9F26C6D61D007AB642 /* HomeTab */,
@@ -672,44 +672,43 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		DDFFC12126FB0BFB001FD04A /* WishlistTab */ = {
+		DDFFC16526FB1C05001FD04A /* WishlistTab */ = {
 			isa = PBXGroup;
 			children = (
-				DDFFC12226FB0BFB001FD04A /* Storyboard */,
-				DDFFC12426FB0BFB001FD04A /* View */,
-				DDFFC12626FB0BFB001FD04A /* ViewController */,
+				DDFFC16626FB1C05001FD04A /* Storyboard */,
+				DDFFC16B26FB1C05001FD04A /* View */,
+				DDFFC16D26FB1C05001FD04A /* ViewController */,
 			);
-			name = WishlistTab;
-			path = "../../../../../jjollaejjollae_ios Wishlist Branch/jjollaejjollae/jjollaejjollae/Screen/Tabs/WishlistTab";
+			path = WishlistTab;
 			sourceTree = "<group>";
 		};
-		DDFFC12226FB0BFB001FD04A /* Storyboard */ = {
+		DDFFC16626FB1C05001FD04A /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				DDFFC12326FB0BFB001FD04A /* WishlistMain.storyboard */,
-				DDFFC12F26FB0DAD001FD04A /* Wishlist.storyboard */,
-				DDFFC13026FB0DAD001FD04A /* WishMap.storyboard */,
-				DDFFC13126FB0DAD001FD04A /* WishCalendar.storyboard */,
+				DDFFC16726FB1C05001FD04A /* WishlistMain.storyboard */,
+				DDFFC16826FB1C05001FD04A /* WishCalendar.storyboard */,
+				DDFFC16926FB1C05001FD04A /* Wishlist.storyboard */,
+				DDFFC16A26FB1C05001FD04A /* WishMap.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		DDFFC12426FB0BFB001FD04A /* View */ = {
+		DDFFC16B26FB1C05001FD04A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DDFFC12526FB0BFB001FD04A /* WishlistCollectionViewCell.swift */,
+				DDFFC16C26FB1C05001FD04A /* WishlistCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		DDFFC12626FB0BFB001FD04A /* ViewController */ = {
+		DDFFC16D26FB1C05001FD04A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				DDFFC12826FB0BFB001FD04A /* WishlistNavigationController.swift */,
-				DDFFC12726FB0BFB001FD04A /* WishlistMainViewController.swift */,
-				DDFFC13526FB0DAD001FD04A /* WishCalendarViewController.swift */,
-				DDFFC13326FB0DAD001FD04A /* WishlistViewController.swift */,
-				DDFFC13426FB0DAD001FD04A /* WishMapViewController.swift */,
+				DDFFC16E26FB1C05001FD04A /* WishlistViewController.swift */,
+				DDFFC16F26FB1C05001FD04A /* WishMapViewController.swift */,
+				DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */,
+				DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */,
+				DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -773,18 +772,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDFFC16326FB12F5001FD04A /* WishMap.storyboard in Resources */,
 				2884A31A26CE696B004596C3 /* SearchResult.storyboard in Resources */,
-				DDFFC12926FB0BFB001FD04A /* WishlistMain.storyboard in Resources */,
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
 				2884A32B26D3FC8B004596C3 /* Filter.storyboard in Resources */,
 				286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */,
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
+				DDFFC17426FB1C05001FD04A /* WishCalendar.storyboard in Resources */,
 				28331CC026DCD70F0062B29D /* InfoView.xib in Resources */,
 				2877831126C824A2001BF582 /* Stars.storyboard in Resources */,
-				DDFFC16426FB12F7001FD04A /* WishCalendar.storyboard in Resources */,
+				DDFFC17626FB1C05001FD04A /* WishMap.storyboard in Resources */,
+				DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
 				2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
@@ -794,9 +793,9 @@
 				28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */,
 				2841598E26BA745700F027DB /* LoginView.storyboard in Resources */,
 				28F9E94126C802A000D9E693 /* Search.storyboard in Resources */,
-				DDFFC16226FB12F3001FD04A /* Wishlist.storyboard in Resources */,
 				DDFFC11B26FB0734001FD04A /* MapMain.storyboard in Resources */,
 				2884A3BD26D91FFD004596C3 /* Calendar.storyboard in Resources */,
+				DDFFC17326FB1C05001FD04A /* WishlistMain.storyboard in Resources */,
 				2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */,
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
 				2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */,
@@ -863,6 +862,7 @@
 			files = (
 				DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */,
 				283F240D26F87F9C00CD8339 /* SimpleResponse.swift in Sources */,
+				DDFFC17B26FB1C05001FD04A /* WishlistMainViewController.swift in Sources */,
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
 				2884A31C26CE8E42004596C3 /* AccommodationDataSource.swift in Sources */,
 				DDFFC11C26FB0734001FD04A /* MapMainViewController.swift in Sources */,
@@ -872,15 +872,17 @@
 				2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */,
 				283F240026F8687800CD8339 /* NetworkResult.swift in Sources */,
 				2884A31826CE532E004596C3 /* SearchResultViewController.swift in Sources */,
+				DDFFC17726FB1C05001FD04A /* WishlistCollectionViewCell.swift in Sources */,
 				2884A37726D7F3D4004596C3 /* Filters.swift in Sources */,
 				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
 				287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */,
-				DDFFC13826FB0EF3001FD04A /* WishCalendarViewController.swift in Sources */,
 				2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */,
+				DDFFC17A26FB1C05001FD04A /* WishCalendarViewController.swift in Sources */,
 				2827C88926B03C390001E077 /* AppDelegate.swift in Sources */,
 				2884A31E26CE91E1004596C3 /* RestaurantDataSource.swift in Sources */,
+				DDFFC17C26FB1C05001FD04A /* WishlistNavigationController.swift in Sources */,
 				28331D0E26DF681F0062B29D /* MapViewController.swift in Sources */,
 				284159A626BC515700F027DB /* PasswordViewController.swift in Sources */,
 				283F240B26F8732E00CD8339 /* RefreshTokenData.swift in Sources */,
@@ -888,7 +890,6 @@
 				283F23FF26F8687600CD8339 /* APIService.swift in Sources */,
 				2834ED0D26C0035800E948B0 /* DogInfoViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
-				DDFFC12B26FB0BFB001FD04A /* WishlistMainViewController.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				28E910BD26F0E2390093BF7C /* DogInfo.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
@@ -899,10 +900,10 @@
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
+				DDFFC17926FB1C05001FD04A /* WishMapViewController.swift in Sources */,
 				283F240126F8687F00CD8339 /* GenericResponse.swift in Sources */,
 				DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */,
 				283F240726F8716200CD8339 /* TempPasswordData.swift in Sources */,
-				DDFFC13626FB0EF3001FD04A /* WishMapViewController.swift in Sources */,
 				28EA824926B3C76D00785666 /* UIColor+Extension.swift in Sources */,
 				DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */,
 				2884A32426CECE82004596C3 /* DropDownDataSource.swift in Sources */,
@@ -912,6 +913,7 @@
 				283F23FE26F8687400CD8339 /* APITarget.swift in Sources */,
 				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
 				283F23F126F7117C00CD8339 /* WishListManager.swift in Sources */,
+				DDFFC17826FB1C05001FD04A /* WishlistViewController.swift in Sources */,
 				283F240926F8725C00CD8339 /* SignUpData.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
@@ -920,9 +922,7 @@
 				283F240326F869C900CD8339 /* EmailData.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
 				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
-				DDFFC13726FB0EF3001FD04A /* WishlistViewController.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
-				DDFFC12A26FB0BFB001FD04A /* WishlistCollectionViewCell.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				283F241026F8AE8C00CD8339 /* LaunchScreenViewController.swift in Sources */,
 				287AE21F26EC857B0038B39F /* CarouselLayout.swift in Sources */,
@@ -931,7 +931,6 @@
 				28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */,
 				28331CB426DB76730062B29D /* SearchMapViewController.swift in Sources */,
 				28E910BB26F0E1DA0093BF7C /* dogInfoCollectionView.swift in Sources */,
-				DDFFC12C26FB0BFB001FD04A /* WishlistNavigationController.swift in Sources */,
 				28331D1026E216720062B29D /* CalendarCell.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,

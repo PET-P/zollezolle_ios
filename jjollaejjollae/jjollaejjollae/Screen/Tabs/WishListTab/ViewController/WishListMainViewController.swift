@@ -113,7 +113,6 @@ extension WishlistMainViewController: UICollectionViewDelegate {
     // TODO: wishListVC 를 적절한 데이터를 사용해 채워넣는 코드
     
     self.navigationController?.pushViewController(wishlistVC, animated: true)
-
   }
 }
 
