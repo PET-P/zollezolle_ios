@@ -18,10 +18,12 @@ public let DEFAULT_CAMERA_POSITION = NMFCameraPosition(NMGLatLng(lat: 33.4166317
 class MapViewController: UIViewController {
   
   @IBOutlet weak var mapView: NMFMapView!
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationController?.navigationBar.barTintColor = UIColor.white
+    
     let navTitle = UILabel(frame: CGRect(x: 0, y: 0, width: 74, height: 23))
     navTitle.textAlignment = .center
     navTitle.font = .robotoBold(size: 20)

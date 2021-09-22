@@ -10,19 +10,25 @@ import UIKit
 class PasswordViewController: UIViewController {
   
   private lazy var loginManager = LoginManager()
+  var loginData: LoginData?
+  private var email: String = ""
+  
+  func setEmail(email: String) {
+    self.email = email
+  }
     
   @IBOutlet weak var topPasswordLabel: UILabel! {
     didSet {
       topPasswordLabel.text = "비밀번호를"
       topPasswordLabel.font = UIFont.robotoBold(size: 30)
-      topPasswordLabel.textColor = UIColor.쫄래블랙
+      topPasswordLabel.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var bottomPasswordLabel: UILabel! {
     didSet {
       bottomPasswordLabel.text = "입력해주세요"
       bottomPasswordLabel.font = UIFont.robotoBold(size: 30)
-      bottomPasswordLabel.textColor = UIColor.쫄래블랙
+      bottomPasswordLabel.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var passwordTextField: UITextField! {
@@ -37,12 +43,12 @@ class PasswordViewController: UIViewController {
       LoginButton.titleLabel?.textColor = UIColor.white
       LoginButton.tintColor = UIColor.white
       LoginButton.setRounded(radius: 25)
-      LoginButton.backgroundColor = UIColor.쫄래그린
+      LoginButton.backgroundColor = UIColor.themeGreen
     }
   }
   @IBOutlet weak var passwordErrorLabel: UILabel! {
     didSet {
-      passwordErrorLabel.isHidden = true
+      passwordErrorLabel.alpha = 0
       passwordErrorLabel.textColor = UIColor.errorColor
       passwordErrorLabel.font = UIFont.robotoMedium(size: 14)
       passwordErrorLabel.text = "잘못된 비밀번호 입니다."
@@ -61,23 +67,63 @@ class PasswordViewController: UIViewController {
   private var passwordErrorText: String = "" {
     didSet {
       passwordErrorLabel.text = "\(passwordErrorText)"
+      if passwordErrorText == "잘못된 비밀번호입니다." {
+        passwordErrorLabel.alpha = 1
+      } else {
+        passwordErrorLabel.alpha = 0
+      }
     }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     passwordTextField.underlineStyle(
-      textColor: UIColor.회,
-      borderColor: UIColor.쫄래페일그린, width: self.view.frame.width)
+      textColor: UIColor.gray03,
+      borderColor: UIColor.themePaleGreen, width: self.view.frame.width)
     setKeyboard()
+    passwordTextField.addTarget(self, action: #selector(updatedPasswordTextfieldUI(_:)),
+                             for: .editingChanged)
+  }
+  
+  
+  @objc private func updatedPasswordTextfieldUI(_ sender: Any?) {
+    if passwordErrorText == "잘못된 비밀번호입니다." {
+      passwordTextField.changeUnderLine(borderColor: UIColor.themePaleGreen, width: self.view.frame.width)
+      passwordErrorText = ""
+    }
   }
   
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
+    APIService.shared.login(email, passwordTextField.text ?? "") { [self] result in
+      switch result {
+      case .success(let data):
+        loginData = data
+        let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
+        guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
+        self.navigationController?.pushViewController(homeMainVC, animated: true)
+      case .failure(let error):
+        print(error)
+        if error >= 400 && error < 500 {
+          passwordTextField.changeUnderLine(borderColor: UIColor.errorColor, width: self.view.frame.width)
+          passwordErrorText = "잘못된 비밀번호입니다."
+          findPasswordButton.isHidden = false
+        }
+      }
+    }
+  }
+  //
+  @IBAction private func didTapFindPasswordButton(_ sender: UIButton) {
     let findPasswordStoryboard = UIStoryboard(name: "FindPassword", bundle: nil)
-    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(
-            identifier: "FindPasswordViewController") as? FindPasswordViewController else {return}
+    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else {
+      return
+    }
+    findPasswordVC.setEmail(email: self.email)
     self.navigationController?.pushViewController(findPasswordVC, animated: true)
-  }  
+  }
+  
+  @IBAction private func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
+  }
 }
 
 extension PasswordViewController: UITextFieldDelegate {

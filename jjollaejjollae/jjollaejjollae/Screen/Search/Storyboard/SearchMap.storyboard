@@ -31,10 +31,10 @@
                                 <rect key="frame" x="0.0" y="88" width="390" height="756"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QW6-oo-2fA" customClass="InfoView" customModule="jjollaejjollae" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="566" width="358" height="148"/>
+                                        <rect key="frame" x="16" y="609" width="358" height="105"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="148" id="BaQ-3G-1Ch"/>
+                                            <constraint firstAttribute="height" constant="105" id="BaQ-3G-1Ch"/>
                                         </constraints>
                                     </view>
                                 </subviews>

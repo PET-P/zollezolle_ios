@@ -24,14 +24,14 @@ class SearchNoResultViewController: UIViewController, IndicatorInfoProvider {
   @IBOutlet weak var noInfoLabel: UILabel! {
     didSet {
       noInfoLabel.font = .robotoRegular(size: 16)
-      noInfoLabel.textColor = .회
+      noInfoLabel.textColor = .gray03
       noInfoLabel.text = "\"멍멍이카페에 해당하는 정보가 없어요\""
     }
   }
   @IBOutlet weak var searchGuide: UILabel! {
     didSet {
       searchGuide.font = .robotoRegular(size: 14)
-      searchGuide.textColor = .회
+      searchGuide.textColor = .gray03
       searchGuide.textAlignment = .center
       searchGuide.numberOfLines = 2
       searchGuide.text = "띄어쓰기 후 재검색 해 보세요! \n 예)멍멍이카페 → 멍멍이 카페"
@@ -74,7 +74,7 @@ extension SearchNoResultViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
-    header.addBorder([.top], color: .색e8, width: 1.0)
+    header.addBorder([.top], color: .gray05, width: 1.0)
     let headerLabel = UILabel()
     headerLabel.frame = CGRect(x: 16, y: 37, width: header.frame.width-16, height: 21)
     headerLabel.text = "근처 장소를 소개해드릴게요"

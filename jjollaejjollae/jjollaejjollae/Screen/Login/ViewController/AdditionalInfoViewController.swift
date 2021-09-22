@@ -29,10 +29,10 @@ class AdditionalInfoViewController: UIViewController {
   }
   @IBOutlet weak var nickNameSameErrorLabel: UILabel! {
     didSet {
-      nickNameSameErrorLabel.text = "이메일이 중복되었습니다."
+      nickNameSameErrorLabel.text = "닉네임이 중복되었습니다."
       nickNameSameErrorLabel.textColor = UIColor.errorColor
       nickNameSameErrorLabel.font = UIFont.robotoMedium(size: 14)
-      nickNameSameErrorLabel.isHidden = false
+      nickNameSameErrorLabel.isHidden = true
     }
   }
   @IBOutlet weak var phoneNumberTextField: UITextField! {
@@ -47,18 +47,23 @@ class AdditionalInfoViewController: UIViewController {
       startButton.titleLabel?.textColor = UIColor.white
       startButton.tintColor = UIColor.white
       startButton.setRounded(radius: 25)
-      startButton.backgroundColor = UIColor.쫄래그린
+      startButton.backgroundColor = UIColor.themeGreen
     }
   }
   @IBOutlet weak var stackView: UIStackView!
   @IBOutlet weak var scrollView: UIScrollView!
   
+  private var signUpModel: SignUp = SignUp()
+  var signUpData: SignUpData?
+  internal func setData(data: SignUp) {
+    self.signUpModel = data
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     let containerViewWidth = self.view.frame.size.width
-    nickNameTextField.underlineStyle(textColor: UIColor.연회, borderColor: UIColor.쫄래페일그린, width: containerViewWidth)
-    phoneNumberTextField.underlineStyle(textColor: UIColor.연회, borderColor: UIColor.쫄래페일그린, width: containerViewWidth)
+    nickNameTextField.underlineStyle(textColor: UIColor.gray04, borderColor: UIColor.themePaleGreen, width: containerViewWidth)
+    phoneNumberTextField.underlineStyle(textColor: UIColor.gray04, borderColor: UIColor.themePaleGreen, width: containerViewWidth)
     let tapGesture = UITapGestureRecognizer(
       target: view,
       action: #selector(view.endEditing(_:)))
@@ -96,13 +101,43 @@ class AdditionalInfoViewController: UIViewController {
               self.view.layoutIfNeeded()
       }
     }
+    
   }
   
   @IBAction private func didTapStartButton(_ sender: UIButton) {
       //pop to homeVC
-    let FindPasswordStoryboard = UIStoryboard.init(name: "FindPassword", bundle: nil)
-    guard let FindPasswordVC = FindPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else { return }
-    self.navigationController?.pushViewController(FindPasswordVC, animated: true)
+    guard let nick = nickNameTextField.text, let phone = phoneNumberTextField.text else {return}
+    signUpModel.nick = nick
+    signUpModel.phone = phone
+    APIService.shared.signup(email: signUpModel.email, password: signUpModel.password,
+                             nick: signUpModel.nick,
+                             phone: signUpModel.phone) { [weak self] result in
+      guard let self = self else {return}
+      switch result {
+      case .success(let data):
+        self.signUpData = data
+        let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
+        guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
+
+        if #available(iOS 13, *) {
+          dogInfoVC.isModalInPresentation = true
+        } else {
+          dogInfoVC.modalPresentationStyle = .currentContext
+        }
+        self.present(dogInfoVC, animated: true, completion: nil)
+      case .failure(let error):
+        print(error)
+        if error >= 400 && error < 500 {
+          let alertVC = UIAlertController(title: "오류", message: "서버 연결이 끊겼습니다.",
+                                          preferredStyle: .alert)
+          alertVC.addAction(UIAlertAction(title: "예", style: .default, handler: nil))
+          alertVC.present(alertVC, animated: true, completion: nil)
+        }
+      }
+    }
+//    let FindPasswordStoryboard = UIStoryboard.init(name: "FindPassword", bundle: nil)
+//    guard let FindPasswordVC = FindPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else { return }
+//    self.navigationController?.pushViewController(FindPasswordVC, animated: true)
     }
   
   @IBAction private func didTapBackButton(_ sender: UIButton) {
