@@ -31,6 +31,23 @@ class FindPasswordViewController: UIViewController {
       codeTextField.addLeftPadding()
     }
   }
+  @IBOutlet weak var codeErrorLabel: UILabel! {
+    didSet {
+      codeErrorLabel.alpha = 0
+      codeErrorLabel.textColor = UIColor.errorColor
+      codeErrorLabel.font = UIFont.robotoMedium(size: 14)
+      codeErrorLabel.text = "코드를 입력해주세요"
+    }
+  }
+  
+  @IBOutlet weak var emailErrorLabel: UILabel! {
+    didSet {
+      emailErrorLabel.alpha = 0
+      emailErrorLabel.textColor = UIColor.errorColor
+      emailErrorLabel.font = UIFont.robotoMedium(size: 14)
+      emailErrorLabel.text = "코드를 입력해주세요"
+    }
+  }
   @IBOutlet weak var stackView: UIStackView!
   @IBOutlet weak var scrollView: UIScrollView!
   @IBOutlet weak var goToLoginButton: UIButton! {
@@ -59,12 +76,22 @@ class FindPasswordViewController: UIViewController {
     button.addTarget(self, action: #selector(self.didTapSendCodeButton(_:)), for: .touchUpInside)
     return button
   }()
+  
+  private var email: String?
+  private var codeErrorLabelText: String = "코드를 입력해주세요" {
+    didSet {
+      codeErrorLabel.text = codeErrorLabelText
+    }
+  }
+  
+  //status 빈코드, 틀린코드
 
   override func viewDidLoad() {
     super.viewDidLoad()
     let containerWidth = self.view.frame.size.width
     findEmailTextField.underlineStyle(textColor: .gray03, borderColor: .themePaleGreen, width: containerWidth)
     codeTextField.underlineStyle(textColor: .gray03, borderColor: .themePaleGreen, width: containerWidth)
+    findEmailTextField.text = email
     findEmailTextField.addSubview(SendCodeBUtton)
     setKeyboard()
   }
@@ -73,25 +100,49 @@ class FindPasswordViewController: UIViewController {
     self.navigationController?.popViewController(animated: true)
   }
   
+  internal func setEmail(email: String) {
+    self.email = email
+  }
+  
   @IBAction private func didTapGoToLoginButton(_ sender: UIButton){
     //TODO 로그인 화면으로 이동
+    //TODO 근데 이건 비번 어디서알려줌/?
+    guard let email = findEmailTextField.text else {return}
+    guard let code = codeTextField.text else {
+      
+      return }
+    //TODO 서버통신
 //    let loginViewStoryboard = UIStoryboard.init(name: "LoginView", bundle: nil)
 //    guard let loginVC = loginViewStoryboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {return}
 //    self.navigationController?.popToViewController(loginVC, animated: true)
-    let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
-    guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
-
-    if #available(iOS 13, *) {
-      dogInfoVC.isModalInPresentation = true
-    } else {
-      dogInfoVC.modalPresentationStyle = .currentContext
-    }
-    self.present(dogInfoVC, animated: true, completion: nil)
+    
+    // sosvast@cau.ac.kr
   }
+  
+  // 변화감지일때
+  @objc private func updateTextFieldUI(_ sender: Any?) {
+    if codeErrorLabelText == "코드를 입력해주세요" || codeErrorLabelText == "잘못된 코드입니다." {
+      codeTextField.changeUnderLine(borderColor: .errorColor, width: 1)
+    }
+  }
+  
+  
   
   @objc private func didTapSendCodeButton(_ sender: Any?){
     //TODO 이메일 서버와 연결
     guard let sender = sender as? UIButton else {return}
+    guard let email = findEmailTextField.text else {return}
+    APIService.shared.findPassword(email: email) { [weak self](result) in
+      guard let self = self else {return}
+      switch result{
+      case .success(let body):
+        print(body)
+      case .failure(let error):
+        if error >= 400 && error < 500 {
+          print("인증코드가 발송되지 않았습니다. 다시 시도해주세요")
+        }
+      }
+    }
     sender.setTitle("재전송", for: .normal)
   }
 }
