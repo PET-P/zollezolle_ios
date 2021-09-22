@@ -29,13 +29,13 @@ class MainTabBarController: UITabBarController {
     return myNeighborhoodTabNavi
   }()
   
-  let wishListTab: WishListNavigationController = {
+  let wishListTab: WishlistNavigationController = {
     
-    let wishListTabNavi = WishListNavigationController()
+    let wishlistTabNavi = WishlistNavigationController()
     
-    wishListTabNavi.setTabBarItem()
+    wishlistTabNavi.setTabBarItem()
     
-    return wishListTabNavi
+    return wishlistTabNavi
   }()
   
   let myInfoTab: MyInfoTabNavigationController = {

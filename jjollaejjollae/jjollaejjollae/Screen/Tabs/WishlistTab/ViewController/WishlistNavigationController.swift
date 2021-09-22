@@ -7,15 +7,15 @@
 
 import UIKit
 
-class WishListNavigationController: UINavigationController {
+class WishlistNavigationController: UINavigationController {
   
-  let wishListMainVC: WishListMainViewController = {
+  let wishlistMainVC: WishlistMainViewController = {
     
     guard let wishListMainVC =
-            WishListMainViewController.loadFromStoryboard(fileName: "WishListMain")
-            as? WishListMainViewController
+            WishlistMainViewController.loadFromStoryboard(fileName: "WishlistMain")
+            as? WishlistMainViewController
     else {
-      return WishListMainViewController()
+      return WishlistMainViewController()
     }
     
     return wishListMainVC
@@ -35,24 +35,24 @@ class WishListNavigationController: UINavigationController {
   
   func setTabBarItem() {
     
-    self.tabBarItem = UITabBarItem(title: wishListTabTitle,
-                                   image: wishListTabImage,
+    self.tabBarItem = UITabBarItem(title: wishlistTabTitle,
+                                   image: wishlistTabImage,
                                    selectedImage: nil)
   }
   
   private func setRootViewController() {
     
-    self.viewControllers.append(wishListMainVC)
+    self.viewControllers.append(wishlistMainVC)
   }
 }
 
 // MARK: - Resources
-extension WishListNavigationController {
-  private var wishListTabTitle: String {
+extension WishlistNavigationController {
+  private var wishlistTabTitle: String {
     return "위시리스트"
   }
   
-  private var wishListTabImage: UIImage? {
+  private var wishlistTabImage: UIImage? {
     return UIImage(named: "WishListTab")
   }
 }
