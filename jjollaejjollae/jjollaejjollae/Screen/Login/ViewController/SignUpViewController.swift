@@ -34,7 +34,6 @@ class SignUpViewController: UIViewController {
       passwordStyleErrorLabel.text = "형식에 맞는 비밀번호를 입력해주세요"
       passwordStyleErrorLabel.textColor = UIColor.errorColor
       passwordStyleErrorLabel.font = UIFont.robotoMedium(size: 14)
-      passwordStyleErrorLabel.isHidden = false
       passwordStyleErrorLabel.alpha = 0
     }
   }
@@ -49,7 +48,7 @@ class SignUpViewController: UIViewController {
       confirmationStyleErrorLabel.text = "비밀번호와 동일하지 않습니다"
       confirmationStyleErrorLabel.textColor = UIColor.errorColor
       confirmationStyleErrorLabel.font = UIFont.robotoMedium(size: 14)
-      confirmationStyleErrorLabel.isHidden = true
+      confirmationStyleErrorLabel.alpha = 0
     }
   }
   

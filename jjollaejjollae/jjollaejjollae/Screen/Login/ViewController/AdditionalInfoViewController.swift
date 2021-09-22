@@ -27,12 +27,13 @@ class AdditionalInfoViewController: UIViewController {
       nickNameTextField.addLeftPadding()
     }
   }
+  
   @IBOutlet weak var nickNameSameErrorLabel: UILabel! {
     didSet {
       nickNameSameErrorLabel.text = "닉네임이 중복되었습니다."
       nickNameSameErrorLabel.textColor = UIColor.errorColor
       nickNameSameErrorLabel.font = UIFont.robotoMedium(size: 14)
-      nickNameSameErrorLabel.isHidden = true
+      nickNameSameErrorLabel.alpha = 0
     }
   }
   @IBOutlet weak var phoneNumberTextField: UITextField! {
