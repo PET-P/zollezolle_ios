@@ -36,7 +36,7 @@ extension Date {
     let format = "MM.dd"
     formatter.dateFormat = format
     let dateString = formatter.string(from: self)
-    return "\(dateString) (\(self.weekDay()))"
+    return "\(dateString)"
   }
     
   func dateForSeachResult() -> String {

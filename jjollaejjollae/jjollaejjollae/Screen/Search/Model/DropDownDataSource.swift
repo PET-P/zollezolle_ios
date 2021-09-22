@@ -22,7 +22,7 @@ class DropDownDataSource: NSObject, UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
     cell.textLabel?.text = dataList[indexPath.row]
     cell.textLabel?.font = .robotoMedium(size: 13)
-    cell.textLabel?.textColor = .회
+    cell.textLabel?.textColor = .gray03
     cell.textLabel?.setContentHuggingPriority(.required, for: .horizontal)
     cell.textLabel?.textAlignment = .center
     cell.separatorInset = UIEdgeInsets.zero

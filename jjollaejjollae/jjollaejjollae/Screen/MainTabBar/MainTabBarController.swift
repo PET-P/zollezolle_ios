@@ -57,7 +57,7 @@ class MainTabBarController: UITabBarController {
   }
   
   func setTabBar() {
-    self.tabBar.tintColor = UIColor.쫄래그린
+    self.tabBar.tintColor = UIColor.themeGreen
     self.tabBar.isTranslucent = false
   }
 }

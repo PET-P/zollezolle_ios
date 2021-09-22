@@ -9,17 +9,24 @@ import UIKit
 
 class WishListNavigationController: UINavigationController {
   
-  let wishListMainVC: WishListMainViewController = {
-    
-    guard let wishListMainVC =
-            WishListMainViewController.loadFromStoryboard(fileName: "WishListMain")
-            as? WishListMainViewController
-    else {
-      return WishListMainViewController()
+  let wishListVC: WishListViewController = {
+    guard let wishListVC = WishListViewController.loadFromStoryboard(fileName: "WishList") as? WishListViewController else {return
+      WishListViewController()
     }
-    
-    return wishListMainVC
+    return wishListVC
   }()
+  
+//  let wishListMainVC: WishListMainViewController = {
+//
+//    guard let wishListMainVC =
+//            WishListMainViewController.loadFromStoryboard(fileName: "WishListMain")
+//            as? WishListMainViewController
+//    else {
+//      return WishListMainViewController()
+//    }
+//
+//    return wishListMainVC
+//  }()
   
   
   // MARK: - Life Cycle
@@ -42,7 +49,7 @@ class WishListNavigationController: UINavigationController {
   
   private func setRootViewController() {
     
-    self.viewControllers.append(wishListMainVC)
+    self.viewControllers.append(wishListVC)
   }
 }
 
