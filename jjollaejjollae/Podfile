@@ -18,5 +18,6 @@ target 'jjollaejjollae' do
   pod 'XLPagerTabStrip', '~> 9.0'
   pod 'FSCalendar'
   pod 'NMapsMap'
+  pod 'naveridlogin-sdk-ios'
 
 end

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NaverThirdPartyLogin
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,9 +31,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             window?.makeKeyAndVisible()
         }
+      
+      let instance = NaverThirdPartyLoginConnection.getSharedInstance()
+      
+      //네이버앱에서 인증활성화
+      instance?.isNaverAppOauthEnable = true
+      //사파리에서 인증활정화
+      instance?.isInAppOauthEnable = true
+      //새로모드에서만 가능하게 만들기
+      instance?.isOnlyPortraitSupportedInIphone()
+      
+      //네아로 설정
+      //처음 정해준 urlscheme
+      instance?.serviceUrlScheme = kServiceAppUrlScheme
+      //애플리케이션 등록 후 발급받은 클아이언트 아이디
+      instance?.consumerKey = kConsumerKey
+      //클라이언트 시크릿
+      instance?.consumerSecret = kConsumerSecret
+      //어플리케이션 이름
+      instance?.appName = kServiceAppName
         
         return true
     }
+  
+  func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
+    return true
+  }
 
     // MARK: UISceneSession Lifecycle
 

@@ -47,6 +47,17 @@ struct APIService {
     let target = APITarget.signup(email: email, password: password, nick: nick, phone: phone)
     judgeGenericResponse(target, completion: completion)
   }
+  
+  func naver(authorization: String, completion: @escaping ((NetworkResult<Any>) -> (Void))){
+    let target = APITarget.naver(authorization: authorization)
+    judgeSimpleResponse(target, completion: completion)
+  }
+  
+  func socialLogin(user: user, completion: @escaping ((NetworkResult<LoginData>) -> (Void))) {
+    let target = APITarget.socialLogin(user: user)
+    judgeGenericResponse(target, completion: completion)
+  }
+  
 }
 
 extension APIService {
@@ -89,5 +100,5 @@ extension APIService {
       }
     }
   }
-  
+
 }

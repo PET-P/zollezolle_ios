@@ -8,6 +8,12 @@
 import Foundation
 import Moya
 
+enum APIEnvironment: String {
+  case base = "http://49.50.173.104:80/api"
+  case naverURL = "https://openapi.naver.com/v1/nid/me"
+}
+
+
 enum APITarget {
   case login(email: String, password: String) //로그인
   case email(email: String) //이메일 인증 (비밀번호)
@@ -15,11 +21,20 @@ enum APITarget {
   case refreshToken(refreshToken: String, accessToken: String)//토큰 재발급
   case findPassword(email: String) //비밀번호 찾기
   case tempPassword(email: String, code: String) //임시비밀번호
+  case naver(authorization: String)
+  case socialLogin(user: user)
 }
 
 extension APITarget: TargetType {
+  
   var baseURL: URL {
-    return URL(string: "http://49.50.173.104:80/api")!
+    switch self {
+    case .naver:
+      return URL(string: APIEnvironment.naverURL.rawValue)!
+    default:
+      return URL(string: "http://49.50.173.104:80/api")!
+    }
+    
   }
   
   var path: String {
@@ -36,14 +51,18 @@ extension APITarget: TargetType {
       return "/auth/password"
     case .tempPassword(let email, let code):
       return "/auth/password?email=\(email)&code=\(code)"
+    case .naver:
+      return ""
+    case .socialLogin:
+      return "/auth/social"
     }
   }
   
   var method: Moya.Method {
     switch self {
-    case .refreshToken, .tempPassword:
+    case .refreshToken, .tempPassword, .naver:
       return .get
-    case .email, .login, .findPassword, .signup:
+    case .email, .login, .findPassword, .signup, .socialLogin:
       return .post
     }
   }
@@ -76,6 +95,10 @@ extension APITarget: TargetType {
     case .tempPassword(let email, let code):
       return .requestParameters(parameters: ["email": email, "code": code],
                                 encoding: JSONEncoding.default)
+    case .naver:
+      return .requestPlain
+    case .socialLogin(let user):
+      return .requestParameters(parameters: ["user": user], encoding: JSONEncoding.default)
     }
   }
   
@@ -86,11 +109,13 @@ extension APITarget: TargetType {
   
   var headers: [String : String]? {
     switch self {
-    case .login, .email, .findPassword, .tempPassword, .signup:
+    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin:
       return ["Content-Type" : "application/json"]
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : accessToken]
+    case .naver(let authorization):
+      return ["Authorization": authorization]
     }
   }
   
