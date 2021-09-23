@@ -1,6 +1,38 @@
 PODS:
   - Alamofire (5.4.4)
   - FSCalendar (2.8.2)
+  - KakaoSDK (2.8.0):
+    - KakaoSDKAuth (= 2.8.0)
+    - KakaoSDKCommon (= 2.8.0)
+    - KakaoSDKLink (= 2.8.0)
+    - KakaoSDKNavi (= 2.8.0)
+    - KakaoSDKStory (= 2.8.0)
+    - KakaoSDKTalk (= 2.8.0)
+    - KakaoSDKTemplate (= 2.8.0)
+    - KakaoSDKUser (= 2.8.0)
+  - KakaoSDKAuth (2.8.0):
+    - KakaoSDKCommon (= 2.8.0)
+  - KakaoSDKCommon (2.8.0):
+    - KakaoSDKCommon/Common (= 2.8.0)
+    - KakaoSDKCommon/Network (= 2.8.0)
+  - KakaoSDKCommon/Common (2.8.0)
+  - KakaoSDKCommon/Network (2.8.0):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.8.0)
+  - KakaoSDKLink (2.8.0):
+    - KakaoSDKCommon (= 2.8.0)
+    - KakaoSDKTemplate (= 2.8.0)
+  - KakaoSDKNavi (2.8.0):
+    - KakaoSDKCommon/Common (= 2.8.0)
+  - KakaoSDKStory (2.8.0):
+    - KakaoSDKUser (= 2.8.0)
+  - KakaoSDKTalk (2.8.0):
+    - KakaoSDKTemplate (= 2.8.0)
+    - KakaoSDKUser (= 2.8.0)
+  - KakaoSDKTemplate (2.8.0):
+    - KakaoSDKCommon/Common (= 2.8.0)
+  - KakaoSDKUser (2.8.0):
+    - KakaoSDKAuth (= 2.8.0)
   - Kingfisher (6.3.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -13,6 +45,7 @@ PODS:
 
 DEPENDENCIES:
   - FSCalendar
+  - KakaoSDK
   - Kingfisher (~> 6.0)
   - Moya (~> 14.0)
   - naveridlogin-sdk-ios
@@ -24,6 +57,15 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - FSCalendar
+    - KakaoSDK
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKLink
+    - KakaoSDKNavi
+    - KakaoSDKStory
+    - KakaoSDKTalk
+    - KakaoSDKTemplate
+    - KakaoSDKUser
     - Kingfisher
     - Moya
     - naveridlogin-sdk-ios
@@ -34,6 +76,15 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+  KakaoSDK: 31885e28f795ea568ff3537e5ee2cb44a9906dd0
+  KakaoSDKAuth: 614d5c1b2c52f0e25436765c52bfb27b522bf116
+  KakaoSDKCommon: 54ab936e6fc31ddaa78b056a6796db0d4be33923
+  KakaoSDKLink: 944f21e87962f83f6b687c99dc2c8edd8f6e902e
+  KakaoSDKNavi: b9723872afc731063bb72b604c2f28e838ba07d4
+  KakaoSDKStory: 4d866b5988c06397b023930b61f1ca3a105f3eab
+  KakaoSDKTalk: 46327e18da9fdcc558688f11eb6be1ae4118ea21
+  KakaoSDKTemplate: 4d118c0f051de0031ba294b8be275ef08944b69b
+  KakaoSDKUser: 24a737aa1e17b75579cb9e392062811d19d40045
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
@@ -41,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: bda41e5c2121dcb459fdcf461ebd8f9aafcf40be
+PODFILE CHECKSUM: d4256dd1c6e7c890677e1aa6fea3b0be1dbc2eb6
 
 COCOAPODS: 1.10.2

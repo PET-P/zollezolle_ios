@@ -19,5 +19,6 @@ target 'jjollaejjollae' do
   pod 'FSCalendar'
   pod 'NMapsMap'
   pod 'naveridlogin-sdk-ios'
+  pod 'KakaoSDK'
 
 end

@@ -7,6 +7,7 @@
 
 import UIKit
 import NaverThirdPartyLogin
+import AuthenticationServices
 import Alamofire
 
 class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDelegate {

@@ -198,6 +198,7 @@
 		2884A37626D7F3D3004596C3 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		2884A3BA26D91F56004596C3 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		2884A3BC26D91FFD004596C3 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		28BEA6EC26FC965400AFD367 /* jjollaejjollae.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jjollaejjollae.entitlements; sourceTree = "<group>"; };
 		28CF852A26E7882F00ED200F /* ProvisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisionViewController.swift; sourceTree = "<group>"; };
 		28E910BA26F0E1DA0093BF7C /* dogInfoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dogInfoCollectionView.swift; sourceTree = "<group>"; };
 		28E910BC26F0E2390093BF7C /* DogInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfo.swift; sourceTree = "<group>"; };
@@ -280,6 +281,7 @@
 		2827C88726B03C390001E077 /* jjollaejjollae */ = {
 			isa = PBXGroup;
 			children = (
+				28BEA6EC26FC965400AFD367 /* jjollaejjollae.entitlements */,
 				2827C88626B03C390001E077 /* Products */,
 				28EA826826B456E900785666 /* Screen */,
 				28EA824726B3C75900785666 /* Global */,
@@ -1077,7 +1079,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = jjollaejjollae/jjollaejjollae.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 693WY75AQY;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1096,7 +1100,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = jjollaejjollae/jjollaejjollae.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 693WY75AQY;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
