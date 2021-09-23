@@ -19,6 +19,11 @@ struct SignUpData: Codable {
   }
 }
 
+struct SocialUser {
+  var email: String = ""
+  var nick: String = ""
+  var phone: String = ""
+}
 
 struct SignUp {
   var email: String = ""

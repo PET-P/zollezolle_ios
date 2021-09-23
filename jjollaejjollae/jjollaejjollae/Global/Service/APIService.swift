@@ -53,8 +53,8 @@ struct APIService {
     judgeSimpleResponse(target, completion: completion)
   }
   
-  func socialLogin(user: user, completion: @escaping ((NetworkResult<LoginData>) -> (Void))) {
-    let target = APITarget.socialLogin(user: user)
+  func socialLogin(email: String, nick: String, phone: String, completion: @escaping ((NetworkResult<SignUpData>) -> (Void))) {
+    let target = APITarget.socialLogin(email: email, nick: nick, phone: phone)
     judgeGenericResponse(target, completion: completion)
   }
   
@@ -69,7 +69,9 @@ extension APIService {
           do {
             let decoder = JSONDecoder()
             let body = try decoder.decode(GenericResponse<T>.self, from: result.data)
+            print(body)
             if let data = body.data {
+              print(data)
               completion(.success(data))
             }
           } catch {

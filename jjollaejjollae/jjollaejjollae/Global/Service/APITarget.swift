@@ -22,7 +22,7 @@ enum APITarget {
   case findPassword(email: String) //비밀번호 찾기
   case tempPassword(email: String, code: String) //임시비밀번호
   case naver(authorization: String)
-  case socialLogin(user: user)
+  case socialLogin(email: String, nick: String, phone: String)
 }
 
 extension APITarget: TargetType {
@@ -97,8 +97,8 @@ extension APITarget: TargetType {
                                 encoding: JSONEncoding.default)
     case .naver:
       return .requestPlain
-    case .socialLogin(let user):
-      return .requestParameters(parameters: ["user": user], encoding: JSONEncoding.default)
+    case .socialLogin(let email, let nick, let phone):
+      return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone], encoding: JSONEncoding.default)
     }
   }
   

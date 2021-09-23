@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import NaverThirdPartyLogin
+import Alamofire
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDelegate {
   
+  private var naverUser: SocialUser?
+ 
   @IBOutlet weak var emailTextField: UITextField! {
     didSet {
       emailTextField.addLeftPadding()
@@ -108,7 +112,9 @@ class LoginViewController: UIViewController {
     }
   }
   
+  private let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
   private let loginManager = LoginManager()
+  private let dispatchGroup = DispatchGroup()
   
   private var errorText: String = "가입되지 않은 이메일입니다."{
     didSet {
@@ -126,7 +132,6 @@ class LoginViewController: UIViewController {
       }
     }
   }
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -209,10 +214,11 @@ class LoginViewController: UIViewController {
     self.navigationController?.pushViewController(searchVC, animated: true)
   }
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
-    
+    loginInstance?.delegate = self
+    loginInstance?.requestThirdPartyLogin()
   }
   @IBAction private func didTapKakaoLoginButton(_ sender: UIButton) {
-    
+    loginInstance?.requestDeleteToken()
   }
   @IBAction private func didTapAppleLoginButton(_ sender: UIButton) {
     
@@ -250,6 +256,72 @@ extension LoginViewController {
     }
     if continueButton.currentTitle == "회원가입" {
       continueButton.setTitle("계속하기", for: .normal)
+    }
+  }
+}
+
+//MARK: - Social Login 설정
+
+extension LoginViewController {
+  func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+    print("[Success] : Success Naver Login")
+    getNaverInfo()
+  }
+  
+  func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+    print("hi")
+  }
+  
+  func oauth20ConnectionDidFinishDeleteToken() {
+    print("delete")
+  }
+  
+  // error
+  func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
+    print("Error : ", error.localizedDescription)
+  }
+  
+  private func getNaverInfo() {
+    guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else {return}
+    if !isValidAccessToken {
+      return
+    }
+    guard let tokenType = loginInstance?.tokenType else {return}
+    guard let accessToken = loginInstance?.accessToken else {return}
+    let urlStr = "https://openapi.naver.com/v1/nid/me"
+    let url = URL(string: urlStr)!
+    let authorization = "\(tokenType) \(accessToken)"
+  
+    let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
+    
+    dispatchGroup.enter()
+    req.responseJSON { [weak self] response in
+      guard let result = response.value as? [String: Any] else {return}
+      guard let object = result["response"] as? [String: Any] else { return }
+      guard let _email = object["email"] as? String else { return }
+      guard let _nickname = object["nickname"] as? String else { return }
+      guard let _mobile = object["mobile"] as? String else { return }
+      
+      let socialUser = SocialUser(email: _email, nick: _nickname, phone: _mobile)
+      self?.naverUser = socialUser
+      self?.dispatchGroup.leave()
+    }
+    
+    dispatchGroup.notify(queue: .global()) { [weak self] in
+      guard let self = self else {
+        return}
+      guard let naverUser = self.naverUser else {
+        return}
+      APIService.shared.socialLogin(email: naverUser.email,
+                                    nick: naverUser.nick,
+                                    phone: naverUser.phone) { (result) in
+        switch result {
+        case .success(let data):
+          print(data)
+        case .failure(let error):
+          print(error)
+        }
+      }
     }
   }
 }
