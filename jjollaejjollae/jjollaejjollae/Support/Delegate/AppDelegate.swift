@@ -7,6 +7,9 @@
 
 import UIKit
 import NaverThirdPartyLogin
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
         }
       
+      KakaoSDKCommon.initSDK(appKey: "c0bb56afacd533b59ed80a295f4c5835")
+      
+      
       let instance = NaverThirdPartyLoginConnection.getSharedInstance()
       
       //네이버앱에서 인증활성화
@@ -50,13 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       instance?.consumerSecret = kConsumerSecret
       //어플리케이션 이름
       instance?.appName = kServiceAppName
+      
         
         return true
     }
   
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-    NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
-    return true
+    if (AuthApi.isKakaoTalkLoginUrl(url)) {
+      return AuthController.handleOpenUrl(url: url)
+    } else if NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options) != nil {
+      return true
+    } else {
+      return false
+    }
   }
 
     // MARK: UISceneSession Lifecycle
