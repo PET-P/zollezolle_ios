@@ -8,7 +8,5 @@
 import Foundation
 
 struct TempPasswordData: Codable {
-  let success: Bool?
-  let message: String?
   let tempPassword: String?
 }

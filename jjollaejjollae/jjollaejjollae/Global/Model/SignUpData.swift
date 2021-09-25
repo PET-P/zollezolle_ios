@@ -15,19 +15,8 @@ struct SignUpData: Codable {
   enum CodingKeys: String, CodingKey {
     case id = "_id"
     case accessToken = "accessToken"
-    case refreshToken = "refreshToKen"
+    case refreshToken = "refreshToken"
   }
 }
 
-struct SocialUser {
-  var email: String = ""
-  var nick: String = ""
-  var phone: String = ""
-}
 
-struct SignUp {
-  var email: String = ""
-  var password: String = ""
-  var nick: String = ""
-  var phone: String = ""
-}
