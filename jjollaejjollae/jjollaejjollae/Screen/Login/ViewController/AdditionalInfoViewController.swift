@@ -56,6 +56,7 @@ class AdditionalInfoViewController: UIViewController {
   
   private var signUpModel: SignUp = SignUp()
   var signUpData: SignUpData?
+  private let loginManager = LoginManager()
   internal func setData(data: SignUp) {
     self.signUpModel = data
   }
@@ -117,14 +118,14 @@ class AdditionalInfoViewController: UIViewController {
       switch result {
       case .success(let data):
         self.signUpData = data
+        guard let accessToken = self.signUpData?.accessToken, let refreshToken = self.signUpData?.refreshToken else {
+          return
+        }
+        self.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
+        self.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
         let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
         guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
-
-        if #available(iOS 13, *) {
-          dogInfoVC.isModalInPresentation = true
-        } else {
-          dogInfoVC.modalPresentationStyle = .currentContext
-        }
+        dogInfoVC.isModalInPresentation = true
         self.present(dogInfoVC, animated: true, completion: nil)
       case .failure(let error):
         print(error)
@@ -136,10 +137,7 @@ class AdditionalInfoViewController: UIViewController {
         }
       }
     }
-//    let FindPasswordStoryboard = UIStoryboard.init(name: "FindPassword", bundle: nil)
-//    guard let FindPasswordVC = FindPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else { return }
-//    self.navigationController?.pushViewController(FindPasswordVC, animated: true)
-    }
+  }
   
   @IBAction private func didTapBackButton(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true);
