@@ -93,7 +93,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   @IBOutlet weak var errorLabel: UILabel! {
     didSet {
-      errorLabel.text = "가입되지 않은 이메일입니다."
+      errorLabel.text = "이메일 형식이 맞지않습니다."
       errorLabel.textColor = UIColor.errorColor
       errorLabel.isHidden = true
       errorLabel.font = UIFont.robotoMedium(size: 14)
@@ -104,7 +104,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   private let loginManager = LoginManager()
   private let dispatchGroup = DispatchGroup()
   
-  private var errorText: String = "가입되지 않은 이메일입니다."{
+  private var errorText: String = "이메일 형식이 맞지않습니다."{
     didSet {
       errorLabel.text = "\(errorText)"
     }
@@ -166,14 +166,6 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapContinueButton(_ sender: UIButton) {
-    //버튼 글씨가 회원가입이면 signUpVC으로 간다.
-    if sender.currentTitle == "회원가입" {
-      let signUpStoryBoard = UIStoryboard.init(name: "SignUp", bundle: nil)
-      guard let signUpVC = signUpStoryBoard.instantiateViewController(
-              identifier: "SignUpViewController") as? SignUpViewController else {return}
-      signUpVC.setEmail(email: self.emailTextField.text!)
-      self.navigationController?.pushViewController(signUpVC, animated: true)
-    }
     
     //'계속하기'일 경우에는 이메일이 맞는지 확인해본다.
     APIService.shared.email(emailTextField.text ?? "") {
@@ -188,8 +180,11 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         self.navigationController?.pushViewController(passwordVC, animated: true)
       case .failure(let error):
         if error >= 400 && error < 500 {
-          self.errorText = "가입되지 않은 이메일입니다."
-          self.continueButton.setTitle("회원가입", for: .normal)
+          let signUpStoryBoard = UIStoryboard.init(name: "SignUp", bundle: nil)
+          guard let signUpVC = signUpStoryBoard.instantiateViewController(
+                  identifier: "SignUpViewController") as? SignUpViewController else {return}
+          signUpVC.setEmail(email: self.emailTextField.text!)
+          self.navigationController?.pushViewController(signUpVC, animated: true)
         }
       }
     }
