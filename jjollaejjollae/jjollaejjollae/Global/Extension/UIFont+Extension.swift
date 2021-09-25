@@ -8,16 +8,16 @@
 import UIKit
 
 struct AppFontName {
-    static let bold = "Roboto Mono Bold for Powerline"
-    static let boldItalic = "Roboto Mono Bold Italic for Powerline"
-    static let regular = "Roboto Mono for Powerline"
-    static let regularItalic = "Roboto Mono Italic for Powerline"
-    static let light = "Roboto Mono Light for Powerline"
-    static let lightItalic = "Roboto Mono Light Italic for Powerline"
-    static let medium = "Roboto Mono Medium for Powerline"
-    static let mediumItalic = "Roboto Mono Medium Italic for Powerline"
-    static let thin = "Roboto Mono Thin for Powerline"
-    static let thinItalic = "Roboto Mono Thin Italic for Powerline"
+    static let bold = "RobotoMonoforPowerline-Bold"
+    static let boldItalic = "RobotoMonoforPowerline-BoldItalic"
+    static let regular = "RobotoMonoforPowerline-Regular"
+    static let regularItalic = "RobotoMonoforPowerline-Italic"
+    static let light = "RobotoMonoforPowerline-Light"
+    static let lightItalic = "RobotoMonoforPowerline-LightItalic"
+    static let medium = "RobotoMonoforPowerline-Medium"
+    static let mediumItalic = "RobotoMonoforPowerline-MediumItalic"
+    static let thin = "RobotoMonoforPowerline-Thin"
+    static let thinItalic = "RobotoMonoforPowerline-ThinItalic"
 }
 
 extension UIFont {

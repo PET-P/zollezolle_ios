@@ -28,12 +28,23 @@
 				<string>naverlogin</string>
 			</array>
 		</dict>
-		<dict/>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kakaoc0bb56afacd533b59ed80a295f4c5835</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>kakaokompassauth</string>
+		<string>kakaolink</string>
 		<string>jjollaejjollae</string>
 		<string>jjollaenaverthirdlogin</string>
 	</array>
@@ -48,6 +59,7 @@
 		<string>Roboto Mono for Powerline.ttf</string>
 		<string>Roboto Mono Italic for Powerline.ttf</string>
 		<string>Roboto Mono Light for Powerline.ttf</string>
+		<string>Roboto Mono Light Italic for Powerline.ttf</string>
 		<string>Roboto Mono Medium for Powerline.ttf</string>
 		<string>Roboto Mono Medium Italic for Powerline.ttf</string>
 		<string>Roboto Mono Thin for Powerline.ttf</string>
