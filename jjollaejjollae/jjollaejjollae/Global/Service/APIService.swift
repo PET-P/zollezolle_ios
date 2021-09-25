@@ -69,16 +69,14 @@ extension APIService {
           do {
             let decoder = JSONDecoder()
             let body = try decoder.decode(GenericResponse<T>.self, from: result.data)
-            print(body)
             if let data = body.data {
-              print(data)
               completion(.success(data))
             }
           } catch {
             print("구조체를 확인하세요")
           }
         case .failure(let error):
-          print("\(#function), \(error)")
+          print("\(#function), error: \(error)")
           completion(.failure(error.response?.statusCode ?? -1))
       }
     }

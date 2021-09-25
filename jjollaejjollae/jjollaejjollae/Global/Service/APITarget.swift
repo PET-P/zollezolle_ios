@@ -88,10 +88,8 @@ extension APITarget: TargetType {
                                              "phone": phone], encoding: JSONEncoding.default)
     case .findPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
-    case .refreshToken(let refreshToken, let accessToken):
-      return .requestParameters(parameters: ["refreshToken": refreshToken,
-                                             "accessToken" : accessToken],
-                                encoding: JSONEncoding.default)
+    case .refreshToken:
+      return .requestPlain
     case .tempPassword(let email, let code):
       return .requestParameters(parameters: ["email": email, "code": code],
                                 encoding: JSONEncoding.default)
@@ -113,7 +111,7 @@ extension APITarget: TargetType {
       return ["Content-Type" : "application/json"]
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
-              "Authorization" : accessToken]
+              "Authorization" : "Bearer \(accessToken)"]
     case .naver(let authorization):
       return ["Authorization": authorization]
     }
