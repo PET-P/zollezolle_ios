@@ -7,12 +7,18 @@
 
 import UIKit
 import NaverThirdPartyLogin
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 import AuthenticationServices
 import Alamofire
 
-class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDelegate {
+@available(iOS 13.0, *)
+
+class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDelegate{
   
   private var naverUser: SocialUser?
+  private var completionHandler: (() -> Void)?
  
   @IBOutlet weak var emailTextField: UITextField! {
     didSet {
@@ -29,7 +35,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   @IBOutlet weak var bottomLoginTitle: UILabel! {
     didSet {
       bottomLoginTitle.text = "여행을 떠나 볼까요?"
-      bottomLoginTitle.font = UIFont.robotoBold(size: 30)
+//      bottomLoginTitle.font = UIFont.robotoBold(size: 30)
       bottomLoginTitle.textColor = UIColor.gray01
     }
   }
@@ -56,34 +62,15 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   @IBOutlet weak var naverLoginButton: UIButton! {
     didSet {
-      naverLoginButton.setTitle("네이버 로그인", for: .normal)
-      naverLoginButton.roundedButton(cornerRadius: 25)
-      naverLoginButton.backgroundColor = UIColor(rgb: 0x75D15D)
-      naverLoginButton.titleLabel?.font = UIFont.robotoBold(size: 18)
-      naverLoginButton.tintColor = UIColor.white
-      naverLoginButton.titleLabel?.textColor = UIColor.white
+      naverLoginButton.roundedButton(cornerRadius: nil)
     }
   }
   @IBOutlet weak var kakaoLoginButton: UIButton! {
     didSet {
-      kakaoLoginButton.setTitle("카카오 로그인", for: .normal)
-      kakaoLoginButton.setRounded(radius: 25)
-      kakaoLoginButton.backgroundColor = UIColor(rgb: 0xFFE841)
-      kakaoLoginButton.titleLabel?.font = UIFont.robotoBold(size: 18)
-      kakaoLoginButton.tintColor = UIColor.black
-      kakaoLoginButton.titleLabel?.textColor = UIColor.black
+      kakaoLoginButton.setRounded(radius: nil)
     }
   }
-  @IBOutlet weak var appleLoginButton: UIButton! {
-    didSet {
-      appleLoginButton.setTitle("애플 로그인", for: .normal)
-      appleLoginButton.setRounded(radius: 25)
-      appleLoginButton.backgroundColor = UIColor.black
-      appleLoginButton.titleLabel?.font = UIFont.robotoBold(size: 18)
-      appleLoginButton.tintColor = UIColor.white
-      appleLoginButton.titleLabel?.textColor = UIColor.white
-    }
-  }
+  @IBOutlet weak var appleLoginButton: UIButton!
   @IBOutlet weak var provisionLabel: UILabel! {
     didSet {
       provisionLabel.numberOfLines = 1
@@ -207,6 +194,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
       }
     }
   }
+  
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
     let SearchStoryboard = UIStoryboard(name: "Search", bundle: nil)
     guard let searchVC = SearchStoryboard
@@ -214,15 +202,59 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     else { return }
     self.navigationController?.pushViewController(searchVC, animated: true)
   }
+  
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
     loginInstance?.delegate = self
     loginInstance?.requestThirdPartyLogin()
   }
+  
   @IBAction private func didTapKakaoLoginButton(_ sender: UIButton) {
-    loginInstance?.requestDeleteToken()
+    // 토큰이 있어서 그냥 로그인할수 있는 경우?
+    if AuthApi.hasToken() {
+      UserApi.shared.accessTokenInfo { [weak self] (_ ,error) in
+        if let error = error {
+          if let sdkError = error as? SdkError, sdkError.isInvalidTokenError() == true {
+            print("로그인필요1")
+            self?.kakaoLogin()
+          }
+          else {
+            print("기타애러 \(error)")
+          }
+        } else {
+          print("토큰 유효성 체크 성공")
+        }
+      }
+    } else {
+      print("토큰없어서 로그인 필요")
+      self.kakaoLogin()
+    }
+    dispatchGroup.notify(queue: .main) { [weak self] in
+      self?.kakaoUserInfo(completion: { email, nick, phone in
+        APIService.shared.socialLogin(email: email, nick: nick, phone: phone) { [weak self] result in
+          switch result {
+          case .success(let data):
+            guard let accessToken = data.accessToken else {return}
+            guard let refreshToken = data.refreshToken else {return}
+            self?.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
+            self?.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
+          case .failure(let error):
+            print(error)
+          }
+        }
+      })
+      self?.navigationController?.pushViewController(MainTabBarController(), animated: true)
+    }
   }
+  
   @IBAction private func didTapAppleLoginButton(_ sender: UIButton) {
+    let appleIDProvider = ASAuthorizationAppleIDProvider()
+    let request = appleIDProvider.createRequest()
+    request.requestedScopes = [.fullName, .email]
     
+    let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+    authorizationController.delegate = self
+    authorizationController.presentationContextProvider = self
+    authorizationController.performRequests()
   }
 }
 
@@ -263,14 +295,17 @@ extension LoginViewController {
 
 //MARK: - Social Login 설정
 
-extension LoginViewController {
+extension LoginViewController: StoryboardInstantiable {
   func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
     print("[Success] : Success Naver Login")
     getNaverInfo()
+    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
   }
   
   func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
-    print("hi")
+    print("이미 로그인되어있다")
+    getNaverInfo()
+    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
   }
   
   func oauth20ConnectionDidFinishDeleteToken() {
@@ -293,7 +328,9 @@ extension LoginViewController {
     let url = URL(string: urlStr)!
     let authorization = "\(tokenType) \(accessToken)"
   
-    let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
+    let req = AF.request(url, method: .get, parameters: nil,
+                         encoding: JSONEncoding.default,
+                         headers: ["Authorization": authorization])
     
     dispatchGroup.enter()
     req.responseJSON { [weak self] response in
@@ -308,21 +345,123 @@ extension LoginViewController {
       self?.dispatchGroup.leave()
     }
     
-    dispatchGroup.notify(queue: .global()) { [weak self] in
+    dispatchGroup.notify(queue: .main) { [weak self] in
       guard let self = self else {
         return}
       guard let naverUser = self.naverUser else {
         return}
       APIService.shared.socialLogin(email: naverUser.email,
                                     nick: naverUser.nick,
-                                    phone: naverUser.phone) { (result) in
+                                    phone: naverUser.phone) { [weak self] (result) in
         switch result {
         case .success(let data):
-          print(data)
+          guard let accessToken = data.accessToken else {return}
+          guard let refreshToken = data.refreshToken else {return}
+          self?.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
+          self?.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
         case .failure(let error):
           print(error)
         }
       }
     }
+  }
+  
+  //MARK: - KAKAO SOCIAL LOGIN
+  
+  private func kakaoLogin() {
+    //로그인?
+    if UserApi.isKakaoTalkLoginAvailable() {
+      // 카카오톡이 있는 경우
+      dispatchGroup.enter()
+      UserApi.shared.loginWithKakaoTalk { [weak self] (oauthToken, error) in
+        if let error = error {
+          print(error)
+        }
+        else {
+          print("loginwithKakaoTalk() success.")
+          self?.dispatchGroup.leave()
+          _ = oauthToken
+        }
+      }
+    } else {
+      // 카카오톡이 없는 경우
+      dispatchGroup.enter()
+      UserApi.shared.loginWithKakaoAccount { [weak self] (oauthToken, error) in
+        if let error = error {
+          print(error)
+        }
+        else {
+          print("loginWithKakaoTalk() success")
+          self?.dispatchGroup.leave()
+          _ = oauthToken
+        }
+      }
+    }
+  }
+  
+  private func kakaoUserInfo(completion: @escaping (String, String, String) -> Void) {
+    
+    var email: String = ""
+    var nick: String = ""
+    dispatchGroup.enter()
+    UserApi.shared.me { [weak self] (user, error) in
+      if let error = error {
+        print("kakaoUserINfoERROR")
+        return
+      }
+      else {
+        print("me() success.")
+        guard let _email = user?.kakaoAccount?.email else { return }
+        guard let _nick = user?.properties?["nickname"] else { return }
+        email = _email
+        nick = _nick
+        self?.dispatchGroup.leave()
+      }
+      self?.dispatchGroup.notify(queue: .main) {
+        completion(email, nick, "")
+      }
+    }
+  }
+}
+
+
+//MARK: - Apple Social Login
+
+extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+  
+  func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+    return self.view.window!
+  }
+  
+  //애플 로그인 성공
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+    dispatchGroup.enter()
+    guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {return}
+    let ID = appleIDCredential.user
+    let givenName = appleIDCredential.fullName?.givenName ?? ""
+    let familyName = appleIDCredential.fullName?.familyName ?? ""
+    var nick = givenName + familyName
+    nick = nick == "" ? "쫄래" : nick
+    dispatchGroup.leave()
+    
+    // 로그인이 되서 관련 정보를 받아왔다면 블록풀어주고 우리서버와 통신시작
+    dispatchGroup.notify(queue: .main) {
+      APIService.shared.socialLogin(email: ID, nick: nick, phone: "") { [weak self] (result) in
+        switch result {
+        case .success(let data):
+          guard let accessToken = data.accessToken else {return}
+          guard let refreshToken = data.refreshToken else {return}
+          self?.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
+          self?.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
+        case .failure(let error):
+          print(error)
+        }
+      }
+    }
+  }
+  
+  //로그인 실패
+  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+    print("Apple login failed")
   }
 }

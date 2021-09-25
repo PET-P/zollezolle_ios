@@ -29,8 +29,6 @@
 		283F23FF26F8687600CD8339 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23F626F84CB900CD8339 /* APIService.swift */; };
 		283F240026F8687800CD8339 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23F826F8503700CD8339 /* NetworkResult.swift */; };
 		283F240126F8687F00CD8339 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F23FA26F852E300CD8339 /* GenericResponse.swift */; };
-		283F240326F869C900CD8339 /* EmailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240226F869C900CD8339 /* EmailData.swift */; };
-		283F240526F8713400CD8339 /* FindPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240426F8713400CD8339 /* FindPasswordData.swift */; };
 		283F240726F8716200CD8339 /* TempPasswordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240626F8716200CD8339 /* TempPasswordData.swift */; };
 		283F240926F8725C00CD8339 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240826F8725C00CD8339 /* SignUpData.swift */; };
 		283F240B26F8732E00CD8339 /* RefreshTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240A26F8732E00CD8339 /* RefreshTokenData.swift */; };
@@ -54,6 +52,8 @@
 		2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877830E26C811B6001BF582 /* RecentSearchViewController.swift */; };
 		2877831126C824A2001BF582 /* Stars.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2877831026C824A2001BF582 /* Stars.storyboard */; };
 		2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877831226C824BE001BF582 /* StarsSearchViewController.swift */; };
+		2877C3A626FF79F2000E3233 /* SocialUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877C3A526FF79F2000E3233 /* SocialUser.swift */; };
+		2877C3A826FF7A09000E3233 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877C3A726FF7A09000E3233 /* SignUp.swift */; };
 		287AE21F26EC857B0038B39F /* CarouselLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287AE21E26EC857B0038B39F /* CarouselLayout.swift */; };
 		287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287AE22026EC85DF0038B39F /* CaraouselCell.swift */; };
 		287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287AE22226ECA5250038B39F /* DogInfoManager.swift */; };
@@ -149,8 +149,6 @@
 		283F23F826F8503700CD8339 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		283F23FA26F852E300CD8339 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		283F23FC26F865E000CD8339 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
-		283F240226F869C900CD8339 /* EmailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailData.swift; sourceTree = "<group>"; };
-		283F240426F8713400CD8339 /* FindPasswordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordData.swift; sourceTree = "<group>"; };
 		283F240626F8716200CD8339 /* TempPasswordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPasswordData.swift; sourceTree = "<group>"; };
 		283F240826F8725C00CD8339 /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		283F240A26F8732E00CD8339 /* RefreshTokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenData.swift; sourceTree = "<group>"; };
@@ -174,6 +172,8 @@
 		2877830E26C811B6001BF582 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
 		2877831026C824A2001BF582 /* Stars.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Stars.storyboard; sourceTree = "<group>"; };
 		2877831226C824BE001BF582 /* StarsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsSearchViewController.swift; sourceTree = "<group>"; };
+		2877C3A526FF79F2000E3233 /* SocialUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialUser.swift; sourceTree = "<group>"; };
+		2877C3A726FF7A09000E3233 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		287AE21E26EC857B0038B39F /* CarouselLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselLayout.swift; sourceTree = "<group>"; };
 		287AE22026EC85DF0038B39F /* CaraouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaraouselCell.swift; sourceTree = "<group>"; };
 		287AE22226ECA5250038B39F /* DogInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfoManager.swift; sourceTree = "<group>"; };
@@ -304,10 +304,10 @@
 				283F240C26F87F9C00CD8339 /* SimpleResponse.swift */,
 				283F23FC26F865E000CD8339 /* LoginData.swift */,
 				283F240A26F8732E00CD8339 /* RefreshTokenData.swift */,
-				283F240226F869C900CD8339 /* EmailData.swift */,
-				283F240426F8713400CD8339 /* FindPasswordData.swift */,
 				283F240626F8716200CD8339 /* TempPasswordData.swift */,
 				283F240826F8725C00CD8339 /* SignUpData.swift */,
+				2877C3A526FF79F2000E3233 /* SocialUser.swift */,
+				2877C3A726FF7A09000E3233 /* SignUp.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -895,11 +895,11 @@
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				28E910BD26F0E2390093BF7C /* DogInfo.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
-				283F240526F8713400CD8339 /* FindPasswordData.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */,
 				284159AA26BE522A00F027DB /* SignUpViewController.swift in Sources */,
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
+				2877C3A826FF7A09000E3233 /* SignUp.swift in Sources */,
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				DDFFC17926FB1C05001FD04A /* WishMapViewController.swift in Sources */,
@@ -920,8 +920,8 @@
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
 				DDFFC12026FB07D7001FD04A /* MapTabFilterTypeButton.swift in Sources */,
+				2877C3A626FF79F2000E3233 /* SocialUser.swift in Sources */,
 				283F23F326F7133400CD8339 /* Wish.swift in Sources */,
-				283F240326F869C900CD8339 /* EmailData.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
 				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
@@ -1008,7 +1008,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1063,7 +1063,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1083,6 +1083,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 693WY75AQY;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1104,6 +1105,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 693WY75AQY;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

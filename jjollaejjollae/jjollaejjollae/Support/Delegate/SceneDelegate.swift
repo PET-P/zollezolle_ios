@@ -6,36 +6,76 @@
 //
 
 import UIKit
+import KakaoSDKAuth
 import NaverThirdPartyLogin
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   //for test
-  var isLogged: Bool = false
-  
+  var isLogged = false
+  var waitingGroup = DispatchGroup()
   var window: UIWindow?
   
-  func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-    // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-    // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+  func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
+             options connectionOptions: UIScene.ConnectionOptions) {
     
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(windowScene: windowScene)
     let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
     
-    if !isLogged {
-      guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return}
-      let navigationController = UINavigationController(rootViewController: loginVC)
-      navigationController.setNavigationBarHidden(true, animated: false)
-      window?.rootViewController = loginVC
-      window?.rootViewController = navigationController
-    } else {
-      
-      let mainTabBarController = MainTabBarController()
-      window?.rootViewController = mainTabBarController
-    }
-    window?.makeKeyAndVisible()
     
+    //인터넷연결 오류시 발생하는 것
+    guard DeviceManager.shared.networkStatus == true else{
+      let attributedString =
+        NSAttributedString(string: "인터넷 연결 오류",
+                           attributes: [NSAttributedString.Key.font: UIFont.robotoBold(size: 20),
+                                        NSAttributedString.Key.foregroundColor: UIColor.themeGreen])
+      let AlertController = UIAlertController(title: "",
+                                                message: nil,
+                                                preferredStyle: .alert)
+      AlertController.setValue(attributedString, forKey: "attributedTitle")
+      let mainTabBarController = MainTabBarController()
+      self.window?.rootViewController = mainTabBarController
+      self.window?.makeKeyAndVisible()
+      mainTabBarController.present(AlertController, animated: true, completion: nil)
+      return
+    }
+    
+    let loginManager = LoginManager()
+    
+  
+    if let accessToken = loginManager.loadFromKeychain(account: "accessToken"),
+       let refreshToken = loginManager.loadFromKeychain(account: "refreshToken") {
+      waitingGroup.enter()
+      APIService.shared.refreshToken(refreshToken: refreshToken,
+                                     accessToken: accessToken) { [weak self] (result) in
+        switch result {
+        case .success(let data):
+          guard let newAccessToken = data.accessToken else {return}
+          loginManager.saveInKeychain(account: newAccessToken, value: "accessToken")
+          self?.isLogged = true
+        case .failure(let error):
+          print(error)
+          self?.isLogged = false
+        }
+        self?.waitingGroup.leave()
+      }
+    }
+    
+    waitingGroup.notify(queue: .main) { [weak self] in
+      guard let self = self else {return}
+      if !self.isLogged {
+        guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView")
+                as? LoginViewController else {return}
+        let navigationController = UINavigationController(rootViewController: loginVC)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        self.window?.rootViewController = loginVC
+        self.window?.rootViewController = navigationController
+      } else {
+        let mainTabBarController = MainTabBarController()
+        self.window?.rootViewController = mainTabBarController
+      }
+      self.window?.makeKeyAndVisible()
+    }
   }
   
   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -43,34 +83,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       .getSharedInstance()?
       .receiveAccessToken(URLContexts.first?.url)
     
+    if let url = URLContexts.first?.url {
+      if (AuthApi.isKakaoTalkLoginUrl(url)) {
+        _ = AuthController.handleOpenUrl(url: url)
+      }
+    }
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {
-    // Called as the scene is being released by the system.
-    // This occurs shortly after the scene enters the background, or when its session is discarded.
-    // Release any resources associated with this scene that can be re-created the next time the scene connects.
-    // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+    
   }
   
   func sceneDidBecomeActive(_ scene: UIScene) {
-    // Called when the scene has moved from an inactive state to an active state.
-    // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+    
   }
   
   func sceneWillResignActive(_ scene: UIScene) {
-    // Called when the scene will move from an active state to an inactive state.
-    // This may occur due to temporary interruptions (ex. an incoming phone call).
+    
   }
   
   func sceneWillEnterForeground(_ scene: UIScene) {
-    // Called as the scene transitions from the background to the foreground.
-    // Use this method to undo the changes made on entering the background.
+    
   }
   
   func sceneDidEnterBackground(_ scene: UIScene) {
-    // Called as the scene transitions from the foreground to the background.
-    // Use this method to save data, release shared resources, and store enough scene-specific state information
-    // to restore the scene back to its current state.
+    
   }
   
 }

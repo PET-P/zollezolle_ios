@@ -98,8 +98,13 @@ class PasswordViewController: UIViewController {
       switch result {
       case .success(let data):
         loginData = data
-        let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-        self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+        // 서버 통신해서 성공했다면 즉시 앱에 token 저장
+        // keychain에 저장하자
+        if let loginData = loginData {
+          loginManager.saveToken(accessToken: loginData.accessToken, refreshToken: loginData.refreshToken)
+          self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+        }
+        
       case .failure(let error):
         print(error)
         if error >= 400 && error < 500 {
