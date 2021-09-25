@@ -159,12 +159,7 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
   //MARK: - IBACTION
 
   @IBAction private func didTapBackButton(_ sender: UIButton) {
-    print(self.navigationController)
-    
-//    self.tabBarController?.tabBar.isHidden = false
-//    self.tabBarController?.tabBar.isTranslucent = false
     self.navigationController?.popViewController(animated: true)
-    
   }
   
 //  var wishCompletionHandler: ((Wish?) -> (Wish?))?

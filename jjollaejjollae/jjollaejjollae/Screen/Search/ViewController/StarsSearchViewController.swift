@@ -46,7 +46,9 @@ extension StarsSearchViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell: SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "starCell", for: indexPath) as? SearchTableViewCell else {return UITableViewCell()}
+    guard let cell: SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "starCell",
+                                                                        for: indexPath)
+            as? SearchTableViewCell else {return UITableViewCell()}
     cell.recommendLabel.text = list[indexPath.row]
     return cell
   }

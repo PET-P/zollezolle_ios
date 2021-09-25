@@ -24,14 +24,15 @@ class RecentSearchViewController: UIViewController, IndicatorInfoProvider {
     return IndicatorInfo(title: "최근 검색어")
   }
   
-  
   override func viewDidLoad() {
     recentTableView.delegate = self
     recentTableView.dataSource = self
     super.viewDidLoad()
     list = searchManager.retrieveSearchHistory()
     
-    NotificationCenter.default.addObserver(self, selector: #selector(updateList(_:)), name: Notification.Name("updateListNotification"), object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(updateList(_:)),
+                                           name: Notification.Name("updateListNotification"),
+                                           object: nil)
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -61,14 +62,19 @@ extension RecentSearchViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell: SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "recentCell", for: indexPath) as? SearchTableViewCell else {return UITableViewCell()}
+    guard let cell: SearchTableViewCell =
+            tableView.dequeueReusableCell(withIdentifier: "recentCell",
+                                          for: indexPath) as? SearchTableViewCell
+    else {return UITableViewCell()}
     cell.recommendLabel.text = list[indexPath.row]
     return cell
   }
 }
 
 extension RecentSearchViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView,
+                 commit editingStyle: UITableViewCell.EditingStyle,
+                 forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       list.remove(at: indexPath.row)
       searchManager.updateSearchHistory(with: list)
