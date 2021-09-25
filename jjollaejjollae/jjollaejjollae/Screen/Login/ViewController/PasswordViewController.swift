@@ -101,7 +101,8 @@ class PasswordViewController: UIViewController {
         // 서버 통신해서 성공했다면 즉시 앱에 token 저장
         // keychain에 저장하자
         if let loginData = loginData {
-          loginManager.saveToken(accessToken: loginData.accessToken, refreshToken: loginData.refreshToken)
+          loginManager.saveInKeychain(account: "accessToken", value: loginData.accessToken)
+          loginManager.saveInKeychain(account: "refreshToken", value: loginData.refreshToken)
           self.navigationController?.pushViewController(MainTabBarController(), animated: true)
         }
         
