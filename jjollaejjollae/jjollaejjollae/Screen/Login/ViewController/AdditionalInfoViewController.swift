@@ -111,6 +111,7 @@ class AdditionalInfoViewController: UIViewController {
     guard let nick = nickNameTextField.text, let phone = phoneNumberTextField.text else {return}
     signUpModel.nick = nick
     signUpModel.phone = phone
+    print(signUpModel)
     APIService.shared.signup(email: signUpModel.email, password: signUpModel.password,
                              nick: signUpModel.nick,
                              phone: signUpModel.phone) { [weak self] result in
@@ -118,11 +119,12 @@ class AdditionalInfoViewController: UIViewController {
       switch result {
       case .success(let data):
         self.signUpData = data
-        guard let accessToken = self.signUpData?.accessToken, let refreshToken = self.signUpData?.refreshToken else {
-          return
-        }
-        self.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
-        self.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
+//        print(self.signUpData)
+//        guard let accessToken = self.signUpData?.accessToken, let refreshToken = self.signUpData?.refreshToken else {
+//          return
+//        }
+//        self.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
+//        self.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
         let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
         guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
         dogInfoVC.isModalInPresentation = true

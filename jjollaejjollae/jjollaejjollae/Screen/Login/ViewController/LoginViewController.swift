@@ -173,16 +173,13 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
       guard let self = self else {return}
       switch result  {
       case .success(_):
-        let passwordStoryboard = UIStoryboard.init(name: "Password", bundle: nil)
-        guard let passwordVC = passwordStoryboard.instantiateViewController(
-                identifier: "PasswordViewController") as? PasswordViewController else {return}
+        guard let passwordVC = PasswordViewController.loadFromStoryboard() as? PasswordViewController else {return}
         passwordVC.setEmail(email: self.emailTextField.text!)
         self.navigationController?.pushViewController(passwordVC, animated: true)
       case .failure(let error):
         if error >= 400 && error < 500 {
-          let signUpStoryBoard = UIStoryboard.init(name: "SignUp", bundle: nil)
-          guard let signUpVC = signUpStoryBoard.instantiateViewController(
-                  identifier: "SignUpViewController") as? SignUpViewController else {return}
+          guard let signUpVC = SignUpViewController.loadFromStoryboard()
+                  as? SignUpViewController else {return}
           signUpVC.setEmail(email: self.emailTextField.text!)
           self.navigationController?.pushViewController(signUpVC, animated: true)
         }
@@ -191,11 +188,9 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
-    let SearchStoryboard = UIStoryboard(name: "Search", bundle: nil)
-    guard let searchVC = SearchStoryboard
-            .instantiateViewController(identifier: "SearchViewController") as? SearchViewController
-    else { return }
-    self.navigationController?.pushViewController(searchVC, animated: true)
+//    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+    guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as? DogInfoViewController else {return}
+    self.navigationController?.pushViewController(dogInfoVC, animated: true)
   }
   
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
@@ -282,9 +277,9 @@ extension LoginViewController {
       continueButtonColor = .themeGreen
       self.errorText = ""
     }
-    if continueButton.currentTitle == "회원가입" {
-      continueButton.setTitle("계속하기", for: .normal)
-    }
+//    if continueButton.currentTitle == "회원가입" {
+//      continueButton.setTitle("계속하기", for: .normal)
+//    }
   }
 }
 
@@ -401,7 +396,7 @@ extension LoginViewController: StoryboardInstantiable {
     dispatchGroup.enter()
     UserApi.shared.me { [weak self] (user, error) in
       if let error = error {
-        print("kakaoUserINfoERROR")
+        print("kakaoError \(error)")
         return
       }
       else {
@@ -448,6 +443,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
           guard let refreshToken = data.refreshToken else {return}
           self?.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
           self?.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
+          self?.navigationController?.pushViewController(MainTabBarController(), animated: true)
         case .failure(let error):
           print(error)
         }

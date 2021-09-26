@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PasswordViewController: UIViewController {
+class PasswordViewController: UIViewController, StoryboardInstantiable {
   
   private lazy var loginManager = LoginManager()
   var loginData: LoginData?
@@ -118,10 +118,7 @@ class PasswordViewController: UIViewController {
   }
   //
   @IBAction private func didTapFindPasswordButton(_ sender: UIButton) {
-    let findPasswordStoryboard = UIStoryboard(name: "FindPassword", bundle: nil)
-    guard let findPasswordVC = findPasswordStoryboard.instantiateViewController(identifier: "FindPasswordViewController") as? FindPasswordViewController else {
-      return
-    }
+    guard let findPasswordVC = FindPasswordViewController.loadFromStoryboard() as? FindPasswordViewController else {return}
     findPasswordVC.setEmail(email: self.email)
     self.navigationController?.pushViewController(findPasswordVC, animated: true)
   }
