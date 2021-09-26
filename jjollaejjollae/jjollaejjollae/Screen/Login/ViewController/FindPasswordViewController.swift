@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FindPasswordViewController: UIViewController {
+class FindPasswordViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - IBOUTLET
   @IBOutlet weak var findPasswordTopLabel: UILabel! {
