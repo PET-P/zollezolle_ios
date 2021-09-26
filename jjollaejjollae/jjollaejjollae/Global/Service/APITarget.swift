@@ -23,6 +23,7 @@ enum APITarget {
   case tempPassword(email: String, code: String) //임시비밀번호
   case naver(authorization: String)
   case socialLogin(email: String, nick: String, phone: String)
+  case patchPetInfo(userId: String, pets: PetInfos)
 }
 
 extension APITarget: TargetType {
@@ -55,6 +56,8 @@ extension APITarget: TargetType {
       return ""
     case .socialLogin:
       return "/auth/social"
+    case .patchPetInfo(let userId, _):
+      return "/users/\(userId)"
     }
   }
   
@@ -64,6 +67,8 @@ extension APITarget: TargetType {
       return .get
     case .email, .login, .findPassword, .signup, .socialLogin:
       return .post
+    case .patchPetInfo:
+      return .patch
     }
   }
   
@@ -97,6 +102,8 @@ extension APITarget: TargetType {
       return .requestPlain
     case .socialLogin(let email, let nick, let phone):
       return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone], encoding: JSONEncoding.default)
+    case .patchPetInfo(let userId, let petinfo):
+      return .requestParameters(parameters: ["pets": petinfo], encoding: JSONEncoding.default)
     }
   }
   
@@ -107,7 +114,7 @@ extension APITarget: TargetType {
   
   var headers: [String : String]? {
     switch self {
-    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin:
+    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .patchPetInfo:
       return ["Content-Type" : "application/json"]
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,

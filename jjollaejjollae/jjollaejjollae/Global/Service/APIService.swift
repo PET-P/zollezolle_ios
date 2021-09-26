@@ -58,6 +58,11 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
+  func patchPetInfo(userId: String, pets: PetInfos, completion: @escaping ((NetworkResult<LoginData>) -> (Void))) {
+    let target = APITarget.patchPetInfo(userId: userId, pets: pets)
+    judgeGenericResponse(target, completion: completion)
+  }
+  
 }
 
 extension APIService {
@@ -65,19 +70,20 @@ extension APIService {
                                         completion: @escaping ((NetworkResult<T>) -> Void)) {
     provider.request(target) { response in
       switch response {
-        case .success(let result):
-          do {
-            let decoder = JSONDecoder()
-            let body = try decoder.decode(GenericResponse<T>.self, from: result.data)
-            if let data = body.data {
-              completion(.success(data))
-            }
-          } catch {
-            print("구조체를 확인하세요")
+      case .success(let result):
+        do {
+          let decoder = JSONDecoder()
+          let body = try decoder.decode(GenericResponse<T>.self, from: result.data)
+          print(body)
+          if let data = body.data {
+            completion(.success(data))
           }
-        case .failure(let error):
-          print("\(#function), error: \(error)")
-          completion(.failure(error.response?.statusCode ?? -1))
+        } catch {
+          print("구조체를 확인하세요")
+        }
+      case .failure(let error):
+        print("\(#function), error: \(error)")
+        completion(.failure(error.response?.statusCode ?? -1))
       }
     }
   }
@@ -86,19 +92,19 @@ extension APIService {
                            completion: @escaping ((NetworkResult<Any>) -> Void)) {
     provider.request(target) { response in
       switch response {
-        case .success(let result):
-          do {
-            let decoder = JSONDecoder()
-            let body = try decoder.decode(SimpleResponse.self, from: result.data)
-            completion(.success(body))
-          } catch {
-            print("구조체를 확인하세요")
-            print(error.localizedDescription)
-          }
-        case .failure(let error):
-          completion(.failure(error.response?.statusCode ?? -1))
+      case .success(let result):
+        do {
+          let decoder = JSONDecoder()
+          let body = try decoder.decode(SimpleResponse.self, from: result.data)
+          completion(.success(body))
+        } catch {
+          print("구조체를 확인하세요")
+          print(error.localizedDescription)
+        }
+      case .failure(let error):
+        completion(.failure(error.response?.statusCode ?? -1))
       }
     }
   }
-
+  
 }
