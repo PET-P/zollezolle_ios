@@ -8,13 +8,9 @@
 import UIKit
 import PhotosUI
 
-class FixModalViewController: UIViewController {
-  override func viewDidLoad() {
-    self.preferredContentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height - 10);
-  }
-}
-
-class DogInfoViewController: FixModalViewController {
+class DogInfoViewController: FixModalViewController{
+ 
+  
   //MARK: - IBOUTLET
   
   @IBOutlet weak var infoTitleLabel: UILabel! {
@@ -34,6 +30,7 @@ class DogInfoViewController: FixModalViewController {
   
   @IBOutlet weak var myPetNameTextField: UITextField! {
     didSet {
+      myPetNameTextField.borderStyle = .none
       myPetNameTextField.setRounded(radius: nil)
       myPetNameTextField.backgroundColor = .themePaleGreen
       myPetNameTextField.font = .robotoBold(size: 18)
@@ -46,11 +43,12 @@ class DogInfoViewController: FixModalViewController {
       petAgeLabel.font = UIFont.robotoMedium(size: 14)
     }
   }
+
   @IBOutlet weak var petAgeTextField: UITextField! {
     didSet {
+      petAgeTextField.borderStyle = .none
       petAgeTextField.setRounded(radius: nil)
-      petAgeTextField.layer.borderWidth = 1
-      petAgeTextField.layer.borderColor = UIColor.themePaleGreen.cgColor
+      petAgeTextField.backgroundColor = UIColor.gray06
       petAgeTextField.font = .robotoMedium(size: 16)
       petAgeTextField.placeholder = "4살"
       petAgeTextField.textColor = UIColor.gray01
@@ -62,7 +60,14 @@ class DogInfoViewController: FixModalViewController {
       petGenderLabel.font = .robotoMedium(size: 14)
     }
   }
-  @IBOutlet weak var petGenderSwitch: JJollaeSwitch!
+  @IBOutlet weak var petGenderSwitch: JJollaeSwitch! {
+    didSet {
+      petGenderSwitch.setButtonTitle(isOn: "남", isOff: "여")
+      petGenderSwitch.setSwitchColor(onTextColor: .gray01, offTextColor: .gray01)
+      petGenderSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .themePaleGreen)
+      petGenderSwitch.setCircleFrame(frame: CGRect(x: 0, y: 2, width: petGenderSwitch.frame.height * 11 / 6 - 4, height: petGenderSwitch.frame.height - 4))
+    }
+  }
   @IBOutlet weak var petSizeLabel: PaddingLabel! {
     didSet {
       petSizeLabel.text = "크기"
@@ -72,10 +77,10 @@ class DogInfoViewController: FixModalViewController {
   @IBOutlet weak var petSizeButton: UIButton! {
     didSet {
       petSizeButton.setRounded(radius: nil)
-      petSizeButton.layer.borderColor = UIColor.themePaleGreen.cgColor
-      petSizeButton.layer.borderWidth = 1
+      petSizeButton.layer.borderWidth = 0
+      petSizeButton.backgroundColor = .gray06
       petSizeButton.setTitle("소형", for: .normal)
-      petSizeButton.tintColor = UIColor.gray01
+      petSizeButton.setTitleColor(.gray01, for: .normal)
       petSizeButton.titleLabel?.font = .robotoMedium(size: 16)
     }
   }
@@ -87,11 +92,12 @@ class DogInfoViewController: FixModalViewController {
   }
   @IBOutlet weak var petWeightTextField: UITextField! {
     didSet {
+      petWeightTextField.borderStyle = .none
       petWeightTextField.setRounded(radius: nil)
-      petWeightTextField.layer.borderWidth = 1
-      petWeightTextField.layer.borderColor = UIColor.themePaleGreen.cgColor
+      petWeightTextField.backgroundColor = UIColor.gray06
       petWeightTextField.font = .robotoMedium(size: 16)
-      petWeightTextField.textColor = UIColor.gray01
+      petWeightTextField.placeholder = "3kg"
+      petAgeTextField.textColor = UIColor.gray01
     }
   }
   @IBOutlet weak var petTypeLabel: PaddingLabel! {
@@ -105,20 +111,20 @@ class DogInfoViewController: FixModalViewController {
       petTypeButton.layer.cornerRadius = petTypeButton.frame.height / 2
       petTypeButton.layer.maskedCorners = CACornerMask(
         arrayLiteral: .layerMinXMinYCorner,.layerMinXMaxYCorner)
-      petTypeButton.layer.borderColor = UIColor.themePaleGreen.cgColor
-      petTypeButton.layer.borderWidth = 1
+      petTypeButton.layer.borderWidth = 0
+      petTypeButton.backgroundColor = .gray06
       petTypeButton.setTitle("강아지", for: .normal)
-      petTypeButton.tintColor = UIColor.gray01
+      petTypeButton.setTitleColor(.gray01, for: .normal)
       petTypeButton.titleLabel?.font = .robotoMedium(size: 16)
     }
   }
   
   @IBOutlet weak var petTypeTextField: UITextField! {
     didSet {
-      petTypeTextField.placeholder = "아기의 품종을 써주세요!"
-      petTypeTextField.layer.borderWidth = 1
-      petTypeTextField.layer.borderColor = UIColor.themePaleGreen.cgColor
+      petTypeTextField.placeholder = "애기의 품종?"
+      petTypeTextField.borderStyle = .none
       petTypeTextField.font = .robotoMedium(size: 16)
+      petTypeTextField.backgroundColor = .gray06
       petTypeTextField.textColor = UIColor.gray01
       petTypeTextField.layer.cornerRadius = petTypeTextField.layer.frame.height / 2
       petTypeTextField.layer.maskedCorners = CACornerMask(
@@ -150,7 +156,7 @@ class DogInfoViewController: FixModalViewController {
   //MARK: - Variables
   
   private let imagePickerController: UIImagePickerController = UIImagePickerController()
-  
+  private var ageList = [Int]()
   private var sizeText: String = "소형" {
     didSet {
       petSizeButton.setTitle("\(sizeText)", for: .normal)
@@ -165,11 +171,14 @@ class DogInfoViewController: FixModalViewController {
   }
 
   private var cellType: [String] = ["camera", "plus"]
-  private var dogProfile: [DogInfo] = []
+  private var dogProfile: [PetInfo] = []
   private var visibleIndex: [IndexPath] = []
   private var clickedIndexPath: IndexPath?
   private var images: [UIImage?] = []
+  private var weightList = [Double]()
   private var middleIndex: IndexPath = [0,0]
+  lazy var agePicker = UIPickerView()
+  lazy var weightPicker = UIPickerView()
   
   //MARK: - View LifeCycle
   
@@ -177,6 +186,22 @@ class DogInfoViewController: FixModalViewController {
     
   override func viewDidLoad() {
     super.viewDidLoad()
+    weightPicker.delegate = self
+    agePicker.delegate = self
+    for i in 1...100 {
+      ageList.append(i)
+    }
+    for i in 0...50 {
+      for j in [0, 5] {
+        let weightStr = "\(i).\(j)"
+        let weightDou = Double(weightStr)!
+        weightList.append(weightDou)
+      }
+    }
+    addToobar()
+    //가상키보드 대신 피커뷰로 설정
+    petAgeTextField.inputView = agePicker
+    petWeightTextField.inputView = weightPicker
     setKeyboard()
     myPetNameTextField.addTarget(self, action: #selector(didChangePetName(_:)), for: .editingDidEnd)
     petAgeTextField.addTarget(self, action: #selector(didChangePetAge(_:)), for: .editingDidEnd)
@@ -198,17 +223,17 @@ class DogInfoViewController: FixModalViewController {
       // dogprofile에 아무것도 없으면?? 처음들어가는 상황
       print("1번?")
       tempCellType = ["camera", "plus"]
-      dogProfile = [DogInfo()]
+      dogProfile = [PetInfo()]
     } else {
       // dogprofile에 처음들어가는 상황이 아님
       print("2번?")
       for i in dogProfile.indices {
         // 이미지 설정이 되어있지 않다면?
-        if dogProfile[i].imageData == nil {
-          tempCellType.append("camera")
-        } else { //이미지설정이 되어있다면?
-          tempCellType.append("old")
-        }
+//        if dogProfile[i].imageData == nil {
+//          tempCellType.append("camera")
+//        } else { //이미지설정이 되어있다면?
+//          tempCellType.append("old")
+//        }
       }
       //마지막은 plus로 마무리
       tempCellType.append("plus")
@@ -226,19 +251,27 @@ class DogInfoViewController: FixModalViewController {
   }
   
   @objc private func didChangePetName(_ sender: Any?) {
-    dogProfile[middleIndex.row].name = myPetNameTextField.text
+    dogProfile[middleIndex.row].name = myPetNameTextField.text ?? ""
   }
   
   @objc private func didChangePetAge(_ sender: Any?) {
-    dogProfile[middleIndex.row].age = petAgeTextField.text
+    if let age = petAgeTextField.text {
+      dogProfile[middleIndex.row].age = Int(age.components(separatedBy: "살")[0])
+    } else {
+      dogProfile[middleIndex.row].age = nil
+    }
   }
   
   @objc private func didChangePetWeight(_ sender: Any?) {
-    dogProfile[middleIndex.row].name = petWeightTextField.text
+    if let weight = petWeightTextField.text {
+      dogProfile[middleIndex.row].weight = Double(weight.components(separatedBy: "살")[0])
+    } else {
+      dogProfile[middleIndex.row].weight = nil
+    }
   }
   
   @objc private func didChangePetTypeName(_ sender: Any?){
-    dogProfile[middleIndex.row].typeName = petTypeTextField.text
+    dogProfile[middleIndex.row].breed = petTypeTextField.text
   }
   
   
@@ -307,7 +340,7 @@ class DogInfoViewController: FixModalViewController {
   @IBAction func didTapSaveButton(_ sender: UIButton) {
     var flag = false
     dogProfile.forEach { dogInfo in
-      if dogInfo.name == nil {
+      if dogInfo.name == "" {
         let alertController = UIAlertController(title: nil, message: "이름을 입력하개", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
         let subview = alertController.view.subviews.first! as UIView
@@ -325,10 +358,19 @@ class DogInfoViewController: FixModalViewController {
     }
     if flag {
       dogInfoManager.dogInfos = dogProfile
+      
       //TODO 서버에 저장
-      let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-      guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
-      self.navigationController?.pushViewController(homeMainVC, animated: true)
+      APIService.shared.patchPetInfo(userId:pets, dogInfoManager.dogInfos) { (result) in
+        switch result {
+        case .success(let data):
+          print(data)
+        case .failure(let error):
+          print(error)
+        }
+      }
+//      let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
+//      guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
+//      self.navigationController?.pushViewController(homeMainVC, animated: true)
     }
   }
   
@@ -338,12 +380,12 @@ class DogInfoViewController: FixModalViewController {
     } else {
       let data = dogProfile[middleIndex.row]
       myPetNameTextField.text = data.name
-      petAgeTextField.text = data.age
-      petGenderSwitch.isOn = data.gender.rawValue == 1 ? true : false
+      petAgeTextField.text = "\(data.age ?? 0)살"
+      petGenderSwitch.isOn = data.sex == Gender.male ? true : false
       petSizeButton.setTitle(data.size.rawValue, for: .normal)
-      petWeightTextField.text = data.weight
+      petWeightTextField.text = "\(data.weight ?? 0.0)KG"
       petTypeButton.setTitle(data.type, for: .normal)
-      petTypeTextField.text = data.typeName
+      petTypeTextField.text = data.breed
     }
   }
   
@@ -351,7 +393,7 @@ class DogInfoViewController: FixModalViewController {
     myPetNameTextField.text = nil
     petAgeTextField.text = nil
     petGenderSwitch.isOn = true
-    petSizeButton.setTitle(DogInfo.Size.small.rawValue, for: .normal)
+    petSizeButton.setTitle(Size.small.rawValue, for: .normal)
     petWeightTextField.text = nil
     petTypeButton.setTitle("강아지", for: .normal)
     petTypeTextField.text = nil
@@ -430,7 +472,7 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
   }
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      self.dogProfile[middleIndex.row].imageData = originalImage.jpegData(compressionQuality: 0.1)
+//      self.dogProfile[middleIndex.row].imageData = originalImage.jpegData(compressionQuality: 0.1)
       self.cellType[self.middleIndex.row] = "old"
       //TODO: 이미지 저장할 모델링
       //TODO: 정한 이미지 pan gesture
@@ -468,11 +510,12 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
       cell.dogImageView.image = UIImage(named: "plus")
     }
     else {
-      if let data = self.dogProfile[indexPath.row].imageData {
-        cell.dogImageView.image = UIImage(data: data)
-      } else {
-        cell.dogImageView.image = UIImage(named: "camera")
-      }
+//      if let data = self.dogProfile[indexPath.row].imageData {
+//        cell.dogImageView.image = UIImage(data: data)
+//      } else {
+//        cell.dogImageView.image = UIImage(named: "camera")
+//      }
+      cell.dogImageView.image = UIImage(named: "camera")
     }
     setMiddleIndex(cell, indexPath: indexPath)
     
@@ -498,7 +541,6 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
     if indexPath == middleIndex {
       updateForm(cellType: cellType[middleIndex.row])
     }
-    
     
     cell.delegate = self
     cell.selectedIndexPath = indexPath
@@ -563,7 +605,7 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
       if cellType[indexPath.row] == "plus" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         cellType.insert("camera", at: cellType.count - 1)
         
-        dogProfile.append(DogInfo())
+        dogProfile.append(PetInfo())
       } else if cellType[indexPath.row] == "camera" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
         myPetImagePickerController.allowsEditing = true
@@ -586,12 +628,75 @@ extension DogInfoViewController: JJollaeButtonDelegate {
   func isOnValueChage(isOn: Bool) {
     if cellType[middleIndex.row] != "plus" {
       if isOn == true {
-        dogProfile[middleIndex.row].gender = .male
+        dogProfile[middleIndex.row].sex = .male
       } else {
-        dogProfile[middleIndex.row].gender = .female
+        dogProfile[middleIndex.row].sex = .female
       }
     }
   }
 }
 
-
+extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+  
+  private func addToobar() {
+    //toobar 위치잡아주기
+    self.agePicker.backgroundColor = .white
+    self.weightPicker.backgroundColor = .white
+    let toolbar = UIToolbar()
+    toolbar.frame = CGRect(x: 0, y: 0, width: 0, height: 35)
+    toolbar.barTintColor = .white
+    self.petAgeTextField.inputAccessoryView = toolbar
+    self.petWeightTextField.inputAccessoryView = toolbar
+    //가변 폭 버튼
+    let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    //toorbar에 done올리기
+    let done = UIBarButtonItem()
+    done.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.themeGreen], for: .normal)
+    done.title = "완료"
+    done.target = self
+    done.action = #selector(pickerDone)
+    
+    toolbar.setItems([flexSpace, done], animated: true)
+  }
+  
+  @objc private func pickerDone(_ sneder: Any) {
+    self.view.endEditing(true)
+  }
+  
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    let pickerLabel = UILabel()
+    pickerLabel.textAlignment = .center
+    pickerLabel.textColor = .themeGreen
+    pickerLabel.font = .robotoMedium(size: 24)
+    
+    if pickerView == agePicker {
+      pickerLabel.text = "\(self.ageList[row])살"
+    } else {
+      pickerLabel.text =  "\(self.weightList[row])KG"
+    }
+    return pickerLabel
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    if pickerView == agePicker {
+      return self.ageList.count
+    } else {
+      return self.weightList.count
+    }
+  }
+  
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    if pickerView == agePicker {
+      let age = self.ageList[row]
+      self.petAgeTextField.text = "\(age)살"
+    } else {
+      let weight = self.weightList[row]
+      self.petWeightTextField.text = "\(weight)KG"
+    }
+  }
+}
