@@ -13,22 +13,21 @@ class DogInfoManager {
   private let key = "dogInfo"
   
     
-  var dogInfos: [DogInfo] {
+  var dogInfos: [PetInfo] {
     get {
-      var dogInfoList: [DogInfo]?
+      var dogInfoList: [PetInfo]?
       if let data = defaults.value(forKey: key) as? Data {
-        dogInfoList = try? PropertyListDecoder().decode(Array<DogInfo>.self, from: data)
+        dogInfoList = try? PropertyListDecoder().decode(Array<PetInfo>.self, from: data)
       }
       return dogInfoList ?? []
     }
     set(new) {
-      print(new)
       defaults.setValue(try? PropertyListEncoder().encode(new), forKey: key)
       defaults.synchronize()
     }
   }
   
-  func updateDogInfo(at index: Int, with dogInfo: DogInfo) {
+  func updateDogInfo(at index: Int, with dogInfo: PetInfo) {
     var tempDogInfos = dogInfos
     tempDogInfos[index] = dogInfo
     dogInfos = tempDogInfos
