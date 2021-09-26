@@ -10,6 +10,10 @@ import Security
 
 struct LoginManager {
   
+  static let shared = LoginManager()
+  
+  private init() {}
+  
   private let defaults = UserDefaults.standard
   private let bundleName = "P.TEP.jjollaejjollae"
   
@@ -27,8 +31,21 @@ struct LoginManager {
     return passwordtesting.evaluate(with: password)
   }
   
-  func isPasswordVerified(confirmation: String) -> Bool {
-    return false
+  func isPasswordVerified(password: String?, confirmation: String?) -> Int {
+    guard let password = password else {
+      return 2
+    }
+    guard let confirmation = confirmation else {
+      return 3
+    }
+    if confirmation == "" {
+      return 3
+    }
+    if password != confirmation {
+      return 0
+    } else {
+      return 1
+    }
   }
   
   func saveToken(accessToken: String, refreshToken: String) {
