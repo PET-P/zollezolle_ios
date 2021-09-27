@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeMainViewController: UIViewController {
+class HomeMainViewController: UIViewController, StoryboardInstantiable {
   
 	// MARK: - IBOutlets
   
@@ -55,7 +55,6 @@ class HomeMainViewController: UIViewController {
 }
 
 // MARK: - Storyborad
-extension HomeMainViewController: StoryboardInstantiable{ }
 
 extension HomeMainViewController: UITextFieldDelegate {
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
