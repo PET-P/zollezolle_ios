@@ -56,7 +56,6 @@ class AdditionalInfoViewController: UIViewController {
   
   private var signUpModel: SignUp = SignUp()
   var signUpData: SignUpData?
-  private let loginManager = LoginManager()
   internal func setData(data: SignUp) {
     self.signUpModel = data
   }

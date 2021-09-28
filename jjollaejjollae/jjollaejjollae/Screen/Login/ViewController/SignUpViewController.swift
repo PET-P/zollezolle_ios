@@ -68,7 +68,7 @@ class SignUpViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - 변수
   var containerWidth: CGFloat = 0.0
-  private lazy var loginManager = LoginManager()
+  
   private var passwordStyleErrorText: String = "" {
     didSet {
       passwordStyleErrorLabel.text = "\(passwordStyleErrorText)"
@@ -117,7 +117,7 @@ class SignUpViewController: UIViewController, StoryboardInstantiable {
   
   @objc private func updateConfirmationUI(_ sender: Any?) {
     //비밀번호가 동일하지 않거나?? 저시기 머시기
-    let isConfirmed = loginManager.isPasswordVerified(password: self.passwordTextField.text , confirmation: self.confirmationTextField.text)
+    let isConfirmed = LoginManager.shared.isPasswordVerified(password: self.passwordTextField.text , confirmation: self.confirmationTextField.text)
     print(isConfirmed)
     let containerWidth = self.view.frame.size.width
     switch isConfirmed {
@@ -143,7 +143,7 @@ class SignUpViewController: UIViewController, StoryboardInstantiable {
   
   @objc private func updatePasswordStyleErrorLabelUI(_ sender: Any?) {
     guard let passwordStr = passwordTextField.text else {return}
-    if !loginManager.isValidPassword(password: passwordStr) {
+    if !LoginManager.shared.isValidPassword(password: passwordStr) {
       passwordStyleErrorLabel.alpha = 1
       passwordTextField.changeUnderLine(borderColor: .errorColor, width: self.view.frame.size.width)
       self.passwordStyleErrorText = "올바른 형식의 password를 입력해주세요"

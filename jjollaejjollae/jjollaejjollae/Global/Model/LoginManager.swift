@@ -12,7 +12,7 @@ struct LoginManager {
   
   static let shared = LoginManager()
   
-  private init() {}
+  private init() { }
   
   private let defaults = UserDefaults.standard
   private let bundleName = "P.TEP.jjollaejjollae"

@@ -101,7 +101,6 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   private let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
-  private let loginManager = LoginManager()
   private let dispatchGroup = DispatchGroup()
   
   private var errorText: String = "이메일 형식이 맞지않습니다."{
@@ -225,8 +224,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
           case .success(let data):
             guard let accessToken = data.accessToken else {return}
             guard let refreshToken = data.refreshToken else {return}
-            self?.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
-            self?.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
+            LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
+            LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
           case .failure(let error):
             print(error)
           }
@@ -267,7 +266,7 @@ extension LoginViewController {
   //MARK: - updateUI Methods
   @objc private func updateEmailValidationUI(_ sender: Any?){
     guard let emailStr = self.emailTextField.text else {return}
-    if !loginManager.isValidEmail(email: emailStr) {
+    if !LoginManager.shared.isValidEmail(email: emailStr) {
       errorLabel.isHidden = false
       emailTextField.changeUnderLine(borderColor: .errorColor, width: self.view.frame.size.width)
       continueButtonColor = .themeGreen.withAlphaComponent(0.5)
@@ -347,8 +346,8 @@ extension LoginViewController: StoryboardInstantiable {
         case .success(let data):
           guard let accessToken = data.accessToken else {return}
           guard let refreshToken = data.refreshToken else {return}
-          self?.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
-          self?.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
+          LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
+          LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
         case .failure(let error):
           print(error)
         }
@@ -441,8 +440,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
         case .success(let data):
           guard let accessToken = data.accessToken else {return}
           guard let refreshToken = data.refreshToken else {return}
-          self?.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
-          self?.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
+          LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
+          LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
           self?.navigationController?.pushViewController(MainTabBarController(), animated: true)
         case .failure(let error):
           print(error)

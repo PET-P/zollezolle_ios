@@ -358,9 +358,10 @@ class DogInfoViewController: FixModalViewController{
     }
     if flag {
       dogInfoManager.dogInfos = dogProfile
-      
+      let petinfos = PetInfos(pets: dogInfoManager.dogInfos)
+      guard let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken") else {return}
       //TODO 서버에 저장
-      APIService.shared.patchPetInfo(userId:pets, dogInfoManager.dogInfos) { (result) in
+      APIService.shared.patchPetInfo(accessToken, pets: petinfos) { (result) in
         switch result {
         case .success(let data):
           print(data)
@@ -368,9 +369,9 @@ class DogInfoViewController: FixModalViewController{
           print(error)
         }
       }
-//      let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-//      guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
-//      self.navigationController?.pushViewController(homeMainVC, animated: true)
+      let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
+      guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
+      self.navigationController?.pushViewController(homeMainVC, animated: true)
     }
   }
   

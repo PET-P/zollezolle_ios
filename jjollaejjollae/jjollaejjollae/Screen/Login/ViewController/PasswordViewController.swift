@@ -9,7 +9,6 @@ import UIKit
 
 class PasswordViewController: UIViewController, StoryboardInstantiable {
   
-  private lazy var loginManager = LoginManager()
   var loginData: LoginData?
   private var email: String = ""
   
@@ -101,8 +100,8 @@ class PasswordViewController: UIViewController, StoryboardInstantiable {
         // 서버 통신해서 성공했다면 즉시 앱에 token 저장
         // keychain에 저장하자
         if let loginData = loginData {
-          loginManager.saveInKeychain(account: "accessToken", value: loginData.accessToken)
-          loginManager.saveInKeychain(account: "refreshToken", value: loginData.refreshToken)
+          LoginManager.shared.saveInKeychain(account: "accessToken", value: loginData.accessToken)
+          LoginManager.shared.saveInKeychain(account: "refreshToken", value: loginData.refreshToken)
           self.navigationController?.pushViewController(MainTabBarController(), animated: true)
         }
         
