@@ -6,15 +6,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-
-
-class SearchNoResultViewController: UIViewController, IndicatorInfoProvider {
-  
-  func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-    return IndicatorInfo(title: "검색 결과")
-  }
+class SearchNoResultViewController: UIViewController {
   
   var dataList = [SearchResultInfo]()
   lazy var likes : [Int : Int] = [:]
@@ -28,27 +21,18 @@ class SearchNoResultViewController: UIViewController, IndicatorInfoProvider {
       noInfoLabel.text = "\"멍멍이카페에 해당하는 정보가 없어요\""
     }
   }
-  @IBOutlet weak var searchGuide: UILabel! {
+  @IBOutlet weak var noInfoView: UIView! {
     didSet {
-      searchGuide.font = .robotoRegular(size: 14)
-      searchGuide.textColor = .gray03
-      searchGuide.textAlignment = .center
-      searchGuide.numberOfLines = 2
-      searchGuide.text = "띄어쓰기 후 재검색 해 보세요! \n 예)멍멍이카페 → 멍멍이 카페"
+      noInfoView.addBorder([.bottom], color: .gray06, width: 1)
     }
   }
-  
+
   private var noInfoLabelText: String = ""{
     didSet {
       noInfoLabel.text = "\(noInfoLabelText)에 해당하는 정보가 없어요"
     }
   }
-  
-  private var searchGuideText: String = "" {
-    didSet {
-      searchGuide.text = "띄어쓰기 후 재검색 해 보세요! \n 예)멍멍이카페 → 멍멍이 카페"
-    }
-  }
+
   
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
   let searchResultDataSource = SearchResultDataSource()
@@ -65,6 +49,10 @@ class SearchNoResultViewController: UIViewController, IndicatorInfoProvider {
     }
     searchResultDataSource.dataList = dataList
   }
+  
+  @IBAction func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
+  }
 }
 
 extension SearchNoResultViewController: UITableViewDelegate {
@@ -74,7 +62,6 @@ extension SearchNoResultViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
-    header.addBorder([.top], color: .gray05, width: 1.0)
     let headerLabel = UILabel()
     headerLabel.frame = CGRect(x: 16, y: 37, width: header.frame.width-16, height: 21)
     headerLabel.text = "근처 장소를 소개해드릴게요"
