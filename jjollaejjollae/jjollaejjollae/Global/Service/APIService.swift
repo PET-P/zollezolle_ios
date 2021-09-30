@@ -58,8 +58,8 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func patchPetInfo(userId: String, pets: PetInfos, completion: @escaping ((NetworkResult<LoginData>) -> (Void))) {
-    let target = APITarget.patchPetInfo(userId: userId, pets: pets)
+  func patchPetInfo(_ token: String, pets: PetInfos, completion: @escaping ((NetworkResult<LoginData>) -> (Void))) {
+    let target = APITarget.patchPetInfo(token: token, pets: pets)
     judgeGenericResponse(target, completion: completion)
   }
   

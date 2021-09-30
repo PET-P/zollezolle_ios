@@ -23,7 +23,7 @@ enum APITarget {
   case tempPassword(email: String, code: String) //임시비밀번호
   case naver(authorization: String)
   case socialLogin(email: String, nick: String, phone: String)
-  case patchPetInfo(userId: String, pets: PetInfos)
+  case patchPetInfo(token: String, pets: PetInfos)
 }
 
 extension APITarget: TargetType {
@@ -56,8 +56,8 @@ extension APITarget: TargetType {
       return ""
     case .socialLogin:
       return "/auth/social"
-    case .patchPetInfo(let userId, _):
-      return "/users/\(userId)"
+    case .patchPetInfo(let token, _):
+      return "/users/\(token)"
     }
   }
   
@@ -102,7 +102,7 @@ extension APITarget: TargetType {
       return .requestPlain
     case .socialLogin(let email, let nick, let phone):
       return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone], encoding: JSONEncoding.default)
-    case .patchPetInfo(let userId, let petinfo):
+    case .patchPetInfo(let token, let petinfo):
       return .requestParameters(parameters: ["pets": petinfo], encoding: JSONEncoding.default)
     }
   }
