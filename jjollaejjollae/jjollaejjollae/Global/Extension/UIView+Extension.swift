@@ -67,5 +67,15 @@ extension UIView {
     self.layer.masksToBounds = false
   }
   
+  func loadView(nibName: String) -> UIView? {
+    let bundle = Bundle(for: type(of: self))
+    let nib = UINib(nibName: nibName, bundle: bundle)
+    return nib.instantiate(withOwner: self, options: nil).first as? UIView
+  }
+  
+  var mainView: UIView? {
+    return subviews.first
+  }
+  
 }
 
