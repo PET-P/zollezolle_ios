@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class RecentSearchViewController: UIViewController, IndicatorInfoProvider {
+class RecentSearchViewController: UIViewController {
   
   private lazy var searchManager = SearchManager.shared
   private var list = [String]()
@@ -19,10 +18,7 @@ class RecentSearchViewController: UIViewController, IndicatorInfoProvider {
       recentTableView.separatorColor = .clear
     }
   }
-  
-  func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-    return IndicatorInfo(title: "최근 검색어")
-  }
+
   
   override func viewDidLoad() {
     recentTableView.delegate = self

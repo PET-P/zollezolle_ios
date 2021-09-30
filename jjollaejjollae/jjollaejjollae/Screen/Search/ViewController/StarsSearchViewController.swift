@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class StarsSearchViewController: UIViewController, IndicatorInfoProvider {
+class StarsSearchViewController: UIViewController {
   
   @IBOutlet weak var starTableView: UITableView! {
     didSet {
@@ -20,9 +19,6 @@ class StarsSearchViewController: UIViewController, IndicatorInfoProvider {
   private lazy var searchManager = SearchManager.shared
   private var list = [String]()
   
-  func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-    return IndicatorInfo(title: "인기키워드")
-  }
   
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -6,7 +6,7 @@
 
 import UIKit
 
-class FilterViewController: UIViewController {
+class FilterViewController: UIViewController, StoryboardInstantiable {
   
   var accommodationFilter = accommodationType(title: "숙소유형", type: [(.독채, false), (.복층, false), (.온돌, false), (.카라반, false), (.캠핑, false), (.풀빌라, false), (.한옥, false)])
   var dogAmentiesFilter = DogAmenties(type: [(.놀이터, false), (.드라이룸, false), (.샤워장, false), (.스파, false), (.실내수영장, false), (.운동장, false)])

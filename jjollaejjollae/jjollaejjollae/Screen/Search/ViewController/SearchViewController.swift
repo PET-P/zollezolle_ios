@@ -6,10 +6,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-
-class SearchViewController: ButtonBarPagerTabStripViewController  {
+class SearchViewController: UIViewController, StoryboardInstantiable  {
   
   @IBOutlet weak var headView: UIView! {
     didSet {
@@ -27,11 +25,16 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
     }
   }
   
+  @IBOutlet weak var categoryTabbarView: CategoryTabbar! {
+    didSet {
+      categoryTabbarView.delegate = self
+    }
+  }
+  
+  
   private lazy var searchManager = SearchManager.shared
   
   override func viewDidLoad() {
-    buttonBarView.addBorder([.bottom], color: .gray05, width: 1)
-    setUpButton()
     super.viewDidLoad()
     let tapGesture = UITapGestureRecognizer(
       target: view,
@@ -41,56 +44,13 @@ class SearchViewController: ButtonBarPagerTabStripViewController  {
     searchTextField.returnKeyType = .search
     searchTextField.delegate = self
   }
-  
-  private func setUpButton() {
-    settings.style.buttonBarBackgroundColor = .gray01
-    settings.style.buttonBarItemBackgroundColor = .white
-    settings.style.selectedBarBackgroundColor = .themePaleGreen
-    settings.style.buttonBarItemFont = .robotoBold(size: 14)
-    settings.style.buttonBarItemTitleColor = .gray01
-    settings.style.buttonBarMinimumLineSpacing = 0
-    settings.style.buttonBarItemLeftRightMargin = 0
-    settings.style.buttonBarLeftContentInset = 0
-    settings.style.buttonBarRightContentInset = 0
-    settings.style.buttonBarItemsShouldFillAvailableWidth = true
-    settings.style.buttonBarHeight = 1.0
-    settings.style.selectedBarHeight = 4.0
-    
-    changeCurrentIndexProgressive = {
-      (oldCell: ButtonBarViewCell?, newCell: ButtonBarViewCell?, progressPercentage:
-        CGFloat, changeCurrentIndex: Bool, animated: Bool) -> Void in
-      guard changeCurrentIndex == true else { return }
-      oldCell?.label.textColor = .gray01
-      oldCell?.label.font = .robotoMedium(size: 14)
-      oldCell?.contentView.addBorder([.bottom], color: .gray05, width: 1)
-      newCell?.contentView.addBorder([.bottom], color: .gray05, width: 1)
-      newCell?.label.textColor = .gray01
-      newCell?.label.font = .robotoBold(size: 14)
-    }
-  }
-  
-  override func viewControllers(for pagerTabStripController: PagerTabStripViewController)
-  -> [UIViewController] {
-    let recentStoryboard = UIStoryboard(name: "Recent", bundle: nil)
-    guard let recentVC = recentStoryboard
-            .instantiateViewController(withIdentifier: "RecentSearchViewController")
-            as? RecentSearchViewController else {return []}
-    
-    let starStoryboard = UIStoryboard(name: "Stars", bundle: nil)
-    guard let starVC = starStoryboard
-            .instantiateViewController(withIdentifier: "StarsSearchViewController")
-            as? StarsSearchViewController else {return []}
-    
-    let resultStoryboard = UIStoryboard(name: "SearchNoResult", bundle: nil)
-    guard let resultVC = resultStoryboard.instantiateViewController(
-            identifier: "SearchNoResultViewController")
-            as? SearchNoResultViewController else {return []}
-    return [starVC, recentVC]
-  }
-  
-  
-  
 }
+extension SearchViewController: PagingTabbarDelegate {
+  func scrollToIndex(to index: Int) {
+    pageCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centerHorizontally, animated: true)
+  }
+}
+
 
 //MARK: - Actions
 extension SearchViewController {
@@ -99,10 +59,10 @@ extension SearchViewController {
   }
 }
 
+
 //MARK: - delegate
 extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//    var flag = false
     guard searchTextField.text != "" else {return true}
     searchManager.saveSearchHistory(with: searchTextField.text)
     textField.resignFirstResponder()
@@ -112,10 +72,9 @@ extension SearchViewController: UITextFieldDelegate {
             as? SearchResultViewController else {
       return true
     }
+    
     self.navigationController?.pushViewController(resultVC, animated: true)
     self.hidesBottomBarWhenPushed = true
     return true
   }
 }
-
-

@@ -81,6 +81,7 @@ class SearchResultTableViewCell: UITableViewCell {
       } else {
         heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
       }
+      print(isWish)
     }
   }
   
