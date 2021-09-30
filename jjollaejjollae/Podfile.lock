@@ -41,7 +41,6 @@ PODS:
   - naveridlogin-sdk-ios (4.1.3)
   - NMapsMap (3.13.0)
   - SwiftLint (0.44.0)
-  - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
   - FSCalendar
@@ -51,7 +50,6 @@ DEPENDENCIES:
   - naveridlogin-sdk-ios
   - NMapsMap
   - SwiftLint
-  - XLPagerTabStrip (~> 9.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -71,7 +69,6 @@ SPEC REPOS:
     - naveridlogin-sdk-ios
     - NMapsMap
     - SwiftLint
-    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
@@ -90,8 +87,7 @@ SPEC CHECKSUMS:
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
-  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: d4256dd1c6e7c890677e1aa6fea3b0be1dbc2eb6
+PODFILE CHECKSUM: 4832812733e7d9735a921dc5b0d09cec0283fb4b
 
 COCOAPODS: 1.10.2
