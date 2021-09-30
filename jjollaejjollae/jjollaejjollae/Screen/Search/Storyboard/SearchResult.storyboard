@@ -167,6 +167,7 @@
                         <outlet property="separateLine" destination="cqx-XM-SII" id="AG4-qj-Xua"/>
                         <outlet property="setFilterButton" destination="5Gc-qy-eQK" id="zx8-oW-OFz"/>
                         <outlet property="setOrderButton" destination="LsC-je-V5t" id="up7-4G-jcJ"/>
+                        <outlet property="tableViewTop" destination="4WI-DW-FR2" id="cm9-Qi-O6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

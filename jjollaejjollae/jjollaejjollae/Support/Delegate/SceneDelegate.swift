@@ -24,37 +24,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     //인터넷연결 오류시 발생하는 것
-    guard DeviceManager.shared.networkStatus == true else{
-      let attributedString =
-        NSAttributedString(string: "인터넷 연결 오류",
-                           attributes: [NSAttributedString.Key.font: UIFont.robotoBold(size: 20),
-                                        NSAttributedString.Key.foregroundColor: UIColor.themeGreen])
-      let AlertController = UIAlertController(title: "",
-                                                message: nil,
-                                                preferredStyle: .alert)
-      AlertController.setValue(attributedString, forKey: "attributedTitle")
-      let mainTabBarController = MainTabBarController()
-      self.window?.rootViewController = mainTabBarController
-      self.window?.makeKeyAndVisible()
-      mainTabBarController.present(AlertController, animated: true, completion: nil)
-      return
-    }
+//    guard DeviceManager.shared.networkStatus == true else{
+//      let attributedString =
+//        NSAttributedString(string: "인터넷 연결 오류",
+//                           attributes: [NSAttributedString.Key.font: UIFont.robotoBold(size: 20),
+//                                        NSAttributedString.Key.foregroundColor: UIColor.themeGreen])
+//      let AlertController = UIAlertController(title: "",
+//                                                message: nil,
+//                                                preferredStyle: .alert)
+//      AlertController.setValue(attributedString, forKey: "attributedTitle")
+//      let mainTabBarController = MainTabBarController()
+//      self.window?.rootViewController = mainTabBarController
+//      self.window?.makeKeyAndVisible()
+//      mainTabBarController.present(AlertController, animated: true, completion: nil)
+//      return
+//    }
     
-    let loginManager = LoginManager()
+    
     
   
-    if let accessToken = loginManager.loadFromKeychain(account: "accessToken"),
-       let refreshToken = loginManager.loadFromKeychain(account: "refreshToken") {
-      loginManager.deleteFromKeyChain(account: "accessToken")
-      loginManager.deleteFromKeyChain(account: "refreshToken")
-      return
+    if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken"),
+       let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
       waitingGroup.enter()
       APIService.shared.refreshToken(refreshToken: refreshToken,
                                      accessToken: accessToken) { [weak self] (result) in
         switch result {
         case .success(let data):
           guard let newAccessToken = data.accessToken else {return}
-          loginManager.saveInKeychain(account: newAccessToken, value: "accessToken")
+          LoginManager.shared.saveInKeychain(account: newAccessToken, value: "accessToken")
           self?.isLogged = true
         case .failure(let error):
           print(error)

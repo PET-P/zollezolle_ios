@@ -60,7 +60,7 @@ extension HomeMainViewController: StoryboardInstantiable{ }
 extension HomeMainViewController: UITextFieldDelegate {
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
     if textField == searchField {
-      self.navigationController?.pushViewController(HomeMainViewController
+      self.navigationController?.pushViewController(SearchViewController
                                                       .loadFromStoryboard()
                                                     , animated: true)
     }

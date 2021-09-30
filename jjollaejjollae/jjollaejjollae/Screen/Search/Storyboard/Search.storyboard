@@ -47,42 +47,28 @@
                                     <constraint firstItem="Cym-vv-4a9" firstAttribute="centerY" secondItem="ega-C3-iB2" secondAttribute="centerY" id="oaX-TH-jr9"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Isf-UL-Zad">
-                                <rect key="frame" x="0.0" y="164.5" width="414" height="731.5"/>
-                            </scrollView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="faw-Fr-3ab" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="40" y="124.5" width="334" height="40"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C10-Tl-Jz5" customClass="CategoryTabbar" customModule="jjollaejjollae" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="124.5" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="LvJ-5z-W6y"/>
+                                    <constraint firstAttribute="height" constant="50" id="IBU-FI-C4A"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jdi-jc-w2U">
-                                    <size key="itemSize" width="40" height="40"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="faw-Fr-3ab" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="-40" id="02E-lC-aGK"/>
-                            <constraint firstItem="Isf-UL-Zad" firstAttribute="top" secondItem="faw-Fr-3ab" secondAttribute="bottom" id="4DY-pf-0Ba"/>
+                            <constraint firstItem="C10-Tl-Jz5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="7C8-b6-kns"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AJZ-7t-NhQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AEd-L9-hp5" secondAttribute="trailing" id="CQT-3N-qda"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HLM-9Y-MXb"/>
-                            <constraint firstItem="Isf-UL-Zad" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="HhZ-p9-ZjD"/>
-                            <constraint firstItem="faw-Fr-3ab" firstAttribute="top" secondItem="AEd-L9-hp5" secondAttribute="bottom" id="NvL-zS-DdI"/>
-                            <constraint firstItem="faw-Fr-3ab" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="YgV-nE-9q5"/>
-                            <constraint firstAttribute="bottom" secondItem="Isf-UL-Zad" secondAttribute="bottom" id="e7X-L4-kwx"/>
-                            <constraint firstAttribute="trailing" secondItem="Isf-UL-Zad" secondAttribute="trailing" id="tEa-nG-KVG"/>
+                            <constraint firstItem="C10-Tl-Jz5" firstAttribute="top" secondItem="AEd-L9-hp5" secondAttribute="bottom" id="L05-KZ-VS7"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="C10-Tl-Jz5" secondAttribute="trailing" id="XyO-p5-d8T"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="Cym-vv-4a9" id="lkO-c4-6dp"/>
-                        <outlet property="buttonBarView" destination="faw-Fr-3ab" id="Yrc-Q7-nmi"/>
-                        <outlet property="containerView" destination="Isf-UL-Zad" id="SJX-2Z-QnS"/>
+                        <outlet property="categoryTabbarView" destination="C10-Tl-Jz5" id="rhs-LV-ixH"/>
                         <outlet property="headView" destination="AEd-L9-hp5" id="Z4v-hA-PMF"/>
                         <outlet property="searchTextField" destination="ega-C3-iB2" id="LNp-mi-ejd"/>
                     </connections>
