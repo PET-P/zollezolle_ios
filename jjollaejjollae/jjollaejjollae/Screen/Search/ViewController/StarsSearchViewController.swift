@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StarsSearchViewController: UIViewController {
+class StarsSearchViewController: UIViewController, StoryboardInstantiable {
   
   @IBOutlet weak var starTableView: UITableView! {
     didSet {
@@ -29,6 +29,10 @@ class StarsSearchViewController: UIViewController {
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+  
+  deinit {
+    print(#function)
   }
 }
 

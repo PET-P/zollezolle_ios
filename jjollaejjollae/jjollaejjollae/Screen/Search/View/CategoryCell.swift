@@ -12,6 +12,10 @@ class CategoryCell: UICollectionViewCell {
   static let nibName = "CategoryCell"
   static let identifier = "CategoryCell"
   
+  override func awakeFromNib() {
+      super.awakeFromNib()
+  }
+  
   @IBOutlet weak var titleLabel: UILabel! {
     didSet {
       titleLabel.font = .robotoBold(size: 14)
@@ -19,8 +23,9 @@ class CategoryCell: UICollectionViewCell {
     }
   }
   
-    override func awakeFromNib() {
-        super.awakeFromNib()
+  override var isSelected: Bool {
+    didSet {
+      titleLabel.font = isSelected ? UIFont.robotoBold(size: 14) : UIFont.robotoMedium(size: 14)
     }
-
+  }
 }

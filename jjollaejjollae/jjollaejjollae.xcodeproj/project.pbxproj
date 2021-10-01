@@ -52,7 +52,7 @@
 		286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286011C926BFBF16002774EA /* FindPassword.storyboard */; };
 		286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286011CB26BFBF56002774EA /* FindPasswordViewController.swift */; };
 		2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877830E26C811B6001BF582 /* RecentSearchViewController.swift */; };
-		2877831126C824A2001BF582 /* Stars.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2877831026C824A2001BF582 /* Stars.storyboard */; };
+		2877831126C824A2001BF582 /* StarsSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2877831026C824A2001BF582 /* StarsSearch.storyboard */; };
 		2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877831226C824BE001BF582 /* StarsSearchViewController.swift */; };
 		2877C3A626FF79F2000E3233 /* SocialUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877C3A526FF79F2000E3233 /* SocialUser.swift */; };
 		2877C3A826FF7A09000E3233 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877C3A726FF7A09000E3233 /* SignUp.swift */; };
@@ -65,7 +65,7 @@
 		287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287AE22026EC85DF0038B39F /* CaraouselCell.swift */; };
 		287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287AE22226ECA5250038B39F /* DogInfoManager.swift */; };
 		2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A2FD26C8EC71004596C3 /* SearchManager.swift */; };
-		2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A30426C90CD4004596C3 /* Recent.storyboard */; };
+		2884A30526C90CD4004596C3 /* RecentSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A30426C90CD4004596C3 /* RecentSearch.storyboard */; };
 		2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30626C91CD0004596C3 /* SearchTableViewCell.swift */; };
 		2884A30A26CA404D004596C3 /* SearchNoResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A30926CA404D004596C3 /* SearchNoResult.storyboard */; };
 		2884A30C26CA406C004596C3 /* SearchNoResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30B26CA406B004596C3 /* SearchNoResultViewController.swift */; };
@@ -178,7 +178,7 @@
 		286011C926BFBF16002774EA /* FindPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FindPassword.storyboard; sourceTree = "<group>"; };
 		286011CB26BFBF56002774EA /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
 		2877830E26C811B6001BF582 /* RecentSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchViewController.swift; sourceTree = "<group>"; };
-		2877831026C824A2001BF582 /* Stars.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Stars.storyboard; sourceTree = "<group>"; };
+		2877831026C824A2001BF582 /* StarsSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StarsSearch.storyboard; sourceTree = "<group>"; };
 		2877831226C824BE001BF582 /* StarsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsSearchViewController.swift; sourceTree = "<group>"; };
 		2877C3A526FF79F2000E3233 /* SocialUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialUser.swift; sourceTree = "<group>"; };
 		2877C3A726FF7A09000E3233 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		287AE22026EC85DF0038B39F /* CaraouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaraouselCell.swift; sourceTree = "<group>"; };
 		287AE22226ECA5250038B39F /* DogInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogInfoManager.swift; sourceTree = "<group>"; };
 		2884A2FD26C8EC71004596C3 /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
-		2884A30426C90CD4004596C3 /* Recent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recent.storyboard; sourceTree = "<group>"; };
+		2884A30426C90CD4004596C3 /* RecentSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecentSearch.storyboard; sourceTree = "<group>"; };
 		2884A30626C91CD0004596C3 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		2884A30926CA404D004596C3 /* SearchNoResult.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchNoResult.storyboard; sourceTree = "<group>"; };
 		2884A30B26CA406B004596C3 /* SearchNoResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNoResultViewController.swift; sourceTree = "<group>"; };
@@ -556,8 +556,8 @@
 			isa = PBXGroup;
 			children = (
 				28F9E94026C802A000D9E693 /* Search.storyboard */,
-				2877831026C824A2001BF582 /* Stars.storyboard */,
-				2884A30426C90CD4004596C3 /* Recent.storyboard */,
+				2877831026C824A2001BF582 /* StarsSearch.storyboard */,
+				2884A30426C90CD4004596C3 /* RecentSearch.storyboard */,
 				2884A30926CA404D004596C3 /* SearchNoResult.storyboard */,
 				2884A31926CE696B004596C3 /* SearchResult.storyboard */,
 				2884A32A26D3FC8B004596C3 /* Filter.storyboard */,
@@ -799,11 +799,11 @@
 				2884A32B26D3FC8B004596C3 /* Filter.storyboard in Resources */,
 				286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */,
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
-				2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */,
+				2884A30526C90CD4004596C3 /* RecentSearch.storyboard in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
 				DDFFC17426FB1C05001FD04A /* WishCalendar.storyboard in Resources */,
 				28331CC026DCD70F0062B29D /* InfoView.xib in Resources */,
-				2877831126C824A2001BF582 /* Stars.storyboard in Resources */,
+				2877831126C824A2001BF582 /* StarsSearch.storyboard in Resources */,
 				DDFFC17626FB1C05001FD04A /* WishMap.storyboard in Resources */,
 				DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,

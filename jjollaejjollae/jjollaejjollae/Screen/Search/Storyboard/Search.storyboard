@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,28 +49,53 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C10-Tl-Jz5" customClass="CategoryTabbar" customModule="jjollaejjollae" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="124.5" width="414" height="50"/>
+                                <rect key="frame" x="40" y="124.5" width="334" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="IBU-FI-C4A"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TJQ-S9-eTO">
+                                <rect key="frame" x="0.0" y="174.5" width="414" height="687.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wKr-UD-fj8">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pageCell" id="j03-Tt-mva">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fF4-rp-zVE">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="C10-Tl-Jz5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="7C8-b6-kns"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="TJQ-S9-eTO" secondAttribute="trailing" id="0OU-zO-Obr"/>
+                            <constraint firstItem="C10-Tl-Jz5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="40" id="7C8-b6-kns"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AJZ-7t-NhQ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AEd-L9-hp5" secondAttribute="trailing" id="CQT-3N-qda"/>
                             <constraint firstItem="AEd-L9-hp5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="HLM-9Y-MXb"/>
                             <constraint firstItem="C10-Tl-Jz5" firstAttribute="top" secondItem="AEd-L9-hp5" secondAttribute="bottom" id="L05-KZ-VS7"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="C10-Tl-Jz5" secondAttribute="trailing" id="XyO-p5-d8T"/>
+                            <constraint firstItem="TJQ-S9-eTO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="SaJ-PD-q6Z"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="TJQ-S9-eTO" secondAttribute="bottom" id="X1g-50-zWm"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="C10-Tl-Jz5" secondAttribute="trailing" constant="40" id="XyO-p5-d8T"/>
+                            <constraint firstItem="TJQ-S9-eTO" firstAttribute="top" secondItem="C10-Tl-Jz5" secondAttribute="bottom" id="bOs-sg-CRv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="Cym-vv-4a9" id="lkO-c4-6dp"/>
                         <outlet property="categoryTabbarView" destination="C10-Tl-Jz5" id="rhs-LV-ixH"/>
                         <outlet property="headView" destination="AEd-L9-hp5" id="Z4v-hA-PMF"/>
+                        <outlet property="pageCollectionView" destination="TJQ-S9-eTO" id="jFa-EU-Mlg"/>
                         <outlet property="searchTextField" destination="ega-C3-iB2" id="LNp-mi-ejd"/>
                     </connections>
                 </viewController>

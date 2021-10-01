@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentSearchViewController: UIViewController {
+class RecentSearchViewController: UIViewController, StoryboardInstantiable {
   
   private lazy var searchManager = SearchManager.shared
   private var list = [String]()
@@ -19,7 +19,6 @@ class RecentSearchViewController: UIViewController {
     }
   }
 
-  
   override func viewDidLoad() {
     recentTableView.delegate = self
     recentTableView.dataSource = self
