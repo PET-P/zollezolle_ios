@@ -43,13 +43,12 @@ class SearchViewController: UIViewController, StoryboardInstantiable {
   }
   
   private lazy var searchManager = SearchManager.shared
-  let childrenVC: [AnyObject] = [StarsSearchViewController.self, RecentSearchViewController.self]
-//  let childrenVC: [StoryboardInstantiable.Protocol] = [StarsSearchViewController.self, RecentSearchViewController.self]
+  let childrenVC: [UIViewController] = [StarsSearchViewController.loadFromStoryboard(),
+                                        RecentSearchViewController.loadFromStoryboard()]
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(childrenVC)
     let tapGesture = UITapGestureRecognizer(
       target: view,
       action: #selector(view.endEditing(_:)))
@@ -57,8 +56,6 @@ class SearchViewController: UIViewController, StoryboardInstantiable {
     view.addGestureRecognizer(tapGesture)
     searchTextField.returnKeyType = .search
     searchTextField.delegate = self
-    print("wholeview :", view.frame.width);
-    print("category tabbarview", categoryTabbarView.indicatorView.frame.width);
   }
 }
 //MARK: - PagingCollectionView
@@ -66,44 +63,52 @@ class SearchViewController: UIViewController, StoryboardInstantiable {
 extension SearchViewController: PagingTabbarDelegate, UICollectionViewDelegateFlowLayout {
   
   func scrollToIndex(to index: Int) {
-    pageCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+    pageCollectionView.scrollToItem(at: IndexPath(row: index, section: 0),
+                                    at: .centeredHorizontally, animated: true)
   }
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    categoryTabbarView.indicatorLeadingConstraint.constant = scrollView.contentOffset.x / 2 - cateboryTabbarViewTrailing.constant < 0 ? 0 : scrollView.contentOffset.x / 2 - cateboryTabbarViewTrailing.constant
+    let scrollLimit = scrollView.contentOffset.x / 2 - cateboryTabbarViewTrailing.constant
+    if scrollLimit < 0 {
+      categoryTabbarView.indicatorLeadingConstraint.constant = 0
+    } else {
+      categoryTabbarView.indicatorLeadingConstraint.constant = scrollLimit
+    }
   }
 
-  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+  func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint,
+                                 targetContentOffset: UnsafeMutablePointer<CGPoint>) {
     let page = Int(targetContentOffset.pointee.x / pageCollectionView.frame.width)
     categoryTabbarView.scroll(to: page)
   }
 }
 
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension SearchViewController: UICollectionViewDelegate,
+                                UICollectionViewDataSource, UIScrollViewDelegate {
+  func collectionView(_ collectionView: UICollectionView,
+                      numberOfItemsInSection section: Int) -> Int {
     return childrenVC.count
   }
 
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+  func collectionView(_ collectionView: UICollectionView,
+                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath)
     // TODO: 하드코딩을 안할수 있는 방향을 찾아보자
-    if indexPath.row == 0 {
-      display(contentController: StarsSearchViewController.loadFromStoryboard()
-              as! StarsSearchViewController, on: cell.contentView)
-    } else {
-      display(contentController: RecentSearchViewController.loadFromStoryboard()
-              as! RecentSearchViewController, on: cell.contentView)
-    }
+    display(contentController: childrenVC[indexPath.row], on: cell.contentView)
     return cell
   }
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
     let width = collectionView.frame.width
     let height = collectionView.frame.height
     return CGSize(width: width, height: height)
   }
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return 0
   }
 
