@@ -56,9 +56,9 @@ class CategoryTabbar: UIView {
   private func setConstraint() {
     indicatorLeadingConstraint = indicatorView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
             NSLayoutConstraint.activate([
-              indicatorView.heightAnchor.constraint(equalToConstant: 5),
+              indicatorView.heightAnchor.constraint(equalToConstant: 3),
               indicatorView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor),
-              indicatorView.widthAnchor.constraint(equalToConstant: self.view.frame.width / 2),
+              indicatorView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
               indicatorView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
               indicatorLeadingConstraint
             ])
@@ -83,6 +83,7 @@ extension CategoryTabbar: UICollectionViewDelegate, UICollectionViewDataSource, 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: self.view.bounds.width / 2, height: collectionView.bounds.height)
   }
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
     return 0
   }

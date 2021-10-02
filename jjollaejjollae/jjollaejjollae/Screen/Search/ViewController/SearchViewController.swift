@@ -53,6 +53,8 @@ class SearchViewController: UIViewController, StoryboardInstantiable {
     view.addGestureRecognizer(tapGesture)
     searchTextField.returnKeyType = .search
     searchTextField.delegate = self
+    print("wholeview :", view.frame.width);
+    print("category tabbarview", categoryTabbarView.indicatorView.frame.width);
   }
 }
 //MARK: - PagingCollectionView
@@ -64,7 +66,7 @@ extension SearchViewController: PagingTabbarDelegate, UICollectionViewDelegateFl
   }
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    categoryTabbarView.indicatorLeadingConstraint.constant = scrollView.contentOffset.x / 2 - 40  < 0 ? 0 : scrollView.contentOffset.x / 2 - 40
+    categoryTabbarView.indicatorLeadingConstraint.constant = scrollView.contentOffset.x / 2 - 40 < 0 ? 0 : scrollView.contentOffset.x / 2 - 40
   }
 
   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -81,11 +83,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath)
     if indexPath.row == 0 {
-      display(contentController: StarsSearchViewController.loadFromStoryboard() as! StarsSearchViewController, on: cell.contentView)
+      display(contentController: StarsSearchViewController.loadFromStoryboard()
+              as! StarsSearchViewController, on: cell.contentView)
     } else {
-      display(contentController: RecentSearchViewController.loadFromStoryboard() as! RecentSearchViewController, on: cell.contentView)
+      display(contentController: RecentSearchViewController.loadFromStoryboard()
+              as! RecentSearchViewController, on: cell.contentView)
     }
-//    cell.contentView.backgroundColor = colorSet[indexPath.row]
     return cell
   }
   

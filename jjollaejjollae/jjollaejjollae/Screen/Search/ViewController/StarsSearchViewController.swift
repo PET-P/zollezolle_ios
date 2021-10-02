@@ -19,7 +19,7 @@ class StarsSearchViewController: UIViewController, StoryboardInstantiable {
   private lazy var searchManager = SearchManager.shared
   private var list = [String]()
   
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     starTableView.delegate = self
