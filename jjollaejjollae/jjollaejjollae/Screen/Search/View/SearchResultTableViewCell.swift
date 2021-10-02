@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SearchResultCellDelegate {
+protocol SearchResultCellDelegate: AnyObject {
   func didTapHeart(for placeId: Int, like: Bool)
 }
 
@@ -57,7 +57,12 @@ class SearchResultTableViewCell: UITableViewCell {
       numberOfReviewsLabel.textColor = .gray03
     }
   }
-  @IBOutlet weak var heartButton: UIButton!
+  @IBOutlet weak var heartButton: UIButton! {
+    didSet {
+      heartButton.setImage(UIImage(named: "pinkLike"), for: .selected)
+      heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
+    }
+  }
   @IBOutlet weak var priceLabel: UILabel! {
     didSet {
       priceLabel.text = "85,000원"
@@ -77,13 +82,23 @@ class SearchResultTableViewCell: UITableViewCell {
   var isWish: Bool? {
     didSet {
       if isWish == true {
-        heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
+//        heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
+        heartButton.isSelected = true
       } else {
-        heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
+//        heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
+        heartButton.isSelected = false
       }
-      print(isWish)
     }
   }
+  
+  // 설명
+  // 처음에 버튼을 누름 ttff
+  // 돌리면 재사용이 일어날수 있는데
+  // 결국엔 cellforrowat에 들어갔을때 이 셀의 true false를 알아야한다.
+  // 그래서 결국에는 셀이 true false를 가지고있고
+  // 셀의 상태를 계속봐서 버튼색을 초기화해주는 친구가 필요할 것 같다
+  
+  
   
   override func prepareForReuse() {
     DaysLabel.isHidden = true
@@ -92,11 +107,11 @@ class SearchResultTableViewCell: UITableViewCell {
     addressLabel.isHidden = true
   }
   
-  var delegate : SearchResultCellDelegate?
+  weak var delegate : SearchResultCellDelegate?
   var index : Int? //얘를 key(디비에 장소의 id)
   var placeId: Int = -1
   
-  @IBAction func didTapHeartButton(_ sender: UIButton) {
+  @IBAction func didTapHeartButton(_ sender: UIButton) { //상태를 바꿔준다. 셀이 아닌 버튼만 바꿔준다면 재사용의 문제가 생긴다.
     if sender.isSelected {
       isWish = true
       delegate?.didTapHeart(for: placeId, like: true)
