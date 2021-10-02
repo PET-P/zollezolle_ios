@@ -42,10 +42,13 @@ class SearchViewController: UIViewController, StoryboardInstantiable {
   }
   
   private lazy var searchManager = SearchManager.shared
-  let colorSet: [UIColor] = [.systemRed, .systemOrange]
+  let childrenVC: [AnyObject] = [StarsSearchViewController.self, RecentSearchViewController.self]
+//  let childrenVC: [StoryboardInstantiable.Protocol] = [StarsSearchViewController.self, RecentSearchViewController.self]
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    print(childrenVC)
     let tapGesture = UITapGestureRecognizer(
       target: view,
       action: #selector(view.endEditing(_:)))
@@ -77,11 +80,12 @@ extension SearchViewController: PagingTabbarDelegate, UICollectionViewDelegateFl
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return colorSet.count
+    return childrenVC.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath)
+    // TODO: 하드코딩을 안할수 있는 방향을 찾아보자
     if indexPath.row == 0 {
       display(contentController: StarsSearchViewController.loadFromStoryboard()
               as! StarsSearchViewController, on: cell.contentView)
