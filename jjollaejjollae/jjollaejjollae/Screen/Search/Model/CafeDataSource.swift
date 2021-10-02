@@ -21,9 +21,9 @@ extension CafeDataSource: SearchResultCellDelegate {
   
   func didTapHeart(for placeId: Int, like: Bool) {
     if like {
-      likes[placeId] = true
-    } else {
       likes[placeId] = false
+    } else {
+      likes[placeId] = true
     }
   }
   

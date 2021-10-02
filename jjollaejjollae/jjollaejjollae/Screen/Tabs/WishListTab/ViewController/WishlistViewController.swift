@@ -209,7 +209,7 @@ extension WishlistViewController: UITableViewDelegate {
 extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegate {
   
   func didTapHeart(for placeId: Int, like: Bool) {
-    likes[placeId] = like == true ? true : false
+    likes[placeId] = like == true ? false : true
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

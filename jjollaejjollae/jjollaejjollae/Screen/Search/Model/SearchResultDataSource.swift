@@ -55,10 +55,10 @@ extension SearchResultDataSource: SearchResultCellDelegate {
   func didTapHeart(for placeId: Int, like: Bool) {
     //WISHLIST: 프로퍼티리스트를 바로바로 update시키고싶다
     if like {
-      likes[placeId] = true
+      likes[placeId] = false
       //모델의 likes에 대한 Update
     } else {
-      likes[placeId] = false
+      likes[placeId] = true
       //모델의 likes에 대한 Update
     }
   }

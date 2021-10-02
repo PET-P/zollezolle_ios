@@ -9,7 +9,11 @@ import UIKit
 
 class AccommodationDataSource: NSObject, UITableViewDataSource {
   var dataList: [SearchResultInfo] = []
-  lazy var likes: [Int: Bool] = [:]
+  lazy var likes: [Int: Bool] = [:] {
+    didSet {
+      print(likes)
+    }
+  }
   // like userdefault 관리한다
   // userdefaults 와 서버 간 통신은 ()언제한다?
   // likes?
@@ -34,10 +38,10 @@ extension AccommodationDataSource: SearchResultCellDelegate {
   func didTapHeart(for placeId: Int, like: Bool) {
     //WISHLIST: 프로퍼티리스트를 바로바로 update시키고싶다
     if like {
-      likes[placeId] = true
+      likes[placeId] = false
       //모델의 likes에 대한 Update
     } else {
-      likes[placeId] = false
+      likes[placeId] = true
       //모델의 likes에 대한 Update
     }
   }
