@@ -22,6 +22,11 @@ class SearchMapViewController: MapViewController {
     }
   }
   
+  @IBAction func didTapXButton(_ sender: UIBarButtonItem) {
+    //TODO 여기서 통신,데이터 전달 모두일어나야함
+    self.dismiss(animated: true, completion: nil)
+  }
+  
   private var markers: [NMFMarker]?
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,6 +50,7 @@ class SearchMapViewController: MapViewController {
       marker.mapView = nil
     })
   }
+  
   
   private func setMarker() {
     var markers = [NMFMarker]()
