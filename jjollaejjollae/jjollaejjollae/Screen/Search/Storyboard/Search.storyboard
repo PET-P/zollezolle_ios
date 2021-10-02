@@ -93,6 +93,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="Cym-vv-4a9" id="lkO-c4-6dp"/>
+                        <outlet property="cateboryTabbarViewTrailing" destination="XyO-p5-d8T" id="XJU-VF-4Qb"/>
                         <outlet property="categoryTabbarView" destination="C10-Tl-Jz5" id="rhs-LV-ixH"/>
                         <outlet property="headView" destination="AEd-L9-hp5" id="Z4v-hA-PMF"/>
                         <outlet property="pageCollectionView" destination="TJQ-S9-eTO" id="jFa-EU-Mlg"/>

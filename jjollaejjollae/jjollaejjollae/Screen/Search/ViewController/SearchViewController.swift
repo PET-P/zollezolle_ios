@@ -31,6 +31,7 @@ class SearchViewController: UIViewController, StoryboardInstantiable {
       categoryTabbarView.delegate = self
     }
   }
+  @IBOutlet weak var cateboryTabbarViewTrailing: NSLayoutConstraint!
   
   @IBOutlet weak var pageCollectionView: UICollectionView! {
     didSet {
@@ -69,7 +70,7 @@ extension SearchViewController: PagingTabbarDelegate, UICollectionViewDelegateFl
   }
 
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    categoryTabbarView.indicatorLeadingConstraint.constant = scrollView.contentOffset.x / 2 - 40 < 0 ? 0 : scrollView.contentOffset.x / 2 - 40
+    categoryTabbarView.indicatorLeadingConstraint.constant = scrollView.contentOffset.x / 2 - cateboryTabbarViewTrailing.constant < 0 ? 0 : scrollView.contentOffset.x / 2 - cateboryTabbarViewTrailing.constant
   }
 
   func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
