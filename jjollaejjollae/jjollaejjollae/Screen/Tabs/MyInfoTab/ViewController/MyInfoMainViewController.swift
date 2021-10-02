@@ -24,6 +24,10 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     infoTableView.dataSource = self
     setupHeader()
     infoTableView.tableFooterView = UIView(frame: CGRect.zero)
+    if #available(iOS 15.0, *) {
+      infoTableView.sectionHeaderTopPadding = 0
+    }
+    infoTableView.sectionFooterHeight = .leastNonzeroMagnitude
     infoTableView.alwaysBounceVertical = false
   }
   
@@ -117,7 +121,8 @@ extension MyInfoMainViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 8))
+//    let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 8))
+    let header = UIView()
     header.backgroundColor = .gray06
     return header
   }
