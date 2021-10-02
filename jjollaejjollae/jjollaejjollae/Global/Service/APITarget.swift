@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum APIEnvironment: String {
-  case base = "http://49.50.173.104:80/api"
+  case base = "https://api.zollezolle.me"
   case naverURL = "https://openapi.naver.com/v1/nid/me"
 }
 
