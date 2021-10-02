@@ -21,9 +21,9 @@ extension RestaurantDataSource: SearchResultCellDelegate {
   
   func didTapHeart(for placeId: Int, like: Bool) {
     if like {
-      likes[placeId] = true
-    } else {
       likes[placeId] = false
+    } else {
+      likes[placeId] = true
     }
   }
   
@@ -56,7 +56,6 @@ extension RestaurantDataSource: SearchResultCellDelegate {
     
     cell.isWish = likes[cell.placeId] == true
     dataList[indexPath.row].like = likes[cell.placeId] == true
-    
     return cell
   }
   
