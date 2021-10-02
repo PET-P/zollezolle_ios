@@ -8,12 +8,24 @@
 import UIKit
 
 class MyInfoTabNavigationController: UINavigationController {
+  
+  let MyInfoMainVC: MyInfoMainViewController = {
+    
+    guard let MyInfoMainVC =
+            MyInfoMainViewController.loadFromStoryboard()
+            as? MyInfoMainViewController
+    else {
+      return MyInfoMainViewController()
+    }
+    return MyInfoMainVC
+  }()
 
   // MARK: - Life Cycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setNavigationBarHidden(true, animated: true)
+    setRootViewController()
   }
   
   // MARK: - Custom
@@ -24,10 +36,9 @@ class MyInfoTabNavigationController: UINavigationController {
                                    selectedImage: nil)
   }
   
-//  private func setRootViewController() {
-//
-//    self.viewControllers.append()
-//  }
+  private func setRootViewController() {
+    self.viewControllers.append(MyInfoMainVC)
+  }
 }
 
 // MARK: - Resources
