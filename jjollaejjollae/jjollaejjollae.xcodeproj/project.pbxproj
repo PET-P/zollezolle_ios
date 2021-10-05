@@ -97,6 +97,9 @@
 		28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F9E93E26C8027000D9E693 /* SearchViewController.swift */; };
 		28F9E94126C802A000D9E693 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F9E94026C802A000D9E693 /* Search.storyboard */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
+		DD3A996427023B4A00DBCC0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD3A996327023B4A00DBCC0F /* Images.xcassets */; };
+		DD4DD8AB270CCF8800A54FC3 /* HomeLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4DD8AA270CCF8800A54FC3 /* HomeLocationCell.xib */; };
+		DD4DD8AD270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4DD8AC270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
@@ -220,6 +223,9 @@
 		3B381DAB5BFA04ADF2FF7813 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F54E5949B2AB3FE95C8155 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		93F6C20B1B7F11F548FE5E7E /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
+		DD3A996327023B4A00DBCC0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DD4DD8AA270CCF8800A54FC3 /* HomeLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeLocationCell.xib; sourceTree = "<group>"; };
+		DD4DD8AC270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -415,6 +421,7 @@
 				2827C89626B03C3E0001E077 /* Info.plist */,
 				28EA825226B42B9D00785666 /* Font */,
 				28EA825126B42B8100785666 /* Delegate */,
+				DD3A996327023B4A00DBCC0F /* Images.xcassets */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -632,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */,
+				DD4DD8AA270CCF8800A54FC3 /* HomeLocationCell.xib */,
 			);
 			path = Stroyboard;
 			sourceTree = "<group>";
@@ -641,6 +649,7 @@
 			children = (
 				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
 				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
+				DD4DD8AC270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -779,6 +788,7 @@
 				28EA825F26B42BF700785666 /* Roboto Mono Italic for Powerline.ttf in Resources */,
 				2884A30526C90CD4004596C3 /* Recent.storyboard in Resources */,
 				28EA825D26B42BF700785666 /* Roboto Mono Medium Italic for Powerline.ttf in Resources */,
+				DD3A996427023B4A00DBCC0F /* Images.xcassets in Resources */,
 				DDFFC17426FB1C05001FD04A /* WishCalendar.storyboard in Resources */,
 				28331CC026DCD70F0062B29D /* InfoView.xib in Resources */,
 				2877831126C824A2001BF582 /* Stars.storyboard in Resources */,
@@ -786,6 +796,7 @@
 				DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
 				2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */,
+				DD4DD8AB270CCF8800A54FC3 /* HomeLocationCell.xib in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
@@ -918,6 +929,7 @@
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
 				DDFFC12026FB07D7001FD04A /* MapTabFilterTypeButton.swift in Sources */,
+				DD4DD8AD270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift in Sources */,
 				283F23F326F7133400CD8339 /* Wish.swift in Sources */,
 				283F240326F869C900CD8339 /* EmailData.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
@@ -1078,15 +1090,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WL7H63J22B;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = P.TEP.jjollaejjollae;
+				PRODUCT_BUNDLE_IDENTIFIER = net.zollae.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1097,15 +1111,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WL7H63J22B;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = P.TEP.jjollaejjollae;
+				PRODUCT_BUNDLE_IDENTIFIER = net.zollae.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

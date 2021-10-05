@@ -9,62 +9,81 @@ import UIKit
 
 class HomeMainViewController: UIViewController, StoryboardInstantiable {
   
-	// MARK: - IBOutlets
+  // MARK: - IBOutlet
   
-  @IBOutlet weak var mainImageView: UIImageView!
-  @IBOutlet weak var searchField: UITextField!
+  @IBOutlet weak var imageBackView: UIView!
   
-  // TODO: CollectionView 연결
+  @IBOutlet weak var imageBackViewHeightConstraint: NSLayoutConstraint! {
+    didSet {
+      
+      imageBackViewHeightConstraint.constant = mainImageMaxHeight
+    }
+  }
+
+  @IBOutlet weak var mainImageView: UIImageView! {
+    didSet {
+
+      if hasMainPhoto {
+        // TODO: 프로필 사진 설정
+        
+        return
+      }
+      
+      // mainImageView.image = SomedefaultImage
+    }
+  }
   
-  lazy var searchButton: UIButton = {
-    
-    let button = UIButton()
-    
-    button.setImage(UIImage(named: "Search"), for: UIControl.State.normal)
-    button.contentEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
-    button.translatesAutoresizingMaskIntoConstraints = false
-    
-    return button
-  }()
+  @IBOutlet weak var mainScrollView: UIScrollView! {
+    didSet {
+      
+      mainScrollView.contentInsetAdjustmentBehavior = .never
+      
+      mainScrollView.contentInset.top = mainImageView.frame.height
+      
+      mainScrollView.showsVerticalScrollIndicator = false
+    }
+  }
+  
+  // MARK: - Protperty
+  
+  private var mainImageMaxHeight: CGFloat = 360
+  private var mainImageMinHeight: CGFloat = 128
+  
+  
+  private var hasMainPhoto: Bool {
+    // MainPhoto 유무 확인하는 로직
+    return true
+  }
+  
+  private var userPetName: String? {
+    return "쪼꼬"
+  }
   
   // MARK: - Life Cycle
   override func viewDidLoad() {
-    searchField.delegate = self
+    
     super.viewDidLoad()
-    setSearchField()
+    
+    mainScrollView.delegate = self
   }
   
   // MARK: - Custom
+
+}
+
+extension HomeMainViewController: UIScrollViewDelegate {
   
-  private func setSearchField() {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
     
-    searchField.layer.cornerRadius = searchField.frame.height / 2
-    searchField.layer.masksToBounds = true
+    mainImageView.alpha = ((mainImageView.frame.height - mainImageMinHeight) / (mainImageMaxHeight - mainImageMinHeight) * 100).rounded(.down)
     
-    searchField.rightView = searchButton
-    searchField.rightViewMode = .always
+    let value = mainImageMaxHeight - scrollView.contentOffset.y.rounded(.up) - CGFloat(356)
     
-    searchField.addSubview(searchButton)
-    
-    searchButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-    searchButton.heightAnchor.constraint(equalTo: searchButton.widthAnchor, multiplier: 1.0).isActive = true
-    
-    searchButton.centerYAnchor.constraint(equalTo: searchField.centerYAnchor).isActive = true
-    searchButton.trailingAnchor.constraint(equalTo: searchField.trailingAnchor, constant: -20).isActive = true
-  }
-}
-
-// MARK: - Storyborad
-
-extension HomeMainViewController: UITextFieldDelegate {
-  func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    if textField == searchField {
-      self.navigationController?.pushViewController(HomeMainViewController
-                                                      .loadFromStoryboard()
-                                                    , animated: true)
+    if value >= mainImageMinHeight && value <= mainImageMaxHeight {
+      imageBackViewHeightConstraint.constant = value
     }
-    return false
+
+  func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+    print(#function)
   }
 }
-
-

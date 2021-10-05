@@ -8,10 +8,6 @@
 import UIKit
 
 // TODO: 이 프로토콜 적절한 파일로 옮기기
-//protocol Storyboardable: AnyObject {
-//
-//  static func loadFromStoryboard(fileName: String) -> UIViewController
-//}
 
 class HomeTabNavigationController: UINavigationController {
   
