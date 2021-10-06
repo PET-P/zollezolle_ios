@@ -20,7 +20,7 @@ struct PetInfo: Codable {
   var weight: Double?
   var type: String = "강아지"
   var breed: String?//후에 URL로 변경해아함
-//  var imageData: Data?
+  var imageData: Data?
 }
 
 enum Gender: String, Codable{
