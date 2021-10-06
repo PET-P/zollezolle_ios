@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto Mono Bold for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--My Info Reservation View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MyInfoReservationViewController" id="Y6W-OH-hqX" customClass="MyInfoReservationViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKV-ys-iyx">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G6V-dQ-Y3k">
+                                        <rect key="frame" x="16" y="10" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="2n0-UE-MyO"/>
+                                            <constraint firstAttribute="width" secondItem="G6V-dQ-Y3k" secondAttribute="height" multiplier="1:1" id="hkr-lh-jeF"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="backbutton">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="xLj-XI-ubR"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="예약내역" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVr-xZ-kKM">
+                                        <rect key="frame" x="172.5" y="10.5" width="69.5" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="G6V-dQ-Y3k" firstAttribute="centerY" secondItem="nKV-ys-iyx" secondAttribute="centerY" id="96S-f0-h7m"/>
+                                    <constraint firstItem="G6V-dQ-Y3k" firstAttribute="leading" secondItem="nKV-ys-iyx" secondAttribute="leading" constant="16" id="Frp-JG-Zli"/>
+                                    <constraint firstItem="FVr-xZ-kKM" firstAttribute="centerX" secondItem="nKV-ys-iyx" secondAttribute="centerX" id="J3T-ji-ZMo"/>
+                                    <constraint firstAttribute="height" constant="44" id="jeQ-1c-VmV"/>
+                                    <constraint firstItem="FVr-xZ-kKM" firstAttribute="centerY" secondItem="nKV-ys-iyx" secondAttribute="centerY" id="rj2-lw-hNG"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="v23-8N-Qku">
+                                <rect key="frame" x="40" y="417.5" width="334.5" height="61.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쫄래쫄래에서 진행된 예약 내역이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUP-QH-64x">
+                                        <rect key="frame" x="0.0" y="0.0" width="334.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8si-M4-QVq">
+                                        <rect key="frame" x="91.5" y="31.5" width="151" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="쫄래쫄래와 함께 여행가기"/>
+                                        <connections>
+                                            <action selector="didTapgoSearchButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ajt-IQ-Y4S"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nKV-ys-iyx" secondAttribute="trailing" id="7N2-21-0nu"/>
+                            <constraint firstItem="v23-8N-Qku" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="BeX-Y4-3xi"/>
+                            <constraint firstItem="nKV-ys-iyx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="DPg-uG-2P5"/>
+                            <constraint firstItem="v23-8N-Qku" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="b7N-wM-Z7j"/>
+                            <constraint firstItem="nKV-ys-iyx" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="fsI-7S-Dau"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="goSearchButton" destination="8si-M4-QVq" id="dCk-b6-2K1"/>
+                        <outlet property="noticeLabel" destination="NUP-QH-64x" id="64k-QD-VtN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23" y="138"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backbutton" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
