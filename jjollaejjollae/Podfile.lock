@@ -1,38 +1,53 @@
 PODS:
   - Alamofire (5.4.4)
+  - Amplify (1.14.0):
+    - Amplify/Default (= 1.14.0)
+  - Amplify/Default (1.14.0)
+  - AmplifyPlugins/AWSCognitoAuthPlugin (1.14.0):
+    - AWSAuthCore (~> 2.26.0)
+    - AWSCognitoIdentityProvider (~> 2.26.0)
+    - AWSCognitoIdentityProviderASF (~> 2.26.0)
+    - AWSCore (~> 2.26.0)
+    - AWSMobileClient (~> 2.26.0)
+    - AWSPluginsCore (= 1.14.0)
+  - AmplifyPlugins/AWSS3StoragePlugin (1.14.0):
+    - AWSCore (~> 2.26.0)
+    - AWSPluginsCore (= 1.14.0)
+    - AWSS3 (~> 2.26.0)
+  - AWSAuthCore (2.26.1):
+    - AWSCore (= 2.26.1)
+  - AWSCognitoIdentityProvider (2.26.1):
+    - AWSCognitoIdentityProviderASF (= 2.26.1)
+    - AWSCore (= 2.26.1)
+  - AWSCognitoIdentityProviderASF (2.26.1)
+  - AWSCore (2.26.1)
+  - AWSMobileClient (2.26.1):
+    - AWSAuthCore (= 2.26.1)
+    - AWSCognitoIdentityProvider (= 2.26.1)
+    - AWSCognitoIdentityProviderASF (= 2.26.1)
+    - AWSCore (= 2.26.1)
+  - AWSPluginsCore (1.14.0):
+    - Amplify (= 1.14.0)
+    - AWSCore (~> 2.26.0)
+  - AWSS3 (2.26.1):
+    - AWSCore (= 2.26.1)
   - FSCalendar (2.8.2)
-  - KakaoSDK (2.8.0):
-    - KakaoSDKAuth (= 2.8.0)
-    - KakaoSDKCommon (= 2.8.0)
-    - KakaoSDKLink (= 2.8.0)
-    - KakaoSDKNavi (= 2.8.0)
-    - KakaoSDKStory (= 2.8.0)
-    - KakaoSDKTalk (= 2.8.0)
-    - KakaoSDKTemplate (= 2.8.0)
-    - KakaoSDKUser (= 2.8.0)
-  - KakaoSDKAuth (2.8.0):
-    - KakaoSDKCommon (= 2.8.0)
-  - KakaoSDKCommon (2.8.0):
-    - KakaoSDKCommon/Common (= 2.8.0)
-    - KakaoSDKCommon/Network (= 2.8.0)
-  - KakaoSDKCommon/Common (2.8.0)
-  - KakaoSDKCommon/Network (2.8.0):
+  - KakaoSDKAuth (2.8.1):
+    - KakaoSDKCommon (= 2.8.1)
+  - KakaoSDKCommon (2.8.1):
+    - KakaoSDKCommon/Common (= 2.8.1)
+    - KakaoSDKCommon/Network (= 2.8.1)
+  - KakaoSDKCommon/Common (2.8.1)
+  - KakaoSDKCommon/Network (2.8.1):
     - Alamofire (~> 5.1)
-    - KakaoSDKCommon/Common (= 2.8.0)
-  - KakaoSDKLink (2.8.0):
-    - KakaoSDKCommon (= 2.8.0)
-    - KakaoSDKTemplate (= 2.8.0)
-  - KakaoSDKNavi (2.8.0):
-    - KakaoSDKCommon/Common (= 2.8.0)
-  - KakaoSDKStory (2.8.0):
-    - KakaoSDKUser (= 2.8.0)
-  - KakaoSDKTalk (2.8.0):
-    - KakaoSDKTemplate (= 2.8.0)
-    - KakaoSDKUser (= 2.8.0)
-  - KakaoSDKTemplate (2.8.0):
-    - KakaoSDKCommon/Common (= 2.8.0)
-  - KakaoSDKUser (2.8.0):
-    - KakaoSDKAuth (= 2.8.0)
+    - KakaoSDKCommon/Common (= 2.8.1)
+  - KakaoSDKTalk (2.8.1):
+    - KakaoSDKTemplate (= 2.8.1)
+    - KakaoSDKUser (= 2.8.1)
+  - KakaoSDKTemplate (2.8.1):
+    - KakaoSDKCommon/Common (= 2.8.1)
+  - KakaoSDKUser (2.8.1):
+    - KakaoSDKAuth (= 2.8.1)
   - Kingfisher (6.3.1)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
@@ -43,8 +58,14 @@ PODS:
   - SwiftLint (0.44.0)
 
 DEPENDENCIES:
+  - Amplify
+  - AmplifyPlugins/AWSCognitoAuthPlugin
+  - AmplifyPlugins/AWSS3StoragePlugin
   - FSCalendar
-  - KakaoSDK
+  - KakaoSDKAuth
+  - KakaoSDKCommon
+  - KakaoSDKTalk
+  - KakaoSDKUser
   - Kingfisher (~> 6.0)
   - Moya (~> 14.0)
   - naveridlogin-sdk-ios
@@ -54,13 +75,18 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - Amplify
+    - AmplifyPlugins
+    - AWSAuthCore
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
+    - AWSMobileClient
+    - AWSPluginsCore
+    - AWSS3
     - FSCalendar
-    - KakaoSDK
     - KakaoSDKAuth
     - KakaoSDKCommon
-    - KakaoSDKLink
-    - KakaoSDKNavi
-    - KakaoSDKStory
     - KakaoSDKTalk
     - KakaoSDKTemplate
     - KakaoSDKUser
@@ -72,22 +98,27 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Amplify: 6402de6b8e46f3228b59fef3dfe379ebbfb0e0f1
+  AmplifyPlugins: 94bb3e7e006b41f82e8a0a1dbbc48925d9edbe4c
+  AWSAuthCore: 264faaa6af5990af2c77effe8f398a4b80e6c44e
+  AWSCognitoIdentityProvider: 5df455775b57eb4e61862acd88d93e56113950c4
+  AWSCognitoIdentityProviderASF: b2c180f69537d57ff485f7314fd266032ca3f898
+  AWSCore: 0f855e20ccb13e028932b737f0706023a9561399
+  AWSMobileClient: ba255030a481b8a123b21585548e761456efc64b
+  AWSPluginsCore: 75950cfd39535b0a3654096cb472a7ee5b2ce0fa
+  AWSS3: 9795c8568c36424f86bc881217dacf09263d40bc
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
-  KakaoSDK: 31885e28f795ea568ff3537e5ee2cb44a9906dd0
-  KakaoSDKAuth: 614d5c1b2c52f0e25436765c52bfb27b522bf116
-  KakaoSDKCommon: 54ab936e6fc31ddaa78b056a6796db0d4be33923
-  KakaoSDKLink: 944f21e87962f83f6b687c99dc2c8edd8f6e902e
-  KakaoSDKNavi: b9723872afc731063bb72b604c2f28e838ba07d4
-  KakaoSDKStory: 4d866b5988c06397b023930b61f1ca3a105f3eab
-  KakaoSDKTalk: 46327e18da9fdcc558688f11eb6be1ae4118ea21
-  KakaoSDKTemplate: 4d118c0f051de0031ba294b8be275ef08944b69b
-  KakaoSDKUser: 24a737aa1e17b75579cb9e392062811d19d40045
+  KakaoSDKAuth: 3cf74660531ac85cd2c7931df8d90d562b0a8fe2
+  KakaoSDKCommon: 701ef2a9b92215a4bf131b2a6139c3586b5e8d99
+  KakaoSDKTalk: 14a62541fbe93bfeafae8751e58d7212d3642431
+  KakaoSDKTemplate: 1e47d4d711cdae4250e8750cf6ce76652736e73e
+  KakaoSDKUser: c4bdbca17b05ce7a25c67176ac68b6b0c8b1db56
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
 
-PODFILE CHECKSUM: 4832812733e7d9735a921dc5b0d09cec0283fb4b
+PODFILE CHECKSUM: 9bf37841738fa2d34ad61bfb5621b07078f9ca0a
 
 COCOAPODS: 1.10.2

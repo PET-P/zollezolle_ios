@@ -18,6 +18,12 @@ target 'jjollaejjollae' do
   pod 'FSCalendar'
   pod 'NMapsMap'
   pod 'naveridlogin-sdk-ios'
-  pod 'KakaoSDK'
+  pod 'KakaoSDKCommon'
+  pod 'KakaoSDKAuth'
+  pod 'KakaoSDKUser'
+  pod 'KakaoSDKTalk'
+  pod 'Amplify'
+  pod 'AmplifyPlugins/AWSS3StoragePlugin'
+  pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
 
 end
