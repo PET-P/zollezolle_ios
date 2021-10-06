@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto Mono Bold for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Bold</string>
+        </array>
+        <array key="Roboto Mono Medium for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--My Info Review View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MyInfoReviewViewController" id="Y6W-OH-hqX" customClass="MyInfoReviewViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qWq-kO-9bx">
+                                <rect key="frame" x="111" y="412" width="192" height="72.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 후기가 없어요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caH-R7-17n">
+                                        <rect key="frame" x="0.0" y="0.0" width="192" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쫄래쫄래를 통해 예약 후" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feB-y6-gQH">
+                                        <rect key="frame" x="0.0" y="31.5" width="192" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내 후기를 남겨주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v33-Ia-PqQ">
+                                        <rect key="frame" x="0.0" y="56" width="192" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKn-d6-i8o">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sZ-km-ocg">
+                                        <rect key="frame" x="16" y="10" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="BNe-xk-TKq"/>
+                                            <constraint firstAttribute="width" secondItem="2sZ-km-ocg" secondAttribute="height" multiplier="1:1" id="JV2-ke-7va"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="backbutton">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Hd6-dn-Qwg"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내 후기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4Q-7C-miM">
+                                        <rect key="frame" x="175" y="10.5" width="64" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="M4Q-7C-miM" firstAttribute="centerY" secondItem="JKn-d6-i8o" secondAttribute="centerY" id="01f-Rb-KaG"/>
+                                    <constraint firstItem="M4Q-7C-miM" firstAttribute="centerX" secondItem="JKn-d6-i8o" secondAttribute="centerX" id="CfD-Ra-uTU"/>
+                                    <constraint firstItem="2sZ-km-ocg" firstAttribute="centerY" secondItem="JKn-d6-i8o" secondAttribute="centerY" id="e5Z-Tz-bJs"/>
+                                    <constraint firstAttribute="height" constant="44" id="tNk-7B-7s5"/>
+                                    <constraint firstItem="2sZ-km-ocg" firstAttribute="leading" secondItem="JKn-d6-i8o" secondAttribute="leading" constant="16" id="wlc-vH-HZK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qWq-kO-9bx" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Jqh-Ou-E7G"/>
+                            <constraint firstItem="JKn-d6-i8o" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="M7b-hm-r7h"/>
+                            <constraint firstItem="qWq-kO-9bx" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="U0J-SY-mUc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JKn-d6-i8o" secondAttribute="trailing" id="hAX-yL-BkQ"/>
+                            <constraint firstItem="JKn-d6-i8o" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="xzj-lj-zHi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="caH-R7-17n" id="bmq-u4-RWL"/>
+                        <outletCollection property="subtitle" destination="feB-y6-gQH" collectionClass="NSMutableArray" id="65b-qH-z4N"/>
+                        <outletCollection property="subtitle" destination="v33-Ia-PqQ" collectionClass="NSMutableArray" id="ShK-HQ-EIU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23" y="138"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backbutton" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
