@@ -37,9 +37,15 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     stackV.axis = .horizontal
     stackV.spacing = 5
     stackV.distribution = .fillEqually
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gotoMyInfoDetail(_:)))
+    stackV.addGestureRecognizer(tapGesture)
     return stackV
   }()
   
+  
+  // 이거 왜그러지? setupgesture에 넣을때는 안되더니만 여기다 넣으면 된다 뭐지? 따로함수를 빼고 해도 안된당 음 시점차이가
+  // 확실한대 왜그런지 나중에 한번 알아보기
+  // imageview완성 시점과 gesture시점
   lazy var profileImageView: UIImageView = {
     let imageview = UIImageView()
     imageview.contentMode = .scaleAspectFill
@@ -47,6 +53,9 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     imageview.layer.cornerRadius = imageHeight / 2
     imageview.layer.masksToBounds = true
     imageview.clipsToBounds = true
+    imageview.isUserInteractionEnabled = true
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gotoMyInfoDetail(_:)))
+    imageview.addGestureRecognizer(tapGesture)
     imageview.translatesAutoresizingMaskIntoConstraints = false
     return imageview
   }()
@@ -71,6 +80,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 260))
     header.backgroundColor = .white
     infoTableView.tableHeaderView = header
+    header.isUserInteractionEnabled = true
     header.addSubview(profileImageView)
     profileImageView.widthAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
     profileImageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
@@ -81,9 +91,20 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     profileStackView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor,
                                           constant: 20).isActive = true
     }
+  
+  @objc func gotoMyInfoDetail(_ sender: Any?) {
+    guard let detailVC = MyInfoDetailViewController.loadFromStoryboard() as?
+            MyInfoDetailViewController else {return}
+    self.navigationController?.pushViewController(detailVC, animated: true)
+    //로그인이 되어있지 않다면?
+//    guard let loginVC = LoginViewController.loadFromStoryboard() as?
+//            LoginViewController else {return}
+//    self.navigationController?.pushViewController(loginVC, animated: true)
+  }
+  
 }
 
-extension MyInfoMainViewController: UITableViewDelegate, UITableViewDataSource {
+extension MyInfoMainViewController: UITableViewDataSource {
   
   func numberOfSections(in tableView: UITableView) -> Int {
     return 2
@@ -121,7 +142,6 @@ extension MyInfoMainViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//    let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 8))
     let header = UIView()
     header.backgroundColor = .gray06
     return header
@@ -129,5 +149,26 @@ extension MyInfoMainViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 87
+  }
+}
+
+extension MyInfoMainViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if indexPath.section == 0 {
+      guard let myReservationVC = MyInfoReservationViewController.loadFromStoryboard() as? MyInfoReservationViewController else {return}
+      self.navigationController?.pushViewController(myReservationVC, animated: true)
+    } else {
+      switch indexPath.row {
+      case 0:
+        guard let myReviewVC = MyInfoReviewViewController.loadFromStoryboard() as? MyInfoReviewViewController else {return}
+        self.navigationController?.pushViewController(myReviewVC, animated: true)
+      case 1:
+        print("카카오플러스친구로 이동")
+      case 2:
+        guard let settingVC = MyInfoSettingViewController.loadFromStoryboard() as? MyInfoSettingViewController else {return}
+        self.navigationController?.pushViewController(settingVC, animated: true)
+      default: return
+      }
+    }
   }
 }
