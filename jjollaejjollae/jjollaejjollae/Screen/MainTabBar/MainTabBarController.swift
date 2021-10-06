@@ -19,7 +19,7 @@ class MainTabBarController: UITabBarController {
     
     return homeTabNavi
   }()
-
+  
   let mapTab: MapNavigationController = {
     
     let mapTabNavi = MapNavigationController()
@@ -47,16 +47,24 @@ class MainTabBarController: UITabBarController {
   }()
   
   // MARK: - Life Cycle
-
+  
   override func viewDidLoad() {
     
     super.viewDidLoad()
-
+    
     self.setViewControllers( [homeTab, mapTab, wishlistTab, myInfoTab], animated: true)
     setTabBar()
   }
   
   func setTabBar() {
+    if #available(iOS 15.0, *) {
+      let appearance = UITabBarAppearance()
+      appearance.configureWithOpaqueBackground()
+      appearance.backgroundColor = .white
+      
+      self.tabBar.standardAppearance = appearance
+      self.tabBar.scrollEdgeAppearance = self.tabBar.standardAppearance
+    }
     self.tabBar.tintColor = UIColor.themeGreen
     self.tabBar.isTranslucent = false
   }
