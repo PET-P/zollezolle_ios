@@ -12,6 +12,7 @@ import KakaoSDKAuth
 import KakaoSDKUser
 import AuthenticationServices
 import Alamofire
+import Amplify 
 
 @available(iOS 13.0, *)
 
@@ -156,10 +157,11 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapProvisionButton(_ sender: UIButton) {
-    guard let provisionVC = storyboard?.instantiateViewController(
-            identifier: "ProvisionViewController") as? ProvisionViewController else {
-      return
-    }
+//    guard let provisionVC = storyboard?.instantiateViewController(
+//            identifier: "ProvisionViewController") as? ProvisionViewController else {
+//      return
+//    }
+    guard let provisionVC = ProvisionViewController.loadFromStoryboard() as? ProvisionViewController else {return}
     provisionVC.modalPresentationStyle = .fullScreen
     self.present(provisionVC, animated: true, completion: nil);
   }
@@ -188,8 +190,12 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
 //    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
-    guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as? DogInfoViewController else {return}
-    self.navigationController?.pushViewController(dogInfoVC, animated: true)
+//    guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as? DogInfoViewController else {return}
+//    self.navigationController?.pushViewController(dogInfoVC, animated: true)
+    guard let settingVC = MyInfoSettingViewController.loadFromStoryboard() as? MyInfoSettingViewController else {return}
+    self.navigationController?.pushViewController(settingVC, animated: true)
+//    guard let myInfoDetailVC = MyInfoDetailViewController.loadFromStoryboard() as? MyInfoDetailViewController else {return}
+//    self.navigationController?.pushViewController(myInfoDetailVC, animated: true)
   }
   
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
