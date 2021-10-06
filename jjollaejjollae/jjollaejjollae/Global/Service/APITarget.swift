@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum APIEnvironment: String {
-  case base = "https://api.zollezolle.me"
+  case base = "https://api.zollezolle.me/api"
   case naverURL = "https://openapi.naver.com/v1/nid/me"
 }
 
@@ -33,7 +33,7 @@ extension APITarget: TargetType {
     case .naver:
       return URL(string: APIEnvironment.naverURL.rawValue)!
     default:
-      return URL(string: "http://49.50.173.104:80/api")!
+      return URL(string: APIEnvironment.base.rawValue)!
     }
     
   }
