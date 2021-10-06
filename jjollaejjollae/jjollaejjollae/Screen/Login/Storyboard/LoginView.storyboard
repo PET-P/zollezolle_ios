@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZUE-XP-F1F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZUE-XP-F1F">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -267,85 +267,11 @@
             </objects>
             <point key="canvasLocation" x="134.78260869565219" y="137.94642857142856"/>
         </scene>
-        <!--Provision View Controller-->
-        <scene sceneID="VA7-6J-abO">
-            <objects>
-                <viewController storyboardIdentifier="ProvisionViewController" id="FYV-7G-YPw" customClass="ProvisionViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Vgg-87-tPh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3E5-Jv-e3m">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcr-ds-YIg">
-                                        <rect key="frame" x="16" y="10" width="24" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="qcr-ds-YIg" secondAttribute="height" multiplier="1:1" id="Oel-1u-WuY"/>
-                                            <constraint firstAttribute="height" constant="24" id="xWo-Ig-It8"/>
-                                        </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="xmark" catalog="system">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapXButton:" destination="FYV-7G-YPw" eventType="touchUpInside" id="U7d-ny-XJS"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서비스 약관 및 개인정보 보호정책" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ois-dJ-rK2">
-                                        <rect key="frame" x="95" y="11.666666666666664" width="224" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="ois-dJ-rK2" firstAttribute="centerY" secondItem="3E5-Jv-e3m" secondAttribute="centerY" id="5Zm-0z-BuB"/>
-                                    <constraint firstItem="ois-dJ-rK2" firstAttribute="centerX" secondItem="3E5-Jv-e3m" secondAttribute="centerX" id="9ZZ-BE-8Bx"/>
-                                    <constraint firstAttribute="height" constant="44" id="ZxI-g9-YVT"/>
-                                    <constraint firstItem="qcr-ds-YIg" firstAttribute="centerY" secondItem="3E5-Jv-e3m" secondAttribute="centerY" id="gNT-qW-R98"/>
-                                    <constraint firstItem="qcr-ds-YIg" firstAttribute="leading" secondItem="3E5-Jv-e3m" secondAttribute="leading" constant="16" id="kvl-mS-4Tm"/>
-                                </constraints>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mvm-wk-g72">
-                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="htu-nw-ivV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="htu-nw-ivV" firstAttribute="trailing" secondItem="3E5-Jv-e3m" secondAttribute="trailing" id="3PQ-9F-JVr"/>
-                            <constraint firstItem="Mvm-wk-g72" firstAttribute="top" secondItem="3E5-Jv-e3m" secondAttribute="bottom" id="Lby-DG-eDg"/>
-                            <constraint firstItem="htu-nw-ivV" firstAttribute="bottom" secondItem="Mvm-wk-g72" secondAttribute="bottom" id="O8c-gN-HGp"/>
-                            <constraint firstItem="3E5-Jv-e3m" firstAttribute="top" secondItem="htu-nw-ivV" secondAttribute="top" id="YFg-KB-K9D"/>
-                            <constraint firstItem="3E5-Jv-e3m" firstAttribute="leading" secondItem="htu-nw-ivV" secondAttribute="leading" id="baL-un-mrE"/>
-                            <constraint firstItem="Mvm-wk-g72" firstAttribute="leading" secondItem="htu-nw-ivV" secondAttribute="leading" id="iIN-Lo-bQm"/>
-                            <constraint firstItem="htu-nw-ivV" firstAttribute="trailing" secondItem="Mvm-wk-g72" secondAttribute="trailing" id="ivm-B0-12o"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="titleLabel" destination="ois-dJ-rK2" id="ToZ-Iz-lqs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9p5-5f-qZ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2409" y="138"/>
-        </scene>
     </scenes>
     <resources>
         <image name="applelogin" width="55" height="55"/>
         <image name="kakaoLogin" width="55" height="55"/>
         <image name="naverLogin" width="55" height="55"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
