@@ -41,10 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //    }
     
     
-    
-  
     if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken"),
        let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
+      LoginManager.shared.deleteFromKeyChain(account: "accessToken")
+      LoginManager.shared.deleteFromKeyChain(account: "refreshToken")
       waitingGroup.enter()
       APIService.shared.refreshToken(refreshToken: refreshToken,
                                      accessToken: accessToken) { [weak self] (result) in
