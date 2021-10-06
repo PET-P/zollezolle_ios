@@ -9,7 +9,7 @@ import UIKit
 
 class PasswordViewController: UIViewController, StoryboardInstantiable {
   
-  var loginData: LoginData?
+  var loginData: User?
   private var email: String = ""
   
   func setEmail(email: String) {
