@@ -76,4 +76,10 @@ extension RecentSearchViewController: UITableViewDelegate {
       recentTableView.deleteRows(at: [indexPath], with: .fade)
     } else if editingStyle == .insert {}
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //서버로 바로 이동하면서
+    //text값 가지고 다른화면으로 이동하기
+  }
+  
 }
