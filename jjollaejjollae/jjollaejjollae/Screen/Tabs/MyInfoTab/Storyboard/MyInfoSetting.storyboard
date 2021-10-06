@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto Mono Bold for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Bold</string>
+        </array>
+        <array key="Roboto Mono Medium for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Medium</string>
+        </array>
+        <array key="Roboto Mono for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--My Info Setting View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MyInfoSettingViewController" id="Y6W-OH-hqX" customClass="MyInfoSettingViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yj8-Qo-kBw">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDs-Sv-Pum">
+                                        <rect key="frame" x="16" y="10" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="khJ-lh-HTL"/>
+                                            <constraint firstAttribute="width" secondItem="VDs-Sv-Pum" secondAttribute="height" multiplier="1:1" id="nnb-lP-exR"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="backbutton">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="yuz-dB-72k"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfW-hb-wbI">
+                                        <rect key="frame" x="189.5" y="10" width="35" height="24"/>
+                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="VDs-Sv-Pum" firstAttribute="leading" secondItem="Yj8-Qo-kBw" secondAttribute="leading" constant="16" id="If6-M8-T6z"/>
+                                    <constraint firstItem="VDs-Sv-Pum" firstAttribute="centerY" secondItem="Yj8-Qo-kBw" secondAttribute="centerY" id="RYG-oJ-QEx"/>
+                                    <constraint firstItem="ZfW-hb-wbI" firstAttribute="centerY" secondItem="Yj8-Qo-kBw" secondAttribute="centerY" id="Z7P-9S-KiO"/>
+                                    <constraint firstItem="ZfW-hb-wbI" firstAttribute="centerX" secondItem="Yj8-Qo-kBw" secondAttribute="centerX" id="doY-Xw-jWa"/>
+                                    <constraint firstAttribute="height" constant="44" id="jVl-NT-fyf"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kbm-wI-rkG">
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <connections>
+                                    <segue destination="UjW-Mr-ixl" kind="embed" id="PsC-We-CPX"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Yj8-Qo-kBw" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="2om-vO-KZe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="kbm-wI-rkG" secondAttribute="bottom" id="5Yi-v5-K5N"/>
+                            <constraint firstItem="kbm-wI-rkG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="8LY-tN-nye"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="kbm-wI-rkG" secondAttribute="trailing" id="9Ow-hF-71r"/>
+                            <constraint firstItem="kbm-wI-rkG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="EP9-6J-YKu"/>
+                            <constraint firstItem="Yj8-Qo-kBw" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Weh-4l-PCY"/>
+                            <constraint firstItem="Yj8-Qo-kBw" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="syK-CS-lQP"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7" y="138"/>
+        </scene>
+        <!--My Info Setting Table View Controller-->
+        <scene sceneID="WYK-gs-TG1">
+            <objects>
+                <tableViewController storyboardIdentifier="MyInfoSettingTableViewController" id="UjW-Mr-ixl" customClass="MyInfoSettingTableViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="S5H-kM-VwW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="718"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="XbP-ti-dPp">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="83" id="9GS-mb-r1E">
+                                        <rect key="frame" x="20" y="18" width="374" height="83"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9GS-mb-r1E" id="4ai-u1-med">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0S1-yb-yr0">
+                                                    <rect key="frame" x="20" y="25.5" width="112.5" height="32"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dn-n9-EwS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="112.5" height="19"/>
+                                                            <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마케팅 / 이용정보 수신" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qr-Nt-oyS">
+                                                            <rect key="frame" x="0.0" y="19" width="112.5" height="13"/>
+                                                            <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="11"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqD-SZ-wWr" customClass="JJollaeSwitch" customModule="jjollaejjollae" customModuleProvider="target">
+                                                    <rect key="frame" x="279" y="23.5" width="75" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="c8P-h2-LLg"/>
+                                                        <constraint firstAttribute="height" constant="36" id="ohw-mK-izO"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EqD-SZ-wWr" firstAttribute="centerY" secondItem="4ai-u1-med" secondAttribute="centerY" id="IAQ-K7-HdI"/>
+                                                <constraint firstItem="0S1-yb-yr0" firstAttribute="centerY" secondItem="4ai-u1-med" secondAttribute="centerY" id="Klj-vk-78y"/>
+                                                <constraint firstItem="0S1-yb-yr0" firstAttribute="leading" secondItem="4ai-u1-med" secondAttribute="leadingMargin" id="o9q-ig-V2J"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EqD-SZ-wWr" secondAttribute="trailing" id="xz9-aa-Ied"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="83" id="Zw3-So-wZc">
+                                        <rect key="frame" x="20" y="101" width="374" height="83"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zw3-So-wZc" id="1ZG-8F-72C">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버전정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRw-eG-UNK">
+                                                    <rect key="frame" x="20" y="32" width="55.5" height="19"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azt-wp-0fa">
+                                                    <rect key="frame" x="305.5" y="32" width="48.5" height="19"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Azt-wp-0fa" firstAttribute="centerY" secondItem="1ZG-8F-72C" secondAttribute="centerY" id="DHq-qr-d9t"/>
+                                                <constraint firstItem="yRw-eG-UNK" firstAttribute="leading" secondItem="1ZG-8F-72C" secondAttribute="leadingMargin" id="cF4-ic-riY"/>
+                                                <constraint firstItem="yRw-eG-UNK" firstAttribute="centerY" secondItem="1ZG-8F-72C" secondAttribute="centerY" id="cjM-Ks-ogg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Azt-wp-0fa" secondAttribute="trailing" id="pr1-fU-7PG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="83" id="Drm-DV-vuq">
+                                        <rect key="frame" x="20" y="184" width="374" height="83"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Drm-DV-vuq" id="wZf-jz-bUr">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이용약관" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-JW-AJ4">
+                                                    <rect key="frame" x="20" y="32" width="55.5" height="19"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lhh-JW-AJ4" firstAttribute="leading" secondItem="wZf-jz-bUr" secondAttribute="leadingMargin" id="RWP-QN-8PU"/>
+                                                <constraint firstItem="lhh-JW-AJ4" firstAttribute="centerY" secondItem="wZf-jz-bUr" secondAttribute="centerY" id="XVo-lx-6RN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="83" id="6JT-dh-i58">
+                                        <rect key="frame" x="20" y="267" width="374" height="83"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6JT-dh-i58" id="aaY-Nz-HHW">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개인정보 처리방침" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imf-ib-gJi">
+                                                    <rect key="frame" x="20" y="32" width="120.5" height="19"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="imf-ib-gJi" firstAttribute="leading" secondItem="aaY-Nz-HHW" secondAttribute="leadingMargin" id="SWD-30-aa5"/>
+                                                <constraint firstItem="imf-ib-gJi" firstAttribute="centerY" secondItem="aaY-Nz-HHW" secondAttribute="centerY" id="nAX-4z-xHd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="83" id="nF8-UZ-hMb">
+                                        <rect key="frame" x="20" y="350" width="374" height="83"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nF8-UZ-hMb" id="XBg-na-TbX">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="탈퇴하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8D-ft-2eq">
+                                                    <rect key="frame" x="20" y="32" width="55.5" height="19"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="b8D-ft-2eq" firstAttribute="centerY" secondItem="XBg-na-TbX" secondAttribute="centerY" id="Fb3-kv-kMC"/>
+                                                <constraint firstItem="b8D-ft-2eq" firstAttribute="leading" secondItem="XBg-na-TbX" secondAttribute="leadingMargin" id="pZh-m7-2Xo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="83" id="NYw-sE-PUC">
+                                        <rect key="frame" x="20" y="433" width="374" height="83"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NYw-sE-PUC" id="Qjv-fm-uWh">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공지사항" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPH-4m-f6P">
+                                                    <rect key="frame" x="20" y="32" width="55.5" height="19"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NPH-4m-f6P" firstAttribute="leading" secondItem="Qjv-fm-uWh" secondAttribute="leadingMargin" id="IH5-Wc-Pkz"/>
+                                                <constraint firstItem="NPH-4m-f6P" firstAttribute="centerY" secondItem="Qjv-fm-uWh" secondAttribute="centerY" id="Yce-Zf-BQj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="UjW-Mr-ixl" id="aGQ-UT-3sS"/>
+                            <outlet property="delegate" destination="UjW-Mr-ixl" id="2Hk-CX-2uE"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="alarmSwitch" destination="EqD-SZ-wWr" id="s0z-UG-pkt"/>
+                        <outlet property="menuSubtitleLabel" destination="0qr-Nt-oyS" id="4rJ-qu-eXh"/>
+                        <outlet property="versionLabel" destination="Azt-wp-0fa" id="G23-iW-jAN"/>
+                        <outletCollection property="menuTitleLabels" destination="9Dn-n9-EwS" collectionClass="NSMutableArray" id="2ku-ud-gBc"/>
+                        <outletCollection property="menuTitleLabels" destination="yRw-eG-UNK" collectionClass="NSMutableArray" id="qLi-b8-qWu"/>
+                        <outletCollection property="menuTitleLabels" destination="lhh-JW-AJ4" collectionClass="NSMutableArray" id="PDB-AE-CQb"/>
+                        <outletCollection property="menuTitleLabels" destination="imf-ib-gJi" collectionClass="NSMutableArray" id="Xjk-zK-fjM"/>
+                        <outletCollection property="menuTitleLabels" destination="b8D-ft-2eq" collectionClass="NSMutableArray" id="jDq-L1-zGw"/>
+                        <outletCollection property="menuTitleLabels" destination="NPH-4m-f6P" collectionClass="NSMutableArray" id="NvR-VQ-UR4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="71n-32-h4w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="870" y="192"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backbutton" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

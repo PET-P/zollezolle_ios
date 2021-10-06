@@ -7,13 +7,19 @@
 
 import UIKit
 
-class ProvisionViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+class ProvisionViewController: UIViewController, StoryboardInstantiable {
+  
+  private var mode = 0
+  
+  internal func getMode(mode: Provisions) {
+    self.mode = mode.rawValue
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    titleLabel.text = self.mode.description
+  }
+  
   
   @IBOutlet weak var titleLabel: UILabel! {
     didSet {
@@ -25,6 +31,6 @@ class ProvisionViewController: UIViewController {
   @IBAction func didTapXButton(_ sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }
-    
-
+  
+  
 }
