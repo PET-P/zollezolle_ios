@@ -10,6 +10,9 @@ import NaverThirdPartyLogin
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
+import Amplify
+import AmplifyPlugins
+import AWSS3
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -50,16 +53,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //네아로 설정
     //처음 정해준 urlscheme
-    instance?.serviceUrlScheme = kServiceAppUrlScheme
+    instance?.serviceUrlScheme = "thirdparty20samplegame"
     //애플리케이션 등록 후 발급받은 클아이언트 아이디
-    instance?.consumerKey = kConsumerKey
+    instance?.consumerKey = "jyvqXeaVOVmV"
     //클라이언트 시크릿
-    instance?.consumerSecret = kConsumerSecret
+    instance?.consumerSecret = "527300A0_COq1_XV33cf"
     //어플리케이션 이름
-    instance?.appName = kServiceAppName
-    
+    instance?.appName = "네이버 아이디로 로그인"
+    //amazon s3
+    configureAmplify()
     
     return true
+  }
+  
+  func configureAmplify() {
+    do {
+      //storage
+      try Amplify.add(plugin: AWSCognitoAuthPlugin())
+      try Amplify.add(plugin: AWSS3StoragePlugin())
+      try Amplify.configure()
+      print("Successfully configured Amplify 😀")
+    } catch {
+      print("Could not configuare Amplify \(error)")
+    }
   }
   
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -71,6 +87,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return false
     }
   }
+  
+  func application(_ application: UIApplication,
+                  handleEventsForBackgroundURLSession identifier: String,
+                  completionHandler: @escaping () -> Void) {
+   
+       //provide the completionHandler to the TransferUtility to support background transfers.
+       AWSS3TransferUtility.interceptApplication(application,
+           handleEventsForBackgroundURLSession: identifier,
+           completionHandler: completionHandler)
+   }
   
   // MARK: UISceneSession Lifecycle
   
