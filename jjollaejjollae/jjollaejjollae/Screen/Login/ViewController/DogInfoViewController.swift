@@ -156,7 +156,6 @@ class DogInfoViewController: FixModalViewController{
   //MARK: - Variables
   
   private let imagePickerController: UIImagePickerController = UIImagePickerController()
-  private var ageList = [Int]()
   private var sizeText: String = "소형" {
     didSet {
       petSizeButton.setTitle("\(sizeText)", for: .normal)
@@ -176,6 +175,7 @@ class DogInfoViewController: FixModalViewController{
   private var clickedIndexPath: IndexPath?
   private var images: [UIImage?] = []
   private var weightList = [Double]()
+  private var ageList = [Int]()
   private var middleIndex: IndexPath = [0,0]
   lazy var agePicker = UIPickerView()
   lazy var weightPicker = UIPickerView()
@@ -229,11 +229,11 @@ class DogInfoViewController: FixModalViewController{
       print("2번?")
       for i in dogProfile.indices {
         // 이미지 설정이 되어있지 않다면?
-//        if dogProfile[i].imageData == nil {
-//          tempCellType.append("camera")
-//        } else { //이미지설정이 되어있다면?
-//          tempCellType.append("old")
-//        }
+        if dogProfile[i].imageData == nil {
+          tempCellType.append("camera")
+        } else { //이미지설정이 되어있다면?
+          tempCellType.append("old")
+        }
       }
       //마지막은 plus로 마무리
       tempCellType.append("plus")
@@ -361,14 +361,26 @@ class DogInfoViewController: FixModalViewController{
       let petinfos = PetInfos(pets: dogInfoManager.dogInfos)
       guard let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken") else {return}
       //TODO 서버에 저장
-      APIService.shared.patchPetInfo(accessToken, pets: petinfos) { (result) in
-        switch result {
-        case .success(let data):
-          print(data)
-        case .failure(let error):
-          print(error)
-        }
+      // key 값은 model에 저장하고
+      // key 값을 통해서 data는 s3에 저장하면되지
+      petinfos.pets.forEach { (pet) in
+        print(pet.imageData)
       }
+      
+//      petinfos.pets.forEach { (pet) in
+//        let date = Date().toString()
+//        let userId = "도현도현도현"
+//        let keyName = "\(userId)_\(date)_\(pet.name)"
+//        APIService.shared.uploadImage(keyName: keyName, imageData: pet.imageData!)
+//      }
+//      APIService.shared.patchPetInfo(accessToken, pets: petinfos) { (result) in
+//        switch result {
+//        case .success(let data):
+//          print(data)
+//        case .failure(let error):
+//          print(error)
+//        }
+//      }
       let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
       guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
       self.navigationController?.pushViewController(homeMainVC, animated: true)
@@ -473,7 +485,7 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
   }
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//      self.dogProfile[middleIndex.row].imageData = originalImage.jpegData(compressionQuality: 0.1)
+      self.dogProfile[middleIndex.row].imageData = originalImage.jpegData(compressionQuality: 0.1)
       self.cellType[self.middleIndex.row] = "old"
       //TODO: 이미지 저장할 모델링
       //TODO: 정한 이미지 pan gesture
@@ -511,12 +523,11 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
       cell.dogImageView.image = UIImage(named: "plus")
     }
     else {
-//      if let data = self.dogProfile[indexPath.row].imageData {
-//        cell.dogImageView.image = UIImage(data: data)
-//      } else {
-//        cell.dogImageView.image = UIImage(named: "camera")
-//      }
-      cell.dogImageView.image = UIImage(named: "camera")
+      if let data = self.dogProfile[indexPath.row].imageData {
+        cell.dogImageView.image = UIImage(data: data)
+      } else {
+        cell.dogImageView.image = UIImage(named: "camera")
+      }
     }
     setMiddleIndex(cell, indexPath: indexPath)
     
@@ -638,7 +649,7 @@ extension DogInfoViewController: JJollaeButtonDelegate {
 }
 
 extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-  
+
   private func addToobar() {
     //toobar 위치잡아주기
     self.agePicker.backgroundColor = .white
@@ -656,24 +667,24 @@ extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     done.title = "완료"
     done.target = self
     done.action = #selector(pickerDone)
-    
+
     toolbar.setItems([flexSpace, done], animated: true)
   }
-  
+
   @objc private func pickerDone(_ sneder: Any) {
     self.view.endEditing(true)
   }
-  
+
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
-  
+
   func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
     let pickerLabel = UILabel()
     pickerLabel.textAlignment = .center
     pickerLabel.textColor = .themeGreen
     pickerLabel.font = .robotoMedium(size: 24)
-    
+
     if pickerView == agePicker {
       pickerLabel.text = "\(self.ageList[row])살"
     } else {
@@ -681,7 +692,7 @@ extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     return pickerLabel
   }
-  
+
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     if pickerView == agePicker {
       return self.ageList.count
@@ -689,8 +700,8 @@ extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
       return self.weightList.count
     }
   }
-  
-  
+
+
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     if pickerView == agePicker {
       let age = self.ageList[row]
