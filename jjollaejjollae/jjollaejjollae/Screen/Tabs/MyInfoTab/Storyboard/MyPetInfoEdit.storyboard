@@ -148,6 +148,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GA-UI-LGa">
                                                         <rect key="frame" x="0.0" y="25.5" width="156.5" height="40"/>
                                                         <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didTapPetSizeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="4PX-Ic-zzT"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -219,6 +222,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWR-Kl-XaY">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
                                                         <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didTapPetTypeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lVc-OJ-xjl"/>
+                                                        </connections>
                                                     </button>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Imp-ZP-8gg">
                                                         <rect key="frame" x="100" y="0.0" width="234" height="40"/>
@@ -253,6 +259,20 @@
                             <constraint firstItem="jSe-So-xuT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="kvD-4H-mwT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="myPetNameTextField" destination="6ZF-hW-DZm" id="sO1-l1-HXz"/>
+                        <outlet property="petAgeLabel" destination="bq4-Z3-cJI" id="pFO-ZV-EJo"/>
+                        <outlet property="petAgeTextField" destination="PhK-cC-SPi" id="HIL-8m-Pdf"/>
+                        <outlet property="petGenderLabel" destination="jRk-zd-1nu" id="nSf-9z-047"/>
+                        <outlet property="petGenderSwitch" destination="B5m-V6-Gkd" id="MOR-px-H1a"/>
+                        <outlet property="petSizeButton" destination="1GA-UI-LGa" id="8yC-fa-Xa1"/>
+                        <outlet property="petSizeLabel" destination="nIV-QE-MJ8" id="feb-Jp-Z0C"/>
+                        <outlet property="petTypeButton" destination="bWR-Kl-XaY" id="1Vl-pn-ThJ"/>
+                        <outlet property="petTypeLabel" destination="Ezr-Ft-wjA" id="nNr-6b-sPl"/>
+                        <outlet property="petTypeTextField" destination="Imp-ZP-8gg" id="Pd9-ku-iCk"/>
+                        <outlet property="petWeightLabel" destination="NhO-kB-EkM" id="cjo-k7-uKK"/>
+                        <outlet property="petWeightTextField" destination="CoZ-13-Wy5" id="B8F-p0-hrR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

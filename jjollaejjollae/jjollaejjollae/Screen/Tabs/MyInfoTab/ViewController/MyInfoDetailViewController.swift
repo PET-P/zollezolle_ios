@@ -18,7 +18,7 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
       infoSegmentedControl.addBorder([.bottom], color: .gray05, width: 1)
     }
   }
-
+  
   @IBOutlet weak var saveButton: UIButton! {
     didSet {
       saveButton.backgroundColor = .themeGreen
@@ -33,20 +33,22 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
     }
   }
   @IBOutlet weak var containerView: UIView!
+  @IBOutlet weak var scrollView: UIScrollView!
   
   var profileImage:[Data] = []
   var dogProfileImages: [String] = []
   private var visibleIndex: [IndexPath] = []
   private var middleIndex: IndexPath = [0,0]
+  private var originY:CGFloat = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
     NotificationCenter.default.addObserver(self, selector: #selector(getpageIndex(_:)), name: NSNotification.Name("SegControlNotification"), object: nil)
+    setKeyboard()
     profileCollectionView.delegate = self
     profileCollectionView.dataSource = self
     self.tabBarController?.tabBar.isHidden = true
     self.tabBarController?.tabBar.isTranslucent = true
-    // 479 / 896
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -54,6 +56,7 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
     self.tabBarController?.tabBar.isHidden = false
     self.tabBarController?.tabBar.isTranslucent = false
   }
+
   
 }
 //MARK: - IBACTION & OBJC
@@ -208,4 +211,55 @@ extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionView
     
   }
   
+}
+
+//MARK: - Keyboard
+
+extension MyInfoDetailViewController {
+
+
+  private func setKeyboard() {
+    
+    let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
+    tapGesture.cancelsTouchesInView = false
+    view.addGestureRecognizer(tapGesture)
+    
+    NotificationCenter.default.addObserver(
+      forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { (notification) in
+      guard let userInfo = notification.userInfo else { return }
+      guard let keyboardFrame =
+              userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+      let contentInset = UIEdgeInsets(
+        top: 0.0,
+        left: 0.0,
+        bottom: keyboardFrame.size.height,
+        right: 0.0
+      )
+      self.scrollView.contentInset = contentInset
+      self.scrollView.scrollIndicatorInsets = contentInset
+        let x = self.containerView.frame.origin.x
+        let y = self.containerView.frame.origin.y
+        let height = self.containerView.frame.size.height - 100
+        let width = self.containerView.frame.size.width
+      self.scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: width, height: height), animated: true)
+      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+      UIView.animate(withDuration: duration) {
+        self.view.layoutIfNeeded()
+      }
+    }
+    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main) { (notification) in
+      guard let userInfo = notification.userInfo else {
+        return
+      }
+      let contentInset = UIEdgeInsets.zero
+      self.scrollView.contentInset = contentInset
+      self.scrollView.scrollIndicatorInsets = contentInset
+      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+      UIView.animate(withDuration: duration) {
+        self.view.layoutIfNeeded()
+      }
+    }
+    
+    
+  }
 }
