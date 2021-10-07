@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CryptoKit
 
 class PasswordViewController: UIViewController, StoryboardInstantiable {
   
@@ -87,13 +88,16 @@ class PasswordViewController: UIViewController, StoryboardInstantiable {
   
   @objc private func updatedPasswordTextfieldUI(_ sender: Any?) {
     if passwordErrorText == "잘못된 비밀번호입니다." {
-      passwordTextField.changeUnderLine(borderColor: UIColor.themePaleGreen, width: self.view.frame.width)
+      passwordTextField.changeUnderLine(borderColor: UIColor.themePaleGreen,
+                                        width: self.view.frame.width)
       passwordErrorText = ""
     }
   }
   
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
-    APIService.shared.login(email, passwordTextField.text ?? "") { [self] result in
+    guard let passwordStr = passwordTextField.text else {return}
+    let password = LoginManager.shared.StringToSha256(string: passwordStr)
+    APIService.shared.login(email, password) { [self] result in
       switch result {
       case .success(let data):
         loginData = data
@@ -108,7 +112,8 @@ class PasswordViewController: UIViewController, StoryboardInstantiable {
       case .failure(let error):
         print(error)
         if error >= 400 && error < 500 {
-          passwordTextField.changeUnderLine(borderColor: UIColor.errorColor, width: self.view.frame.width)
+          passwordTextField.changeUnderLine(borderColor: UIColor.errorColor,
+                                            width: self.view.frame.width)
           passwordErrorText = "잘못된 비밀번호입니다."
           findPasswordButton.isHidden = false
         }
@@ -117,7 +122,8 @@ class PasswordViewController: UIViewController, StoryboardInstantiable {
   }
   //
   @IBAction private func didTapFindPasswordButton(_ sender: UIButton) {
-    guard let findPasswordVC = FindPasswordViewController.loadFromStoryboard() as? FindPasswordViewController else {return}
+    guard let findPasswordVC = FindPasswordViewController.loadFromStoryboard()
+            as? FindPasswordViewController else {return}
     findPasswordVC.setEmail(email: self.email)
     self.navigationController?.pushViewController(findPasswordVC, animated: true)
   }
