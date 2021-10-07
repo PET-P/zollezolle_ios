@@ -107,32 +107,35 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
 extension MyInfoMainViewController: UITableViewDataSource {
   
   func numberOfSections(in tableView: UITableView) -> Int {
-    return 2
+    return 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    switch section {
-    case 0:
-      return 1
-    case 1:
-      return 3
-    default:
-      return 1
-    }
+//    switch section {
+//    case 0:
+//      return 1
+//    case 1:
+//      return 3
+//    default:
+//      return 1
+//    }
+    return infoList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
             as? InfoTableViewCell else {return UITableViewCell()}
     let item = infoList[indexPath.row]
-    let firstItem = InfoContent(title: "예약내역")
-    if indexPath.section == 0 {
-      cell.titleLabel.text = firstItem.title
-      cell.subtitle.text = firstItem.subtitle
-    } else {
-      cell.titleLabel.text = item.title
-      cell.subtitle.text = item.subtitle
-    }
+//    let firstItem = InfoContent(title: "예약내역")
+    cell.titleLabel.text = item.title
+    cell.subtitle.text = item.subtitle
+//    if indexPath.section == 0 {
+//      cell.titleLabel.text = firstItem.title
+//      cell.subtitle.text = firstItem.subtitle
+//    } else {
+//      cell.titleLabel.text = item.title
+//      cell.subtitle.text = item.subtitle
+//    }
     cell.selectionStyle = .none
     return cell
   }
@@ -154,10 +157,10 @@ extension MyInfoMainViewController: UITableViewDataSource {
 
 extension MyInfoMainViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if indexPath.section == 0 {
-      guard let myReservationVC = MyInfoReservationViewController.loadFromStoryboard() as? MyInfoReservationViewController else {return}
-      self.navigationController?.pushViewController(myReservationVC, animated: true)
-    } else {
+//    if indexPath.section == 0 {
+//      guard let myReservationVC = MyInfoReservationViewController.loadFromStoryboard() as? MyInfoReservationViewController else {return}
+//      self.navigationController?.pushViewController(myReservationVC, animated: true)
+//    } else {}
       switch indexPath.row {
       case 0:
         guard let myReviewVC = MyInfoReviewViewController.loadFromStoryboard() as? MyInfoReviewViewController else {return}
@@ -168,7 +171,6 @@ extension MyInfoMainViewController: UITableViewDelegate {
         guard let settingVC = MyInfoSettingViewController.loadFromStoryboard() as? MyInfoSettingViewController else {return}
         self.navigationController?.pushViewController(settingVC, animated: true)
       default: return
-      }
     }
   }
 }
