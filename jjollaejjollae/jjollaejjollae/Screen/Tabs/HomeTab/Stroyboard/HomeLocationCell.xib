@@ -4,8 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -16,37 +15,40 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="140" height="73"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IlI-L7-cKk">
-                    <rect key="frame" x="0.0" y="0.0" width="140" height="73"/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXK-hw-eGy">
-                    <rect key="frame" x="8" y="48.5" width="42.5" height="16.5"/>
-                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="14"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="IlI-L7-cKk" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="5M8-uq-cWC"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rXK-hw-eGy" secondAttribute="bottom" constant="8" id="Irx-xc-cl9"/>
-                <constraint firstItem="IlI-L7-cKk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Kr7-Gx-HwF"/>
-                <constraint firstItem="IlI-L7-cKk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XBb-8i-93t"/>
-                <constraint firstItem="rXK-hw-eGy" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="iaI-zN-mrP"/>
-                <constraint firstItem="IlI-L7-cKk" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="pEe-TS-0iX"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-521.73913043478262" y="167.07589285714286"/>
-        </view>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeLocationCell" id="uSW-ed-jDF" customClass="HomeLocationCollectionViewCell" customModule="jjollaejjollae" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="149" height="83"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LHQ-5T-xTZ">
+                <rect key="frame" x="0.0" y="0.0" width="149" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vBe-Vp-e6D">
+                        <rect key="frame" x="0.0" y="0.0" width="149" height="83"/>
+                        <color key="backgroundColor" red="0.80392156859999997" green="0.8980392157" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIW-tI-L1r">
+                        <rect key="frame" x="8" y="63.5" width="133" height="16.5"/>
+                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="eIW-tI-L1r" secondAttribute="bottom" constant="3" id="2aJ-yh-wae"/>
+                    <constraint firstItem="vBe-Vp-e6D" firstAttribute="leading" secondItem="LHQ-5T-xTZ" secondAttribute="leading" id="2lp-mM-W41"/>
+                    <constraint firstAttribute="trailing" secondItem="eIW-tI-L1r" secondAttribute="trailing" constant="8" id="DjJ-s8-GDy"/>
+                    <constraint firstAttribute="trailing" secondItem="vBe-Vp-e6D" secondAttribute="trailing" id="LRd-su-Zjn"/>
+                    <constraint firstItem="eIW-tI-L1r" firstAttribute="leading" secondItem="LHQ-5T-xTZ" secondAttribute="leading" constant="8" id="cBd-TV-IlF"/>
+                    <constraint firstItem="vBe-Vp-e6D" firstAttribute="top" secondItem="LHQ-5T-xTZ" secondAttribute="top" id="ejk-hX-Ftn"/>
+                    <constraint firstAttribute="bottom" secondItem="vBe-Vp-e6D" secondAttribute="bottom" id="omk-pl-zTy"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="149" height="83"/>
+            <connections>
+                <outlet property="imageView" destination="vBe-Vp-e6D" id="hcR-wu-fX5"/>
+                <outlet property="titleLabel" destination="eIW-tI-L1r" id="bje-vV-PlQ"/>
+            </connections>
+            <point key="canvasLocation" x="-461.59420289855075" y="170.42410714285714"/>
+        </collectionViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

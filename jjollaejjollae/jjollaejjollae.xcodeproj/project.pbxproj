@@ -100,6 +100,7 @@
 		DD3A996427023B4A00DBCC0F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD3A996327023B4A00DBCC0F /* Images.xcassets */; };
 		DD4DD8AB270CCF8800A54FC3 /* HomeLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4DD8AA270CCF8800A54FC3 /* HomeLocationCell.xib */; };
 		DD4DD8AD270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4DD8AC270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift */; };
+		DD589109270EA22C00CB46E0 /* HomeTipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD589108270EA22C00CB46E0 /* HomeTipCell.xib */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
@@ -226,6 +227,7 @@
 		DD3A996327023B4A00DBCC0F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DD4DD8AA270CCF8800A54FC3 /* HomeLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeLocationCell.xib; sourceTree = "<group>"; };
 		DD4DD8AC270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD589108270EA22C00CB46E0 /* HomeTipCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTipCell.xib; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 			children = (
 				DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */,
 				DD4DD8AA270CCF8800A54FC3 /* HomeLocationCell.xib */,
+				DD589108270EA22C00CB46E0 /* HomeTipCell.xib */,
 			);
 			path = Stroyboard;
 			sourceTree = "<group>";
@@ -814,6 +817,7 @@
 				2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */,
 				285CE12826B858B80022DA2E /* .swiftlint.yml in Resources */,
 				2884A30A26CA404D004596C3 /* SearchNoResult.storyboard in Resources */,
+				DD589109270EA22C00CB46E0 /* HomeTipCell.xib in Resources */,
 				DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */,
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
