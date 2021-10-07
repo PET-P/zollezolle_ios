@@ -48,6 +48,13 @@ struct LoginManager {
     }
   }
   
+  func StringToSha256(string: String) -> String {
+    let plainData: Data = string.data(using: .utf8)!
+    let shaData = SHA256.hash(data: plainData)
+    let shaString = shaData.compactMap {String(format: "%02x", $0)}.joined()
+    return shaString
+  }
+  
   func saveToken(accessToken: String, refreshToken: String) {
     defaults.set(accessToken, forKey: "accessToken")
     defaults.set(refreshToken, forKey: "refreshToken")
