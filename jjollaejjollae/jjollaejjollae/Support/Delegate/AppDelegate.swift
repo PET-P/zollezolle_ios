@@ -53,13 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //네아로 설정
     //처음 정해준 urlscheme
-    instance?.serviceUrlScheme = "thirdparty20samplegame"
+    instance?.serviceUrlScheme = kServiceAppUrlScheme
     //애플리케이션 등록 후 발급받은 클아이언트 아이디
-    instance?.consumerKey = "jyvqXeaVOVmV"
+    instance?.consumerKey = kConsumerKey
     //클라이언트 시크릿
-    instance?.consumerSecret = "527300A0_COq1_XV33cf"
+    instance?.consumerSecret = kConsumerSecret
     //어플리케이션 이름
-    instance?.appName = "네이버 아이디로 로그인"
+    instance?.appName = kServiceAppName
     //amazon s3
     configureAmplify()
     
