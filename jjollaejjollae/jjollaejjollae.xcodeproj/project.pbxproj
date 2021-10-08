@@ -97,6 +97,8 @@
 		28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F9E93E26C8027000D9E693 /* SearchViewController.swift */; };
 		28F9E94126C802A000D9E693 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F9E94026C802A000D9E693 /* Search.storyboard */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
+		DD589118271001AF00CB46E0 /* AccomodationReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */; };
+		DD58911A271001C400CB46E0 /* AccomodationReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD589119271001C400CB46E0 /* AccomodationReview.storyboard */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
@@ -220,6 +222,8 @@
 		3B381DAB5BFA04ADF2FF7813 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F54E5949B2AB3FE95C8155 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		93F6C20B1B7F11F548FE5E7E /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
+		DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationReviewViewController.swift; sourceTree = "<group>"; };
+		DD589119271001C400CB46E0 /* AccomodationReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccomodationReview.storyboard; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -485,6 +489,7 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				DD5891162710019900CB46E0 /* Review */,
 				28F9E93B26C8024700D9E693 /* Search */,
 				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
 				2841598A26BA73C600F027DB /* Login */,
@@ -561,6 +566,15 @@
 				46F54E5949B2AB3FE95C8155 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DD5891162710019900CB46E0 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				DD589119271001C400CB46E0 /* AccomodationReview.storyboard */,
+				DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */,
+			);
+			path = Review;
 			sourceTree = "<group>";
 		};
 		DD741C2926FB04CC00776827 /* Protocol */ = {
@@ -807,6 +821,7 @@
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
 				28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */,
+				DD58911A271001C400CB46E0 /* AccomodationReview.storyboard in Resources */,
 				28331CB626DB7A050062B29D /* SearchMap.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -875,6 +890,7 @@
 				DDFFC17726FB1C05001FD04A /* WishlistCollectionViewCell.swift in Sources */,
 				2884A37726D7F3D4004596C3 /* Filters.swift in Sources */,
 				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
+				DD589118271001AF00CB46E0 /* AccomodationReviewViewController.swift in Sources */,
 				287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */,
