@@ -76,7 +76,8 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
    */
   private let homeLocationCellNibName = "HomeLocationCell"
   
-  
+  private let homeTipCellNibName = "HomeTipCell"
+
   // MARK: - Life Cycle
   override func viewDidLoad() {
     
@@ -89,26 +90,25 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
     layout.itemSize = CGSize(width: 138, height: 72)
     layout.minimumLineSpacing = 15
     layout.scrollDirection = .horizontal
-    collectionView.contentInset = UIEdgeInsets(top: 14, left: 16, bottom: insetY, right: 16)
-
     
     firstCollectionView.delegate = self
     firstCollectionView.dataSource = self
     
-    let cellNib = UINib(nibName: homeLocationCellNibName, bundle: nil)
+    let locationCellNib = UINib(nibName: homeLocationCellNibName, bundle: nil)
+  
+    firstCollectionView.register(locationCellNib, forCellWithReuseIdentifier: homeLocationCellNibName)
+
+    secondCollectionView.delegate = self
+    secondCollectionView.dataSource = self
+//
+    let tipCellNib = UINib(nibName: homeTipCellNibName, bundle: nil)
+    // TODO: HomeTipCell 로 변경
+    secondCollectionView.register(tipCellNib, forCellWithReuseIdentifier: homeTipCellNibName)
+
+    thirdCollectionView.delegate = self
+    thirdCollectionView.dataSource = self
     
-    firstCollectionView.register(cellNib, forCellWithReuseIdentifier: homeLocationCellNibName)
-//
-//    secondCollectionView.delegate = self
-//    secondCollectionView.dataSource = self
-//    
-//    // TODO: HomeTipCell 로 변경
-//    secondCollectionView.register(cellNib, forCellWithReuseIdentifier: homeLocationCellNibName)
-//
-//    thirdCollectionView.delegate = self
-//    thirdCollectionView.dataSource = self
-//    
-//    thirdCollectionView.register(cellNib, forCellWithReuseIdentifier: homeLocationCellNibName)
+    thirdCollectionView.register(locationCellNib, forCellWithReuseIdentifier: homeLocationCellNibName)
     
   }
   
@@ -122,21 +122,11 @@ extension HomeMainViewController: UIScrollViewDelegate {
     
     mainImageView.alpha = ((mainImageView.frame.height - mainImageMinHeight) / (mainImageMaxHeight - mainImageMinHeight))
     
-    
-    print(mainImageView.alpha)
-    imageBackView.setNeedsDisplay()
-    
     let value = mainImageMaxHeight - scrollView.contentOffset.y.rounded(.up) - CGFloat(356)
     
     if value >= mainImageMinHeight && value <= mainImageMaxHeight {
       imageBackViewHeightConstraint.constant = value
     }
-
-
-  }
-  
-  func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-    print(#function)
   }
 }
 
@@ -148,24 +138,44 @@ extension HomeMainViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeLocationCellNibName, for: indexPath) as? HomeLocationCollectionViewCell else { fatalError(#function) }
-
-//    guard let cell = cell as? HomeLocationCollectionViewCell else { fatalError(#function) }
-//
-//    cell.imageView.image = UIImage(systemName: "heart")
-//    cell.titleLabel.text = "TESTTEST"
     
-    cell.heightAnchor.constraint(equalToConstant: 72).isActive = true
-    cell.widthAnchor.constraint(equalToConstant: 138).isActive = true
+    if collectionView === secondCollectionView {
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeTipCellNibName, for: indexPath) as? HomeTipCollectionViewCell else { fatalError(#function) }
+      
+      cell.heightAnchor.constraint(equalToConstant: 120).isActive = true
+      cell.widthAnchor.constraint(equalToConstant: 116).isActive = true
 
-    return cell
+      return cell
+      
+    } else {
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeLocationCellNibName, for: indexPath) as? HomeLocationCollectionViewCell else { fatalError(#function) }
+      
+      cell.heightAnchor.constraint(equalToConstant: 72).isActive = true
+      cell.widthAnchor.constraint(equalToConstant: 138).isActive = true
 
+      return cell
+      
+    }
+    
   }
 }
 
 extension HomeMainViewController: UICollectionViewDelegate {
-
+  
+  /**
+    CollectionView Cell Center Align
+   */
+  
+//  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+//
+//      let totalCellWidth = CellWidth * CellCount
+//      let totalSpacingWidth = CellSpacing * (CellCount - 1)
+//
+//      let leftInset = (collectionViewWidth - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+//      let rightInset = leftInset
+//
+//      return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+//  }
 }
 
 

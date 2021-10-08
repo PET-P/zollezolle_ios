@@ -101,6 +101,7 @@
 		DD4DD8AB270CCF8800A54FC3 /* HomeLocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4DD8AA270CCF8800A54FC3 /* HomeLocationCell.xib */; };
 		DD4DD8AD270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4DD8AC270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift */; };
 		DD589109270EA22C00CB46E0 /* HomeTipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD589108270EA22C00CB46E0 /* HomeTipCell.xib */; };
+		DD589115270FFBC600CB46E0 /* HomeTipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD589114270FFBC600CB46E0 /* HomeTipCollectionViewCell.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
@@ -228,6 +229,7 @@
 		DD4DD8AA270CCF8800A54FC3 /* HomeLocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeLocationCell.xib; sourceTree = "<group>"; };
 		DD4DD8AC270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD589108270EA22C00CB46E0 /* HomeTipCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTipCell.xib; sourceTree = "<group>"; };
+		DD589114270FFBC600CB46E0 /* HomeTipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTipCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -653,6 +655,7 @@
 				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
 				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
 				DD4DD8AC270CD06000A54FC3 /* HomeLocationCollectionViewCell.swift */,
+				DD589114270FFBC600CB46E0 /* HomeTipCollectionViewCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				2884A31C26CE8E42004596C3 /* AccommodationDataSource.swift in Sources */,
 				DDFFC11C26FB0734001FD04A /* MapMainViewController.swift in Sources */,
 				2834ED0726BFE46700E948B0 /* LoginManager.swift in Sources */,
+				DD589115270FFBC600CB46E0 /* HomeTipCollectionViewCell.swift in Sources */,
 				DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */,
 				2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */,
 				2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */,
