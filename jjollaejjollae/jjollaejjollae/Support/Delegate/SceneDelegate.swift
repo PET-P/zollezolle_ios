@@ -40,6 +40,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //      return
 //    }
     
+
+    
     
     if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken"),
        let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
@@ -51,6 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         switch result {
         case .success(let data):
           guard let newAccessToken = data.accessToken else {return}
+          UserManager.shared.userIdandToken = (data.userId, newAccessToken)
           LoginManager.shared.saveInKeychain(account: newAccessToken, value: "accessToken")
           self?.isLogged = true
         case .failure(let error):
