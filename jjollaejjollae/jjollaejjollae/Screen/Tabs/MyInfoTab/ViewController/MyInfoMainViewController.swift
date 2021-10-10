@@ -10,7 +10,7 @@ import UIKit
 class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   
   private var infoList: [InfoContent] = [InfoContent(title: "내후기"),
-                                         InfoContent(title: "문의", subtitle: "카카오 플러스친구로 이동"),
+                                         InfoContent(title: "문의", subtitle: "이메일 보내기"),
                                          InfoContent(title:"설정")]
   
   @IBOutlet var infoTableView: UITableView!
@@ -166,7 +166,8 @@ extension MyInfoMainViewController: UITableViewDelegate {
         guard let myReviewVC = MyInfoReviewViewController.loadFromStoryboard() as? MyInfoReviewViewController else {return}
         self.navigationController?.pushViewController(myReviewVC, animated: true)
       case 1:
-        print("카카오플러스친구로 이동")
+        guard let testVC = DogInfoViewController.loadFromStoryboard() as? DogInfoViewController else {return}
+        self.navigationController?.pushViewController(testVC, animated: true)
       case 2:
         guard let settingVC = MyInfoSettingViewController.loadFromStoryboard() as? MyInfoSettingViewController else {return}
         self.navigationController?.pushViewController(settingVC, animated: true)
