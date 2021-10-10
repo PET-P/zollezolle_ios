@@ -34,6 +34,14 @@ extension UITextField {
         self.layer.insertSublayer(bottomLine, at: 0)
         self.setNeedsDisplay()
     }
+  
+  
+  // 순서:
+  // 1. 플레이스홀더 먼저 넣고
+  // 2. 색상을 추가해야함
+  func setPlaceholderColor(_ placeholderColor: UIColor) {
+    attributedPlaceholder = NSAttributedString(string: placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor : placeholderColor, .font: font].compactMapValues{$0})
+  }
 
 }
 
