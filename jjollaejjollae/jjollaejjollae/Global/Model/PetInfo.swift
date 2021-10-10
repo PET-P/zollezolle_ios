@@ -7,29 +7,17 @@
 
 import UIKit
 
-
-struct PetInfos: Codable {
-  var pets: [PetInfo]
-}
-
-struct PetInfo: Codable {
+//id값이 없는 pet 정보
+struct PetInfo {
   var name: String = ""
   var age: Int?
-  var sex: Gender = .male
+  var sex: Sex = .male
   var size: Size = .small
   var weight: Double?
   var type: String = "강아지"
   var breed: String?//후에 URL로 변경해아함
+  var imageUrl: String?
   var imageData: Data?
+  var isRepresent: Bool = false
 }
 
-enum Gender: String, Codable{
-  case female = "여"
-  case male = "남"
-}
-
-enum Size: String, Codable {
-  case small = "소형"
-  case middle = "중형"
-  case big = "대형"
-}
