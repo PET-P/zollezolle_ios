@@ -111,6 +111,7 @@ class SignUpViewController: UIViewController, StoryboardInstantiable {
     signUpModel.password = passwordTextField.text ?? "imshipassword??"
     let additionalInfoStoryboard = UIStoryboard.init(name: "AdditionalInfo", bundle: nil)
     guard let additionalInfoVC = additionalInfoStoryboard.instantiateViewController(identifier: "AdditionalInfoViewController") as? AdditionalInfoViewController else {return}
+    signUpModel.password = LoginManager.shared.StringToSha256(string: signUpModel.password)
     additionalInfoVC.setData(data: signUpModel)
     self.navigationController?.pushViewController(additionalInfoVC, animated: true)
   }
@@ -118,7 +119,6 @@ class SignUpViewController: UIViewController, StoryboardInstantiable {
   @objc private func updateConfirmationUI(_ sender: Any?) {
     //비밀번호가 동일하지 않거나?? 저시기 머시기
     let isConfirmed = LoginManager.shared.isPasswordVerified(password: self.passwordTextField.text , confirmation: self.confirmationTextField.text)
-    print(isConfirmed)
     let containerWidth = self.view.frame.size.width
     switch isConfirmed {
     case 0:

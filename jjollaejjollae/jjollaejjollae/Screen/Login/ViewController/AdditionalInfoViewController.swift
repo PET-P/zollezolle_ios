@@ -118,16 +118,16 @@ class AdditionalInfoViewController: UIViewController {
       switch result {
       case .success(let data):
         self.signUpData = data
-//        print(self.signUpData)
-//        guard let accessToken = self.signUpData?.accessToken, let refreshToken = self.signUpData?.refreshToken else {
-//          return
-//        }
-//        self.loginManager.saveInKeychain(account: "accessToken", value: accessToken)
-//        self.loginManager.saveInKeychain(account: "refreshToken", value: refreshToken)
-        let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
-        guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
-        dogInfoVC.isModalInPresentation = true
-        self.present(dogInfoVC, animated: true, completion: nil)
+        guard let accessToken = self.signUpData?.accessToken, let refreshToken = self.signUpData?.refreshToken else {
+          return
+        }
+        LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
+        LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+        UserManager.shared.userIdandToken = (self.signUpData?.id, self.signUpData?.accessToken)
+//        let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
+//        guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
+//        dogInfoVC.isModalInPresentation = true
+//        self.present(dogInfoVC, animated: true, completion: nil)
       case .failure(let error):
         print(error)
         if error >= 400 && error < 500 {

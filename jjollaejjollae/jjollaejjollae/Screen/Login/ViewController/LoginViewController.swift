@@ -157,13 +157,9 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapProvisionButton(_ sender: UIButton) {
-//    guard let provisionVC = storyboard?.instantiateViewController(
-//            identifier: "ProvisionViewController") as? ProvisionViewController else {
-//      return
-//    }
     guard let provisionVC = ProvisionViewController.loadFromStoryboard() as? ProvisionViewController else {return}
     provisionVC.modalPresentationStyle = .fullScreen
-    self.present(provisionVC, animated: true, completion: nil);
+    self.present(provisionVC, animated: true, completion: nil)
   }
   
   @IBAction private func didTapContinueButton(_ sender: UIButton) {
@@ -225,13 +221,14 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     }
     dispatchGroup.notify(queue: .main) { [weak self] in
       self?.kakaoUserInfo(completion: { email, nick, phone in
-        APIService.shared.socialLogin(email: email, nick: nick, phone: phone) { [weak self] result in
+        APIService.shared.socialLogin(email: email, nick: nick, phone: phone) { result in
           switch result {
           case .success(let data):
             guard let accessToken = data.accessToken else {return}
             guard let refreshToken = data.refreshToken else {return}
             LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
             LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+            UserManager.shared.userIdandToken = (data.id, data.accessToken)
           case .failure(let error):
             print(error)
           }
@@ -347,13 +344,14 @@ extension LoginViewController: StoryboardInstantiable {
         return}
       APIService.shared.socialLogin(email: naverUser.email,
                                     nick: naverUser.nick,
-                                    phone: naverUser.phone) { [weak self] (result) in
+                                    phone: naverUser.phone) { (result) in
         switch result {
         case .success(let data):
           guard let accessToken = data.accessToken else {return}
           guard let refreshToken = data.refreshToken else {return}
           LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
           LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+          UserManager.shared.userIdandToken = (data.id, accessToken)
         case .failure(let error):
           print(error)
         }
@@ -441,14 +439,15 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     
     // 로그인이 되서 관련 정보를 받아왔다면 블록풀어주고 우리서버와 통신시작
     dispatchGroup.notify(queue: .main) {
-      APIService.shared.socialLogin(email: ID, nick: nick, phone: "") { [weak self] (result) in
+      APIService.shared.socialLogin(email: ID, nick: nick, phone: "") { [self] (result) in
         switch result {
         case .success(let data):
           guard let accessToken = data.accessToken else {return}
           guard let refreshToken = data.refreshToken else {return}
           LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
           LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
-          self?.navigationController?.pushViewController(MainTabBarController(), animated: true)
+          UserManager.shared.userIdandToken = (data.id, accessToken)
+          self.navigationController?.pushViewController(MainTabBarController(), animated: true)
         case .failure(let error):
           print(error)
         }

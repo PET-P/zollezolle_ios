@@ -10,7 +10,7 @@ import CryptoKit
 
 class PasswordViewController: UIViewController, StoryboardInstantiable {
   
-  var loginData: User?
+  var loginData: SignUpData?
   private var email: String = ""
   
   func setEmail(email: String) {
@@ -97,25 +97,29 @@ class PasswordViewController: UIViewController, StoryboardInstantiable {
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
     guard let passwordStr = passwordTextField.text else {return}
     let password = LoginManager.shared.StringToSha256(string: passwordStr)
-    APIService.shared.login(email, password) { [self] result in
+    APIService.shared.login(email, password) { [weak self] (result) in
+      guard let self = self else {return}
       switch result {
       case .success(let data):
-        loginData = data
+        self.loginData = data
         // 서버 통신해서 성공했다면 즉시 앱에 token 저장
         // keychain에 저장하자
-        if let loginData = loginData {
-          LoginManager.shared.saveInKeychain(account: "accessToken", value: loginData.accessToken)
-          LoginManager.shared.saveInKeychain(account: "refreshToken", value: loginData.refreshToken)
+        if let loginData = self.loginData {
+          guard let accessToken = loginData.accessToken else {return}
+          guard let refreshToken = loginData.refreshToken else {return}
+          LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
+          LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+          UserManager.shared.userIdandToken = (loginData.id, accessToken)
           self.navigationController?.pushViewController(MainTabBarController(), animated: true)
         }
         
       case .failure(let error):
         print(error)
         if error >= 400 && error < 500 {
-          passwordTextField.changeUnderLine(borderColor: UIColor.errorColor,
+          self.passwordTextField.changeUnderLine(borderColor: UIColor.errorColor,
                                             width: self.view.frame.width)
-          passwordErrorText = "잘못된 비밀번호입니다."
-          findPasswordButton.isHidden = false
+          self.passwordErrorText = "잘못된 비밀번호입니다."
+          self.findPasswordButton.isHidden = false
         }
       }
     }
