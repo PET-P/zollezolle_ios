@@ -35,6 +35,11 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var scrollView: UIScrollView!
   
+  private var UserInfo: UserData? {
+    didSet {
+      
+    }
+  }
   var profileImage:[Data] = []
   var dogProfileImages: [String] = []
   private var visibleIndex: [IndexPath] = []
@@ -56,8 +61,6 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
     self.tabBarController?.tabBar.isHidden = false
     self.tabBarController?.tabBar.isTranslucent = false
   }
-
-  
 }
 //MARK: - IBACTION & OBJC
 
@@ -239,7 +242,7 @@ extension MyInfoDetailViewController {
       self.scrollView.scrollIndicatorInsets = contentInset
         let x = self.containerView.frame.origin.x
         let y = self.containerView.frame.origin.y
-        let height = self.containerView.frame.size.height - 100
+        let height = self.containerView.frame.size.height
         let width = self.containerView.frame.size.width
       self.scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: width, height: height), animated: true)
       guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
