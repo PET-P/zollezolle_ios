@@ -9,8 +9,6 @@ import UIKit
 import PhotosUI
 
 class DogInfoViewController: FixModalViewController{
- 
-  
   //MARK: - IBOUTLET
   
   @IBOutlet weak var infoTitleLabel: UILabel! {
@@ -34,7 +32,7 @@ class DogInfoViewController: FixModalViewController{
       myPetNameTextField.setRounded(radius: nil)
       myPetNameTextField.backgroundColor = .themePaleGreen
       myPetNameTextField.font = .robotoBold(size: 18)
-      myPetNameTextField.placeholder = "쪼꼬"
+      myPetNameTextField.placeholder = "  쪼꼬" //시간이없는관계로 이렇게 넘어감
     }
   }
   @IBOutlet weak var petAgeLabel: PaddingLabel! {
@@ -168,8 +166,23 @@ class DogInfoViewController: FixModalViewController{
       }
     }
   }
+  
+  private lazy var representPetButton: UIButton = {
+    let button = UIButton(type: .custom)
+    let spacing: CGFloat = 10.0
+    button.setImage(UIImage(named: "pawUnchecked"), for: .normal)
+    button.setImage(UIImage(named: "pawChecked"), for: .selected)
+    button.frame = CGRect(x: 0, y: 5, width: 16, height: 20)
+    button.contentEdgeInsets = UIEdgeInsets(top: 5, left: spacing, bottom: 5, right: spacing)
+    myPetNameTextField.leftView = button
+    myPetNameTextField.leftViewMode = .always
+    button.addTarget(self, action: #selector(self.didTaprepresentPetButton(_:)), for: .touchUpInside)
+    return button
+  }()
 
-  private var cellType: [String] = ["camera", "plus"]
+
+  private var user: UserData?
+  private var cellType: [State] = [.plus]
   private var dogProfile: [PetInfo] = []
   private var visibleIndex: [IndexPath] = []
   private var clickedIndexPath: IndexPath?
@@ -182,10 +195,16 @@ class DogInfoViewController: FixModalViewController{
   
   //MARK: - View LifeCycle
   
-  private lazy var dogInfoManager = DogInfoManager()
-    
+//  private lazy var dogInfoManager = DogInfoManager()
+  // 이미지서버와 통신할때는
+  //3마리면, 3마리의 imageURL, imageData -> 서버에 imageURL, 이미지서버에 imageUrl, imageData
+  // 따로 딕셔너리 구성?
+  //
+  //캐싱이 필요하고
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    user = UserManager.shared.UserInfo
     weightPicker.delegate = self
     agePicker.delegate = self
     for i in 1...100 {
@@ -203,11 +222,9 @@ class DogInfoViewController: FixModalViewController{
     petAgeTextField.inputView = agePicker
     petWeightTextField.inputView = weightPicker
     setKeyboard()
-    myPetNameTextField.addTarget(self, action: #selector(didChangePetName(_:)), for: .editingDidEnd)
-    petAgeTextField.addTarget(self, action: #selector(didChangePetAge(_:)), for: .editingDidEnd)
-    petWeightTextField.addTarget(self, action: #selector(didChangePetWeight(_:)), for: .editingDidEnd)
-    petTypeTextField.addTarget(self, action: #selector(didChangePetTypeName(_:)), for: .editingDidEnd)
     petGenderSwitch.delegate = self
+    myPetNameTextField.addSubview(representPetButton)
+    representPetButton.isSelected = false
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -217,31 +234,39 @@ class DogInfoViewController: FixModalViewController{
   }
   
   private func setUpDogProfile() {
-    dogProfile = dogInfoManager.dogInfos
-    var tempCellType: [String] = []
-    if dogInfoManager.isDogInfosEmpty {
+    var tempCellType: [State] = []
+    if dogProfile.isEmpty {
       // dogprofile에 아무것도 없으면?? 처음들어가는 상황
-      print("1번?")
-      tempCellType = ["camera", "plus"]
-      dogProfile = [PetInfo()]
+      // 여기서 그냥 하나 그냥 생성 X
+      tempCellType = [.plus]
     } else {
-      // dogprofile에 처음들어가는 상황이 아님
-      print("2번?")
+      // dogprofile에 처음들어가는 상황이 아님// 여기서 그냥 하나 그냥 생성 X
       for i in dogProfile.indices {
         // 이미지 설정이 되어있지 않다면?
-        if dogProfile[i].imageData == nil {
-          tempCellType.append("camera")
+        if dogProfile[i].imageUrl == nil {
+          tempCellType.append(.camera)
         } else { //이미지설정이 되어있다면?
-          tempCellType.append("old")
+          tempCellType.append(.old)
         }
       }
       //마지막은 plus로 마무리
-      tempCellType.append("plus")
+      tempCellType.append(.plus)
     }
     cellType = tempCellType
   }
   
   //MARK: - Functions
+  
+  @objc func didTaprepresentPetButton(_ sender: Any?) {
+    if !representPetButton.isSelected {
+      for i in dogProfile.indices{
+        self.dogProfile[i].isRepresent = false
+      }
+      self.dogProfile[middleIndex.item].isRepresent = true
+      representPetButton.isSelected = !representPetButton.isSelected
+    }
+  }
+  
   
   private var typeText: String = "강아지" {
     didSet {
@@ -249,12 +274,11 @@ class DogInfoViewController: FixModalViewController{
       dogProfile[middleIndex.row].type = petTypeButton.currentTitle ?? "강아지"
     }
   }
-  
-  @objc private func didChangePetName(_ sender: Any?) {
+  @IBAction func didChangePetName(_ sender: Any) {
     dogProfile[middleIndex.row].name = myPetNameTextField.text ?? ""
   }
   
-  @objc private func didChangePetAge(_ sender: Any?) {
+  @IBAction func didChangePetAge(_ sender: Any) {
     if let age = petAgeTextField.text {
       dogProfile[middleIndex.row].age = Int(age.components(separatedBy: "살")[0])
     } else {
@@ -262,7 +286,7 @@ class DogInfoViewController: FixModalViewController{
     }
   }
   
-  @objc private func didChangePetWeight(_ sender: Any?) {
+  @IBAction func didChangePetWeight(_ sender: Any) {
     if let weight = petWeightTextField.text {
       dogProfile[middleIndex.row].weight = Double(weight.components(separatedBy: "살")[0])
     } else {
@@ -270,13 +294,11 @@ class DogInfoViewController: FixModalViewController{
     }
   }
   
-  @objc private func didChangePetTypeName(_ sender: Any?){
+  @IBAction func didChangePetBreed(_ sender: Any) {
     dogProfile[middleIndex.row].breed = petTypeTextField.text
   }
   
-  
-  
-  @IBAction private func didTapContinueWithoutSaveButton(_ sender: UIButton) {
+  @IBAction func didTapContinueWithoutSaveButton(_ sender: UIButton) {
     self.dismiss(animated: true, completion: nil)
     let homeStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
     guard let homeVC = homeStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {
@@ -300,13 +322,7 @@ class DogInfoViewController: FixModalViewController{
     let smallSizeAction = UIAlertAction(title: "소형", style: .default) { [weak self] result in
       self?.sizeText = "소형"
     }
-    let subview = alertController.view.subviews.first! as UIView
-    let alertContentView = subview.subviews.first! as UIView
-    alertContentView.setRounded(radius: 10)
-    alertContentView.overrideUserInterfaceStyle = .light
-    alertContentView.backgroundColor = UIColor.white
-    alertController.view.setRounded(radius: 10)
-    alertController.view.tintColor = .themeGreen
+    actionsheetUI(alertController: alertController)
     alertController.addAction(bigSizeAction)
     alertController.addAction(middleSizeAction)
     alertController.addAction(smallSizeAction)
@@ -321,17 +337,21 @@ class DogInfoViewController: FixModalViewController{
         self?.typeText = type
       })
     }
-    let subview = alertController.view.subviews.first! as UIView
-    let alertContentView = subview.subviews.first! as UIView
+    actionsheetUI(alertController: alertController)
+    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+    self.present(alertController, animated: true, completion: nil);
+  }
+  
+  private func actionsheetUI(alertController: UIAlertController){
+    let subview = alertController.view.mainView! as UIView
+    let alertContentView = subview.mainView! as UIView
     alertContentView.setRounded(radius: 10)
     alertContentView.overrideUserInterfaceStyle = .light
     alertContentView.backgroundColor = UIColor.white
     alertController.view.setRounded(radius: 10)
     alertController.view.tintColor = .themeGreen
-    
-    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-    self.present(alertController, animated: true, completion: nil);
   }
+  
   
   @IBAction func didTapPetTypeButton(_ sender: UIButton) {
     self.showAlertController(style: UIAlertController.Style.actionSheet, AlertList: ["강아지", "고양이"])
@@ -357,36 +377,20 @@ class DogInfoViewController: FixModalViewController{
       }
     }
     if flag {
-      dogInfoManager.dogInfos = dogProfile
-      let petinfos = PetInfos(pets: dogInfoManager.dogInfos)
-      guard let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken") else {return}
-      //TODO 서버에 저장
-      // key 값은 model에 저장하고
-      // key 값을 통해서 data는 s3에 저장하면되지
-      petinfos.pets.forEach { (pet) in
-        print(pet.imageData)
-      }
+      //TODO: petInfo와 petData를 같이 사용할 수 밖에없음
+      //TODO: 1. 서버로 바로 보내주고 다시 내려받는방법, 2. 프론트에서 양쪽으로 넘기는 방법
       
-//      petinfos.pets.forEach { (pet) in
-//        let date = Date().toString()
-//        let userId = "도현도현도현"
-//        let keyName = "\(userId)_\(date)_\(pet.name)"
-//        APIService.shared.uploadImage(keyName: keyName, imageData: pet.imageData!)
-//      }
-//      APIService.shared.patchPetInfo(accessToken, pets: petinfos) { (result) in
-//        switch result {
-//        case .success(let data):
-//          print(data)
-//        case .failure(let error):
-//          print(error)
-//        }
-//      }
       let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
       guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
       self.navigationController?.pushViewController(homeMainVC, animated: true)
     }
   }
   
+  @IBAction func longPressCell(_ sender: UIGestureRecognizer) {
+    print("longPressed")
+  }
+  
+  // carousel돌릴때마다 updateform
   private func updateForm(cellType: String) {
     if cellType == "plus" {
      clearForm()
@@ -394,11 +398,12 @@ class DogInfoViewController: FixModalViewController{
       let data = dogProfile[middleIndex.row]
       myPetNameTextField.text = data.name
       petAgeTextField.text = "\(data.age ?? 0)살"
-      petGenderSwitch.isOn = data.sex == Gender.male ? true : false
+      petGenderSwitch.isOn = data.sex == Sex.male ? true : false
       petSizeButton.setTitle(data.size.rawValue, for: .normal)
       petWeightTextField.text = "\(data.weight ?? 0.0)KG"
       petTypeButton.setTitle(data.type, for: .normal)
       petTypeTextField.text = data.breed
+      representPetButton.isSelected = data.isRepresent
     }
   }
   
@@ -410,7 +415,7 @@ class DogInfoViewController: FixModalViewController{
     petWeightTextField.text = nil
     petTypeButton.setTitle("강아지", for: .normal)
     petTypeTextField.text = nil
-    
+    representPetButton.isSelected = false
   }
   
 }
@@ -480,17 +485,23 @@ extension DogInfoViewController: UITextFieldDelegate {
 //MARK: - ImagePicker 제공
 
 extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+  
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     self.dismiss(animated: true, completion: nil)
   }
+  
+  
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    var newImage: UIImage? = nil
     if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      self.dogProfile[middleIndex.row].imageData = originalImage.jpegData(compressionQuality: 0.1)
-      self.cellType[self.middleIndex.row] = "old"
-      //TODO: 이미지 저장할 모델링
-      //TODO: 정한 이미지 pan gesture
+      newImage = originalImage
     }
-    self.dismiss(animated: true) {
+    guard let newImage = newImage else {
+      return}
+    self.dogProfile[self.middleIndex.row].imageData = newImage.jpegData(compressionQuality: 0.1)
+    self.cellType[self.middleIndex.row] = State.old
+    self.dogProfile[self.middleIndex.row].imageUrl = "\(self.user?.id ?? "쫄래쫄래")_\(Date())_\(self.dogProfile[self.middleIndex.row].name)"
+    picker.dismiss(animated: true) {
       self.dogProfileCollectionView.reloadData()
     }
   }
@@ -510,29 +521,45 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
     return cellType.count
   }
   
+  @objc func longpressedCell(_ sender: UILongPressGestureRecognizer) {
+    if sender.state == UIGestureRecognizer.State.began {
+      let index = middleIndex.row
+      if cellType[index] != .plus {
+        let alert = UIAlertController(title: "프로필삭제", message: "입력한 정보를 삭제하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "취소", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "삭제", style: .default, handler: { [weak self] (action) in
+          guard let self = self else {return}
+          self.cellType.remove(at: index)
+          self.dogProfile.remove(at: index)
+          self.dogProfileCollectionView.reloadData()
+        }))
+        self.present(alert, animated: true, completion: nil)
+      }
+    }
+  }
+  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "carouseCell", for: indexPath) as? CaraouselCell else {
       return UICollectionViewCell()
     }
+    let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longpressedCell(_:)))
+    longPressGesture.minimumPressDuration = 1
+    cell.addGestureRecognizer(longPressGesture)
     cell.dogImageView.isUserInteractionEnabled = true
-    if cellType[indexPath.row] == "camera" {
-      cell.dogImageView.image = UIImage(named: "camera")
-    }
-    else if cellType[indexPath.row] == "plus" {
-      cell.dogImageView.image = UIImage(named: "plus")
-    }
-    else {
+    if cellType[indexPath.row] != .old {
+      cell.dogImageView.image = UIImage(named: cellType[indexPath.row].rawValue)
+    } else {
       if let data = self.dogProfile[indexPath.row].imageData {
         cell.dogImageView.image = UIImage(data: data)
       } else {
-        cell.dogImageView.image = UIImage(named: "camera")
+        cell.dogImageView.image = UIImage(named: State.camera.rawValue)
       }
     }
     setMiddleIndex(cell, indexPath: indexPath)
     
     //+버튼일 경우 다른 곳은 터치가 안되서 기입할 수가 없음
-    if cellType[indexPath.row] == "plus" && indexPath == middleIndex {
+    if cellType[indexPath.row] == .plus && indexPath == middleIndex {
       self.myPetNameTextField.isUserInteractionEnabled = false
       self.petTypeButton.isUserInteractionEnabled = false
       self.petTypeTextField.isUserInteractionEnabled = false
@@ -551,7 +578,7 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     if indexPath == middleIndex {
-      updateForm(cellType: cellType[middleIndex.row])
+      updateForm(cellType: cellType[middleIndex.row].rawValue)
     }
     
     cell.delegate = self
@@ -592,13 +619,13 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   }
   
   //가운데 인덱스 구하기
-  func setMiddleIndex(_ cell: UICollectionViewCell, indexPath: IndexPath) {
+  private func setMiddleIndex(_ cell: UICollectionViewCell, indexPath: IndexPath) {
     if cell.alpha > 0.9 {
       middleIndex = indexPath
     }
   }
   
-  func visibleCell() {
+  private func visibleCell() {
     var indexArray: [IndexPath] = []
     for cell in dogProfileCollectionView.visibleCells {
       guard let indexPath = dogProfileCollectionView.indexPath(for: cell) else {
@@ -614,16 +641,20 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   func didTapImageView(indexPath: IndexPath?) {
     
     if let indexPath = indexPath {
-      if cellType[indexPath.row] == "plus" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
-        cellType.insert("camera", at: cellType.count - 1)
-        
+      if cellType.count > 5 { //5개 이상되면 + 삭제
+        self.cellType = self.cellType.dropLast()
+        dogProfileCollectionView.reloadData()
+        return
+      }
+      if cellType[indexPath.row] == .plus && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
+        cellType.insert(.camera, at: cellType.count - 1)
         dogProfile.append(PetInfo())
-      } else if cellType[indexPath.row] == "camera" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
+      } else if cellType[indexPath.row] == .camera && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
         myPetImagePickerController.allowsEditing = true
         myPetImagePickerController.delegate = self
         present(myPetImagePickerController, animated: true)
-      } else if cellType[indexPath.row] == "old" && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
+      } else if cellType[indexPath.row] == .old && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
         myPetImagePickerController.allowsEditing = true
         myPetImagePickerController.delegate = self
@@ -638,7 +669,7 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
 
 extension DogInfoViewController: JJollaeButtonDelegate {
   func isOnValueChage(isOn: Bool) {
-    if cellType[middleIndex.row] != "plus" {
+    if cellType[middleIndex.row] != .plus {
       if isOn == true {
         dogProfile[middleIndex.row].sex = .male
       } else {
@@ -661,7 +692,7 @@ extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     self.petWeightTextField.inputAccessoryView = toolbar
     //가변 폭 버튼
     let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    //toorbar에 done올리기
+    //toorbar에 done올리기3
     let done = UIBarButtonItem()
     done.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.themeGreen], for: .normal)
     done.title = "완료"

@@ -71,6 +71,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </collectionViewCellContentView>
+                                                        <gestureRecognizers/>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
@@ -81,14 +82,19 @@
                                                     <constraint firstAttribute="height" constant="2" id="gpi-7u-Qqz"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yc2-uY-SJG">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yc2-uY-SJG">
                                                 <rect key="frame" x="139.5" y="217" width="135" height="40"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="5v4-93-2Ns"/>
                                                     <constraint firstAttribute="width" constant="135" id="ho2-H8-amV"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="didChangePetName:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="AkY-H3-7ZL"/>
+                                                    <outletCollection property="gestureRecognizers" destination="Gzi-3Z-kEw" appends="YES" id="J3o-NZ-cjh"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9GN-go-ter">
                                                 <rect key="frame" x="87" y="264" width="240" height="14"/>
@@ -130,6 +136,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                <connections>
+                                                                    <action selector="didChangePetAge:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="0g2-zo-ooF"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -235,6 +244,9 @@
                                                                 <rect key="frame" x="0.0" y="25.5" width="154.5" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                                <connections>
+                                                                    <action selector="didChangePetWeight:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="Bua-jZ-E0o"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -284,6 +296,9 @@
                                                                 <rect key="frame" x="99" y="0.0" width="231" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="didChangePetBreed:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="kqy-Z9-mqa"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
@@ -390,6 +405,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="2" id="Gzi-3Z-kEw">
+                    <connections>
+                        <action selector="longPressCell:" destination="Y6W-OH-hqX" id="6Ob-3A-weh"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-191" y="136"/>
         </scene>
