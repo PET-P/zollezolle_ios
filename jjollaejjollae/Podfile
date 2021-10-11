@@ -22,8 +22,7 @@ target 'jjollaejjollae' do
   pod 'KakaoSDKAuth'
   pod 'KakaoSDKUser'
   pod 'KakaoSDKTalk'
-  pod 'Amplify'
-  pod 'AmplifyPlugins/AWSS3StoragePlugin'
-  pod 'AmplifyPlugins/AWSCognitoAuthPlugin'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Storage'
 
 end

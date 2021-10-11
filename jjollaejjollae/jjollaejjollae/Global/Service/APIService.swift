@@ -7,9 +7,8 @@
 
 import Foundation
 import Moya
-import Amplify
-import AWSS3
 import UIKit
+import Kingfisher
 
 struct APIService { 
   
@@ -178,35 +177,4 @@ extension APIService {
       }
     }
   }
-  
-}
-
-extension APIService {
-  func uploadImage(keyName: String, imageData: Data) {
-    Amplify.Storage.uploadData(key: keyName, data: imageData) {
-      result in
-      switch result {
-      case .success(let key):
-        print("key \(key)")
-      case .failure(let storageError):
-        print("file to uploadfile", storageError)
-      }
-    }
-  }
-  
-  func downloadImage(keyName: String) {
-    Amplify.Storage.downloadData(key: keyName, options: nil, progressListener: { progress in
-      print("process: \(progress)")
-    }) { (result) in
-      switch result {
-      case .success(let data):
-        print("data \(data)")
-      case .failure(let error):
-        print("failed \(error.errorDescription)")
-      }
-    }
-  }
-  
- 
-  
 }

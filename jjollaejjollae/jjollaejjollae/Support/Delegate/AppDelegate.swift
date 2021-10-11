@@ -10,9 +10,7 @@ import NaverThirdPartyLogin
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
-import Amplify
-import AmplifyPlugins
-import AWSS3
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -60,23 +58,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     instance?.consumerSecret = kConsumerSecret
     //어플리케이션 이름
     instance?.appName = kServiceAppName
-    //amazon s3
-    configureAmplify()
+    //firebase
+    FirebaseApp.configure()
+  
     
     return true
   }
   
-  func configureAmplify() {
-    do {
-      //storage
-      try Amplify.add(plugin: AWSCognitoAuthPlugin())
-      try Amplify.add(plugin: AWSS3StoragePlugin())
-      try Amplify.configure()
-      print("Successfully configured Amplify 😀")
-    } catch {
-      print("Could not configuare Amplify \(error)")
-    }
-  }
+ 
   
   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
     if (AuthApi.isKakaoTalkLoginUrl(url)) {
@@ -92,10 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                   handleEventsForBackgroundURLSession identifier: String,
                   completionHandler: @escaping () -> Void) {
    
-       //provide the completionHandler to the TransferUtility to support background transfers.
-       AWSS3TransferUtility.interceptApplication(application,
-           handleEventsForBackgroundURLSession: identifier,
-           completionHandler: completionHandler)
+       
    }
   
   // MARK: UISceneSession Lifecycle
