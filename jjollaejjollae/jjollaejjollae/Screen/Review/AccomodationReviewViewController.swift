@@ -21,6 +21,7 @@ class AccomodationReviewViewController: UIViewController, StoryboardInstantiable
       scrollView.showsHorizontalScrollIndicator = false
     }
   }
+  @IBOutlet weak var scrollViewinnerRootView: UIView!
   
   @IBOutlet weak var accomodationTitleLabel: UILabel!
   
@@ -75,6 +76,16 @@ class AccomodationReviewViewController: UIViewController, StoryboardInstantiable
   private var previousContentOffset: CGPoint = CGPoint(x: 0, y: 0)
   
   private var ratingFactorsDict: [String: Bool] = ["Service": true, "Clean": true, "Mood": true, "Location": true]
+  
+  @IBOutlet weak var photoButton: UIButton! {
+    
+    didSet {
+      
+      photoButton.tintColor = .black
+      photoButton.backgroundColor = #colorLiteral(red: 0.9567790627, green: 0.9569163918, blue: 0.956749022, alpha: 1)
+      photoButton.layer.cornerRadius = 5
+    }
+  }
   
   @IBOutlet weak var photoScrollView: UIScrollView! {
     
@@ -254,8 +265,6 @@ class AccomodationReviewViewController: UIViewController, StoryboardInstantiable
   
   @IBAction func didTapCompleteButton(_ sender: Any) {
     
-//    print(ratingFactorsDict)
-    
       selectedPhotos.append(UIImage(systemName: "heart")!)
   }
   
@@ -322,9 +331,8 @@ extension AccomodationReviewViewController {
     
     if reviewTextView.isFirstResponder {
       
-      view.bounds = CGRect(x: view.bounds.minX, y: view.bounds.minY + keyboardFrame.height / 2, width: view.bounds.width, height: view.bounds.height)
-      
-      let newContentOffset = CGPoint(x: 0, y: scrollView.frame.maxY)
+      let newContentOffset = CGPoint(x: 0,
+                                     y: reviewTextView.superview!.frame.minY + ( reviewTextView.frame.minY / 2 ))
       
       scrollView.setContentOffset(newContentOffset, animated: true)
     }
@@ -342,7 +350,7 @@ extension AccomodationReviewViewController {
       
       view.bounds = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
       
-      scrollView.contentOffset.y = scrollView.frame.maxY
+      scrollView.contentOffset.y = scrollView.subviews.first!.frame.maxY - view.frame.height
     }
     
     scrollView.isScrollEnabled = true

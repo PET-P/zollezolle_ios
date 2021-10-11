@@ -543,10 +543,12 @@
                         <outlet property="locationButtonStack" destination="Qo0-KP-qNg" id="caZ-za-gtW"/>
                         <outlet property="moodButtonStack" destination="9Fa-gW-l1t" id="NBx-Ri-vNT"/>
                         <outlet property="negativeFeedbackTextView" destination="OYI-R3-6t9" id="9Qo-FU-4W5"/>
+                        <outlet property="photoButton" destination="IsL-4K-Ytv" id="KMn-Ef-no4"/>
                         <outlet property="photoImageStackView" destination="rfT-qh-2xC" id="iTd-xT-CZb"/>
                         <outlet property="photoScrollView" destination="RSk-yN-oUw" id="1dz-Ka-zsF"/>
                         <outlet property="reviewTextView" destination="iYq-ks-UKo" id="NFN-af-Abc"/>
                         <outlet property="scrollView" destination="djn-Kb-S7P" id="LWi-cF-bvF"/>
+                        <outlet property="scrollViewinnerRootView" destination="M13-HG-q4i" id="Xaq-q4-uho"/>
                         <outlet property="serviceButtonStack" destination="Uvm-bF-vxz" id="1nx-Mv-iIi"/>
                         <outlet property="withPetSatisfactionLabel" destination="2Lx-rK-sEC" id="1yI-0j-jM2"/>
                         <outletCollection property="starList" destination="m0L-PE-rAt" collectionClass="NSMutableArray" id="DbS-AP-hM9"/>
