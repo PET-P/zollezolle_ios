@@ -377,8 +377,10 @@ class DogInfoViewController: FixModalViewController{
       }
     }
     if flag {
-      //TODO: petInfo와 petData를 같이 사용할 수 밖에없음
-      //TODO: 1. 서버로 바로 보내주고 다시 내려받는방법, 2. 프론트에서 양쪽으로 넘기는 방법
+      for pet in self.dogProfile {
+        guard let imageData = pet.imageData, let imageUrl = pet.imageUrl else {continue}
+        StorageService.shared.uploadImageWithData(imageData: imageData, imageName: imageUrl)
+      }
       
       let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
       guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
