@@ -63,14 +63,8 @@ class ReviewTableCell: UITableViewCell {
       tags.forEach { (button) in
         button.isUserInteractionEnabled = false
         button.setRounded(radius: nil)
-        button.setBorder(borderColor: .gray05, borderWidth: 1)
-        let firstWord = button.currentTitle!.components(separatedBy: " ").first!
-        let lastWord = button.currentTitle!.components(separatedBy: " ").last!
-        let text = button.currentTitle!
-        let attributedString = NSMutableAttributedString(string: text)
-        attributedString.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.gray04, .font: UIFont.robotoRegular(size: 15)], range: (text as NSString).range(of: firstWord))
-        attributedString.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.gray01, .font: UIFont.robotoRegular(size: 15)], range: (text as NSString).range(of: lastWord))
-        button.setAttributedTitle(attributedString, for: .normal)
+        button.backgroundColor = .gray07
+        button.setTitleColor(.gray02, for: .normal)
       }
     }
   }
