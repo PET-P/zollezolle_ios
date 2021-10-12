@@ -545,9 +545,11 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "carouseCell", for: indexPath) as? CaraouselCell else {
       return UICollectionViewCell()
     }
+    
     let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longpressedCell(_:)))
     longPressGesture.minimumPressDuration = 1
     cell.addGestureRecognizer(longPressGesture)
+    
     cell.dogImageView.isUserInteractionEnabled = true
     if cellType[indexPath.row] != .old {
       cell.dogImageView.image = UIImage(named: cellType[indexPath.row].rawValue)

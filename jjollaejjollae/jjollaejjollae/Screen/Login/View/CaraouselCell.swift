@@ -49,10 +49,10 @@ class CaraouselCell: UICollectionViewCell {
   override func layoutSubviews() {
     super.layoutSubviews()
     layoutIfNeeded()
-    self.dogImageView.layer.cornerRadius = 50
+    self.dogImageView.layer.cornerRadius = self.frame.height * 0.85 / 2
     self.dogImageView.layer.masksToBounds = true
     self.dogImageView.clipsToBounds = true
-    self.layer.cornerRadius = 50
+//    self.layer.cornerRadius =  50
     self.layer.borderColor = UIColor.clear.cgColor
     self.layer.masksToBounds = true
     self.clipsToBounds = true

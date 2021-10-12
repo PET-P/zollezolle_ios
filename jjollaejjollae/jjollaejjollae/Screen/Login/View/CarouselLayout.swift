@@ -49,7 +49,7 @@ class CarouselLayout: UICollectionViewFlowLayout {
   
   public override func layoutAttributesForElements(in rect: CGRect)
   -> [UICollectionViewLayoutAttributes]? {
-    guard  let superAttributes = super.layoutAttributesForElements(in: rect),
+    guard let superAttributes = super.layoutAttributesForElements(in: rect),
            let attributes = NSArray(array: superAttributes, copyItems: true)
             as? [UICollectionViewLayoutAttributes] else {
       return nil
@@ -78,7 +78,6 @@ class CarouselLayout: UICollectionViewFlowLayout {
     if abs(collectionCenter - center) > maxDistance + 1 {
       attributes.alpha = 0
     }
-    
     let visibleRect = CGRect(origin: collectionView.contentOffset,
                              size: collectionView.bounds.size)
     let dist = attributes.frame.midX - visibleRect.midX
