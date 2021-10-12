@@ -71,6 +71,9 @@ extension UIColor {
   @nonobjc class var gray06: UIColor {
     return UIColor(rgb: 0xF4F4F4)
   }
+  @nonobjc class var gray07: UIColor {
+    return UIColor(rgb: 0xFAFAFA)
+  }
   @nonobjc class var 색44444: UIColor {
     return UIColor(rgb: 0x444444)
   }
