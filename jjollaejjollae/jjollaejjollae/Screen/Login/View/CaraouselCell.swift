@@ -20,6 +20,7 @@ class CaraouselCell: UICollectionViewCell {
     let imageView = UIImageView()
     imageView.image = UIImage(named: "camera")
     imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.contentMode = .scaleAspectFill
     imageView.layer.cornerRadius = 50
     return imageView
   }()
@@ -30,9 +31,9 @@ class CaraouselCell: UICollectionViewCell {
     self.dogImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     self.dogImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     self.dogImageView.widthAnchor.constraint(equalTo: self.heightAnchor,
-                                             multiplier: 0.9).isActive = true
+                                             multiplier: 0.85).isActive = true
     self.dogImageView.heightAnchor.constraint(equalTo: self.heightAnchor,
-                                              multiplier: 0.9).isActive = true
+                                              multiplier: 0.85).isActive = true
     let tapGestureRecognizer = UITapGestureRecognizer(target: self,  action: #selector(self.imageTapped))
     dogImageView.addGestureRecognizer(tapGestureRecognizer)
   }
