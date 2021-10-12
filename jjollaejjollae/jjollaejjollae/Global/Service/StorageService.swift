@@ -32,6 +32,20 @@ class StorageService {
     }
   }
   
+  func uploadImageWithData(imageData: Data, imageName: String) {
+    guard let filePath = imageName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {return}
+    let metaData = StorageMetadata()
+    metaData.contentType = "image/jpeg"
+    storage.reference().child("images/\(filePath)").putData(imageData, metadata: metaData){
+      (metaData, error) in
+      if let error = error {
+        print(error.localizedDescription)
+      } else {
+        print("성공")
+      }
+    }
+  }
+  
   func deleteImage(imageName: String){
     storage.reference().child("images").delete { (error) in
       if let error = error {
