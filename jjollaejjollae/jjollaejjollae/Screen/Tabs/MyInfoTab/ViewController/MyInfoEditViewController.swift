@@ -52,8 +52,12 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     }
   }
 
+  @IBOutlet weak var passwordLabel: UILabel!
+  @IBOutlet weak var passwordStackView: UIStackView!
+  @IBOutlet weak var newpasswordStackView: UIStackView!
   @IBOutlet weak var phoneTextField: UITextField!
   @IBOutlet weak var blockView: UIView!
+  @IBOutlet weak var blockView2: UIView!
   @IBOutlet weak var logoutButton: UIButton! {
     didSet {
       logoutButton.titleLabel?.font = .robotoRegular(size: 12)
@@ -104,7 +108,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   }
   
   @IBAction func checkPW(_ sender: UITextField) {
-    var confirmed = false
+    let confirmed = false
     //서버와통신 method명 passwordCheck예정
     updatePWtextFieldsUI(confirm: confirmed)
   }
@@ -137,6 +141,10 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
       infoItemsLabel[1].isHidden = true
       phoneStackView.isHidden = true
       blockView.isHidden = true
+      passwordLabel.isHidden = true
+      passwordStackView.isHidden = true
+      newpasswordStackView.isHidden = true
+      blockView2.isHidden = true
     }
   }
   
