@@ -11,8 +11,7 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
 import AuthenticationServices
-import Alamofire
-import Amplify 
+import Alamofire 
 
 @available(iOS 13.0, *)
 
@@ -20,7 +19,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   
   private var naverUser: SocialUser?
   private var completionHandler: (() -> Void)?
- 
+  
+  
   @IBOutlet weak var emailTextField: UITextField! {
     didSet {
       emailTextField.addLeftPadding()
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   @IBOutlet weak var bottomLoginTitle: UILabel! {
     didSet {
       bottomLoginTitle.text = "여행을 떠나 볼까요?"
-//      bottomLoginTitle.font = UIFont.robotoBold(size: 30)
+      //      bottomLoginTitle.font = UIFont.robotoBold(size: 30)
       bottomLoginTitle.textColor = UIColor.gray01
     }
   }
@@ -157,9 +157,13 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapProvisionButton(_ sender: UIButton) {
+    //        StorageService.shared.uploadImage(img: UIImage(named: "IMG_4930")!, imageName: "빵이")
     guard let provisionVC = ProvisionViewController.loadFromStoryboard() as? ProvisionViewController else {return}
     provisionVC.modalPresentationStyle = .fullScreen
     self.present(provisionVC, animated: true, completion: nil)
+    
+    //    APIService.shared.downloadImage(keyName: "거미")
+    
   }
   
   @IBAction private func didTapContinueButton(_ sender: UIButton) {
@@ -185,13 +189,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
-//    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
-//    guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as? DogInfoViewController else {return}
-//    self.navigationController?.pushViewController(dogInfoVC, animated: true)
-    guard let settingVC = MyInfoSettingViewController.loadFromStoryboard() as? MyInfoSettingViewController else {return}
-    self.navigationController?.pushViewController(settingVC, animated: true)
-//    guard let myInfoDetailVC = MyInfoDetailViewController.loadFromStoryboard() as? MyInfoDetailViewController else {return}
-//    self.navigationController?.pushViewController(myInfoDetailVC, animated: true)
+    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
   }
   
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
@@ -279,9 +277,9 @@ extension LoginViewController {
       continueButtonColor = .themeGreen
       self.errorText = ""
     }
-//    if continueButton.currentTitle == "회원가입" {
-//      continueButton.setTitle("계속하기", for: .normal)
-//    }
+    //    if continueButton.currentTitle == "회원가입" {
+    //      continueButton.setTitle("계속하기", for: .normal)
+    //    }
   }
 }
 
@@ -319,7 +317,7 @@ extension LoginViewController: StoryboardInstantiable {
     let urlStr = "https://openapi.naver.com/v1/nid/me"
     let url = URL(string: urlStr)!
     let authorization = "\(tokenType) \(accessToken)"
-  
+    
     let req = AF.request(url, method: .get, parameters: nil,
                          encoding: JSONEncoding.default,
                          headers: ["Authorization": authorization])
