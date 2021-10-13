@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="enX-2B-EgI">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto Mono Bold for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Bold</string>
+        </array>
+        <array key="Roboto Mono Medium for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Medium</string>
+        </array>
+        <array key="Roboto Mono for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Table View Controller-->
+        <scene sceneID="KhU-OO-hUq">
+            <objects>
+                <tableViewController id="enX-2B-EgI" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="224" estimatedRowHeight="224" sectionHeaderHeight="28" sectionFooterHeight="28" id="iTi-km-Uw3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="juN-gE-gGa">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="185"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="후기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-Oy-QB2">
+                                    <rect key="frame" x="189.5" y="8" width="35" height="23.5"/>
+                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 52개의 후기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYo-nj-ktc">
+                                    <rect key="frame" x="8" y="34.5" width="398" height="15.5"/>
+                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSw-9w-L22">
+                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="Y6Z-XC-KbV"/>
+                                        <constraint firstAttribute="width" constant="24" id="ege-ka-dno"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="Back"/>
+                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="T4v-ea-abQ">
+                                    <rect key="frame" x="23" y="131" width="208" height="41"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주코기네" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDj-mk-KuG">
+                                            <rect key="frame" x="0.0" y="0.0" width="208" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주시 애월읍 애월 해안로 274" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjN-3t-6TV">
+                                            <rect key="frame" x="0.0" y="20.5" width="208" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEm-js-u8Q">
+                                    <rect key="frame" x="269" y="135" width="126" height="37"/>
+                                    <color key="backgroundColor" red="0.80392156859999997" green="0.8980392157" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="126" id="MXv-Xa-yO3"/>
+                                        <constraint firstAttribute="height" constant="37" id="sL3-HO-hHc"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="14"/>
+                                    <state key="normal" title="후기작성하기">
+                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="bbr-Oy-QB2" firstAttribute="centerX" secondItem="juN-gE-gGa" secondAttribute="centerX" id="1ul-0u-Mjf"/>
+                                <constraint firstAttribute="bottom" secondItem="QEm-js-u8Q" secondAttribute="bottom" constant="13" id="4F9-rJ-CqN"/>
+                                <constraint firstItem="T4v-ea-abQ" firstAttribute="leading" secondItem="juN-gE-gGa" secondAttribute="leading" constant="23" id="4hl-ou-Ywm"/>
+                                <constraint firstItem="pSw-9w-L22" firstAttribute="top" secondItem="juN-gE-gGa" secondAttribute="top" constant="16" id="8zl-3X-4yq"/>
+                                <constraint firstItem="bbr-Oy-QB2" firstAttribute="top" secondItem="juN-gE-gGa" secondAttribute="topMargin" id="Euf-Sn-U2I"/>
+                                <constraint firstAttribute="bottom" secondItem="T4v-ea-abQ" secondAttribute="bottom" constant="13" id="R8B-kh-EWx"/>
+                                <constraint firstItem="bYo-nj-ktc" firstAttribute="centerX" secondItem="juN-gE-gGa" secondAttribute="centerX" id="S3c-Li-rwA"/>
+                                <constraint firstItem="bYo-nj-ktc" firstAttribute="top" secondItem="bbr-Oy-QB2" secondAttribute="bottom" constant="3" id="VyY-cU-SV0"/>
+                                <constraint firstItem="pSw-9w-L22" firstAttribute="leading" secondItem="juN-gE-gGa" secondAttribute="leading" constant="16" id="jBT-Nj-nFh"/>
+                                <constraint firstItem="bYo-nj-ktc" firstAttribute="leading" secondItem="juN-gE-gGa" secondAttribute="leadingMargin" id="lTj-dy-old"/>
+                                <constraint firstAttribute="trailing" secondItem="QEm-js-u8Q" secondAttribute="trailing" constant="19" id="pEz-cA-leS"/>
+                                <constraint firstItem="bYo-nj-ktc" firstAttribute="trailing" secondItem="juN-gE-gGa" secondAttribute="trailingMargin" id="t8q-tH-Ybg"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="224" id="jb2-dR-gVc">
+                                <rect key="frame" x="0.0" y="209.5" width="414" height="224"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jb2-dR-gVc" id="Ykz-ZC-CpT">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YFw-ih-KBx">
+                                            <rect key="frame" x="16" y="59" width="103" height="103"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="103" id="7LM-qN-Pv2"/>
+                                                <constraint firstAttribute="height" constant="103" id="D4d-uj-R5S"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Yl-IX-SiV">
+                                            <rect key="frame" x="16" y="16" width="28" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="28" id="mBm-Hi-yHM"/>
+                                                <constraint firstAttribute="height" constant="28" id="pEY-IF-RVF"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eq1-Ed-Kdj">
+                                            <rect key="frame" x="16" y="178" width="103" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="g9d-of-GQg"/>
+                                                <constraint firstAttribute="width" constant="103" id="sDM-fQ-UxN"/>
+                                            </constraints>
+                                            <state key="normal" title="도움돼요 12"/>
+                                        </button>
+                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DhB-QL-tym">
+                                            <rect key="frame" x="52" y="16" width="97" height="28"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디길이" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1h-W8-36s">
+                                                    <rect key="frame" x="0.0" y="0.0" width="97" height="14"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLy-f6-asF">
+                                                    <rect key="frame" x="0.0" y="14" width="97" height="14"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리트리버버어엉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2p-IE-sNe">
+                                                            <rect key="frame" x="0.0" y="0.0" width="67" height="14"/>
+                                                            <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="11"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZw-lc-J0Y">
+                                                            <rect key="frame" x="67" y="0.0" width="30" height="14"/>
+                                                            <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="11"/>
+                                                            <color key="tintColor" systemColor="systemPinkColor"/>
+                                                            <state key="normal" title="신고"/>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7hl-iB-8wL">
+                                            <rect key="frame" x="127" y="59" width="271" height="103"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4b-oc-f4r">
+                                                    <rect key="frame" x="0.0" y="0.0" width="271" height="18"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CJw-Co-xdM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="107" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="tmE-oB-Mo9"/>
+                                                                <constraint firstAttribute="width" constant="107" id="yE8-3D-8D4"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wWA-Kc-SeH">
+                                                            <rect key="frame" x="107" y="0.0" width="164" height="18"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        </view>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JgN-mN-pf9">
+                                                    <rect key="frame" x="0.0" y="26" width="271" height="18"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="255" verticalHuggingPriority="252" translatesAutoresizingMaskIntoConstraints="NO" id="fQy-Zs-I6V">
+                                                            <rect key="frame" x="0.0" y="0.0" width="18" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="18" id="Eto-YX-gUH"/>
+                                                                <constraint firstAttribute="height" constant="18" id="emi-uH-TUD"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuz-TC-Vhh">
+                                                            <rect key="frame" x="18" y="0.0" width="253" height="18"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6Q-lx-9PK">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="18"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="253" id="4UF-bt-OKQ"/>
+                                                                    </constraints>
+                                                                </view>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.95677906270000002" green="0.95691639179999999" blue="0.956749022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstItem="F6Q-lx-9PK" firstAttribute="height" secondItem="VGu-VZ-6r4" secondAttribute="height" id="H6S-4Y-Shp"/>
+                                                                <constraint firstItem="F6Q-lx-9PK" firstAttribute="leading" secondItem="xvI-EA-qgV" secondAttribute="leading" id="KqY-D4-SPa"/>
+                                                                <constraint firstItem="F6Q-lx-9PK" firstAttribute="top" secondItem="xvI-EA-qgV" secondAttribute="top" id="bMx-tr-Ask"/>
+                                                                <constraint firstItem="F6Q-lx-9PK" firstAttribute="bottom" secondItem="xvI-EA-qgV" secondAttribute="bottom" id="qde-tI-JTZ"/>
+                                                                <constraint firstItem="F6Q-lx-9PK" firstAttribute="trailing" secondItem="xvI-EA-qgV" secondAttribute="trailing" id="zpV-NY-rx3"/>
+                                                            </constraints>
+                                                            <viewLayoutGuide key="contentLayoutGuide" id="xvI-EA-qgV"/>
+                                                            <viewLayoutGuide key="frameLayoutGuide" id="VGu-VZ-6r4"/>
+                                                        </scrollView>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="너무 너무 좋았어요!!! 사장님 친절하시고 저희 막뚱이도 즐거운 시간 보냈습니다. 숙소가 사진과 같이 깔끔했어요~" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wb2-uL-Lbr">
+                                                    <rect key="frame" x="0.0" y="52" width="271" height="51"/>
+                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Eq1-Ed-Kdj" firstAttribute="leading" secondItem="YFw-ih-KBx" secondAttribute="leading" id="3Tb-eA-ejx"/>
+                                        <constraint firstItem="7hl-iB-8wL" firstAttribute="bottom" secondItem="YFw-ih-KBx" secondAttribute="bottom" id="8sT-Hr-oBr"/>
+                                        <constraint firstAttribute="trailing" secondItem="7hl-iB-8wL" secondAttribute="trailing" constant="16" id="Dcb-3i-7ly"/>
+                                        <constraint firstItem="6Yl-IX-SiV" firstAttribute="top" secondItem="Ykz-ZC-CpT" secondAttribute="top" constant="16" id="Eye-N8-EPm"/>
+                                        <constraint firstItem="DhB-QL-tym" firstAttribute="top" secondItem="6Yl-IX-SiV" secondAttribute="top" id="F29-2j-L7r"/>
+                                        <constraint firstItem="7hl-iB-8wL" firstAttribute="top" secondItem="YFw-ih-KBx" secondAttribute="top" id="TTP-tQ-CHW"/>
+                                        <constraint firstItem="YFw-ih-KBx" firstAttribute="leading" secondItem="6Yl-IX-SiV" secondAttribute="leading" id="WV5-Em-bCz"/>
+                                        <constraint firstItem="Eq1-Ed-Kdj" firstAttribute="top" secondItem="YFw-ih-KBx" secondAttribute="bottom" constant="16" id="XK3-NP-agR"/>
+                                        <constraint firstItem="7hl-iB-8wL" firstAttribute="leading" secondItem="YFw-ih-KBx" secondAttribute="trailing" constant="8" symbolic="YES" id="bNF-RH-4XN"/>
+                                        <constraint firstItem="DhB-QL-tym" firstAttribute="bottom" secondItem="6Yl-IX-SiV" secondAttribute="bottom" id="fvu-7h-kIU"/>
+                                        <constraint firstItem="YFw-ih-KBx" firstAttribute="top" secondItem="6Yl-IX-SiV" secondAttribute="bottom" constant="15" id="lMN-GZ-7d6"/>
+                                        <constraint firstItem="6Yl-IX-SiV" firstAttribute="leading" secondItem="Ykz-ZC-CpT" secondAttribute="leading" constant="16" id="liX-dC-Chn"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="enX-2B-EgI" id="f0Q-6a-8tL"/>
+                            <outlet property="delegate" destination="enX-2B-EgI" id="agf-Ru-fAY"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="46W-Qk-Ied" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-59.420289855072468" y="103.79464285714285"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Back" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
