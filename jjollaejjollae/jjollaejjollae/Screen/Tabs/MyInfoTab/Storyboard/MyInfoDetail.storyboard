@@ -50,42 +50,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beu-dA-348">
-                                                <rect key="frame" x="0.0" y="214" width="414" height="489"/>
+                                                <rect key="frame" x="0.0" y="231" width="414" height="577"/>
                                                 <connections>
                                                     <segue destination="xpD-up-g4Y" kind="embed" id="ZzU-Dp-t2i"/>
                                                 </connections>
                                             </containerView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipG-Xi-p6I">
-                                                <rect key="frame" x="0.0" y="703" width="414" height="105"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baU-HA-SYw">
-                                                        <rect key="frame" x="30" y="27" width="52" height="30"/>
-                                                        <state key="normal" title="실행취소">
-                                                            <color key="titleColor" systemColor="labelColor"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMK-gT-509">
-                                                        <rect key="frame" x="219" y="16" width="179" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="52" id="0Eg-dD-cbO"/>
-                                                            <constraint firstAttribute="width" constant="179" id="8Px-sY-oie"/>
-                                                        </constraints>
-                                                        <state key="normal" title="저장">
-                                                            <color key="titleColor" systemColor="labelColor"/>
-                                                        </state>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="IMK-gT-509" secondAttribute="trailing" constant="16" id="7mr-Is-iBz"/>
-                                                    <constraint firstAttribute="height" constant="105" id="CiA-YI-bda"/>
-                                                    <constraint firstItem="baU-HA-SYw" firstAttribute="leading" secondItem="ipG-Xi-p6I" secondAttribute="leading" constant="30" id="Icb-YT-sa0"/>
-                                                    <constraint firstItem="baU-HA-SYw" firstAttribute="centerY" secondItem="IMK-gT-509" secondAttribute="centerY" id="oUs-Rm-gJT"/>
-                                                    <constraint firstItem="IMK-gT-509" firstAttribute="top" secondItem="ipG-Xi-p6I" secondAttribute="top" constant="16" id="vdU-ri-Egc"/>
-                                                </constraints>
-                                            </view>
                                             <segmentedControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hnj-HE-tyK">
-                                                <rect key="frame" x="0.0" y="183" width="414" height="32"/>
+                                                <rect key="frame" x="0.0" y="200" width="414" height="32"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <segments>
                                                     <segment title="내 정보"/>
@@ -97,10 +68,10 @@
                                                 </connections>
                                             </segmentedControl>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J7h-wW-aZB">
-                                                <rect key="frame" x="0.0" y="20" width="414" height="113"/>
+                                                <rect key="frame" x="0.0" y="20" width="414" height="160"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="113" id="Pt1-TB-nfn"/>
+                                                    <constraint firstAttribute="height" constant="160" id="Pt1-TB-nfn"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bhz-Cm-XKE">
                                                     <size key="itemSize" width="128" height="128"/>
@@ -124,17 +95,14 @@
                                         <constraints>
                                             <constraint firstItem="J7h-wW-aZB" firstAttribute="leading" secondItem="iur-eq-b7w" secondAttribute="leading" id="0T2-BP-xlK"/>
                                             <constraint firstAttribute="trailing" secondItem="beu-dA-348" secondAttribute="trailing" id="2fC-dX-oQ0"/>
-                                            <constraint firstItem="ipG-Xi-p6I" firstAttribute="leading" secondItem="iur-eq-b7w" secondAttribute="leading" id="4Qo-pq-7FS"/>
-                                            <constraint firstAttribute="bottom" secondItem="ipG-Xi-p6I" secondAttribute="bottom" id="7HN-6T-Ynx"/>
                                             <constraint firstAttribute="trailing" secondItem="Hnj-HE-tyK" secondAttribute="trailing" id="7My-La-OzQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="ipG-Xi-p6I" secondAttribute="trailing" id="D0i-NK-aus"/>
                                             <constraint firstItem="J7h-wW-aZB" firstAttribute="top" secondItem="iur-eq-b7w" secondAttribute="top" constant="20" id="GjZ-Wm-GaA"/>
                                             <constraint firstItem="Hnj-HE-tyK" firstAttribute="leading" secondItem="iur-eq-b7w" secondAttribute="leading" id="UHe-Oe-jRo"/>
-                                            <constraint firstItem="ipG-Xi-p6I" firstAttribute="top" secondItem="beu-dA-348" secondAttribute="bottom" id="i9w-ua-o4B"/>
+                                            <constraint firstAttribute="bottom" secondItem="beu-dA-348" secondAttribute="bottom" id="k0R-D2-avM"/>
                                             <constraint firstItem="beu-dA-348" firstAttribute="top" secondItem="Hnj-HE-tyK" secondAttribute="bottom" id="osG-rW-wYk"/>
                                             <constraint firstAttribute="trailing" secondItem="J7h-wW-aZB" secondAttribute="trailing" id="quP-s3-ova"/>
                                             <constraint firstItem="beu-dA-348" firstAttribute="leading" secondItem="iur-eq-b7w" secondAttribute="leading" id="xNn-Nr-5Zf"/>
-                                            <constraint firstItem="Hnj-HE-tyK" firstAttribute="top" secondItem="J7h-wW-aZB" secondAttribute="bottom" constant="50" id="zT1-da-kpl"/>
+                                            <constraint firstItem="Hnj-HE-tyK" firstAttribute="top" secondItem="J7h-wW-aZB" secondAttribute="bottom" constant="20" id="zT1-da-kpl"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -168,8 +136,6 @@
                         <outlet property="containerView" destination="beu-dA-348" id="FqG-Ik-vhF"/>
                         <outlet property="infoSegmentedControl" destination="Hnj-HE-tyK" id="aE9-Yh-22K"/>
                         <outlet property="profileCollectionView" destination="J7h-wW-aZB" id="vlt-fe-IVc"/>
-                        <outlet property="refreshButton" destination="baU-HA-SYw" id="lYW-cB-EA1"/>
-                        <outlet property="saveButton" destination="IMK-gT-509" id="CCS-H7-mmm"/>
                         <outlet property="scrollView" destination="jeN-Hw-gDa" id="S5V-rj-cPK"/>
                     </connections>
                 </viewController>
@@ -182,7 +148,7 @@
             <objects>
                 <viewController storyboardIdentifier="InfoPageViewController" id="xpD-up-g4Y" customClass="InfoPageViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LxP-fU-8wJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="489"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="577"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="sS9-CL-rx0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -195,9 +161,6 @@
     </scenes>
     <resources>
         <image name="backbutton" width="24" height="24"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

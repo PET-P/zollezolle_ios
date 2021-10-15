@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="jSe-So-xuT">
-                                <rect key="frame" x="0.0" y="44" width="414" height="340.5"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="452.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LXi-Xo-9jI">
                                         <rect key="frame" x="87" y="0.0" width="240" height="13"/>
@@ -238,11 +238,42 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26V-5r-WdK">
+                                        <rect key="frame" x="0.0" y="347.5" width="414" height="105"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0D-Fh-fKc">
+                                                <rect key="frame" x="30" y="27" width="52" height="30"/>
+                                                <state key="normal" title="실행취소">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8z-yA-MTh">
+                                                <rect key="frame" x="219" y="16" width="179" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="52" id="i3w-2Q-TU1"/>
+                                                    <constraint firstAttribute="width" constant="179" id="roK-KS-be4"/>
+                                                </constraints>
+                                                <state key="normal" title="저장">
+                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="V8z-yA-MTh" firstAttribute="top" secondItem="26V-5r-WdK" secondAttribute="top" constant="16" id="94M-Us-sQu"/>
+                                            <constraint firstItem="Z0D-Fh-fKc" firstAttribute="leading" secondItem="26V-5r-WdK" secondAttribute="leading" constant="30" id="Bcc-5J-AyD"/>
+                                            <constraint firstAttribute="height" constant="105" id="G5v-qL-sSg"/>
+                                            <constraint firstItem="Z0D-Fh-fKc" firstAttribute="centerY" secondItem="V8z-yA-MTh" secondAttribute="centerY" id="Sy9-BJ-RI7"/>
+                                            <constraint firstAttribute="trailing" secondItem="V8z-yA-MTh" secondAttribute="trailing" constant="16" id="tEm-vd-48s"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="26V-5r-WdK" secondAttribute="trailing" id="4Xc-KE-ZG9"/>
                                     <constraint firstItem="bWR-Kl-XaY" firstAttribute="height" secondItem="PhK-cC-SPi" secondAttribute="height" id="4iV-Nh-KOK"/>
                                     <constraint firstAttribute="trailing" secondItem="Ir4-Yh-9Ax" secondAttribute="trailing" constant="40" id="Dfu-az-NKk"/>
                                     <constraint firstItem="1GA-UI-LGa" firstAttribute="height" secondItem="PhK-cC-SPi" secondAttribute="height" id="Isp-zo-jXZ"/>
+                                    <constraint firstItem="26V-5r-WdK" firstAttribute="leading" secondItem="jSe-So-xuT" secondAttribute="leading" id="TaA-mU-yTS"/>
                                     <constraint firstItem="c0W-co-0n3" firstAttribute="leading" secondItem="sWM-Um-uCE" secondAttribute="leading" id="VW8-2N-z9e"/>
                                     <constraint firstItem="Ir4-Yh-9Ax" firstAttribute="leading" secondItem="c0W-co-0n3" secondAttribute="leading" id="Xds-Ih-Wlh"/>
                                     <constraint firstItem="c0W-co-0n3" firstAttribute="trailing" secondItem="sWM-Um-uCE" secondAttribute="trailing" id="gju-rf-hI8"/>
@@ -272,6 +303,8 @@
                         <outlet property="petTypeTextField" destination="Imp-ZP-8gg" id="Pd9-ku-iCk"/>
                         <outlet property="petWeightLabel" destination="NhO-kB-EkM" id="cjo-k7-uKK"/>
                         <outlet property="petWeightTextField" destination="CoZ-13-Wy5" id="B8F-p0-hrR"/>
+                        <outlet property="refreshButton" destination="Z0D-Fh-fKc" id="dbK-I1-5qH"/>
+                        <outlet property="saveButton" destination="V8z-yA-MTh" id="TdC-d5-Yaf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -280,6 +313,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

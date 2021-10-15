@@ -7,10 +7,53 @@
 
 import UIKit
 
-class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate {
+class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate, JJollaeButtonDelegate, ControlChildViewControllerDelegate {
+  func cleanContents(_ collectionView: UICollectionView) {
+    myPetNameTextField.text = nil
+    petAgeTextField.text = nil
+    petGenderSwitch.isOn = true
+    petSizeButton.setTitle(Size.small.rawValue, for: .normal)
+    petWeightTextField.text = nil
+    petTypeButton.setTitle("강아지", for: .normal)
+    petTypeTextField.text = nil
+  }
+  
+  func enableEditing(_ collectionView: UICollectionView) {
+    self.enableEditing()
+  }
+  
+  func disableEditing(_ collectionView: UICollectionView) {
+    self.disableEditing()
+  }
+  
+  func DidEnterMiddleIndex(_ collectionView: UICollectionView, dogProfile: PetData) {
+    petdata = dogProfile
+    myPetNameTextField.text = "\(petdata?.name ?? "쫄래쫄래")"
+    petAgeTextField.text = "\(petdata?.age ?? 0)살"
+    petGenderSwitch.isOn = petdata?.sex == Sex.male ? true : false
+    petSizeButton.setTitle(petdata?.size.rawValue, for: .normal)
+    petWeightTextField.text = "\(petdata?.weight ?? 0.0)KG"
+    petTypeButton.setTitle(petdata?.type, for: .normal)
+    petTypeTextField.text = petdata?.breed
+    representPetButton.isSelected = petdata?.isRepresent ?? false
+  }
+  
+  func isOnValueChage(isOn: Bool) {
+    if petdata?.imageUrl != "plus" {
+      if isOn {
+        petdata?.sex = .male
+      } else {
+        petdata?.sex = .female
+      }
+    }
+  }
+  
+  private var mainVC = PagingManager.shared.mainVC as? MyInfoDetailViewController
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    mainVC?.delegate = self
     weightPicker.delegate = self
     agePicker.delegate = self
     for i in 1...100 {
@@ -24,10 +67,56 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable, UIT
       }
     }
     addToobar()
+    petGenderSwitch.layoutIfNeeded()
     petAgeTextField.inputView = agePicker
     petWeightTextField.inputView = weightPicker
+    myPetNameTextField.addSubview(representPetButton)
+
   }
   
+  private lazy var representPetButton: UIButton = {
+    let button = UIButton(type: .custom)
+    let spacing: CGFloat = 10.0
+    button.setImage(UIImage(named: "pawUnchecked"), for: .normal)
+    button.setImage(UIImage(named: "pawChecked"), for: .selected)
+    button.frame = CGRect(x: 0, y: 5, width: 16, height: 20)
+    button.contentEdgeInsets = UIEdgeInsets(top: 5, left: spacing, bottom: 5, right: spacing)
+    myPetNameTextField.leftView = button
+    myPetNameTextField.leftViewMode = .always
+    button.addTarget(self, action: #selector(didTaprepresentPetButton(_:)), for: .touchUpInside)
+    return button
+  }()
+  
+  private func enableEditing() {
+    self.myPetNameTextField.isUserInteractionEnabled = true
+    self.petTypeButton.isUserInteractionEnabled = true
+    self.petTypeTextField.isUserInteractionEnabled = true
+    self.petSizeButton.isUserInteractionEnabled = true
+    self.petWeightTextField.isUserInteractionEnabled = true
+    self.petAgeTextField.isUserInteractionEnabled = true
+    self.petGenderSwitch.isUserInteractionEnabled = true
+    self.representPetButton.isUserInteractionEnabled = true
+  }
+  
+  private func disableEditing() {
+    self.myPetNameTextField.isUserInteractionEnabled = false
+    self.petTypeButton.isUserInteractionEnabled = false
+    self.petTypeTextField.isUserInteractionEnabled = false
+    self.petSizeButton.isUserInteractionEnabled = false
+    self.petWeightTextField.isUserInteractionEnabled = false
+    self.petAgeTextField.isUserInteractionEnabled = false
+    self.petGenderSwitch.isUserInteractionEnabled = false
+    self.representPetButton.isUserInteractionEnabled = false
+  }
+  
+  @objc func didTaprepresentPetButton(_ sender: Any?) {
+    if !representPetButton.isSelected {
+     print("hi")
+    }
+  }
+  
+  private var petdata: PetData?
+
   @IBOutlet weak var myPetNameTextField: UITextField! {
     didSet {
       myPetNameTextField.borderStyle = .none
@@ -43,7 +132,7 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable, UIT
       petAgeLabel.font = UIFont.robotoMedium(size: 14)
     }
   }
-
+  
   @IBOutlet weak var petAgeTextField: UITextField! {
     didSet {
       petAgeTextField.borderStyle = .none
@@ -64,8 +153,8 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable, UIT
       petGenderSwitch.setButtonTitle(isOn: "남", isOff: "여")
       petGenderSwitch.setSwitchColor(onTextColor: .gray01, offTextColor: .gray01)
       petGenderSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .themePaleGreen)
-      petGenderSwitch.isOn = false
       petGenderSwitch.setCircleFrame(frame: CGRect(x: 0, y: 2, width: petGenderSwitch.frame.height * 11 / 6 - 4, height: petGenderSwitch.frame.height - 4))
+      
     }
   }
   @IBOutlet weak var petSizeLabel: PaddingLabel! {
@@ -103,6 +192,22 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable, UIT
       petTypeLabel.font = .robotoMedium(size: 14)
     }
   }
+  
+  @IBOutlet weak var saveButton: UIButton! {
+    didSet {
+      saveButton.backgroundColor = .themeGreen
+      saveButton.setTitleColor(.white, for: .normal)
+      saveButton.setRounded(radius: 10)
+      saveButton.superview?.addBorder([.top], color: .gray06, width: 1)
+    }
+  }
+  @IBOutlet weak var refreshButton: UIButton! {
+    didSet {
+      refreshButton.titleLabel?.font = .robotoMedium(size: 14)
+      refreshButton.setTitleColor(.gray03, for: .normal)
+    }
+  }
+  
   @IBOutlet weak var petTypeButton: UIButton! {
     didSet {
       petTypeButton.layer.cornerRadius = petTypeButton.frame.height / 2
@@ -142,17 +247,17 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable, UIT
   private func showAlertController(style: UIAlertController.Style) {
     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
     let bigSizeAction = UIAlertAction(title: "대형", style: .default) { _ in print("대형")
-//      [weak self]
-//      result in self?.sizeText = "대형"
+      //      [weak self]
+      //      result in self?.sizeText = "대형"
     }
     let middleSizeAction = UIAlertAction(title: "중형", style: .default) {_ in
       print("중형")
-//      [weak self] result in self?.sizeText = "중형"
+      //      [weak self] result in self?.sizeText = "중형"
     }
     let smallSizeAction = UIAlertAction(title: "소형", style: .default) {
-//      [weak self] result in
+      //      [weak self] result in
       _ in print("소형")
-//      self?.sizeText = "소형"
+      //      self?.sizeText = "소형"
     }
     let subview = alertController.view.subviews.first! as UIView
     let alertContentView = subview.subviews.first! as UIView
@@ -173,8 +278,8 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable, UIT
     AlertList.forEach { (type) in
       alertController.addAction(UIAlertAction(title: type, style: .default) {
         _ in print("힛")
-//        [weak self] result in
-//        self?.typeText = type
+        //        [weak self] result in
+        //        self?.typeText = type
       })
     }
     let subview = alertController.view.subviews.first! as UIView
@@ -223,24 +328,24 @@ extension MyPetInfoEditViewController: UIPickerViewDelegate, UIPickerViewDataSou
     done.title = "완료"
     done.target = self
     done.action = #selector(pickerDone)
-
+    
     toolbar.setItems([flexSpace, done], animated: true)
   }
-
+  
   @objc private func pickerDone(_ sneder: Any) {
     self.view.endEditing(true)
   }
-
+  
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
-
+  
   func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
     let pickerLabel = UILabel()
     pickerLabel.textAlignment = .center
     pickerLabel.textColor = .themeGreen
     pickerLabel.font = .robotoMedium(size: 24)
-
+    
     if pickerView == agePicker {
       pickerLabel.text = "\(self.ageList[row])살"
     } else {
@@ -248,7 +353,7 @@ extension MyPetInfoEditViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
     return pickerLabel
   }
-
+  
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     if pickerView == agePicker {
       return self.ageList.count
@@ -256,8 +361,8 @@ extension MyPetInfoEditViewController: UIPickerViewDelegate, UIPickerViewDataSou
       return self.weightList.count
     }
   }
-
-
+  
+  
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     if pickerView == agePicker {
       let age = self.ageList[row]

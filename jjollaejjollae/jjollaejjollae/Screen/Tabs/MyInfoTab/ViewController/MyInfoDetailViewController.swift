@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol ControlChildViewControllerDelegate: NSObject {
+  func cleanContents(_ collectionView: UICollectionView)
+  func enableEditing(_ collectionView: UICollectionView)
+  func disableEditing(_ collectionView: UICollectionView)
+  func DidEnterMiddleIndex(_ collectionView: UICollectionView, dogProfile: PetData)
+}
+
 class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  
+
   @IBOutlet weak var profileCollectionView: UICollectionView!
   @IBOutlet weak var infoSegmentedControl: UISegmentedControl! {
     didSet {
@@ -19,47 +26,75 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
     }
   }
   
-  @IBOutlet weak var saveButton: UIButton! {
-    didSet {
-      saveButton.backgroundColor = .themeGreen
-      saveButton.setTitleColor(.white, for: .normal)
-      saveButton.setRounded(radius: 10)
-    }
-  }
-  @IBOutlet weak var refreshButton: UIButton! {
-    didSet {
-      refreshButton.titleLabel?.font = .robotoMedium(size: 14)
-      refreshButton.setTitleColor(.gray03, for: .normal)
-    }
-  }
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var scrollView: UIScrollView!
   
-  private var UserInfo: UserData? {
-    didSet {
-      
-    }
-  }
-  var profileImage:[Data] = []
-  var dogProfileImages: [String] = []
+  private var userInfo: UserData?
+  weak var delegate: ControlChildViewControllerDelegate?
+  private var dogTuples: [(petdata: PetData, image: UIImage?)] = []
+  private var representDogImageUrl: String? = "default.jpeg"
+  private var representDogImage: UIImage?
+  private var dogLimit = 5
   private var visibleIndex: [IndexPath] = []
   private var middleIndex: IndexPath = [0,0]
-  private var originY:CGFloat = 0
+  lazy var defaultImageData = UIImage(named: "IMG_4930")?.jpegData(compressionQuality: 0.1)
+  lazy var cameraImage = UIImage(named: "camera")
+  lazy var plusImage = UIImage(named: "plus")
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    NotificationCenter.default.addObserver(self, selector: #selector(getpageIndex(_:)), name: NSNotification.Name("SegControlNotification"), object: nil)
+    userInfo = UserManager.shared.UserInfo
+    NotificationCenter.default.addObserver(self, selector: #selector(getpageIndex(_:)),
+                                           name: NSNotification.Name("SegControlNotification"),
+                                           object: nil)
     setKeyboard()
-    profileCollectionView.delegate = self
-    profileCollectionView.dataSource = self
-    self.tabBarController?.tabBar.isHidden = true
-    self.tabBarController?.tabBar.isTranslucent = true
+    setupImageArray()
+    addCollectionView()
+    findRepresentDogImageUrl()
+  }
+  
+  // 대표갱얼쥐 찾기
+  private func findRepresentDogImageUrl() {
+    if dogTuples.count < 1 {return}
+    var index = 0
+    for i in dogTuples.indices {
+      if dogTuples[i].petdata.isRepresent {
+        index = i
+        break
+      }
+    }
+    representDogImageUrl = dogTuples[index].petdata.imageUrl
+  }
+  
+  //1. 유저가 변경할 수 있는 이미지는 캐시에 두지 않는다.
+  private func setupImageArray() {
+    guard let userInfo = UserManager.shared.UserInfo else {
+      fatalError("유저정보를 불러올수가 없습니다.")
+    }
+    for pet in userInfo.pets {
+      dogTuples.append((pet, nil))
+    }
+    for index in dogTuples.indices {
+      if let petImageUrl = dogTuples[index].petdata.imageUrl {
+        StorageService.shared.downloadUIImageWithURL(with: petImageUrl, imageCompletion: { [weak self] (image) in
+          guard let self = self else {return}
+          if let image = image {
+            print("이미지 존재😊")
+            self.dogTuples[index].image = image
+          } else {
+            print("이미지 없음🥲")
+            self.dogTuples[index].image = UIImage(data: self.defaultImageData!)!
+          }
+        })
+      } else {
+        self.dogTuples[index].petdata.imageUrl = nil
+        self.dogTuples[index].image = cameraImage
+      }
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    self.tabBarController?.tabBar.isHidden = false
-    self.tabBarController?.tabBar.isTranslucent = false
   }
 }
 //MARK: - IBACTION & OBJC
@@ -92,44 +127,45 @@ extension MyInfoDetailViewController {
     self.navigationController?.popViewController(animated: true)
   }
 }
-  
 
+// imageURl = nil 이면 사진이 없는애(카메라사진), imageURl은 없는애는 이미지를 못불어온애(기본이미지)
 
 
 //MARK: - collectionview, imagepicker
 
 extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, CarouselCellTapDelegate {
+  
   func didTapImageView(indexPath: IndexPath?) {
     if let indexPath = indexPath {
-      if dogProfileImages[indexPath.row] == "plus" && profileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
-        dogProfileImages.insert("camera", at: dogProfileImages.count - 1)
-        
-//        dogProfile.append(PetInfo())
-      } else if dogProfileImages[indexPath.row] == "camera" && profileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
-        let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
-        myPetImagePickerController.allowsEditing = true
-        myPetImagePickerController.delegate = self
-        present(myPetImagePickerController, animated: true)
-      } else if dogProfileImages[indexPath.row] == "old" && profileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
-        let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
-        myPetImagePickerController.allowsEditing = true
-        myPetImagePickerController.delegate = self
-        present(myPetImagePickerController, animated: true)
-      } else {
-        return
+      if profileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
+        switch dogTuples[indexPath.row].petdata.imageUrl {
+        case "plus":
+          dogTuples.insert((PetData(id: "1", sex: .male, name: "쫄래쫄래", type: "강아지", size: .small, isRepresent: false), plusImage), at: dogTuples.count - 1)
+        case nil:
+          let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
+          myPetImagePickerController.allowsEditing = true
+          myPetImagePickerController.delegate = self
+          present(myPetImagePickerController, animated: true)
+        default:
+          let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
+          myPetImagePickerController.allowsEditing = true
+          myPetImagePickerController.delegate = self
+          present(myPetImagePickerController, animated: true)
+        }
+        profileCollectionView.reloadData()
       }
-      profileCollectionView.reloadData()
     }
   }
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
+  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if infoSegmentedControl.selectedSegmentIndex == 0 {
-      return self.profileImage.count
+      return 1
     } else {
-      return self.dogProfileImages.count
+      return self.dogTuples.count
     }
   }
   
@@ -139,11 +175,26 @@ extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionView
     }
     cell.dogImageView.isUserInteractionEnabled = true
     if infoSegmentedControl.selectedSegmentIndex == 0 {
-      cell.dogImageView.image = UIImage(data: profileImage[indexPath.row])
+      cell.dogImageView.setImage(with: self.representDogImageUrl ?? "default")
     } else {
-      //TODO: 어떻게 넣을지 정해야함
-      
+      let image = dogTuples[indexPath.row].image
+      cell.dogImageView.image = image ?? UIImage(data: self.defaultImageData!)!
     }
+    
+    cell.dogImageView.isUserInteractionEnabled = true
+    setMiddleIndex(cell, indexPath: indexPath)
+    
+    if indexPath == middleIndex {
+      if dogTuples[indexPath.row].image == plusImage {
+        delegate?.disableEditing(profileCollectionView)
+      } else {
+        delegate?.enableEditing(profileCollectionView)
+        updateForm(dogImageUrl: dogTuples[middleIndex.row].petdata.imageUrl)
+      }
+    }
+    
+    cell.delegate = self
+    cell.selectedIndexPath = indexPath
     return cell
   }
   
@@ -151,7 +202,7 @@ extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionView
     let layout = CarouselLayout()
     layout.itemSize = CGSize(width: profileCollectionView.frame.size.width*0.796, height: profileCollectionView.frame.size.height)
     layout.sideItemScale = 1/3
-    layout.spacing = -100
+    layout.spacing = -150
     layout.isPagingEnabled = true
     layout.sideItemAlpha = 0.5
     
@@ -187,40 +238,18 @@ extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionView
     visibleIndex = indexArray
   }
   
-  private func updateForm(cellType: String) {
-    if cellType == "plus" {
-     clearForm()
+  private func updateForm(dogImageUrl: String?) {
+    if dogImageUrl == "plus" {
+      delegate?.cleanContents(profileCollectionView)
     } else {
-      //TODO: pagingvc와 연결된 곳과 notification 쓰자 데이터를 그러면 DetailVC에서 가지고 있다가 넘겨주면 그에 맞춰서
-//      let data = dogProfile[middleIndex.row]
-//      myPetNameTextField.text = data.name
-//      petAgeTextField.text = "\(data.age ?? 0)살"
-//      petGenderSwitch.isOn = data.sex == Gender.male ? true : false
-//      petSizeButton.setTitle(data.size.rawValue, for: .normal)
-//      petWeightTextField.text = "\(data.weight ?? 0.0)KG"
-//      petTypeButton.setTitle(data.type, for: .normal)
-//      petTypeTextField.text = data.breed
+      delegate?.DidEnterMiddleIndex(profileCollectionView, dogProfile: dogTuples[middleIndex.row].petdata)
     }
   }
-  
-  private func clearForm() {
-//    myPetNameTextField.text = nil
-//    petAgeTextField.text = nil
-//    petGenderSwitch.isOn = true
-//    petSizeButton.setTitle(Size.small.rawValue, for: .normal)
-//    petWeightTextField.text = nil
-//    petTypeButton.setTitle("강아지", for: .normal)
-//    petTypeTextField.text = nil
-    
-  }
-  
 }
 
 //MARK: - Keyboard
 
 extension MyInfoDetailViewController {
-
-
   private func setKeyboard() {
     
     let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
@@ -229,27 +258,34 @@ extension MyInfoDetailViewController {
     
     NotificationCenter.default.addObserver(
       forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.main) { (notification) in
-      guard let userInfo = notification.userInfo else { return }
-      guard let keyboardFrame =
-              userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
-      let contentInset = UIEdgeInsets(
-        top: 0.0,
-        left: 0.0,
-        bottom: keyboardFrame.size.height,
-        right: 0.0
-      )
-      self.scrollView.contentInset = contentInset
-      self.scrollView.scrollIndicatorInsets = contentInset
-        let x = self.containerView.frame.origin.x
-        let y = self.containerView.frame.origin.y
-        let height = self.containerView.frame.size.height
-        let width = self.containerView.frame.size.width
-      self.scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: width, height: height), animated: true)
-      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
-      UIView.animate(withDuration: duration) {
-        self.view.layoutIfNeeded()
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardFrame =
+                userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+        let contentInset = UIEdgeInsets(
+          top: 0.0,
+          left: 0.0,
+          bottom: keyboardFrame.size.height,
+          right: 0.0
+        )
+        let PetVCButtonViewHeight:CGFloat = 105
+        if self.infoSegmentedControl.selectedSegmentIndex == 0 && self.userInfo?.accountType.rawValue == "social" {
+          self.scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.size.height / 2, right: 0)
+          self.scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.size.height / 2, right: 0)
+        } else {
+          self.scrollView.contentInset = contentInset
+          self.scrollView.scrollIndicatorInsets = contentInset
+          let x = self.containerView.frame.origin.x
+          let y = self.containerView.frame.origin.y
+          let height = self.containerView.frame.size.height
+          let width = self.containerView.frame.size.width
+          self.scrollView.scrollRectToVisible(CGRect(x: x, y: y, width: width, height: height - PetVCButtonViewHeight), animated: true)
+        }
+        
+        guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+        UIView.animate(withDuration: duration) {
+          self.view.layoutIfNeeded()
+        }
       }
-    }
     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: OperationQueue.main) { (notification) in
       guard let userInfo = notification.userInfo else {
         return
