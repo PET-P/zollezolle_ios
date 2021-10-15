@@ -23,11 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
       
         if !isLogged {
-            guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return}
-            let navigationController = UINavigationController(rootViewController: loginVC)
-            navigationController.setNavigationBarHidden(true, animated: false)
-            window?.rootViewController = loginVC
-            window?.rootViewController = navigationController
+//            guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return}
+//            let navigationController = UINavigationController(rootViewController: loginVC)
+//            navigationController.setNavigationBarHidden(true, animated: false)
+//            window?.rootViewController = loginVC
+//            window?.rootViewController = navigationController
         } else {
           
 //          let mainTabBarController = MainTabBarController()

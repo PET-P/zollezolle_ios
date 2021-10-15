@@ -99,6 +99,9 @@
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		DD29B2322719670900C4F488 /* HomeTipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD29B2312719670900C4F488 /* HomeTipCollectionViewCell.swift */; };
 		DD29B2342719671000C4F488 /* HomeLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD29B2332719671000C4F488 /* HomeLocationCollectionViewCell.swift */; };
+		DD29B23927196DF300C4F488 /* AllReviewsTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD29B23627196DF200C4F488 /* AllReviewsTable.storyboard */; };
+		DD29B23A27196DF300C4F488 /* AllReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD29B23727196DF200C4F488 /* AllReviewsTableViewCell.swift */; };
+		DD29B23B27196DF300C4F488 /* AllReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD29B23827196DF200C4F488 /* AllReviewsTableViewController.swift */; };
 		DD589118271001AF00CB46E0 /* AccomodationReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */; };
 		DD58911A271001C400CB46E0 /* AccomodationReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD589119271001C400CB46E0 /* AccomodationReview.storyboard */; };
 		DD58911C27102EEC00CB46E0 /* ZollaeCustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58911B27102EEC00CB46E0 /* ZollaeCustomSwitch.swift */; };
@@ -225,6 +228,9 @@
 		398CFDFF4AE8A4740055BB77 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD29B2312719670900C4F488 /* HomeTipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTipCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD29B2332719671000C4F488 /* HomeLocationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD29B23627196DF200C4F488 /* AllReviewsTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AllReviewsTable.storyboard; sourceTree = "<group>"; };
+		DD29B23727196DF200C4F488 /* AllReviewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		DD29B23827196DF200C4F488 /* AllReviewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewController.swift; sourceTree = "<group>"; };
 		DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationReviewViewController.swift; sourceTree = "<group>"; };
 		DD589119271001C400CB46E0 /* AccomodationReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccomodationReview.storyboard; sourceTree = "<group>"; };
 		DD58911B27102EEC00CB46E0 /* ZollaeCustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZollaeCustomSwitch.swift; sourceTree = "<group>"; };
@@ -495,6 +501,7 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				DD29B23527196DF200C4F488 /* Detail */,
 				DD5891162710019900CB46E0 /* Review */,
 				28F9E93B26C8024700D9E693 /* Search */,
 				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
@@ -573,6 +580,16 @@
 				398CFDFF4AE8A4740055BB77 /* Pods_jjollaejjollae.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD29B23527196DF200C4F488 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DD29B23627196DF200C4F488 /* AllReviewsTable.storyboard */,
+				DD29B23727196DF200C4F488 /* AllReviewsTableViewCell.swift */,
+				DD29B23827196DF200C4F488 /* AllReviewsTableViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		DD5891162710019900CB46E0 /* Review */ = {
@@ -812,6 +829,7 @@
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
 				28EA826426B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf in Resources */,
+				DD29B23927196DF300C4F488 /* AllReviewsTable.storyboard in Resources */,
 				28EA826126B42BF700785666 /* Roboto Mono Medium for Powerline.ttf in Resources */,
 				28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */,
 				2841598E26BA745700F027DB /* LoginView.storyboard in Resources */,
@@ -935,6 +953,7 @@
 				2884A32026CE926F004596C3 /* LandmarkDataSource.swift in Sources */,
 				2884A31126CA43E6004596C3 /* SearchResultTableViewCell.swift in Sources */,
 				28331CBE26DCD6F40062B29D /* InfoView.swift in Sources */,
+				DD29B23B27196DF300C4F488 /* AllReviewsTableViewController.swift in Sources */,
 				283F23FE26F8687400CD8339 /* APITarget.swift in Sources */,
 				2834ED0F26C01F9000E948B0 /* JJollaeSwitch.swift in Sources */,
 				283F23F126F7117C00CD8339 /* WishListManager.swift in Sources */,
@@ -964,6 +983,7 @@
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
 				DDFFC11E26FB0734001FD04A /* MapNavigationController.swift in Sources */,
 				DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */,
+				DD29B23A27196DF300C4F488 /* AllReviewsTableViewCell.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
 				283F23FD26F865E000CD8339 /* LoginData.swift in Sources */,
 			);
