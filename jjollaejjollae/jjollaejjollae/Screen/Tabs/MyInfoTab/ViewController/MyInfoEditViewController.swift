@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import NaverThirdPartyLogin
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+import AuthenticationServices
 
 class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate {
   
@@ -17,6 +22,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   }
   
   private let alphaVal = 0.4
+  let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
   
   @IBOutlet weak var nickTextField: UITextField! {
     didSet {
@@ -88,12 +94,47 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
       })
     }
   }
+  @IBOutlet weak var newPasswordTextfield: UITextField!
   
   @IBOutlet weak var phoneStackView: UIStackView!
   private func applyGrayStyle(to textfields: [UITextField]) {
     textfields.forEach { (textfield) in
       textfield.delegate = self
       textfield.backgroundColor = .gray06
+    }
+  }
+  
+  @IBAction func didChangeNickOrPassword(_ sender: UITextField) {
+    guard let newText = sender.text, newText != "" else {
+      sender.text = infoData?.nick
+      return}
+    switch sender.tag {
+    case 0:
+      if newText != infoData?.nick {
+        let alert = UIAlertController(title: "닉네임 변경", message: "\(newText)로 변경하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "네", style: .default, handler: { [weak self](action) in
+          self?.infoData?.nick = newText
+          //TODO: 서버통신
+        }))
+        alert.addAction(UIAlertAction(title: "아니요", style: .cancel, handler: { [weak self](action) in
+          sender.text = self?.infoData?.nick
+        }))
+        present(alert, animated: true, completion: nil)
+      }
+    case 1:
+      if newText != infoData?.nick {
+        let alert = UIAlertController(title: "비밀번호 변경", message: "새로운 비밀번호로 변경하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "네", style: .default, handler: { [weak self](action) in
+          self?.infoData?.nick = newText
+          //TODO: 서버통신
+        }))
+        alert.addAction(UIAlertAction(title: "아니요", style: .cancel, handler: { [weak self](action) in
+          sender.text = self?.infoData?.nick
+        }))
+        present(alert, animated: true, completion: nil)
+      }
+    default:
+      return
     }
   }
   
@@ -113,6 +154,30 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     updatePWtextFieldsUI(confirm: confirmed)
   }
   
+  @IBAction func didTapSecessionButton(_ sender: UIButton) {
+    showSeccessionAlert()
+  }
+  
+  @IBAction func didTapLogoutButton(_ sender: UIButton) {
+    //TODO: 서버와 통신
+    print("logout")
+  }
+  
+  
+  @IBAction func didTapEditPhoneButton(_ sender: UIButton) {
+    guard let phoneNum = phoneTextField.text else {return}
+    guard phoneNum == infoData?.phone else {return}
+    let alert = UIAlertController(title: "휴대폰 번호 변경", message: "\(phoneNum)로 변경하시겠습니까?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "네", style: .default, handler: { [weak self](action) in
+      self?.infoData?.phone = phoneNum
+      //TODO: 서버통신
+    }))
+    alert.addAction(UIAlertAction(title: "아니요", style: .cancel, handler: { [weak self](action) in
+      self?.phoneTextField.text = self?.infoData?.phone
+    }))
+    present(alert, animated: true, completion: nil)
+  }
+  
   private func updatePWtextFieldsUI(confirm: Bool){
     if confirm {
       errorText = "비밀번호가 다릅니다."
@@ -127,7 +192,6 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
       subtitles.last!.alpha = 1
       newPWTextField.alpha = 1
     }
-    
   }
   
   private var errorText: String = "" {
@@ -136,8 +200,73 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     }
   }
   
+  private func showSeccessionAlert(){
+    guard let usertype = UserManager.shared.UserInfo?.accountType else {return}
+    var secessionAlertController: UIAlertController!
+    var ok: UIAlertAction!
+    if usertype.rawValue != "social" {
+      secessionAlertController = UIAlertController(title: "탈퇴하기", message: "회원탈퇴를 하시려면 안내 및 동의가 필요합니다.비밀번호를 입력해주세요", preferredStyle: .alert)
+      secessionAlertController.addTextField { (password) in
+        print("서버와 연동해서 password가 맞는지 확인을해야한딩")
+      }
+      ok = UIAlertAction(title: "진행하기", style: .default) { [weak self](ok) in
+        guard let token = UserManager.shared.userIdandToken?.token else {return}
+        guard let self = self else {return}
+        guard let userId = self.infoData?.id else {return}
+        //1.우리서버에서 회원삭제
+        APIService.shared.deleteUser(token: token, userId: userId) { [weak self] result in
+          switch result{
+          case .success:
+            UserManager.shared.deleteUser()
+            self?.navigationController?.popToRootViewController(animated: true)
+          case .failure(let error):
+            print("errorCode: ", error)
+          }
+        }
+      }
+    } else {
+      secessionAlertController = UIAlertController(title: "탈퇴하기", message: "회원탈퇴를 하시려면 안내 및 동의가 필요합니다.", preferredStyle: .alert)
+      ok = UIAlertAction(title: "진행하기", style: .default) { [weak self](ok) in
+        guard let token = UserManager.shared.userIdandToken?.token else {return}
+        guard let self = self else {return}
+        guard let userId = self.infoData?.id else {return}
+        //Naver소셜로그인
+        self.loginInstance?.requestDeleteToken()
+        //카카오
+        UserApi.shared.unlink { (error) in
+          if let error = error {
+            print(error)
+          }
+          else {
+            print("카카오 연결끊기 성공")
+          }
+        }
+
+        APIService.shared.deleteUser(token: token, userId: userId) { [weak self] result in
+          switch result{
+          case .success:
+            print("성공")
+            UserManager.shared.deleteUser()
+            self?.navigationController?.popToRootViewController(animated: true)
+            
+          case .failure(let error):
+            print("errorCode: ", error)
+          }
+        }
+        
+      }
+    }
+    
+    let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in
+      print("탈퇴안하기")
+    }
+    secessionAlertController.addAction(cancel)
+    secessionAlertController.addAction(ok)
+    self.present(secessionAlertController, animated: true, completion: nil)
+  }
+  
   private func verifySocial(){
-    if infoData?.accountType == "social" {
+    if infoData?.accountType.rawValue == "social" {
       infoItemsLabel[1].isHidden = true
       phoneStackView.isHidden = true
       blockView.isHidden = true
@@ -160,6 +289,12 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     textField.resignFirstResponder()
     return true
   }
+  
+  //네이버용
+  func oauth20ConnectionDidFinishDeleteToken() {
+    print("네이버 회원탈퇴 석세스")
+  }
+  
   
 }
 

@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NuC-SZ-gwc">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="494"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="539"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HUr-Ol-ZhC">
                                                 <rect key="frame" x="87" y="0.0" width="240" height="20"/>
@@ -51,6 +51,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didChangeNickOrPassword:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="evo-Ej-vH5"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -101,6 +104,9 @@
                                                         <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="13"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title=" 수정 "/>
+                                                        <connections>
+                                                            <action selector="didTapEditPhoneButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="J2z-2y-GiW"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -168,13 +174,16 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="문자, 숫자를 모두포함한 8자이상" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="86J-mE-uAs">
+                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="문자, 숫자를 모두포함한 8자이상" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="86J-mE-uAs">
                                                         <rect key="frame" x="152" y="0.0" width="174" height="34"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="174" id="cd9-Lu-jst"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="didChangeNickOrPassword:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="Dv4-fe-CCE"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <constraints>
@@ -195,6 +204,9 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="56" height="14"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title=" 로그아웃"/>
+                                                        <connections>
+                                                            <action selector="didTapLogoutButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Vke-dN-DIq"/>
+                                                        </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7di-ca-EjL">
                                                         <rect key="frame" x="56" y="0.0" width="270" height="14"/>
@@ -205,13 +217,23 @@
                                                     <constraint firstAttribute="height" constant="14" id="CsO-DJ-AsC"/>
                                                 </constraints>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feR-JN-Pe5">
+                                                <rect key="frame" x="87" y="480" width="240" height="5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="Xpv-T2-9wD"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Nzs-8L-ZCT">
-                                                <rect key="frame" x="44" y="480" width="326" height="14"/>
+                                                <rect key="frame" x="44" y="495" width="326" height="14"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqF-Kk-xJ9">
                                                         <rect key="frame" x="0.0" y="0.0" width="56" height="14"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title=" 회원탈퇴"/>
+                                                        <connections>
+                                                            <action selector="didTapSecessionButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1aC-Mj-Tln"/>
+                                                        </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctW-pe-mJb">
                                                         <rect key="frame" x="56" y="0.0" width="270" height="14"/>
@@ -222,6 +244,13 @@
                                                     <constraint firstAttribute="height" constant="14" id="44q-Oi-EQh"/>
                                                 </constraints>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hM-n9-zU6">
+                                                <rect key="frame" x="87" y="519" width="240" height="20"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="wyd-A7-ZAR"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="qGP-D9-Jk0" firstAttribute="leading" secondItem="xzA-o5-LSo" secondAttribute="leading" id="8Uk-aY-O4u"/>
@@ -260,13 +289,18 @@
                     </view>
                     <connections>
                         <outlet property="blockView" destination="Xqd-VZ-0AG" id="dw4-Un-duy"/>
+                        <outlet property="blockView2" destination="gSz-4D-F10" id="ZnY-B6-0tF"/>
                         <outlet property="currentPWTextField" destination="Qkm-EY-au6" id="Z4s-84-A7n"/>
                         <outlet property="editPhoneButton" destination="1xW-Go-3Uy" id="S3e-Im-3jP"/>
                         <outlet property="emailTextField" destination="H9Q-d1-jOz" id="0gj-NZ-KHf"/>
                         <outlet property="errorLabel" destination="4W9-zP-p5S" id="WPH-oo-G8H"/>
                         <outlet property="logoutButton" destination="5Zx-C8-WZJ" id="Slw-rc-DKK"/>
                         <outlet property="newPWTextField" destination="86J-mE-uAs" id="I0H-OT-4nh"/>
+                        <outlet property="newPasswordTextfield" destination="86J-mE-uAs" id="YUr-gO-8Rk"/>
+                        <outlet property="newpasswordStackView" destination="P0r-Fa-NCI" id="gkl-Ek-hkn"/>
                         <outlet property="nickTextField" destination="7sg-y7-bUv" id="qQH-lw-6O1"/>
+                        <outlet property="passwordLabel" destination="Ebi-H7-bu8" id="Pqw-AI-ix1"/>
+                        <outlet property="passwordStackView" destination="i0l-nx-8UU" id="Iwt-9w-6Kj"/>
                         <outlet property="phoneStackView" destination="kLi-X0-UzN" id="Tki-lj-IKs"/>
                         <outlet property="phoneTextField" destination="3Ab-ya-vY9" id="6Fc-M8-iyG"/>
                         <outlet property="secessionButton" destination="sqF-Kk-xJ9" id="HtE-7u-1Nc"/>

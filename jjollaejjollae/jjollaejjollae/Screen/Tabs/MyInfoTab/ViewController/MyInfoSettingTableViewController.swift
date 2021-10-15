@@ -54,38 +54,13 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
       provisionVC.getMode(mode: Provisions.Privacy)
       self.navigationController?.pushViewController(provisionVC, animated: true)
     case 4:
-      print("탈퇴하기")
-      showAlert()
+      print("오픈소스")
     case 5:
       print("공지사항")
     default:
       return
     }
   }
-  
-  private func showAlert(){
-    var usertype = true
-    var secessionAlertController: UIAlertController!
-    if usertype {
-      secessionAlertController = UIAlertController(title: "탈퇴하기", message: "회원탈퇴를 하시려면 안내 및 동의가 필요합니다.비밀번호를 입력해주세요", preferredStyle: .alert)
-      secessionAlertController.addTextField { (password) in
-        print("서버와 연동해서 password가 맞는지 확인을해야한딩")
-      }
-    } else {
-      secessionAlertController = UIAlertController(title: "탈퇴하기", message: "회원탈퇴를 하시려면 안내 및 동의가 필요합니다.", preferredStyle: .alert)
-    }
-    let ok = UIAlertAction(title: "진행하기", style: .default) { (ok) in
-      print("탈퇴 진행하는 행위")
-    }
-    let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in
-      print("탈퇴안하기")
-    }
-    secessionAlertController.addAction(cancel)
-    secessionAlertController.addAction(ok)
-    self.present(secessionAlertController, animated: true, completion: nil)
-  }
-  
-  
   
 }
 

@@ -18,8 +18,20 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   private let cellIdentifier = "cell"
   private var imageHeight: CGFloat = 132
   
+  private var isLogged: Bool? {
+    didSet {
+      if isLogged == false {
+        rankLabel.isHidden = true
+        nicknameLabel.text = "로그인을 해주세요!!"
+        disclosureIndicator.isHidden = true
+        profileImageView.image = UIImage(named: "default")
+      }
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    print("\(self)", #function)
     infoTableView.delegate = self
     infoTableView.dataSource = self
     setupHeader()
@@ -32,15 +44,23 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   }
   
   lazy var profileStackView: UIStackView = {
-    let stackV = UIStackView(arrangedSubviews: [rankLabel, nicknameLabel])
+    let stackV = UIStackView(arrangedSubviews: [rankLabel, nicknameLabel, disclosureIndicator])
     stackV.translatesAutoresizingMaskIntoConstraints = false
     stackV.axis = .horizontal
     stackV.spacing = 5
-    stackV.distribution = .fillEqually
+    stackV.distribution = .fill
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gotoMyInfoDetail(_:)))
     stackV.addGestureRecognizer(tapGesture)
     return stackV
   }()
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    print("\(self)", #function)
+    isLogged = UserManager.shared.isLogged
+    print("User ", UserManager.shared.UserInfo)
+    print("isLogged? ", isLogged)
+  }
   
   
   // 이거 왜그러지? setupgesture에 넣을때는 안되더니만 여기다 넣으면 된다 뭐지? 따로함수를 빼고 해도 안된당 음 시점차이가
@@ -56,6 +76,15 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     imageview.isUserInteractionEnabled = true
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(gotoMyInfoDetail(_:)))
     imageview.addGestureRecognizer(tapGesture)
+    imageview.translatesAutoresizingMaskIntoConstraints = false
+    return imageview
+  }()
+  
+  lazy var disclosureIndicator: UIImageView = {
+    let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+    imageview.contentMode = .scaleAspectFit
+    imageview.image = UIImage(named: "disclosure Indicator")
+    imageview.isUserInteractionEnabled = true
     imageview.translatesAutoresizingMaskIntoConstraints = false
     return imageview
   }()
@@ -87,19 +116,24 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     profileImageView.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
     profileImageView.centerYAnchor.constraint(equalTo: header.centerYAnchor).isActive = true
     header.addSubview(profileStackView)
+    disclosureIndicator.widthAnchor.constraint(equalToConstant: 12).isActive = true
+    disclosureIndicator.heightAnchor.constraint(equalToConstant: 17).isActive = true
     profileStackView.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
     profileStackView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor,
                                           constant: 20).isActive = true
     }
   
   @objc func gotoMyInfoDetail(_ sender: Any?) {
-    guard let detailVC = MyInfoDetailViewController.loadFromStoryboard() as?
-            MyInfoDetailViewController else {return}
-    self.navigationController?.pushViewController(detailVC, animated: true)
-    //로그인이 되어있지 않다면?
-//    guard let loginVC = LoginViewController.loadFromStoryboard() as?
-//            LoginViewController else {return}
-//    self.navigationController?.pushViewController(loginVC, animated: true)
+    if isLogged == false {
+      guard let loginVC = LoginViewController.loadFromStoryboard() as?
+              LoginViewController else {return}
+      self.navigationController?.pushViewController(loginVC, animated: true)
+    } else  {
+      guard let detailVC = MyInfoDetailViewController.loadFromStoryboard() as?
+              MyInfoDetailViewController else {return}
+      PagingManager.shared.mainVC = detailVC
+      self.navigationController?.pushViewController(detailVC, animated: true)
+    }
   }
   
 }
@@ -111,14 +145,6 @@ extension MyInfoMainViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    switch section {
-//    case 0:
-//      return 1
-//    case 1:
-//      return 3
-//    default:
-//      return 1
-//    }
     return infoList.count
   }
   
@@ -126,16 +152,8 @@ extension MyInfoMainViewController: UITableViewDataSource {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
             as? InfoTableViewCell else {return UITableViewCell()}
     let item = infoList[indexPath.row]
-//    let firstItem = InfoContent(title: "예약내역")
     cell.titleLabel.text = item.title
     cell.subtitle.text = item.subtitle
-//    if indexPath.section == 0 {
-//      cell.titleLabel.text = firstItem.title
-//      cell.subtitle.text = firstItem.subtitle
-//    } else {
-//      cell.titleLabel.text = item.title
-//      cell.subtitle.text = item.subtitle
-//    }
     cell.selectionStyle = .none
     return cell
   }
@@ -157,12 +175,9 @@ extension MyInfoMainViewController: UITableViewDataSource {
 
 extension MyInfoMainViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    if indexPath.section == 0 {
-//      guard let myReservationVC = MyInfoReservationViewController.loadFromStoryboard() as? MyInfoReservationViewController else {return}
-//      self.navigationController?.pushViewController(myReservationVC, animated: true)
-//    } else {}
       switch indexPath.row {
       case 0:
+        if isLogged == false {return}
         guard let myReviewVC = MyInfoReviewViewController.loadFromStoryboard() as? MyInfoReviewViewController else {return}
         self.navigationController?.pushViewController(myReviewVC, animated: true)
       case 1:
