@@ -147,9 +147,6 @@
 		28FEC649271441E600C10B32 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FEC648271441E600C10B32 /* StorageService.swift */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		618BFD22359096146394E2DA /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41241F6E06C799AAB980D61B /* Pods_jjollaejjollae.framework */; };
-		DD589118271001AF00CB46E0 /* AccomodationReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */; };
-		DD58911A271001C400CB46E0 /* AccomodationReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD589119271001C400CB46E0 /* AccomodationReview.storyboard */; };
-		DD58911C27102EEC00CB46E0 /* ZollaeCustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58911B27102EEC00CB46E0 /* ZollaeCustomSwitch.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
@@ -174,7 +171,6 @@
 		DDFFC17A26FB1C05001FD04A /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */; };
 		DDFFC17B26FB1C05001FD04A /* WishlistMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */; };
 		DDFFC17C26FB1C05001FD04A /* WishlistNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */; };
-		E8FD1F7FCE6531F0A56807AD /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398CFDFF4AE8A4740055BB77 /* Pods_jjollaejjollae.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -324,10 +320,6 @@
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		41241F6E06C799AAB980D61B /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB6523B1559530DCEABF8507 /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
-		398CFDFF4AE8A4740055BB77 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationReviewViewController.swift; sourceTree = "<group>"; };
-		DD589119271001C400CB46E0 /* AccomodationReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccomodationReview.storyboard; sourceTree = "<group>"; };
-		DD58911B27102EEC00CB46E0 /* ZollaeCustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZollaeCustomSwitch.swift; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -352,8 +344,6 @@
 		DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishCalendarViewController.swift; sourceTree = "<group>"; };
 		DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistMainViewController.swift; sourceTree = "<group>"; };
 		DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistNavigationController.swift; sourceTree = "<group>"; };
-		E8988CEC0F46D23E0446385A /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
-		F8E40CF090023466E4249E25 /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,7 +352,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				618BFD22359096146394E2DA /* Pods_jjollaejjollae.framework in Frameworks */,
-				E8FD1F7FCE6531F0A56807AD /* Pods_jjollaejjollae.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +373,6 @@
 				2827C88726B03C390001E077 /* jjollaejjollae */,
 				766BE68EF9C2E22146929949 /* Pods */,
 				06479687D563C665134E1BB7 /* Frameworks */,
-				C4B67D8EF89898AAD2F801BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -645,7 +633,6 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				DD5891162710019900CB46E0 /* Review */,
 				28F9E93B26C8024700D9E693 /* Search */,
 				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
 				2841598A26BA73C600F027DB /* Login */,
@@ -662,7 +649,6 @@
 				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
 				2884A32C26D3FF07004596C3 /* RoundButton.swift */,
 				2877C3A927004B66000E3233 /* FixModalViewController.swift */,
-				DD58911B27102EEC00CB46E0 /* ZollaeCustomSwitch.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -716,29 +702,8 @@
 			children = (
 				DB6523B1559530DCEABF8507 /* Pods-jjollaejjollae.debug.xcconfig */,
 				020528AB5A7051FAE101F71A /* Pods-jjollaejjollae.release.xcconfig */,
-			isa = PBXGroup;
-			children = (
-				F8E40CF090023466E4249E25 /* Pods-jjollaejjollae.debug.xcconfig */,
-				E8988CEC0F46D23E0446385A /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		C4B67D8EF89898AAD2F801BF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				398CFDFF4AE8A4740055BB77 /* Pods_jjollaejjollae.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DD5891162710019900CB46E0 /* Review */ = {
-			isa = PBXGroup;
-			children = (
-				DD589119271001C400CB46E0 /* AccomodationReview.storyboard */,
-				DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */,
-			);
-			path = Review;
 			sourceTree = "<group>";
 		};
 		DD741C2926FB04CC00776827 /* Protocol */ = {
@@ -919,11 +884,6 @@
 				2827C88226B03C390001E077 /* Frameworks */,
 				2827C88326B03C390001E077 /* Resources */,
 				23FB583832FFCD293A6582E2 /* [CP] Embed Pods Frameworks */,
-				EF5ECD2EE56EBE980F0A4684 /* [CP] Check Pods Manifest.lock */,
-				2827C88126B03C390001E077 /* Sources */,
-				2827C88226B03C390001E077 /* Frameworks */,
-				2827C88326B03C390001E077 /* Resources */,
-				E336329C97A479B4B23828A1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1019,7 +979,6 @@
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
 				28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */,
-				DD58911A271001C400CB46E0 /* AccomodationReview.storyboard in Resources */,
 				28331CB626DB7A050062B29D /* SearchMap.storyboard in Resources */,
 				2877C3DE2704C300000E3233 /* CategoryCell.xib in Resources */,
 			);
@@ -1029,7 +988,6 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		23FB583832FFCD293A6582E2 /* [CP] Embed Pods Frameworks */ = {
-		E336329C97A479B4B23828A1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1047,7 +1005,6 @@
 			showEnvVarsInLog = 0;
 		};
 		665B2C765703FD3B59E917CC /* [CP] Check Pods Manifest.lock */ = {
-		EF5ECD2EE56EBE980F0A4684 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1094,8 +1051,6 @@
 				DDFFC17726FB1C05001FD04A /* WishlistCollectionViewCell.swift in Sources */,
 				2884A37726D7F3D4004596C3 /* Filters.swift in Sources */,
 				DDF24BB326C6D61D007AB642 /* MyInfoTabNavigationController.swift in Sources */,
-				DD589118271001AF00CB46E0 /* AccomodationReviewViewController.swift in Sources */,
-				287AE22326ECA5250038B39F /* DogInfoManager.swift in Sources */,
 				285CE10D26B7D4A30022DA2E /* UIView+Extension.swift in Sources */,
 				2884A32926D3FC6E004596C3 /* FilterViewController.swift in Sources */,
 				2884A32226CE933A004596C3 /* CafeDataSource.swift in Sources */,
@@ -1157,7 +1112,6 @@
 				28C6F62A27186A3600A961AB /* PagingManager.swift in Sources */,
 				28E0D2812709F7C6007C4C2A /* UIImage+Extension.swift in Sources */,
 				28317F112704C6AB009319CB /* CategoryTabbar.swift in Sources */,
-				DD58911C27102EEC00CB46E0 /* ZollaeCustomSwitch.swift in Sources */,
 				283F240926F8725C00CD8339 /* SignUpData.swift in Sources */,
 				286011CC26BFBF56002774EA /* FindPasswordViewController.swift in Sources */,
 				2877830F26C811B6001BF582 /* RecentSearchViewController.swift in Sources */,
@@ -1213,7 +1167,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1247,7 +1200,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=*]" = x86_64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1265,7 +1217,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1276,7 +1228,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1310,7 +1261,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1322,7 +1272,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -1333,7 +1282,6 @@
 		2827C89A26B03C3E0001E077 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB6523B1559530DCEABF8507 /* Pods-jjollaejjollae.debug.xcconfig */;
-			baseConfigurationReference = F8E40CF090023466E4249E25 /* Pods-jjollaejjollae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1356,7 +1304,6 @@
 		2827C89B26B03C3E0001E077 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 020528AB5A7051FAE101F71A /* Pods-jjollaejjollae.release.xcconfig */;
-			baseConfigurationReference = E8988CEC0F46D23E0446385A /* Pods-jjollaejjollae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
