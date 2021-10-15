@@ -72,7 +72,7 @@ extension APITarget: TargetType {
     case .socialLogin:
       return "/auth/social"
     case .patchPetInfo(_, let userId, let petId, _):
-      return "/users/:\(userId)/pets/:\(petId)"
+      return "/users/\(userId)/pets/\(petId)"
     case .search(let keyword):
       return "/search?keyword=\(keyword)"
     case .readAllPosts:

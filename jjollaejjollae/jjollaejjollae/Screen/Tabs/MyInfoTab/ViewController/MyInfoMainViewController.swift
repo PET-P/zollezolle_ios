@@ -58,7 +58,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     super.viewWillAppear(animated)
     print("\(self)", #function)
     isLogged = UserManager.shared.isLogged
-    print("User ", UserManager.shared.UserInfo)
+    print("User ", UserManager.shared.userInfo)
     print("isLogged? ", isLogged)
   }
   

@@ -26,13 +26,13 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   
   @IBOutlet weak var nickTextField: UITextField! {
     didSet {
-      nickTextField.text = UserManager.shared.UserInfo?.nick
+      nickTextField.text = UserManager.shared.userInfo?.nick
     }
   }
   @IBOutlet weak var emailTextField: UITextField! {
     didSet {
       emailTextField.isUserInteractionEnabled = false
-      emailTextField.text = UserManager.shared.UserInfo?.email
+      emailTextField.text = UserManager.shared.userInfo?.email
     }
   }
   
@@ -201,7 +201,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   }
   
   private func showSeccessionAlert(){
-    guard let usertype = UserManager.shared.UserInfo?.accountType else {return}
+    guard let usertype = UserManager.shared.userInfo?.accountType else {return}
     var secessionAlertController: UIAlertController!
     var ok: UIAlertAction!
     if usertype.rawValue != "social" {
@@ -279,7 +279,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    infoData = UserManager.shared.UserInfo
+    infoData = UserManager.shared.userInfo
     applyNoneSyle(to: [emailTextField, phoneTextField])
     applyGrayStyle(to: [nickTextField, currentPWTextField, newPWTextField])
     verifySocial()

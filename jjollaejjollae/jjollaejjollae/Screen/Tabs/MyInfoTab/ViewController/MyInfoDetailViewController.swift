@@ -43,7 +43,7 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    userInfo = UserManager.shared.UserInfo
+    userInfo = UserManager.shared.userInfo
     NotificationCenter.default.addObserver(self, selector: #selector(getpageIndex(_:)),
                                            name: NSNotification.Name("SegControlNotification"),
                                            object: nil)
@@ -68,7 +68,7 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
   
   //1. 유저가 변경할 수 있는 이미지는 캐시에 두지 않는다.
   private func setupImageArray() {
-    guard let userInfo = UserManager.shared.UserInfo else {
+    guard let userInfo = UserManager.shared.userInfo else {
       fatalError("유저정보를 불러올수가 없습니다.")
     }
     for pet in userInfo.pets {

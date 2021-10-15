@@ -23,7 +23,7 @@ class UserManager {
       APIService.shared.readUser(token: token, userId: userId) { [weak self] (result) in
         switch result {
         case .success(let data):
-          self?.AppUser = data
+          self?.appUser = data
         case .failure(let error):
           print(error)
         }
@@ -31,28 +31,28 @@ class UserManager {
     }
   }
   
-  private var AppUser: UserData?
+  private var appUser: UserData?
   
   var isLogged: Bool {
     get {
-      return AppUser != nil
+      return appUser != nil
     }
   }
   
   //User를 직접 받을 수 있을때
-  var UserInfo: UserData? {
+  var userInfo: UserData? {
     get {
-      return AppUser
+      return appUser
     }
     set {
-      self.AppUser = newValue
+      self.appUser = newValue
     }
   }
   
   func deleteUser(){
     //전역변수 제거
     userIdandToken = nil
-    AppUser = nil
+    appUser = nil
     //Keychain 제거
     LoginManager.shared.deleteFromKeyChain(account: "accessToken")
     LoginManager.shared.deleteFromKeyChain(account: "refreshToken")

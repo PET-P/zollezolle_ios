@@ -209,7 +209,7 @@ class DogInfoViewController: FixModalViewController{
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    user = UserManager.shared.UserInfo
+    user = UserManager.shared.userInfo
     for i in 1...100 {
       ageList.append(i)
     }
@@ -346,7 +346,7 @@ class DogInfoViewController: FixModalViewController{
             APIService.shared.readUser(token: token, userId: userId) { (readuserResult) in
               switch readuserResult {
               case .success(let data):
-                UserManager.shared.UserInfo = data
+                UserManager.shared.userInfo = data
               case .failure(let error):
                 fatalError("Error \(error)")
               }
