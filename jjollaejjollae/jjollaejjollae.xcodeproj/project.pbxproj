@@ -98,7 +98,8 @@
 		28F9E94126C802A000D9E693 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F9E94026C802A000D9E693 /* Search.storyboard */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		ABCD83D41A199AC8DA4AFADE /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BD904CB3F32346578D6E5B /* Pods_jjollaejjollae.framework */; };
-		DD4FC7AF2716A40700140127 /* AllReviews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4FC7AE2716A40700140127 /* AllReviews.storyboard */; };
+		DD29B230271953BF00C4F488 /* AllReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD29B22F271953BF00C4F488 /* AllReviewsTableViewCell.swift */; };
+		DD4FC7AF2716A40700140127 /* AllReviewsTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD4FC7AE2716A40700140127 /* AllReviewsTable.storyboard */; };
 		DD4FC7B12716A41E00140127 /* AllReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4FC7B02716A41E00140127 /* AllReviewsTableViewController.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
@@ -221,7 +222,8 @@
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		7E6BDEAFA6A80A6EDFC10804 /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
 		CC6244144EDC8133BD7CF496 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
-		DD4FC7AE2716A40700140127 /* AllReviews.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AllReviews.storyboard; sourceTree = "<group>"; };
+		DD29B22F271953BF00C4F488 /* AllReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		DD4FC7AE2716A40700140127 /* AllReviewsTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AllReviewsTable.storyboard; sourceTree = "<group>"; };
 		DD4FC7B02716A41E00140127 /* AllReviewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewController.swift; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
@@ -571,8 +573,9 @@
 		DD4FC7AC2716A3E300140127 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				DD4FC7AE2716A40700140127 /* AllReviews.storyboard */,
+				DD4FC7AE2716A40700140127 /* AllReviewsTable.storyboard */,
 				DD4FC7B02716A41E00140127 /* AllReviewsTableViewController.swift */,
+				DD29B22F271953BF00C4F488 /* AllReviewsTableViewCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -799,7 +802,7 @@
 				DDFFC17626FB1C05001FD04A /* WishMap.storyboard in Resources */,
 				DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
-				DD4FC7AF2716A40700140127 /* AllReviews.storyboard in Resources */,
+				DD4FC7AF2716A40700140127 /* AllReviewsTable.storyboard in Resources */,
 				2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
 				28EA825E26B42BF700785666 /* Roboto Mono Light for Powerline.ttf in Resources */,
@@ -916,6 +919,7 @@
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
+				DD29B230271953BF00C4F488 /* AllReviewsTableViewCell.swift in Sources */,
 				DDFFC17926FB1C05001FD04A /* WishMapViewController.swift in Sources */,
 				283F240126F8687F00CD8339 /* GenericResponse.swift in Sources */,
 				DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */,
