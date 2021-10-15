@@ -120,8 +120,8 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func createPet(token: String, userId: String, completion: @escaping((NetworkResult<PetData>) -> (Void))) {
-    let target = APITarget.createPet(token: token, userId: userId)
+  func createPet(token: String, userId: String, name: String, age: Int?, sex: Sex, size: Size, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool, completion: @escaping((NetworkResult<PetData>) -> (Void))) {
+    let target = APITarget.createPet(token: token, userId: userId, name: name, age: age, sex: sex.rawValue, size: size.rawValue, weight: weight, type: type, breed: breed, imageUrl: imageUrl, isRepresent: isRepresent)
     judgeGenericResponse(target, completion: completion)
   }
   

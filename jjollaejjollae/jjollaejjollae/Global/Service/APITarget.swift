@@ -36,7 +36,7 @@ enum APITarget {
   case readUser(token: String, userId: String)
   case deleteUser(token: String, userId: String)
   case readAllUsers
-  case createPet(token: String, userId: String)
+  case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
   case readPets(token: String, userId: String)
   case patchMyInfo(token: String, userId: String)
 }
@@ -87,12 +87,12 @@ extension APITarget: TargetType {
       return "/wishlist/\(userId)?folderId=\(folderId)"
     case .addPlaceInFolder:
       return "/wishlist/folder"
-    case .readUser(let token, let userId):
+    case .readUser(_, let userId):
       return "/users/\(userId)"
     case .readAllUsers:
       return "/users"
-    case .createPet(let userId), .readPets(let userId):
-      return "/:\(userId)/pets"
+    case .createPet(_, let userId, _, _, _, _, _, _, _, _, _), .readPets(_, let userId):
+      return "/users/\(userId)/pets"
     case .patchMyInfo(_, let userId):
       return "/users/\(userId)"
     case .deleteUser(_, let userId):
@@ -134,7 +134,7 @@ extension APITarget: TargetType {
                                              "phone": phone], encoding: JSONEncoding.default)
     case .findPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
-    case .naver, .search, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readFolder, .readUser, .readAllUsers, .createPet, .readPets, .patchMyInfo, .deleteUser, .tempPassword:
+    case .naver, .search, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readFolder, .readUser, .readAllUsers, .readPets, .patchMyInfo, .deleteUser, .tempPassword:
       return .requestPlain
     case .socialLogin(let email, let nick, let phone):
       return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone], encoding: JSONEncoding.default)
@@ -146,6 +146,8 @@ extension APITarget: TargetType {
       return .requestParameters(parameters: ["name": name, "startDate": startDate, "endDate": endDate], encoding: JSONEncoding.default)
     case .addPlaceInFolder(_, let userId, let placeId, let folderId, let region):
       return .requestParameters(parameters: ["userId": userId, "placeId": placeId, "folderId": folderId, "region": region], encoding: JSONEncoding.default)
+    case .createPet(_, _, let name, let age, let sex, let size, let weight, let type, let breed, let imageUrl, let isRepresent):
+      return .requestParameters(parameters: ["name": name, "age": age, "sex": sex, "size": size, "weight": weight , "type": type, "breed": breed, "imageUrl": imageUrl, "isRepresent": isRepresent], encoding: JSONEncoding.default)
     }
   }
   
@@ -161,7 +163,7 @@ extension APITarget: TargetType {
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
-    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _), .readPets(let token, _), .createWishlistFolder(let token, _, _), .patchFolder(let token, _,_,_,_,_), .deleteFolder(let token, _,_,_,_,_), .readFolder(let token,_,_), .addPlaceInFolder(let token,_,_,_,_):
+    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .createWishlistFolder(let token, _, _), .patchFolder(let token, _,_,_,_,_), .deleteFolder(let token, _,_,_,_,_), .readFolder(let token,_,_), .addPlaceInFolder(let token,_,_,_,_):
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
     case .naver(let authorization):
       return ["Authorization": authorization]
