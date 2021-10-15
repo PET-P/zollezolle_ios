@@ -19,25 +19,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
+      
         window = UIWindow(windowScene: windowScene)
       
-      window?.rootViewController = AccomodationReviewViewController.loadFromStoryboard()
-      window?.makeKeyAndVisible()
-        
-//        let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
-//
-//        if !isLogged {
-//            guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return}
-//            let navigationController = UINavigationController(rootViewController: loginVC)
-//            navigationController.setNavigationBarHidden(true, animated: false)
-//            window?.rootViewController = loginVC
-//            window?.rootViewController = navigationController
-//        } else {
-//
+        if !isLogged {
+            guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return}
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            navigationController.setNavigationBarHidden(true, animated: false)
+            window?.rootViewController = loginVC
+            window?.rootViewController = navigationController
+        } else {
+          
 //          let mainTabBarController = MainTabBarController()
 //          window?.rootViewController = mainTabBarController
-//        }
-//        window?.makeKeyAndVisible()
+          
+          let allreviewsVC = AllReviewsTableViewController.loadFromStoryboard()
+          
+          window?.rootViewController = allreviewsVC
+        }
+        window?.makeKeyAndVisible()
         
     }
 

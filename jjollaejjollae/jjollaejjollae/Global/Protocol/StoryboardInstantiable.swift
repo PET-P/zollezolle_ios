@@ -19,8 +19,7 @@ extension StoryboardInstantiable {
     
     let className = String(describing: self)
     
-    // "ViewController".count is 14
-    return String(className.prefix(className.count - 14))
+    return String(className.replacingOccurrences(of: "ViewController", with: ""))
   }
   
   static var storyboardIdentifier: String {

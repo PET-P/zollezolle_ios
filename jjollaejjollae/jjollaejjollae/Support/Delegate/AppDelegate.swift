@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         var window: UIWindow?
         
-        if #available(iOS 13, *){
+      if #available(iOS 13.0, *){
             
         } else {
             window = UIWindow()
@@ -24,9 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return false}
                 window?.rootViewController = loginVC
             } else {
+              
                 //TODO: 여기다가 homeVC에 대한 내용 작성
                 guard let homeVC = storyboard.instantiateViewController(identifier: "homeView") as? LoginViewController else {return false}
+              
                 window?.rootViewController = homeVC
+              
             }
             window?.makeKeyAndVisible()
         }
