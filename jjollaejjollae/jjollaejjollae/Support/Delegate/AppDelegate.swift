@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  jjollaejjollae
-//
-//  Created by abc on 2021/07/27.
-//
-
 import UIKit
 import NaverThirdPartyLogin
 import KakaoSDKCommon

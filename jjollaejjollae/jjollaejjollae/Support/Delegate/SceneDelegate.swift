@@ -10,8 +10,9 @@ import KakaoSDKAuth
 import NaverThirdPartyLogin
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+
   //for test
-  var isLogged = false
+  var isLogged: Bool = true
   var waitingGroup = DispatchGroup()
   var window: UIWindow?
   
