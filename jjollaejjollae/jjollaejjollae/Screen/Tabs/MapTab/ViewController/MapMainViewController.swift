@@ -61,6 +61,7 @@ class MapMainViewController: UIViewController {
     if let vc = segue.destination as? RecommendedPlaceViewController {
       vc.mapMainVC = self
     }
+    
   }
   
   // MARK: - Customs

@@ -97,6 +97,8 @@
 		28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F9E93E26C8027000D9E693 /* SearchViewController.swift */; };
 		28F9E94126C802A000D9E693 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28F9E94026C802A000D9E693 /* Search.storyboard */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
+		DD29B2322719670900C4F488 /* HomeTipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD29B2312719670900C4F488 /* HomeTipCollectionViewCell.swift */; };
+		DD29B2342719671000C4F488 /* HomeLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD29B2332719671000C4F488 /* HomeLocationCollectionViewCell.swift */; };
 		DD589118271001AF00CB46E0 /* AccomodationReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */; };
 		DD58911A271001C400CB46E0 /* AccomodationReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD589119271001C400CB46E0 /* AccomodationReview.storyboard */; };
 		DD58911C27102EEC00CB46E0 /* ZollaeCustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD58911B27102EEC00CB46E0 /* ZollaeCustomSwitch.swift */; };
@@ -221,6 +223,8 @@
 		28F9E94026C802A000D9E693 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
 		398CFDFF4AE8A4740055BB77 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD29B2312719670900C4F488 /* HomeTipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTipCollectionViewCell.swift; sourceTree = "<group>"; };
+		DD29B2332719671000C4F488 /* HomeLocationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		DD589117271001AF00CB46E0 /* AccomodationReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccomodationReviewViewController.swift; sourceTree = "<group>"; };
 		DD589119271001C400CB46E0 /* AccomodationReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccomodationReview.storyboard; sourceTree = "<group>"; };
 		DD58911B27102EEC00CB46E0 /* ZollaeCustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZollaeCustomSwitch.swift; sourceTree = "<group>"; };
@@ -656,7 +660,9 @@
 		DDF24BA226C6D61D007AB642 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DD29B2332719671000C4F488 /* HomeLocationCollectionViewCell.swift */,
 				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
+				DD29B2312719670900C4F488 /* HomeTipCollectionViewCell.swift */,
 				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
 			);
 			path = ViewController;
@@ -942,6 +948,7 @@
 				283F240326F869C900CD8339 /* EmailData.swift in Sources */,
 				2834ED1326C03D6D00E948B0 /* PaddingLabel.swift in Sources */,
 				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
+				DD29B2322719670900C4F488 /* HomeTipCollectionViewCell.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
 				283F241026F8AE8C00CD8339 /* LaunchScreenViewController.swift in Sources */,
@@ -953,6 +960,7 @@
 				28E910BB26F0E1DA0093BF7C /* dogInfoCollectionView.swift in Sources */,
 				28331D1026E216720062B29D /* CalendarCell.swift in Sources */,
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
+				DD29B2342719671000C4F488 /* HomeLocationCollectionViewCell.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
 				DDFFC11E26FB0734001FD04A /* MapNavigationController.swift in Sources */,
 				DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */,
