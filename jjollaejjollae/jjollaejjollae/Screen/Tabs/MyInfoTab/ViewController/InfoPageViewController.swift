@@ -54,6 +54,7 @@ class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     self.dataSource = self
     self.delegate = self
     if let firstVC = VCArray.first {

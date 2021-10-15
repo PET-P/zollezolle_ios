@@ -299,7 +299,7 @@ extension LoginViewController: StoryboardInstantiable {
   }
   
   func oauth20ConnectionDidFinishDeleteToken() {
-    print("delete")
+    
   }
   
   // error

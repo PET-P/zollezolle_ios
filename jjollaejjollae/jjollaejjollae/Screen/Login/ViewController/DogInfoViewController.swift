@@ -32,7 +32,8 @@ class DogInfoViewController: FixModalViewController{
       myPetNameTextField.setRounded(radius: nil)
       myPetNameTextField.backgroundColor = .themePaleGreen
       myPetNameTextField.font = .robotoBold(size: 18)
-      myPetNameTextField.placeholder = "  쪼꼬" //시간이없는관계로 이렇게 넘어감
+      myPetNameTextField.placeholder = "  쪼꼬"
+      //시간이없는관계로 이렇게 넘어감
     }
   }
   @IBOutlet weak var petAgeLabel: PaddingLabel! {
@@ -50,6 +51,7 @@ class DogInfoViewController: FixModalViewController{
       petAgeTextField.font = .robotoMedium(size: 16)
       petAgeTextField.placeholder = "4살"
       petAgeTextField.textColor = UIColor.gray01
+      petAgeTextField.inputView = agePicker
     }
   }
   @IBOutlet weak var petGenderLabel: PaddingLabel! {
@@ -60,6 +62,7 @@ class DogInfoViewController: FixModalViewController{
   }
   @IBOutlet weak var petGenderSwitch: JJollaeSwitch! {
     didSet {
+      petGenderSwitch.delegate = self
       petGenderSwitch.setButtonTitle(isOn: "남", isOff: "여")
       petGenderSwitch.setSwitchColor(onTextColor: .gray01, offTextColor: .gray01)
       petGenderSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .themePaleGreen)
@@ -96,6 +99,7 @@ class DogInfoViewController: FixModalViewController{
       petWeightTextField.font = .robotoMedium(size: 16)
       petWeightTextField.placeholder = "3kg"
       petAgeTextField.textColor = UIColor.gray01
+      petWeightTextField.inputView = weightPicker
     }
   }
   @IBOutlet weak var petTypeLabel: PaddingLabel! {
@@ -190,23 +194,22 @@ class DogInfoViewController: FixModalViewController{
   private var weightList = [Double]()
   private var ageList = [Int]()
   private var middleIndex: IndexPath = [0,0]
-  lazy var agePicker = UIPickerView()
-  lazy var weightPicker = UIPickerView()
+  lazy var agePicker: UIPickerView = {
+    let picker = UIPickerView()
+    picker.delegate = self
+    return picker
+  }()
+  lazy var weightPicker: UIPickerView = {
+    let picker = UIPickerView()
+    picker.delegate = self
+    return picker
+  }()
   
   //MARK: - View LifeCycle
-  
-//  private lazy var dogInfoManager = DogInfoManager()
-  // 이미지서버와 통신할때는
-  //3마리면, 3마리의 imageURL, imageData -> 서버에 imageURL, 이미지서버에 imageUrl, imageData
-  // 따로 딕셔너리 구성?
-  //
-  //캐싱이 필요하고
 
   override func viewDidLoad() {
     super.viewDidLoad()
     user = UserManager.shared.UserInfo
-    weightPicker.delegate = self
-    agePicker.delegate = self
     for i in 1...100 {
       ageList.append(i)
     }
@@ -218,11 +221,7 @@ class DogInfoViewController: FixModalViewController{
       }
     }
     addToobar()
-    //가상키보드 대신 피커뷰로 설정
-    petAgeTextField.inputView = agePicker
-    petWeightTextField.inputView = weightPicker
     setKeyboard()
-    petGenderSwitch.delegate = self
     myPetNameTextField.addSubview(representPetButton)
     representPetButton.isSelected = false
   }
@@ -262,11 +261,11 @@ class DogInfoViewController: FixModalViewController{
       for i in dogProfile.indices{
         self.dogProfile[i].isRepresent = false
       }
-      self.dogProfile[middleIndex.item].isRepresent = true
+      self.dogProfile[middleIndex.row].isRepresent = true
+      print(self.dogProfile[middleIndex.row])
       representPetButton.isSelected = !representPetButton.isSelected
     }
   }
-  
   
   private var typeText: String = "강아지" {
     didSet {
@@ -311,48 +310,7 @@ class DogInfoViewController: FixModalViewController{
     self.showAlertController(style: UIAlertController.Style.actionSheet)
   }
   
-  private func showAlertController(style: UIAlertController.Style) {
-    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
-    let bigSizeAction = UIAlertAction(title: "대형", style: .default) { [weak self]
-      result in self?.sizeText = "대형"
-    }
-    let middleSizeAction = UIAlertAction(title: "중형", style: .default) {
-      [weak self] result in self?.sizeText = "중형"
-    }
-    let smallSizeAction = UIAlertAction(title: "소형", style: .default) { [weak self] result in
-      self?.sizeText = "소형"
-    }
-    actionsheetUI(alertController: alertController)
-    alertController.addAction(bigSizeAction)
-    alertController.addAction(middleSizeAction)
-    alertController.addAction(smallSizeAction)
-    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-    self.present(alertController, animated: true, completion: nil);
-  }
-  
-  private func showAlertController(style: UIAlertController.Style, AlertList: [String]) {
-    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
-    AlertList.forEach { (type) in
-      alertController.addAction(UIAlertAction(title: type, style: .default) { [weak self] result in
-        self?.typeText = type
-      })
-    }
-    actionsheetUI(alertController: alertController)
-    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-    self.present(alertController, animated: true, completion: nil);
-  }
-  
-  private func actionsheetUI(alertController: UIAlertController){
-    let subview = alertController.view.mainView! as UIView
-    let alertContentView = subview.mainView! as UIView
-    alertContentView.setRounded(radius: 10)
-    alertContentView.overrideUserInterfaceStyle = .light
-    alertContentView.backgroundColor = UIColor.white
-    alertController.view.setRounded(radius: 10)
-    alertController.view.tintColor = .themeGreen
-  }
-  
-  
+
   @IBAction func didTapPetTypeButton(_ sender: UIButton) {
     self.showAlertController(style: UIAlertController.Style.actionSheet, AlertList: ["강아지", "고양이"])
   }
@@ -377,9 +335,26 @@ class DogInfoViewController: FixModalViewController{
       }
     }
     if flag {
+      guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
       for pet in self.dogProfile {
-        guard let imageData = pet.imageData, let imageUrl = pet.imageUrl else {continue}
-        StorageService.shared.uploadImageWithData(imageData: imageData, imageName: imageUrl)
+        if let imageData = pet.imageData, let imageUrl = pet.imageUrl {
+          StorageService.shared.uploadImageWithData(imageData: imageData, imageName: imageUrl)
+        } 
+        APIService.shared.createPet(token: token, userId: userId, name: pet.name, age: pet.age, sex: pet.sex, size: pet.size, weight: pet.weight, type: pet.type, breed: pet.breed, imageUrl: pet.imageUrl, isRepresent: pet.isRepresent) { (result) in
+          switch result {
+          case .success(let petdata):
+            APIService.shared.readUser(token: token, userId: userId) { (readuserResult) in
+              switch readuserResult {
+              case .success(let data):
+                UserManager.shared.UserInfo = data
+              case .failure(let error):
+                fatalError("Error \(error)")
+              }
+            }
+          case .failure(let Error):
+            print("errorCode: ", Error)
+          }
+        }
       }
       
       let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
@@ -422,15 +397,75 @@ class DogInfoViewController: FixModalViewController{
   
 }
 
+//MARK: - ActionSheet
+
+extension DogInfoViewController {
+  private func showAlertController(style: UIAlertController.Style) {
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
+    let bigSizeAction = UIAlertAction(title: "대형", style: .default) { [weak self]
+      result in self?.sizeText = "대형"
+    }
+    let middleSizeAction = UIAlertAction(title: "중형", style: .default) {
+      [weak self] result in self?.sizeText = "중형"
+    }
+    let smallSizeAction = UIAlertAction(title: "소형", style: .default) { [weak self] result in
+      self?.sizeText = "소형"
+    }
+    actionsheetUI(alertController: alertController)
+    alertController.addAction(bigSizeAction)
+    alertController.addAction(middleSizeAction)
+    alertController.addAction(smallSizeAction)
+    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+    self.present(alertController, animated: true, completion: nil);
+  }
+  
+  private func showAlertController(style: UIAlertController.Style, AlertList: [String]) {
+    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
+    AlertList.forEach { (type) in
+      alertController.addAction(UIAlertAction(title: type, style: .default) { [weak self] result in
+        self?.typeText = type
+      })
+    }
+    actionsheetUI(alertController: alertController)
+    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+    self.present(alertController, animated: true, completion: nil);
+  }
+  
+  private func actionsheetUI(alertController: UIAlertController){
+    let subview = alertController.view.mainView! as UIView
+    let alertContentView = subview.mainView! as UIView
+    alertContentView.setRounded(radius: 10)
+    alertContentView.overrideUserInterfaceStyle = .light
+    alertContentView.backgroundColor = UIColor.white
+    alertController.view.setRounded(radius: 10)
+    alertController.view.tintColor = .themeGreen
+  }
+}
+
+
+
 extension DogInfoViewController: UITextFieldDelegate {
   //MARK: - Keyboard
+  
+  //index 오류를 막기 위해서 texfield focusing 될때 못바꾸게함
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    dogProfileCollectionView.isUserInteractionEnabled = false
+  }
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    dogProfileCollectionView.isUserInteractionEnabled = true
+  }
+  //return 키 누를 때 바로 됌
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
   
   private func setKeyboard() {
     myPetNameTextField.delegate = self
     petAgeTextField.delegate = self
     petTypeTextField.delegate = self
     petWeightTextField.delegate = self
-    
+  
     let tapGesture = UITapGestureRecognizer(
       target: view,
       action: #selector(view.endEditing(_:)))
@@ -477,11 +512,6 @@ extension DogInfoViewController: UITextFieldDelegate {
       }
     }
   }
-  
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    textField.resignFirstResponder()
-    return true
-  }
 }
 
 //MARK: - ImagePicker 제공
@@ -491,7 +521,6 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     self.dismiss(animated: true, completion: nil)
   }
-  
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     var newImage: UIImage? = nil
@@ -564,21 +593,9 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
     
     //+버튼일 경우 다른 곳은 터치가 안되서 기입할 수가 없음
     if cellType[indexPath.row] == .plus && indexPath == middleIndex {
-      self.myPetNameTextField.isUserInteractionEnabled = false
-      self.petTypeButton.isUserInteractionEnabled = false
-      self.petTypeTextField.isUserInteractionEnabled = false
-      self.petSizeButton.isUserInteractionEnabled = false
-      self.petWeightTextField.isUserInteractionEnabled = false
-      self.petAgeTextField.isUserInteractionEnabled = false
-      self.petGenderSwitch.isUserInteractionEnabled = false
+      isEditEnable(isOn: false)
     } else {
-      self.myPetNameTextField.isUserInteractionEnabled = true
-      self.petTypeButton.isUserInteractionEnabled = true
-      self.petTypeTextField.isUserInteractionEnabled = true
-      self.petSizeButton.isUserInteractionEnabled = true
-      self.petWeightTextField.isUserInteractionEnabled = true
-      self.petAgeTextField.isUserInteractionEnabled = true
-      self.petGenderSwitch.isUserInteractionEnabled = true
+      isEditEnable(isOn: true)
     }
     
     if indexPath == middleIndex {
@@ -587,7 +604,6 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
     
     cell.delegate = self
     cell.selectedIndexPath = indexPath
-    
     cell.dogImageView.layer.cornerRadius = cell.dogImageView.frame.size.height / 2
     cell.dogImageView.layer.masksToBounds = true
     cell.layer.cornerRadius = cell.frame.size.height / 2
@@ -597,6 +613,17 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   }
   
   //MARK: - Functions
+  
+  private func isEditEnable(isOn: Bool){
+    self.myPetNameTextField.isUserInteractionEnabled = isOn
+    self.petTypeButton.isUserInteractionEnabled = isOn
+    self.petTypeTextField.isUserInteractionEnabled = isOn
+    self.petSizeButton.isUserInteractionEnabled = isOn
+    self.petWeightTextField.isUserInteractionEnabled = isOn
+    self.petAgeTextField.isUserInteractionEnabled = isOn
+    self.petGenderSwitch.isUserInteractionEnabled = isOn
+    self.representPetButton.isUserInteractionEnabled = isOn
+  }
   
   // collectionView 초기화
   private func addCollectionView() {

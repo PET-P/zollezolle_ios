@@ -58,10 +58,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iGD-ys-Fa3">
-                                <rect key="frame" x="75" y="362" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SxU-zj-2jC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -76,7 +72,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="iGD-ys-Fa3" id="ocQ-Rj-3hg"/>
                         <outlet property="titleLabel" destination="ZPh-jX-LAh" id="twV-Gk-uL1"/>
                     </connections>
                 </viewController>

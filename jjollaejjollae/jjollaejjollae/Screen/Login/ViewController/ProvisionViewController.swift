@@ -20,7 +20,6 @@ class ProvisionViewController: UIViewController, StoryboardInstantiable {
     titleLabel.text = self.mode.description
   }
   
-  
   @IBOutlet weak var titleLabel: UILabel! {
     didSet {
       titleLabel.textColor = .gray01
@@ -31,6 +30,8 @@ class ProvisionViewController: UIViewController, StoryboardInstantiable {
   @IBAction func didTapXButton(_ sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }
+  
+  
   
   
 }

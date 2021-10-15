@@ -213,7 +213,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="탈퇴하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8D-ft-2eq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오픈소스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8D-ft-2eq">
                                                     <rect key="frame" x="20" y="32" width="55.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -268,7 +268,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="71n-32-h4w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="870" y="192"/>
+            <point key="canvasLocation" x="869.56521739130437" y="191.51785714285714"/>
         </scene>
     </scenes>
     <resources>

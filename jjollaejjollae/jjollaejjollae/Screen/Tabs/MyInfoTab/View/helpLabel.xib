@@ -22,7 +22,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="64" height="63"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szd-Gw-c8i">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Szd-Gw-c8i">
                     <rect key="frame" x="51" y="0.0" width="13" height="13"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="13" id="8jq-jP-zc1"/>

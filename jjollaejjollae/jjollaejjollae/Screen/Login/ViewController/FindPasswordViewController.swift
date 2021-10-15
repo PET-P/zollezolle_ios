@@ -126,8 +126,6 @@ class FindPasswordViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
-  
-  
   @objc private func didTapSendCodeButton(_ sender: Any?){
     //TODO 이메일 서버와 연결
     guard let sender = sender as? UIButton else {return}
