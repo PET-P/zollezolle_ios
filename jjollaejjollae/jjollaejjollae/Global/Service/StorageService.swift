@@ -49,14 +49,23 @@ class StorageService {
   
   func downloadUIImageWithURL(with UrlString: String, imageCompletion: @escaping (UIImage?) -> Void) {
     guard let newURL = UrlString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {return}
-    guard let imageUrl = URL(string: "\(imageBaseUrl)\(newURL)") else {return}
-    let resource = ImageResource(downloadURL: imageUrl)
-    KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil){ result in
-      switch result {
-      case .success(let value):
-        imageCompletion(value.image)
-      case .failure:
-        imageCompletion(nil)
+    let imageUrl = "\(imageBaseUrl)\(newURL)"
+    storage.reference(forURL: imageUrl).downloadURL { (url, error) in
+      if let error = error {
+        print("ERROR \(error.localizedDescription)")
+        return
+      }
+      guard let url = url else {
+        return
+      }
+      let resource = ImageResource(downloadURL: url)
+      Kingfisher.KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+        switch result{
+        case .success(let value):
+          imageCompletion(value.image)
+        case .failure:
+          imageCompletion(nil)
+        }
       }
     }
   }
