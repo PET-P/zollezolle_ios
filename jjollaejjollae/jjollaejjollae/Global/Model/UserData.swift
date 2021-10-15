@@ -10,8 +10,9 @@ import Foundation
 struct UserData: Codable {
   let id: String
   let admin: Bool
-  let email, nick, accountType: String
-  let phone: String?
+  var email, nick: String
+  var accountType: AccountType
+  var phone: String?
   let representPet: String?
   var pets: [PetData]
   
@@ -22,4 +23,18 @@ struct UserData: Codable {
   }
 }
 
+enum AccountType: String, Codable {
+  case local
+  case social
+  case unknown
+}
+extension AccountType {
+  init(from decoder: Decoder) throws {
+    guard let value = try? decoder.singleValueContainer().decode(String.self) else {
+      self = .unknown
+      return
+    }
+    self = AccountType(rawValue: value) ?? .unknown
+  }
+}
 

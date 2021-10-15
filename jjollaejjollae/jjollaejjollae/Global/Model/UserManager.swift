@@ -33,6 +33,12 @@ class UserManager {
   
   private var AppUser: UserData?
   
+  var isLogged: Bool {
+    get {
+      return AppUser != nil
+    }
+  }
+  
   //User를 직접 받을 수 있을때
   var UserInfo: UserData? {
     get {
@@ -41,6 +47,15 @@ class UserManager {
     set {
       self.AppUser = newValue
     }
+  }
+  
+  func deleteUser(){
+    //전역변수 제거
+    userIdandToken = nil
+    AppUser = nil
+    //Keychain 제거
+    LoginManager.shared.deleteFromKeyChain(account: "accessToken")
+    LoginManager.shared.deleteFromKeyChain(account: "refreshToken")
   }
   
 }
