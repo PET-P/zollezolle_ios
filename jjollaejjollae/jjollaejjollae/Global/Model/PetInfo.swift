@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import KakaoSDKTalk
 
 //id값이 없는 pet 정보
-struct PetInfo {
+struct PetInfo: Encodable {
   var name: String = ""
   var age: Int?
   var sex: Sex = .male
