@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(windowScene: windowScene)
-    let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
+    
     
     
     //인터넷연결 오류시 발생하는 것
@@ -39,9 +39,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //      mainTabBarController.present(AlertController, animated: true, completion: nil)
 //      return
 //    }
-    
-
-    
     
     if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken"),
        let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
@@ -67,8 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     waitingGroup.notify(queue: .main) { [weak self] in
       guard let self = self else {return}
       if !self.isLogged {
-        guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView")
-                as? LoginViewController else {return}
+        guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
         let navigationController = UINavigationController(rootViewController: loginVC)
         navigationController.setNavigationBarHidden(true, animated: false)
         self.window?.rootViewController = loginVC

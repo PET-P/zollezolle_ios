@@ -24,14 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
     } else {
       window = UIWindow()
-      let storyboard = UIStoryboard(name: "LoginView", bundle: nil)
       if !isLogged {
-        guard let loginVC = storyboard.instantiateViewController(identifier: "LoginView") as? LoginViewController else {return false}
+        guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return false}
         window?.rootViewController = loginVC
       } else {
         //TODO: 여기다가 homeVC에 대한 내용 작성
-        guard let homeVC = storyboard.instantiateViewController(identifier: "homeView") as? LoginViewController else {return false}
-        window?.rootViewController = homeVC
+//        guard let homeVC = storyboard.instantiateViewController(identifier: "homeView") as? LoginViewController else {return false}
+        window?.rootViewController = MainTabBarController()
       }
       window?.overrideUserInterfaceStyle = .light
       window?.makeKeyAndVisible()
