@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecentSearchViewController: UIViewController, StoryboardInstantiable {
+class RecentSearchViewController: UIViewController, StoryboardInstantiable, Searchable {
   
   private lazy var searchManager = SearchManager.shared
   private var list = [String]()
@@ -28,9 +28,6 @@ class RecentSearchViewController: UIViewController, StoryboardInstantiable {
     NotificationCenter.default.addObserver(self, selector: #selector(updateList(_:)),
                                            name: Notification.Name("updateListNotification"),
                                            object: nil)
-  }
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +77,10 @@ extension RecentSearchViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     //서버로 바로 이동하면서
     //text값 가지고 다른화면으로 이동하기
+    let text =  list[indexPath.row]
+    // 혹시나 있을 양 옆 공백을 없애기 위한 작업
+    let nextVC = sendRightVC(by: text)
+    self.navigationController?.pushViewController(nextVC, animated: true)
   }
   
 }
