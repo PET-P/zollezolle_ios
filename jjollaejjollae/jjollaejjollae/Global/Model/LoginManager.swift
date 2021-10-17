@@ -32,6 +32,11 @@ struct LoginManager {
     return passwordtesting.evaluate(with: password)
   }
   
+  func isValidPhoneNumber(phone: String) -> Bool {
+    let phoneRegEx = "^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$"
+    return NSPredicate(format: "SELF MATCHES %@", phoneRegEx).evaluate(with: phone)
+  }
+  
   func isPasswordVerified(password: String?, confirmation: String?) -> Int {
     guard let password = password else {
       return 2
