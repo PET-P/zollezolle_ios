@@ -157,13 +157,9 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapProvisionButton(_ sender: UIButton) {
-    //        StorageService.shared.uploadImage(img: UIImage(named: "IMG_4930")!, imageName: "빵이")
     guard let provisionVC = ProvisionViewController.loadFromStoryboard() as? ProvisionViewController else {return}
     provisionVC.modalPresentationStyle = .fullScreen
     self.present(provisionVC, animated: true, completion: nil)
-    
-    //    APIService.shared.downloadImage(keyName: "거미")
-    
   }
   
   @IBAction private func didTapContinueButton(_ sender: UIButton) {
@@ -219,7 +215,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     }
     dispatchGroup.notify(queue: .main) { [weak self] in
       self?.kakaoUserInfo(completion: { email, nick, phone in
-        APIService.shared.socialLogin(email: email, nick: nick, phone: phone) { result in
+        APIService.shared.socialLogin(email: email, nick: nick, phone: phone, accountType: AccountType.kakao) { result in
           switch result {
           case .success(let data):
             guard let accessToken = data.accessToken else {return}
@@ -227,13 +223,14 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
             LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
             LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
             UserManager.shared.userIdandToken = (data.id, data.accessToken)
+            self?.navigationController?.pushViewController(MainTabBarController(), animated: true)
           case .failure(let error):
             print(error)
           }
         }
       })
-      self?.navigationController?.pushViewController(MainTabBarController(), animated: true)
     }
+//    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
   }
   
   @IBAction private func didTapAppleLoginButton(_ sender: UIButton) {
@@ -342,7 +339,7 @@ extension LoginViewController: StoryboardInstantiable {
         return}
       APIService.shared.socialLogin(email: naverUser.email,
                                     nick: naverUser.nick,
-                                    phone: naverUser.phone) { (result) in
+                                    phone: naverUser.phone, accountType: AccountType.naver) { (result) in
         switch result {
         case .success(let data):
           guard let accessToken = data.accessToken else {return}
@@ -437,7 +434,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     
     // 로그인이 되서 관련 정보를 받아왔다면 블록풀어주고 우리서버와 통신시작
     dispatchGroup.notify(queue: .main) {
-      APIService.shared.socialLogin(email: ID, nick: nick, phone: "") { [self] (result) in
+      APIService.shared.socialLogin(email: ID, nick: nick, phone: "", accountType: AccountType.apple) { [self] (result) in
         switch result {
         case .success(let data):
           guard let accessToken = data.accessToken else {return}

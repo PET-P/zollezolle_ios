@@ -22,7 +22,7 @@ enum APITarget {
   case findPassword(email: String) //비밀번호 찾기
   case tempPassword(email: String) //임시비밀번호
   case naver(authorization: String)
-  case socialLogin(email: String, nick: String, phone: String)
+  case socialLogin(email: String, nick: String, phone: String, accountType: String)
   case patchPetInfo(token: String, userId: String, petId: String, pets: [PetData])
   case search(keyword: String)
   case readAllPosts
@@ -136,8 +136,8 @@ extension APITarget: TargetType {
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
     case .naver, .search, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readFolder, .readUser, .readAllUsers, .readPets, .patchMyInfo, .deleteUser, .tempPassword:
       return .requestPlain
-    case .socialLogin(let email, let nick, let phone):
-      return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone], encoding: JSONEncoding.default)
+    case .socialLogin(let email, let nick, let phone, let accountType):
+      return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone, "accountType": accountType], encoding: JSONEncoding.default)
     case .patchPetInfo(_, _, _, let pets):
       return .requestParameters(parameters: ["pets": pets], encoding: JSONEncoding.default)
     case .createWishlistFolder(_, let userId, let folder):
