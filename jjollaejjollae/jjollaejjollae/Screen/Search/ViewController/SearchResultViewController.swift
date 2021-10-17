@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchResultViewController: UIViewController {
+class SearchResultViewController: UIViewController, StoryboardInstantiable {
   //MARK: - IBOUTLET
   
   @IBOutlet weak var headView: UIView! {
@@ -24,6 +24,10 @@ class SearchResultViewController: UIViewController {
   @IBOutlet weak var searchTextField: UITextField! {
     didSet {
       searchTextField.setRounded(radius: nil)
+      //get
+      searchTextField.text = SearchManager.shared.searchText
+      searchTextField.returnKeyType = .search
+      searchTextField.delegate = self
     }
   }
   @IBOutlet weak var restaurantButton: RoundButton!
@@ -61,7 +65,6 @@ class SearchResultViewController: UIViewController {
   }
   @IBOutlet weak var filterStackView: UIStackView!
   @IBOutlet weak var NumberLabelfilterStackView: UIStackView!
-  
   @IBOutlet weak var tableViewTop: NSLayoutConstraint!
   
   //MARK: - variable & constant
@@ -81,25 +84,6 @@ class SearchResultViewController: UIViewController {
   private var searchResultDataSources: [UITableViewDataSource] = []
   private var dataList = [SearchResultInfo]()
   lazy var likes: [Int : Int] = [:]
-//  private var oldDates: [Date?] = [Date()
-//                                   , Calendar.current.date(byAdding: .day, value: 1, to: Date())]
-//  private var dates: [Date?] = [Date(),
-//                                Calendar.current.date(byAdding: .day, value: 1, to: Date())] {
-//    didSet {
-//      if !dates.contains(nil) {
-//        let firstDay = (dates.first!)!
-//        let lastDay = (dates.last!)!
-//        setScheduleButton.setTitle(
-//          "\(firstDay.dateForSeachResult()) - \(lastDay.dateForSeachResult())", for: .normal)
-//        oldDates = dates
-//      } else {
-//        let oldFirstDay = (oldDates.first!)!
-//        let oldLastDay = (oldDates.last!)!
-//        setScheduleButton.setTitle(
-//          "\(oldFirstDay.dateForSeachResult()) - \(oldLastDay.dateForSeachResult())", for: .normal)
-//      }
-//    }
-//  }
   
   let accommodationDataSource = AccommodationDataSource()
   let restaurantDataSource = RestaurantDataSource()
@@ -114,46 +98,30 @@ class SearchResultViewController: UIViewController {
   private var selectedButton = UIButton()
   private let headerHeight: CGFloat = 80
 //  private var totalHeight: CGFloat = 0
-  private var mode = true { // true: 지역검색후 넘어오는 화면, false: 카페라고만 치는 경우
-    didSet {
-     updatedModeUI()
-      resultTableView.reloadData()
+  
+  private var mode = true  // true: 지역검색후 넘어오는 화면, false: 카페라고만 치는 경우
+  
+  private func setMode() {
+    let text = SearchManager.shared.searchText
+    switch text {
+    case "카페", "맛집", "레스토랑", "숙소", "명소", "관광지":
+      self.mode = false
+    default:
+      self.mode = true
     }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    //MARK: - KEYBOARD
-    let tapGesture = UITapGestureRecognizer(
-      target: view,
-      action: #selector(view.endEditing(_:)))
-    tapGesture.cancelsTouchesInView = false
-    view.addGestureRecognizer(tapGesture)
-    searchTextField.returnKeyType = .search
-    searchTextField.delegate = self
-    
-    //MARK: - resultTableView setup
-    resultTableView.delegate = self
-    resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
-    resultTableView.isUserInteractionEnabled = true
-    accommodationDataSource.dataList = modelController.accommoList
-    restaurantDataSource.dataList = modelController.restaurantList
-    cafeDataSource.dataList = modelController.cafeList
-    landmarkDataSource.dataList = modelController.landmarkList
-    searchResultDataSources = [accommodationDataSource,
-                               restaurantDataSource,
-                               cafeDataSource,
-                               landmarkDataSource]
-    resultTableView.dataSource = searchResultDataSources[0]
-    self.dataList = accommodationDataSource.dataList
-    resultTableView.tableFooterView = UIView(frame: CGRect.zero)
-    resultTableView.separatorStyle = .none
     setLocationFilterButtonUI()
+    setMode()
+    updatedModeUI()
     
-    
+    setupReviewTableView()
 //    defaultHeight = HeightTobeDynamioc.constant
     
     //MARK: - gotoMapButton setting
+    
     view.addSubview(goToMapButton)
     goToMapButton.translatesAutoresizingMaskIntoConstraints = false
     goToMapButton.roundedButton(cornerRadius: nil)
@@ -168,6 +136,29 @@ class SearchResultViewController: UIViewController {
     updatedModeUI()
   }
   
+  //MARK: - resultTableView setup
+  private func setupReviewTableView() {
+    resultTableView.delegate = self
+    resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
+    resultTableView.isUserInteractionEnabled = true
+    accommodationDataSource.dataList = modelController.accommoList
+    restaurantDataSource.dataList = modelController.restaurantList
+    cafeDataSource.dataList = modelController.cafeList
+    accommodationDataSource.setCallerVC(viewController: self)
+    restaurantDataSource.setCallerVC(viewController: self)
+    landmarkDataSource.setCallerVC(viewController: self)
+    cafeDataSource.setCallerVC(viewController: self)
+    landmarkDataSource.dataList = modelController.landmarkList
+    searchResultDataSources = [accommodationDataSource,
+                               restaurantDataSource,
+                               cafeDataSource,
+                               landmarkDataSource]
+    resultTableView.dataSource = searchResultDataSources[0]
+    self.dataList = accommodationDataSource.dataList
+    resultTableView.tableFooterView = UIView(frame: CGRect.zero)
+    resultTableView.separatorStyle = .none
+  }
+
   private func updatedModeUI() {
     if mode {
       NumberLabelfilterStackView.isHidden = false
@@ -252,25 +243,10 @@ class SearchResultViewController: UIViewController {
   }
   
   @IBAction private func didTapBackButton(_ sender: UIButton) {
-    self.navigationController?.popToRootViewController(animated: true)
+    self.navigationController?.popViewController(animated: true)
   }
   
-//  @IBAction private func didTapSetScheduleButton(_ sender: UIButton) {
-//    let calendarStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
-//    guard let calendarVC = calendarStoryboard.instantiateViewController(
-//            identifier: "CalendarViewController") as? CalendarViewController else {return}
-//    if !dates.contains(nil) {
-//      calendarVC.setDefaultDateLabel(defaultDate: dates)
-//    } else {
-//      calendarVC.setDefaultDateLabel(defaultDate: oldDates)
-//    }
-//    calendarVC.dateCompletionHandler = {
-//      [weak self] days in
-//      self?.dates = days
-//      return days
-//    }
-//    present(calendarVC, animated: true)
-//  }
+
 }
 
 extension SearchResultViewController {
@@ -355,13 +331,51 @@ extension SearchResultViewController: UITableViewDelegate {
 }
 
 //MARK: - KEYBOARD
-extension SearchResultViewController: UITextFieldDelegate {
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//    var flag = false
-    guard searchTextField.text != "" else {return true}
-    searchManager.saveSearchHistory(with: searchTextField.text)
-    textField.resignFirstResponder()
-    return true
+extension SearchResultViewController: UITextFieldDelegate, Searchable {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    gotoSearchVC(from: self)
   }
 }
 
+
+
+
+//MARK: - NOT USE & later USE
+
+//  private var oldDates: [Date?] = [Date()
+//                                   , Calendar.current.date(byAdding: .day, value: 1, to: Date())]
+//  private var dates: [Date?] = [Date(),
+//                                Calendar.current.date(byAdding: .day, value: 1, to: Date())] {
+//    didSet {
+//      if !dates.contains(nil) {
+//        let firstDay = (dates.first!)!
+//        let lastDay = (dates.last!)!
+//        setScheduleButton.setTitle(
+//          "\(firstDay.dateForSeachResult()) - \(lastDay.dateForSeachResult())", for: .normal)
+//        oldDates = dates
+//      } else {
+//        let oldFirstDay = (oldDates.first!)!
+//        let oldLastDay = (oldDates.last!)!
+//        setScheduleButton.setTitle(
+//          "\(oldFirstDay.dateForSeachResult()) - \(oldLastDay.dateForSeachResult())", for: .normal)
+//      }
+//    }
+//  }
+
+
+//  @IBAction private func didTapSetScheduleButton(_ sender: UIButton) {
+//    let calendarStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
+//    guard let calendarVC = calendarStoryboard.instantiateViewController(
+//            identifier: "CalendarViewController") as? CalendarViewController else {return}
+//    if !dates.contains(nil) {
+//      calendarVC.setDefaultDateLabel(defaultDate: dates)
+//    } else {
+//      calendarVC.setDefaultDateLabel(defaultDate: oldDates)
+//    }
+//    calendarVC.dateCompletionHandler = {
+//      [weak self] days in
+//      self?.dates = days
+//      return days
+//    }
+//    present(calendarVC, animated: true)
+//  }

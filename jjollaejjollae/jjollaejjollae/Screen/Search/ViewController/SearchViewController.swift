@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, StoryboardInstantiable {
+
+class SearchViewController: UIViewController, StoryboardInstantiable, Searchable {
   
   @IBOutlet weak var headView: UIView! {
     didSet {
@@ -93,7 +94,6 @@ extension SearchViewController: UICollectionViewDelegate,
   func collectionView(_ collectionView: UICollectionView,
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath)
-    // TODO: 하드코딩을 안할수 있는 방향을 찾아보자
     display(contentController: childrenVC[indexPath.row], on: cell.contentView)
     return cell
   }
@@ -132,17 +132,11 @@ extension SearchViewController {
 //MARK: - delegate
 extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    guard searchTextField.text != "" else {return true}
+    guard let searchText = searchTextField.text else {return true}
     searchManager.saveSearchHistory(with: searchTextField.text)
     textField.resignFirstResponder()
-    let searchResultStoryboard = UIStoryboard(name: "SearchResult", bundle: nil)
-    guard let resultVC = searchResultStoryboard
-            .instantiateViewController(identifier: "SearchResultViewController")
-            as? SearchResultViewController else {
-      return true
-    }
-    
-    self.navigationController?.pushViewController(resultVC, animated: true)
+    let nextVC = self.sendRightVC(by: searchText)
+    self.navigationController?.pushViewController(nextVC, animated: true)
     self.hidesBottomBarWhenPushed = true
     return true
   }
