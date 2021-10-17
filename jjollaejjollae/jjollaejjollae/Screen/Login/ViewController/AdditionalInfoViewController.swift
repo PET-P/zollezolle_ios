@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AdditionalInfoViewController: UIViewController {
+class AdditionalInfoViewController: UIViewController, StoryboardInstantiable {
   
   @IBOutlet weak var titleLabel: UILabel! {
     didSet {
@@ -54,10 +54,23 @@ class AdditionalInfoViewController: UIViewController {
   @IBOutlet weak var stackView: UIStackView!
   @IBOutlet weak var scrollView: UIScrollView!
   
+  @IBOutlet weak var phoneErrorLabel: UILabel! {
+    didSet {
+      phoneErrorLabel.alpha = 0
+      phoneErrorLabel.textColor = UIColor.errorColor
+      phoneErrorLabel.font = UIFont.robotoMedium(size: 14)
+    }
+  }
+  
   private var signUpModel: SignUp = SignUp()
   var signUpData: SignUpData?
+  private var phoneNum = ""
   internal func setData(data: SignUp) {
     self.signUpModel = data
+  }
+  
+  func goToHome() {
+    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
   }
   
   override func viewDidLoad() {
@@ -105,6 +118,18 @@ class AdditionalInfoViewController: UIViewController {
     
   }
   
+  @IBAction func DidEndEditPhoneTextField(_ sender: UITextField) {
+    guard let phone = phoneNumberTextField.text else {return}
+    phoneNum = phone
+    if LoginManager.shared.isValidPhoneNumber(phone: phone) {
+      phoneErrorLabel.alpha = 0
+      phoneNumberTextField.changeUnderLine(borderColor: .themePaleGreen, width: self.view.frame.size.width)
+    } else {
+      phoneErrorLabel.alpha = 1
+      phoneNumberTextField.changeUnderLine(borderColor: .errorColor, width: self.view.frame.size.width)
+    }
+  }
+  
   @IBAction private func didTapStartButton(_ sender: UIButton) {
       //pop to homeVC
     guard let nick = nickNameTextField.text, let phone = phoneNumberTextField.text else {return}
@@ -124,10 +149,10 @@ class AdditionalInfoViewController: UIViewController {
         LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
         LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
         UserManager.shared.userIdandToken = (self.signUpData?.id, self.signUpData?.accessToken)
-//        let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
-//        guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
-//        dogInfoVC.isModalInPresentation = true
-//        self.present(dogInfoVC, animated: true, completion: nil)
+        let dogInfoStoryboard = UIStoryboard(name: "DogInfo", bundle: nil)
+        guard let dogInfoVC = dogInfoStoryboard.instantiateViewController(identifier: "DogInfoViewController") as? DogInfoViewController else { return }
+        dogInfoVC.isModalInPresentation = true
+        self.present(dogInfoVC, animated: true, completion: nil)
       case .failure(let error):
         print(error)
         if error >= 400 && error < 500 {

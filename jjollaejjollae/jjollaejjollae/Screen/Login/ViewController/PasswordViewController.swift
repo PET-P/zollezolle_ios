@@ -126,10 +126,22 @@ class PasswordViewController: UIViewController, StoryboardInstantiable {
   }
   //
   @IBAction private func didTapFindPasswordButton(_ sender: UIButton) {
-    guard let findPasswordVC = FindPasswordViewController.loadFromStoryboard()
-            as? FindPasswordViewController else {return}
-    findPasswordVC.setEmail(email: self.email)
-    self.navigationController?.pushViewController(findPasswordVC, animated: true)
+    let alert = UIAlertController(title: "아래 이메일로 임시비밀번호를 보내시겠습니까?", message: email, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "네", style: .default, handler: { action in
+      APIService.shared.tempPassword(email: self.email) { [weak self] result in
+        switch result {
+        case .success:
+          guard let findPasswordVC = FindPasswordViewController.loadFromStoryboard() as? FindPasswordViewController else {return}
+          guard let email = self?.email else {return}
+          findPasswordVC.setEmail(email: email)
+          self?.navigationController?.pushViewController(findPasswordVC, animated: true)
+        case .failure(let error):
+          print(#function, error)
+          self?.dismiss(animated: true, completion: nil)
+        }
+      }
+    }))
+  self.present(alert, animated: true, completion: nil)
   }
   
   @IBAction private func didTapBackButton(_ sender: UIButton) {
