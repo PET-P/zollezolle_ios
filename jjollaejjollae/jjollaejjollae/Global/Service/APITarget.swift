@@ -65,8 +65,8 @@ extension APITarget: TargetType {
       return "/auth"
     case .findPassword:
       return "/auth/password"
-    case .tempPassword(let email):
-      return "/auth/password?email=\(email)"
+    case .tempPassword:
+      return "/auth/password"
     case .naver:
       return ""
     case .socialLogin:
@@ -134,7 +134,7 @@ extension APITarget: TargetType {
                                              "phone": phone], encoding: JSONEncoding.default)
     case .findPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
-    case .naver, .search, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readFolder, .readUser, .readAllUsers, .readPets, .patchMyInfo, .deleteUser, .tempPassword:
+    case .naver, .search, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readFolder, .readUser, .readAllUsers, .readPets, .patchMyInfo, .deleteUser:
       return .requestPlain
     case .socialLogin(let email, let nick, let phone, let accountType):
       return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone, "accountType": accountType], encoding: JSONEncoding.default)
@@ -148,6 +148,8 @@ extension APITarget: TargetType {
       return .requestParameters(parameters: ["userId": userId, "placeId": placeId, "folderId": folderId, "region": region], encoding: JSONEncoding.default)
     case .createPet(_, _, let name, let age, let sex, let size, let weight, let type, let breed, let imageUrl, let isRepresent):
       return .requestParameters(parameters: ["name": name, "age": age, "sex": sex, "size": size, "weight": weight , "type": type, "breed": breed, "imageUrl": imageUrl, "isRepresent": isRepresent], encoding: JSONEncoding.default)
+    case .tempPassword(let email):
+      return .requestParameters(parameters: ["email": email], encoding: URLEncoding.queryString)
     }
   }
   
