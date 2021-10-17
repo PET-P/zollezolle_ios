@@ -55,8 +55,12 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
       self.navigationController?.pushViewController(provisionVC, animated: true)
     case 4:
       print("오픈소스")
+      guard let testVC = SearchWithLocationViewController.loadFromStoryboard() as? SearchWithLocationViewController else {return}
+      self.navigationController?.pushViewController(testVC, animated:   true)
     case 5:
       print("공지사항")
+      guard let searchVC = SearchViewController.loadFromStoryboard() as? SearchViewController else {return}
+      self.navigationController?.pushViewController(searchVC, animated: true)
     default:
       return
     }
