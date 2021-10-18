@@ -90,6 +90,13 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0L1-vK-uuh">
+                                                <rect key="frame" x="147" y="40" width="120" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="3ZY-zB-UmT"/>
+                                                    <constraint firstAttribute="height" constant="120" id="LFf-1H-0nU"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -97,6 +104,8 @@
                                             <constraint firstAttribute="trailing" secondItem="beu-dA-348" secondAttribute="trailing" id="2fC-dX-oQ0"/>
                                             <constraint firstAttribute="trailing" secondItem="Hnj-HE-tyK" secondAttribute="trailing" id="7My-La-OzQ"/>
                                             <constraint firstItem="J7h-wW-aZB" firstAttribute="top" secondItem="iur-eq-b7w" secondAttribute="top" constant="20" id="GjZ-Wm-GaA"/>
+                                            <constraint firstItem="0L1-vK-uuh" firstAttribute="centerX" secondItem="iur-eq-b7w" secondAttribute="centerX" id="KQM-OX-tWX"/>
+                                            <constraint firstItem="Hnj-HE-tyK" firstAttribute="top" secondItem="0L1-vK-uuh" secondAttribute="bottom" constant="40" id="OUd-bq-Cts"/>
                                             <constraint firstItem="Hnj-HE-tyK" firstAttribute="leading" secondItem="iur-eq-b7w" secondAttribute="leading" id="UHe-Oe-jRo"/>
                                             <constraint firstAttribute="bottom" secondItem="beu-dA-348" secondAttribute="bottom" id="k0R-D2-avM"/>
                                             <constraint firstItem="beu-dA-348" firstAttribute="top" secondItem="Hnj-HE-tyK" secondAttribute="bottom" id="osG-rW-wYk"/>
@@ -124,6 +133,7 @@
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="jeN-Hw-gDa" secondAttribute="trailing" id="0HP-vP-vRg"/>
                             <constraint firstItem="ysP-YS-JRe" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="EdB-4y-dXH"/>
+                            <constraint firstItem="0L1-vK-uuh" firstAttribute="top" secondItem="ysP-YS-JRe" secondAttribute="bottom" constant="40" id="ITz-4M-zvu"/>
                             <constraint firstItem="jeN-Hw-gDa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="UCJ-Id-qGv"/>
                             <constraint firstItem="iur-eq-b7w" firstAttribute="width" secondItem="ysP-YS-JRe" secondAttribute="width" id="Xnp-IF-Hw3"/>
                             <constraint firstAttribute="bottom" secondItem="jeN-Hw-gDa" secondAttribute="bottom" id="ZYF-xM-Iiu"/>
@@ -134,6 +144,7 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="beu-dA-348" id="FqG-Ik-vhF"/>
+                        <outlet property="imageViewWhenOne" destination="0L1-vK-uuh" id="fdV-qP-boq"/>
                         <outlet property="infoSegmentedControl" destination="Hnj-HE-tyK" id="aE9-Yh-22K"/>
                         <outlet property="profileCollectionView" destination="J7h-wW-aZB" id="vlt-fe-IVc"/>
                         <outlet property="scrollView" destination="jeN-Hw-gDa" id="S5V-rj-cPK"/>
