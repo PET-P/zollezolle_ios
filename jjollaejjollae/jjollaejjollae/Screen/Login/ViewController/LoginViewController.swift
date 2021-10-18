@@ -12,6 +12,7 @@ import KakaoSDKAuth
 import KakaoSDKUser
 import AuthenticationServices
 import Alamofire 
+import SafariServices
 
 @available(iOS 13.0, *)
 
@@ -157,9 +158,9 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapProvisionButton(_ sender: UIButton) {
-    guard let provisionVC = ProvisionViewController.loadFromStoryboard() as? ProvisionViewController else {return}
-    provisionVC.modalPresentationStyle = .fullScreen
-    self.present(provisionVC, animated: true, completion: nil)
+    if let url  = URL(string: "https://guttural-tumble-39b.notion.site/288b40e5a7ab48f39eb8d4616153d006") {
+      UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
   }
   
   @IBAction private func didTapContinueButton(_ sender: UIButton) {
