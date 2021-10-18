@@ -21,7 +21,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     }
   }
   
-  private let alphaVal = 0.4
+  private let alphaVal: CGFloat = 0.4
   let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
   
   @IBOutlet weak var nickTextField: UITextField! {

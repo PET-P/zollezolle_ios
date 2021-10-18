@@ -36,9 +36,9 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     infoTableView.dataSource = self
     setupHeader()
     infoTableView.tableFooterView = UIView(frame: CGRect.zero)
-    if #available(iOS 15.0, *) {
-      infoTableView.sectionHeaderTopPadding = 0
-    }
+//    if #available(iOS 15.0, *) {
+//      infoTableView.sectionHeaderTopPadding = 0
+//    }
     infoTableView.sectionFooterHeight = .leastNonzeroMagnitude
     infoTableView.alwaysBounceVertical = false
   }
