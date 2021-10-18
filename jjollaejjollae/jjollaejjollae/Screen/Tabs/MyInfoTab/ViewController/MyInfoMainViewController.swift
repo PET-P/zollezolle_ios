@@ -125,9 +125,10 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   
   @objc func gotoMyInfoDetail(_ sender: Any?) {
     if isLogged == false {
-      guard let loginVC = LoginViewController.loadFromStoryboard() as?
-              LoginViewController else {return}
-      self.navigationController?.pushViewController(loginVC, animated: true)
+      guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
+      let sceneDelegate = UIApplication.shared.connectedScenes
+              .first!.delegate as! SceneDelegate
+          sceneDelegate.window!.rootViewController = loginVC
     } else  {
       guard let detailVC = MyInfoDetailViewController.loadFromStoryboard() as?
               MyInfoDetailViewController else {return}

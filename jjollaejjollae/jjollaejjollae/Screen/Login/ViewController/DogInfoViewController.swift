@@ -298,12 +298,9 @@ class DogInfoViewController: FixModalViewController{
   }
   
   @IBAction func didTapContinueWithoutSaveButton(_ sender: UIButton) {
-    self.dismiss(animated: true, completion: nil)
-    let homeStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-    guard let homeVC = homeStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {
-      return
-    }
-    self.navigationController?.pushViewController(homeVC, animated: true)
+    let sceneDelegate = UIApplication.shared.connectedScenes
+            .first!.delegate as! SceneDelegate
+        sceneDelegate.window!.rootViewController = MainTabBarController()
   }
   
   @IBAction func didTapPetSizeButton(_ sender: UIButton) {
@@ -347,6 +344,9 @@ class DogInfoViewController: FixModalViewController{
               switch readuserResult {
               case .success(let data):
                 UserManager.shared.userInfo = data
+                let sceneDelegate = UIApplication.shared.connectedScenes
+                        .first!.delegate as! SceneDelegate
+                    sceneDelegate.window!.rootViewController = MainTabBarController()
               case .failure(let error):
                 fatalError("Error \(error)")
               }
@@ -356,10 +356,6 @@ class DogInfoViewController: FixModalViewController{
           }
         }
       }
-      
-      let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-      guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
-      self.navigationController?.pushViewController(homeMainVC, animated: true)
     }
   }
   
