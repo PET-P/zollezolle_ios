@@ -549,7 +549,7 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return cellType.count
+    return cellType.count < 6 ? cellType.count : 5
   }
   
   @objc func longpressedCell(_ sender: UILongPressGestureRecognizer) {
@@ -672,11 +672,6 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   func didTapImageView(indexPath: IndexPath?) {
     
     if let indexPath = indexPath {
-      if cellType.count > 5 { //5개 이상되면 + 삭제
-        self.cellType = self.cellType.dropLast()
-        dogProfileCollectionView.reloadData()
-        return
-      }
       if cellType[indexPath.row] == .plus && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         cellType.insert(.camera, at: cellType.count - 1)
         dogProfile.append(PetInfo())
