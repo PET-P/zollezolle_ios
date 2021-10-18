@@ -17,10 +17,9 @@ import SafariServices
 @available(iOS 13.0, *)
 
 class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDelegate{
-  
+ 
   private var naverUser: SocialUser?
   private var completionHandler: (() -> Void)?
-  
   
   @IBOutlet weak var emailTextField: UITextField! {
     didSet {
@@ -158,7 +157,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapProvisionButton(_ sender: UIButton) {
-    if let url  = URL(string: "https://guttural-tumble-39b.notion.site/288b40e5a7ab48f39eb8d4616153d006") {
+    if let url = URL(string: "https://guttural-tumble-39b.notion.site/288b40e5a7ab48f39eb8d4616153d006") {
       UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
   }
@@ -171,7 +170,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
       guard let self = self else {return}
       switch result  {
       case .success(_):
-        guard let passwordVC = PasswordViewController.loadFromStoryboard() as? PasswordViewController else {return}
+        guard let passwordVC = PasswordViewController.loadFromStoryboard() as?
+                PasswordViewController else {return}
         passwordVC.setEmail(email: self.emailTextField.text!)
         self.navigationController?.pushViewController(passwordVC, animated: true)
       case .failure(let error):
@@ -216,7 +216,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     }
     dispatchGroup.notify(queue: .main) { [weak self] in
       self?.kakaoUserInfo(completion: { email, nick, phone in
-        APIService.shared.socialLogin(email: email, nick: nick, phone: phone, accountType: AccountType.kakao) { result in
+        APIService.shared.socialLogin(email: email, nick: nick, phone: phone,
+                                      accountType: AccountType.kakao) { result in
           switch result {
           case .success(let data):
             guard let accessToken = data.accessToken else {return}
@@ -224,7 +225,9 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
             LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
             LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
             UserManager.shared.userIdandToken = (data.id, data.accessToken)
-            self?.navigationController?.pushViewController(MainTabBarController(), animated: true)
+            guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
+                    DogInfoViewController else {return}
+            self?.navigationController?.pushViewController(dogInfoVC, animated: true)
           case .failure(let error):
             print(error)
           }
@@ -271,7 +274,8 @@ extension LoginViewController {
       continueButtonColor = .themeGreen.withAlphaComponent(0.5)
       self.errorText = "올바른 형식의 email이 아닙니다."
     } else {
-      emailTextField.changeUnderLine(borderColor: .themePaleGreen, width: self.view.frame.size.width)
+      emailTextField.changeUnderLine(borderColor: .themePaleGreen,
+                                     width: self.view.frame.size.width)
       continueButtonColor = .themeGreen
       self.errorText = ""
     }
@@ -287,7 +291,9 @@ extension LoginViewController: StoryboardInstantiable {
   func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
     print("[Success] : Success Naver Login")
     getNaverInfo()
-    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+    guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
+            DogInfoViewController else {return}
+    self.navigationController?.pushViewController(dogInfoVC, animated: true)
   }
   
   func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
@@ -297,11 +303,11 @@ extension LoginViewController: StoryboardInstantiable {
   }
   
   func oauth20ConnectionDidFinishDeleteToken() {
-    
+    print("토큰 삭제")
   }
-  
   // error
-  func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
+  func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!,
+                         didFailWithError error: Error!) {
     print("Error : ", error.localizedDescription)
   }
   
@@ -416,16 +422,19 @@ extension LoginViewController: StoryboardInstantiable {
 
 //MARK: - Apple Social Login
 
-extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+extension LoginViewController: ASAuthorizationControllerDelegate,
+                               ASAuthorizationControllerPresentationContextProviding {
   
   func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
     return self.view.window!
   }
   
   //애플 로그인 성공
-  func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+  func authorizationController(controller: ASAuthorizationController,
+                               didCompleteWithAuthorization authorization: ASAuthorization) {
     dispatchGroup.enter()
-    guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {return}
+    guard let appleIDCredential = authorization.credential as?
+            ASAuthorizationAppleIDCredential else {return}
     let ID = appleIDCredential.user
     let givenName = appleIDCredential.fullName?.givenName ?? ""
     let familyName = appleIDCredential.fullName?.familyName ?? ""
@@ -435,7 +444,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     
     // 로그인이 되서 관련 정보를 받아왔다면 블록풀어주고 우리서버와 통신시작
     dispatchGroup.notify(queue: .main) {
-      APIService.shared.socialLogin(email: ID, nick: nick, phone: "", accountType: AccountType.apple) { [self] (result) in
+      APIService.shared.socialLogin(email: ID, nick: nick, phone: "",
+                                    accountType: AccountType.apple) { [self] (result) in
         switch result {
         case .success(let data):
           guard let accessToken = data.accessToken else {return}
@@ -443,7 +453,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
           LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
           LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
           UserManager.shared.userIdandToken = (data.id, accessToken)
-          self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+          guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
+                  DogInfoViewController else {return}
+          self.navigationController?.pushViewController(dogInfoVC, animated: true)
         case .failure(let error):
           print(error)
         }
