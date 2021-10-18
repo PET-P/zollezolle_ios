@@ -9,16 +9,18 @@ import UIKit
 
 class HomeLocationCollectionViewCell: UICollectionViewCell {
   
-  @IBOutlet weak var imageView: UIImageView!
+  static let identifier = "HomeLocationCollectionViewCell"
+  
+  @IBOutlet weak var mainImageView: UIImageView!
   
   @IBOutlet weak var titleLabel: UILabel!
   
   var image: UIImage? {
     get {
-      imageView.image
+      mainImageView.image
     }
     set {
-      imageView.image = newValue
+      mainImageView.image = newValue
     }
   }
   
@@ -41,6 +43,9 @@ class HomeLocationCollectionViewCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    
+    self.heightAnchor.constraint(equalToConstant: 72).isActive = true
+    self.widthAnchor.constraint(equalToConstant: 138).isActive = true
   }
     
 }

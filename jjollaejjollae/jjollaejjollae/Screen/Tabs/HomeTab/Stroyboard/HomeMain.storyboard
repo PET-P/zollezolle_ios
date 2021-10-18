@@ -231,6 +231,7 @@
                                         </constraints>
                                         <connections>
                                             <action selector="didTapSearchButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="xQS-v6-0NG"/>
+                                            <action selector="didTapSearchButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QFq-iK-FIA"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Search" translatesAutoresizingMaskIntoConstraints="NO" id="q6i-2b-EYE">
@@ -270,9 +271,9 @@
                     </view>
                     <size key="freeformSize" width="390" height="1200"/>
                     <connections>
-                        <outlet property="firstCollectionView" destination="UMu-dl-I3a" id="Vqe-sJ-dRF"/>
                         <outlet property="imageBackView" destination="w31-zw-rJh" id="vL4-ol-FQV"/>
                         <outlet property="imageBackViewHeightConstraint" destination="QwO-vD-GYg" id="TRy-bM-TLV"/>
+                        <outlet property="locationCollectionView" destination="UMu-dl-I3a" id="Vqe-sJ-dRF"/>
                         <outlet property="mainImageView" destination="vPt-eZ-rTd" id="CeJ-EI-p91"/>
                         <outlet property="mainScrollView" destination="zjA-Jw-zGT" id="n5B-9Z-Ta7"/>
                         <outlet property="searchButton" destination="uTf-Ts-Yso" id="znQ-1J-Hn2"/>
