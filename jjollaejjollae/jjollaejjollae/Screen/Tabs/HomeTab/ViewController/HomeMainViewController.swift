@@ -111,12 +111,6 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
     thirdCollectionView.register(locationCellNib, forCellWithReuseIdentifier: homeLocationCellNibName)
     
   }
-  
-  // MARK: - Custom
-  @IBAction func didTapSearchButton(_ sender: UIButton!) {
-    guard let searchVC = SearchViewController.loadFromStoryboard() as? SearchViewController else {return}
-    self.navigationController?.pushViewController(searchVC, animated: true)
-  }
 }
 
 extension HomeMainViewController: UIScrollViewDelegate {

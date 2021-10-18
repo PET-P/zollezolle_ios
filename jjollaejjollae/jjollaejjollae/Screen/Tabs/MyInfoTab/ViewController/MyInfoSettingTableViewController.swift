@@ -50,9 +50,9 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
       provisionVC.getMode(mode: Provisions.Terms)
       self.navigationController?.pushViewController(provisionVC, animated: true)
     case 3:
-      guard let provisionVC = ProvisionViewController.loadFromStoryboard() as? ProvisionViewController else {return}
-      provisionVC.getMode(mode: Provisions.Privacy)
-      self.navigationController?.pushViewController(provisionVC, animated: true)
+      if let url  = URL(string: "https://guttural-tumble-39b.notion.site/288b40e5a7ab48f39eb8d4616153d006") {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+      }
     case 4:
       print("오픈소스")
       guard let testVC = SearchWithLocationViewController.loadFromStoryboard() as? SearchWithLocationViewController else {return}
