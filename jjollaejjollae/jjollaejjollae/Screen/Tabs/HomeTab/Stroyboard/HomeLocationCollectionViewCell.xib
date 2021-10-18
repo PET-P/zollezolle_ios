@@ -15,7 +15,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeLocationCell" id="uSW-ed-jDF" customClass="HomeLocationCollectionViewCell" customModule="jjollaejjollae" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeLocationCollectionViewCell" id="uSW-ed-jDF" customClass="HomeLocationCollectionViewCell" customModule="jjollaejjollae" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="149" height="83"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LHQ-5T-xTZ">
@@ -45,7 +45,7 @@
             </collectionViewCellContentView>
             <size key="customSize" width="149" height="83"/>
             <connections>
-                <outlet property="imageView" destination="vBe-Vp-e6D" id="hcR-wu-fX5"/>
+                <outlet property="mainImageView" destination="vBe-Vp-e6D" id="hcR-wu-fX5"/>
                 <outlet property="titleLabel" destination="eIW-tI-L1r" id="bje-vV-PlQ"/>
             </connections>
             <point key="canvasLocation" x="-461.59420289855075" y="170.42410714285714"/>

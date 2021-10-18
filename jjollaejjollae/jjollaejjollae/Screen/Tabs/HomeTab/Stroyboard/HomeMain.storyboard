@@ -20,7 +20,7 @@
             <objects>
                 <viewController storyboardIdentifier="HomeMainViewController" id="Y6W-OH-hqX" customClass="HomeMainViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-Jw-zGT">
@@ -267,9 +267,9 @@
                     </view>
                     <size key="freeformSize" width="390" height="1200"/>
                     <connections>
-                        <outlet property="firstCollectionView" destination="UMu-dl-I3a" id="Vqe-sJ-dRF"/>
                         <outlet property="imageBackView" destination="w31-zw-rJh" id="vL4-ol-FQV"/>
                         <outlet property="imageBackViewHeightConstraint" destination="QwO-vD-GYg" id="TRy-bM-TLV"/>
+                        <outlet property="locationCollectionView" destination="UMu-dl-I3a" id="Vqe-sJ-dRF"/>
                         <outlet property="mainImageView" destination="vPt-eZ-rTd" id="CeJ-EI-p91"/>
                         <outlet property="mainScrollView" destination="zjA-Jw-zGT" id="n5B-9Z-Ta7"/>
                         <outlet property="searchButton" destination="uTf-Ts-Yso" id="znQ-1J-Hn2"/>
