@@ -56,10 +56,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    print("\(self)", #function)
     isLogged = UserManager.shared.isLogged
-    print("User ", UserManager.shared.userInfo)
-    print("isLogged? ", isLogged)
   }
   
   
@@ -105,6 +102,10 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     return label
   }()
   
+  deinit{
+    print(self, #function)
+  }
+  
   private func setupHeader() {
     let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 260))
     header.backgroundColor = .white
@@ -126,9 +127,11 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   @objc func gotoMyInfoDetail(_ sender: Any?) {
     if isLogged == false {
       guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
+      let newNaviController = UINavigationController(rootViewController: loginVC)
+      newNaviController.isNavigationBarHidden = true
       let sceneDelegate = UIApplication.shared.connectedScenes
               .first!.delegate as! SceneDelegate
-          sceneDelegate.window!.rootViewController = loginVC
+      sceneDelegate.window!.rootViewController = newNaviController
     } else  {
       guard let detailVC = MyInfoDetailViewController.loadFromStoryboard() as?
               MyInfoDetailViewController else {return}
@@ -182,8 +185,7 @@ extension MyInfoMainViewController: UITableViewDelegate {
         guard let myReviewVC = MyInfoReviewViewController.loadFromStoryboard() as? MyInfoReviewViewController else {return}
         self.navigationController?.pushViewController(myReviewVC, animated: true)
       case 1:
-        guard let testVC = DogInfoViewController.loadFromStoryboard() as? DogInfoViewController else {return}
-        self.navigationController?.pushViewController(testVC, animated: true)
+        print("이메일")
       case 2:
         guard let settingVC = MyInfoSettingViewController.loadFromStoryboard() as? MyInfoSettingViewController else {return}
         self.navigationController?.pushViewController(settingVC, animated: true)
