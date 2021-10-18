@@ -15,7 +15,8 @@ protocol Searchable: NSObject {
 extension Searchable {
   
   func gotoSearchVC(from caller: UIViewController) {
-    guard let searchVC = SearchViewController.loadFromStoryboard() as? SearchViewController else {return}
+    guard let searchVC = SearchViewController.loadFromStoryboard()
+            as? SearchViewController else {return}
     caller.navigationController?.popToViewController(searchVC, animated: true)
   }
   
@@ -23,11 +24,16 @@ extension Searchable {
     let afterTrimText = text.trimmingCharacters(in: .whitespacesAndNewlines)
     SearchManager.shared.searchText = afterTrimText
     switch afterTrimText {
-    case "제주", "속초", "강릉", "대구", "서울", "여수", "경주":
-      guard let searchLocationVC = SearchWithLocationViewController.loadFromStoryboard() as? SearchWithLocationViewController else {return SearchWithLocationViewController()}
+    case LocationName.jeju.description, LocationName.gyeongju.description,
+      LocationName.daegu.description, LocationName.gangneung.description,
+      LocationName.seoul.description, LocationName.sokcho.description,
+      LocationName.yeosu.description:
+      guard let searchLocationVC = SearchWithLocationViewController.loadFromStoryboard()
+              as? SearchWithLocationViewController else {return SearchWithLocationViewController()}
       return searchLocationVC
     default:
-      guard let searchResultVC = SearchResultViewController.loadFromStoryboard() as? SearchResultViewController else {return SearchResultViewController()}
+      guard let searchResultVC = SearchResultViewController.loadFromStoryboard()
+              as? SearchResultViewController else {return SearchResultViewController()}
       return searchResultVC
     }
   }
