@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SearchManager {
   
@@ -18,6 +19,17 @@ class SearchManager {
   private init() {
     recentSearchArray = getFromUserDefaults(for: searchKey.recentHistoryKey.rawValue)
     starSearchArray = getFromUserDefaults(for: searchKey.starSearchKey.rawValue)
+  }
+  
+  private var searchWord: String = ""
+  
+  var searchText: String {
+    get {
+      return searchWord
+    }
+    set {
+      searchWord = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
   }
   
   // 10가 넘어가면 하나 빼고 다시 넣기

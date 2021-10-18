@@ -35,6 +35,10 @@ class InfoView: UIView {
   }
   @IBOutlet weak var locationImageView: UIImageView!
   @IBOutlet weak var heartButton: UIButton!
+  private var CallerVC: UIViewController?
+  internal func setCallerVC(viewController: UIViewController) {
+    CallerVC = viewController
+  }
   
   var isWish: Bool? {
     didSet {
@@ -75,8 +79,13 @@ class InfoView: UIView {
       isWish = false
     } else  {
       isWish = true
+      guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
+        return
+      }
+      CallerVC?.present(wishListMainVC, animated: true, completion: nil)
     }
     sender.isSelected = !sender.isSelected
+    print("iswish: ", isWish, "sender.isselected: ", sender.isSelected)
   }
   
   override init(frame: CGRect) {

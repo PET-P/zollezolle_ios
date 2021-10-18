@@ -7,16 +7,13 @@
 
 import UIKit
 
-class SearchWithLocationViewController: UIViewController {
+class SearchWithLocationViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate, Searchable {
   @IBOutlet weak var SearchResultTableView: UITableView!
   
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
   private var dataList = [SearchResultInfo]()
   let modelController = ModelController()
   lazy var likes: [Int : Bool] = [:]
-  
-//  let cafeDataSource = CafeDataSource()
-//  private var searchResultDataSource: UITableViewDataSource =
   
   @IBOutlet weak var headView: UIView! {
     didSet {
@@ -26,6 +23,9 @@ class SearchWithLocationViewController: UIViewController {
   @IBOutlet weak var searchTextField: UITextField! {
     didSet {
       searchTextField.setRounded(radius: nil)
+      //get
+      searchTextField.text = SearchManager.shared.searchText
+      searchTextField.delegate = self
     }
   }
   @IBOutlet weak var backButton: UIView!
@@ -42,14 +42,14 @@ class SearchWithLocationViewController: UIViewController {
   }
   @IBOutlet weak var LocationView: UIImageView! {
     didSet {
-      LocationView.image = UIImage(named: "IMG_4930")
+      LocationView.image = UIImage(named: "\(SearchManager.shared.searchText)2")
       LocationView.setRounded(radius: 10)
     }
   }
   
   @IBOutlet weak var locationLabel: UILabel! {
     didSet {
-      locationLabel.text = "제주"
+      locationLabel.text = SearchManager.shared.searchText
       locationLabel.textColor = .white
       locationLabel.font = .robotoBold(size: 18)
     }
@@ -62,18 +62,11 @@ class SearchWithLocationViewController: UIViewController {
     }
   }
   
-  private var locationLabelText = "제주" {
-    didSet {
-      locationLabel.text = locationLabelText
-    }
-  }
-  
   private var locationNum = 10 {
     didSet {
       locationNumLabel.text = "\(locationNum)"
     }
   }
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -83,33 +76,28 @@ class SearchWithLocationViewController: UIViewController {
     SearchResultTableView.isUserInteractionEnabled = true
     dataList = modelController.cafeList
     LocationView.isUserInteractionEnabled = true
-    let locationTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLocationView))
-    LocationView.addGestureRecognizer(locationTapGesture)
+    setupGesture()
   }
   
-  @objc func didTapLocationView(_ sender: Any?) {
+  private func setupGesture() {
+    let locationTapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapLocationView))
+    LocationView.addGestureRecognizer(locationTapGesture)
     
   }
   
-//  private func setupHeader() {
-//    let header = UIView(frame: CGRect(x: 0, y: 0,
-//                                      width: self.view.frame.size.width,
-//                                      height: 170))
-//    header.backgroundColor = .white
-//    let locationImage = UIImageView()
-//    locationImage.image = UIImage(named: "IMG_4930")
-//    locationImage.setRounded(radius: 10)
-//    locationImage.translatesAutoresizingMaskIntoConstraints = false
-//    header.addSubview(locationImage)
-//    SearchResultTableView.tableHeaderView = header
-//
-//    locationImage.centerYAnchor.constraint(equalTo: header.centerYAnchor).isActive = true
-//    locationImage.centerXAnchor.constraint(equalTo: header.centerXAnchor).isActive = true
-//    locationImage.heightAnchor.constraint(equalToConstant: 120).isActive = true
-//    locationImage.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 70).isActive = true
-//    locationImage.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -70).isActive = true
-////    locationImage.widthAnchor.constraint(equalToConstant: 232).isActive = true
-//  }
+  @IBAction func didTapBackButton(_ sender: UIButton) {
+    self.navigationController?.popViewController(animated: true)
+  }
+  
+  @objc func didTapLocationView(_ sender: Any?) {
+    guard let searchResultVC = SearchResultViewController.loadFromStoryboard() as? SearchResultViewController else {return}
+    self.navigationController?.pushViewController(searchResultVC, animated: true)
+  }
+  
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    gotoSearchVC(from: self)
+  }
+  
 }
 
 extension SearchWithLocationViewController: UITableViewDelegate, UITableViewDataSource, SearchResultCellDelegate {
@@ -120,7 +108,6 @@ extension SearchWithLocationViewController: UITableViewDelegate, UITableViewData
       likes[placeId] = false
     }
   }
-  
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return dataList.count
@@ -157,10 +144,6 @@ extension SearchWithLocationViewController: UITableViewDelegate, UITableViewData
     
    return cell
   }
-  
-  
-  
-  
 }
 
 

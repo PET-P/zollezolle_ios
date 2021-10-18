@@ -204,7 +204,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     guard let usertype = UserManager.shared.userInfo?.accountType else {return}
     var secessionAlertController: UIAlertController!
     var ok: UIAlertAction!
-    if usertype.rawValue != "social" {
+    if usertype == .local {
       secessionAlertController = UIAlertController(title: "탈퇴하기", message: "회원탈퇴를 하시려면 안내 및 동의가 필요합니다.비밀번호를 입력해주세요", preferredStyle: .alert)
       secessionAlertController.addTextField { (password) in
         print("서버와 연동해서 password가 맞는지 확인을해야한딩")
@@ -225,23 +225,27 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
         }
       }
     } else {
+      if usertype == .unknown {return}
       secessionAlertController = UIAlertController(title: "탈퇴하기", message: "회원탈퇴를 하시려면 안내 및 동의가 필요합니다.", preferredStyle: .alert)
       ok = UIAlertAction(title: "진행하기", style: .default) { [weak self](ok) in
         guard let token = UserManager.shared.userIdandToken?.token else {return}
         guard let self = self else {return}
         guard let userId = self.infoData?.id else {return}
-        //Naver소셜로그인
-        self.loginInstance?.requestDeleteToken()
-        //카카오
-        UserApi.shared.unlink { (error) in
-          if let error = error {
-            print(error)
-          }
-          else {
-            print("카카오 연결끊기 성공")
+        
+        if usertype == .naver {self.loginInstance?.requestDeleteToken()}
+        else if usertype == .kakao {
+          UserApi.shared.unlink { (error) in
+            if let error = error {
+              print(error)
+            }
+            else {
+              print("카카오 연결끊기 성공")
+            }
           }
         }
-
+        else {
+          //apple login token 삭제
+        }
         APIService.shared.deleteUser(token: token, userId: userId) { [weak self] result in
           switch result{
           case .success:
@@ -253,10 +257,8 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
             print("errorCode: ", error)
           }
         }
-        
       }
     }
-    
     let cancel = UIAlertAction(title: "취소", style: .cancel) { (cancel) in
       print("탈퇴안하기")
     }
@@ -266,7 +268,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   }
   
   private func verifySocial(){
-    if infoData?.accountType.rawValue == "social" {
+    if infoData?.accountType.rawValue != "local" {
       infoItemsLabel[1].isHidden = true
       phoneStackView.isHidden = true
       blockView.isHidden = true

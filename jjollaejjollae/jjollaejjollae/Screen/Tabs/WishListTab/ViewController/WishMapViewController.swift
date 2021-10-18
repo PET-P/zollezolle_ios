@@ -79,6 +79,7 @@ class WishMapViewController: MapViewController {
     mapExtent()
     mapInfoView.isHidden = true
     mapInfoView.isUserInteractionEnabled = true
+    mapInfoView.setCallerVC(viewController: self)
     mapView.isRotateGestureEnabled = false
   }
   

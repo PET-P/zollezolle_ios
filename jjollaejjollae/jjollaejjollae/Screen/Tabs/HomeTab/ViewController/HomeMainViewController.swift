@@ -150,41 +150,11 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
 
 
 extension HomeMainViewController: UICollectionViewDataSource {
-  
-  enum Location: CaseIterable {
-    case seoul
-    case sokcho
-    case gangneung
-    case yeosu
-    case gyeongju
-    case daegu
-    case jeju
-    
-    var description: String {
-      
-      switch self {
-        case .seoul:
-          return "서울"
-        case .sokcho:
-          return "속초"
-        case .gangneung:
-          return "강릉"
-        case .yeosu:
-          return "여수"
-        case .gyeongju:
-          return "경주"
-        case .daegu:
-          return "대구"
-        case .jeju:
-          return "제주"
-      }
-    }
-  }
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     if collectionView === locationCollectionView {
-      return Location.allCases.count
+      return LocationName.allCases.count
     }
 
     return 10
@@ -197,7 +167,7 @@ extension HomeMainViewController: UICollectionViewDataSource {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeLocationCollectionViewCell.identifier, for: indexPath)
       
       guard let locationCell = cell as? HomeLocationCollectionViewCell else { return UICollectionViewCell() }
-      locationCell.mainImageView.image = UIImage(named: Location.allCases[indexPath.item].description)
+      locationCell.mainImageView.image = UIImage(named: LocationName.allCases[indexPath.item].description)
       
       return locationCell
     } else {

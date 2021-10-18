@@ -25,7 +25,9 @@ struct UserData: Codable {
 
 enum AccountType: String, Codable {
   case local
-  case social
+  case naver
+  case kakao
+  case apple
   case unknown
 }
 extension AccountType {

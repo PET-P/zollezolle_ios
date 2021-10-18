@@ -10,6 +10,10 @@ import UIKit
 class SearchResultDataSource: NSObject, UITableViewDataSource {
   var dataList : [SearchResultInfo] = []
   lazy var likes: [Int: Bool] = [:]
+  private var CallerVC: UIViewController?
+  internal func setCallerVC(viewController: UIViewController) {
+    CallerVC = viewController
+  }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //    return list.count
@@ -59,6 +63,10 @@ extension SearchResultDataSource: SearchResultCellDelegate {
       //모델의 likes에 대한 Update
     } else {
       likes[placeId] = true
+      guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
+        return
+      }
+      CallerVC?.present(wishListMainVC, animated: true, completion: nil)
       //모델의 likes에 대한 Update
     }
   }
