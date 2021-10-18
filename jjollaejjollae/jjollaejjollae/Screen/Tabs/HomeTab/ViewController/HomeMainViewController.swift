@@ -117,6 +117,14 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
     
   }
   
+  // MARK: - IBAction
+  
+  @IBAction func didTapSearchButton(_ sender: UIButton!) {
+    guard let searchVC = SearchViewController.loadFromStoryboard() as? SearchViewController else { return }
+    
+    self.navigationController?.pushViewController(searchVC, animated: true)
+  }
+  
   // MARK: - Custom
   
   /**
