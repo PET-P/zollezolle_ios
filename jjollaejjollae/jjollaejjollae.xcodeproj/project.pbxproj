@@ -151,6 +151,7 @@
 		28FEC649271441E600C10B32 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FEC648271441E600C10B32 /* StorageService.swift */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
 		B6E1CA94B473B3CA80C4CEDB /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820F5ADB3D58C9A1E87E0B1D /* Pods_jjollaejjollae.framework */; };
+		DD37F673271D98E800C467DB /* String+postPositionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37F672271D98E800C467DB /* String+postPositionText.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
@@ -328,6 +329,7 @@
 		820F5ADB3D58C9A1E87E0B1D /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3F9B87D2CE07E0ABCFA5AEF /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
 		C4FFBB5FAC7467EB2483A6E6 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
+		DD37F672271D98E800C467DB /* String+postPositionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+postPositionText.swift"; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -413,12 +415,12 @@
 				2884A2FD26C8EC71004596C3 /* SearchManager.swift */,
 				2884A37626D7F3D3004596C3 /* Filters.swift */,
 				28E910BC26F0E2390093BF7C /* PetInfo.swift */,
+				283F240A26F8732E00CD8339 /* RefreshTokenData.swift */,
 				283F23F026F7117C00CD8339 /* WishListManager.swift */,
 				283F23F226F7133400CD8339 /* Wish.swift */,
 				283F23FA26F852E300CD8339 /* GenericResponse.swift */,
 				283F240C26F87F9C00CD8339 /* SimpleResponse.swift */,
 				283F23FC26F865E000CD8339 /* UserData.swift */,
-				283F240A26F8732E00CD8339 /* RefreshTokenData.swift */,
 				283F240826F8725C00CD8339 /* SignUpData.swift */,
 				2877C3A526FF79F2000E3233 /* SocialUser.swift */,
 				2877C3A726FF7A09000E3233 /* SignUp.swift */,
@@ -595,6 +597,7 @@
 				28E0D27E2709F78C007C4C2A /* UISegmentedControl+Extension.swift */,
 				28E0D2802709F7C6007C4C2A /* UIImage+Extension.swift */,
 				28FEC64227141FD800C10B32 /* UIImageView+Extension.swift */,
+				DD37F672271D98E800C467DB /* String+postPositionText.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1125,6 +1128,7 @@
 				28E0D27F2709F78C007C4C2A /* UISegmentedControl+Extension.swift in Sources */,
 				283F23F126F7117C00CD8339 /* WishListManager.swift in Sources */,
 				DDFFC17826FB1C05001FD04A /* WishlistViewController.swift in Sources */,
+				DD37F673271D98E800C467DB /* String+postPositionText.swift in Sources */,
 				28C6F62A27186A3600A961AB /* PagingManager.swift in Sources */,
 				28E0D2812709F7C6007C4C2A /* UIImage+Extension.swift in Sources */,
 				28317F112704C6AB009319CB /* CategoryTabbar.swift in Sources */,

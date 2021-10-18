@@ -51,6 +51,17 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
+  @IBOutlet weak var searchGuideLabel: UILabel! {
+    didSet {
+      searchGuideLabel.textColor = .gray03
+      
+      let representedPetName = representedPet?.name ?? "쪼꼬"
+      
+      let modifiedName = representedPetName.appendedPostPositionText()
+      searchGuideLabel.text = "\(modifiedName) 어디로 가볼까요?"
+    }
+  }
+  
   @IBOutlet weak var locationCollectionView: UICollectionView! {
     didSet {
       locationCollectionView.showsHorizontalScrollIndicator = false
@@ -74,6 +85,34 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
   
   private var userPetName: String? {
     return "쪼꼬"
+  }
+  
+  /**
+      사용자가 설정한 대표 반려동물을 반환하는 계산속성
+   */
+  
+  private var representedPet: PetData? {
+    
+    guard let userData = UserManager.shared.userInfo else { return nil }
+    
+    guard !(userData.pets.isEmpty) else { return nil }
+    
+    let petList = userData.pets
+    
+    var representedPet: PetData?
+    
+    petList.forEach { pet in
+      
+      if representedPet != nil  {
+        return
+      }
+      
+      if pet.isRepresent {
+        representedPet = pet
+      }
+    }
+    
+    return representedPet
   }
   
   /**
@@ -113,7 +152,6 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
     
   }
   
