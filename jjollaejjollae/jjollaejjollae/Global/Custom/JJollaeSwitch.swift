@@ -55,7 +55,7 @@ class JJollaeSwitch: UIButton {
     
     barView.backgroundColor = UIColor.themePaleGreen
     barView.layer.borderColor = UIColor.themePaleGreen.cgColor
-    barView.layer.borderWidth = 1
+    barView.layer.borderWidth = 0
     barView.layer.masksToBounds = true
     barView.clipsToBounds = true
     barView.layer.cornerRadius = barViewHeight / 2
@@ -70,7 +70,6 @@ class JJollaeSwitch: UIButton {
     circleView.backgroundColor = UIColor.white
     circleView.layer.masksToBounds = true
     circleView.layer.cornerRadius = circleView.frame.height / 2
-    print(circleView.bounds.height)
     self.addSubview(circleView)
   
     self.addSubview(circleLabel)
@@ -108,6 +107,10 @@ class JJollaeSwitch: UIButton {
     self.circleLabel.text = isOn
     self.isOnButtonTitle  = isOn
     self.isOffButtonTitle = isOff
+  }
+  
+  func setCircleRadius(round: CGFloat) {
+    self.circleView.layer.cornerRadius = round
   }
  
   
