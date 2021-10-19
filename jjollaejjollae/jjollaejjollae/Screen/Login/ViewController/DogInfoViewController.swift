@@ -624,9 +624,9 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   // collectionView 초기화
   private func addCollectionView() {
     let layout = CarouselLayout()
-    layout.itemSize = CGSize(width: dogProfileCollectionView.frame.size.width*0.796, height: dogProfileCollectionView.frame.size.height)
-    layout.sideItemScale = 1/3
-    layout.spacing = -100
+    layout.itemSize = CGSize(width: dogProfileCollectionView.frame.size.width*0.5, height: dogProfileCollectionView.frame.size.height)
+    layout.sideItemScale = 0.7
+    layout.spacing = -40
     layout.isPagingEnabled = true
     layout.sideItemAlpha = 0.5
     

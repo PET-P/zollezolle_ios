@@ -21,7 +21,7 @@ class CaraouselCell: UICollectionViewCell {
     imageView.image = UIImage(named: "camera")
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.contentMode = .scaleAspectFill
-    imageView.layer.cornerRadius = 50
+    imageView.layer.cornerRadius = imageView.frame.height * 0.85 / 2
     return imageView
   }()
 
@@ -39,22 +39,30 @@ class CaraouselCell: UICollectionViewCell {
   }
 
   required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+    super.init(coder: coder)
+    self.addSubview(self.dogImageView)
+    self.dogImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    self.dogImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    self.dogImageView.widthAnchor.constraint(equalTo: self.heightAnchor,
+                                             multiplier: 0.85).isActive = true
+    self.dogImageView.heightAnchor.constraint(equalTo: self.heightAnchor,
+                                              multiplier: 0.85).isActive = true
+    let tapGestureRecognizer = UITapGestureRecognizer(target: self,  action: #selector(self.imageTapped))
+    dogImageView.addGestureRecognizer(tapGestureRecognizer)
   }
 
   @objc func imageTapped() {
     self.delegate?.didTapImageView(indexPath: selectedIndexPath)
   }
   
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    layoutIfNeeded()
-    self.dogImageView.layer.cornerRadius = self.frame.height * 0.85 / 2
-    self.dogImageView.layer.masksToBounds = true
-    self.dogImageView.clipsToBounds = true
-//    self.layer.cornerRadius =  50
-    self.layer.borderColor = UIColor.clear.cgColor
-    self.layer.masksToBounds = true
-    self.clipsToBounds = true
-  }
+//  override func layoutSubviews() {
+//    super.layoutSubviews()
+//    self.dogImageView.layer.cornerRadius = self.frame.height * 0.85 / 2
+//    self.dogImageView.layer.masksToBounds = true
+//    self.dogImageView.clipsToBounds = true
+//    self.layer.borderColor = UIColor.clear.cgColor
+//    self.layer.masksToBounds = true
+//    self.clipsToBounds = true
+//    layoutIfNeeded()
+//  }
 }
