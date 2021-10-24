@@ -96,6 +96,7 @@
                     </view>
                     <connections>
                         <outlet property="SearchResultTableView" destination="C3x-YH-PP6" id="h3r-2O-ZSI"/>
+                        <outlet property="headerView" destination="y2j-c9-shP" id="W0T-Cm-zrT"/>
                         <outlet property="noInfoLabel" destination="n2L-Or-804" id="uCQ-46-YZL"/>
                         <outlet property="noInfoView" destination="w66-5v-OkG" id="ju4-rl-Lco"/>
                         <outlet property="searchTextField" destination="7pV-4u-LhN" id="IVw-nG-LgX"/>

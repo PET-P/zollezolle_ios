@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SearchResultViewController: UIViewController, StoryboardInstantiable {
+class SearchResultViewController: UIViewController, StoryboardInstantiable, SearchDataReceiveable {
+  
   //MARK: - IBOUTLET
   
   @IBOutlet weak var headView: UIView! {
@@ -39,6 +40,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
     didSet {
       setFilterButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
       setFilterButton.tintColor = .색44444
+      setFilterButton.isHidden = true
     }
   }
   @IBOutlet weak var numberOfResultLabel: UILabel! {
@@ -82,15 +84,21 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
   
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
   private var searchResultDataSources: [UITableViewDataSource] = []
-  private var dataList = [SearchResultInfo]()
+  var newDataList: [SearchResultData] = []
+  
+  private var dataList = [SearchResultData]()
   lazy var likes: [Int : Int] = [:]
+  
+  private var accomoList = [SearchResultData]()
+  private var cafeList = [SearchResultData]()
+  private var restaurantList = [SearchResultData]()
+  private var landmarkList = [SearchResultData]()
   
   let accommodationDataSource = AccommodationDataSource()
   let restaurantDataSource = RestaurantDataSource()
   let cafeDataSource = CafeDataSource()
   let landmarkDataSource = LandmarkDataSource()
   
-  let modelController = ModelController()
   let searchManager = SearchManager.shared
   private var defaultHeight: CGFloat  = 13
   private var buttons : [UIButton] = []
@@ -111,12 +119,34 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
+  private func categorizeSearchResult() {
+  
+    newDataList.forEach { (data) in
+      switch data.category {
+      case .accommodation:
+        accomoList.append(data)
+      case .cafe:
+        cafeList.append(data)
+      case .restaurant:
+        restaurantList.append(data)
+      case .landmark:
+        landmarkList.append(data)
+      case .unknown:
+        return
+      }
+    }
+    accommodationDataSource.newDataList = accomoList
+    cafeDataSource.newDataList = cafeList
+    restaurantDataSource.newDataList = restaurantList
+    landmarkDataSource.newDataList = landmarkList
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setLocationFilterButtonUI()
     setMode()
     updatedModeUI()
-    
+    categorizeSearchResult()
     setupReviewTableView()
 //    defaultHeight = HeightTobeDynamioc.constant
     
@@ -141,20 +171,17 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
     resultTableView.delegate = self
     resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     resultTableView.isUserInteractionEnabled = true
-    accommodationDataSource.dataList = modelController.accommoList
-    restaurantDataSource.dataList = modelController.restaurantList
-    cafeDataSource.dataList = modelController.cafeList
+    categorizeSearchResult()
     accommodationDataSource.setCallerVC(viewController: self)
     restaurantDataSource.setCallerVC(viewController: self)
     landmarkDataSource.setCallerVC(viewController: self)
     cafeDataSource.setCallerVC(viewController: self)
-    landmarkDataSource.dataList = modelController.landmarkList
     searchResultDataSources = [accommodationDataSource,
                                restaurantDataSource,
                                cafeDataSource,
                                landmarkDataSource]
     resultTableView.dataSource = searchResultDataSources[0]
-    self.dataList = accommodationDataSource.dataList
+    self.dataList = accommodationDataSource.newDataList
     resultTableView.tableFooterView = UIView(frame: CGRect.zero)
     resultTableView.separatorStyle = .none
   }
@@ -217,24 +244,16 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
     switch sender {
     case restaurantButton:
       resultTableView.dataSource = searchResultDataSources[1]
-      dataList = restaurantDataSource.dataList
-//      HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
-//      scheduleStackView.isHidden = true
+      dataList = restaurantDataSource.newDataList
     case landMarkButton:
       resultTableView.dataSource = searchResultDataSources[3]
-      dataList = landmarkDataSource.dataList
-//      HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
-//      scheduleStackView.isHidden = true
+      dataList = landmarkDataSource.newDataList
     case cafeButton:
       resultTableView.dataSource = searchResultDataSources[2]
-      dataList = cafeDataSource.dataList
-//      HeightTobeDynamioc.constant = 0 - setFilterButton.frame.height
-//      scheduleStackView.isHidden = true
+      dataList = cafeDataSource.newDataList
     case accommodationButton:
       resultTableView.dataSource = searchResultDataSources[0]
-      dataList = accommodationDataSource.dataList
-//      scheduleStackView.isHidden = false
-//      HeightTobeDynamioc.constant = defaultHeight
+      dataList = accommodationDataSource.newDataList
     default:
       return
     }
@@ -264,6 +283,7 @@ extension SearchResultViewController {
     }
     let reviewAction = UIAlertAction(title: "리뷰 많은순", style: .default) {
       [weak self] result in self?.setOrderButton.setTitle("리뷰 많은순▼", for: .normal)
+      
     }
     let recentAction = UIAlertAction(title: "최근 등록순", style: .default) { [weak self] result in
       self?.setOrderButton.setTitle("최근 등록순▼", for: .normal)
@@ -287,12 +307,12 @@ extension SearchResultViewController {
   }
 
   
-  @IBAction func didTapFilterButton(_ sender: UIButton) {
-    guard let filterVC = FilterViewController.loadFromStoryboard() as? FilterViewController else {return}
-    self.navigationController?.present(filterVC, animated: true, completion: nil)
-    // completion에서 data 보내줘야함
-    // 그렇다면??? userdefaults로 해야할듯?
-  }
+//  @IBAction func didTapFilterButton(_ sender: UIButton) {
+//    guard let filterVC = FilterViewController.loadFromStoryboard() as? FilterViewController else {return}
+//    self.navigationController?.present(filterVC, animated: true, completion: nil)
+//    // completion에서 data 보내줘야함
+//    // 그렇다면??? userdefaults로 해야할듯?
+//  }
 }
 
 //MARK: - tableviewDelegate
@@ -332,6 +352,7 @@ extension SearchResultViewController: UITableViewDelegate {
 
 //MARK: - KEYBOARD
 extension SearchResultViewController: UITextFieldDelegate, Searchable {
+  
   func textFieldDidBeginEditing(_ textField: UITextField) {
     gotoSearchVC(from: self)
   }

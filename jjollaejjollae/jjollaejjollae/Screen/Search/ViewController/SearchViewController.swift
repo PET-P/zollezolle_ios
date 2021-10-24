@@ -134,10 +134,29 @@ extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     guard let searchText = searchTextField.text else {return true}
     searchManager.saveSearchHistory(with: searchTextField.text)
-    textField.resignFirstResponder()
-    let nextVC = self.sendRightVC(by: searchText)
-    self.navigationController?.pushViewController(nextVC, animated: true)
-    self.hidesBottomBarWhenPushed = true
+    if let token = LoginManager.shared.loadFromKeychain(account: "accessToken") {
+      APIService.shared.search(token: token, keyword: searchText) { result in
+        switch result{
+        case .success(let data):
+          guard let nextVC = self.sendRightVC(by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          self.hidesBottomBarWhenPushed = true
+          self.navigationController?.pushViewController(nextVC, animated: true)
+        case .failure(let error):
+          print(self, #function, error)
+        }
+      }
+    } else {
+      APIService.shared.search(keyword: searchText) { (result) in
+        switch result {
+        case .success(let data):
+          guard let nextVC = self.sendRightVC(by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          self.hidesBottomBarWhenPushed = true
+          self.navigationController?.pushViewController(nextVC, animated: true)
+        case .failure(let error):
+          print(self, #function, error)
+        }
+      }
+    }
     return true
   }
 }
