@@ -24,21 +24,28 @@ enum APITarget {
   case naver(authorization: String)
   case socialLogin(email: String, nick: String, phone: String, accountType: String)
   case patchPetInfo(token: String, userId: String, petId: String, pets: [PetData])
-  case search(keyword: String)
+  case search(token: String, keyword: String)
+  case noLoginSearch(keyword: String)
+  case nearPlace(lat: String, lng: String)
   case readAllPosts
   case readPost(postId: String)
   case readWishlist(id: String)
-  case createWishlistFolder(token: String, userId: String, folder: Folder)
-  case patchFolder(token: String, userId: String, folderId: String, name: String, startDate: String, endDate: String)
-  case deleteFolder(token: String, userId: String, folderId: String, name: String, startDate: String, endDate: String)
+  case createFolder(token: String, userId: String, folder: Folder)
+  case patchFolder(token: String, userId: String, folderId: String, content: [String], name: String, startDate: String?, endDate: String?)
+  case deleteFolder(token: String, userId: String, folderId: String)
   case readFolder(token: String, userId: String, folderId: String)
-  case addPlaceInFolder(token: String, userId: String, placeId: String, folderId: String, region: String)
   case readUser(token: String, userId: String)
   case deleteUser(token: String, userId: String)
   case readAllUsers
   case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
   case readPets(token: String, userId: String)
   case patchMyInfo(token: String, userId: String)
+  case readReview(token: String, userId: String)
+  case readPlaceReview(token: String, placeId: String)
+  case noLoginReadReview(placeId: String)
+  case deleteReview(reviewId: String)
+  case addPlaceInFolder(userId: String, placeId: String, folderId: String, region: String)
+  case deletePlaceInFolder(userId: String, folderId: String, placeId: String)
 }
 
 extension APITarget: TargetType {
@@ -73,18 +80,18 @@ extension APITarget: TargetType {
       return "/auth/social"
     case .patchPetInfo(_, let userId, let petId, _):
       return "/users/\(userId)/pets/\(petId)"
-    case .search(let keyword):
-      return "/search?keyword=\(keyword)"
+    case .search, .noLoginSearch:
+      return "/search"
     case .readAllPosts:
       return "/posts"
     case .readPost(let postId):
       return "/posts/\(postId)"
     case .readWishlist(let id):
       return "/wishlist/\(id)"
-    case .createWishlistFolder:
+    case .createFolder:
       return "/wishlist"
-    case .patchFolder(_, let userId, let folderId, _, _, _), .deleteFolder(_, let userId,let folderId, _, _, _), .readFolder(_, let userId, let folderId):
-      return "/wishlist/\(userId)?folderId=\(folderId)"
+    case .patchFolder(_, let userId, let folderId, _, _, _, _), .deleteFolder(_, let userId, let folderId), .readFolder(_, let userId, let folderId):
+      return "/wishlist/\(userId)"
     case .addPlaceInFolder:
       return "/wishlist/folder"
     case .readUser(_, let userId):
@@ -97,18 +104,26 @@ extension APITarget: TargetType {
       return "/users/\(userId)"
     case .deleteUser(_, let userId):
       return "/users/\(userId)"
+    case .readReview(_, _), .noLoginReadReview(_), .readPlaceReview(_, _):
+      return "/reviews"
+    case .deleteReview(let reviewId):
+      return "/reviews/\(reviewId)"
+    case .deletePlaceInFolder(let userId, _,_):
+      return "/wishlist/folder/\(userId)"
+    case .nearPlace:
+      return "/places/near"
     }
   }
   
   var method: Moya.Method {
     switch self {
-    case .refreshToken, .tempPassword, .naver, .search, .readAllPosts, .readPost, .readWishlist, .readFolder, .readUser, .readAllUsers, .readPets:
+    case .refreshToken, .tempPassword, .naver, .search, .noLoginSearch, .readAllPosts, .readPost, .readWishlist, .readFolder, .readUser, .readAllUsers, .readPets, .readReview, .readPlaceReview, .noLoginReadReview, .nearPlace:
       return .get
-    case .email, .login, .findPassword, .signup, .socialLogin, .addPlaceInFolder, .createPet, .createWishlistFolder:
+    case .email, .login, .findPassword, .signup, .socialLogin, .addPlaceInFolder, .createPet, .createFolder:
       return .post
     case .patchPetInfo, .patchFolder, .patchMyInfo:
       return .patch
-    case .deleteFolder, .deleteUser:
+    case .deleteFolder, .deleteUser, .deleteReview, .deletePlaceInFolder:
       return .delete
     }
   }
@@ -134,22 +149,36 @@ extension APITarget: TargetType {
                                              "phone": phone], encoding: JSONEncoding.default)
     case .findPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
-    case .naver, .search, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readFolder, .readUser, .readAllUsers, .readPets, .patchMyInfo, .deleteUser:
+    case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .patchMyInfo, .deleteUser, .deleteReview:
       return .requestPlain
     case .socialLogin(let email, let nick, let phone, let accountType):
       return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone, "accountType": accountType], encoding: JSONEncoding.default)
-    case .patchPetInfo(_, _, _, let pets):
-      return .requestParameters(parameters: ["pets": pets], encoding: JSONEncoding.default)
-    case .createWishlistFolder(_, let userId, let folder):
-      return .requestParameters(parameters: ["userId": userId, "folder": folder], encoding: JSONEncoding.default)
-    case .patchFolder(_, _, _, let name, let startDate, let endDate), .deleteFolder(_, _, _, let name, let startDate, let endDate):
-      return .requestParameters(parameters: ["name": name, "startDate": startDate, "endDate": endDate], encoding: JSONEncoding.default)
-    case .addPlaceInFolder(_, let userId, let placeId, let folderId, let region):
-      return .requestParameters(parameters: ["userId": userId, "placeId": placeId, "folderId": folderId, "region": region], encoding: JSONEncoding.default)
     case .createPet(_, _, let name, let age, let sex, let size, let weight, let type, let breed, let imageUrl, let isRepresent):
       return .requestParameters(parameters: ["name": name, "age": age, "sex": sex, "size": size, "weight": weight , "type": type, "breed": breed, "imageUrl": imageUrl, "isRepresent": isRepresent], encoding: JSONEncoding.default)
     case .tempPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: URLEncoding.queryString)
+    case .patchPetInfo(_, _, _, let pets):
+      return .requestParameters(parameters: ["pets": pets], encoding: JSONEncoding.default)
+      
+    case .createFolder(_, let userId, let folder):
+      return .requestParameters(parameters: ["userId": userId, "folder": folder], encoding: JSONEncoding.default)
+    case .patchFolder(_, _, let folderId, let content, let name, let startDate, let endDate):
+      return .requestCompositeParameters(bodyParameters: ["name": name, "startDate": startDate, "endDate": endDate, "content": content], bodyEncoding: JSONEncoding.default, urlParameters: ["folderId": folderId])
+    case .deleteFolder(_, _, let folderId), .readFolder(_, _, let folderId):
+      return .requestParameters(parameters: ["folderId": folderId], encoding: URLEncoding.queryString)
+    case .addPlaceInFolder(let userId, let placeId, let folderId, let region):
+      return .requestParameters(parameters: ["userId": userId, "placeId": placeId, "folderId": folderId, "region": region], encoding: JSONEncoding.default)
+    case .deletePlaceInFolder(_, let folderId, let placeId):
+      return .requestParameters(parameters: ["folderId": folderId, "placeId": placeId], encoding: URLEncoding.queryString)
+      
+    case .search(_, let keyword), .noLoginSearch(let keyword):
+      return .requestParameters(parameters: ["keyword": keyword], encoding: URLEncoding.queryString)
+    case .nearPlace(let lat, let lng):
+      return .requestParameters(parameters: ["latitude": lat, "longitude": lng], encoding: URLEncoding.queryString)
+    case .readReview(_, let userId):
+      return .requestParameters(parameters: ["userId": userId], encoding: URLEncoding.queryString)
+    case .readPlaceReview(_, let placeId), .noLoginReadReview(let placeId):
+      return .requestParameters(parameters: ["placeId": placeId], encoding: URLEncoding.queryString)
     }
   }
   
@@ -160,12 +189,12 @@ extension APITarget: TargetType {
   
   var headers: [String : String]? {
     switch self {
-    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .patchPetInfo, .search, .readAllPosts, .readPost, .readWishlist,  .readAllUsers:
+    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .patchPetInfo, .readAllPosts, .readPost, .readWishlist,  .readAllUsers, .noLoginSearch, .noLoginReadReview, .deleteReview, .patchFolder, .deleteFolder, .addPlaceInFolder, .deletePlaceInFolder, .nearPlace:
       return ["Content-Type" : "application/json"]
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
-    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .createWishlistFolder(let token, _, _), .patchFolder(let token, _,_,_,_,_), .deleteFolder(let token, _,_,_,_,_), .readFolder(let token,_,_), .addPlaceInFolder(let token,_,_,_,_):
+    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .createFolder(let token, _, _),  .readFolder(let token,_,_), .search(let token, _), .readReview(let token, _), .readPlaceReview(let token, _):
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
     case .naver(let authorization):
       return ["Authorization": authorization]
