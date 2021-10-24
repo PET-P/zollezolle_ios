@@ -8,7 +8,12 @@
 import UIKit
 import FSCalendar
 
-class WishCalendarViewController: UIViewController {
+protocol EditWishCalendarDelegate: NSObject {
+  func didChangeSchedule(startDate: Date?, endDate: Date?)
+  func didChangeWishListTitle(title: String)
+}
+
+class WishCalendarViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - IBOUTLET
   
@@ -116,6 +121,8 @@ class WishCalendarViewController: UIViewController {
   
   fileprivate var gregorian = Calendar(identifier: .gregorian)
   
+  weak var delegate: EditWishCalendarDelegate?
+  
   var data: Wish?
   
   func setData(data: Wish?){
@@ -182,7 +189,21 @@ class WishCalendarViewController: UIViewController {
   
   //MARK: - IBACTION
   @IBAction func didTapSaveButton(_ sender: UIButton) {
-    _ = dateCompletionHandler?([firstDate, lastDate])
+    guard let title = listTitleTextField.text else {return}
+    guard let token = UserManager.shared.userIdandToken?.token else {return}
+    guard let userId = UserManager.shared.userIdandToken?.userId else {return}
+    let folderId = "11"
+    delegate?.didChangeSchedule(startDate: firstDate, endDate: lastDate)
+    delegate?.didChangeWishListTitle(title: title)
+    APIService.shared.deleteFolder(token: token, userId: userId, folderId: folderId){
+      result in
+      switch result {
+      case .success(let data):
+        print(data)
+      case .failure(let error):
+        print(error)
+      }
+    }
     dismiss(animated: true, completion: nil)
   }
   

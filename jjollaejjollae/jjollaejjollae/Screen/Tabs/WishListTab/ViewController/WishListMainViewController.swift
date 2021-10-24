@@ -48,7 +48,8 @@ class WishlistMainViewController: UIViewController {
   // MARK: - IBActions
   
   @IBAction func didTapAddWishlist(_ sender: UIButton) {
-    print(#function)
+    guard let calendarWishListVC = WishCalendarViewController.loadFromStoryboard() as? WishCalendarViewController else {return}
+    self.present(calendarWishListVC, animated: true, completion: nil)
   }
   
   @IBAction func didTapShowEntireWishlist(_ sender: Any) {
