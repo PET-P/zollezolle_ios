@@ -52,7 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     instance?.appName = kServiceAppName
     //firebase
     FirebaseApp.configure()
-  
+    // 설정값 초기화
+    UserDefaults.standard.register(defaults: ["alarm":true])
     
     return true
   }

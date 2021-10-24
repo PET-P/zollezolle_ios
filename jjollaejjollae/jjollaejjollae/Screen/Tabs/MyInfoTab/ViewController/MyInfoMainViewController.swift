@@ -80,7 +80,12 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   lazy var disclosureIndicator: UIImageView = {
     let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
     imageview.contentMode = .scaleAspectFit
-    imageview.image = UIImage(named: "disclosure Indicator")
+    StorageService.shared.downloadUIImageWithURL(with: "//Users/abc/Desktop/Hack/애견동반숙소/애견카페/애견카페 세종시/헤이미쉬독/7ZGh1o63ZY7yX4Aes2VRFWil.jpg", imageCompletion: { (image) in
+      guard let image = image else {
+        return
+      }
+      imageview.image = image
+    })
     imageview.isUserInteractionEnabled = true
     imageview.translatesAutoresizingMaskIntoConstraints = false
     return imageview
@@ -183,6 +188,9 @@ extension MyInfoMainViewController: UITableViewDelegate {
       case 0:
         if isLogged == false {return}
         guard let myReviewVC = MyInfoReviewViewController.loadFromStoryboard() as? MyInfoReviewViewController else {return}
+        guard let userId = UserManager.shared.userIdandToken?.userId else {return}
+        guard let token = UserManager.shared.userIdandToken?.token else {return}
+        myReviewVC.getTokenAndUserId(token: token, userId: userId)
         self.navigationController?.pushViewController(myReviewVC, animated: true)
       case 1:
         print("이메일")
