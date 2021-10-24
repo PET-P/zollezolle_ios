@@ -10,9 +10,9 @@ import NMapsMap
 
 class SearchMapViewController: MapViewController {
   
-  private(set) var dataList: [SearchResultInfo]?
+  private(set) var dataList: [SearchResultData]?
   
-  internal func setDataList(with data: [SearchResultInfo]) {
+  internal func setDataList(with data: [SearchResultData]) {
     self.dataList = data
   }
   
@@ -30,7 +30,7 @@ class SearchMapViewController: MapViewController {
   private var markers: [NMFMarker]?
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.title = "\(dataList?.first?.location ?? "지도")"
+    navigationItem.title = "지도로 보기"
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -56,10 +56,10 @@ class SearchMapViewController: MapViewController {
   private func setMarker() {
     var markers = [NMFMarker]()
     dataList?.forEach { info in
-      let lat = info.coordinate.0
-      let lng = info.coordinate.1
+      guard let lat = Double(info.coordinate[0]) else {return}
+      guard let lng = Double(info.coordinate[1]) else {return}
       let marker = NMFMarker(position: NMGLatLng(lat: lat, lng: lng))
-      let imageName = info.sector.ImageDescription
+      let imageName = info.category.ImageDescription
       marker.iconImage = NMFOverlayImage(image: UIImage(named: imageName)!)
       markers.append(marker)
       marker.mapView = mapView
@@ -73,8 +73,8 @@ class SearchMapViewController: MapViewController {
     markers?.forEach { marker in
       marker.userInfo = ["tag": number]
       marker.userInfo.updateValue(dataList?[number] as Any, forKey: "data")
-      marker.userInfo.updateValue(dataList?[number].sector.ImageDescription as Any, forKey: "pin")
-      marker.userInfo.updateValue(dataList?[number].sector.selectedImageDescription as Any,
+      marker.userInfo.updateValue(dataList?[number].category.ImageDescription as Any, forKey: "pin")
+      marker.userInfo.updateValue(dataList?[number].category.selectedImageDescription as Any,
                                   forKey: "selectedPin")
       marker.touchHandler = {[weak self] (overlay: NMFOverlay) -> Bool in
         if self?.mapInfoView.isHidden == true {
@@ -111,16 +111,14 @@ class SearchMapViewController: MapViewController {
     }
     // lat 중에 가장 큰것은 first, 가장 작은것은 last
     let latlist = dataList.sorted {
-      return $0.coordinate.0 > $1.coordinate.0
+      return Double($0.coordinate.first!)! > Double($1.coordinate.first!)!
     }
     // lng중에 가장 큰 것은 first, 가장 작은은 last
     let longlist = dataList.sorted {
-      return $0.coordinate.1 > $1.coordinate.1
+      return Double($0.coordinate.last!)! > Double($1.coordinate.last!)!
     }
-    let minCoord: (Double, Double) = (latlist.last?.coordinate.0 ?? 0,
-                                      longlist.last?.coordinate.1 ?? 0 )
-    let maxCoord: (Double, Double) = (latlist.first?.coordinate.0 ?? 0 ,
-                                      longlist.first?.coordinate.1 ?? 0)
+    let minCoord: (Double, Double) = (Double(latlist.last?.coordinate.first ?? "0")!, Double(longlist.last?.coordinate.last ?? "0")!)
+    let maxCoord: (Double, Double) = (Double(latlist.first?.coordinate.first ?? "0")!, Double(longlist.first?.coordinate.last ?? "0")!)
     let distance = distanceBwtPoints(min: minCoord, max: maxCoord)
     let zoomLevel: Double = log2(Double(CGFloat(20088000.56607700 / distance)))
     let middleCoord: (Double, Double) = ((minCoord.0 + maxCoord.0) / 2,
