@@ -9,7 +9,7 @@ import Foundation
 import Security
 import CryptoKit
 
-struct LoginManager {
+final class LoginManager {
   
   static let shared = LoginManager()
   
