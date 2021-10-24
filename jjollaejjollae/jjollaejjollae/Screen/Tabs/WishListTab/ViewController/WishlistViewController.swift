@@ -10,10 +10,20 @@ struct TravelInfo {
   var location: String?
   var startDate: Date?
   var endDate: Date?
-  var locationList: [SearchResultInfo]?
+  var locationList: [SearchResultData]?
 }
 
-class WishlistViewController: UIViewController, StoryboardInstantiable {
+class WishlistViewController: UIViewController, StoryboardInstantiable, EditWishCalendarDelegate {
+  
+  func didChangeSchedule(startDate: Date?, endDate: Date?) {
+    travelInfo?.startDate = startDate
+    travelInfo?.endDate = endDate
+  }
+  
+  func didChangeWishListTitle(title: String) {
+    travelInfo?.title = title
+  }
+  
   
   //MARK: - IBOUTLET
   @IBOutlet weak var wishListTitle: UILabel! {
@@ -51,10 +61,9 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - Variables & constant
 
-  let modelController = ModelController()
   
-  private var dataList: [SearchResultInfo] = []
-  private var likes: [Int: Bool] = [:]
+  private var newDataList: [SearchResultData] = []
+  private var likes: [String: Bool] = [:]
   
   private var travelInfo: TravelInfo? {
     didSet {
@@ -72,8 +81,8 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
           locationAndDateLabel.text = nil
         }
       }
-      self.dataList = travelInfo?.locationList ?? []
-      wishListCountLabel.text = "\(self.dataList.count)개의 장소"
+      self.newDataList = travelInfo?.locationList ?? []
+      wishListCountLabel.text = "\(self.newDataList.count)개의 장소"
     }
   }
 
@@ -105,13 +114,12 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     wishListTableView.separatorStyle = .none
     wishListTableView.tableFooterView = UIView(frame: CGRect.zero)
     wishListTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: wishListTableView.frame.size.width, height: 10))
-    self.dataList = modelController.accommoList
     self.travelInfo = TravelInfo(
       title: "2021 쪼꼬랑 여름휴가",
       location: "제주시",
       startDate: Date(),
       endDate: Date(),
-      locationList: self.dataList
+      locationList: self.newDataList
     )
   }
   
@@ -132,7 +140,8 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
             identifier: "WishMapViewController") as? WishMapViewController else {
       return
     }
-    wishMapVC.setDataList(with: self.dataList)
+    //test를 위한 주석
+//    wishMapVC.setDataList(with: self.newDataList)
     wishMapVC.setTravelInfoData(with: (title: wishListTitle.text ?? "", locationAndDate: locationAndDateLabel.text))
     wishMapVC.modalPresentationStyle = .fullScreen
     present(wishMapVC, animated: true) {
@@ -181,10 +190,12 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
       }
       _ = wishCalendarVC.wishCompletionHandler?(wishModel)
 //      wishCalendarVC.setData(data: Wish())
+      wishCalendarVC.delegate = self
       present(wishCalendarVC, animated: true)
     })
-    let deleteOption = UIAlertAction(title: "삭제", style: .destructive) {_ in 
-      print("삭제하기")
+    let deleteOption = UIAlertAction(title: "삭제", style: .destructive) {_ in
+      guard let token = UserManager.shared.userIdandToken?.token else {return}
+      guard let userId = UserManager.shared.userIdandToken?.userId else {return}
     }
     optionActionSheetController.addAction(editOption)
     optionActionSheetController.addAction(deleteOption)
@@ -208,7 +219,7 @@ extension WishlistViewController: UITableViewDelegate {
 
 extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegate {
   
-  func didTapHeart(for placeId: Int, like: Bool) {
+  func didTapHeart(for placeId: String, like: Bool) {
     if like == true {
       likes[placeId] = false
     } else {
@@ -232,30 +243,17 @@ extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegat
     }
     
     cell.delegate = self
-    cell.placeId = dataList[indexPath.row].id
+    cell.placeId = newDataList[indexPath.row].id
     
-    let item = dataList[indexPath.row]
-    if let day = item.days, let address = item.location, let price = item.prices {
-      cell.DaysLabel.isHidden = false
-      cell.addressLabel.isHidden = false
-      cell.priceLabel.isHidden = false
-      cell.DaysLabel.text = "\(day)박 요금"
-      cell.addressLabel.text = address
-      cell.priceLabel.text = "\(price)원"
-    } else {
-      cell.addressLabel.text = nil
-      cell.DaysLabel.text = nil
-      cell.priceLabel.text = nil
-      cell.contentStackView.removeArrangedSubview(cell.addressLabel)
-    }
+    let item = newDataList[indexPath.row]
     
-    cell.locationNameLabel.text = item.name
-    cell.locationTypeLabel.text = item.type ?? ""
-    cell.numberOfReviewsLabel.text = "(\(item.numbers ?? 0))"
-    cell.starPointLabel.text = " \(item.points ?? 0)"
+    cell.locationNameLabel.text = item.title
+    cell.locationTypeLabel.text = nil
+    cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"
+    cell.starPointLabel.text = " \(item.reviewPoint ?? 0)"
     
     cell.isWish = likes[cell.placeId] == true
-    dataList[indexPath.row].like = likes[cell.placeId] == true
+    newDataList[indexPath.row].isWish = likes[cell.placeId] == true //이것의 이유?
     
     return cell
   }
