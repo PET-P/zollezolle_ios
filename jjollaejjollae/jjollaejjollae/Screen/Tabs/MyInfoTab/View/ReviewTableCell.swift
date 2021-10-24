@@ -58,6 +58,7 @@ class ReviewTableCell: UITableViewCell {
   }
   @IBOutlet weak var contentStackView: UIStackView!
   
+  @IBOutlet weak var tagStackView: UIStackView!
   @IBOutlet var tags: [UIButton]! {
     didSet {
       tags.forEach { (button) in
@@ -69,14 +70,16 @@ class ReviewTableCell: UITableViewCell {
     }
   }
   
-  let reviewImageView: ReviewImageView = {
-    let reviewView = ReviewImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 343), numberOfImage: 3)
-    reviewView.translatesAutoresizingMaskIntoConstraints = false
-    return reviewView
-  }()
+  var reviewIndex: Int = 0
+  var reviewId: String = ""
+  var imagesCount = 0
+  
+  var reviewImageView = ReviewImageView()
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    reviewImageView = ReviewImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 343), numberOfImage: imagesCount)
+    reviewImageView.translatesAutoresizingMaskIntoConstraints = false
     contentStackView.insertArrangedSubview(reviewImageView, at: 2)
     reviewImageView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor).isActive = true
     reviewImageView.heightAnchor.constraint(equalToConstant: 343).isActive = true
@@ -86,6 +89,10 @@ class ReviewTableCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
     
     // Configure the view for the selected state
+  }
+  
+  @IBAction func didTapDeleteButton(_ sender: UIButton!) {
+    NotificationCenter.default.post(name: NSNotification.Name("deleteReviewNotification"), object: index)
   }
   
 }

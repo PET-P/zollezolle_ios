@@ -62,6 +62,9 @@
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="삭제"/>
+                                        <connections>
+                                            <action selector="didTapDeleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cG6-J7-zG4"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -171,6 +174,7 @@
                 <outlet property="hundredLabel" destination="FJR-Z2-fUB" id="NMC-K8-O5d"/>
                 <outlet property="reviewLabel" destination="Fpt-93-Jgz" id="2Kq-hD-uwm"/>
                 <outlet property="starImageView" destination="IO8-OU-4WA" id="iyu-eE-q3b"/>
+                <outlet property="tagStackView" destination="Et3-fc-xgC" id="K5Y-2D-4OK"/>
                 <outlet property="thumbLabel" destination="FJR-Z2-fUB" id="eSz-Eg-h9c"/>
                 <outlet property="titleLabel" destination="fD6-ow-8cN" id="GYo-M8-DJf"/>
                 <outletCollection property="tags" destination="E3N-8t-pu3" collectionClass="NSMutableArray" id="WO0-WV-s9W"/>

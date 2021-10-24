@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qWq-kO-9bx">
-                                <rect key="frame" x="111" y="412" width="192" height="72.5"/>
+                                <rect key="frame" x="111" y="479.5" width="192" height="72.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="등록된 후기가 없어요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caH-R7-17n">
                                         <rect key="frame" x="0.0" y="0.0" width="192" height="23.5"/>
@@ -139,7 +139,7 @@
                             <constraint firstItem="s7j-Pu-zHr" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Qyn-5h-3Se"/>
                             <constraint firstItem="aDl-yB-3Dx" firstAttribute="width" secondItem="aDl-yB-3Dx" secondAttribute="height" multiplier="1:1" id="SIF-io-Tve"/>
                             <constraint firstItem="bEy-M0-QmW" firstAttribute="top" secondItem="aDl-yB-3Dx" secondAttribute="bottom" constant="30" id="SJJ-Zb-SYZ"/>
-                            <constraint firstItem="qWq-kO-9bx" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="U0J-SY-mUc"/>
+                            <constraint firstItem="qWq-kO-9bx" firstAttribute="centerY" secondItem="yT3-Tv-lCL" secondAttribute="centerY" id="Tfd-uz-RAO"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="yT3-Tv-lCL" secondAttribute="bottom" id="WfN-R5-1Fy"/>
                             <constraint firstItem="U25-VL-wIL" firstAttribute="centerY" secondItem="aDl-yB-3Dx" secondAttribute="centerY" id="cga-Qy-yyQ"/>
                             <constraint firstItem="s7j-Pu-zHr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="hWL-Bm-hw3"/>
