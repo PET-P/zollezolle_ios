@@ -7,22 +7,53 @@
 
 import UIKit
 
-protocol Searchable: NSObject {
+protocol SearchDataReceiveable: NSObject {
+  var newDataList: [SearchResultData] {get set}
   func gotoSearchVC(from caller: UIViewController)
-  func sendRightVC(by text: String) -> UIViewController
 }
 
-extension Searchable {
-  
+extension SearchDataReceiveable {
   func gotoSearchVC(from caller: UIViewController) {
     guard let searchVC = SearchViewController.loadFromStoryboard()
             as? SearchViewController else {return}
     caller.navigationController?.popToViewController(searchVC, animated: true)
   }
+}
+
+protocol Searchable: NSObject {
+  func sendRightVC(by text: String, with result: [SearchResultData]) -> UIViewController
+}
+
+extension Searchable {
   
-  func sendRightVC(by text: String) -> UIViewController {
+  func sendRightVC(by text: String, with result: [SearchResultData]) -> UIViewController {
     let afterTrimText = text.trimmingCharacters(in: .whitespacesAndNewlines)
     SearchManager.shared.searchText = afterTrimText
+    if result.count == 0 {
+      //TODO: 위치모드를 나눠야할 것 같다.
+      var noResultVC: SearchNoResultViewController?
+      APIService.shared.nearPlace(latitude: "127.12", longitude: "125.12") { (result) in
+        switch result {
+        case .success(let data):
+          noResultVC = SearchNoResultViewController.loadFromStoryboard() as? SearchNoResultViewController
+          guard let noResultVC = noResultVC else {
+            return
+          }
+          noResultVC.newDataList = data
+        case .failure(let error):
+          print("error: \(error)")
+          noResultVC = SearchNoResultViewController.loadFromStoryboard() as? SearchNoResultViewController
+          guard let noResultVC = noResultVC else {
+            return
+          }
+          noResultVC.newDataList = []
+        }
+      }
+      guard let noResultVC = noResultVC else {
+        return SearchNoResultViewController()
+      }
+      return noResultVC
+    }
     switch afterTrimText {
     case LocationName.jeju.description, LocationName.gyeongju.description,
       LocationName.daegu.description, LocationName.gangneung.description,
