@@ -180,6 +180,15 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     updatedModeUI()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    LoadingIndicator.show()
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+      LoadingIndicator.hide()
+    }
+  }
+  
   
   //MARK: - resultTableView setup
   private func setupReviewTableView() {

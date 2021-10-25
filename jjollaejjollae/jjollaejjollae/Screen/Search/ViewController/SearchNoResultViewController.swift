@@ -44,6 +44,7 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searc
   }
   @IBOutlet weak var searchTextField: UITextField! {
     didSet {
+      searchTextField.setRounded(radius: nil)
       searchTextField.text = SearchManager.shared.searchText
       searchTextField.delegate = self
     }
