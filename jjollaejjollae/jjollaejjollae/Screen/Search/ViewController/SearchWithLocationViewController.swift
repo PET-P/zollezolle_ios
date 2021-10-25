@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchWithLocationViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate, Searchable, SearchDataReceiveable {
-  
+
   var newDataList: [SearchResultData] = [] {
     didSet {
       newDataList.forEach { (data) in
@@ -84,6 +84,7 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
     SearchResultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     SearchResultTableView.isUserInteractionEnabled = true
     LocationView.isUserInteractionEnabled = true
+    searchTextField.text = SearchManager.shared.searchText
     print("😀Test", newDataList)
     setupGesture()
   }

@@ -78,23 +78,24 @@ extension RecentSearchViewController: UITableViewDelegate {
     //서버로 바로 이동하면서
     //text값 가지고 다른화면으로 이동하기
     let text =  list[indexPath.row]
+    SearchManager.shared.searchText = text
     if let token = LoginManager.shared.loadFromKeychain(account: "accessToken") {
-      APIService.shared.search(token: token, keyword: text) { result in
+      APIService.shared.search(token: token, keyword: text, page: 0) { result in
         switch result{
         case .success(let data):
-          
-          guard let nextVC = self.sendRightVC(by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
-          nextVC.newDataList = data.result
+          guard let nextVC = self.sendRightVC(from: self, by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          if data.result.count != 0 {nextVC.newDataList = data.result}
           self.navigationController?.pushViewController(nextVC, animated: true)
         case .failure(let error):
           print("error: ",error)
         }
       }
     } else {
-      APIService.shared.search(keyword: text) { (result) in
+      APIService.shared.search(keyword: text, page: 0) { (result) in
         switch result {
         case .success(let data):
-          let nextVC = self.sendRightVC(by: data.region, with: data.result)
+          guard let nextVC = self.sendRightVC(from: self, by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          if data.result.count != 0 {nextVC.newDataList = data.result}
           self.navigationController?.pushViewController(nextVC, animated: true)
         case .failure(let error):
           print(self, #function, error)
