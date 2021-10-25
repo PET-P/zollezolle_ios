@@ -118,7 +118,7 @@ class WishMapViewController: MapViewController {
                                   forKey: "selectedPin")
       marker.touchHandler = {[weak self] (overlay: NMFOverlay) -> Bool in
         if self?.mapInfoView.isHidden == true {
-          let data = marker.userInfo["data"] as? SearchResultInfo
+          let data = marker.userInfo["data"] as? SearchResultData
           self?.mapInfoView.data = data
           marker.iconImage = NMFOverlayImage(
             image: (UIImage(named: marker.userInfo["selectedPin"] as? String ?? "defaultPin")!))
@@ -130,7 +130,7 @@ class WishMapViewController: MapViewController {
               image: (UIImage(named: marker.userInfo["pin"] as? String ?? "defaultPin")!))
             self?.mapInfoView.isHidden = !(self?.mapInfoView.isHidden)!
           } else { //전에 쳤던거랑 다르면
-            let data = marker.userInfo["data"] as? SearchResultInfo
+            let data = marker.userInfo["data"] as? SearchResultData
             self?.mapInfoView.data = data
             oldMarker.iconImage = NMFOverlayImage(
               image: (UIImage(named: marker.userInfo["pin"] as? String ?? "defaultPin")!))

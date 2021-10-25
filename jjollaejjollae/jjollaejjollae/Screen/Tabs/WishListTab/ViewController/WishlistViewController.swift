@@ -83,6 +83,11 @@ class WishlistViewController: UIViewController, StoryboardInstantiable, EditWish
       }
       self.newDataList = travelInfo?.locationList ?? []
       wishListCountLabel.text = "\(self.newDataList.count)개의 장소"
+      if self.newDataList.count == 0 {
+        goToMapButton.isHidden = true
+      } else {
+        goToMapButton.isHidden = false
+      }
     }
   }
 
@@ -106,7 +111,6 @@ class WishlistViewController: UIViewController, StoryboardInstantiable, EditWish
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    hideTabBar()
     goToMapButtonUISetting()
     wishListTableView.delegate = self
     wishListTableView.dataSource = self
@@ -232,8 +236,7 @@ extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegat
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    return dataList.count
-    return 4
+    return newDataList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

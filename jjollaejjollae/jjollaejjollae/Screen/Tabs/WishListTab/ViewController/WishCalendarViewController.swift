@@ -13,6 +13,10 @@ protocol EditWishCalendarDelegate: NSObject {
   func didChangeWishListTitle(title: String)
 }
 
+protocol addWishCalendarDelegate: NSObject {
+  func didAddWishList(title: String, startData: Date?, endDate: Date? )
+}
+
 class WishCalendarViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - IBOUTLET
@@ -93,6 +97,7 @@ class WishCalendarViewController: UIViewController, StoryboardInstantiable {
       calendarSwitch.setOn(on: true, animated: true)
       calendarSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .gray05)
       calendarSwitch.setSwitchColor(onTextColor: .themeGreen, offTextColor: .gray03)
+      calendarSwitch.setCircleRadius(round: 25/2)
     }
   }
   
@@ -122,6 +127,7 @@ class WishCalendarViewController: UIViewController, StoryboardInstantiable {
   fileprivate var gregorian = Calendar(identifier: .gregorian)
   
   weak var delegate: EditWishCalendarDelegate?
+  weak var addDelegate: addWishCalendarDelegate?
   
   var data: Wish?
   
@@ -192,18 +198,13 @@ class WishCalendarViewController: UIViewController, StoryboardInstantiable {
     guard let title = listTitleTextField.text else {return}
     guard let token = UserManager.shared.userIdandToken?.token else {return}
     guard let userId = UserManager.shared.userIdandToken?.userId else {return}
-    let folderId = "11"
+    //수정
     delegate?.didChangeSchedule(startDate: firstDate, endDate: lastDate)
     delegate?.didChangeWishListTitle(title: title)
-    APIService.shared.deleteFolder(token: token, userId: userId, folderId: folderId){
-      result in
-      switch result {
-      case .success(let data):
-        print(data)
-      case .failure(let error):
-        print(error)
-      }
-    }
+    //생성
+    
+    addDelegate?.didAddWishList(title: title, startData: firstDate, endDate: lastDate)
+    
     dismiss(animated: true, completion: nil)
   }
   

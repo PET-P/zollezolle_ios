@@ -134,3 +134,10 @@ extension WishlistMainViewController: UICollectionViewDelegateFlowLayout {
 // TODO: StoryboardInstantiable 로 대체해야 한다.
 extension WishlistMainViewController: StoryboardInstantiable { }
 
+extension WishlistMainViewController: addWishCalendarDelegate {
+  func didAddWishList(title: String, startData: Date?, endDate: Date?) {
+    print(#function)
+  }
+  
+  
+}
