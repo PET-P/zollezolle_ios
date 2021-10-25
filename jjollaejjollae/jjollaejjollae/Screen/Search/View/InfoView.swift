@@ -59,14 +59,14 @@ class InfoView: UIView {
     }
   }
   
-  var data: SearchResultInfo? = nil {
+  var data: SearchResultData? = nil {
     didSet {
-      addressLabel.text = data?.location
-      locationNameLabel.text = data?.name
-      starPointLabel.text = "\(data?.points ?? 0)"
-      numberOfReviewLabel.text = "\(data?.numbers ?? 0)"
-      locationImageView.image = UIImage(named: "IMG_4930")
-      if data?.like == true{
+      addressLabel.text = data?.address[0...2].joined(separator: " ")
+      locationNameLabel.text = data?.title
+      starPointLabel.text = "\(data?.reviewPoint ?? 0)"
+      numberOfReviewLabel.text = "\(data?.reviewCount ?? 0)"
+      locationImageView.setImage(with: data?.imagesUrl.first ?? "default")
+      if data?.isWish == true{
         heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
       } else {
         heartButton.setImage(UIImage(named: "grayLike"), for: .normal)

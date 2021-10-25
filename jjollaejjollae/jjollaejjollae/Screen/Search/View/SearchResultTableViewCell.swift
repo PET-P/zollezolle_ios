@@ -98,7 +98,6 @@ class SearchResultTableViewCell: UITableViewCell {
     DaysLabel.isHidden = true
     priceLabel.isHidden = true
     contentStackView.insertArrangedSubview(addressLabel, at: 0)
-    addressLabel.isHidden = true
   }
   
   weak var delegate : SearchResultCellDelegate?

@@ -28,7 +28,8 @@ final class SearchManager {
       return searchWord
     }
     set {
-      searchWord = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+      searchWord = newValue
+      print(searchWord, "WTF")
     }
   }
   
