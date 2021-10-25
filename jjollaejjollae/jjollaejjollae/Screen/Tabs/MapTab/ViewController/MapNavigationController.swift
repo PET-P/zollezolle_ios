@@ -39,6 +39,7 @@ class MapNavigationController: UINavigationController {
     self.tabBarItem = UITabBarItem(title: mapTabTitle,
                                    image: mapTabImage,
                                    selectedImage: nil)
+    self.tabBarItem.selectedImage = mapTabImageSelected
   }
   
   private func setRootViewController() {
@@ -58,6 +59,10 @@ extension MapNavigationController {
   private var mapTabImage: UIImage? {
     
     return UIImage(named: "MyNeighborhoodTab")
+  }
+  
+  private var mapTabImageSelected: UIImage? {
+    return UIImage(named: "MyNeighborhoodTabSelect")
   }
 }
 

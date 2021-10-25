@@ -50,7 +50,8 @@ class HomeTabNavigationController: UINavigationController {
   }
 
   func setTabBarItem() {
-    self.tabBarItem = UITabBarItem(title: homeTabTitle, image: HomeTabImage, selectedImage: nil)
+    self.tabBarItem = UITabBarItem(title: homeTabTitle, image: homeTabImage, selectedImage: nil)
+    self.tabBarItem.selectedImage = homeTabImageSelected
   }
   
   private func setRootViewController() {
@@ -61,12 +62,16 @@ class HomeTabNavigationController: UINavigationController {
 // MARK: - Resources
 
 extension HomeTabNavigationController {
-  var homeTabTitle: String {
+  private var homeTabTitle: String {
     return "홈"
   }
   
-  var HomeTabImage: UIImage? {
+  private var homeTabImage: UIImage? {
     let image = UIImage(named: "HomeTab")
     return image
+  }
+  
+  private var homeTabImageSelected: UIImage? {
+    return UIImage(named: "HomeTabSelect")
   }
 }

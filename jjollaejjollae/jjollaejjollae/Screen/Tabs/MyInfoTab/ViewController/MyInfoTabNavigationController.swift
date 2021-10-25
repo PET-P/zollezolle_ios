@@ -34,6 +34,7 @@ class MyInfoTabNavigationController: UINavigationController {
     self.tabBarItem = UITabBarItem(title: myInfoTabTitle,
                                    image: myInfoTabImage,
                                    selectedImage: nil)
+    self.tabBarItem.selectedImage = myInfoTabImageSelected
   }
   
   private func setRootViewController() {
@@ -49,5 +50,9 @@ extension MyInfoTabNavigationController {
   
   private var myInfoTabImage: UIImage? {
     return UIImage(named: "MyInfoTab")
+  }
+  
+  private var myInfoTabImageSelected: UIImage? {
+    return UIImage(named: "MyInfoTabSelect")
   }
 }
