@@ -65,17 +65,17 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func search(token: String, keyword: String, completion: @escaping((NetworkResult<SearchData>) -> (Void))) {
-    let target = APITarget.search(token: token, keyword: keyword)
+  func search(token: String, keyword: String, page: Int, completion: @escaping((NetworkResult<SearchData>) -> (Void))) {
+    let target = APITarget.search(token: token, keyword: keyword, page: page)
     judgeGenericResponse(target, completion: completion)
   }
 
-  func search(keyword: String, completion: @escaping((NetworkResult<SearchData>) -> (Void))) {
-    let target = APITarget.noLoginSearch(keyword: keyword)
+  func search(keyword: String, page: Int, completion: @escaping((NetworkResult<SearchData>) -> (Void))) {
+    let target = APITarget.noLoginSearch(keyword: keyword, page: page)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func nearPlace(latitude: String, longitude: String, completion: @escaping((NetworkResult<[SearchResultData]>) -> (Void))) {
+  func nearPlace(latitude: Double, longitude: Double, completion: @escaping((NetworkResult<[SearchResultData]>) -> (Void))) {
     let target = APITarget.nearPlace(lat: latitude, lng: longitude)
     judgeGenericResponse(target, completion: completion)
   }

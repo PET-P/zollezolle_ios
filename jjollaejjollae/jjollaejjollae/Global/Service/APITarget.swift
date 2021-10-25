@@ -24,9 +24,9 @@ enum APITarget {
   case naver(authorization: String)
   case socialLogin(email: String, nick: String, phone: String, accountType: String)
   case patchPetInfo(token: String, userId: String, petId: String, pets: [PetData])
-  case search(token: String, keyword: String)
-  case noLoginSearch(keyword: String)
-  case nearPlace(lat: String, lng: String)
+  case search(token: String, keyword: String, page: Int)
+  case noLoginSearch(keyword: String, page: Int)
+  case nearPlace(lat: Double, lng: Double)
   case readAllPosts
   case readPost(postId: String)
   case readWishlist(id: String)
@@ -171,8 +171,8 @@ extension APITarget: TargetType {
     case .deletePlaceInFolder(_, let folderId, let placeId):
       return .requestParameters(parameters: ["folderId": folderId, "placeId": placeId], encoding: URLEncoding.queryString)
       
-    case .search(_, let keyword), .noLoginSearch(let keyword):
-      return .requestParameters(parameters: ["keyword": keyword], encoding: URLEncoding.queryString)
+    case .search(_, let keyword, let page), .noLoginSearch(let keyword, let page ):
+      return .requestParameters(parameters: ["keyword": keyword, "page": page], encoding: URLEncoding.queryString)
     case .nearPlace(let lat, let lng):
       return .requestParameters(parameters: ["latitude": lat, "longitude": lng], encoding: URLEncoding.queryString)
     case .readReview(_, let userId):
@@ -194,7 +194,7 @@ extension APITarget: TargetType {
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
-    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .createFolder(let token, _, _),  .readFolder(let token,_,_), .search(let token, _), .readReview(let token, _), .readPlaceReview(let token, _):
+    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .createFolder(let token, _, _),  .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _):
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
     case .naver(let authorization):
       return ["Authorization": authorization]

@@ -15,16 +15,17 @@ struct SearchData: Codable {
 struct SearchResultData: Codable {
   let id: String
   let address: [String]
+  let location: LocationData
   let title: String
   let category: CategoryType
   let reviewCount: Int
   let reviewPoint: Double?
   var isWish: Bool?
-  let coordinate: [String]
+  let imagesUrl: [String]
   
   enum CodingKeys: String, CodingKey {
     case id = "_id"
-    case address, title, category, reviewCount, reviewPoint, isWish, coordinate
+    case address, title, category, reviewCount, reviewPoint, isWish, location, imagesUrl
   }
 }
 
@@ -38,6 +39,7 @@ extension SearchResultData {
     reviewCount = (try? container.decode(Int.self, forKey: .reviewCount)) ?? 0
     reviewPoint = (try? container.decode(Double.self, forKey: .reviewPoint)) ?? 0.0
     isWish = (try? container.decode(Bool.self, forKey: .isWish)) ?? false
-    coordinate = (try? container.decode([String].self, forKey: .isWish)) ?? []
+    location  = (try? container.decode(LocationData.self, forKey: .location)) ?? LocationData(type: "Point", coordinates: [127, 36])
+    imagesUrl = (try? container.decode([String].self, forKey: .imagesUrl)) ?? []
   }
 }
