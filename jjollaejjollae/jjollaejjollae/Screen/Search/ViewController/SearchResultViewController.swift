@@ -7,6 +7,13 @@
 
 import UIKit
 
+enum Mode {
+  case Fromkeyword
+  case Fromlocation
+  case Fromsearch
+}
+
+
 class SearchResultViewController: UIViewController, StoryboardInstantiable, SearchDataReceiveable {
   
   //MARK: - IBOUTLET
@@ -25,8 +32,6 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   @IBOutlet weak var searchTextField: UITextField! {
     didSet {
       searchTextField.setRounded(radius: nil)
-      //get
-      searchTextField.text = SearchManager.shared.searchText
       searchTextField.returnKeyType = .search
       searchTextField.delegate = self
     }
@@ -84,11 +89,14 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
   private var searchResultDataSources: [UITableViewDataSource] = []
+  
+  
   var newDataList: [SearchResultData] = []
+  lazy var likes: [Int : Int] = [:]
+  private var fetchMore = true
+  private var page = 0
   
   private var dataList = [SearchResultData]()
-  lazy var likes: [Int : Int] = [:]
-  
   private var accomoList = [SearchResultData]()
   private var cafeList = [SearchResultData]()
   private var restaurantList = [SearchResultData]()
@@ -98,24 +106,28 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   let restaurantDataSource = RestaurantDataSource()
   let cafeDataSource = CafeDataSource()
   let landmarkDataSource = LandmarkDataSource()
+  let searchResultDataSource = SearchResultDataSource()
   
   let searchManager = SearchManager.shared
   private var defaultHeight: CGFloat  = 13
   private var buttons : [UIButton] = []
   private let transparentView = UIView()
   private var selectedButton = UIButton()
-  private let headerHeight: CGFloat = 80
-//  private var totalHeight: CGFloat = 0
+  private let headerHeight: CGFloat = 60
   
-  private var mode = true  // true: 지역검색후 넘어오는 화면, false: 카페라고만 치는 경우
+  private var mode: Mode = .Fromlocation  // true: 지역검색후 넘어오는 화면, false: 카페라고만 치는 경우
   
-  private func setMode() {
+  func setMode(from viewController: UIViewController) {
     let text = SearchManager.shared.searchText
     switch text {
     case "카페", "맛집", "레스토랑", "숙소", "명소", "관광지":
-      self.mode = false
+      self.mode = .Fromkeyword
     default:
-      self.mode = true
+      if viewController is SearchWithLocationViewController {
+        self.mode = .Fromlocation
+      } else {
+        self.mode = .Fromsearch
+      }
     }
   }
   
@@ -144,10 +156,12 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   override func viewDidLoad() {
     super.viewDidLoad()
     setLocationFilterButtonUI()
-    setMode()
     updatedModeUI()
-    categorizeSearchResult()
     setupReviewTableView()
+    if mode != .Fromlocation {
+      setupheader()
+    }
+    searchTextField.text = searchManager.searchText
 //    defaultHeight = HeightTobeDynamioc.constant
     
     //MARK: - gotoMapButton setting
@@ -166,28 +180,58 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     updatedModeUI()
   }
   
+  
   //MARK: - resultTableView setup
   private func setupReviewTableView() {
     resultTableView.delegate = self
     resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     resultTableView.isUserInteractionEnabled = true
-    categorizeSearchResult()
-    accommodationDataSource.setCallerVC(viewController: self)
-    restaurantDataSource.setCallerVC(viewController: self)
-    landmarkDataSource.setCallerVC(viewController: self)
-    cafeDataSource.setCallerVC(viewController: self)
-    searchResultDataSources = [accommodationDataSource,
-                               restaurantDataSource,
-                               cafeDataSource,
-                               landmarkDataSource]
+    if mode == .Fromlocation {
+      categorizeSearchResult()
+      accommodationDataSource.setCallerVC(viewController: self)
+      restaurantDataSource.setCallerVC(viewController: self)
+      landmarkDataSource.setCallerVC(viewController: self)
+      cafeDataSource.setCallerVC(viewController: self)
+      searchResultDataSources = [accommodationDataSource,
+                                 restaurantDataSource,
+                                 cafeDataSource,
+                                 landmarkDataSource]
+      self.dataList = accommodationDataSource.newDataList
+    } else {
+      searchResultDataSource.newDataList = newDataList
+      self.dataList = searchResultDataSource.newDataList
+      searchResultDataSources = [searchResultDataSource]
+    }
     resultTableView.dataSource = searchResultDataSources[0]
-    self.dataList = accommodationDataSource.newDataList
     resultTableView.tableFooterView = UIView(frame: CGRect.zero)
     resultTableView.separatorStyle = .none
   }
+  
+  private func setupheader() {
+      let header = UIView(frame: CGRect(x: 0, y: 0, width: resultTableView.frame.width, height: 40))
+      let headerLabel = UILabel()
+      headerLabel.translatesAutoresizingMaskIntoConstraints = false
+      if mode == .Fromkeyword {
+        headerLabel.text = "내 근처 \(self.searchTextField.text == "" ? "갈만한 곳" : self.searchTextField.text ?? "갈만한 곳")"
+      } else {
+        headerLabel.text = "검색 결과"
+      }
+      
+      headerLabel.font = .robotoBold(size: 18)
+      headerLabel.textColor = .gray02
+      header.backgroundColor = .white
+      header.addSubview(headerLabel)
+      
+      headerLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16).isActive = true
+      headerLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 6).isActive = true
+    resultTableView.tableHeaderView = header
+    if #available(iOS 15.0, *) {
+      resultTableView.sectionHeaderTopPadding = 0
+    }
+  }
 
   private func updatedModeUI() {
-    if mode {
+    if mode == .Fromlocation {
       NumberLabelfilterStackView.isHidden = false
       filterStackView.isHidden = false
       separateLine.isHidden = false
@@ -265,7 +309,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     self.navigationController?.popViewController(animated: true)
   }
   
-
+  
 }
 
 extension SearchResultViewController {
@@ -305,49 +349,48 @@ extension SearchResultViewController {
     alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
     self.present(alertController, animated: true, completion: nil);
   }
-
   
-//  @IBAction func didTapFilterButton(_ sender: UIButton) {
-//    guard let filterVC = FilterViewController.loadFromStoryboard() as? FilterViewController else {return}
-//    self.navigationController?.present(filterVC, animated: true, completion: nil)
-//    // completion에서 data 보내줘야함
-//    // 그렇다면??? userdefaults로 해야할듯?
-//  }
 }
 
 //MARK: - tableviewDelegate
 
 extension SearchResultViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      //서버와 연결
-    }
-  
-  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    if !mode {
-      return headerHeight
-    }
-    return 0
+   
   }
   
-  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    if !mode {
-      let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
-      let headerLabel = UILabel()
-      headerLabel.translatesAutoresizingMaskIntoConstraints = false
-      headerLabel.text = "내 근처 \(self.searchTextField.text == "" ? "갈만한 곳" : self.searchTextField.text ?? "갈만한 곳")"
-      headerLabel.font = .robotoBold(size: 18)
-      headerLabel.textColor = .gray02
-      header.backgroundColor = .white
-      header.addSubview(headerLabel)
-      
-      headerLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16).isActive = true
-      headerLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 46).isActive = true
-      
-      return header
+  private func fetchData(){
+    fetchMore = false
+    if let token = UserManager.shared.userIdandToken?.token {
+      page = page + 1
+      APIService.shared.search(token: token, keyword: SearchManager.shared.searchText, page: page) { [weak self](result) in
+        guard let self = self else {return}
+        switch result {
+        case .success(let data):
+          if data.result.count == 0 {
+            self.fetchMore = false
+            return
+          }
+          self.newDataList += data.result
+          self.searchResultDataSource.newDataList = self.newDataList
+          self.dataList = self.searchResultDataSource.newDataList
+          self.resultTableView.reloadData()
+        case .failure(let error):
+          print("error: \(error)")
+        }
+      }
     }
-    return nil
   }
   
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    scrollView.bounces = scrollView.contentOffset.y > 0
+    if resultTableView.contentOffset.y > resultTableView.contentSize.height - resultTableView.bounds.height {
+      print("끝에 도착했다!!!")
+      if fetchMore {
+        fetchData()
+      }
+    }
+  }
 }
 
 //MARK: - KEYBOARD
@@ -361,42 +404,3 @@ extension SearchResultViewController: UITextFieldDelegate, Searchable {
 
 
 
-//MARK: - NOT USE & later USE
-
-//  private var oldDates: [Date?] = [Date()
-//                                   , Calendar.current.date(byAdding: .day, value: 1, to: Date())]
-//  private var dates: [Date?] = [Date(),
-//                                Calendar.current.date(byAdding: .day, value: 1, to: Date())] {
-//    didSet {
-//      if !dates.contains(nil) {
-//        let firstDay = (dates.first!)!
-//        let lastDay = (dates.last!)!
-//        setScheduleButton.setTitle(
-//          "\(firstDay.dateForSeachResult()) - \(lastDay.dateForSeachResult())", for: .normal)
-//        oldDates = dates
-//      } else {
-//        let oldFirstDay = (oldDates.first!)!
-//        let oldLastDay = (oldDates.last!)!
-//        setScheduleButton.setTitle(
-//          "\(oldFirstDay.dateForSeachResult()) - \(oldLastDay.dateForSeachResult())", for: .normal)
-//      }
-//    }
-//  }
-
-
-//  @IBAction private func didTapSetScheduleButton(_ sender: UIButton) {
-//    let calendarStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
-//    guard let calendarVC = calendarStoryboard.instantiateViewController(
-//            identifier: "CalendarViewController") as? CalendarViewController else {return}
-//    if !dates.contains(nil) {
-//      calendarVC.setDefaultDateLabel(defaultDate: dates)
-//    } else {
-//      calendarVC.setDefaultDateLabel(defaultDate: oldDates)
-//    }
-//    calendarVC.dateCompletionHandler = {
-//      [weak self] days in
-//      self?.dates = days
-//      return days
-//    }
-//    present(calendarVC, animated: true)
-//  }
