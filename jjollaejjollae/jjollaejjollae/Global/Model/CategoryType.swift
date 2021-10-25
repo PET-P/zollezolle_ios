@@ -8,10 +8,10 @@
 import Foundation
 
 enum CategoryType: String, Codable {
-  case accommodation
-  case cafe
-  case landmark
-  case restaurant
+  case accommodation = "숙소"
+  case cafe = "카페"
+  case landmark = "명소"
+  case restaurant = "식당"
   case unknown
 }
 
