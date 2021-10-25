@@ -46,6 +46,7 @@ PODS:
     - FirebaseCore (~> 8.0)
     - GTMSessionFetcher/Core (~> 1.5)
   - FSCalendar (2.8.2)
+  - Gifu (3.3.1)
   - GoogleAppMeasurement (8.8.0):
     - GoogleAppMeasurement/AdIdSupport (= 8.8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
@@ -125,6 +126,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Storage
   - FSCalendar
+  - Gifu
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKTalk
@@ -145,6 +147,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseStorage
     - FSCalendar
+    - Gifu
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -171,6 +174,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 2563cb18a723ef9c6ef18318a49519b75dce613c
   FirebaseStorage: 54ff752ecbd27f1c354c3f5e8c55f6ad5783699b
   FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+  Gifu: 416d4e38c4c2fed012f019e0a1d3ffcb58e5b842
   GoogleAppMeasurement: 5ba1164e3c844ba84272555e916d0a6d3d977e91
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 8de2a97a17e15b6b98e38e8770e2d129a57c0040
@@ -188,6 +192,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
 
-PODFILE CHECKSUM: 026b07f3d0d6bb89513ba3d0d7c7dc7709b32250
+PODFILE CHECKSUM: d5985dbc3478747f4390f190df077da4bf8cbd92
 
 COCOAPODS: 1.11.2

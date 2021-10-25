@@ -24,5 +24,6 @@ target 'jjollaejjollae' do
   pod 'KakaoSDKTalk'
   pod 'Firebase/Analytics'
   pod 'Firebase/Storage'
+  pod 'Gifu'
 
 end
