@@ -342,3 +342,43 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
 }
 
 
+
+//MARK: - NOT USE & later USE
+
+//  private var oldDates: [Date?] = [Date()
+//                                   , Calendar.current.date(byAdding: .day, value: 1, to: Date())]
+//  private var dates: [Date?] = [Date(),
+//                                Calendar.current.date(byAdding: .day, value: 1, to: Date())] {
+//    didSet {
+//      if !dates.contains(nil) {
+//        let firstDay = (dates.first!)!
+//        let lastDay = (dates.last!)!
+//        setScheduleButton.setTitle(
+//          "\(firstDay.dateForSeachResult()) - \(lastDay.dateForSeachResult())", for: .normal)
+//        oldDates = dates
+//      } else {
+//        let oldFirstDay = (oldDates.first!)!
+//        let oldLastDay = (oldDates.last!)!
+//        setScheduleButton.setTitle(
+//          "\(oldFirstDay.dateForSeachResult()) - \(oldLastDay.dateForSeachResult())", for: .normal)
+//      }
+//    }
+//  }
+
+
+//  @IBAction private func didTapSetScheduleButton(_ sender: UIButton) {
+//    let calendarStoryboard = UIStoryboard(name: "Calendar", bundle: nil)
+//    guard let calendarVC = calendarStoryboard.instantiateViewController(
+//            identifier: "CalendarViewController") as? CalendarViewController else {return}
+//    if !dates.contains(nil) {
+//      calendarVC.setDefaultDateLabel(defaultDate: dates)
+//    } else {
+//      calendarVC.setDefaultDateLabel(defaultDate: oldDates)
+//    }
+//    calendarVC.dateCompletionHandler = {
+//      [weak self] days in
+//      self?.dates = days
+//      return days
+//    }
+//    present(calendarVC, animated: true)
+//  }
