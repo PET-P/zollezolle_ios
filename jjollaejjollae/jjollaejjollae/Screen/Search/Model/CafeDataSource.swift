@@ -56,6 +56,8 @@ extension CafeDataSource: SearchResultCellDelegate {
     
     let item = newDataList[indexPath.row]
     
+    cell.cellImageView.setImage(with: item.imagesUrl.first ?? "default")
+    cell.addressLabel.text = item.address.joined(separator: " ")
     cell.locationNameLabel.text = item.title
     cell.locationTypeLabel.text = nil
     cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"

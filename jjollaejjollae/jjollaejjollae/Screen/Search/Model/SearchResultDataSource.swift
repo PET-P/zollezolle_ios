@@ -23,7 +23,6 @@ class SearchResultDataSource: NSObject, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //    return list.count
     return newDataList.count
   }
 }
@@ -38,6 +37,8 @@ extension SearchResultDataSource: SearchResultCellDelegate {
     
     let item = newDataList[indexPath.row]
     
+    cell.cellImageView.setImage(with: item.imagesUrl.first ?? "default")
+    cell.addressLabel.text = item.address.joined(separator: " ")
     cell.locationNameLabel.text = item.title
     cell.locationTypeLabel.text = nil
     cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"

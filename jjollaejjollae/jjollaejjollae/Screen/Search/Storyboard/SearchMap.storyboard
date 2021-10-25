@@ -65,6 +65,7 @@
                     <connections>
                         <outlet property="mapInfoView" destination="QW6-oo-2fA" id="ssF-5b-yT4"/>
                         <outlet property="mapView" destination="xhJ-fr-jun" id="i71-mY-ZCp"/>
+                        <outlet property="navBar" destination="wr7-81-Srv" id="jcg-5K-v4k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
