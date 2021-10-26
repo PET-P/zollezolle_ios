@@ -58,6 +58,11 @@ class SearchViewController: UIViewController, StoryboardInstantiable, Searchable
     searchTextField.returnKeyType = .search
     searchTextField.delegate = self
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    searchTextField.text = searchManager.searchText
+  }
 }
 //MARK: - PagingCollectionView
 

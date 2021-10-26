@@ -32,6 +32,7 @@ class RecentSearchViewController: UIViewController, StoryboardInstantiable, Sear
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    
     list = searchManager.retrieveSearchHistory()
     recentTableView.reloadData()
   }
@@ -79,7 +80,7 @@ extension RecentSearchViewController: UITableViewDelegate {
     //text값 가지고 다른화면으로 이동하기
     let text =  list[indexPath.row]
     SearchManager.shared.searchText = text
-    if let token = LoginManager.shared.loadFromKeychain(account: "accessToken") {
+    if let token = UserManager.shared.userIdandToken?.token {
       APIService.shared.search(token: token, keyword: text, page: 0) { result in
         switch result{
         case .success(let data):

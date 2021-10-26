@@ -49,15 +49,15 @@ extension StarsSearchViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let text =  list[indexPath.row]
     SearchManager.shared.searchText = text
-    if let token = LoginManager.shared.loadFromKeychain(account: "accessToken") {
+    if let token = UserManager.shared.userIdandToken?.token {
       APIService.shared.search(token: token, keyword: text, page: 0) { result in
         switch result{
         case .success(let data):
           guard let nextVC = self.sendRightVC(from: self, by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
-          nextVC.newDataList = data.result
+          if data.result.count != 0 {nextVC.newDataList = data.result}
           self.navigationController?.pushViewController(nextVC, animated: true)
         case .failure(let error):
-          print(self, #function, error)
+          print("error: ",error)
         }
       }
     } else {
@@ -65,7 +65,7 @@ extension StarsSearchViewController: UITableViewDataSource {
         switch result {
         case .success(let data):
           guard let nextVC = self.sendRightVC(from: self, by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
-          nextVC.newDataList = data.result
+          if data.result.count != 0 {nextVC.newDataList = data.result}
           self.navigationController?.pushViewController(nextVC, animated: true)
         case .failure(let error):
           print(self, #function, error)
