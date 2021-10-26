@@ -113,7 +113,7 @@
 		28C6F62827173B5600A961AB /* RequestLogginPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C6F62727173B5500A961AB /* RequestLogginPlugin.swift */; };
 		28C6F62A27186A3600A961AB /* PagingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C6F62927186A3500A961AB /* PagingManager.swift */; };
 		28C6F62D2719790C00A961AB /* HomeLocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C6F62B2719790C00A961AB /* HomeLocationCollectionViewCell.xib */; };
-		28C6F62E2719790C00A961AB /* HomeTipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C6F62C2719790C00A961AB /* HomeTipCell.xib */; };
+		28C6F62E2719790C00A961AB /* HomeTipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C6F62C2719790C00A961AB /* HomeTipCollectionViewCell.xib */; };
 		28C6F6312719795800A961AB /* HomeLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C6F62F2719795800A961AB /* HomeLocationCollectionViewCell.swift */; };
 		28C6F6322719795800A961AB /* HomeTipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C6F6302719795800A961AB /* HomeTipCollectionViewCell.swift */; };
 		28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF852A26E7882F00ED200F /* ProvisionViewController.swift */; };
@@ -154,6 +154,7 @@
 		DD37F673271D98E800C467DB /* String+postPositionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37F672271D98E800C467DB /* String+postPositionText.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
+		DDB38F1727282778004482B3 /* TipWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB38F1627282777004482B3 /* TipWebViewController.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
 		DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */; };
 		DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */; };
@@ -290,7 +291,7 @@
 		28C6F62727173B5500A961AB /* RequestLogginPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLogginPlugin.swift; sourceTree = "<group>"; };
 		28C6F62927186A3500A961AB /* PagingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingManager.swift; sourceTree = "<group>"; };
 		28C6F62B2719790C00A961AB /* HomeLocationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeLocationCollectionViewCell.xib; sourceTree = "<group>"; };
-		28C6F62C2719790C00A961AB /* HomeTipCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTipCell.xib; sourceTree = "<group>"; };
+		28C6F62C2719790C00A961AB /* HomeTipCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTipCollectionViewCell.xib; sourceTree = "<group>"; };
 		28C6F62F2719795800A961AB /* HomeLocationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		28C6F6302719795800A961AB /* HomeTipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTipCollectionViewCell.swift; sourceTree = "<group>"; };
 		28CF852A26E7882F00ED200F /* ProvisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisionViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +333,7 @@
 		DD37F672271D98E800C467DB /* String+postPositionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+postPositionText.swift"; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
+		DDB38F1627282777004482B3 /* TipWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipWebViewController.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyInfoTab.storyboard; sourceTree = "<group>"; };
 		DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainViewController.swift; sourceTree = "<group>"; };
@@ -717,6 +719,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DD604723272034310088997E /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				28C6F62B2719790C00A961AB /* HomeLocationCollectionViewCell.xib */,
+				28C6F62C2719790C00A961AB /* HomeTipCollectionViewCell.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
 		DD741C2926FB04CC00776827 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -792,6 +803,7 @@
 		DDF24B9F26C6D61D007AB642 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
+				DD604723272034310088997E /* Xib */,
 				DDF24BA026C6D61D007AB642 /* Stroyboard */,
 				DDF24BA226C6D61D007AB642 /* ViewController */,
 			);
@@ -801,8 +813,6 @@
 		DDF24BA026C6D61D007AB642 /* Stroyboard */ = {
 			isa = PBXGroup;
 			children = (
-				28C6F62B2719790C00A961AB /* HomeLocationCollectionViewCell.xib */,
-				28C6F62C2719790C00A961AB /* HomeTipCell.xib */,
 				DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */,
 			);
 			path = Stroyboard;
@@ -815,6 +825,7 @@
 				28C6F6302719795800A961AB /* HomeTipCollectionViewCell.swift */,
 				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
 				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
+				DDB38F1627282777004482B3 /* TipWebViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -992,7 +1003,7 @@
 				28B2E78A270DA434003AE0B0 /* Provision.storyboard in Resources */,
 				28B2E78C270DBD54003AE0B0 /* MyInfoReservation.storyboard in Resources */,
 				28E0D289270ADF66007C4C2A /* MyPetInfoEdit.storyboard in Resources */,
-				28C6F62E2719790C00A961AB /* HomeTipCell.xib in Resources */,
+				28C6F62E2719790C00A961AB /* HomeTipCollectionViewCell.xib in Resources */,
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
 				28EA826226B42BF700785666 /* Roboto Mono for Powerline.ttf in Resources */,
 				28EA826626B42BF700785666 /* Roboto Mono Thin for Powerline.ttf in Resources */,
@@ -1118,6 +1129,7 @@
 				28FEC63D2713656400C10B32 /* helpLabel.swift in Sources */,
 				2884A32026CE926F004596C3 /* LandmarkDataSource.swift in Sources */,
 				28C6F6322719795800A961AB /* HomeTipCollectionViewCell.swift in Sources */,
+				DDB38F1727282778004482B3 /* TipWebViewController.swift in Sources */,
 				2884A31126CA43E6004596C3 /* SearchResultTableViewCell.swift in Sources */,
 				28331CBE26DCD6F40062B29D /* InfoView.swift in Sources */,
 				28FEC649271441E600C10B32 /* StorageService.swift in Sources */,

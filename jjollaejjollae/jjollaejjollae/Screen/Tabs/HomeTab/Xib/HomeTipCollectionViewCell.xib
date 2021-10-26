@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto Mono for Powerline.ttf">
+            <string>RobotoMonoForPowerline-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeTipCollectionViewCell" id="T2Q-gA-5KM" customClass="HomeTipCollectionViewCell" customModule="jjollaejjollae" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="116" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VPr-9X-8gz">
+                <rect key="frame" x="0.0" y="0.0" width="116" height="120"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRZ-fD-CZJ">
+                        <rect key="frame" x="0.0" y="0.0" width="116" height="120"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행 꿀팁 여행 꿀팁 여행 꿀팁 여행 꿀팁" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6c-7r-tQa">
+                                <rect key="frame" x="16" y="16" width="84" height="72.5"/>
+                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="13"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="✈️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHx-9d-WdN">
+                                <rect key="frame" x="77" y="88.5" width="23" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Q6c-7r-tQa" secondAttribute="trailing" constant="16" id="LR4-Va-2vJ"/>
+                            <constraint firstItem="PHx-9d-WdN" firstAttribute="top" secondItem="Q6c-7r-tQa" secondAttribute="bottom" id="OLr-Ij-ZBp"/>
+                            <constraint firstItem="Q6c-7r-tQa" firstAttribute="top" secondItem="WRZ-fD-CZJ" secondAttribute="top" constant="16" id="PPx-3c-y7S"/>
+                            <constraint firstAttribute="trailing" secondItem="PHx-9d-WdN" secondAttribute="trailing" constant="16" id="e1T-ae-wFP"/>
+                            <constraint firstItem="Q6c-7r-tQa" firstAttribute="leading" secondItem="WRZ-fD-CZJ" secondAttribute="leading" constant="16" id="fev-7B-9JB"/>
+                            <constraint firstAttribute="bottom" secondItem="PHx-9d-WdN" secondAttribute="bottom" constant="11" id="vZE-PN-Kh5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="WRZ-fD-CZJ" firstAttribute="leading" secondItem="VPr-9X-8gz" secondAttribute="leading" id="5SC-Jq-4or"/>
+                    <constraint firstAttribute="bottom" secondItem="WRZ-fD-CZJ" secondAttribute="bottom" id="aIP-wX-bXv"/>
+                    <constraint firstAttribute="trailing" secondItem="WRZ-fD-CZJ" secondAttribute="trailing" id="foH-Xy-EGw"/>
+                    <constraint firstItem="WRZ-fD-CZJ" firstAttribute="top" secondItem="VPr-9X-8gz" secondAttribute="top" id="nJg-ml-FiO"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <size key="customSize" width="116" height="124"/>
+            <connections>
+                <outlet property="emojiLabel" destination="PHx-9d-WdN" id="TpV-KK-X9e"/>
+                <outlet property="titleLabel" destination="Q6c-7r-tQa" id="ea7-re-zEt"/>
+            </connections>
+            <point key="canvasLocation" x="-394.20289855072468" y="-40.178571428571423"/>
+        </collectionViewCell>
+    </objects>
+</document>
