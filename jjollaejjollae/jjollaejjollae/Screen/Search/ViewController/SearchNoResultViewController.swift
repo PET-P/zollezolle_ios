@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchNoResultViewController: UIViewController {
+class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searchable {
   
   var dataList = [SearchResultInfo]()
   lazy var likes : [Int : Int] = [:]
@@ -32,7 +32,12 @@ class SearchNoResultViewController: UIViewController {
       noInfoLabel.text = "\(noInfoLabelText)에 해당하는 정보가 없어요"
     }
   }
-
+  @IBOutlet weak var searchTextField: UITextField! {
+    didSet {
+      searchTextField.text = SearchManager.shared.searchText
+      searchTextField.delegate = self
+    }
+  }
   
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
   let searchResultDataSource = SearchResultDataSource()
@@ -52,6 +57,16 @@ class SearchNoResultViewController: UIViewController {
   
   @IBAction func didTapBackButton(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true)
+  }
+}
+
+
+//MARK: - keybaord & search
+
+extension SearchNoResultViewController {
+  
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    gotoSearchVC(from: self)
   }
 }
 

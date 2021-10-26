@@ -101,6 +101,9 @@
 		28A4984027105556008AC05B /* ReviewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28A4983E27105556008AC05B /* ReviewTableCell.xib */; };
 		28A4984227106BAB008AC05B /* ReviewImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4984127106BAB008AC05B /* ReviewImageView.swift */; };
 		28A498442710BC28008AC05B /* ContentsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A498432710BC28008AC05B /* ContentsData.swift */; };
+		28AF8DF4271B000B00FF7247 /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AF8DF3271B000B00FF7247 /* Searchable.swift */; };
+		28AF8DF6271B018400FF7247 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AF8DF5271B018400FF7247 /* UIViewController+Extension.swift */; };
+		28B2BD0C271D959900678733 /* LocationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2BD0B271D959900678733 /* LocationName.swift */; };
 		28B2E782270D8AC1003AE0B0 /* MyInfoSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28B2E781270D8AC1003AE0B0 /* MyInfoSetting.storyboard */; };
 		28B2E784270D915C003AE0B0 /* MyInfoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2E783270D915B003AE0B0 /* MyInfoSettingViewController.swift */; };
 		28B2E786270D92A0003AE0B0 /* MyInfoSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2E785270D92A0003AE0B0 /* MyInfoSettingTableViewController.swift */; };
@@ -278,6 +281,9 @@
 		28A4983E27105556008AC05B /* ReviewTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableCell.xib; sourceTree = "<group>"; };
 		28A4984127106BAB008AC05B /* ReviewImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewImageView.swift; sourceTree = "<group>"; };
 		28A498432710BC28008AC05B /* ContentsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsData.swift; sourceTree = "<group>"; };
+		28AF8DF3271B000B00FF7247 /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
+		28AF8DF5271B018400FF7247 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		28B2BD0B271D959900678733 /* LocationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationName.swift; sourceTree = "<group>"; };
 		28B2E781270D8AC1003AE0B0 /* MyInfoSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyInfoSetting.storyboard; sourceTree = "<group>"; };
 		28B2E783270D915B003AE0B0 /* MyInfoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSettingViewController.swift; sourceTree = "<group>"; };
 		28B2E785270D92A0003AE0B0 /* MyInfoSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSettingTableViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +448,7 @@
 				28A498432710BC28008AC05B /* ContentsData.swift */,
 				28FEC638271340EF00C10B32 /* State.swift */,
 				28C6F62927186A3500A961AB /* PagingManager.swift */,
+				28B2BD0B271D959900678733 /* LocationName.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -600,6 +607,7 @@
 				28E0D2802709F7C6007C4C2A /* UIImage+Extension.swift */,
 				28FEC64227141FD800C10B32 /* UIImageView+Extension.swift */,
 				DD37F672271D98E800C467DB /* String+postPositionText.swift */,
+				28AF8DF5271B018400FF7247 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -733,6 +741,7 @@
 			children = (
 				DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */,
 				DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */,
+				28AF8DF3271B000B00FF7247 /* Searchable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1100,6 +1109,7 @@
 				28A49825270F3945008AC05B /* SearchDatas.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
+				28B2BD0C271D959900678733 /* LocationName.swift in Sources */,
 				28E910BD26F0E2390093BF7C /* PetInfo.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
@@ -1124,6 +1134,7 @@
 				28FEC6372712D3B400C10B32 /* DogInfoViewController.swift in Sources */,
 				28FEC639271340F000C10B32 /* State.swift in Sources */,
 				28E0D287270ABA8A007C4C2A /* InfoPageViewController.swift in Sources */,
+				28AF8DF6271B018400FF7247 /* UIViewController+Extension.swift in Sources */,
 				2877C3AA27004B67000E3233 /* FixModalViewController.swift in Sources */,
 				28A4982A270F4420008AC05B /* WishlistData.swift in Sources */,
 				28FEC63D2713656400C10B32 /* helpLabel.swift in Sources */,
@@ -1176,6 +1187,7 @@
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
 				28B2E792270DC400003AE0B0 /* MyInfoReviewViewController.swift in Sources */,
 				28A49838270F4FDB008AC05B /* LocationData.swift in Sources */,
+				28AF8DF4271B000B00FF7247 /* Searchable.swift in Sources */,
 				283F23FD26F865E000CD8339 /* UserData.swift in Sources */,
 				28A4982C270F4506008AC05B /* Folder.swift in Sources */,
 			);

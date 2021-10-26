@@ -30,7 +30,7 @@ class SearchMapViewController: MapViewController {
   private var markers: [NMFMarker]?
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.title = "제주도"
+    navigationItem.title = "\(dataList?.first?.location ?? "지도")"
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +43,7 @@ class SearchMapViewController: MapViewController {
     mapInfoView.isHidden = true
     mapInfoView.isUserInteractionEnabled = true
     mapView.isRotateGestureEnabled = false
+    mapInfoView.setCallerVC(viewController: self)
   }
   
   deinit {

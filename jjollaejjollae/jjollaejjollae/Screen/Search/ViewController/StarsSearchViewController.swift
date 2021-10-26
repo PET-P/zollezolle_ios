@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StarsSearchViewController: UIViewController, StoryboardInstantiable {
+class StarsSearchViewController: UIViewController, StoryboardInstantiable, Searchable {
   
   @IBOutlet weak var starTableView: UITableView! {
     didSet {
@@ -27,13 +27,6 @@ class StarsSearchViewController: UIViewController, StoryboardInstantiable {
     list = searchManager.retrieveStarSearchArray()
   }
   
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
-  
-  deinit {
-    print(#function)
-  }
 }
 
 extension StarsSearchViewController: UITableViewDelegate {
@@ -51,5 +44,12 @@ extension StarsSearchViewController: UITableViewDataSource {
             as? SearchTableViewCell else {return UITableViewCell()}
     cell.recommendLabel.text = list[indexPath.row]
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let text =  list[indexPath.row]
+    // 혹시나 있을 양 옆 공백을 없애기 위한 작업
+    let nextVC = sendRightVC(by: text)
+    self.navigationController?.pushViewController(nextVC, animated: true)
   }
 }

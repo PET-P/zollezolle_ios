@@ -237,6 +237,7 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
 }
 
 extension HomeMainViewController: UICollectionViewDataSource {
+<<<<<<< HEAD
   
   enum LocationName: CaseIterable {
     case seoul
@@ -291,11 +292,14 @@ extension HomeMainViewController: UICollectionViewDataSource {
       }
     }
   }
+=======
+>>>>>>> ae7498b3689291e6f281e8ca7bfe2d5a204469ae
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     if collectionView === locationCollectionView {
       return LocationName.allCases.count
+<<<<<<< HEAD
     }
     
     if collectionView === homeTipCollectionView {
@@ -304,6 +308,8 @@ extension HomeMainViewController: UICollectionViewDataSource {
     
     if collectionView === recommendedPlaceCollectionView {
       return LocationType.allCases.count
+=======
+>>>>>>> ae7498b3689291e6f281e8ca7bfe2d5a204469ae
     }
 
     return 10
@@ -316,11 +322,15 @@ extension HomeMainViewController: UICollectionViewDataSource {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeLocationCollectionViewCell.identifier, for: indexPath)
       
       guard let locationCell = cell as? HomeLocationCollectionViewCell else { return UICollectionViewCell() }
+<<<<<<< HEAD
       
       let locationName = LocationName.allCases[indexPath.row].description
       
       locationCell.titleLabel.text = locationName
       locationCell.mainImageView.image = UIImage(named: locationName)
+=======
+      locationCell.mainImageView.image = UIImage(named: LocationName.allCases[indexPath.item].description)
+>>>>>>> ae7498b3689291e6f281e8ca7bfe2d5a204469ae
       
       return locationCell
     }

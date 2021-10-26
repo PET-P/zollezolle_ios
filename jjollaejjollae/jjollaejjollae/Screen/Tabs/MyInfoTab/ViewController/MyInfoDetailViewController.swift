@@ -15,7 +15,7 @@ protocol ControlChildViewControllerDelegate: NSObject {
 }
 
 class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+  
   @IBOutlet weak var profileCollectionView: UICollectionView!
   @IBOutlet weak var infoSegmentedControl: UISegmentedControl! {
     didSet {
@@ -41,16 +41,54 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
   lazy var cameraImage = UIImage(named: "camera")
   lazy var plusImage = UIImage(named: "plus")
   
+  @IBOutlet weak var imageViewWhenOne: UIImageView! {
+    didSet {
+      imageViewWhenOne.setRounded(radius: 60)
+      imageViewWhenOne.isUserInteractionEnabled = true
+      imageViewWhenOne.isHidden = true
+      imageViewWhenOne.image = UIImage(named: "IMG_4930")
+    }
+  }
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    userInfo = UserManager.shared.userInfo
     NotificationCenter.default.addObserver(self, selector: #selector(getpageIndex(_:)),
                                            name: NSNotification.Name("SegControlNotification"),
                                            object: nil)
     setKeyboard()
-    setupImageArray()
     addCollectionView()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    print(#function, self)
+    userInfo = UserManager.shared.userInfo
+    setupImageArray()
     findRepresentDogImageUrl()
+    changeDogProfileUI()
+  }
+  
+  private func changeDogProfileUI(){
+    print("강아지숫자", dogTuples.count)
+    if dogTuples.count == 0 { //강아지가 한마리도 등록안되어있을때
+      profileCollectionView.isHidden = true
+      imageViewWhenOne.isHidden = false
+      imageViewWhenOne.image = cameraImage
+      let imageTapGesture = UITapGestureRecognizer(target: self,
+                                                   action: #selector(didTapImageViewWhenOne(_:)))
+      imageViewWhenOne.addGestureRecognizer(imageTapGesture)
+    } else { //강아지가 등록되어있을때
+      profileCollectionView.isHidden = false
+      imageViewWhenOne.isHidden = true
+    }
+  }
+  
+  @objc func didTapImageViewWhenOne(_ sender: Any?) {
+    if infoSegmentedControl.selectedSegmentIndex == 1 {
+      guard let dogProfileVC = DogInfoViewController.loadFromStoryboard() as? DogInfoViewController else {return}
+      present(dogProfileVC, animated: true, completion: nil)
+    }
   }
   
   // 대표갱얼쥐 찾기
@@ -162,10 +200,15 @@ extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionView
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
     if infoSegmentedControl.selectedSegmentIndex == 0 {
       return 1
     } else {
-      return self.dogTuples.count
+      if self.dogTuples.count < 6 {
+        return self.dogTuples.count
+      } else {
+        return 5
+      }
     }
   }
   
@@ -185,6 +228,7 @@ extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionView
     setMiddleIndex(cell, indexPath: indexPath)
     
     if indexPath == middleIndex {
+      if dogTuples.count == 0 {return cell}
       if dogTuples[indexPath.row].image == plusImage {
         delegate?.disableEditing(profileCollectionView)
       } else {

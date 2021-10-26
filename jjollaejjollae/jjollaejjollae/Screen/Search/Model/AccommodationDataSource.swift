@@ -9,10 +9,10 @@ import UIKit
 
 class AccommodationDataSource: NSObject, UITableViewDataSource {
   var dataList: [SearchResultInfo] = []
-  lazy var likes: [Int: Bool] = [:] {
-    didSet {
-      print(likes)
-    }
+  lazy var likes: [Int: Bool] = [:]
+  private var CallerVC: UIViewController?
+  internal func setCallerVC(viewController: UIViewController) {
+    CallerVC = viewController
   }
   // like userdefault 관리한다
   // userdefaults 와 서버 간 통신은 ()언제한다?
@@ -42,6 +42,10 @@ extension AccommodationDataSource: SearchResultCellDelegate {
       //모델의 likes에 대한 Update
     } else {
       likes[placeId] = true
+      guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
+        return
+      }
+      CallerVC?.present(wishListMainVC, animated: true, completion: nil)
       //모델의 likes에 대한 Update
     }
   }

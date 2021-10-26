@@ -10,6 +10,10 @@ import UIKit
 class CafeDataSource: NSObject, UITableViewDataSource {
   var dataList: [SearchResultInfo] = []
   lazy var likes: [Int: Bool] = [:]
+  private var CallerVC: UIViewController?
+  internal func setCallerVC(viewController: UIViewController) {
+    CallerVC = viewController
+  }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //return dataList.count
@@ -24,7 +28,12 @@ extension CafeDataSource: SearchResultCellDelegate {
       likes[placeId] = false
     } else {
       likes[placeId] = true
+      guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
+        return
+      }
+      CallerVC?.present(wishListMainVC, animated: true, completion: nil)
     }
+    // 여기서 그냥 placeID 넘겨줘~
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
