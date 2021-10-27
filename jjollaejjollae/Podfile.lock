@@ -120,6 +120,7 @@ PODS:
   - NMapsMap (3.13.0)
   - PromisesObjC (2.0.0)
   - SwiftLint (0.44.0)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -134,6 +135,7 @@ DEPENDENCIES:
   - naveridlogin-sdk-ios
   - NMapsMap
   - SwiftLint
+  - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -161,6 +163,7 @@ SPEC REPOS:
     - NMapsMap
     - PromisesObjC
     - SwiftLint
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
@@ -187,7 +190,8 @@ SPEC CHECKSUMS:
   NMapsMap: 88b5bdac7087bfa99ab058ff5cdd95fb766e0e95
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 026b07f3d0d6bb89513ba3d0d7c7dc7709b32250
+PODFILE CHECKSUM: 5f56a2b97b2e97897c8fc9fae5527677b21f10ed
 
 COCOAPODS: 1.11.2
