@@ -17,6 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="찾으시는 정보가 없습니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0zT-8y-VVw">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAz-6W-XyT">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="124.5"/>
                                 <subviews>
@@ -47,20 +54,6 @@
                                     <constraint firstItem="euv-gC-cGd" firstAttribute="leading" secondItem="WAz-6W-XyT" secondAttribute="leading" constant="16" id="n6K-Pd-Qos"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oSp-EF-dhY">
-                                <rect key="frame" x="0.0" y="397.5" width="414" height="464.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9om-th-qqk">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9om-th-qqk" id="uAq-9E-0fA">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2R-vZ-768" customClass="UIImageView">
                                 <rect key="frame" x="89" y="149.5" width="236" height="123"/>
                                 <subviews>
@@ -87,12 +80,6 @@
                                     <constraint firstItem="yck-02-J3o" firstAttribute="leading" secondItem="R2R-vZ-768" secondAttribute="leading" constant="10" id="vi7-XT-IQd"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="혹시 여기를 찾으셨나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94g-qz-NK0">
-                                <rect key="frame" x="17" y="356.5" width="165" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYg-SB-6er">
                                 <rect key="frame" x="0.0" y="297.5" width="414" height="7"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
@@ -100,6 +87,20 @@
                                     <constraint firstAttribute="height" constant="7" id="Fg5-jS-ALc"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oSp-EF-dhY">
+                                <rect key="frame" x="0.0" y="304.5" width="414" height="557.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9om-th-qqk">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9om-th-qqk" id="uAq-9E-0fA">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -108,26 +109,25 @@
                             <constraint firstItem="WAz-6W-XyT" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="AXt-fa-fow"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="oSp-EF-dhY" secondAttribute="bottom" id="BWt-6u-adL"/>
                             <constraint firstItem="WAz-6W-XyT" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="CXU-wD-CBK"/>
-                            <constraint firstItem="94g-qz-NK0" firstAttribute="top" secondItem="hYg-SB-6er" secondAttribute="bottom" constant="52" id="RFA-1V-GGn"/>
                             <constraint firstItem="WAz-6W-XyT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Se7-k5-Omq"/>
                             <constraint firstItem="R2R-vZ-768" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="T8t-bC-n9B"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oSp-EF-dhY" secondAttribute="trailing" id="TeG-Rz-hea"/>
                             <constraint firstItem="hYg-SB-6er" firstAttribute="top" secondItem="R2R-vZ-768" secondAttribute="bottom" constant="25" id="UFr-YD-B96"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hYg-SB-6er" secondAttribute="trailing" id="bWI-Ji-g2J"/>
                             <constraint firstItem="hYg-SB-6er" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ccC-x3-HDI"/>
+                            <constraint firstItem="0zT-8y-VVw" firstAttribute="centerX" secondItem="oSp-EF-dhY" secondAttribute="centerX" id="cpJ-2g-Sqs"/>
                             <constraint firstItem="R2R-vZ-768" firstAttribute="top" secondItem="WAz-6W-XyT" secondAttribute="bottom" constant="25" id="dYx-9Z-JLj"/>
-                            <constraint firstItem="94g-qz-NK0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="17" id="g1l-Xs-gX8"/>
-                            <constraint firstItem="oSp-EF-dhY" firstAttribute="top" secondItem="94g-qz-NK0" secondAttribute="bottom" constant="20" id="hT1-1s-7yi"/>
+                            <constraint firstItem="oSp-EF-dhY" firstAttribute="top" secondItem="hYg-SB-6er" secondAttribute="bottom" id="zr6-pt-IeT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="LocationView" destination="R2R-vZ-768" id="QjU-Vl-LV9"/>
-                        <outlet property="SearchResultTableView" destination="oSp-EF-dhY" id="7C4-OM-T1X"/>
                         <outlet property="backButton" destination="euv-gC-cGd" id="ZI1-cc-g4t"/>
                         <outlet property="headView" destination="WAz-6W-XyT" id="R48-Qp-ZIC"/>
-                        <outlet property="headerLabel" destination="94g-qz-NK0" id="EKa-QE-HSI"/>
                         <outlet property="locationLabel" destination="Hko-7f-bFY" id="gs2-Cd-MHd"/>
                         <outlet property="locationNumLabel" destination="yck-02-J3o" id="mat-Sm-WQC"/>
+                        <outlet property="notFoundLabel" destination="0zT-8y-VVw" id="xqf-gS-sLU"/>
+                        <outlet property="resultTableView" destination="oSp-EF-dhY" id="7C4-OM-T1X"/>
                         <outlet property="searchTextField" destination="V46-gK-2u2" id="fit-Nh-L5j"/>
                         <outlet property="separateLine" destination="hYg-SB-6er" id="zZm-YW-dKg"/>
                     </connections>

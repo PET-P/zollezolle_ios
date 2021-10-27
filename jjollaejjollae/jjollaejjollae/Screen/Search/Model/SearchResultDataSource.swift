@@ -61,6 +61,7 @@ extension SearchResultDataSource: SearchResultCellDelegate {
       guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
         return
       }
+      wishListMainVC.setPlaceInfo(placeId: placeId)
       CallerVC?.present(wishListMainVC, animated: true, completion: nil)
       //모델의 likes에 대한 Update
     }
@@ -68,16 +69,3 @@ extension SearchResultDataSource: SearchResultCellDelegate {
 }
 
 
-//if let day = item.days, let address = item.location, let price = item.prices {
-//  cell.DaysLabel.isHidden = false
-//  cell.addressLabel.isHidden = false
-//  cell.priceLabel.isHidden = false
-//  cell.DaysLabel.text = "\(day)박 요금"
-//  cell.addressLabel.text = address
-//  cell.priceLabel.text = "\(price)원"
-//} else {
-//  cell.addressLabel.text = nil
-//  cell.DaysLabel.text = nil
-//  cell.priceLabel.text = nil
-//  cell.contentStackView.removeArrangedSubview(cell.addressLabel)
-//}

@@ -13,7 +13,6 @@ enum Mode {
   case Fromsearch
 }
 
-
 class SearchResultViewController: UIViewController, StoryboardInstantiable, SearchDataReceiveable {
   
   //MARK: - IBOUTLET
@@ -40,7 +39,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   @IBOutlet weak var landMarkButton: RoundButton!
   @IBOutlet weak var cafeButton: RoundButton!
   @IBOutlet weak var accommodationButton: RoundButton!
- 
+  
   @IBOutlet weak var setFilterButton: UIButton! {
     didSet {
       setFilterButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
@@ -58,7 +57,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   @IBOutlet var setOrderButton: UIButton! {
     didSet {
       setOrderButton.layer.borderWidth = 0
-      setOrderButton.setTitle("추천순 ▼", for: .normal)
+      setOrderButton.setTitle("리뷰 많은순▼", for: .normal)
       setOrderButton.tintColor = .색44444
       setOrderButton.titleLabel?.font = .robotoMedium(size: 13)
     }
@@ -95,6 +94,49 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   lazy var likes: [Int : Int] = [:]
   private var fetchMore = true
   private var page = 0
+  lazy var region = "제주"
+  private var filter: String = "리뷰 많은순" {
+    didSet {
+      if restaurantButton.isSelected {
+        APIService.shared.getFilterPlace(region: region, category: .restaurant, filter: filter, page: 0) { [weak self](result) in
+          guard let self = self else {return}
+          switch result {
+          case .success(let data):
+            self.fetchDatasource(paging: false, category: .restaurant, with: data)
+          case .failure(let error):
+            print(self,#function, error)
+          }
+        }
+      } else if landMarkButton.isSelected {
+        APIService.shared.getFilterPlace(region: region, category: .landmark, filter: filter, page: 0) { (result) in
+          switch result {
+          case .success(let data):
+            self.fetchDatasource(paging: false, category: .landmark, with: data)
+          case .failure(let error):
+            print(self,#function, error)
+          }
+        }
+      } else if cafeButton.isSelected {
+        APIService.shared.getFilterPlace(region: region, category: .cafe, filter: filter, page: 0) { (result) in
+          switch result {
+          case .success(let data):
+            self.fetchDatasource(paging: false, category: .cafe, with: data)
+          case .failure(let error):
+            print(self,#function, error)
+          }
+        }
+      } else {
+        APIService.shared.getFilterPlace(region: region, category: .accommodation, filter: filter, page: 0) { (result) in
+          switch result {
+          case .success(let data):
+            self.fetchDatasource(paging: false, category: .accommodation, with: data)
+          case .failure(let error):
+            print(self,#function, error)
+          }
+        }
+      }
+    }
+  }
   
   private var dataList = [SearchResultData]()
   private var accomoList = [SearchResultData]()
@@ -115,7 +157,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   private var selectedButton = UIButton()
   private let headerHeight: CGFloat = 60
   
-  private var mode: Mode = .Fromlocation  // true: 지역검색후 넘어오는 화면, false: 카페라고만 치는 경우
+  private var mode: Mode = .Fromlocation
   
   func setMode(from viewController: UIViewController) {
     let text = SearchManager.shared.searchText
@@ -125,32 +167,11 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     default:
       if viewController is SearchWithLocationViewController {
         self.mode = .Fromlocation
+        self.region = SearchManager.shared.searchText
       } else {
         self.mode = .Fromsearch
       }
     }
-  }
-  
-  private func categorizeSearchResult() {
-  
-    newDataList.forEach { (data) in
-      switch data.category {
-      case .accommodation:
-        accomoList.append(data)
-      case .cafe:
-        cafeList.append(data)
-      case .restaurant:
-        restaurantList.append(data)
-      case .landmark:
-        landmarkList.append(data)
-      case .unknown:
-        return
-      }
-    }
-    accommodationDataSource.newDataList = accomoList
-    cafeDataSource.newDataList = cafeList
-    restaurantDataSource.newDataList = restaurantList
-    landmarkDataSource.newDataList = landmarkList
   }
   
   override func viewDidLoad() {
@@ -162,7 +183,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
       setupheader()
     }
     searchTextField.text = searchManager.searchText
-//    defaultHeight = HeightTobeDynamioc.constant
+    //    defaultHeight = HeightTobeDynamioc.constant
     
     //MARK: - gotoMapButton setting
     
@@ -174,7 +195,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     goToMapButton.widthAnchor.constraint(
       equalToConstant: self.view.frame.width * 121 / 375).isActive = true
     goToMapButton.heightAnchor.constraint(equalTo: goToMapButton.widthAnchor,
-                                         multiplier: 52 / 121).isActive = true
+                                          multiplier: 52 / 121).isActive = true
     goToMapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     goToMapButton.addTarget(self, action: #selector(tapGoToMapButton), for: .touchUpInside)
     updatedModeUI()
@@ -196,7 +217,6 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     resultTableView.isUserInteractionEnabled = true
     if mode == .Fromlocation {
-      categorizeSearchResult()
       accommodationDataSource.setCallerVC(viewController: self)
       restaurantDataSource.setCallerVC(viewController: self)
       landmarkDataSource.setCallerVC(viewController: self)
@@ -205,6 +225,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
                                  restaurantDataSource,
                                  cafeDataSource,
                                  landmarkDataSource]
+      accommodationDataSource.newDataList = self.newDataList
       self.dataList = accommodationDataSource.newDataList
     } else {
       searchResultDataSource.newDataList = newDataList
@@ -217,28 +238,28 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   }
   
   private func setupheader() {
-      let header = UIView(frame: CGRect(x: 0, y: 0, width: resultTableView.frame.width, height: 40))
-      let headerLabel = UILabel()
-      headerLabel.translatesAutoresizingMaskIntoConstraints = false
-      if mode == .Fromkeyword {
-        headerLabel.text = "내 근처 \(self.searchTextField.text == "" ? "갈만한 곳" : self.searchTextField.text ?? "갈만한 곳")"
-      } else {
-        headerLabel.text = "검색 결과"
-      }
-      
-      headerLabel.font = .robotoBold(size: 18)
-      headerLabel.textColor = .gray02
-      header.backgroundColor = .white
-      header.addSubview(headerLabel)
-      
-      headerLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16).isActive = true
-      headerLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 6).isActive = true
+    let header = UIView(frame: CGRect(x: 0, y: 0, width: resultTableView.frame.width, height: 40))
+    let headerLabel = UILabel()
+    headerLabel.translatesAutoresizingMaskIntoConstraints = false
+    if mode == .Fromkeyword {
+      headerLabel.text = "내 근처 \(self.searchTextField.text == "" ? "갈만한 곳" : self.searchTextField.text ?? "갈만한 곳")"
+    } else {
+      headerLabel.text = "검색 결과"
+    }
+    
+    headerLabel.font = .robotoBold(size: 18)
+    headerLabel.textColor = .gray02
+    header.backgroundColor = .white
+    header.addSubview(headerLabel)
+    
+    headerLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16).isActive = true
+    headerLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 6).isActive = true
     resultTableView.tableHeaderView = header
     if #available(iOS 15.0, *) {
       resultTableView.sectionHeaderTopPadding = 0
     }
   }
-
+  
   private func updatedModeUI() {
     if mode == .Fromlocation {
       NumberLabelfilterStackView.isHidden = false
@@ -264,9 +285,9 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     // TODO Map으로 넘어가기
     let searchMapStoryboard = UIStoryboard(name: "SearchMap", bundle: nil)
     guard let searchMapVC = searchMapStoryboard.instantiateViewController(
-            identifier: "SearchMapViewController") as? SearchMapViewController else {
-      return
-    }
+      identifier: "SearchMapViewController") as? SearchMapViewController else {
+        return
+      }
     searchMapVC.setDataList(with: self.dataList)
     present(searchMapVC, animated: true)
   }
@@ -293,25 +314,71 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     }
   }
   
+  private func updateSelected(_ sender: UIButton){
+    let buttons = [restaurantButton, landMarkButton, accommodationButton, cafeButton]
+    for button in buttons {
+      if sender == button{
+        button?.isSelected = true
+      } else {
+        button?.isSelected = false
+      }
+    }
+  }
+  
   @IBAction private func didTapFilterButtons(_ sender: UIButton) {
+    //초기화작업
+    page = 0
+    self.dataList = []
+    resultTableView.reloadData()
+    updateSelected(sender)
     switch sender {
     case restaurantButton:
+      
       resultTableView.dataSource = searchResultDataSources[1]
-      dataList = restaurantDataSource.newDataList
+      APIService.shared.getFilterPlace(region: region, category: .restaurant, filter: filter, page: 0) { [weak self](result) in
+        guard let self = self else {return}
+        switch result {
+        case .success(let data):
+          self.fetchDatasource(paging: false, category: .restaurant, with: data)
+        case .failure(let error):
+          print(self,#function, error)
+        }
+      }
     case landMarkButton:
       resultTableView.dataSource = searchResultDataSources[3]
-      dataList = landmarkDataSource.newDataList
+      APIService.shared.getFilterPlace(region: region, category: .landmark, filter: filter, page: 0) { [weak self](result) in
+        guard let self = self else {return}
+        switch result {
+        case .success(let data):
+          self.fetchDatasource(paging: false, category: .landmark, with: data)
+        case .failure(let error):
+          print(self,#function, error)
+        }
+      }
     case cafeButton:
       resultTableView.dataSource = searchResultDataSources[2]
-      dataList = cafeDataSource.newDataList
+      APIService.shared.getFilterPlace(region: region, category: .cafe, filter: filter, page: 0) { (result) in
+        switch result {
+        case .success(let data):
+          self.fetchDatasource(paging: false, category: .cafe, with: data)
+        case .failure(let error):
+          print(self,#function, error)
+        }
+      }
     case accommodationButton:
       resultTableView.dataSource = searchResultDataSources[0]
-      dataList = accommodationDataSource.newDataList
+      APIService.shared.getFilterPlace(region: region, category: .accommodation, filter: filter, page: 0) { (result) in
+        switch result {
+        case .success(let data):
+          self.fetchDatasource(paging: false, category: .accommodation, with: data)
+        case .failure(let error):
+          print(self,#function, error)
+        }
+      }
     default:
       return
     }
     updateButtonUI(sender)
-    resultTableView.reloadData()
   }
   
   @IBAction private func didTapBackButton(_ sender: UIButton) {
@@ -322,27 +389,25 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
 }
 
 extension SearchResultViewController {
-
+  
   @IBAction func didTapSetOrderButton(_ sender: UIButton) {
     showAlertController(style: .actionSheet)
   }
   //"리뷰 많은순", "최근 등록순", "별점 높은순"
   private func showAlertController(style: UIAlertController.Style) {
     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
-    let recommendAction = UIAlertAction(title: "추천순", style: .default) { [weak self]
-      result in self?.setOrderButton.setTitle("추천순▼", for: .normal)
-      //여기서 백그라운드큐에서 sort하고 main큐에서 async로 보여줘야할듯
-      // 큐는 concurrent로 일단 백그라운드로 ㄲ
-    }
+    
     let reviewAction = UIAlertAction(title: "리뷰 많은순", style: .default) {
       [weak self] result in self?.setOrderButton.setTitle("리뷰 많은순▼", for: .normal)
-      
+      self?.filter = "리뷰 많은순"
     }
     let recentAction = UIAlertAction(title: "최근 등록순", style: .default) { [weak self] result in
       self?.setOrderButton.setTitle("최근 등록순▼", for: .normal)
+      self?.filter = "최근 등록순"
     }
     let starAction = UIAlertAction(title: "별점 높은순", style: .default) { [weak self] result in
       self?.setOrderButton.setTitle("별점 높은순▼", for: .normal)
+      self?.filter = "별점 높은순"
     }
     let subview = alertController.view.subviews.first! as UIView
     let alertContentView = subview.subviews.first! as UIView
@@ -351,7 +416,6 @@ extension SearchResultViewController {
     alertContentView.backgroundColor = UIColor.white
     alertController.view.setRounded(radius: 10)
     alertController.view.tintColor = .themeGreen
-    alertController.addAction(recommendAction)
     alertController.addAction(reviewAction)
     alertController.addAction(recentAction)
     alertController.addAction(starAction)
@@ -365,28 +429,147 @@ extension SearchResultViewController {
 
 extension SearchResultViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-   
+    
+  }
+  
+  private func fetchDatasource(paging: Bool, category: CategoryType, with data: [SearchResultData]) {
+    if paging {
+      self.newDataList += data
+    } else {
+      self.newDataList = data
+    }
+    switch category {
+    case .accommodation:
+      self.accommodationDataSource.newDataList = self.newDataList
+      self.dataList = self.accommodationDataSource.newDataList
+      self.resultTableView.reloadData()
+    case .cafe:
+      self.cafeDataSource.newDataList = self.newDataList
+      self.dataList = self.cafeDataSource.newDataList
+      self.resultTableView.reloadData()
+    case .landmark:
+      self.landmarkDataSource.newDataList = self.newDataList
+      self.dataList = self.landmarkDataSource.newDataList
+      self.resultTableView.reloadData()
+    case .restaurant:
+      self.restaurantDataSource.newDataList = self.newDataList
+      self.dataList = self.restaurantDataSource.newDataList
+      self.resultTableView.reloadData()
+    case .unknown:
+      return
+    }
+    
   }
   
   private func fetchData(){
     fetchMore = false
-    if let token = UserManager.shared.userIdandToken?.token {
-      page = page + 1
-      APIService.shared.search(token: token, keyword: SearchManager.shared.searchText, page: page) { [weak self](result) in
+    page += 1
+    if mode == .Fromlocation {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
         guard let self = self else {return}
-        switch result {
-        case .success(let data):
-          if data.result.count == 0 {
-            self.fetchMore = false
-            return
+        if self.restaurantButton.isSelected {
+          APIService.shared.getFilterPlace(region: self.region, category: .restaurant, filter: self.filter, page: self.page) { [weak self](result) in
+            guard let self = self else {return}
+            switch result {
+            case .success(let data):
+              if data.count == 0 {
+                print("데이터없음")
+                self.fetchMore = false
+                return
+              }
+              self.fetchDatasource(paging: true, category: .restaurant, with: data)
+            case .failure(let error):
+              print(self,#function, error)
+            }
           }
-          self.newDataList += data.result
-          self.searchResultDataSource.newDataList = self.newDataList
-          self.dataList = self.searchResultDataSource.newDataList
-          self.resultTableView.reloadData()
-        case .failure(let error):
-          print("error: \(error)")
+        } else if self.landMarkButton.isSelected {
+          APIService.shared.getFilterPlace(region: self.region, category: .landmark, filter: self.filter, page: self.page) { (result) in
+            switch result {
+            case .success(let data):
+              print(data)
+              if data.count == 0 {
+                print("데이터없음")
+                self.fetchMore = false
+                return
+              }
+              self.fetchDatasource(paging: true, category: .landmark, with: data)
+            case .failure(let error):
+              print(self,#function, error)
+            }
+          }
+        } else if self.cafeButton.isSelected {
+          APIService.shared.getFilterPlace(region: self.region, category: .cafe, filter: self.filter, page: self.page) { (result) in
+            switch result {
+            case .success(let data):
+              print(data)
+              if data.count == 0 {
+                print("데이터없음")
+                self.fetchMore = false
+                return
+              }
+              self.fetchDatasource(paging: true, category: .cafe, with: data)
+            case .failure(let error):
+              print(self,#function, error)
+            }
+          }
+        } else {
+          APIService.shared.getFilterPlace(region: self.region, category: .accommodation, filter: self.filter, page: self.page) { (result) in
+            switch result {
+            case .success(let data):
+              print(data)
+              if data.count == 0 {
+                print("데이터없음")
+                self.fetchMore = false
+                return
+              }
+              self.fetchDatasource(paging: true, category: .accommodation, with: data)
+            case .failure(let error):
+              print(self,#function, error)
+            }
+          }
         }
+        self.fetchMore = true
+      }
+    } else {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [weak self] in
+        guard let self = self else {return}
+        if let token = UserManager.shared.userIdandToken?.token {
+          APIService.shared.search(token: token, keyword: SearchManager.shared.searchText, page: self.page) { [weak self](result) in
+            guard let self = self else {return}
+            switch result {
+            case .success(let data):
+              if data.result.count == 0 {
+                print("데이터없음")
+                self.fetchMore = false
+                return
+              }
+              self.newDataList += data.result
+              self.searchResultDataSource.newDataList = self.newDataList
+              self.dataList = self.searchResultDataSource.newDataList
+              self.resultTableView.reloadData()
+            case .failure(let error):
+              print("error: \(error)")
+            }
+          }
+        } else {
+          APIService.shared.search(keyword: SearchManager.shared.searchText, page: self.page) { [weak self](result) in
+            guard let self = self else {return}
+            switch result {
+            case .success(let data):
+              if data.result.count == 0 {
+                self.fetchMore = false
+                return
+              }
+              self.newDataList += data.result
+              self.searchResultDataSource.newDataList = self.newDataList
+              self.dataList = self.searchResultDataSource.newDataList
+              self.resultTableView.reloadData()
+            case .failure(let error):
+              print("error: \(error)")
+            }
+          }
+        }
+        self.fetchMore = true
       }
     }
   }

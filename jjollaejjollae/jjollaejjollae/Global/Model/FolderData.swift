@@ -10,9 +10,9 @@ import Foundation
 struct FolderData: Codable {
   var regions: [String]
   var count: Int
-  var contents: [PlaceContentData]
+  var contents: [SearchResultData]
   var id, name: String
-  let startDate, endDate, updatedAt, createdAt: String
+  var startDate, endDate, updatedAt, createdAt: String?
   
   enum CodingKeys: String, CodingKey {
     case regions, count, contents
@@ -20,3 +20,4 @@ struct FolderData: Codable {
     case name, startDate, endDate, updatedAt, createdAt
   }
 }
+

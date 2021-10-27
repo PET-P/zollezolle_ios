@@ -144,7 +144,8 @@ extension SearchViewController: UITextFieldDelegate {
       APIService.shared.search(token: token, keyword: searchText, page: 0) { result in
         switch result{
         case .success(let data):
-          guard let nextVC = self.sendRightVC(from: self, by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          print(self, data.result)
           nextVC.newDataList = data.result
           self.hidesBottomBarWhenPushed = true
           self.navigationController?.pushViewController(nextVC, animated: true)
@@ -156,7 +157,7 @@ extension SearchViewController: UITextFieldDelegate {
       APIService.shared.search(keyword: searchText, page: 0) { (result) in
         switch result {
         case .success(let data):
-          guard let nextVC = self.sendRightVC(from: self, by: data.region, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
           nextVC.newDataList = data.result
           SearchManager.shared.searchText = searchText
           self.hidesBottomBarWhenPushed = true
