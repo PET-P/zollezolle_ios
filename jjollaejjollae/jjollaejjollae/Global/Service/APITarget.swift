@@ -23,29 +23,40 @@ enum APITarget {
   case tempPassword(email: String) //임시비밀번호
   case naver(authorization: String)
   case socialLogin(email: String, nick: String, phone: String, accountType: String)
+  case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
+  case readPets(token: String, userId: String)
   case patchPetInfo(token: String, userId: String, petId: String, pets: [PetData])
+  
   case search(token: String, keyword: String, page: Int)
   case noLoginSearch(keyword: String, page: Int)
   case nearPlace(lat: Double, lng: Double)
+  
+  case getFilterPlace(region: String, category: CategoryType, filter: String, page: Int)
+  
   case readAllPosts
   case readPost(postId: String)
-  case readWishlist(id: String)
-  case createFolder(token: String, userId: String, folder: Folder)
-  case patchFolder(token: String, userId: String, folderId: String, content: [String], name: String, startDate: String?, endDate: String?)
+  
+  case readWishlist(token: String, userId: String)
+  case createWishlistFolder(userId: String, folder: [String: Any])
+  case patchFolder(token: String, userId: String, folderId: String, name: String, startDate: String?, endDate: String?)
+  
   case deleteFolder(token: String, userId: String, folderId: String)
   case readFolder(token: String, userId: String, folderId: String)
+  
   case readUser(token: String, userId: String)
   case deleteUser(token: String, userId: String)
   case readAllUsers
-  case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
-  case readPets(token: String, userId: String)
   case patchMyInfo(token: String, userId: String)
+  
   case readReview(token: String, userId: String)
   case readPlaceReview(token: String, placeId: String)
   case noLoginReadReview(placeId: String)
   case deleteReview(reviewId: String)
-  case addPlaceInFolder(userId: String, placeId: String, folderId: String, region: String)
-  case deletePlaceInFolder(userId: String, folderId: String, placeId: String)
+  
+  //담기 추가
+  case addPlaceInFolder(token: String, userId: String, placeId: String, folderId: String)
+  //담기 삭제
+  case deletePlaceInFolder(token: String, userId: String, folderId: String, placeId: String)
 }
 
 extension APITarget: TargetType {
@@ -57,7 +68,6 @@ extension APITarget: TargetType {
     default:
       return URL(string: APIEnvironment.base.rawValue)!
     }
-    
   }
   
   var path: String {
@@ -86,12 +96,14 @@ extension APITarget: TargetType {
       return "/posts"
     case .readPost(let postId):
       return "/posts/\(postId)"
-    case .readWishlist(let id):
-      return "/wishlist/\(id)"
-    case .createFolder:
-      return "/wishlist"
-    case .patchFolder(_, let userId, let folderId, _, _, _, _), .deleteFolder(_, let userId, let folderId), .readFolder(_, let userId, let folderId):
+    case .readWishlist(_, let userId):
       return "/wishlist/\(userId)"
+    case .createWishlistFolder:
+      return "/wishlist"
+    case .patchFolder(_, let userId,_, _, _, _), .deleteFolder(_, let userId, _):
+      return "/wishlist/\(userId)"
+    case .readFolder(_, let userId, _):
+      return "/wishlist/folder/\(userId)"
     case .addPlaceInFolder:
       return "/wishlist/folder"
     case .readUser(_, let userId):
@@ -108,18 +120,20 @@ extension APITarget: TargetType {
       return "/reviews"
     case .deleteReview(let reviewId):
       return "/reviews/\(reviewId)"
-    case .deletePlaceInFolder(let userId, _,_):
+    case .deletePlaceInFolder(_, let userId, _,_):
       return "/wishlist/folder/\(userId)"
     case .nearPlace:
       return "/places/near"
+    case .getFilterPlace:
+      return "/places"
     }
   }
   
   var method: Moya.Method {
     switch self {
-    case .refreshToken, .tempPassword, .naver, .search, .noLoginSearch, .readAllPosts, .readPost, .readWishlist, .readFolder, .readUser, .readAllUsers, .readPets, .readReview, .readPlaceReview, .noLoginReadReview, .nearPlace:
+    case .refreshToken, .tempPassword, .naver, .search, .noLoginSearch, .readAllPosts, .readPost, .readWishlist, .readFolder, .readUser, .readAllUsers, .readPets, .readReview, .readPlaceReview, .noLoginReadReview, .nearPlace, .getFilterPlace:
       return .get
-    case .email, .login, .findPassword, .signup, .socialLogin, .addPlaceInFolder, .createPet, .createFolder:
+    case .email, .login, .findPassword, .signup, .socialLogin, .addPlaceInFolder, .createPet, .createWishlistFolder:
       return .post
     case .patchPetInfo, .patchFolder, .patchMyInfo:
       return .patch
@@ -160,15 +174,15 @@ extension APITarget: TargetType {
     case .patchPetInfo(_, _, _, let pets):
       return .requestParameters(parameters: ["pets": pets], encoding: JSONEncoding.default)
       
-    case .createFolder(_, let userId, let folder):
+    case .createWishlistFolder(let userId, let folder):
       return .requestParameters(parameters: ["userId": userId, "folder": folder], encoding: JSONEncoding.default)
-    case .patchFolder(_, _, let folderId, let content, let name, let startDate, let endDate):
-      return .requestCompositeParameters(bodyParameters: ["name": name, "startDate": startDate, "endDate": endDate, "content": content], bodyEncoding: JSONEncoding.default, urlParameters: ["folderId": folderId])
-    case .deleteFolder(_, _, let folderId), .readFolder(_, _, let folderId):
+    case .patchFolder(_, _, let folderId, let name, let startDate, let endDate):
+      return .requestCompositeParameters(bodyParameters: ["name": name, "startDate": startDate, "endDate": endDate], bodyEncoding: JSONEncoding.default, urlParameters: ["folderId": folderId])
+    case .readFolder(_, _, let folderId), .deleteFolder(_, _, let folderId):
       return .requestParameters(parameters: ["folderId": folderId], encoding: URLEncoding.queryString)
-    case .addPlaceInFolder(let userId, let placeId, let folderId, let region):
-      return .requestParameters(parameters: ["userId": userId, "placeId": placeId, "folderId": folderId, "region": region], encoding: JSONEncoding.default)
-    case .deletePlaceInFolder(_, let folderId, let placeId):
+    case .addPlaceInFolder(_, let userId, let placeId, let folderId):
+      return .requestParameters(parameters: ["userId": userId, "placeId": placeId, "folderId": folderId], encoding: JSONEncoding.default)
+    case .deletePlaceInFolder(_, _, let folderId, let placeId):
       return .requestParameters(parameters: ["folderId": folderId, "placeId": placeId], encoding: URLEncoding.queryString)
       
     case .search(_, let keyword, let page), .noLoginSearch(let keyword, let page ):
@@ -179,22 +193,23 @@ extension APITarget: TargetType {
       return .requestParameters(parameters: ["userId": userId], encoding: URLEncoding.queryString)
     case .readPlaceReview(_, let placeId), .noLoginReadReview(let placeId):
       return .requestParameters(parameters: ["placeId": placeId], encoding: URLEncoding.queryString)
+    case .getFilterPlace(let region,let category,let filter, let page):
+      return .requestParameters(parameters: ["region": region, "category": category.rawValue, "filter": filter, "page": page], encoding: URLEncoding.queryString)
     }
   }
-  
-  
+    
   var validationType: ValidationType {
     return .successAndRedirectCodes
   }
   
   var headers: [String : String]? {
     switch self {
-    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .patchPetInfo, .readAllPosts, .readPost, .readWishlist,  .readAllUsers, .noLoginSearch, .noLoginReadReview, .deleteReview, .patchFolder, .deleteFolder, .addPlaceInFolder, .deletePlaceInFolder, .nearPlace:
+    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .patchPetInfo, .readAllPosts, .readPost,  .readAllUsers, .noLoginSearch, .noLoginReadReview, .deleteReview, .nearPlace, .createWishlistFolder, .getFilterPlace:
       return ["Content-Type" : "application/json"]
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
-    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .createFolder(let token, _, _),  .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _):
+    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _):
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
     case .naver(let authorization):
       return ["Authorization": authorization]

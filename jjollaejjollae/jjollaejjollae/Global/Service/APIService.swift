@@ -90,18 +90,18 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func readWishlist(id: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
-    let target = APITarget.readWishlist(id: id)
+  func readWishlist(userId: String, token: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.readWishlist(token: token, userId: userId)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func createWishlistFolder(token: String, userId: String, folder: Folder, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
-    let target = APITarget.createFolder(token: token, userId: userId, folder: folder)
+  func createWishlistFolder(userId: String, folder: [String: Any], completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.createWishlistFolder(userId: userId, folder: folder)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func patchFolder(token: String, userId: String, folderId: String, content: [String], name: String, startDate: String, endDate: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
-    let target = APITarget.patchFolder(token: token, userId: userId, folderId: folderId, content: content, name: name, startDate: startDate, endDate: endDate)
+  func patchFolder(token: String, userId: String, folderId: String, name: String, startDate: String, endDate: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.patchFolder(token: token, userId: userId, folderId: folderId, name: name, startDate: startDate, endDate: endDate)
     judgeGenericResponse(target, completion: completion)
   }
   
@@ -110,18 +110,18 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func readFolder(token: String, userId: String, folderId: String, completion: @escaping((NetworkResult<FoldersData>) -> (Void))) {
+  func readFolder(token: String, userId: String, folderId: String, completion: @escaping((NetworkResult<FolderData>) -> (Void))) {
     let target = APITarget.readFolder(token: token, userId: userId, folderId: folderId)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func addPlaceInFolder(userId: String, placeId: String, folderId: String, region: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
-    let target = APITarget.addPlaceInFolder(userId: userId, placeId: placeId, folderId: folderId, region: region)
+  func addPlaceInFolder(token: String, userId: String, placeId: String, folderId: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.addPlaceInFolder(token: token, userId: userId, placeId: placeId, folderId: folderId)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func deletePlaceInFolder(userId: String, folderId: String, placeId: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
-    let target = APITarget.deletePlaceInFolder(userId: userId, folderId: folderId, placeId: placeId)
+  func deletePlaceInFolder(token: String, userId: String, folderId: String, placeId: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.deletePlaceInFolder(token: token, userId: userId, folderId: folderId, placeId: placeId)
     judgeGenericResponse(target, completion: completion)
   }
   
@@ -158,6 +158,11 @@ struct APIService {
   func deleteReview(reviewId: String, completion: @escaping((NetworkResult<Any>) -> (Void))) {
     let target = APITarget.deleteReview(reviewId: reviewId)
     judgeSimpleResponse(target, completion: completion)
+  }
+  
+  func getFilterPlace(region: String, category: CategoryType, filter: String, page: Int, completion: @escaping((NetworkResult<[SearchResultData]>) -> (Void))) {
+    let target = APITarget.getFilterPlace(region: region, category: category, filter: filter, page: page)
+    judgeGenericResponse(target, completion: completion)
   }
   
 }
