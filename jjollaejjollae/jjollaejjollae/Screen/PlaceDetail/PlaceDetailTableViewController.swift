@@ -78,7 +78,7 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
     
     guard let placeInfo = placeInfo else { return }
     
-    let urlString = placeInfo.imageUrls.first ?? ""
+    let urlString = placeInfo.imageURLs.first ?? ""
     
     mainImageView.setImage(with: urlString)
     

@@ -9,7 +9,7 @@ import UIKit
 
 class HomeTipCollectionViewCell: UICollectionViewCell{
   
-  static var identifier = "HomeTipCollectionViewCell"
+  static let identifier = String(describing: HomeTipCollectionViewCell.self)
   
   @IBOutlet weak var titleLabel: UILabel!
 

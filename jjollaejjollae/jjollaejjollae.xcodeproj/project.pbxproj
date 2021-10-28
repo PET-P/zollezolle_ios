@@ -449,16 +449,16 @@
 		2834ED0526BFE39600E948B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DDF52B59272B4BCE0085D77D /* User */,
+				DDF52B58272B3F590085D77D /* Pet */,
 				2834ED0626BFE46700E948B0 /* LoginManager.swift */,
 				2884A2FD26C8EC71004596C3 /* SearchManager.swift */,
 				2884A37626D7F3D3004596C3 /* Filters.swift */,
-				28E910BC26F0E2390093BF7C /* PetInfo.swift */,
 				283F240A26F8732E00CD8339 /* RefreshTokenData.swift */,
 				283F23F026F7117C00CD8339 /* WishListManager.swift */,
 				283F23F226F7133400CD8339 /* Wish.swift */,
 				283F23FA26F852E300CD8339 /* GenericResponse.swift */,
 				283F240C26F87F9C00CD8339 /* SimpleResponse.swift */,
-				283F23FC26F865E000CD8339 /* UserData.swift */,
 				283F240826F8725C00CD8339 /* SignUpData.swift */,
 				2877C3A526FF79F2000E3233 /* SocialUser.swift */,
 				2877C3A726FF7A09000E3233 /* SignUp.swift */,
@@ -471,8 +471,6 @@
 				28A49831270F4F7C008AC05B /* FoldersData.swift */,
 				28A49835270F4FBD008AC05B /* RoomData.swift */,
 				28A49837270F4FDB008AC05B /* LocationData.swift */,
-				28A49839270FD19B008AC05B /* UserManager.swift */,
-				28A4983B2710221C008AC05B /* PetData.swift */,
 				28A498432710BC28008AC05B /* ContentsData.swift */,
 				28FEC638271340EF00C10B32 /* State.swift */,
 				28C6F62927186A3500A961AB /* PagingManager.swift */,
@@ -926,6 +924,24 @@
 				DDB38F1627282777004482B3 /* TipWebViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		DDF52B58272B3F590085D77D /* Pet */ = {
+			isa = PBXGroup;
+			children = (
+				28E910BC26F0E2390093BF7C /* PetInfo.swift */,
+				28A4983B2710221C008AC05B /* PetData.swift */,
+			);
+			path = Pet;
+			sourceTree = "<group>";
+		};
+		DDF52B59272B4BCE0085D77D /* User */ = {
+			isa = PBXGroup;
+			children = (
+				28A49839270FD19B008AC05B /* UserManager.swift */,
+				283F23FC26F865E000CD8339 /* UserData.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		DDFFC11426FB0734001FD04A /* MapTab */ = {

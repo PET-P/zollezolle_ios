@@ -7,7 +7,9 @@
 
 import UIKit
 
-class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchable {
+final class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchable {
+  
+  private let userManager = UserManager.shared
   
   // MARK: - IBOutlet
   
@@ -19,21 +21,28 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchab
       imageBackViewHeightConstraint.constant = mainImageMaxHeight
     }
   }
-
+  
+  @IBOutlet weak var mainLogoImageView: UIImageView!
+  
   @IBOutlet weak var mainImageView: UIImageView! {
     didSet {
-
-      if hasMainPhoto {
-        // TODO: 프로필 사진 설정
-        
-        
-        return
-      }
       
-      // mainImageView.image = SomedefaultImage
+      // TODO: 프로필 사진 설정
+      guard let userInfo = userManager.userInfo else { return }
+      
+      guard let pet = userInfo.pets.filter({ petData in
+        petData.isRepresent
+      }).first else { return }
+      
+      guard let imageUrl = pet.imageUrl else { return }
+      
+      mainImageView.setImage(with: imageUrl)
+      
+      return
     }
   }
   
+
   @IBOutlet weak var mainScrollView: UIScrollView! {
     didSet {
       
@@ -54,11 +63,7 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchab
   @IBOutlet weak var searchGuideLabel: UILabel! {
     didSet {
       searchGuideLabel.textColor = .gray03
-      
-      let representedPetName = representedPet?.name ?? "쪼꼬"
-      
-      let modifiedName = representedPetName.appendedPostPositionText()
-      searchGuideLabel.text = "\(modifiedName) 어디로 가볼까요?"
+      searchGuideLabel.text = "쪼꼬랑 어디로 가볼까요?"
     }
   }
   
@@ -74,43 +79,22 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchab
   private var mainImageMaxHeight: CGFloat = 360
   private var mainImageMinHeight: CGFloat = 128
   
-  
   private var hasMainPhoto: Bool {
     // MainPhoto 유무 확인하는 로직
     return true
   }
-  
-  private var userPetName: String? {
-    return "쪼꼬"
-  }
-  
+
   /**
-      사용자가 설정한 대표 반려동물을 반환하는 계산속성
+      사용자가 설정한 대표 반려동물
    */
   
   private var representedPet: PetData? {
-    
-    guard let userData = UserManager.shared.userInfo else { return nil }
-    
-    guard !(userData.pets.isEmpty) else { return nil }
-    
-    let petList = userData.pets
-    
-    var representedPet: PetData?
-    
-    petList.forEach { pet in
-      
-      if representedPet != nil  {
-        return
-      }
-      
-      if pet.isRepresent {
-        representedPet = pet
-      }
+    didSet {
+      updateMainImageView()
+      updateSearchGuideLabel()
     }
-    
-    return representedPet
   }
+  
   
   /**
     Author : 박우찬
@@ -118,18 +102,18 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchab
    */
 //  private let homeLocationCellNibName = "HomeLocationCell"
   
-  private let homeTipCellNibName = "HomeTipCell"
+//  private let homeTipCellNibName = "HomeTipCell"
   
 
   // MARK: - Life Cycle
+  
   override func viewDidLoad() {
     
     super.viewDidLoad()
     
-    mainScrollView.delegate = self
+    updateRepresentedPet()
     
-
-    UserDefaults.standard.register(defaults: ["UserAgent" : "Safari/xyz"])
+    mainScrollView.delegate = self
 
     setUpLocationCollectionView()
     
@@ -144,6 +128,18 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchab
     
   }
   
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    
+    if let vc = segue.destination as? UINavigationController, let url = sender as? String {
+      
+      if let tipVC = vc.viewControllers.first! as? TipWebViewController {
+        
+        tipVC.targetURLString = url
+      }
+    }
+  }
+  
   // MARK: - IBAction
   
   @IBAction func didTapSearchButton(_ sender: UIButton!) {
@@ -153,6 +149,23 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchab
   }
   
   // MARK: - Custom
+  
+  private func updateMainImageView() {
+    
+    if let imageUrl = representedPet!.imageUrl {
+      mainImageView.setImage(with:imageUrl)
+    }
+  }
+  
+  private func updateSearchGuideLabel() {
+    
+    searchGuideLabel.textColor = .gray03
+    
+    let representedPetName = representedPet?.name ?? "쪼꼬"
+    
+    let modifiedName = representedPetName.appendedPostPositionText()
+    searchGuideLabel.text = "\(modifiedName) 어디로 가볼까요?"
+  }
   
   /**
     LocationCollectionView 기본 셋업 메서드
@@ -222,17 +235,17 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchab
     recommendedPlaceCollectionView.register(locationCellNib, forCellWithReuseIdentifier: HomeLocationCollectionViewCell.identifier)
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  func updateRepresentedPet() {
     
+    guard let userInfo = userManager.userInfo else { return }
     
-    if let vc = segue.destination as? UINavigationController, let url = sender as? String {
-      
-      if let tipVC = vc.viewControllers.first! as? TipWebViewController {
-        
-        tipVC.targetURLString = url
-      }
-
-    }
+    guard !(userInfo.pets.isEmpty) else { return }
+    
+    guard let pet = userInfo.pets.filter({ petData in
+      petData.isRepresent
+    }).first else { return }
+    
+    representedPet = pet
   }
 }
 
@@ -425,6 +438,9 @@ extension HomeMainViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     
     mainImageView.alpha = ((mainImageView.frame.height - mainImageMinHeight) / (mainImageMaxHeight - mainImageMinHeight))
+    
+    mainLogoImageView.alpha = ((mainImageView.frame.height - mainImageMinHeight) / (mainImageMaxHeight - mainImageMinHeight))
+    
     
     let value = mainImageMaxHeight - scrollView.contentOffset.y.rounded(.up) - CGFloat(356)
     

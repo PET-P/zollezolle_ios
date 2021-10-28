@@ -25,14 +25,11 @@ class TipWebViewController: UIViewController {
     
     webView.load(request)
     
-//    webView.uiDelegate = 
   }
   
   @IBAction func didTapBackButton(_ sender: Any) {
     
-    self.dismiss(animated: true) {
-      UserDefaults.standard.removeObject(forKey: "UserAgent")
-    }
+    self.dismiss(animated: true)
   }
   
 }
