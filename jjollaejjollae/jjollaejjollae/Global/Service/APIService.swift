@@ -9,6 +9,7 @@ import Foundation
 import Moya
 import UIKit
 import Kingfisher
+import SwiftyJSON
 
 struct APIService { 
   
@@ -165,7 +166,7 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func fetchPlaceInfo(token: String, userID: String, completion: @escaping((NetworkResult<PlaceInfo>) -> (Void))) {
+  func fetchPlaceInfo(token: String, userID: String, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
 //    let target = APITarget.fetchPlaceInfo(token: token, userId)
   }
 }
