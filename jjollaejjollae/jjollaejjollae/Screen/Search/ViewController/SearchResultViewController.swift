@@ -307,10 +307,16 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   
   private func updateButtonUI(_ sender: UIButton) {
     buttons.forEach { button in
+      button.setTitleColor(.gray01, for: .selected)
+      button.setTitleColor(.gray01, for: .normal)
       if button == sender {
         button.backgroundColor = .themePaleGreen
+        button.tintColor = .themePaleGreen
+        button.isSelected = true
       } else {
         button.backgroundColor = .white
+        button.tintColor = .white
+        button.isSelected = false
       }
     }
   }
