@@ -69,7 +69,9 @@ class InnerReviewTableViewController: UITableViewController {
 
   @IBAction func didTapCreateReviewButton(_ sender: UIButton) {
     
-    print(#function)
+    let vc = CreateReviewViewController.loadFromStoryboard()
+    
+    self.present(vc, animated: true, completion: nil)
   }
   
   @IBAction func didTapCreateReview(_ sender: Any) {

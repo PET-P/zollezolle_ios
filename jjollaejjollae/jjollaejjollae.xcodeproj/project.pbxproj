@@ -168,6 +168,11 @@
 		DDBC9864272AB0F700D33EC2 /* InnerReviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC9863272AB0F700D33EC2 /* InnerReviewTableViewController.swift */; };
 		DDBC9868272ABB2500D33EC2 /* ReviewCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC9867272ABB2500D33EC2 /* ReviewCollection.swift */; };
 		DDBC986A272AC17100D33EC2 /* InnerReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC9869272AC17100D33EC2 /* InnerReviewTableViewCell.swift */; };
+		DDBC986C272AE8B100D33EC2 /* ZollaeCustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC986B272AE8B100D33EC2 /* ZollaeCustomSwitch.swift */; };
+		DDBC9870272AE8BA00D33EC2 /* CreateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC986E272AE8BA00D33EC2 /* CreateReviewViewController.swift */; };
+		DDBC9871272AE8BA00D33EC2 /* CreateReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBC986F272AE8BA00D33EC2 /* CreateReview.storyboard */; };
+		DDBC9875272AEC8500D33EC2 /* AllReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC9874272AEC8500D33EC2 /* AllReviewsTableViewController.swift */; };
+		DDBC9877272AEC8F00D33EC2 /* AllReviews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBC9876272AEC8F00D33EC2 /* AllReviews.storyboard */; };
 		DDC4BFE92729760700431B91 /* PlaceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4BFE82729760700431B91 /* PlaceInfo.swift */; };
 		DDC4BFEB272976C200431B91 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4BFEA272976C200431B91 /* Review.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
@@ -364,6 +369,11 @@
 		DDBC9863272AB0F700D33EC2 /* InnerReviewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerReviewTableViewController.swift; sourceTree = "<group>"; };
 		DDBC9867272ABB2500D33EC2 /* ReviewCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollection.swift; sourceTree = "<group>"; };
 		DDBC9869272AC17100D33EC2 /* InnerReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerReviewTableViewCell.swift; sourceTree = "<group>"; };
+		DDBC986B272AE8B100D33EC2 /* ZollaeCustomSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZollaeCustomSwitch.swift; sourceTree = "<group>"; };
+		DDBC986E272AE8BA00D33EC2 /* CreateReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReviewViewController.swift; sourceTree = "<group>"; };
+		DDBC986F272AE8BA00D33EC2 /* CreateReview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateReview.storyboard; sourceTree = "<group>"; };
+		DDBC9874272AEC8500D33EC2 /* AllReviewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewController.swift; sourceTree = "<group>"; };
+		DDBC9876272AEC8F00D33EC2 /* AllReviews.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AllReviews.storyboard; sourceTree = "<group>"; };
 		DDC4BFE82729760700431B91 /* PlaceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfo.swift; sourceTree = "<group>"; };
 		DDC4BFEA272976C200431B91 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -676,6 +686,7 @@
 		28EA826826B456E900785666 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				DDBC986D272AE8BA00D33EC2 /* Review */,
 				DDB38F2027296508004482B3 /* PlaceDetail */,
 				28F9E93B26C8024700D9E693 /* Search */,
 				DDF24B9526C6D5E4007AB642 /* MainTabBar */,
@@ -688,6 +699,7 @@
 		28F9E8ED26C15B3D00D9E693 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				DDBC986B272AE8B100D33EC2 /* ZollaeCustomSwitch.swift */,
 				DDFFC11F26FB07D7001FD04A /* MapTabFilterTypeButton.swift */,
 				2834ED0E26C01F9000E948B0 /* JJollaeSwitch.swift */,
 				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
@@ -791,6 +803,33 @@
 				DDBC9869272AC17100D33EC2 /* InnerReviewTableViewCell.swift */,
 			);
 			path = InnerReview;
+			sourceTree = "<group>";
+		};
+		DDBC986D272AE8BA00D33EC2 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				DDBC9873272AEC4B00D33EC2 /* AllReviews */,
+				DDBC9872272AEC2000D33EC2 /* CreateReview */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		DDBC9872272AEC2000D33EC2 /* CreateReview */ = {
+			isa = PBXGroup;
+			children = (
+				DDBC986E272AE8BA00D33EC2 /* CreateReviewViewController.swift */,
+				DDBC986F272AE8BA00D33EC2 /* CreateReview.storyboard */,
+			);
+			path = CreateReview;
+			sourceTree = "<group>";
+		};
+		DDBC9873272AEC4B00D33EC2 /* AllReviews */ = {
+			isa = PBXGroup;
+			children = (
+				DDBC9874272AEC8500D33EC2 /* AllReviewsTableViewController.swift */,
+				DDBC9876272AEC8F00D33EC2 /* AllReviews.storyboard */,
+			);
+			path = AllReviews;
 			sourceTree = "<group>";
 		};
 		DDF24B9526C6D5E4007AB642 /* MainTabBar */ = {
@@ -1049,6 +1088,7 @@
 				28B2E790270DC12E003AE0B0 /* MyInfoReview.storyboard in Resources */,
 				28EA826526B42BF700785666 /* Roboto Mono Light Italic for Powerline.ttf in Resources */,
 				28B2E782270D8AC1003AE0B0 /* MyInfoSetting.storyboard in Resources */,
+				DDBC9871272AE8BA00D33EC2 /* CreateReview.storyboard in Resources */,
 				2841598E26BA745700F027DB /* Login.storyboard in Resources */,
 				28F9E94126C802A000D9E693 /* Search.storyboard in Resources */,
 				DDFFC11B26FB0734001FD04A /* MapMain.storyboard in Resources */,
@@ -1058,6 +1098,7 @@
 				2827C89526B03C3E0001E077 /* LaunchScreen.storyboard in Resources */,
 				28EA826026B42BF700785666 /* Roboto Mono Bold for Powerline.ttf in Resources */,
 				2827C89226B03C3E0001E077 /* Assets.xcassets in Resources */,
+				DDBC9877272AEC8F00D33EC2 /* AllReviews.storyboard in Resources */,
 				284159A426BC50F500F027DB /* Password.storyboard in Resources */,
 				2834ED0B26C0004400E948B0 /* DogInfo.storyboard in Resources */,
 				28FEC63F2713657A00C10B32 /* helpLabel.xib in Resources */,
@@ -1168,6 +1209,7 @@
 				28A4982E270F464D008AC05B /* WishlistData.swift in Sources */,
 				28A4982E270F464D008AC05B /* WishlistData.swift in Sources */,
 				DDB38F222729652A004482B3 /* PlaceDetailTableViewController.swift in Sources */,
+				DDBC9870272AE8BA00D33EC2 /* CreateReviewViewController.swift in Sources */,
 				28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */,
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				28B2BD0C271D959900678733 /* LocationName.swift in Sources */,
@@ -1243,6 +1285,7 @@
 				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
 				28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */,
 				28A4983C2710221C008AC05B /* PetData.swift in Sources */,
+				DDBC9875272AEC8500D33EC2 /* AllReviewsTableViewController.swift in Sources */,
 				28331CB426DB76730062B29D /* SearchMapViewController.swift in Sources */,
 				28E910BB26F0E1DA0093BF7C /* dogInfoCollectionView.swift in Sources */,
 				28A4983A270FD19B008AC05B /* UserManager.swift in Sources */,
@@ -1254,6 +1297,7 @@
 				28E0D285270A0612007C4C2A /* MyPetInfoEditViewController.swift in Sources */,
 				DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
+				DDBC986C272AE8B100D33EC2 /* ZollaeCustomSwitch.swift in Sources */,
 				28B2E792270DC400003AE0B0 /* MyInfoReviewViewController.swift in Sources */,
 				28A49838270F4FDB008AC05B /* LocationData.swift in Sources */,
 				28AF8DF4271B000B00FF7247 /* Searchable.swift in Sources */,
@@ -1400,7 +1444,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jjollaejjollae/jjollaejjollae.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 693WY75AQY;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1422,7 +1466,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jjollaejjollae/jjollaejjollae.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 693WY75AQY;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
