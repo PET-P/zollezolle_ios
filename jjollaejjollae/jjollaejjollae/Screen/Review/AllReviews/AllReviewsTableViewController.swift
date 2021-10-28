@@ -7,40 +7,69 @@
 
 import UIKit
 
-class AllReviewsTableViewController: UITableViewController {
+class AllReviewsTableViewController: UITableViewController, StoryboardInstantiable {
+  
+  var reviewList: ReviewListDataType?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    self.navigationItem.backBarButtonItem?.tintColor = .black
+  }
+  
+  
+  @IBAction func didTapBackButton(_ sender: UIButton) {
+    
+    self.navigationController?.popViewController(animated: true)
+  }
+  
+  // MARK: - Table view data source
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+  override func numberOfSections(in tableView: UITableView) -> Int {
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+      return 1
+  }
+
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      // #warning Incomplete implementation, return the number of rows
+    
+    guard let reviewList = reviewList else { return 0 }
+    
+    return reviewList.numOfReviews
+  }
+  
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: AllReviewsTableViewCell.identifier, for: indexPath) as? AllReviewsTableViewCell, let reviewList = reviewList else { return UITableViewCell() }
+    
+    let data = reviewList.value[indexPath.row]
+    
+    cell.nickName = data.nickname
+    
+    if let imageUrl = data.imageURLs.first , let url = URL(string: imageUrl) {
+      cell.photoImageView.kf.setImage(with: url)
     }
+    
+    cell.ratingPoint = data.point
+    
+    cell.descriptionText = data.text
+    
+    cell.dateText = trimStringDate(with: data.createdAt)
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
+    
+    return cell
+    
+  }
+  
+  func trimStringDate(with: String) -> String {
+    
+    return with.components(separatedBy: "T")[0].components(separatedBy: "-").joined(separator: ".")
+  }
+  
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    
+    return 216
+  }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
