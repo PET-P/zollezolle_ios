@@ -11,7 +11,7 @@ struct WishlistData: Codable {
   var total: [String]
   var totalCount: Int
   var folderCount: Int
-  var id, userID: String
+  var id, userId: String
   var folder: [FolderData]
   let createdAt, updatedAt: String
   let v: Int
@@ -19,8 +19,7 @@ struct WishlistData: Codable {
   enum CodingKeys: String, CodingKey {
     case total, totalCount, folderCount
     case id = "_id"
-    case userID = "userId"
-    case folder, createdAt, updatedAt
+    case folder, createdAt, updatedAt, userId
     case v = "__v"
   }
 }
