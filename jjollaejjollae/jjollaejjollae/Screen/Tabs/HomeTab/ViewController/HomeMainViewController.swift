@@ -334,7 +334,14 @@ extension HomeMainViewController: UICollectionViewDelegate {
     
     if collectionView === locationCollectionView {
       
-      print(#function)
+      if let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController {
+        
+        vc.placeInfo = PlaceInfo(id: "0101010", location: LocationData(type: "", coordinates: [""]), address: ["서울시", "양천구"], imageUrls: [""], title: "쫄랭이호텔", description: "", phone: "01012345678", category: "", reviewList: ReviewCollection.mock)
+        
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+      }
+
     }
     
     if collectionView === homeTipCollectionView {
