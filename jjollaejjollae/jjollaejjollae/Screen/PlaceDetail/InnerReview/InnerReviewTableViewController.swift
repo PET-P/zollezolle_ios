@@ -74,15 +74,13 @@ class InnerReviewTableViewController: UITableViewController {
     self.present(vc, animated: true, completion: nil)
   }
   
-  @IBAction func didTapCreateReview(_ sender: Any) {
-    
-  }
-  
   @IBAction func didTapShowAllReviewsButton(_ sender: UIButton) {
     
-    print(#function)
+    guard let vc = AllReviewsTableViewController.loadFromStoryboard() as? AllReviewsTableViewController else { return }
     
+    vc.reviewList = reviewList
     
+    self.parent?.navigationController?.pushViewController(vc, animated: true)
   }
   
   // MARK: - Table view data source
@@ -105,7 +103,7 @@ class InnerReviewTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     /**
-     리뷰 0개일때도 대응해야함
+     리뷰 0개일때 대응
      */
     if let review = reviewList?.value[indexPath.row] {
       

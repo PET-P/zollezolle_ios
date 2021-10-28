@@ -29,6 +29,8 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
   
   @IBOutlet weak var ratingLabel: UILabel!
   
+  @IBOutlet weak var starWidthConstraint: NSLayoutConstraint!
+  
   /**
    시설 안내
    */
@@ -57,34 +59,94 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
     
     setUpTableViewHeader()
     
+    setUpMapView()
+    
+    setUpFacilityInfoCell()
+    
+    setUpBasicInfoCell()
+    
     adjustInnerReviewCellHeight()
   }
   
+  /**
+   테이블뷰의 헤더뷰의 정보를 채워넣는다
+   */
+  
+ 
+  
   func setUpTableViewHeader() {
+    
     guard let placeInfo = placeInfo else { return }
     
-    titleLabel.text = placeInfo.title
-    let locationString = placeInfo.address.reduce("") { result, part in
-      
-      if result == "" {
-        return result + part
-      }
-      
-      return result + " " + part
-    }
+    let urlString = placeInfo.imageUrls.first ?? ""
     
-    locationLabel.text = locationString
+    mainImageView.setImage(with: urlString)
+    
+    titleLabel.text = placeInfo.title
+
+    locationLabel.text = placeInfo.address
+    
+    if placeInfo.reviewPoint == 0 {
+      
+      starWidthConstraint.constant = 0
+      ratingLabel.text = "아직 등록된 평점이 없어요.😭"
+    } else {
+      ratingLabel.text = "\(placeInfo.reviewPoint)(\(placeInfo.reviewCount))"
+    }
+  }
+  
+  func setUpMapView() {
+    
+    guard let placeInfo = placeInfo else { return }
+    
+    mapView.isUserInteractionEnabled = false
+    
+    /**
+     좌표 두값이 제대로 들어있어야한다
+     */
+    if placeInfo.location.count == 2 {
+      
+      let lat = placeInfo.location[1]
+      let lng = placeInfo.location[0]
+      
+      let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: lat, lng: lng))
+      
+      mapView.moveCamera(cameraUpdate)
+      
+      let marker = NMFMarker()
+      
+      marker.position = NMGLatLng(lat: lat, lng: lng)
+      
+      marker.mapView = mapView
+    }
+
+  }
+  
+  /**
+   시설정보
+   */
+  func setUpFacilityInfoCell() {
+    guard let placeInfo = placeInfo else { return }
+    
+    descriptionLabel.text = placeInfo.description
+  }
+  
+  /**
+   기본정보
+   */
+  func setUpBasicInfoCell() {
+    
+    guard let placeInfo = placeInfo else { return }
     
     phoneNumberLabel.text = placeInfo.phone
     
-    locationBasicLabel.text = locationString
-    
+    locationBasicLabel.text = placeInfo.address
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let vc = segue.destination as? InnerReviewTableViewController {
       
-      vc.reviewList = ReviewCollection.mock
+      vc.reviewList = placeInfo?.reviewList ?? ReviewCollection(value: [])
     }
   }
   

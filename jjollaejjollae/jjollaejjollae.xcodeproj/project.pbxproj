@@ -173,6 +173,7 @@
 		DDBC9871272AE8BA00D33EC2 /* CreateReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBC986F272AE8BA00D33EC2 /* CreateReview.storyboard */; };
 		DDBC9875272AEC8500D33EC2 /* AllReviewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC9874272AEC8500D33EC2 /* AllReviewsTableViewController.swift */; };
 		DDBC9877272AEC8F00D33EC2 /* AllReviews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBC9876272AEC8F00D33EC2 /* AllReviews.storyboard */; };
+		DDBC9879272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC9878272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift */; };
 		DDC4BFE92729760700431B91 /* PlaceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4BFE82729760700431B91 /* PlaceInfo.swift */; };
 		DDC4BFEB272976C200431B91 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4BFEA272976C200431B91 /* Review.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
@@ -374,6 +375,7 @@
 		DDBC986F272AE8BA00D33EC2 /* CreateReview.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateReview.storyboard; sourceTree = "<group>"; };
 		DDBC9874272AEC8500D33EC2 /* AllReviewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewController.swift; sourceTree = "<group>"; };
 		DDBC9876272AEC8F00D33EC2 /* AllReviews.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AllReviews.storyboard; sourceTree = "<group>"; };
+		DDBC9878272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		DDC4BFE82729760700431B91 /* PlaceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfo.swift; sourceTree = "<group>"; };
 		DDC4BFEA272976C200431B91 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 			children = (
 				DDBC9874272AEC8500D33EC2 /* AllReviewsTableViewController.swift */,
 				DDBC9876272AEC8F00D33EC2 /* AllReviews.storyboard */,
+				DDBC9878272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift */,
 			);
 			path = AllReviews;
 			sourceTree = "<group>";
@@ -1225,6 +1228,7 @@
 				28F8B165272191EC0093B91C /* CategoryType.swift in Sources */,
 				280556AA27233B6600CFCC22 /* SearchNoResultViewController.swift in Sources */,
 				28B2E784270D915C003AE0B0 /* MyInfoSettingViewController.swift in Sources */,
+				DDBC9879272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift in Sources */,
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
 				2877C3A826FF7A09000E3233 /* SignUp.swift in Sources */,
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,

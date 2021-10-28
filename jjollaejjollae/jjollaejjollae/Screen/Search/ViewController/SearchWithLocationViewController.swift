@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SearchWithLocationViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate, Searchable, SearchDataReceiveable {
   
@@ -58,9 +59,10 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
       separateLine.backgroundColor = .gray06
     }
   }
+  
   @IBOutlet weak var LocationView: UIImageView! {
     didSet {
-      LocationView.image = UIImage(named: "\(region)2")
+      LocationView.image = UIImage(named: "\(region)")
       LocationView.setRounded(radius: 10)
       LocationView.isUserInteractionEnabled = true
     }
@@ -201,6 +203,99 @@ extension SearchWithLocationViewController: UITableViewDelegate, UITableViewData
     return header
   }
   
+  /**
+   Cell 을 탭했을때, 상세페이지/장소 화면을 띄워준다
+   */
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+//    guard let token = UserManager.shared.userIdandToken?.token else { return }
+    
+    let placeId = newDataList[indexPath.row].id
+    
+    APIService.shared.fetchPlaceInfo(placeId: placeId) { result in
+      
+      switch result {
+        case .success(let data):
+          
+          let data = JSON(data)
+          
+          let address = data["address"].arrayValue.reduce("") { result, innerData in
+            
+            if result.isEmpty {
+              return result + innerData.stringValue
+            }
+            
+            return result + " " + innerData.stringValue
+          }
+          
+          let title = data["title"].stringValue
+          
+          let imageUrls: [String] = data["imagesUrl"].arrayValue.map {
+            $0.stringValue
+          }
+          
+          let phone = data["phone"].stringValue
+          
+          let description = data["description"].stringValue
+          
+          let category = data["category"].stringValue
+          
+          let reviewPoint = data["reviewPoint"].intValue
+          let reviewCount = data["reviewCount"].intValue
+          
+          let location: [Double] = data["location"]["coordinates"].arrayValue.map {
+            $0.doubleValue
+          }
+          
+//          "reviews": [
+//                {
+//                  "_id": "61780b16397e22746ae71046",
+//                  "point": 4,
+//                  "imagesUrl": [
+//                    "asfhjaklsfdjlkasdjflkasjf"
+//                  ],
+//                  "text": "커피가 써요!",
+//                  "createdAt": "2021-10-26T14:05:10.236Z",
+//                  "nick": "test"
+//                }
+//              ]
+          var reviewList: [Review] = []
+          
+          for reviewData in data["reviews"].arrayValue {
+            
+            let id = reviewData["_id"].stringValue
+            let point = reviewData["point"].intValue
+            let imageUrl = reviewData["imagesUrl"].arrayValue.map {
+              $0.stringValue
+            }
+            let text = reviewData["text"].stringValue
+            let createdAt = reviewData["createdAt"].stringValue
+            let nick = reviewData["nick"].stringValue
+            
+            let review = Review(id: id, point: point, imageURLs: imageUrls, text: text, createdAt: createdAt, nickname: nick)
+            
+            reviewList.append(review)
+          }
+          
+          var reviewCollection: ReviewListDataType = ReviewCollection(value: reviewList)
+          
+          guard let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController else { return }
+          
+          let placeInfo = PlaceInfo(id: placeId, location: location, address: address, imageUrls: imageUrls, title: title, description: description, phone: phone, category: category, reviewList: reviewCollection, reviewPoint: reviewPoint, reviewCount: reviewCount)
+          
+          vc.placeInfo = placeInfo
+          
+          self.navigationController?.pushViewController(vc, animated: true)
+          
+        case .failure(let statusCode):
+          print(statusCode)
+      }
+    }
+    
+    
+    
+    print(indexPath)
+  }
 }
 
 extension SearchWithLocationViewController {

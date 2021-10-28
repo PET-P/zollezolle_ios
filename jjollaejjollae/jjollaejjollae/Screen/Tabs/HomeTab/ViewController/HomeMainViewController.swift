@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeMainViewController: UIViewController, StoryboardInstantiable {
+class HomeMainViewController: UIViewController, StoryboardInstantiable, Searchable {
   
   // MARK: - IBOutlet
   
@@ -334,15 +334,65 @@ extension HomeMainViewController: UICollectionViewDelegate {
     
     if collectionView === locationCollectionView {
       
-      if let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController {
+      let locationName = LocationName.allCases[indexPath.row].description
+      
+      switch UserManager.shared.userIdandToken {
         
-        vc.placeInfo = PlaceInfo(id: "0101010", location: LocationData(type: "", coordinates: []), address: ["서울시", "양천구"], imageUrls: [""], title: "쫄랭이호텔", description: "", phone: "01012345678", category: "", reviewList: ReviewCollection.mock)
-        
-        
-        self.navigationController?.pushViewController(vc, animated: true)
+        case .some( _, let token):
+          
+          guard let token = token else { return }
+          
+          APIService.shared.search(token: token, keyword: locationName, page: 0) { result in
+            
+            switch result {
+              
+            case .success(let data):
+              
+              guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
+              
+              print(self, data.result)
+              
+              nextVC.newDataList = data.result
+              
+              self.hidesBottomBarWhenPushed = true
+              
+              self.navigationController?.pushViewController(nextVC, animated: true)
+              
+            case .failure(let error):
+              
+              print(self, #function, error)
+            }
+          }
+          
+        case .none:
+          
+          APIService.shared.search(keyword: locationName, page: 0) { result in
+            
+            switch result {
+              
+            case .success(let data):
+              
+              guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
+              
+              print(self, data.result)
+              
+              nextVC.newDataList = data.result
+              
+              self.hidesBottomBarWhenPushed = true
+              
+              self.navigationController?.pushViewController(nextVC, animated: true)
+              
+            case .failure(let error):
+              
+              print(self, #function, error)
+            }
+          }
       }
-
     }
+    
+    /**
+     쫄랭이의 여행 꿀팁
+     */
     
     if collectionView === homeTipCollectionView {
       
@@ -354,6 +404,9 @@ extension HomeMainViewController: UICollectionViewDelegate {
       
     }
     
+    /**
+     쪼꼬와 비슷한 친구들에게 인기 있는 장소
+     */
     
     if collectionView === recommendedPlaceCollectionView {
       

@@ -8,9 +8,12 @@
 import Foundation
 
 struct PlaceInfo {
+  
+  typealias LocationData = [Double]
+  
   var id: String
   var location: LocationData
-  var address: [String]
+  var address: String
   var imageUrls: [String]
 //  var icons: [Any]?
   var title: String
@@ -22,4 +25,7 @@ struct PlaceInfo {
   var category: String
 //  var room: [Any]?
   var reviewList: ReviewListDataType
+  
+  var reviewPoint: Int
+  var reviewCount: Int
 }

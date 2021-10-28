@@ -125,12 +125,12 @@
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2P-Sh-rQb">
                                                     <rect key="frame" x="16" y="96.5" width="382" height="155.5"/>
-                                                    <mutableString key="text">소형견 기준 2마리까지 동반 가능합니다. 중대형 견은 예약전에 별도 문의 해주세요. 마당이 있어 뛰어 놀기 적합하고 반려동물 전용 수영장이 있습니다. 
+                                                    <string key="text">소형견 기준 2마리까지 동반 가능합니다. 중대형 견은 예약전에 별도 문의 해주세요. 마당이 있어 뛰어 놀기 적합하고 반려동물 전용 수영장이 있습니다. 
 차량 5분거리에 해변이 있습니다.
 
 소형견 기준 2마리까지 동반 가능합니다. 소형견 기준 2마리까지 동반 가능합니다. 소형견 기준 2마리까지 동반 가능합니다. 소형견 기준....
 
-소형견 기준 2마리까지 동반 가능합니다. 소형견 기준 2마리까지 동반 가능합니다. 소형견 기준 2마리까지 동반 가능합니다. 소형견 기준....</mutableString>
+소형견 기준 2마리까지 동반 가능합니다. 소형견 기준 2마리까지 동반 가능합니다. 소형견 기준 2마리까지 동반 가능합니다. 소형견 기준....</string>
                                                     <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -196,7 +196,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="357"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDd-RB-Ixo" userLabel="MapView">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDd-RB-Ixo" userLabel="MapView" customClass="NMFMapView">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="176"/>
                                                     <color key="backgroundColor" red="0.76401185989999998" green="0.78472775220000002" blue="0.53926950689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -306,6 +306,7 @@
                         <outlet property="mapView" destination="hDd-RB-Ixo" id="FC1-RV-pU0"/>
                         <outlet property="phoneNumberLabel" destination="ZsA-Ka-siJ" id="GuO-IC-qde"/>
                         <outlet property="ratingLabel" destination="dhd-CK-syT" id="O11-oY-ILZ"/>
+                        <outlet property="starWidthConstraint" destination="72h-at-92n" id="Djc-e1-A5X"/>
                         <outlet property="titleLabel" destination="9RB-z9-KNh" id="80i-EG-UpQ"/>
                     </connections>
                 </tableViewController>
@@ -349,7 +350,6 @@
                                     <color key="tintColor" red="0.38431372549999998" green="0.56078431370000004" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title=" 후기 작성하기"/>
                                     <connections>
-                                        <action selector="didTapCreateReview:" destination="bxf-uj-dmC" eventType="touchUpInside" id="vYH-uM-qap"/>
                                         <action selector="didTapCreateReviewButton:" destination="bxf-uj-dmC" eventType="touchUpInside" id="0KH-Bz-2fL"/>
                                     </connections>
                                 </button>
@@ -376,7 +376,7 @@
                                     <state key="normal" title="후기 52개 모두 보기 ">
                                         <color key="titleColor" red="0.50975722069999996" green="0.50983387229999999" blue="0.50974047180000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" title="리뷰가 없습니다."/>
+                                    <state key="disabled" title="아직 등록된 리뷰가 없어요.😭"/>
                                     <connections>
                                         <action selector="didTapShowAllReviewsButton:" destination="bxf-uj-dmC" eventType="touchUpInside" id="5ce-MJ-dGW"/>
                                     </connections>
