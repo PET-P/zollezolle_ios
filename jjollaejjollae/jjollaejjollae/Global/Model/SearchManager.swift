@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SearchManager {
+final class SearchManager {
   
   static let shared = SearchManager()
   
@@ -28,7 +28,8 @@ class SearchManager {
       return searchWord
     }
     set {
-      searchWord = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+      searchWord = newValue
+      print(searchWord, "WTF")
     }
   }
   
@@ -78,44 +79,9 @@ extension SearchManager {
   }
 }
 
-enum sectorType: String {
-  case accommodation
-  case cafe
-  case landmark
-  case restaurant
-}
-
-extension sectorType {
-  var ImageDescription: String {
-//    switch self {
-//    case .accommodation:
-//      return "\(self.rawValue)Pin"
-//    case .cafe:
-//      return "\(self.rawValue)Pin"
-//    case .landmark:
-//      return "\(self.rawValue)Pin"
-//    case .restaurant:
-//      return "\(self.rawValue)Pin"
-//    }
-    return "\(self.rawValue)Pin"
-  }
-  
-  var selectedImageDescription: String {
-    return "\(self.ImageDescription)Select"
-  }
-  
-  var wishImageDescription: String {
-    return "\(self.rawValue)Wish"
-  }
-  
-  var selectedWishImageDescription: String {
-    return "\(self.wishImageDescription)Select"
-  }
-}
-
 struct SearchResultInfo {
   var id: Int = 1 //여기는 다다를예정
-  var sector: sectorType
+  var sector: CategoryType
   var name: String = "아지멍카페"
   var location: String?
   var type: String?
@@ -126,15 +92,6 @@ struct SearchResultInfo {
   var prices: Int?
   var coordinate: (Double, Double)
 }
-//33.40614574885367, 126.44407420606885
-//33.45396467876801, 126.62250815524442
-//33.37028990621459, 126.6005931315723
-//33.33681539828487, 126.48195577546937
-
-//33.20332246996189, 126.27162176088024
-//33.557625145656985, 126.79332133931995
-//33.32381351706008, 126.84402360014019
-//33.35279578591668, 126.18489420947724
 
 class ModelController: NSObject {
   var accommoList = [SearchResultInfo(id: 0, sector: .accommodation, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000, coordinate: (33.40614574885367, 126.44407420606885)), SearchResultInfo(id: 1, sector: .accommodation, name: "아지멍카페", location: nil, type: "커피/브런치", points: 4.9, numbers: 52, days: nil, prices: nil, coordinate: (33.45396467876801, 126.62250815524442)), SearchResultInfo(id: 2, sector: .accommodation, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000, coordinate: (33.37028990621459, 126.6005931315723)), SearchResultInfo(id: 3, sector: .accommodation, name: "애월코지하우스", location: "제주 애월읍", type: nil, points: 4.7, numbers: 102, days: 1, prices: 85000, coordinate: (33.33681539828487, 126.48195577546937))]

@@ -14,6 +14,10 @@ protocol ControlChildViewControllerDelegate: NSObject {
   func DidEnterMiddleIndex(_ collectionView: UICollectionView, dogProfile: PetData)
 }
 
+protocol ControlCollectionViewDelegate: NSObject {
+  
+}
+
 class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   @IBOutlet weak var profileCollectionView: UICollectionView!
@@ -31,6 +35,8 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
   
   private var userInfo: UserData?
   weak var delegate: ControlChildViewControllerDelegate?
+  lazy var cameraImage = UIImage(named: "camera")
+  lazy var plusImage = UIImage(named: "plus")
   private var dogTuples: [(petdata: PetData, image: UIImage?)] = []
   private var representDogImageUrl: String? = "default.jpeg"
   private var representDogImage: UIImage?
@@ -38,8 +44,7 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
   private var visibleIndex: [IndexPath] = []
   private var middleIndex: IndexPath = [0,0]
   lazy var defaultImageData = UIImage(named: "IMG_4930")?.jpegData(compressionQuality: 0.1)
-  lazy var cameraImage = UIImage(named: "camera")
-  lazy var plusImage = UIImage(named: "plus")
+
   
   @IBOutlet weak var imageViewWhenOne: UIImageView! {
     didSet {
@@ -62,7 +67,6 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    print(#function, self)
     userInfo = UserManager.shared.userInfo
     setupImageArray()
     findRepresentDogImageUrl()
@@ -129,6 +133,7 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable, UIIm
         self.dogTuples[index].image = cameraImage
       }
     }
+    dogTuples.append((PetData(id: "1", sex: Sex.male, name: "  ", type: "강아지", size: Size.small, age: nil, breed: nil, weight: nil, imageUrl: "plus", isRepresent: false), UIImage(named: "plus")))
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -178,7 +183,8 @@ extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionView
       if profileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         switch dogTuples[indexPath.row].petdata.imageUrl {
         case "plus":
-          dogTuples.insert((PetData(id: "1", sex: .male, name: "쫄래쫄래", type: "강아지", size: .small, isRepresent: false), plusImage), at: dogTuples.count - 1)
+          dogTuples.insert((PetData(id: "1", sex: .male, name: "", type: "강아지", size: .small, isRepresent: false), cameraImage), at: dogTuples.count - 1)
+          
         case nil:
           let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
           myPetImagePickerController.allowsEditing = true
@@ -239,14 +245,19 @@ extension MyInfoDetailViewController: UICollectionViewDelegate, UICollectionView
     
     cell.delegate = self
     cell.selectedIndexPath = indexPath
+    cell.dogImageView.layer.cornerRadius = cell.dogImageView.frame.size.height / 2
+    cell.dogImageView.layer.masksToBounds = true
+    cell.layer.cornerRadius = cell.frame.size.height / 2
+    cell.layer.masksToBounds = true
+    cell.dogImageView.clipsToBounds = true
     return cell
   }
   
   private func addCollectionView() {
     let layout = CarouselLayout()
-    layout.itemSize = CGSize(width: profileCollectionView.frame.size.width*0.796, height: profileCollectionView.frame.size.height)
-    layout.sideItemScale = 1/3
-    layout.spacing = -150
+    layout.itemSize = CGSize(width: profileCollectionView.frame.size.width*0.5, height: profileCollectionView.frame.size.height)
+    layout.sideItemScale = 0.7
+    layout.spacing = -40
     layout.isPagingEnabled = true
     layout.sideItemAlpha = 0.5
     
@@ -342,7 +353,25 @@ extension MyInfoDetailViewController {
         self.view.layoutIfNeeded()
       }
     }
-    
-    
+  }
+}
+
+extension MyInfoDetailViewController {
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    self.dismiss(animated: true, completion: nil)
+  }
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    var newImage: UIImage? = nil
+    if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+      newImage = originalImage
+    }
+    guard let newImage = newImage else {
+      return}
+    dogTuples[self.middleIndex.row].image = newImage
+    dogTuples[self.middleIndex.row].petdata.imageUrl = "\(userInfo?.id ?? "zzollaezzollae")_\(Date())"
+    picker.dismiss(animated: true) {
+      self.profileCollectionView.reloadData()
+    }
   }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SearchResultCellDelegate: AnyObject {
-  func didTapHeart(for placeId: Int, like: Bool)
+  func didTapHeart(for placeId: String, like: Bool)
 }
 
 class SearchResultTableViewCell: UITableViewCell {
@@ -65,17 +65,13 @@ class SearchResultTableViewCell: UITableViewCell {
   }
   @IBOutlet weak var priceLabel: UILabel! {
     didSet {
-      priceLabel.text = "85,000원"
-      priceLabel.textColor = .gray01
-      priceLabel.font = .robotoBold(size: 16)
+      priceLabel.alpha = 0
     }
   }
   
   @IBOutlet weak var DaysLabel: UILabel! {
     didSet {
-      DaysLabel.text = "1박 요금"
-      DaysLabel.textColor = .gray03
-      DaysLabel.font = .robotoMedium(size: 10)
+      DaysLabel.alpha = 0
     }
   }
   
@@ -98,18 +94,18 @@ class SearchResultTableViewCell: UITableViewCell {
   // 그래서 결국에는 셀이 true false를 가지고있고
   // 셀의 상태를 계속봐서 버튼색을 초기화해주는 친구가 필요할 것 같다
   
-  
-  
   override func prepareForReuse() {
-    DaysLabel.isHidden = true
-    priceLabel.isHidden = true
-    contentStackView.insertArrangedSubview(addressLabel, at: 0)
-    addressLabel.isHidden = true
+//    cellImageView.image = UIImage.colorImage(color: CGColor.init(gray: 0.5, alpha: 0.5), size: cellImageView.bounds.size)
+//    locationNameLabel.text = ""
+//    addressLabel.text = " "
+//    DaysLabel.isHidden = true
+//    priceLabel.isHidden = true
+//    contentStackView.insertArrangedSubview(addressLabel, at: 0)
   }
   
   weak var delegate : SearchResultCellDelegate?
   var index : Int? //얘를 key(디비에 장소의 id)
-  var placeId: Int = -1
+  var placeId: String = "1"
   
   @IBAction func didTapHeartButton(_ sender: UIButton) { //상태를 바꿔준다. 셀이 아닌 버튼만 바꿔준다면 재사용의 문제가 생긴다.
     if sender.isSelected {

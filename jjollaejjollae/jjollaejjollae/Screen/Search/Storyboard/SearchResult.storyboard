@@ -52,7 +52,9 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh7-BN-G4e" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="30"/>
-                                        <state key="normal" title="맛집"/>
+                                        <state key="normal" title="맛집">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XGZ-JL-xm0"/>
                                         </connections>
@@ -80,7 +82,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2hr-FF-Jcb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2hr-FF-Jcb">
                                 <rect key="frame" x="0.0" y="235.5" width="414" height="626.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -106,9 +108,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gc-qy-eQK">
                                         <rect key="frame" x="51.5" y="0.0" width="21" height="22"/>
                                         <state key="normal" image="slider.horizontal.3" catalog="system"/>
-                                        <connections>
-                                            <action selector="didTapFilterButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Kay-pP-gFP"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -120,11 +119,8 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LsC-je-V5t">
-                                <rect key="frame" x="318" y="185.5" width="80" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="I5R-qw-IhJ"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="313" y="185.5" width="85" height="30"/>
+                                <state key="normal" title="리뷰 많은순 ▼"/>
                                 <connections>
                                     <action selector="didTapSetOrderButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gMv-Q3-yXM"/>
                                 </connections>

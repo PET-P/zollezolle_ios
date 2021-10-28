@@ -56,10 +56,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    print("\(self)", #function)
     isLogged = UserManager.shared.isLogged
-    print("User ", UserManager.shared.userInfo)
-    print("isLogged? ", isLogged)
   }
   
   
@@ -83,7 +80,12 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   lazy var disclosureIndicator: UIImageView = {
     let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
     imageview.contentMode = .scaleAspectFit
-    imageview.image = UIImage(named: "disclosure Indicator")
+    StorageService.shared.downloadUIImageWithURL(with: "//Users/abc/Desktop/Hack/애견동반숙소/애견카페/애견카페 세종시/헤이미쉬독/7ZGh1o63ZY7yX4Aes2VRFWil.jpg", imageCompletion: { (image) in
+      guard let image = image else {
+        return
+      }
+      imageview.image = image
+    })
     imageview.isUserInteractionEnabled = true
     imageview.translatesAutoresizingMaskIntoConstraints = false
     return imageview
@@ -105,6 +107,10 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     return label
   }()
   
+  deinit{
+    print(self, #function)
+  }
+  
   private func setupHeader() {
     let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 260))
     header.backgroundColor = .white
@@ -125,9 +131,12 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   
   @objc func gotoMyInfoDetail(_ sender: Any?) {
     if isLogged == false {
-      guard let loginVC = LoginViewController.loadFromStoryboard() as?
-              LoginViewController else {return}
-      self.navigationController?.pushViewController(loginVC, animated: true)
+      guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
+      let newNaviController = UINavigationController(rootViewController: loginVC)
+      newNaviController.isNavigationBarHidden = true
+      let sceneDelegate = UIApplication.shared.connectedScenes
+              .first!.delegate as! SceneDelegate
+      sceneDelegate.window!.rootViewController = newNaviController
     } else  {
       guard let detailVC = MyInfoDetailViewController.loadFromStoryboard() as?
               MyInfoDetailViewController else {return}
@@ -179,10 +188,12 @@ extension MyInfoMainViewController: UITableViewDelegate {
       case 0:
         if isLogged == false {return}
         guard let myReviewVC = MyInfoReviewViewController.loadFromStoryboard() as? MyInfoReviewViewController else {return}
+        guard let userId = UserManager.shared.userIdandToken?.userId else {return}
+        guard let token = UserManager.shared.userIdandToken?.token else {return}
+        myReviewVC.getTokenAndUserId(token: token, userId: userId)
         self.navigationController?.pushViewController(myReviewVC, animated: true)
       case 1:
-        guard let testVC = DogInfoViewController.loadFromStoryboard() as? DogInfoViewController else {return}
-        self.navigationController?.pushViewController(testVC, animated: true)
+        print("이메일")
       case 2:
         guard let settingVC = MyInfoSettingViewController.loadFromStoryboard() as? MyInfoSettingViewController else {return}
         self.navigationController?.pushViewController(settingVC, animated: true)

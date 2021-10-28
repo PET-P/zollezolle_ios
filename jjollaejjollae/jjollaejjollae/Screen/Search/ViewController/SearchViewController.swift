@@ -58,6 +58,11 @@ class SearchViewController: UIViewController, StoryboardInstantiable, Searchable
     searchTextField.returnKeyType = .search
     searchTextField.delegate = self
   }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    searchTextField.text = searchManager.searchText
+  }
 }
 //MARK: - PagingCollectionView
 
@@ -133,11 +138,35 @@ extension SearchViewController {
 extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     guard let searchText = searchTextField.text else {return true}
+    searchManager.searchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
     searchManager.saveSearchHistory(with: searchTextField.text)
-    textField.resignFirstResponder()
-    let nextVC = self.sendRightVC(by: searchText)
-    self.navigationController?.pushViewController(nextVC, animated: true)
-    self.hidesBottomBarWhenPushed = true
+    if let token = LoginManager.shared.loadFromKeychain(account: "accessToken") {
+      APIService.shared.search(token: token, keyword: searchText, page: 0) { result in
+        switch result{
+        case .success(let data):
+          guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          print(self, data.result)
+          nextVC.newDataList = data.result
+          self.hidesBottomBarWhenPushed = true
+          self.navigationController?.pushViewController(nextVC, animated: true)
+        case .failure(let error):
+          print(self, #function, error)
+        }
+      }
+    } else {
+      APIService.shared.search(keyword: searchText, page: 0) { (result) in
+        switch result {
+        case .success(let data):
+          guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          nextVC.newDataList = data.result
+          SearchManager.shared.searchText = searchText
+          self.hidesBottomBarWhenPushed = true
+          self.navigationController?.pushViewController(nextVC, animated: true)
+        case .failure(let error):
+          print(self, #function, error)
+        }
+      }
+    }
     return true
   }
 }

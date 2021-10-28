@@ -38,6 +38,7 @@ class WishlistNavigationController: UINavigationController {
     self.tabBarItem = UITabBarItem(title: wishlistTabTitle,
                                    image: wishlistTabImage,
                                    selectedImage: nil)
+    self.tabBarItem.selectedImage = wishlistTabImageSelected
   }
   
   private func setRootViewController() {
@@ -54,5 +55,9 @@ extension WishlistNavigationController {
   
   private var wishlistTabImage: UIImage? {
     return UIImage(named: "WishListTab")
+  }
+  
+  private var wishlistTabImageSelected: UIImage? {
+    return UIImage(named: "WishListTabSelect")
   }
 }

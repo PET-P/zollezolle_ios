@@ -7,34 +7,54 @@
 
 import UIKit
 
-protocol Searchable: NSObject {
+protocol SearchDataReceiveable: NSObject {
+  var newDataList: [SearchResultData] {get set}
   func gotoSearchVC(from caller: UIViewController)
-  func sendRightVC(by text: String) -> UIViewController
+}
+
+extension SearchDataReceiveable {
+  func gotoSearchVC(from caller: UIViewController) {
+    caller.navigationController?.popViewController(animated: true)
+  }
+}
+
+protocol Searchable: NSObject {
+  func sendRightVC(from viewController: UIViewController, by region: String, regionCount : Int, with result: [SearchResultData]) -> UIViewController
 }
 
 extension Searchable {
   
-  func gotoSearchVC(from caller: UIViewController) {
-    guard let searchVC = SearchViewController.loadFromStoryboard()
-            as? SearchViewController else {return}
-    caller.navigationController?.popToViewController(searchVC, animated: true)
-  }
-  
-  func sendRightVC(by text: String) -> UIViewController {
-    let afterTrimText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-    SearchManager.shared.searchText = afterTrimText
-    switch afterTrimText {
-    case LocationName.jeju.description, LocationName.gyeongju.description,
-      LocationName.daegu.description, LocationName.gangneung.description,
-      LocationName.seoul.description, LocationName.sokcho.description,
-      LocationName.yeosu.description:
-      guard let searchLocationVC = SearchWithLocationViewController.loadFromStoryboard()
-              as? SearchWithLocationViewController else {return SearchWithLocationViewController()}
-      return searchLocationVC
-    default:
-      guard let searchResultVC = SearchResultViewController.loadFromStoryboard()
-              as? SearchResultViewController else {return SearchResultViewController()}
-      return searchResultVC
+  func sendRightVC(from viewController: UIViewController, by region: String, regionCount: Int, with result: [SearchResultData]) -> UIViewController {
+    let afterTrimText = region.trimmingCharacters(in: .whitespacesAndNewlines)
+    let locationlist = LocationName.allCases.map({$0.description})
+    
+    //결과X, region도 없을때
+    if result.count == 0 && !locationlist.contains(afterTrimText.components(separatedBy: " ")[0]) {
+      guard let noSearchVC = SearchNoResultViewController.loadFromStoryboard() as? SearchNoResultViewController else {return SearchNoResultViewController()}
+      return noSearchVC
+    } else {
+      switch afterTrimText {
+        
+      // 리전 존재
+      case LocationName.jeju.description, LocationName.gyeongju.description,
+        LocationName.daegu.description, LocationName.gangneung.description,
+        LocationName.seoul.description, LocationName.sokcho.description,
+        LocationName.yeosu.description:
+        guard let searchLocationVC = SearchWithLocationViewController.loadFromStoryboard()
+                as? SearchWithLocationViewController else {return SearchWithLocationViewController()}
+        searchLocationVC.setRegion(region: region)
+        searchLocationVC.setLocationNum(regionCount: regionCount)
+        return searchLocationVC
+        //그 외의 것들은 searchResultVC에서 분기를 나눈다.
+      default:
+        guard let searchResultVC = SearchResultViewController.loadFromStoryboard()
+                as? SearchResultViewController else {return SearchResultViewController()}
+        searchResultVC.setMode(from: viewController)
+        return searchResultVC
+      }
     }
   }
 }
+
+
+

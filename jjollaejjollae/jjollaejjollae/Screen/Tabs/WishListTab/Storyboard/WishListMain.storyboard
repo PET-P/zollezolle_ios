@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -53,20 +54,8 @@
                                     <action selector="didTapAddWishlist:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ime-r6-3ae"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6G4-U9-YsM">
-                                <rect key="frame" x="16" y="291" width="382" height="86"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="86" id="4pL-Ug-W6G"/>
-                                </constraints>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="위시리스트 전체보기"/>
-                                <connections>
-                                    <action selector="didTapShowEntireWishlist:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="j9b-tf-m2d"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BmA-pr-qor">
-                                <rect key="frame" x="16" y="397" width="382" height="465"/>
+                                <rect key="frame" x="16" y="291" width="382" height="571"/>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="UiX-hV-tmA">
                                     <size key="itemSize" width="342" height="86"/>
@@ -75,7 +64,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="wishlistItem" id="eQX-Cn-keA" customClass="WishlistCollectionViewCell" customModule="jjollaejjollae">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="wishlistItem" id="eQX-Cn-keA" customClass="WishlistCollectionViewCell" customModule="jjollaejjollae" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vV7-QZ-seG">
@@ -112,14 +101,22 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="382" height="86"/>
+                                        <connections>
+                                            <outlet property="wishListDate" destination="NGT-Ne-LtL" id="J97-Ug-z5T"/>
+                                            <outlet property="wishListLocation" destination="O2h-Mi-bNF" id="VZz-kk-a1a"/>
+                                            <outlet property="wishListTitle" destination="QWo-Ut-6Ft" id="dzo-6W-h45"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRl-s7-ORa">
-                                <rect key="frame" x="16" y="73" width="17.5" height="22"/>
+                                <rect key="frame" x="16" y="71" width="24" height="24"/>
                                 <state key="normal">
-                                    <imageReference key="image" image="xmark" catalog="system" renderingMode="original"/>
+                                    <imageReference key="image" image="Xbutton" renderingMode="original"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapCloseButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="oBt-Bm-yzk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -127,26 +124,23 @@
                         <constraints>
                             <constraint firstItem="ec0-Dg-v8X" firstAttribute="leading" secondItem="Gc3-iC-90R" secondAttribute="leading" id="13K-a1-BCt"/>
                             <constraint firstItem="inn-FR-Jda" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="1kD-QA-wa5"/>
-                            <constraint firstItem="BmA-pr-qor" firstAttribute="top" secondItem="6G4-U9-YsM" secondAttribute="bottom" constant="20" id="4SZ-Tf-Xc8"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BmA-pr-qor" secondAttribute="trailing" constant="16" id="5rE-h4-jgb"/>
                             <constraint firstItem="Gc3-iC-90R" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="8Fg-FR-GVr"/>
-                            <constraint firstItem="6G4-U9-YsM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="I87-Xn-7NH"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="inn-FR-Jda" secondAttribute="trailing" constant="16" id="OkN-Rc-GJL"/>
                             <constraint firstItem="Gc3-iC-90R" firstAttribute="top" secondItem="wRl-s7-ORa" secondAttribute="bottom" constant="24" id="TZi-8U-I7n"/>
                             <constraint firstItem="inn-FR-Jda" firstAttribute="top" secondItem="ec0-Dg-v8X" secondAttribute="bottom" constant="54" id="UKl-pc-tlh"/>
+                            <constraint firstItem="BmA-pr-qor" firstAttribute="top" secondItem="inn-FR-Jda" secondAttribute="bottom" constant="20" id="Vah-RD-ba5"/>
                             <constraint firstItem="wRl-s7-ORa" firstAttribute="leading" secondItem="Gc3-iC-90R" secondAttribute="leading" id="Wk9-OL-YgX"/>
                             <constraint firstItem="Gc3-iC-90R" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="75" id="axD-cX-yjf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="BmA-pr-qor" secondAttribute="bottom" id="dCS-mm-6Fi"/>
                             <constraint firstItem="ec0-Dg-v8X" firstAttribute="top" secondItem="Gc3-iC-90R" secondAttribute="bottom" constant="5" id="eQd-5x-zBW"/>
-                            <constraint firstItem="6G4-U9-YsM" firstAttribute="top" secondItem="inn-FR-Jda" secondAttribute="bottom" constant="20" id="iTB-MI-9st"/>
                             <constraint firstItem="BmA-pr-qor" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="lBb-wj-EJJ"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6G4-U9-YsM" secondAttribute="trailing" constant="16" id="uKb-07-T91"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addWishlistButton" destination="inn-FR-Jda" id="8q3-Mb-kUs"/>
                         <outlet property="closeButton" destination="wRl-s7-ORa" id="Zfu-Na-d6g"/>
-                        <outlet property="showEntireWishlistButton" destination="6G4-U9-YsM" id="OZZ-E7-Nu5"/>
+                        <outlet property="wishListInfoLabel" destination="ec0-Dg-v8X" id="00n-2J-sNW"/>
                         <outlet property="wishlistCollectionView" destination="BmA-pr-qor" id="2pT-3M-vr2"/>
                     </connections>
                 </viewController>
@@ -156,8 +150,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Xbutton" width="24" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

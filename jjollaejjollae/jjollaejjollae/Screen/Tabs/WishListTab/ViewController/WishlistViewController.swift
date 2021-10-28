@@ -4,18 +4,21 @@
 //
 
 import UIKit
-
-struct TravelInfo {
-  var title: String
-  var location: String?
-  var startDate: Date?
-  var endDate: Date?
-  var locationList: [SearchResultInfo]?
-}
+import CloudKit
+import Toast_Swift
 
 class WishlistViewController: UIViewController, StoryboardInstantiable {
-  
+
   //MARK: - IBOUTLET
+//  @IBOutlet weak var setOrderButton: UIButton! {
+//    didSet {
+//      setOrderButton.layer.borderWidth = 0
+//      setOrderButton.setTitle("추천순 ▼", for: .normal)
+//      setOrderButton.tintColor = .gray02
+//      setOrderButton.titleLabel?.font = .robotoMedium(size: 13)
+//    }
+//  }
+  
   @IBOutlet weak var wishListTitle: UILabel! {
     didSet {
       wishListTitle.font = .robotoBold(size: 24)
@@ -51,32 +54,10 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - Variables & constant
 
-  let modelController = ModelController()
+  var folderData: FolderData?
+  private var newDataList: [SearchResultData] = []
+  private var likes: [String: Bool] = [:]
   
-  private var dataList: [SearchResultInfo] = []
-  private var likes: [Int: Bool] = [:]
-  
-  private var travelInfo: TravelInfo? {
-    didSet {
-      wishListTitle.text = travelInfo?.title
-      if let location = travelInfo?.location {
-        if let startDate = travelInfo?.startDate, let endDate = travelInfo?.endDate {
-          locationAndDateLabel.text = "\(location) \(startDate.dateForCalendar()) ~ \(endDate.dateForCalendar())"
-        } else {
-          locationAndDateLabel.text = "\(location)"
-        }
-      } else {
-        if let startDate = travelInfo?.startDate, let endDate = travelInfo?.endDate {
-          locationAndDateLabel.text = "\(startDate.dateForCalendar()) ~ \(endDate.dateForCalendar())"
-        } else {
-          locationAndDateLabel.text = nil
-        }
-      }
-      self.dataList = travelInfo?.locationList ?? []
-      wishListCountLabel.text = "\(self.dataList.count)개의 장소"
-    }
-  }
-
   let goToMapButton: UIButton = {
     let goButton = UIButton()
     goButton.backgroundColor = UIColor.themeYellow
@@ -90,29 +71,81 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
   
   let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
   
-  func hideTabBar() {
+  private func hideTabBar() {
     self.tabBarController?.tabBar.isHidden = true
     self.tabBarController?.tabBar.isTranslucent = true
   }
+  
+  private func setupFolderData() {
+    locationAndDateLabel.alpha = 1
+    //제목
+    wishListTitle.text = folderData?.name
+
+    //지역
+    guard let regions = folderData?.regions else {return}
+    var regionText = ""
+    if regions.count > 1 {
+      regionText = "\(regions[0]) 외 \(regions.count - 1)"
+    } else if regions.count == 1 {
+      regionText = "\(regions[0])"
+    }
+
+    //날짜
+    if let startDate = folderData?.startDate, let endDate = folderData?.endDate {
+      let startDate = startDate.components(separatedBy: "T")[0].components(separatedBy: "-")[1...2].joined(separator: ".")
+      let endDate = endDate.components(separatedBy: "T")[0].components(separatedBy: "-")[1...2].joined(separator: ".")
+      if regionText != "" {
+        locationAndDateLabel.text = regionText+"•"+"\(startDate)~\(endDate)"
+      } else {
+        locationAndDateLabel.text = "\(startDate)~\(endDate)"
+      }
+    } else {
+      if regionText == "" {
+        locationAndDateLabel.alpha = 0
+      } else {
+        locationAndDateLabel.text = regionText
+      }
+    }
+
+    //장소 갯수
+    guard let placeNum = folderData?.count else {return}
+    wishListCountLabel.text = "\(placeNum)개의 장소"
+
+    // 장소에 갯수에 따라 goToMapButton 보여지기 or Not
+    if placeNum == 0 {
+      goToMapButton.isHidden = true
+    } else {
+      goToMapButton.isHidden = false
+    }
+    
+    guard let dataList = folderData?.contents else {return}
+    newDataList = dataList
+    
+    for data in newDataList {
+      print(data.isWish)
+      likes.updateValue(data.isWish ?? false, forKey: data.id)
+    }
+  }
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
-//    hideTabBar()
     goToMapButtonUISetting()
+    setupFolderData()
     wishListTableView.delegate = self
     wishListTableView.dataSource = self
     wishListTableView.register(nib, forCellReuseIdentifier: "resultCell")
+    if #available(iOS 15.0, *) {
+      wishListTableView.sectionHeaderTopPadding = 0
+    }
     wishListTableView.separatorStyle = .none
     wishListTableView.tableFooterView = UIView(frame: CGRect.zero)
     wishListTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: wishListTableView.frame.size.width, height: 10))
-    self.dataList = modelController.accommoList
-    self.travelInfo = TravelInfo(
-      title: "2021 쪼꼬랑 여름휴가",
-      location: "제주시",
-      startDate: Date(),
-      endDate: Date(),
-      locationList: self.dataList
-    )
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setupFolderData()
   }
   
   deinit {
@@ -125,21 +158,47 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     goToMapButton.addShadow()
   }
   
-  
   @objc private func tapGoToMapButton(_ sender: Any?) {
     let wishMapStoryboard = UIStoryboard(name: "WishMap", bundle: nil)
     guard let wishMapVC = wishMapStoryboard.instantiateViewController(
             identifier: "WishMapViewController") as? WishMapViewController else {
       return
     }
-    wishMapVC.setDataList(with: self.dataList)
+    //test를 위한 주석
+    wishMapVC.setDataList(with: self.newDataList)
     wishMapVC.setTravelInfoData(with: (title: wishListTitle.text ?? "", locationAndDate: locationAndDateLabel.text))
     wishMapVC.modalPresentationStyle = .fullScreen
     present(wishMapVC, animated: true) {
-      // 여기서 이번에 들어오는 Data들은 wishList에 있는 것인지 알려주기?
       // 아니면 모델에서 구성하기 ??
     }
   }
+  
+//  private func showAlertController(style: UIAlertController.Style) {
+//    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
+//
+//    let reviewAction = UIAlertAction(title: "리뷰 많은순", style: .default) {
+//      [weak self] result in self?.setOrderButton.setTitle("리뷰 많은순▼", for: .normal)
+//      
+//    }
+//    let recentAction = UIAlertAction(title: "최근 등록순", style: .default) { [weak self] result in
+//      self?.setOrderButton.setTitle("최근 등록순▼", for: .normal)
+//    }
+//    let starAction = UIAlertAction(title: "별점 높은순", style: .default) { [weak self] result in
+//      self?.setOrderButton.setTitle("별점 높은순▼", for: .normal)
+//    }
+//    let subview = alertController.view.subviews.first! as UIView
+//    let alertContentView = subview.subviews.first! as UIView
+//    alertContentView.setRounded(radius: 10)
+//    alertContentView.overrideUserInterfaceStyle = .light
+//    alertContentView.backgroundColor = UIColor.white
+//    alertController.view.setRounded(radius: 10)
+//    alertController.view.tintColor = .themeGreen
+//    alertController.addAction(reviewAction)
+//    alertController.addAction(recentAction)
+//    alertController.addAction(starAction)
+//    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+//    self.present(alertController, animated: true, completion: nil);
+//  }
   
   private func goToMapButtonUISetting() {
     view.addSubview(goToMapButton)
@@ -162,29 +221,53 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     self.navigationController?.popViewController(animated: true)
   }
   
-//  var wishCompletionHandler: ((Wish?) -> (Wish?))?
+//  @IBAction func didTapsetOrderButton(_ sender: UIButton) {
+//    showAlertController(style: .actionSheet)
+//  }
   
   @IBAction private func didTapOptionButton(_ sender: UIButton) {
     //TODO:option 화면 구현
     let wishCalendarStoryBoard = UIStoryboard(name: "WishCalendar", bundle: nil)
     guard let wishCalendarVC = wishCalendarStoryBoard.instantiateViewController(identifier: "WishCalendarViewController") as? WishCalendarViewController else {return}
+
     
     
     let optionActionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    let editOption = UIAlertAction(title: "수정", style: .default, handler: { [self] _ in
+    let editOption = UIAlertAction(title: "수정", style: .default, handler: { [weak self] _ in
+      guard let self = self else {return}
       // 둘다 있거나 둘다 없거나
       var wishModel: Wish?
-      if let startDate = self.travelInfo?.startDate, let endDate = self.travelInfo?.endDate {
-        wishModel = Wish(wishTitle: self.travelInfo?.title, Dates: [startDate, endDate])
+      if let startDate = self.folderData?.startDate?.components(separatedBy: "T")[0].stringToDate(), let endDate = self.folderData?.endDate?.components(separatedBy: "T")[0].stringToDate() {
+        wishModel = Wish(wishTitle: self.folderData?.name, Dates: [startDate, endDate])
       } else {
-        wishModel = Wish(wishTitle: self.travelInfo?.title, Dates: nil)
+        wishModel = Wish(wishTitle: self.folderData?.name, Dates: nil)
       }
       _ = wishCalendarVC.wishCompletionHandler?(wishModel)
-//      wishCalendarVC.setData(data: Wish())
-      present(wishCalendarVC, animated: true)
+      wishCalendarVC.delegate = self
+      self.present(wishCalendarVC, animated: true)
     })
-    let deleteOption = UIAlertAction(title: "삭제", style: .destructive) {_ in 
-      print("삭제하기")
+    let deleteOption = UIAlertAction(title: "삭제", style: .destructive) { [weak self]_ in
+      guard let self = self else {return}
+      guard let token = UserManager.shared.userIdandToken?.token else {return}
+      guard let userId = UserManager.shared.userIdandToken?.userId else {return}
+      guard let folderId = self.folderData?.id else {return}
+      guard let folderCount = self.folderData?.count else {return}
+      if folderCount < 2 {
+        self.view.makeToast("1개는 남겨두개🐶", duration: 1)
+        return}
+      APIService.shared.deleteFolder(token: token, userId: userId, folderId: folderId) { [weak self](result) in
+        guard let self = self else {return}
+        switch result {
+        case .success(let data):
+          print("삭제성공")
+          self.setupFolderData()
+          self.wishListTableView.reloadData()
+          //TODO: DELEGATE로 변화 업데이트
+          self.navigationController?.popViewController(animated: true)
+        case .failure(let error):
+          print("error \(error)")
+        }
+      }
     }
     optionActionSheetController.addAction(editOption)
     optionActionSheetController.addAction(deleteOption)
@@ -198,8 +281,6 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     optionActionSheetController.view.tintColor = .themeGreen
     self.present(optionActionSheetController, animated: true, completion: nil)
   }
-  
-  
 }
 
 extension WishlistViewController: UITableViewDelegate {
@@ -208,21 +289,38 @@ extension WishlistViewController: UITableViewDelegate {
 
 extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegate {
   
-  func didTapHeart(for placeId: Int, like: Bool) {
+  func didTapHeart(for placeId: String, like: Bool) {
     if like == true {
       likes[placeId] = false
+      guard let userId = UserManager.shared.userIdandToken?.userId else {return}
+      guard let token = UserManager.shared.userIdandToken?.token else {return}
+      guard let folderId = folderData?.id else {return}
+      APIService.shared.deletePlaceInFolder(token: token, userId: userId, folderId: folderId, placeId: placeId) { (result) in
+        switch result {
+        case .success(let data):
+          print("제거 성공")
+          APIService.shared.readFolder(token: token, userId: userId, folderId: folderId) { [weak self] (result) in
+            guard let self = self else {return}
+            switch result {
+            case .success(let data):
+              self.folderData = data
+              self.setupFolderData()
+              self.wishListTableView.reloadData()
+            case .failure(let error):
+              print(error)
+            }
+          }
+        case .failure(let error):
+          print("error \(error)")
+        }
+      }
     } else {
       likes[placeId] = true
-      guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
-        return
-      }
-      self.present(wishListMainVC, animated: true, completion: nil) //
     }
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    return dataList.count
-    return 4
+    return newDataList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -232,31 +330,46 @@ extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegat
     }
     
     cell.delegate = self
-    cell.placeId = dataList[indexPath.row].id
+    cell.placeId = newDataList[indexPath.row].id
+  
     
-    let item = dataList[indexPath.row]
-    if let day = item.days, let address = item.location, let price = item.prices {
-      cell.DaysLabel.isHidden = false
-      cell.addressLabel.isHidden = false
-      cell.priceLabel.isHidden = false
-      cell.DaysLabel.text = "\(day)박 요금"
-      cell.addressLabel.text = address
-      cell.priceLabel.text = "\(price)원"
-    } else {
-      cell.addressLabel.text = nil
-      cell.DaysLabel.text = nil
-      cell.priceLabel.text = nil
-      cell.contentStackView.removeArrangedSubview(cell.addressLabel)
-    }
+    let item = newDataList[indexPath.row]
     
-    cell.locationNameLabel.text = item.name
-    cell.locationTypeLabel.text = item.type ?? ""
-    cell.numberOfReviewsLabel.text = "(\(item.numbers ?? 0))"
-    cell.starPointLabel.text = " \(item.points ?? 0)"
+    cell.cellImageView.setImage(with: item.imagesUrl.first ?? "default")
+    cell.addressLabel.text = item.address.joined(separator: " ")
+    cell.locationNameLabel.text = item.title
+    cell.locationTypeLabel.text = nil
+    cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"
+    cell.starPointLabel.text = " \(item.reviewPoint ?? 0)"
     
     cell.isWish = likes[cell.placeId] == true
-    dataList[indexPath.row].like = likes[cell.placeId] == true
+    
+//    newDataList[indexPath.row].isWish = likes[cell.placeId] == true //이것의 이유?
     
     return cell
   }
+}
+
+extension WishlistViewController: EditWishCalendarDelegate {
+  
+  func didChangeSchedule(name: String, startDate: Date?, endDate: Date?) {
+    guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
+    guard let folderId = folderData?.id else {return}
+    folderData?.startDate = startDate?.datePickerToString() ?? ""
+    folderData?.endDate = endDate?.datePickerToString() ?? ""
+    folderData?.name = name
+    
+    setupFolderData()
+    
+    APIService.shared.patchFolder(token: token, userId: userId, folderId: folderId, name: name, startDate: startDate?.datePickerToString() ?? "", endDate: endDate?.datePickerToString() ?? "") { (result) in
+      switch result {
+      case .success(let data):
+        print(data)
+      case .failure(let error):
+        print("failure \(error)")
+        
+      }
+    }
+  }
+  
 }

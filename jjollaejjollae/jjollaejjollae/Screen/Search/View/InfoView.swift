@@ -8,7 +8,7 @@
 import UIKit
 
 class InfoView: UIView {
-  
+
   @IBOutlet weak var addressLabel: UILabel! {
     didSet {
       addressLabel.font = .robotoMedium(size: 11)
@@ -36,6 +36,7 @@ class InfoView: UIView {
   @IBOutlet weak var locationImageView: UIImageView!
   @IBOutlet weak var heartButton: UIButton!
   private var CallerVC: UIViewController?
+  private var placeId = "0"
   internal func setCallerVC(viewController: UIViewController) {
     CallerVC = viewController
   }
@@ -59,14 +60,15 @@ class InfoView: UIView {
     }
   }
   
-  var data: SearchResultInfo? = nil {
+  var data: SearchResultData? = nil {
     didSet {
-      addressLabel.text = data?.location
-      locationNameLabel.text = data?.name
-      starPointLabel.text = "\(data?.points ?? 0)"
-      numberOfReviewLabel.text = "\(data?.numbers ?? 0)"
-      locationImageView.image = UIImage(named: "IMG_4930")
-      if data?.like == true{
+      placeId = data?.id ?? "0"
+      addressLabel.text = data?.address[0...2].joined(separator: " ")
+      locationNameLabel.text = data?.title
+      starPointLabel.text = "\(data?.reviewPoint ?? 0)"
+      numberOfReviewLabel.text = "\(data?.reviewCount ?? 0)"
+      locationImageView.setImage(with: data?.imagesUrl.first ?? "default")
+      if data?.isWish == true{
         heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
       } else {
         heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
@@ -82,10 +84,11 @@ class InfoView: UIView {
       guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
         return
       }
+      wishListMainVC.setMode(mode: .fromCell)
+      wishListMainVC.setPlaceInfo(placeId: placeId)
       CallerVC?.present(wishListMainVC, animated: true, completion: nil)
     }
     sender.isSelected = !sender.isSelected
-    print("iswish: ", isWish, "sender.isselected: ", sender.isSelected)
   }
   
   override init(frame: CGRect) {
@@ -96,6 +99,16 @@ class InfoView: UIView {
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     setUpView()
+  }
+  
+  convenience init?(coder: NSCoder, placeId: String) {
+    self.init(coder: coder)
+    self.placeId = placeId
+  }
+  
+  convenience init(frame: CGRect, placedId: Int) {
+    self.init(frame: frame)
+    self.placeId = placeId
   }
   
   private func setUpView() {

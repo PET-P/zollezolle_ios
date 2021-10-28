@@ -9,6 +9,7 @@ import Foundation
 import Moya
 import UIKit
 import Kingfisher
+import SwiftyJSON
 
 struct APIService { 
   
@@ -65,8 +66,18 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func search(keyword: String, completion: @escaping((NetworkResult<SearchDatas>) -> (Void))) {
-    let target = APITarget.search(keyword: keyword)
+  func search(token: String, keyword: String, page: Int, completion: @escaping((NetworkResult<SearchData>) -> (Void))) {
+    let target = APITarget.search(token: token, keyword: keyword, page: page)
+    judgeGenericResponse(target, completion: completion)
+  }
+
+  func search(keyword: String, page: Int, completion: @escaping((NetworkResult<SearchData>) -> (Void))) {
+    let target = APITarget.noLoginSearch(keyword: keyword, page: page)
+    judgeGenericResponse(target, completion: completion)
+  }
+  
+  func nearPlace(latitude: Double, longitude: Double, completion: @escaping((NetworkResult<[SearchResultData]>) -> (Void))) {
+    let target = APITarget.nearPlace(lat: latitude, lng: longitude)
     judgeGenericResponse(target, completion: completion)
   }
   
@@ -80,33 +91,38 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func readWishlist(id: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
-    let target = APITarget.readWishlist(id: id)
+  func readWishlist(userId: String, token: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.readWishlist(token: token, userId: userId)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func createWishlistFolder(token: String, userId: String, folder: Folder, completion: @escaping((NetworkResult<WishlistFolderData>) -> (Void))) {
-    let target = APITarget.createWishlistFolder(token: token, userId: userId, folder: folder)
+  func createWishlistFolder(userId: String, folder: [String: Any], completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.createWishlistFolder(userId: userId, folder: folder)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func patchFolder(token: String, userId: String, folderId: String, name: String, startDate: String, endDate: String, completion: @escaping((NetworkResult<WishlistFolderData>) -> (Void))) {
+  func patchFolder(token: String, userId: String, folderId: String, name: String, startDate: String, endDate: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
     let target = APITarget.patchFolder(token: token, userId: userId, folderId: folderId, name: name, startDate: startDate, endDate: endDate)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func deleteFolder(token: String, userId: String, folderId: String, name: String, startDate: String, endDate: String, completion: @escaping((NetworkResult<WishlistFolderData>) -> (Void))) {
-    let target = APITarget.deleteFolder(token: token, userId: userId, folderId: folderId, name: name, startDate: startDate, endDate: endDate)
+  func deleteFolder(token: String, userId: String, folderId: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.deleteFolder(token: token, userId: userId, folderId: folderId)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func readFolder(token: String, userId: String, folderId: String, completion: @escaping((NetworkResult<FoldersData>) -> (Void))) {
+  func readFolder(token: String, userId: String, folderId: String, completion: @escaping((NetworkResult<FolderData>) -> (Void))) {
     let target = APITarget.readFolder(token: token, userId: userId, folderId: folderId)
     judgeGenericResponse(target, completion: completion)
   }
   
-  func addPlaceInFolder(token: String, userId: String, placeId: String, folderId: String, region: String, completion: @escaping((NetworkResult<WishlistFolderData>) -> (Void))) {
-    let target = APITarget.addPlaceInFolder(token: token, userId: userId, placeId: placeId, folderId: folderId, region: region)
+  func addPlaceInFolder(token: String, userId: String, placeId: String, folderId: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.addPlaceInFolder(token: token, userId: userId, placeId: placeId, folderId: folderId)
+    judgeGenericResponse(target, completion: completion)
+  }
+  
+  func deletePlaceInFolder(token: String, userId: String, folderId: String, placeId: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    let target = APITarget.deletePlaceInFolder(token: token, userId: userId, folderId: folderId, placeId: placeId)
     judgeGenericResponse(target, completion: completion)
   }
   
@@ -135,7 +151,22 @@ struct APIService {
     judgeSimpleResponse(target, completion: completion)
   }
   
-  func fetchPlaceInfo(token: String, userID: String, completion: @escaping((NetworkResult<PlaceInfo>) -> (Void))) {
+  func readReview(token: String, userId: String, completion: (@escaping(NetworkResult<UserReviewData>) -> (Void))) {
+    let target =  APITarget.readReview(token: token, userId: userId)
+    judgeGenericResponse(target, completion: completion)
+  }
+  
+  func deleteReview(reviewId: String, completion: @escaping((NetworkResult<Any>) -> (Void))) {
+    let target = APITarget.deleteReview(reviewId: reviewId)
+    judgeSimpleResponse(target, completion: completion)
+  }
+  
+  func getFilterPlace(region: String, category: CategoryType, filter: String, page: Int, completion: @escaping((NetworkResult<[SearchResultData]>) -> (Void))) {
+    let target = APITarget.getFilterPlace(region: region, category: category, filter: filter, page: page)
+    judgeGenericResponse(target, completion: completion)
+  }
+  
+  func fetchPlaceInfo(token: String, userID: String, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
 //    let target = APITarget.fetchPlaceInfo(token: token, userId)
   }
 }

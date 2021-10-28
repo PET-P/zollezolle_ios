@@ -9,6 +9,7 @@ import Foundation
 
 struct Folder: Codable {
   var name: String
-  var startDate: String
-  var endDate: String
+  var startDate: String?
+  var endDate: String?
 }
+

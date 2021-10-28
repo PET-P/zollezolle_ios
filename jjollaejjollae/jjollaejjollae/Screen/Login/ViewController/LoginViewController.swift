@@ -186,7 +186,9 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   }
   
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
-    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+    let sceneDelegate = UIApplication.shared.connectedScenes
+            .first!.delegate as! SceneDelegate
+        sceneDelegate.window!.rootViewController = MainTabBarController()
   }
   
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {

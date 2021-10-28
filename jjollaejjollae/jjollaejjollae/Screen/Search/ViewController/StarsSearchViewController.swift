@@ -48,8 +48,29 @@ extension StarsSearchViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let text =  list[indexPath.row]
-    // 혹시나 있을 양 옆 공백을 없애기 위한 작업
-    let nextVC = sendRightVC(by: text)
-    self.navigationController?.pushViewController(nextVC, animated: true)
+    SearchManager.shared.searchText = text
+    if let token = UserManager.shared.userIdandToken?.token {
+      APIService.shared.search(token: token, keyword: text, page: 0) { result in
+        switch result{
+        case .success(let data):
+          guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          if data.result.count != 0 {nextVC.newDataList = data.result}
+          self.navigationController?.pushViewController(nextVC, animated: true)
+        case .failure(let error):
+          print("error: ",error)
+        }
+      }
+    } else {
+      APIService.shared.search(keyword: text, page: 0) { (result) in
+        switch result {
+        case .success(let data):
+          guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
+          if data.result.count != 0 {nextVC.newDataList = data.result}
+          self.navigationController?.pushViewController(nextVC, animated: true)
+        case .failure(let error):
+          print(self, #function, error)
+        }
+      }
+    }
   }
 }

@@ -298,12 +298,9 @@ class DogInfoViewController: FixModalViewController{
   }
   
   @IBAction func didTapContinueWithoutSaveButton(_ sender: UIButton) {
-    self.dismiss(animated: true, completion: nil)
-    let homeStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-    guard let homeVC = homeStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {
-      return
-    }
-    self.navigationController?.pushViewController(homeVC, animated: true)
+    let sceneDelegate = UIApplication.shared.connectedScenes
+            .first!.delegate as! SceneDelegate
+        sceneDelegate.window!.rootViewController = MainTabBarController()
   }
   
   @IBAction func didTapPetSizeButton(_ sender: UIButton) {
@@ -347,6 +344,9 @@ class DogInfoViewController: FixModalViewController{
               switch readuserResult {
               case .success(let data):
                 UserManager.shared.userInfo = data
+                let sceneDelegate = UIApplication.shared.connectedScenes
+                        .first!.delegate as! SceneDelegate
+                    sceneDelegate.window!.rootViewController = MainTabBarController()
               case .failure(let error):
                 fatalError("Error \(error)")
               }
@@ -356,10 +356,6 @@ class DogInfoViewController: FixModalViewController{
           }
         }
       }
-      
-      let homeMainStoryboard = UIStoryboard(name: "HomeMain", bundle: nil)
-      guard let homeMainVC = homeMainStoryboard.instantiateViewController(identifier: "HomeMainViewController") as? HomeMainViewController else {return}
-      self.navigationController?.pushViewController(homeMainVC, animated: true)
     }
   }
   
@@ -549,7 +545,7 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return cellType.count
+    return cellType.count < 6 ? cellType.count : 5
   }
   
   @objc func longpressedCell(_ sender: UILongPressGestureRecognizer) {
@@ -628,9 +624,9 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   // collectionView 초기화
   private func addCollectionView() {
     let layout = CarouselLayout()
-    layout.itemSize = CGSize(width: dogProfileCollectionView.frame.size.width*0.796, height: dogProfileCollectionView.frame.size.height)
-    layout.sideItemScale = 1/3
-    layout.spacing = -100
+    layout.itemSize = CGSize(width: dogProfileCollectionView.frame.size.width*0.5, height: dogProfileCollectionView.frame.size.height)
+    layout.sideItemScale = 0.7
+    layout.spacing = -40
     layout.isPagingEnabled = true
     layout.sideItemAlpha = 0.5
     
@@ -672,11 +668,6 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
   func didTapImageView(indexPath: IndexPath?) {
     
     if let indexPath = indexPath {
-      if cellType.count > 5 { //5개 이상되면 + 삭제
-        self.cellType = self.cellType.dropLast()
-        dogProfileCollectionView.reloadData()
-        return
-      }
       if cellType[indexPath.row] == .plus && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         cellType.insert(.camera, at: cellType.count - 1)
         dogProfile.append(PetInfo())

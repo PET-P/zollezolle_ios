@@ -8,7 +8,15 @@
 import UIKit
 import FSCalendar
 
-class WishCalendarViewController: UIViewController {
+protocol EditWishCalendarDelegate: NSObject {
+  func didChangeSchedule(name: String, startDate: Date?, endDate: Date?)
+}
+
+protocol addWishCalendarDelegate: NSObject {
+  func didAddWishList(name: String, startDate: Date?, endDate: Date? )
+}
+
+class WishCalendarViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - IBOUTLET
   
@@ -88,6 +96,7 @@ class WishCalendarViewController: UIViewController {
       calendarSwitch.setOn(on: true, animated: true)
       calendarSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .gray05)
       calendarSwitch.setSwitchColor(onTextColor: .themeGreen, offTextColor: .gray03)
+      calendarSwitch.setCircleRadius(round: 25/2)
     }
   }
   
@@ -116,7 +125,16 @@ class WishCalendarViewController: UIViewController {
   
   fileprivate var gregorian = Calendar(identifier: .gregorian)
   
+  weak var delegate: EditWishCalendarDelegate?
+  weak var addDelegate: addWishCalendarDelegate?
+  
   var data: Wish?
+  //create - true, edit - false
+  private var mode = false
+
+  internal func setMode(mode: Bool) {
+    self.mode = mode
+  }
   
   func setData(data: Wish?){
     self.data = data
@@ -182,7 +200,21 @@ class WishCalendarViewController: UIViewController {
   
   //MARK: - IBACTION
   @IBAction func didTapSaveButton(_ sender: UIButton) {
-    _ = dateCompletionHandler?([firstDate, lastDate])
+    guard let title = listTitleTextField.text else {
+      showAlert()
+      return}
+    guard title != "" else {
+      showAlert()
+      return
+    }
+    guard let token = UserManager.shared.userIdandToken?.token else {return}
+    guard let userId = UserManager.shared.userIdandToken?.userId else {return}
+    //수정
+    if !mode {
+      delegate?.didChangeSchedule(name: title, startDate: firstDate, endDate: lastDate)
+    } else {
+      addDelegate?.didAddWishList(name: title, startDate: firstDate, endDate: lastDate)
+    }
     dismiss(animated: true, completion: nil)
   }
   
@@ -244,7 +276,7 @@ class WishCalendarViewController: UIViewController {
   
   // 위시리스트 수정일지 .
   private func resetVC() {
-    if data?.wishTitle == nil && data?.Dates == nil {
+    if mode == true {
       navTitle.text = "위시리스트 만들기"
     } else {
       navTitle.text = "위시리스트 수정하기"
@@ -264,6 +296,7 @@ class WishCalendarViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setUpCalendar()
+    resetVC()
   }
 }
 
@@ -512,6 +545,16 @@ extension WishCalendarViewController {
       action: #selector(view.endEditing(_:)))
     tapGesture.cancelsTouchesInView = false
     view.addGestureRecognizer(tapGesture)
+  }
+}
+
+//MARK: - Alert
+extension WishCalendarViewController {
+  func showAlert() {
+    var alert = UIAlertController(title: "이름을 적으시개", message: nil, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "아니요", style: .default, handler: nil))
+    alert.addAction(UIAlertAction(title: "네", style: .default))
+    self.present(alert, animated: true, completion: nil)
   }
 }
 

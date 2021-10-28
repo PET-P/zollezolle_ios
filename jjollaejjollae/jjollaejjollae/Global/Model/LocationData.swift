@@ -9,5 +9,5 @@ import Foundation
 
 struct LocationData: Codable {
   let type: String
-  let coordinates: [String]
+  let coordinates: [Double]
 }

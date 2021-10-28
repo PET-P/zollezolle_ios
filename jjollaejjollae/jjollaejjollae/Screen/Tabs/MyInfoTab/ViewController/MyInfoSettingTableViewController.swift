@@ -14,6 +14,7 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
       alarmSwitch.setButtonTitle(isOn: "", isOff: "")
       alarmSwitch.setTitleFont(font: .robotoBold(size: 10))
       alarmSwitch.setCircleFrame(frame: CGRect (x: 0, y: 2.5, width: 31, height: 31))
+      alarmSwitch.setCircleRadius(round: 15.5)
       alarmSwitch.setOn(on: true, animated: true)
       alarmSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .gray05)
       alarmSwitch.setSwitchColor(onTextColor: .themeGreen, offTextColor: .gray03)
@@ -32,11 +33,15 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
       menuSubtitleLabel.textColor = .gray03
     }
   }
+  private let settingManager = SettingManager.shared
   
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.sectionFooterHeight = 0
     tableView.sectionHeaderHeight = 0
+    alarmSwitch.delegate = self
+    print("viewdidload", settingManager.alarmControl)
+    alarmSwitch.isOn = settingManager.alarmControl
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -46,9 +51,7 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
     case 1:
       return
     case 2:
-      guard let provisionVC = ProvisionViewController.loadFromStoryboard() as? ProvisionViewController else {return}
-      provisionVC.getMode(mode: Provisions.Terms)
-      self.navigationController?.pushViewController(provisionVC, animated: true)
+      print("?");
     case 3:
       if let url  = URL(string: "https://guttural-tumble-39b.notion.site/288b40e5a7ab48f39eb8d4616153d006") {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -56,16 +59,20 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
     case 4:
       print("오픈소스")
       guard let testVC = SearchWithLocationViewController.loadFromStoryboard() as? SearchWithLocationViewController else {return}
-      self.navigationController?.pushViewController(testVC, animated:   true)
+      self.navigationController?.pushViewController(testVC, animated: true)
     case 5:
       print("공지사항")
-      guard let searchVC = SearchViewController.loadFromStoryboard() as? SearchViewController else {return}
-      self.navigationController?.pushViewController(searchVC, animated: true)
     default:
       return
     }
   }
-  
+}
+
+extension MyInfoSettingTableViewController: JJollaeButtonDelegate {
+  func isOnValueChage(isOn: Bool) {
+    print(isOn)
+    settingManager.alarmControl = isOn
+  }
 }
 
 

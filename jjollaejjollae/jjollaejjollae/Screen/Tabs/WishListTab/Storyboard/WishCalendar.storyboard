@@ -27,7 +27,7 @@
                                             <constraint firstAttribute="width" secondItem="0Ef-fu-jm5" secondAttribute="height" multiplier="1:1" id="Hn3-SG-nuq"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="xmark" catalog="system">
+                                        <state key="normal" image="Xbutton">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -258,7 +258,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="Xbutton" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

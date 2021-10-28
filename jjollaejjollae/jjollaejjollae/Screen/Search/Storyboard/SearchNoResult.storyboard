@@ -47,20 +47,6 @@
                                     <constraint firstItem="7pV-4u-LhN" firstAttribute="centerX" secondItem="y2j-c9-shP" secondAttribute="centerX" id="rL0-9j-egN"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C3x-YH-PP6">
-                                <rect key="frame" x="0.0" y="323" width="414" height="539"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ZRL-ai-d81">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZRL-ai-d81" id="K6B-PZ-8k7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w66-5v-OkG">
                                 <rect key="frame" x="0.0" y="124.5" width="414" height="198.5"/>
                                 <subviews>
@@ -70,13 +56,37 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENr-Rz-gxb">
+                                        <rect key="frame" x="0.0" y="197.5" width="414" height="1"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="NwK-44-8YY"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="n2L-Or-804" firstAttribute="top" secondItem="w66-5v-OkG" secondAttribute="top" constant="50" id="A8Y-by-Xak"/>
                                     <constraint firstItem="n2L-Or-804" firstAttribute="centerX" secondItem="w66-5v-OkG" secondAttribute="centerX" id="KCl-TS-5P3"/>
+                                    <constraint firstItem="ENr-Rz-gxb" firstAttribute="leading" secondItem="w66-5v-OkG" secondAttribute="leading" id="LKq-Wx-CV1"/>
+                                    <constraint firstAttribute="trailing" secondItem="ENr-Rz-gxb" secondAttribute="trailing" id="QBa-dZ-AEf"/>
+                                    <constraint firstAttribute="bottom" secondItem="ENr-Rz-gxb" secondAttribute="bottom" id="kQc-oN-v0x"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C3x-YH-PP6">
+                                <rect key="frame" x="0.0" y="323" width="414" height="539"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ZRL-ai-d81">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZRL-ai-d81" id="K6B-PZ-8k7">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -96,9 +106,10 @@
                     </view>
                     <connections>
                         <outlet property="SearchResultTableView" destination="C3x-YH-PP6" id="h3r-2O-ZSI"/>
+                        <outlet property="headerView" destination="y2j-c9-shP" id="W0T-Cm-zrT"/>
                         <outlet property="noInfoLabel" destination="n2L-Or-804" id="uCQ-46-YZL"/>
-                        <outlet property="noInfoView" destination="w66-5v-OkG" id="ju4-rl-Lco"/>
                         <outlet property="searchTextField" destination="7pV-4u-LhN" id="IVw-nG-LgX"/>
+                        <outlet property="separatedLine" destination="ENr-Rz-gxb" id="Qqw-Na-qe0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

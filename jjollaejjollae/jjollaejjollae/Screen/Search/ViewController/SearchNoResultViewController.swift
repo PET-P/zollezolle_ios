@@ -7,10 +7,15 @@
 
 import UIKit
 
-class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searchable {
+class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searchable, SearchDataReceiveable,
+                                    StoryboardInstantiable{
   
-  var dataList = [SearchResultInfo]()
-  lazy var likes : [Int : Int] = [:]
+  var newDataList: [SearchResultData] = []
+  lazy var likes : [String : Bool] = [:]
+  var searchData = [String]()
+  var searchKeyword: String = ""
+  let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
+  let searchResultDataSource = SearchResultDataSource()
   
   //MARK: - OUTLET
   @IBOutlet weak var SearchResultTableView: UITableView!
@@ -21,12 +26,17 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searc
       noInfoLabel.text = "\"멍멍이카페에 해당하는 정보가 없어요\""
     }
   }
-  @IBOutlet weak var noInfoView: UIView! {
+  @IBOutlet weak var headerView: UIView! {
     didSet {
-      noInfoView.addBorder([.bottom], color: .gray06, width: 1)
+      headerView.backgroundColor = .themePaleGreen
     }
   }
-
+  @IBOutlet weak var separatedLine: UIView! {
+    didSet {
+      separatedLine.backgroundColor = .gray06
+    }
+  }
+  
   private var noInfoLabelText: String = ""{
     didSet {
       noInfoLabel.text = "\(noInfoLabelText)에 해당하는 정보가 없어요"
@@ -34,32 +44,43 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searc
   }
   @IBOutlet weak var searchTextField: UITextField! {
     didSet {
+      searchTextField.setRounded(radius: nil)
       searchTextField.text = SearchManager.shared.searchText
       searchTextField.delegate = self
     }
   }
   
-  let nib = UINib(nibName: "SearchResultTableViewCell", bundle: nil)
-  let searchResultDataSource = SearchResultDataSource()
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    SearchResultTableView.dataSource = searchResultDataSource
     SearchResultTableView.delegate = self
     SearchResultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     SearchResultTableView.rowHeight = UITableView.automaticDimension
-    for _ in 0..<10 {
-      dataList.append(SearchResultInfo(sector: .accommodation,
-                                       coordinate: (33.45193127215219, 126.78398144916886)))
+    if #available(iOS 15.0, *) {
+      SearchResultTableView.sectionHeaderTopPadding = 0
     }
-    searchResultDataSource.dataList = dataList
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    // indicator 띄우기
+    APIService.shared.nearPlace(latitude: 37.526986862211146, longitude: 126.92225852592222) { [weak self](result) in
+      guard let self = self else {return}
+      switch result {
+      case .success(let data):
+        self.newDataList = data
+        self.searchResultDataSource.newDataList = self.newDataList
+        self.SearchResultTableView.dataSource = self.searchResultDataSource
+        // indicator 끄기
+      case .failure(let error):
+        print("error \(error)")
+      }
+    }
   }
   
   @IBAction func didTapBackButton(_ sender: UIButton) {
-    self.navigationController?.popViewController(animated: true)
+    gotoSearchVC(from: self)
   }
 }
-
 
 //MARK: - keybaord & search
 
@@ -71,9 +92,6 @@ extension SearchNoResultViewController {
 }
 
 extension SearchNoResultViewController: UITableViewDelegate {
-  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return "근처 장소를 소개해드릴게요"
-  }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 80))
@@ -90,4 +108,9 @@ extension SearchNoResultViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 80
   }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    scrollView.bounces = scrollView.contentOffset.y > 0
+  }
+  
 }
