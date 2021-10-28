@@ -49,7 +49,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   }
   @IBOutlet weak var numberOfResultLabel: UILabel! {
     didSet {
-      numberOfResultLabel.text = "0개 이상의 숙소"
+      numberOfResultLabel.text = "0개의 숙소"
       numberOfResultLabel.font = .robotoRegular(size: 12)
       numberOfResultLabel.textColor = .색44444
     }
@@ -236,6 +236,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     resultTableView.dataSource = searchResultDataSources[0]
     resultTableView.tableFooterView = UIView(frame: CGRect.zero)
     resultTableView.separatorStyle = .none
+    numberOfResultLabel.text = "고쳐야할개의 숙소"
   }
   
   private func setupheader() {
