@@ -30,7 +30,7 @@ class WishlistCollectionViewCell: UICollectionViewCell {
   
   override func awakeFromNib() { }
   
-  internal func fillContent(with data: FolderData) {
+  internal func fillContent(with data: SimpleFolderData) {
     wishListTitle.text = data.name
     
     if let startDate = data.startDate, let endDate = data.endDate {

@@ -41,7 +41,7 @@ class WishlistMainViewController: UIViewController {
   }
   
   private var entireWishlist: WishlistData?
-  private var wishlistFolders: [FolderData] = []
+  private var wishlistFolders: [SimpleFolderData] = []
   private var dispatchGroup = DispatchGroup()
   private var mode: WishListMode = WishListMode.fromTab //true 시 확인, false시 추가
   lazy var placeId = ""
@@ -74,6 +74,11 @@ class WishlistMainViewController: UIViewController {
   func setPlaceInfo(placeId: String){
     // region이랑 placeId 가져오기
     self.placeId = placeId
+  }
+  
+  
+  @IBAction func didTapCloseButton(_ sender: UIButton) {
+    self.dismiss(animated: true, completion: nil)
   }
   
   @IBAction func didTapAddWishlist(_ sender: UIButton) {
@@ -170,6 +175,7 @@ extension WishlistMainViewController: UICollectionViewDelegate {
         case .success(let data):
           self.wishlistFolders = data.folder
           self.wishlistCollectionView.reloadData()
+          self.dismiss(animated: true, completion: nil)
         case .failure(let error):
           print("error", self, #function, error)
         }

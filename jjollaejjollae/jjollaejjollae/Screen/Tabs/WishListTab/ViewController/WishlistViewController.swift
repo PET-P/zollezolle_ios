@@ -5,18 +5,19 @@
 
 import UIKit
 import CloudKit
+import Toast_Swift
 
 class WishlistViewController: UIViewController, StoryboardInstantiable {
 
   //MARK: - IBOUTLET
-  @IBOutlet weak var setOrderButton: UIButton! {
-    didSet {
-      setOrderButton.layer.borderWidth = 0
-      setOrderButton.setTitle("추천순 ▼", for: .normal)
-      setOrderButton.tintColor = .gray02
-      setOrderButton.titleLabel?.font = .robotoMedium(size: 13)
-    }
-  }
+//  @IBOutlet weak var setOrderButton: UIButton! {
+//    didSet {
+//      setOrderButton.layer.borderWidth = 0
+//      setOrderButton.setTitle("추천순 ▼", for: .normal)
+//      setOrderButton.tintColor = .gray02
+//      setOrderButton.titleLabel?.font = .robotoMedium(size: 13)
+//    }
+//  }
   
   @IBOutlet weak var wishListTitle: UILabel! {
     didSet {
@@ -124,7 +125,6 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
       print(data.isWish)
       likes.updateValue(data.isWish ?? false, forKey: data.id)
     }
-    
   }
 
 
@@ -173,32 +173,32 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
-  private func showAlertController(style: UIAlertController.Style) {
-    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
-
-    let reviewAction = UIAlertAction(title: "리뷰 많은순", style: .default) {
-      [weak self] result in self?.setOrderButton.setTitle("리뷰 많은순▼", for: .normal)
-      
-    }
-    let recentAction = UIAlertAction(title: "최근 등록순", style: .default) { [weak self] result in
-      self?.setOrderButton.setTitle("최근 등록순▼", for: .normal)
-    }
-    let starAction = UIAlertAction(title: "별점 높은순", style: .default) { [weak self] result in
-      self?.setOrderButton.setTitle("별점 높은순▼", for: .normal)
-    }
-    let subview = alertController.view.subviews.first! as UIView
-    let alertContentView = subview.subviews.first! as UIView
-    alertContentView.setRounded(radius: 10)
-    alertContentView.overrideUserInterfaceStyle = .light
-    alertContentView.backgroundColor = UIColor.white
-    alertController.view.setRounded(radius: 10)
-    alertController.view.tintColor = .themeGreen
-    alertController.addAction(reviewAction)
-    alertController.addAction(recentAction)
-    alertController.addAction(starAction)
-    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-    self.present(alertController, animated: true, completion: nil);
-  }
+//  private func showAlertController(style: UIAlertController.Style) {
+//    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
+//
+//    let reviewAction = UIAlertAction(title: "리뷰 많은순", style: .default) {
+//      [weak self] result in self?.setOrderButton.setTitle("리뷰 많은순▼", for: .normal)
+//      
+//    }
+//    let recentAction = UIAlertAction(title: "최근 등록순", style: .default) { [weak self] result in
+//      self?.setOrderButton.setTitle("최근 등록순▼", for: .normal)
+//    }
+//    let starAction = UIAlertAction(title: "별점 높은순", style: .default) { [weak self] result in
+//      self?.setOrderButton.setTitle("별점 높은순▼", for: .normal)
+//    }
+//    let subview = alertController.view.subviews.first! as UIView
+//    let alertContentView = subview.subviews.first! as UIView
+//    alertContentView.setRounded(radius: 10)
+//    alertContentView.overrideUserInterfaceStyle = .light
+//    alertContentView.backgroundColor = UIColor.white
+//    alertController.view.setRounded(radius: 10)
+//    alertController.view.tintColor = .themeGreen
+//    alertController.addAction(reviewAction)
+//    alertController.addAction(recentAction)
+//    alertController.addAction(starAction)
+//    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+//    self.present(alertController, animated: true, completion: nil);
+//  }
   
   private func goToMapButtonUISetting() {
     view.addSubview(goToMapButton)
@@ -221,9 +221,9 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     self.navigationController?.popViewController(animated: true)
   }
   
-  @IBAction func didTapsetOrderButton(_ sender: UIButton) {
-    showAlertController(style: .actionSheet)
-  }
+//  @IBAction func didTapsetOrderButton(_ sender: UIButton) {
+//    showAlertController(style: .actionSheet)
+//  }
   
   @IBAction private func didTapOptionButton(_ sender: UIButton) {
     //TODO:option 화면 구현
@@ -251,6 +251,10 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
       guard let token = UserManager.shared.userIdandToken?.token else {return}
       guard let userId = UserManager.shared.userIdandToken?.userId else {return}
       guard let folderId = self.folderData?.id else {return}
+      guard let folderCount = self.folderData?.count else {return}
+      if folderCount < 2 {
+        self.view.makeToast("1개는 남겨두개🐶", duration: 1)
+        return}
       APIService.shared.deleteFolder(token: token, userId: userId, folderId: folderId) { [weak self](result) in
         guard let self = self else {return}
         switch result {

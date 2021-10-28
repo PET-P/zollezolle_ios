@@ -114,6 +114,9 @@
                                 <state key="normal">
                                     <imageReference key="image" image="Xbutton" renderingMode="original"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapCloseButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="oBt-Bm-yzk"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
