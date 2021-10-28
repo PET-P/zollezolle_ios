@@ -99,6 +99,7 @@
 		28A4984027105556008AC05B /* ReviewTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28A4983E27105556008AC05B /* ReviewTableCell.xib */; };
 		28A4984227106BAB008AC05B /* ReviewImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4984127106BAB008AC05B /* ReviewImageView.swift */; };
 		28A498442710BC28008AC05B /* ContentsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A498432710BC28008AC05B /* ContentsData.swift */; };
+		28AAB47F272852E0008F7C0C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AAB47E272852E0008F7C0C /* String+Extension.swift */; };
 		28AF8DF4271B000B00FF7247 /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AF8DF3271B000B00FF7247 /* Searchable.swift */; };
 		28AF8DF6271B018400FF7247 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AF8DF5271B018400FF7247 /* UIViewController+Extension.swift */; };
 		28B2BD0C271D959900678733 /* LocationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2BD0B271D959900678733 /* LocationName.swift */; };
@@ -283,6 +284,7 @@
 		28A4983E27105556008AC05B /* ReviewTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableCell.xib; sourceTree = "<group>"; };
 		28A4984127106BAB008AC05B /* ReviewImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewImageView.swift; sourceTree = "<group>"; };
 		28A498432710BC28008AC05B /* ContentsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsData.swift; sourceTree = "<group>"; };
+		28AAB47E272852E0008F7C0C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		28AF8DF3271B000B00FF7247 /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
 		28AF8DF5271B018400FF7247 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		28B2BD0B271D959900678733 /* LocationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationName.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				28FEC64227141FD800C10B32 /* UIImageView+Extension.swift */,
 				28AF8DF5271B018400FF7247 /* UIViewController+Extension.swift */,
 				28F8B14B271FCDCB0093B91C /* UINavigationController+Extension.swift */,
+				28AAB47E272852E0008F7C0C /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1112,6 +1115,7 @@
 				2827C88B26B03C390001E077 /* SceneDelegate.swift in Sources */,
 				28B2BD0C271D959900678733 /* LocationName.swift in Sources */,
 				28E910BD26F0E2390093BF7C /* PetInfo.swift in Sources */,
+				28AAB47F272852E0008F7C0C /* String+Extension.swift in Sources */,
 				2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */,
 				285CE11126B7DED30022DA2E /* Date+Extension.swift in Sources */,
 				2884A30726C91CD0004596C3 /* SearchTableViewCell.swift in Sources */,
