@@ -9,12 +9,11 @@ import UIKit
 import FSCalendar
 
 protocol EditWishCalendarDelegate: NSObject {
-  func didChangeSchedule(startDate: Date?, endDate: Date?)
-  func didChangeWishListTitle(title: String)
+  func didChangeSchedule(name: String, startDate: Date?, endDate: Date?)
 }
 
 protocol addWishCalendarDelegate: NSObject {
-  func didAddWishList(title: String, startData: Date?, endDate: Date? )
+  func didAddWishList(name: String, startDate: Date?, endDate: Date? )
 }
 
 class WishCalendarViewController: UIViewController, StoryboardInstantiable {
@@ -130,6 +129,12 @@ class WishCalendarViewController: UIViewController, StoryboardInstantiable {
   weak var addDelegate: addWishCalendarDelegate?
   
   var data: Wish?
+  //create - true, edit - false
+  private var mode = false
+
+  internal func setMode(mode: Bool) {
+    self.mode = mode
+  }
   
   func setData(data: Wish?){
     self.data = data
@@ -195,16 +200,21 @@ class WishCalendarViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - IBACTION
   @IBAction func didTapSaveButton(_ sender: UIButton) {
-    guard let title = listTitleTextField.text else {return}
+    guard let title = listTitleTextField.text else {
+      showAlert()
+      return}
+    guard title != "" else {
+      showAlert()
+      return
+    }
     guard let token = UserManager.shared.userIdandToken?.token else {return}
     guard let userId = UserManager.shared.userIdandToken?.userId else {return}
     //수정
-    delegate?.didChangeSchedule(startDate: firstDate, endDate: lastDate)
-    delegate?.didChangeWishListTitle(title: title)
-    //생성
-    
-    addDelegate?.didAddWishList(title: title, startData: firstDate, endDate: lastDate)
-    
+    if !mode {
+      delegate?.didChangeSchedule(name: title, startDate: firstDate, endDate: lastDate)
+    } else {
+      addDelegate?.didAddWishList(name: title, startDate: firstDate, endDate: lastDate)
+    }
     dismiss(animated: true, completion: nil)
   }
   
@@ -266,7 +276,7 @@ class WishCalendarViewController: UIViewController, StoryboardInstantiable {
   
   // 위시리스트 수정일지 .
   private func resetVC() {
-    if data?.wishTitle == nil && data?.Dates == nil {
+    if mode == true {
       navTitle.text = "위시리스트 만들기"
     } else {
       navTitle.text = "위시리스트 수정하기"
@@ -286,6 +296,7 @@ class WishCalendarViewController: UIViewController, StoryboardInstantiable {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     setUpCalendar()
+    resetVC()
   }
 }
 
@@ -534,6 +545,16 @@ extension WishCalendarViewController {
       action: #selector(view.endEditing(_:)))
     tapGesture.cancelsTouchesInView = false
     view.addGestureRecognizer(tapGesture)
+  }
+}
+
+//MARK: - Alert
+extension WishCalendarViewController {
+  func showAlert() {
+    var alert = UIAlertController(title: "이름을 적으시개", message: nil, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "아니요", style: .default, handler: nil))
+    alert.addAction(UIAlertAction(title: "네", style: .default))
+    self.present(alert, animated: true, completion: nil)
   }
 }
 
