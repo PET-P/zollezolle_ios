@@ -228,6 +228,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
       accommodationDataSource.newDataList = self.newDataList
       self.dataList = accommodationDataSource.newDataList
     } else {
+      searchResultDataSource.setCallerVC(viewController: self)
       searchResultDataSource.newDataList = newDataList
       self.dataList = searchResultDataSource.newDataList
       searchResultDataSources = [searchResultDataSource]

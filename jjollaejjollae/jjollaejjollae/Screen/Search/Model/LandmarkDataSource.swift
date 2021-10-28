@@ -41,6 +41,8 @@ extension LandmarkDataSource: SearchResultCellDelegate {
       guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
         return
       }
+      wishListMainVC.setPlaceInfo(placeId: placeId)
+      wishListMainVC.setMode(mode: .fromCell)
       CallerVC?.present(wishListMainVC, animated: true, completion: nil)
       //모델의 likes에 대한 Update
     }

@@ -61,6 +61,7 @@ extension SearchResultDataSource: SearchResultCellDelegate {
       guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
         return
       }
+      wishListMainVC.setMode(mode: .fromCell)
       wishListMainVC.setPlaceInfo(placeId: placeId)
       CallerVC?.present(wishListMainVC, animated: true, completion: nil)
       //모델의 likes에 대한 Update

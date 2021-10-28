@@ -117,11 +117,8 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LsC-je-V5t">
-                                <rect key="frame" x="318" y="185.5" width="80" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="I5R-qw-IhJ"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="313" y="185.5" width="85" height="30"/>
+                                <state key="normal" title="리뷰 많은순 ▼"/>
                                 <connections>
                                     <action selector="didTapSetOrderButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gMv-Q3-yXM"/>
                                 </connections>
