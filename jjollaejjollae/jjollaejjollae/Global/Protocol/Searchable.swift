@@ -19,26 +19,33 @@ extension SearchDataReceiveable {
 }
 
 protocol Searchable: NSObject {
-  func sendRightVC(from viewController: UIViewController, by text: String, with result: [SearchResultData]) -> UIViewController
+  func sendRightVC(from viewController: UIViewController, by region: String, regionCount : Int, with result: [SearchResultData]) -> UIViewController
 }
 
 extension Searchable {
   
-  func sendRightVC(from viewController: UIViewController, by text: String, with result: [SearchResultData]) -> UIViewController {
-    let afterTrimText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-    if result.count == 0 {
-      //TODO: 위치모드를 나눠야할 것 같다.
+  func sendRightVC(from viewController: UIViewController, by region: String, regionCount: Int, with result: [SearchResultData]) -> UIViewController {
+    let afterTrimText = region.trimmingCharacters(in: .whitespacesAndNewlines)
+    let locationlist = LocationName.allCases.map({$0.description})
+    
+    //결과X, region도 없을때
+    if result.count == 0 && !locationlist.contains(afterTrimText.components(separatedBy: " ")[0]) {
       guard let noSearchVC = SearchNoResultViewController.loadFromStoryboard() as? SearchNoResultViewController else {return SearchNoResultViewController()}
       return noSearchVC
     } else {
       switch afterTrimText {
+        
+      // 리전 존재
       case LocationName.jeju.description, LocationName.gyeongju.description,
         LocationName.daegu.description, LocationName.gangneung.description,
         LocationName.seoul.description, LocationName.sokcho.description,
         LocationName.yeosu.description:
         guard let searchLocationVC = SearchWithLocationViewController.loadFromStoryboard()
                 as? SearchWithLocationViewController else {return SearchWithLocationViewController()}
+        searchLocationVC.setRegion(region: region)
+        searchLocationVC.setLocationNum(regionCount: regionCount)
         return searchLocationVC
+        //그 외의 것들은 searchResultVC에서 분기를 나눈다.
       default:
         guard let searchResultVC = SearchResultViewController.loadFromStoryboard()
                 as? SearchResultViewController else {return SearchResultViewController()}
