@@ -134,6 +134,10 @@ struct APIService {
     let target = APITarget.deleteUser(token: token, userId: userId)
     judgeSimpleResponse(target, completion: completion)
   }
+  
+  func fetchPlaceInfo(token: String, userID: String, completion: @escaping((NetworkResult<PlaceInfo>) -> (Void))) {
+//    let target = APITarget.fetchPlaceInfo(token: token, userId)
+  }
 }
 
 extension APIService {
@@ -177,4 +181,7 @@ extension APIService {
       }
     }
   }
+  
+  
+  
 }

@@ -39,6 +39,8 @@ enum APITarget {
   case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
   case readPets(token: String, userId: String)
   case patchMyInfo(token: String, userId: String)
+  
+//  case fetchPlaceInfo(placeID: )
 }
 
 extension APITarget: TargetType {
@@ -97,6 +99,9 @@ extension APITarget: TargetType {
       return "/users/\(userId)"
     case .deleteUser(_, let userId):
       return "/users/\(userId)"
+      
+//    case .fetchPlaceInfo:
+//      return
     }
   }
   
