@@ -8,6 +8,7 @@
 import UIKit
 import Moya
 import SwiftyJSON
+import NMapsMap
 
 class PlaceDetailTableViewController: UITableViewController, StoryboardInstantiable {
   
@@ -16,9 +17,36 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
    */
   var placeInfo: PlaceInfo?
   
+  /**
+  메인
+   */
+  
+  @IBOutlet weak var mainImageView: UIImageView!
+  
   @IBOutlet weak var titleLabel: UILabel!
   
-    override func viewDidLoad() {
+  @IBOutlet weak var locationLabel: UILabel!  // 기본 정보에서 재사용
+  
+  @IBOutlet weak var ratingLabel: UILabel!
+  
+  /**
+   시설 안내
+   */
+  
+  @IBOutlet weak var descriptionLabel: UILabel!
+  
+  @IBOutlet weak var expandButton: UIButton!
+  
+  /**
+   기본 정보
+   */
+  
+  @IBOutlet weak var mapView: NMFMapView!
+  
+  @IBOutlet weak var phoneNumberLabel: UILabel!
+  
+  
+  override func viewDidLoad() {
       super.viewDidLoad()
     }
 
@@ -33,4 +61,11 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+  
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    
+    return 500
+  }
 }
+
+

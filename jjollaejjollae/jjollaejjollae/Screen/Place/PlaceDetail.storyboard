@@ -22,7 +22,7 @@
         <!--Place Detail Table View Controller-->
         <scene sceneID="GIj-cB-Wct">
             <objects>
-                <tableViewController id="YC9-Hg-lwm" customClass="PlaceDetailTableViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PlaceDetailTableViewController" id="YC9-Hg-lwm" customClass="PlaceDetailTableViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GE6-EZ-Y18">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,7 +55,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="KSE-4p-42v">
                                             <rect key="frame" x="0.0" y="58" width="382" height="27"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="MFC-gX-nGA">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="MFC-gX-nGA">
                                                     <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="45E-ZH-apa"/>
@@ -190,7 +190,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="357"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDd-RB-Ixo" userLabel="MapView">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDd-RB-Ixo" userLabel="MapView" customClass="NMFMapView">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="176"/>
                                                     <color key="backgroundColor" red="0.76401185989999998" green="0.78472775220000002" blue="0.53926950689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -290,6 +290,16 @@
                         </connections>
                     </tableView>
                     <size key="freeformSize" width="414" height="2000"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="a2P-Sh-rQb" id="sPa-7W-kTX"/>
+                        <outlet property="expandButton" destination="sYf-2t-FTI" id="1iy-Zq-edu"/>
+                        <outlet property="locationLabel" destination="4GF-V4-VMF" id="lZt-y8-R0A"/>
+                        <outlet property="mainImageView" destination="4Ph-y5-L8R" id="cFW-sk-jzB"/>
+                        <outlet property="mapView" destination="hDd-RB-Ixo" id="FC1-RV-pU0"/>
+                        <outlet property="phoneNumberLabel" destination="ZsA-Ka-siJ" id="GuO-IC-qde"/>
+                        <outlet property="ratingLabel" destination="dhd-CK-syT" id="O11-oY-ILZ"/>
+                        <outlet property="titleLabel" destination="9RB-z9-KNh" id="80i-EG-UpQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SsR-mm-b3X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
