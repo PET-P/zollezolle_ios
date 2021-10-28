@@ -14,10 +14,12 @@ struct PlaceInfo {
   var imageUrls: [String]
 //  var icons: [Any]?
   var title: String
+  
   var description: String
+  
   var phone: String
 //  var menu: [Any]?
   var category: String
 //  var room: [Any]?
-  var reviews: [Review]
+  var reviewList: ReviewListDataType
 }
