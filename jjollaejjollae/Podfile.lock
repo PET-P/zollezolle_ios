@@ -122,6 +122,7 @@ PODS:
   - PromisesObjC (2.0.0)
   - SwiftLint (0.45.0)
   - SwiftyJSON (4.3.0)
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -138,6 +139,7 @@ DEPENDENCIES:
   - NMapsMap
   - SwiftLint
   - SwiftyJSON (~> 4.0)
+  - Toast-Swift (~> 5.0.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -167,6 +169,7 @@ SPEC REPOS:
     - PromisesObjC
     - SwiftLint
     - SwiftyJSON
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
@@ -195,7 +198,8 @@ SPEC CHECKSUMS:
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 92da0dd0bb32453c4f05eee74487ccd79c1eadc3
+PODFILE CHECKSUM: 89c4fe5aec6c84cb9801d2dfd5c4b42215f38a20
 
 COCOAPODS: 1.11.2

@@ -25,6 +25,8 @@ target 'jjollaejjollae' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Storage'
   pod 'Gifu'
+  pod 'Toast-Swift', '~> 5.0.1'
+
 
   pod 'SwiftyJSON', '~> 4.0'
 
