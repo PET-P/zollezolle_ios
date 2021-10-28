@@ -51,14 +51,22 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
-  @IBOutlet weak var locationCollectionView: UICollectionView! {
+  @IBOutlet weak var searchGuideLabel: UILabel! {
     didSet {
-      locationCollectionView.showsHorizontalScrollIndicator = false
+      searchGuideLabel.textColor = .gray03
+      
+      let representedPetName = representedPet?.name ?? "쪼꼬"
+      
+      let modifiedName = representedPetName.appendedPostPositionText()
+      searchGuideLabel.text = "\(modifiedName) 어디로 가볼까요?"
     }
   }
   
-  @IBOutlet weak var secondCollectionView: UICollectionView!
-  @IBOutlet weak var thirdCollectionView: UICollectionView!
+  @IBOutlet weak var locationCollectionView: UICollectionView!
+  
+  @IBOutlet weak var homeTipCollectionView: UICollectionView!
+  
+  @IBOutlet weak var recommendedPlaceCollectionView: UICollectionView!
   
   
   // MARK: - Protperty
@@ -74,6 +82,34 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
   
   private var userPetName: String? {
     return "쪼꼬"
+  }
+  
+  /**
+      사용자가 설정한 대표 반려동물을 반환하는 계산속성
+   */
+  
+  private var representedPet: PetData? {
+    
+    guard let userData = UserManager.shared.userInfo else { return nil }
+    
+    guard !(userData.pets.isEmpty) else { return nil }
+    
+    let petList = userData.pets
+    
+    var representedPet: PetData?
+    
+    petList.forEach { pet in
+      
+      if representedPet != nil  {
+        return
+      }
+      
+      if pet.isRepresent {
+        representedPet = pet
+      }
+    }
+    
+    return representedPet
   }
   
   /**
@@ -93,27 +129,18 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
     mainScrollView.delegate = self
     
 
-    
+    UserDefaults.standard.register(defaults: ["UserAgent" : "Safari/xyz"])
 
     setUpLocationCollectionView()
     
-//    secondCollectionView.delegate = self
-//    secondCollectionView.dataSource = self
-////
-//    let tipCellNib = UINib(nibName: homeTipCellNibName, bundle: nil)
-//    // TODO: HomeTipCell 로 변경
-//    secondCollectionView.register(tipCellNib, forCellWithReuseIdentifier: homeTipCellNibName)
-
-//    thirdCollectionView.delegate = self
-//    thirdCollectionView.dataSource = self
-//
-//    thirdCollectionView.register(locationCellNib, forCellWithReuseIdentifier: homeLocationCellNibName)
+    setUpHomeTipCollectionView()
+    
+    setUpRecommendedCollectionView()
     
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
     
   }
   
@@ -132,6 +159,8 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
    */
   func setUpLocationCollectionView() {
     
+    locationCollectionView.showsHorizontalScrollIndicator = false
+    
     let layout = locationCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
     
     layout.itemSize = CGSize(width: 138, height: 72)
@@ -145,60 +174,159 @@ class HomeMainViewController: UIViewController, StoryboardInstantiable {
     
     locationCollectionView.register(locationCellNib, forCellWithReuseIdentifier: HomeLocationCollectionViewCell.identifier)
   }
+  
+  /**
+   HoneyTipCollectionView 기본 셋업 메서드
+  */
+ 
+  
+  func setUpHomeTipCollectionView() {
+    
+    homeTipCollectionView.showsHorizontalScrollIndicator = false
+    
+    let layout = homeTipCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+    
+    layout.itemSize = CGSize(width: 116, height: 120)
+    layout.minimumLineSpacing = 15
+    layout.scrollDirection = .horizontal
+    
+    homeTipCollectionView.delegate = self
+    homeTipCollectionView.dataSource = self
+    
+    let tipCellNib = UINib(nibName: HomeTipCollectionViewCell.identifier, bundle: nil)
+    
+    homeTipCollectionView.register(tipCellNib, forCellWithReuseIdentifier: HomeTipCollectionViewCell.identifier)
+  }
+  
+  
+  
+  /**
+    RecommendedCollectionView 기본 셋업 메서드
+   */
+  
+  func setUpRecommendedCollectionView() {
+    
+    recommendedPlaceCollectionView.showsHorizontalScrollIndicator = false
+    
+    let layout = recommendedPlaceCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+    
+    layout.itemSize = CGSize(width: 138, height: 72)
+    layout.minimumLineSpacing = 15
+    layout.scrollDirection = .horizontal
+    
+    recommendedPlaceCollectionView.delegate = self
+    recommendedPlaceCollectionView.dataSource = self
+    
+    let locationCellNib = UINib(nibName: HomeLocationCollectionViewCell.identifier, bundle: nil)
+    
+    recommendedPlaceCollectionView.register(locationCellNib, forCellWithReuseIdentifier: HomeLocationCollectionViewCell.identifier)
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    
+    if let vc = segue.destination as? UINavigationController, let url = sender as? String {
+      
+      if let tipVC = vc.viewControllers.first! as? TipWebViewController {
+        
+        tipVC.targetURLString = url
+      }
 
+    }
+  }
 }
 
-
 extension HomeMainViewController: UICollectionViewDataSource {
+  
+  enum LocationType: String, CaseIterable {
+    
+    case goodRestaurant
+    case cafe
+    case attraction
+    case accomodation
+    
+    var description: String {
+      
+      switch self {
+        
+        case .goodRestaurant:
+          return "맛집"
+        case .cafe:
+          return "카페"
+        case .attraction:
+          return "관광지"
+        case .accomodation:
+          return "숙소"
+      }
+    }
+  }
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     if collectionView === locationCollectionView {
       return LocationName.allCases.count
     }
+    
+    if collectionView === homeTipCollectionView {
+      return HomeTipCollectionViewCell.tipDataList.count
+    }
+    
+    if collectionView === recommendedPlaceCollectionView {
+      return LocationType.allCases.count
+    }
 
     return 10
   }
 
+  
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
     
     if collectionView === locationCollectionView {
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeLocationCollectionViewCell.identifier, for: indexPath)
       
       guard let locationCell = cell as? HomeLocationCollectionViewCell else { return UICollectionViewCell() }
-      locationCell.mainImageView.image = UIImage(named: LocationName.allCases[indexPath.item].description)
+      
+      let locationName = LocationName.allCases[indexPath.row].description
+      
+      locationCell.titleLabel.text = locationName
+      locationCell.mainImageView.image = UIImage(named: locationName)
       
       return locationCell
-    } else {
-      return UICollectionViewCell()
     }
     
-//
-//
-//    if collectionView === secondCollectionView {
-//      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeTipCellNibName, for: indexPath) as? HomeTipCollectionViewCell else { fatalError(#function) }
-//
-//      cell.heightAnchor.constraint(equalToConstant: 120).isActive = true
-//      cell.widthAnchor.constraint(equalToConstant: 116).isActive = true
-//
-//      return cell
-//
-//    } else {
-//      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeLocationCellNibName, for: indexPath) as? HomeLocationCollectionViewCell else { fatalError(#function) }
-//
-//      cell.heightAnchor.constraint(equalToConstant: 72).isActive = true
-//      cell.widthAnchor.constraint(equalToConstant: 138).isActive = true
-//
-//      return cell
-//
-//    }
-//
+    if collectionView === homeTipCollectionView {
+      
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTipCollectionViewCell.identifier, for: indexPath)
+      
+      guard let tipCell = cell as? HomeTipCollectionViewCell else { return UICollectionViewCell() }
+      
+      let data = HomeTipCollectionViewCell.tipDataList[indexPath.item]
+      
+      tipCell.titleLabel.text = data.title
+      tipCell.emojiLabel.text = data.emoji
+      
+      return tipCell
+    }
+    
+    if collectionView === recommendedPlaceCollectionView {
+      
+      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeLocationCollectionViewCell.identifier, for: indexPath)
+      
+      guard let locationCell = cell as? HomeLocationCollectionViewCell else { return UICollectionViewCell() }
+      
+      locationCell.titleLabel.text = LocationType.allCases[indexPath.item].description
+      locationCell.mainImageView.image = UIImage(named: LocationType.allCases[indexPath.item].rawValue)
+      
+      return locationCell
+      
+    }
+    
+    return UICollectionViewCell()
   }
-  
-  
-  
 }
+
+
+// MARK: - UICollectionViewDelegate
 
 extension HomeMainViewController: UICollectionViewDelegate {
   
@@ -206,28 +334,26 @@ extension HomeMainViewController: UICollectionViewDelegate {
     
     if collectionView === locationCollectionView {
       
-//      let resultVC = SearchNoResultViewControlle
-      
-//      self.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+      print(#function)
     }
+    
+    if collectionView === homeTipCollectionView {
+      
+      print(#function)
+      
+      let urlString = HomeTipCollectionViewCell.tipDataList[indexPath.item].urlString
+      
+      performSegue(withIdentifier: "TipWebSegue", sender: urlString)
+      
+    }
+    
+    
+    if collectionView === recommendedPlaceCollectionView {
+      
+      print(#function)
+    }
+  
   }
-  
-  
-  /**
-    CollectionView Cell Center Align
-   */
-  
-//  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-//
-//      let totalCellWidth = CellWidth * CellCount
-//      let totalSpacingWidth = CellSpacing * (CellCount - 1)
-//
-//      let leftInset = (collectionViewWidth - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
-//      let rightInset = leftInset
-//
-//      return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
-//  }
-  
   
 }
 

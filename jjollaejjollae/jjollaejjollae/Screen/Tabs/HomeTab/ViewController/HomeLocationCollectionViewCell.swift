@@ -11,7 +11,11 @@ class HomeLocationCollectionViewCell: UICollectionViewCell {
   
   static let identifier = "HomeLocationCollectionViewCell"
   
-  @IBOutlet weak var mainImageView: UIImageView!
+  @IBOutlet weak var mainImageView: UIImageView! {
+    didSet{
+      mainImageView.contentMode = .scaleAspectFill
+    }
+  }
   
   @IBOutlet weak var titleLabel: UILabel!
   

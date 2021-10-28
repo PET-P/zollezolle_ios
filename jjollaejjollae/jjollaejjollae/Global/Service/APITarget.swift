@@ -57,6 +57,7 @@ enum APITarget {
   case addPlaceInFolder(token: String, userId: String, placeId: String, folderId: String)
   //담기 삭제
   case deletePlaceInFolder(token: String, userId: String, folderId: String, placeId: String)
+//  case fetchPlaceInfo(placeID: )
 }
 
 extension APITarget: TargetType {
@@ -126,6 +127,9 @@ extension APITarget: TargetType {
       return "/places/near"
     case .getFilterPlace:
       return "/places"
+      
+//    case .fetchPlaceInfo:
+//      return
     }
   }
   

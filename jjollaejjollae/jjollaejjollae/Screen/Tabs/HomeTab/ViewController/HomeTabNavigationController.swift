@@ -38,6 +38,7 @@ class HomeTabNavigationController: UINavigationController {
     super.viewDidLoad()
     
     setNavigationBarHidden(true, animated: true)
+    
     setRootViewController()
     
     initialSetup()

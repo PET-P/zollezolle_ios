@@ -26,4 +26,6 @@ target 'jjollaejjollae' do
   pod 'Firebase/Storage'
   pod 'Gifu'
 
+  pod 'SwiftyJSON', '~> 4.0'
+
 end

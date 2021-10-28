@@ -52,6 +52,8 @@
 	<true/>
 	<key>NMFClientId</key>
 	<string>aan71mg58s</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>주변에 있는 반려동물 동반 업체를 안내해드리려면 위치 정보가 필요해요. 위치 정보 공유는 언제든지 중단할 수 있어요.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Roboto Mono Bold for Powerline.ttf</string>

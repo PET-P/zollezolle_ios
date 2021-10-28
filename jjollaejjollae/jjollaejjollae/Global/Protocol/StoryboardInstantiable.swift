@@ -20,7 +20,11 @@ extension StoryboardInstantiable {
     
     let className = String(describing: self)
     
-    return String(className.replacingOccurrences(of: "ViewController", with: ""))
+    let stringWithVCRemoved = String(className.replacingOccurrences(of: "ViewController", with: ""))
+    
+    let stringWithTableRemoved = stringWithVCRemoved.replacingOccurrences(of: "Table", with: "")
+    
+    return stringWithTableRemoved
   }
   
   static var storyboardIdentifier: String {

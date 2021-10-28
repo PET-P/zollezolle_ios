@@ -8,10 +8,12 @@
 import UIKit
 
 class HomeTipCollectionViewCell: UICollectionViewCell{
-
-  @IBOutlet weak var titleLabel: UILabel!
   
-  @IBOutlet weak var imageView: UIImageView!
+  static var identifier = "HomeTipCollectionViewCell"
+  
+  @IBOutlet weak var titleLabel: UILabel!
+
+  @IBOutlet weak var emojiLabel: UILabel!
   
   var titleText: String? {
     get {
@@ -22,33 +24,57 @@ class HomeTipCollectionViewCell: UICollectionViewCell{
     }
   }
   
-  var image: UIImage? {
-    get {
-      imageView.image
-    }
-    
-    set {
-      imageView.image = image
-    }
-  }
-  
   private let figmaCornerRadius: CGFloat = 8
   
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
+  override func awakeFromNib() {
+    
+    setUpLayerOptions()
+    setUpLayoutContraints()
+  }
+  
+  private func setUpLayerOptions() {
+  
+    self.layer.masksToBounds = false
     
     self.layer.cornerRadius = figmaCornerRadius
     
-    // Shdow Options
-    self.layer.masksToBounds = false
     self.layer.shadowOffset = CGSize.init(width: 0, height: 0)
-    self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
-    self.layer.shadowOpacity = 1
-    self.layer.shadowRadius = 5
+    
+    self.layer.shadowColor = UIColor.lightGray.cgColor
+    
+    self.layer.shadowOpacity = 0.5
+    
+    self.layer.shadowRadius = figmaCornerRadius
+    
+    // contentView
+    self.contentView.layer.cornerRadius = figmaCornerRadius
+    
+    self.contentView.layer.masksToBounds = true
     
     
-    titleText = ""
-    imageView.contentMode = .scaleAspectFit
+    // FIXME: View 계층 1개 줄이기
+    self.contentView.mainView?.layer.cornerRadius = 8
+  }
+  
+  private func setUpLayoutContraints() {
+    
+    self.heightAnchor.constraint(equalToConstant: 120).isActive = true
+    self.widthAnchor.constraint(equalToConstant: 116).isActive = true
   }
 
+}
+
+extension HomeTipCollectionViewCell {
+  
+  struct HomeTipData {
+    
+    var title: String
+    var urlString: String
+    var emoji: String
+  }
+  
+  static var tipDataList: [HomeTipData]  =
+    [
+     HomeTipData.init(title: "비행기가\n처음인\n친구들을\n위해", urlString: "https://zolle.tistory.com/2", emoji: "✈️")
+    ]
 }
