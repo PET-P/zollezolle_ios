@@ -344,11 +344,12 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jI7-rh-fkE">
-                                    <rect key="frame" x="328" y="39.5" width="70" height="27"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <rect key="frame" x="321" y="39.5" width="77" height="27"/>
+                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="12"/>
                                     <color key="tintColor" red="0.38431372549999998" green="0.56078431370000004" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title=" 후기 작성하기"/>
                                     <connections>
+                                        <action selector="didTapCreateReview:" destination="bxf-uj-dmC" eventType="touchUpInside" id="vYH-uM-qap"/>
                                         <action selector="didTapCreateReviewButton:" destination="bxf-uj-dmC" eventType="touchUpInside" id="0KH-Bz-2fL"/>
                                     </connections>
                                 </button>
@@ -390,7 +391,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InnerReviewTableViewCell" rowHeight="106" id="Pks-GR-H3b" customClass="InnerReviewTableViewCell" customModule="jjollaejjollae" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InnerReviewTableViewCell" rowHeight="106" id="Pks-GR-H3b" customClass="InnerReviewTableViewCell" customModule="jjollaejjollae" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="130.5" width="414" height="106"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pks-GR-H3b" id="c0L-lW-lPz">

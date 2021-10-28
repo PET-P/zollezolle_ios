@@ -72,9 +72,15 @@ class InnerReviewTableViewController: UITableViewController {
     print(#function)
   }
   
+  @IBAction func didTapCreateReview(_ sender: Any) {
+    
+  }
+  
   @IBAction func didTapShowAllReviewsButton(_ sender: UIButton) {
     
     print(#function)
+    
+    
   }
   
   // MARK: - Table view data source
