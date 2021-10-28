@@ -52,7 +52,9 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh7-BN-G4e" customClass="RoundButton" customModule="jjollaejjollae" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="89.5" height="30"/>
-                                        <state key="normal" title="맛집"/>
+                                        <state key="normal" title="맛집">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="didTapFilterButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XGZ-JL-xm0"/>
                                         </connections>
