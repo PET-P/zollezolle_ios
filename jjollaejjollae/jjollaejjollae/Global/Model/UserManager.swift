@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Metal
 
 //MARK: - User의 정보를 알려주는 싱글톤 객체
 
@@ -36,6 +37,17 @@ class UserManager {
   var isLogged: Bool {
     get {
       return appUser != nil
+    }
+  }
+  
+  private var representDogImageUrl: String?
+  
+  var representDog: String {
+    get {
+      return representDogImageUrl ?? "default"
+    }
+    set {
+      representDogImageUrl = newValue
     }
   }
   
