@@ -73,7 +73,7 @@ class ZollaeCustomSwitch: UIButton {
     
     self.addSubview(circleView)
     
-    circleInnerImageView = UIImageView(image: #imageLiteral(resourceName: "thumb icon"))
+    circleInnerImageView = UIImageView(image: UIImage(named: "thumbsDown.default") ?? UIImage())
     
     circleInnerImageView.contentMode = .scaleAspectFit
     
@@ -160,7 +160,7 @@ class ZollaeCustomSwitch: UIButton {
 
       self.barView.backgroundColor = offColor
       
-      self.circleInnerImageView.image = #imageLiteral(resourceName: "DefaultThumbsDown")
+      self.circleInnerImageView.image = UIImage(named: "thumbsDown.default") ?? UIImage()
     }
     
     let duration = self.isAnimated ? self.animationDuration : 0

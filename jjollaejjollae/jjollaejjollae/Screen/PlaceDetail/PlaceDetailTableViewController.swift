@@ -12,9 +12,6 @@ import NMapsMap
 
 class PlaceDetailTableViewController: UITableViewController, StoryboardInstantiable {
   
-  /**
-   이전 화면에서 전달? 아니면 직접 네트워크 통신으로 불러옴?
-   */
   var placeInfo: PlaceInfo?
   
   /**
@@ -50,7 +47,6 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
   @IBOutlet weak var locationBasicLabel: UILabel!
   
   @IBOutlet weak var innerReviewCellHeightConstraint: NSLayoutConstraint!
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()

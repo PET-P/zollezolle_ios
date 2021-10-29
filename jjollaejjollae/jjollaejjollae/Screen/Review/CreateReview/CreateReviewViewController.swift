@@ -126,7 +126,7 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable {
     
     scrollView.contentInsetAdjustmentBehavior = .never
     
-    customSwitch.delegate = self
+//    customSwitch.delegate = self
     
     setUpTapGesture()
   }
@@ -173,20 +173,19 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
-  @IBAction func didTapPositiveFactorButton(_ sender: UIButton) {
-    
-    sender.isSelected.toggle()
-    
-    if sender.isSelected {
-      sender.backgroundColor = .themePaleGreen
-    } else {
-      sender.backgroundColor = #colorLiteral(red: 0.9567790627, green: 0.9569163918, blue: 0.956749022, alpha: 1)
-    }
-  }
+//  @IBAction func didTapPositiveFactorButton(_ sender: UIButton) {
+//
+//    sender.isSelected.toggle()
+//
+//    if sender.isSelected {
+//      sender.backgroundColor = .themePaleGreen
+//    } else {
+//      sender.backgroundColor = #colorLiteral(red: 0.9567790627, green: 0.9569163918, blue: 0.956749022, alpha: 1)
+//    }
+//  }
   
   
   @IBAction func didTapThumbButton(_ sender: UIButton) {
-    
     
     switch sender.superview {
       case serviceButtonStack :
@@ -286,19 +285,19 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable {
 
 // MARK: - ZollaeCustomSwitchDelegate
 
-extension CreateReviewViewController: ZollaeCustomSwitchDelegate {
+//extension CreateReviewViewController: ZollaeCustomSwitchDelegate {
   
-  func isOnValueChage(isOn: Bool) {
-    
-    if isOn {
-      
-      negativeFeedbackTextView.isHidden = true
-    } else {
-      
-      negativeFeedbackTextView.isHidden = false
-    }
-  }
-}
+//  func isOnValueChage(isOn: Bool) {
+//
+//    if isOn {
+//
+//      negativeFeedbackTextView.isHidden = true
+//    } else {
+//
+//      negativeFeedbackTextView.isHidden = false
+//    }
+//  }
+//}
 
 // MARK: - KeyBoardNotification Action
 
@@ -403,14 +402,21 @@ struct CustomerReview {
   var isPositive: Bool
   var positiveFeedBack: String
   var negativeFeedback: String?
-  var factors: [String: Bool]
+  var satisfactionList: [SatisfactionType]
   
   var mainReview: String?
+  
+  enum SatisfactionType: String {
+    
+    case service = "서비스"
+    case cleanliness = "청결도"
+    case mood = "분위기"
+    case location = "위치"
+  }
 }
 
-enum FeedBackType {
-//  case positive(.)
-//
-}
 
-
+//var data = JSON([
+//             "name": _name.text,
+//             "code": _code.text,
+//             "iconId": _id])

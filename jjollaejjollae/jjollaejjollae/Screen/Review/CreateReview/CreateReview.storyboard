@@ -21,7 +21,7 @@
         <!--Create Review View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="AccomodationReviewViewController" id="Y6W-OH-hqX" customClass="CreateReviewViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateReviewViewController" id="Y6W-OH-hqX" customClass="CreateReviewViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,36 +30,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M13-HG-q4i">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1350"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1231.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PAN-Eb-MdY">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1350"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1231.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r92-nm-RIH" userLabel="ImagePart">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SampleReviewImage" translatesAutoresizingMaskIntoConstraints="NO" id="caq-yq-0fE">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="caq-yq-0fE">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2In-Yf-ZAg">
-                                                                <rect key="frame" x="16" y="60" width="24" height="24"/>
-                                                                <state key="normal" image="backArrow"/>
+                                                                <rect key="frame" x="16" y="60" width="12.5" height="22"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" image="chevron.left" catalog="system"/>
                                                                 <connections>
                                                                     <action selector="didTapBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JRa-2n-faJ"/>
                                                                 </connections>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="CNq-fR-RVZ">
-                                                                <rect key="frame" x="25" y="180" width="364" height="37.5"/>
+                                                                <rect key="frame" x="25" y="180" width="364" height="21.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제주코기네" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFJ-CX-P7G">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="364" height="21"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="364" height="21.5"/>
                                                                         <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="18"/>
-                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8월10일(수) - 8월 14일(토)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNS-kc-KBS">
-                                                                        <rect key="frame" x="0.0" y="21" width="364" height="16.5"/>
-                                                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="14"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -81,23 +76,23 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YJQ-R9-7OZ" userLabel="StarPart">
-                                                        <rect key="frame" x="0.0" y="246" width="414" height="419"/>
+                                                        <rect key="frame" x="0.0" y="246" width="414" height="300.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총점" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GX-UQ-sBQ">
-                                                                <rect key="frame" x="52" y="40" width="31.5" height="21"/>
-                                                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="18"/>
+                                                                <rect key="frame" x="52" y="40" width="43.5" height="29.5"/>
+                                                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="25"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="t9A-vG-dSu">
-                                                                <rect key="frame" x="72" y="76" width="270" height="46"/>
+                                                                <rect key="frame" x="72" y="84.5" width="270" height="46"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0L-PE-rAt">
                                                                         <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="46" id="O7W-RK-x4z"/>
                                                                         </constraints>
-                                                                        <state key="normal" title="Button" image="DefaultStar"/>
+                                                                        <state key="normal" title="Button" image="emptyStar"/>
                                                                         <state key="selected" image="SelectedStar"/>
                                                                         <connections>
                                                                             <action selector="didTapStarButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Tbj-G3-49g"/>
@@ -108,7 +103,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="46" id="iNc-eP-FLB"/>
                                                                         </constraints>
-                                                                        <state key="normal" title="Button" image="DefaultStar"/>
+                                                                        <state key="normal" title="Button" image="emptyStar"/>
                                                                         <state key="selected" image="SelectedStar"/>
                                                                         <connections>
                                                                             <action selector="didTapStarButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="mQi-Gd-fie"/>
@@ -119,7 +114,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="46" id="dTV-qG-IXc"/>
                                                                         </constraints>
-                                                                        <state key="normal" title="Button" image="DefaultStar"/>
+                                                                        <state key="normal" title="Button" image="emptyStar"/>
                                                                         <state key="selected" image="SelectedStar"/>
                                                                         <connections>
                                                                             <action selector="didTapStarButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hfa-WG-ZTl"/>
@@ -130,7 +125,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="46" id="UFU-AS-ZIr"/>
                                                                         </constraints>
-                                                                        <state key="normal" title="Button" image="DefaultStar"/>
+                                                                        <state key="normal" title="Button" image="emptyStar"/>
                                                                         <state key="selected" image="SelectedStar"/>
                                                                         <connections>
                                                                             <action selector="didTapStarButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iK1-0q-y3P"/>
@@ -141,7 +136,7 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="46" id="pcQ-Um-Tde"/>
                                                                         </constraints>
-                                                                        <state key="normal" title="Button" image="DefaultStar"/>
+                                                                        <state key="normal" title="Button" image="emptyStar"/>
                                                                         <state key="selected" image="SelectedStar"/>
                                                                         <connections>
                                                                             <action selector="didTapStarButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sdw-fT-bun"/>
@@ -153,70 +148,13 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쪼꼬와의 이용이 어땠나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Lx-rK-sEC">
-                                                                <rect key="frame" x="122" y="167" width="170.5" height="19"/>
+                                                                <rect key="frame" x="116.5" y="175.5" width="181.5" height="19"/>
                                                                 <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쪼꼬가 좋아한것?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6bU-GD-ynm">
-                                                                <rect key="frame" x="152" y="297" width="110.5" height="19"/>
-                                                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="27.5" translatesAutoresizingMaskIntoConstraints="NO" id="hGk-NA-ERG">
-                                                                <rect key="frame" x="44" y="338" width="326" height="33"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rBa-Lu-PJn">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="90.5" height="33"/>
-                                                                        <color key="backgroundColor" red="0.95677906270000002" green="0.95691639179999999" blue="0.956749022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="12"/>
-                                                                        <state key="normal" title="??">
-                                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="didTapPositiveFactorButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HE5-qQ-m1u"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YWY-oi-slH">
-                                                                        <rect key="frame" x="118" y="0.0" width="90" height="33"/>
-                                                                        <color key="backgroundColor" red="0.95677906270000002" green="0.95691639179999999" blue="0.956749022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="12"/>
-                                                                        <state key="normal" title="반려동물">
-                                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="didTapPositiveFactorButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="r5D-WL-HSb"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5V-1l-s52">
-                                                                        <rect key="frame" x="235.5" y="0.0" width="90.5" height="33"/>
-                                                                        <color key="backgroundColor" red="0.95677906270000002" green="0.95691639179999999" blue="0.956749022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="12"/>
-                                                                        <state key="normal" title="놀이시설">
-                                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="didTapPositiveFactorButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="QyJ-GG-KIt"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="33" id="2ma-ho-out"/>
-                                                                </constraints>
-                                                            </stackView>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OYI-R3-6t9">
-                                                                <rect key="frame" x="28" y="297" width="358" height="93"/>
-                                                                <color key="backgroundColor" red="0.95677906270000002" green="0.95691639179999999" blue="0.956749022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="93" id="5cZ-Si-ScV"/>
-                                                                </constraints>
-                                                                <color key="textColor" systemColor="labelColor"/>
-                                                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                            </textView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zf4-K0-Yyg" customClass="ZollaeCustomSwitch" customModule="jjollaejjollae" customModuleProvider="target">
-                                                                <rect key="frame" x="162" y="214" width="90" height="43"/>
+                                                                <rect key="frame" x="162" y="222.5" width="90" height="43"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="43" id="twZ-9D-dja"/>
                                                                     <constraint firstAttribute="width" constant="90" id="wTN-yR-l8J"/>
@@ -225,35 +163,26 @@
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstItem="6bU-GD-ynm" firstAttribute="centerX" secondItem="YJQ-R9-7OZ" secondAttribute="centerX" id="4vj-0x-7b7"/>
                                                             <constraint firstItem="t9A-vG-dSu" firstAttribute="top" secondItem="1GX-UQ-sBQ" secondAttribute="bottom" constant="15" id="6l4-Yb-JLN"/>
                                                             <constraint firstItem="Zf4-K0-Yyg" firstAttribute="top" secondItem="2Lx-rK-sEC" secondAttribute="bottom" constant="28" id="8J1-iE-cd8"/>
-                                                            <constraint firstItem="hGk-NA-ERG" firstAttribute="centerX" secondItem="YJQ-R9-7OZ" secondAttribute="centerX" id="9eA-vz-1AH"/>
-                                                            <constraint firstItem="hGk-NA-ERG" firstAttribute="top" secondItem="6bU-GD-ynm" secondAttribute="bottom" constant="22" id="Gcc-d8-4D0"/>
-                                                            <constraint firstAttribute="trailing" secondItem="OYI-R3-6t9" secondAttribute="trailing" constant="28" id="LBA-1O-ORt"/>
                                                             <constraint firstItem="t9A-vG-dSu" firstAttribute="centerX" secondItem="YJQ-R9-7OZ" secondAttribute="centerX" id="Mul-66-Yth"/>
-                                                            <constraint firstAttribute="height" constant="419" id="RH0-fl-AQR"/>
                                                             <constraint firstItem="1GX-UQ-sBQ" firstAttribute="leading" secondItem="YJQ-R9-7OZ" secondAttribute="leading" constant="52" id="WTQ-7Q-xLq"/>
-                                                            <constraint firstItem="hGk-NA-ERG" firstAttribute="leading" secondItem="YJQ-R9-7OZ" secondAttribute="leading" constant="44" id="Xck-K1-CAV"/>
                                                             <constraint firstItem="Zf4-K0-Yyg" firstAttribute="centerX" secondItem="YJQ-R9-7OZ" secondAttribute="centerX" id="a9U-Ra-adS"/>
                                                             <constraint firstItem="1GX-UQ-sBQ" firstAttribute="top" secondItem="YJQ-R9-7OZ" secondAttribute="top" constant="40" id="bxT-18-MyG"/>
-                                                            <constraint firstItem="OYI-R3-6t9" firstAttribute="top" secondItem="Zf4-K0-Yyg" secondAttribute="bottom" constant="40" id="fa3-Ls-J3S"/>
                                                             <constraint firstItem="2Lx-rK-sEC" firstAttribute="centerX" secondItem="YJQ-R9-7OZ" secondAttribute="centerX" id="iTa-Zq-wsF"/>
-                                                            <constraint firstAttribute="trailing" secondItem="hGk-NA-ERG" secondAttribute="trailing" constant="44" id="onn-Yb-fd8"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Zf4-K0-Yyg" secondAttribute="bottom" constant="35" id="iaf-RZ-3oA"/>
                                                             <constraint firstItem="2Lx-rK-sEC" firstAttribute="top" secondItem="t9A-vG-dSu" secondAttribute="bottom" constant="45" id="tDi-Yg-Gef"/>
-                                                            <constraint firstItem="OYI-R3-6t9" firstAttribute="leading" secondItem="YJQ-R9-7OZ" secondAttribute="leading" constant="28" id="xgf-XP-r4y"/>
-                                                            <constraint firstItem="6bU-GD-ynm" firstAttribute="top" secondItem="Zf4-K0-Yyg" secondAttribute="bottom" constant="40" id="ycv-iw-VBI"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPy-de-q2f" userLabel="Padding">
-                                                        <rect key="frame" x="0.0" y="665" width="414" height="7"/>
+                                                        <rect key="frame" x="0.0" y="546.5" width="414" height="7"/>
                                                         <color key="backgroundColor" red="0.95677906270000002" green="0.95691639179999999" blue="0.956749022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="7" id="VVt-6p-K9E"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1b-9j-U94" userLabel="ThumbsPart">
-                                                        <rect key="frame" x="0.0" y="672" width="414" height="591"/>
+                                                        <rect key="frame" x="0.0" y="553.5" width="414" height="591"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평가해주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vD7-KL-WhM">
                                                                 <rect key="frame" x="165.5" y="50" width="83.5" height="19"/>
@@ -281,16 +210,16 @@
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjm-yo-EJm">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
-                                                                                        <state key="normal" image="DefaultThumbsUp"/>
-                                                                                        <state key="selected" image="SelectedThumbsUp"/>
+                                                                                        <state key="normal" image="thumbsUp.default"/>
+                                                                                        <state key="selected" image="thumbsUp.highlighted"/>
                                                                                         <connections>
                                                                                             <action selector="didTapThumbButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Wm9-qa-wLN"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZjA-1J-T9K">
                                                                                         <rect key="frame" x="90" y="0.0" width="90" height="30"/>
-                                                                                        <state key="normal" image="DefaultThumbsDown"/>
-                                                                                        <state key="selected" image="SelectedThumbsDown"/>
+                                                                                        <state key="normal" image="thumbsDown.default"/>
+                                                                                        <state key="selected" image="thumbsDown.highlighted"/>
                                                                                         <connections>
                                                                                             <action selector="didTapThumbButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="njZ-KN-FOV"/>
                                                                                         </connections>
@@ -316,16 +245,16 @@
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fp-aH-SQl">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
-                                                                                        <state key="normal" image="DefaultThumbsUp"/>
-                                                                                        <state key="selected" image="SelectedThumbsUp"/>
+                                                                                        <state key="normal" image="thumbsUp.default"/>
+                                                                                        <state key="selected" image="thumbsUp.highlighted"/>
                                                                                         <connections>
                                                                                             <action selector="didTapThumbButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="net-im-8yr"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyq-YP-s1p">
                                                                                         <rect key="frame" x="90" y="0.0" width="90" height="30"/>
-                                                                                        <state key="normal" image="DefaultThumbsDown"/>
-                                                                                        <state key="selected" image="SelectedThumbsDown"/>
+                                                                                        <state key="normal" image="thumbsDown.default"/>
+                                                                                        <state key="selected" image="thumbsDown.highlighted"/>
                                                                                         <connections>
                                                                                             <action selector="didTapThumbButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="f4t-iL-lRF"/>
                                                                                         </connections>
@@ -351,16 +280,16 @@
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bk1-VV-4zL">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
-                                                                                        <state key="normal" image="DefaultThumbsUp"/>
-                                                                                        <state key="selected" image="SelectedThumbsUp"/>
+                                                                                        <state key="normal" image="thumbsUp.default"/>
+                                                                                        <state key="selected" image="thumbsUp.highlighted"/>
                                                                                         <connections>
                                                                                             <action selector="didTapThumbButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sL8-z2-H30"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6A-2l-3c4">
                                                                                         <rect key="frame" x="90" y="0.0" width="90" height="30"/>
-                                                                                        <state key="normal" image="DefaultThumbsDown"/>
-                                                                                        <state key="selected" image="SelectedThumbsDown"/>
+                                                                                        <state key="normal" image="thumbsDown.default"/>
+                                                                                        <state key="selected" image="thumbsDown.highlighted"/>
                                                                                         <connections>
                                                                                             <action selector="didTapThumbButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="WNa-yf-qkt"/>
                                                                                         </connections>
@@ -386,16 +315,16 @@
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5w-H0-W6a">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
-                                                                                        <state key="normal" image="DefaultThumbsUp"/>
-                                                                                        <state key="selected" image="SelectedThumbsUp"/>
+                                                                                        <state key="normal" image="thumbsUp.default"/>
+                                                                                        <state key="selected" image="thumbsUp.highlighted"/>
                                                                                         <connections>
                                                                                             <action selector="didTapThumbButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dOe-so-wCd"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8l-cR-UvA">
                                                                                         <rect key="frame" x="90" y="0.0" width="90" height="30"/>
-                                                                                        <state key="normal" image="DefaultThumbsDown"/>
-                                                                                        <state key="selected" image="SelectedThumbsDown"/>
+                                                                                        <state key="normal" image="thumbsDown.default"/>
+                                                                                        <state key="selected" image="thumbsDown.highlighted"/>
                                                                                         <connections>
                                                                                             <action selector="didTapThumbButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cf2-nI-kIO"/>
                                                                                         </connections>
@@ -478,7 +407,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zo7-5w-Ygf">
-                                                        <rect key="frame" x="0.0" y="1263" width="414" height="87"/>
+                                                        <rect key="frame" x="0.0" y="1144.5" width="414" height="87"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSs-y3-zcf">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="87"/>
@@ -540,10 +469,8 @@
                         <outlet property="accomodationTitleLabel" destination="fFJ-CX-P7G" id="F0h-4n-tb2"/>
                         <outlet property="cleanButtonStack" destination="SOT-Cs-bsl" id="3cT-cE-qdz"/>
                         <outlet property="customSwitch" destination="Zf4-K0-Yyg" id="S68-bo-EfM"/>
-                        <outlet property="durationLabel" destination="aNS-kc-KBS" id="lry-mg-YC9"/>
                         <outlet property="locationButtonStack" destination="Qo0-KP-qNg" id="caZ-za-gtW"/>
                         <outlet property="moodButtonStack" destination="9Fa-gW-l1t" id="NBx-Ri-vNT"/>
-                        <outlet property="negativeFeedbackTextView" destination="OYI-R3-6t9" id="9Qo-FU-4W5"/>
                         <outlet property="photoImageStackView" destination="rfT-qh-2xC" id="iTd-xT-CZb"/>
                         <outlet property="photoScrollView" destination="RSk-yN-oUw" id="1dz-Ka-zsF"/>
                         <outlet property="reviewTextView" destination="iYq-ks-UKo" id="NFN-af-Abc"/>
@@ -555,10 +482,6 @@
                         <outletCollection property="starList" destination="hkO-QJ-SE8" collectionClass="NSMutableArray" id="IfV-lX-f7v"/>
                         <outletCollection property="starList" destination="RG4-Sk-cLQ" collectionClass="NSMutableArray" id="ZxL-cR-ZE0"/>
                         <outletCollection property="starList" destination="Iv8-CS-V9c" collectionClass="NSMutableArray" id="ZTH-b5-nqX"/>
-                        <outletCollection property="positiveFactorButtons" destination="rBa-Lu-PJn" collectionClass="NSMutableArray" id="nHf-48-L3I"/>
-                        <outletCollection property="positiveFactorButtons" destination="rBa-Lu-PJn" collectionClass="NSMutableArray" id="i10-iL-664"/>
-                        <outletCollection property="positiveFactorButtons" destination="YWY-oi-slH" collectionClass="NSMutableArray" id="2lw-42-KYy"/>
-                        <outletCollection property="positiveFactorButtons" destination="h5V-1l-s52" collectionClass="NSMutableArray" id="1Du-O5-UpP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -567,15 +490,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DefaultStar" width="44" height="42"/>
-        <image name="DefaultThumbsDown" width="30" height="30"/>
-        <image name="DefaultThumbsUp" width="30" height="30"/>
-        <image name="SampleReviewImage" width="1125" height="741"/>
         <image name="SelectedStar" width="44" height="42"/>
-        <image name="SelectedThumbsDown" width="30" height="30"/>
-        <image name="SelectedThumbsUp" width="30" height="30"/>
-        <image name="backArrow" width="24" height="24"/>
         <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="emptyStar" width="44" height="42"/>
+        <image name="thumbsDown.default" width="30" height="30"/>
+        <image name="thumbsDown.highlighted" width="30" height="30"/>
+        <image name="thumbsUp.default" width="30" height="30"/>
+        <image name="thumbsUp.highlighted" width="30" height="30"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
