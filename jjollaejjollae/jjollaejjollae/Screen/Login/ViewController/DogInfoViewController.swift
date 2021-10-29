@@ -368,6 +368,7 @@ class DogInfoViewController: FixModalViewController{
               switch readuserResult {
               case .success(let data):
                 UserManager.shared.userInfo = data
+                UserManager.shared.representDog = pet.imageUrl ?? "default"
                 let sceneDelegate = UIApplication.shared.connectedScenes
                         .first!.delegate as! SceneDelegate
                     sceneDelegate.window!.rootViewController = MainTabBarController()

@@ -24,7 +24,7 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searc
     didSet {
       noInfoLabel.font = .robotoRegular(size: 16)
       noInfoLabel.textColor = .gray03
-      noInfoLabel.text = "\"멍멍이카페에 해당하는 정보가 없어요\""
+      noInfoLabel.text = "\"\(SearchManager.shared.searchText)에 해당하는 정보가 없어요\""
     }
   }
   @IBOutlet weak var headerView: UIView! {
@@ -57,7 +57,7 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searc
     SearchResultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     SearchResultTableView.rowHeight = UITableView.automaticDimension
     if #available(iOS 15.0, *) {
-//      SearchResultTableView.sectionHeaderTopPadding = 0
+     SearchResultTableView.sectionHeaderTopPadding = 0
     }
   }
   

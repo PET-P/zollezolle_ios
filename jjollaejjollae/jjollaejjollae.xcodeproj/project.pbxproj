@@ -85,6 +85,7 @@
 		2884A37726D7F3D4004596C3 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A37626D7F3D3004596C3 /* Filters.swift */; };
 		2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A3BA26D91F56004596C3 /* CalendarViewController.swift */; };
 		2884A3BD26D91FFD004596C3 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2884A3BC26D91FFD004596C3 /* Calendar.storyboard */; };
+		289970A5272BAE7B008D877B /* loading2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 289970A4272BAE7B008D877B /* loading2.gif */; };
 		28A49827270F3DF2008AC05B /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A49826270F3DF2008AC05B /* PostData.swift */; };
 		28A4982C270F4506008AC05B /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4982B270F4506008AC05B /* Folder.swift */; };
 		28A4982E270F464D008AC05B /* WishlistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A4982D270F464D008AC05B /* WishlistData.swift */; };
@@ -159,6 +160,7 @@
 		28FEC64727143E8D00C10B32 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28FEC64627143E8D00C10B32 /* GoogleService-Info.plist */; };
 		28FEC649271441E600C10B32 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FEC648271441E600C10B32 /* StorageService.swift */; };
 		28FF9FE826B931650062BC28 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FF9FE726B931650062BC28 /* DeviceConfig.swift */; };
+		C9D8BD852B894D8010AA3B47 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7196747CEFA9643577D7E19 /* Pods_jjollaejjollae.framework */; };
 		DD37F673271D98E800C467DB /* String+postPositionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37F672271D98E800C467DB /* String+postPositionText.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
 		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
@@ -198,10 +200,10 @@
 		DDFFC17A26FB1C05001FD04A /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */; };
 		DDFFC17B26FB1C05001FD04A /* WishlistMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */; };
 		DDFFC17C26FB1C05001FD04A /* WishlistNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */; };
-		FBC11640D1B01ECD42562F8B /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6472C35DE62D957A0D853684 /* Pods_jjollaejjollae.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B90B8FC864A46F343BC1819 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
 		2827C88526B03C390001E077 /* jjollaejjollae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jjollaejjollae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2827C88826B03C390001E077 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2827C88A26B03C390001E077 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		2884A37626D7F3D3004596C3 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		2884A3BA26D91F56004596C3 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		2884A3BC26D91FFD004596C3 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		289970A4272BAE7B008D877B /* loading2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading2.gif; sourceTree = "<group>"; };
 		28A49826270F3DF2008AC05B /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		28A4982B270F4506008AC05B /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		28A4982D270F464D008AC05B /* WishlistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistData.swift; sourceTree = "<group>"; };
@@ -358,9 +361,7 @@
 		28FEC64627143E8D00C10B32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28FEC648271441E600C10B32 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
-		553C63C15747F94F0D9E90D3 /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
-		6472C35DE62D957A0D853684 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		836AD9F86D354B72686B2842 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
+		72CCC8BE8689818EF4621947 /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
 		DD37F672271D98E800C467DB /* String+postPositionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+postPositionText.swift"; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
@@ -400,6 +401,7 @@
 		DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishCalendarViewController.swift; sourceTree = "<group>"; };
 		DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistMainViewController.swift; sourceTree = "<group>"; };
 		DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistNavigationController.swift; sourceTree = "<group>"; };
+		E7196747CEFA9643577D7E19 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,20 +409,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBC11640D1B01ECD42562F8B /* Pods_jjollaejjollae.framework in Frameworks */,
+				C9D8BD852B894D8010AA3B47 /* Pods_jjollaejjollae.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0361E20CC2577ED324B949C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7196747CEFA9643577D7E19 /* Pods_jjollaejjollae.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2827C87C26B03C390001E077 = {
 			isa = PBXGroup;
 			children = (
 				285CE12726B858B80022DA2E /* .swiftlint.yml */,
 				2827C88726B03C390001E077 /* jjollaejjollae */,
 				766BE68EF9C2E22146929949 /* Pods */,
-				E2C438E1DBB8684D578393C5 /* Frameworks */,
+				0361E20CC2577ED324B949C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -705,6 +715,7 @@
 				2834ED1226C03D6D00E948B0 /* PaddingLabel.swift */,
 				2884A32C26D3FF07004596C3 /* RoundButton.swift */,
 				2877C3A927004B66000E3233 /* FixModalViewController.swift */,
+				289970A4272BAE7B008D877B /* loading2.gif */,
 				28B329532727151D0006D9F5 /* loading.gif */,
 				28B3294F272707030006D9F5 /* LoadingIndicator.swift */,
 			);
@@ -758,8 +769,8 @@
 		766BE68EF9C2E22146929949 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				553C63C15747F94F0D9E90D3 /* Pods-jjollaejjollae.debug.xcconfig */,
-				836AD9F86D354B72686B2842 /* Pods-jjollaejjollae.release.xcconfig */,
+				72CCC8BE8689818EF4621947 /* Pods-jjollaejjollae.debug.xcconfig */,
+				1B90B8FC864A46F343BC1819 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1012,14 +1023,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		E2C438E1DBB8684D578393C5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6472C35DE62D957A0D853684 /* Pods_jjollaejjollae.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1027,11 +1030,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2827C89926B03C3E0001E077 /* Build configuration list for PBXNativeTarget "jjollaejjollae" */;
 			buildPhases = (
-				0E109C7498B7CD48C37D5A48 /* [CP] Check Pods Manifest.lock */,
+				666031B0A49755F2CE28E50F /* [CP] Check Pods Manifest.lock */,
 				2827C88126B03C390001E077 /* Sources */,
 				2827C88226B03C390001E077 /* Frameworks */,
 				2827C88326B03C390001E077 /* Resources */,
-				CF28EB179449FFF372006DCF /* [CP] Embed Pods Frameworks */,
+				8984839A75C0D29A1BE50622 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1049,7 +1052,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					2827C88426B03C390001E077 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -1098,6 +1101,7 @@
 				28B329542727151D0006D9F5 /* loading.gif in Resources */,
 				286A940227085E2600AFA312 /* MyInfoMain.storyboard in Resources */,
 				DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */,
+				289970A5272BAE7B008D877B /* loading2.gif in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
 				2884A31226CA43E6004596C3 /* SearchResultTableViewCell.xib in Resources */,
 				284159A826BE508D00F027DB /* SignUp.storyboard in Resources */,
@@ -1141,7 +1145,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0E109C7498B7CD48C37D5A48 /* [CP] Check Pods Manifest.lock */ = {
+		666031B0A49755F2CE28E50F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1163,7 +1167,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CF28EB179449FFF372006DCF /* [CP] Embed Pods Frameworks */ = {
+		8984839A75C0D29A1BE50622 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1225,7 +1229,6 @@
 				DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */,
 				283F23FF26F8687600CD8339 /* APIService.swift in Sources */,
 				28B2E788270D9EA7003AE0B0 /* Provisions.swift in Sources */,
-				28A4982E270F464D008AC05B /* WishlistData.swift in Sources */,
 				28A4982E270F464D008AC05B /* WishlistData.swift in Sources */,
 				DDB38F222729652A004482B3 /* PlaceDetailTableViewController.swift in Sources */,
 				DDBC9870272AE8BA00D33EC2 /* CreateReviewViewController.swift in Sources */,
@@ -1458,13 +1461,13 @@
 		};
 		2827C89A26B03C3E0001E077 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 553C63C15747F94F0D9E90D3 /* Pods-jjollaejjollae.debug.xcconfig */;
+			baseConfigurationReference = 72CCC8BE8689818EF4621947 /* Pods-jjollaejjollae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jjollaejjollae/jjollaejjollae.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 693WY75AQY;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1480,13 +1483,13 @@
 		};
 		2827C89B26B03C3E0001E077 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 836AD9F86D354B72686B2842 /* Pods-jjollaejjollae.release.xcconfig */;
+			baseConfigurationReference = 1B90B8FC864A46F343BC1819 /* Pods-jjollaejjollae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jjollaejjollae/jjollaejjollae.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 693WY75AQY;
 				INFOPLIST_FILE = jjollaejjollae/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

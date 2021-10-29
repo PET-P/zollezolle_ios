@@ -63,7 +63,7 @@ class MainTabBarController: UITabBarController {
       appearance.backgroundColor = .white
       
       self.tabBar.standardAppearance = appearance
-//      self.tabBar.scrollEdgeAppearance = self.tabBar.standardAppearanceZollaeCustomSwitch.swift
+      self.tabBar.scrollEdgeAppearance = self.tabBar.standardAppearance
     }
     self.tabBar.tintColor = UIColor.themeGreen
     self.tabBar.isTranslucent = false

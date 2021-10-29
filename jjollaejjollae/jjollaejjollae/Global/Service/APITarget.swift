@@ -172,7 +172,7 @@ extension APITarget: TargetType {
                                              "phone": phone], encoding: JSONEncoding.default)
     case .findPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
-    case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .patchMyInfo, .deleteUser, .deleteReview, .fetchPlaceInfo:
+    case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .deleteUser, .deleteReview, .fetchPlaceInfo:
       return .requestPlain
     case .socialLogin(let email, let nick, let phone, let accountType):
       return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone, "accountType": accountType], encoding: JSONEncoding.default)
@@ -206,6 +206,8 @@ extension APITarget: TargetType {
     case .getFilterPlace(let region,let category,let filter, let page):
       return .requestParameters(parameters: ["region": region, "category": category.rawValue, "filter": filter, "page": page], encoding: URLEncoding.queryString)
 
+    case .patchUser(let token, let userId, let nick, let phone, let password):
+      return .requestParameters(parameters: ["nick": nick, "phone": phone, "password": password], encoding: JSONEncoding.default)
     }
   }
     
@@ -220,7 +222,7 @@ extension APITarget: TargetType {
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
-      case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _) :
+      case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_):
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
     case .naver(let authorization):
       return ["Authorization": authorization]

@@ -64,17 +64,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     waitingGroup.notify(queue: .main) { [weak self] in
       guard let self = self else {return}
-      if !self.isLogged {
-        guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
-        let navigationController = UINavigationController(rootViewController: loginVC)
-        navigationController.setNavigationBarHidden(true, animated: false)
-        self.window?.rootViewController = loginVC
-        self.window?.rootViewController = navigationController
-      } else {
-        let mainTabBarController = MainTabBarController()
-        self.window?.rootViewController = mainTabBarController
-      }
-      self.window?.makeKeyAndVisible()
+        if !self.isLogged {
+          guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
+          let navigationController = UINavigationController(rootViewController: loginVC)
+          navigationController.setNavigationBarHidden(true, animated: false)
+          self.window?.rootViewController = loginVC
+          self.window?.rootViewController = navigationController
+        } else {
+          let mainTabBarController = MainTabBarController()
+          self.window?.rootViewController = mainTabBarController
+        }
+        self.window?.makeKeyAndVisible()
     }
   }
   
