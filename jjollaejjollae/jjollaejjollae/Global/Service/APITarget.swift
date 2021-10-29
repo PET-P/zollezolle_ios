@@ -23,6 +23,8 @@ enum APITarget {
   case tempPassword(email: String) //임시비밀번호
   case naver(authorization: String)
   case socialLogin(email: String, nick: String, phone: String, accountType: String)
+  
+  
   case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
   case readPets(token: String, userId: String)
   case patchPetInfo(token: String, userId: String, petId: String, pets: [PetData])
@@ -46,7 +48,7 @@ enum APITarget {
   case readUser(token: String, userId: String)
   case deleteUser(token: String, userId: String)
   case readAllUsers
-  case patchMyInfo(token: String, userId: String)
+  case patchUser(token: String, userId: String, nick: String?, phone: String?, password: String?)
   
   case readReview(token: String, userId: String)
   case readPlaceReview(token: String, placeId: String)
@@ -113,7 +115,7 @@ extension APITarget: TargetType {
       return "/users"
     case .createPet(_, let userId, _, _, _, _, _, _, _, _, _), .readPets(_, let userId):
       return "/users/\(userId)/pets"
-    case .patchMyInfo(_, let userId):
+    case .patchUser(_, let userId,_ ,_ ,_):
       return "/users/\(userId)"
     case .deleteUser(_, let userId):
       return "/users/\(userId)"
@@ -128,6 +130,7 @@ extension APITarget: TargetType {
     case .getFilterPlace:
       return "/places"
       
+      
 //    case .fetchPlaceInfo:
 //      return
     }
@@ -139,7 +142,7 @@ extension APITarget: TargetType {
       return .get
     case .email, .login, .findPassword, .signup, .socialLogin, .addPlaceInFolder, .createPet, .createWishlistFolder:
       return .post
-    case .patchPetInfo, .patchFolder, .patchMyInfo:
+    case .patchPetInfo, .patchFolder, .patchUser:
       return .patch
     case .deleteFolder, .deleteUser, .deleteReview, .deletePlaceInFolder:
       return .delete
@@ -167,7 +170,7 @@ extension APITarget: TargetType {
                                              "phone": phone], encoding: JSONEncoding.default)
     case .findPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
-    case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .patchMyInfo, .deleteUser, .deleteReview:
+    case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .patchUser, .deleteUser, .deleteReview:
       return .requestPlain
     case .socialLogin(let email, let nick, let phone, let accountType):
       return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone, "accountType": accountType], encoding: JSONEncoding.default)
@@ -213,7 +216,7 @@ extension APITarget: TargetType {
     case .refreshToken(let refreshToken, let accessToken):
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
-    case .readUser(let token, _), .deleteUser(let token, _), .patchMyInfo(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _):
+    case .readUser(let token, _), .deleteUser(let token, _), .patchUser(let token, _, _, _ ,_), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _):
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
     case .naver(let authorization):
       return ["Authorization": authorization]
