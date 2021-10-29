@@ -57,7 +57,7 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searc
     SearchResultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     SearchResultTableView.rowHeight = UITableView.automaticDimension
     if #available(iOS 15.0, *) {
-     SearchResultTableView.sectionHeaderTopPadding = 0
+//     SearchResultTableView.sectionHeaderTopPadding = 0
     }
   }
   
