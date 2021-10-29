@@ -17,6 +17,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   
   private let cellIdentifier = "cell"
   private var imageHeight: CGFloat = 132
+  private var userInfo: UserData?
   
   private var isLogged: Bool? {
     didSet {
@@ -32,13 +33,15 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   override func viewDidLoad() {
     super.viewDidLoad()
     print("\(self)", #function)
+    userInfo = UserManager.shared.userInfo
+    nicknameLabel.text = userInfo?.nick ?? "쫄래쫄래1"
     infoTableView.delegate = self
     infoTableView.dataSource = self
     setupHeader()
     infoTableView.tableFooterView = UIView(frame: CGRect.zero)
-//    if #available(iOS 15.0, *) {
-//      infoTableView.sectionHeaderTopPadding = 0
-//    }
+    if #available(iOS 15.0, *) {
+      infoTableView.sectionHeaderTopPadding = 0
+    }
     infoTableView.sectionFooterHeight = .leastNonzeroMagnitude
     infoTableView.alwaysBounceVertical = false
   }
@@ -66,7 +69,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   lazy var profileImageView: UIImageView = {
     let imageview = UIImageView()
     imageview.contentMode = .scaleAspectFill
-    imageview.image = UIImage(named: "IMG_4930")
+    imageview.image = UIImage(named: "default")
     imageview.layer.cornerRadius = imageHeight / 2
     imageview.layer.masksToBounds = true
     imageview.clipsToBounds = true
@@ -140,7 +143,6 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     } else  {
       guard let detailVC = MyInfoDetailViewController.loadFromStoryboard() as?
               MyInfoDetailViewController else {return}
-      PagingManager.shared.mainVC = detailVC
       self.navigationController?.pushViewController(detailVC, animated: true)
     }
   }
