@@ -78,10 +78,8 @@ class SearchResultTableViewCell: UITableViewCell {
   var isWish: Bool? {
     didSet {
       if isWish == true {
-//        heartButton.setImage(UIImage(named: "pinkLike"), for: .normal)
         heartButton.isSelected = true
       } else {
-//        heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
         heartButton.isSelected = false
       }
     }
@@ -95,12 +93,7 @@ class SearchResultTableViewCell: UITableViewCell {
   // 셀의 상태를 계속봐서 버튼색을 초기화해주는 친구가 필요할 것 같다
   
   override func prepareForReuse() {
-//    cellImageView.image = UIImage.colorImage(color: CGColor.init(gray: 0.5, alpha: 0.5), size: cellImageView.bounds.size)
-//    locationNameLabel.text = ""
-//    addressLabel.text = " "
-//    DaysLabel.isHidden = true
-//    priceLabel.isHidden = true
-//    contentStackView.insertArrangedSubview(addressLabel, at: 0)
+   cellImageView.image = UIImage.colorImage(color: CGColor.init(gray: 0.5, alpha: 0.5), size: cellImageView.bounds.size)
   }
   
   weak var delegate : SearchResultCellDelegate?

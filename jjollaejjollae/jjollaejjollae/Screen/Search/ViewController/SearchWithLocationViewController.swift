@@ -139,6 +139,7 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
         guard let nextVC = SearchResultViewController.loadFromStoryboard() as? SearchResultViewController else {return}
         nextVC.setMode(from: self)
         nextVC.newDataList = data
+        nextVC.setPlaceCount(count: self.locationNum)
         self.navigationController?.pushViewController(nextVC, animated: true)
       case .failure(let error):
         print("error ", error)
@@ -173,6 +174,7 @@ extension SearchWithLocationViewController: UITableViewDelegate, UITableViewData
     let item = newDataList[indexPath.row]
     
     cell.cellImageView.setImage(with: item.imagesUrl.first ?? "default")
+    cell.addressLabel.text = item.address.joined(separator: " ")
     cell.locationNameLabel.text = item.title
     cell.locationTypeLabel.text = nil
     cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"

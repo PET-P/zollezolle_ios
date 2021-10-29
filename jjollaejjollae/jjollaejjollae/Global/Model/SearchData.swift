@@ -10,6 +10,7 @@ import Foundation
 struct SearchData: Codable {
   let region: String
   let regionCount: Int
+  var placeCount: Int
   let result: [SearchResultData]
 }
 

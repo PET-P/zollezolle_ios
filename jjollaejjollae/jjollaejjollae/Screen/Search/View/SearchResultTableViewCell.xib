@@ -81,7 +81,7 @@
                             </stackView>
                         </subviews>
                     </stackView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" image="IMG_4930" translatesAutoresizingMaskIntoConstraints="NO" id="DaY-mO-6Dq">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" image="\]" translatesAutoresizingMaskIntoConstraints="NO" id="DaY-mO-6Dq">
                         <rect key="frame" x="16" y="0.0" width="349" height="168.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="DaY-mO-6Dq" secondAttribute="height" multiplier="331:160" id="dgV-df-ZQ7"/>
@@ -134,7 +134,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="IMG_4930" width="3024" height="3024"/>
+        <image name="\]" width="128" height="128"/>
         <image name="grayLike" width="40" height="40"/>
         <image name="star" width="29" height="29"/>
     </resources>
