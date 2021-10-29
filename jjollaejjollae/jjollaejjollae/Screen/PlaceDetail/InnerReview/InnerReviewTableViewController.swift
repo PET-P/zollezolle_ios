@@ -87,6 +87,8 @@ class InnerReviewTableViewController: UITableViewController {
     
     vc.category = placeDetailTableVC?.placeInfo?.category
     
+    vc.modalPresentationStyle = .fullScreen
+    
     self.present(vc, animated: true, completion: nil)
   }
   
@@ -130,6 +132,8 @@ class InnerReviewTableViewController: UITableViewController {
       innerReviewCell.ratingLabel.text = "\(review.point)"
       
       innerReviewCell.descriptionLabel.text = review.text
+      
+      innerReviewCell.dateLabel.text = "\(review.createdAt.stringFromServerToDate())"
       
       
       return innerReviewCell

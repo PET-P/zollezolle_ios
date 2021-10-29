@@ -420,6 +420,18 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
       }
     }
     
+    /**
+     PlaceDetailVC 의 placeInfo 를 새로 업데이트해야함
+     */
+    
+    self.dismiss(animated: true) { [self] in
+      
+//      guard let vc = presentingViewController as? PlaceDetailTableViewController else { return }
+//
+//      guard let innerVC = vc.children.first as? InnerReviewTableViewController else { return }
+//
+//      innerVC.tableView.reloadData()
+    }
   }
   
   
