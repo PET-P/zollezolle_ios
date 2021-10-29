@@ -10,14 +10,6 @@ import Toast_Swift
 class WishlistViewController: UIViewController, StoryboardInstantiable {
 
   //MARK: - IBOUTLET
-//  @IBOutlet weak var setOrderButton: UIButton! {
-//    didSet {
-//      setOrderButton.layer.borderWidth = 0
-//      setOrderButton.setTitle("추천순 ▼", for: .normal)
-//      setOrderButton.tintColor = .gray02
-//      setOrderButton.titleLabel?.font = .robotoMedium(size: 13)
-//    }
-//  }
   
   @IBOutlet weak var wishListTitle: UILabel! {
     didSet {
@@ -92,12 +84,16 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
 
     //날짜
     if let startDate = folderData?.startDate, let endDate = folderData?.endDate {
-      let startDate = startDate.components(separatedBy: "T")[0].components(separatedBy: "-")[1...2].joined(separator: ".")
-      let endDate = endDate.components(separatedBy: "T")[0].components(separatedBy: "-")[1...2].joined(separator: ".")
-      if regionText != "" {
-        locationAndDateLabel.text = regionText+"•"+"\(startDate)~\(endDate)"
+      if startDate == "" || endDate == "" {
+        locationAndDateLabel.text = ""
       } else {
-        locationAndDateLabel.text = "\(startDate)~\(endDate)"
+        let startDate = startDate.components(separatedBy: "T")[0].components(separatedBy: "-")[1...2].joined(separator: ".")
+        let endDate = endDate.components(separatedBy: "T")[0].components(separatedBy: "-")[1...2].joined(separator: ".")
+        if regionText != "" {
+          locationAndDateLabel.text = regionText+"•"+"\(startDate)~\(endDate)"
+        } else {
+          locationAndDateLabel.text = "\(startDate)~\(endDate)"
+        }
       }
     } else {
       if regionText == "" {
@@ -122,7 +118,6 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     newDataList = dataList
     
     for data in newDataList {
-      print(data.isWish)
       likes.updateValue(data.isWish ?? false, forKey: data.id)
     }
   }
@@ -173,33 +168,6 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
-//  private func showAlertController(style: UIAlertController.Style) {
-//    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: style)
-//
-//    let reviewAction = UIAlertAction(title: "리뷰 많은순", style: .default) {
-//      [weak self] result in self?.setOrderButton.setTitle("리뷰 많은순▼", for: .normal)
-//      
-//    }
-//    let recentAction = UIAlertAction(title: "최근 등록순", style: .default) { [weak self] result in
-//      self?.setOrderButton.setTitle("최근 등록순▼", for: .normal)
-//    }
-//    let starAction = UIAlertAction(title: "별점 높은순", style: .default) { [weak self] result in
-//      self?.setOrderButton.setTitle("별점 높은순▼", for: .normal)
-//    }
-//    let subview = alertController.view.subviews.first! as UIView
-//    let alertContentView = subview.subviews.first! as UIView
-//    alertContentView.setRounded(radius: 10)
-//    alertContentView.overrideUserInterfaceStyle = .light
-//    alertContentView.backgroundColor = UIColor.white
-//    alertController.view.setRounded(radius: 10)
-//    alertController.view.tintColor = .themeGreen
-//    alertController.addAction(reviewAction)
-//    alertController.addAction(recentAction)
-//    alertController.addAction(starAction)
-//    alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-//    self.present(alertController, animated: true, completion: nil);
-//  }
-  
   private func goToMapButtonUISetting() {
     view.addSubview(goToMapButton)
     goToMapButton.translatesAutoresizingMaskIntoConstraints = false
@@ -221,17 +189,11 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     self.navigationController?.popViewController(animated: true)
   }
   
-//  @IBAction func didTapsetOrderButton(_ sender: UIButton) {
-//    showAlertController(style: .actionSheet)
-//  }
-  
   @IBAction private func didTapOptionButton(_ sender: UIButton) {
     //TODO:option 화면 구현
     let wishCalendarStoryBoard = UIStoryboard(name: "WishCalendar", bundle: nil)
     guard let wishCalendarVC = wishCalendarStoryBoard.instantiateViewController(identifier: "WishCalendarViewController") as? WishCalendarViewController else {return}
 
-    
-    
     let optionActionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     let editOption = UIAlertAction(title: "수정", style: .default, handler: { [weak self] _ in
       guard let self = self else {return}
@@ -344,7 +306,7 @@ extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegat
     
     cell.isWish = likes[cell.placeId] == true
     
-//    newDataList[indexPath.row].isWish = likes[cell.placeId] == true //이것의 이유?
+    newDataList[indexPath.row].isWish = likes[cell.placeId] == true //이것의 이유?
     
     return cell
   }
