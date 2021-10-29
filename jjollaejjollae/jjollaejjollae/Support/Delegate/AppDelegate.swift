@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     var window: UIWindow?
-    
+    Thread.sleep(forTimeInterval: 1.0)
     if #available(iOS 13, *){
       
     } else {
@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //네아로 설정
     //처음 정해준 urlscheme
+    kServiceAppUrlScheme
     instance?.serviceUrlScheme = kServiceAppUrlScheme
     //애플리케이션 등록 후 발급받은 클아이언트 아이디
     instance?.consumerKey = kConsumerKey

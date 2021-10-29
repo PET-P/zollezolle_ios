@@ -172,6 +172,11 @@ struct APIService {
     
     judgeGenericResponse(target, completion: completion)
   }
+  
+  func patchUser(token: String, userId: String, nick: String?, phone: String?, password: String?, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
+    let target = APITarget.patchUser(token: token, userId: userId, nick: nick, phone: phone, password: password)
+    judgeGenericResponse(target, completion: completion)
+  }
 }
 
 extension APIService {

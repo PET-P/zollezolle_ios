@@ -11,6 +11,7 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
 import AuthenticationServices
+import SwiftyJSON
 
 class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate {
   
@@ -58,6 +59,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     }
   }
 
+  @IBOutlet weak var dogProfileImage: UIImageView!
   @IBOutlet weak var passwordLabel: UILabel!
   @IBOutlet weak var passwordStackView: UIStackView!
   @IBOutlet weak var newpasswordStackView: UIStackView!
@@ -104,6 +106,8 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     }
   }
   
+  private var dogImage: UIImage?
+  
   @IBAction func didChangeNickOrPassword(_ sender: UITextField) {
     guard let newText = sender.text, newText != "" else {
       sender.text = infoData?.nick
@@ -113,11 +117,22 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
       if newText != infoData?.nick {
         let alert = UIAlertController(title: "닉네임 변경", message: "\(newText)로 변경하시겠습니까?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "네", style: .default, handler: { [weak self](action) in
-          self?.infoData?.nick = newText
-          //TODO: 서버통신
+          guard let self = self else {return}
+          self.infoData?.nick = newText
+          guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
+          APIService.shared.patchUser(token: token, userId: userId, nick: newText, phone: nil, password: nil) { (result) in
+            switch result {
+            case .success(let data):
+              let data = JSON(data)
+              print(data.rawValue)
+            case .failure(let error):
+              print(error)
+            }
+          }
         }))
         alert.addAction(UIAlertAction(title: "아니요", style: .cancel, handler: { [weak self](action) in
-          sender.text = self?.infoData?.nick
+          guard let self = self else {return}
+          sender.text = self.infoData?.nick
         }))
         present(alert, animated: true, completion: nil)
       }
@@ -126,7 +141,16 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
         let alert = UIAlertController(title: "비밀번호 변경", message: "새로운 비밀번호로 변경하시겠습니까?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "네", style: .default, handler: { [weak self](action) in
           self?.infoData?.nick = newText
-          //TODO: 서버통신
+          guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
+          APIService.shared.patchUser(token: token, userId: userId, nick: nil, phone: nil, password: newText) { (result) in
+            switch result {
+            case .success(let data):
+              let data = JSON(data)
+              print(data.rawValue)
+            case .failure(let error):
+              print(error)
+            }
+          }
         }))
         alert.addAction(UIAlertAction(title: "아니요", style: .cancel, handler: { [weak self](action) in
           sender.text = self?.infoData?.nick
@@ -159,7 +183,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   }
   
   @IBAction func didTapLogoutButton(_ sender: UIButton) {
-    //TODO: 서버와 통신
+    UserManager.shared.deleteUser()
     print("logout")
   }
   
@@ -170,7 +194,17 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     let alert = UIAlertController(title: "휴대폰 번호 변경", message: "\(phoneNum)로 변경하시겠습니까?", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "네", style: .default, handler: { [weak self](action) in
       self?.infoData?.phone = phoneNum
-      //TODO: 서버통신
+      guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
+      APIService.shared.patchUser(token: token, userId: userId, nick: nil, phone: phoneNum, password: nil) { (result) in
+        switch result {
+        case .success(let data):
+          let data = JSON(data)
+          print(data.rawValue)
+        case .failure(let error):
+          print(error)
+        }
+      }
+
     }))
     alert.addAction(UIAlertAction(title: "아니요", style: .cancel, handler: { [weak self](action) in
       self?.phoneTextField.text = self?.infoData?.phone
@@ -281,10 +315,38 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    dogProfileImage.setRounded(radius: nil)
     infoData = UserManager.shared.userInfo
     applyNoneSyle(to: [emailTextField, phoneTextField])
     applyGrayStyle(to: [nickTextField, currentPWTextField, newPWTextField])
     verifySocial()
+    guard let userId = UserManager.shared.userIdandToken?.userId, let token = UserManager.shared.userIdandToken?.token else {return}
+    //여기서는 한마리만 따오고,
+    if self.dogImage != nil {return}
+    APIService.shared.readPets(token: token, userId: userId) { [weak self] (result) in
+      guard let self = self else {return}
+      switch result {
+      case .success(let data):
+        for i in data {
+          if i.isRepresent == true {
+            StorageService.shared.downloadUIImageWithURL(with: i.imageUrl ?? "default.") { (image) in
+              guard let image = image else {
+                return
+              }
+              self.dogImage = image
+              self.dogProfileImage.image = self.dogImage
+              return
+            }
+          }
+          self.dogImage = UIImage(named: "default")
+          self.dogProfileImage.image = self.dogImage
+        }
+      case .failure(let error):
+        self.dogImage = UIImage(named: "default")
+        self.dogProfileImage.image = self.dogImage
+        print(error)
+      }
+    }
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {

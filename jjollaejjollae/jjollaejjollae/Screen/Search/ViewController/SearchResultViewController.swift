@@ -50,7 +50,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   }
   @IBOutlet weak var numberOfResultLabel: UILabel! {
     didSet {
-      numberOfResultLabel.text = "0개의 숙소"
+      numberOfResultLabel.text = "0개의 장소"
       numberOfResultLabel.font = .robotoRegular(size: 12)
       numberOfResultLabel.textColor = .색44444
     }
@@ -237,9 +237,14 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     resultTableView.dataSource = searchResultDataSources[0]
     resultTableView.tableFooterView = UIView(frame: CGRect.zero)
     resultTableView.separatorStyle = .none
-    numberOfResultLabel.text = "고쳐야할개의 숙소"
+    numberOfResultLabel.text = "\(placeCount)개의 장소"
   }
   
+  func setPlaceCount(count: Int) {
+    self.placeCount = count
+  }
+  
+  private var placeCount = 0
   private func setupheader() {
     let header = UIView(frame: CGRect(x: 0, y: 0, width: resultTableView.frame.width, height: 40))
     let headerLabel = UILabel()
@@ -259,7 +264,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     headerLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 6).isActive = true
     resultTableView.tableHeaderView = header
     if #available(iOS 15.0, *) {
-//      resultTableView.sectionHeaderTopPadding = 0
+      resultTableView.sectionHeaderTopPadding = 0
     }
   }
   

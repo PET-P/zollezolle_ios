@@ -63,6 +63,11 @@ class SearchViewController: UIViewController, StoryboardInstantiable, Searchable
     super.viewWillAppear(animated)
     searchTextField.text = searchManager.searchText
   }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    self.tabBarController?.tabBar.isHidden = false
+  }
+  
 }
 //MARK: - PagingCollectionView
 

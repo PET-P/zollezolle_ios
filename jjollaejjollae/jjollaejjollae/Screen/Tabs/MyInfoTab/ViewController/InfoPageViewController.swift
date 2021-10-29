@@ -9,7 +9,7 @@ import UIKit
 
 class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
   
-  let VCArray = [MyInfoEditViewController.loadFromStoryboard(), MyPetInfoEditViewController.loadFromStoryboard()]
+  let VCArray = [MyInfoEditViewController.loadFromStoryboard(), DogInfoViewController.loadFromStoryboard()]
   
   func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     guard let VCIndex = VCArray.firstIndex(of: viewController) else {return nil}
@@ -36,7 +36,7 @@ class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate
       var VCIndex = 0
       if let currentVC = pageViewController.viewControllers?[0] as? MyInfoEditViewController {
         VCIndex = 0
-      } else if let currentVC = pageViewController.viewControllers?[0] as? MyPetInfoEditViewController {
+      } else if let currentVC = pageViewController.viewControllers?[0] as? DogInfoViewController {
         VCIndex = 1
       }
       NotificationCenter.default.post(name: NSNotification.Name("SegControlNotification"), object: VCIndex)
@@ -60,6 +60,7 @@ class InfoPageViewController: UIPageViewController, UIPageViewControllerDelegate
     if let firstVC = VCArray.first {
       setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
     }
+    (VCArray[1] as? DogInfoViewController)!.mode = false
     NotificationCenter.default.addObserver(self, selector: #selector(setVC(_:)), name: NSNotification.Name("PageControlNotification"), object: nil)
   }
   

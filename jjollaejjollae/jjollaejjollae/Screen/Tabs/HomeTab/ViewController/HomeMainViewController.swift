@@ -26,19 +26,19 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   
   @IBOutlet weak var mainImageView: UIImageView! {
     didSet {
-      
-      // TODO: 프로필 사진 설정
-      guard let userInfo = userManager.userInfo else { return }
-      
-      guard let pet = userInfo.pets.filter({ petData in
-        petData.isRepresent
-      }).first else { return }
-      
-      guard let imageUrl = pet.imageUrl else { return }
-      
-      mainImageView.setImage(with: imageUrl)
-      
-      return
+      mainImageView.image = UIImage(named:"IMG_5869")!
+//      // TODO: 프로필 사진 설정
+//      guard let userInfo = userManager.userInfo else { return }
+//
+//      guard let pet = userInfo.pets.filter({ petData in
+//        petData.isRepresent
+//      }).first else { return }
+//
+//      guard let imageUrl = pet.imageUrl else { return }
+//
+//      mainImageView.setImage(with: imageUrl)
+//
+//      return
     }
   }
   
@@ -126,6 +126,14 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    if self.tabBarController?.tabBar.isHidden == true {
+      self.tabBarController?.tabBar.isHidden = false
+      self.tabBarController?.tabBar.isTranslucent = false
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -348,6 +356,7 @@ extension HomeMainViewController: UICollectionViewDelegate {
     if collectionView === locationCollectionView {
       
       let locationName = LocationName.allCases[indexPath.row].description
+      SearchManager.shared.searchText = locationName
       
       switch UserManager.shared.userIdandToken {
         
@@ -423,7 +432,61 @@ extension HomeMainViewController: UICollectionViewDelegate {
     
     if collectionView === recommendedPlaceCollectionView {
       
-      print(#function)
+      let recommendName = ["맛집", "카페", "명소", "숙소"]
+      
+      switch UserManager.shared.userIdandToken {
+        
+        case .some( _, let token):
+          
+          guard let token = token else { return }
+          
+        APIService.shared.search(token: token, keyword: recommendName[indexPath.row], page: 0) { result in
+            
+            switch result {
+              
+            case .success(let data):
+              
+              guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
+              SearchManager.shared.searchText = recommendName[indexPath.row]
+              print(self, data.result)
+              
+              nextVC.newDataList = data.result
+              
+              self.hidesBottomBarWhenPushed = true
+              
+              self.navigationController?.pushViewController(nextVC, animated: true)
+              
+            case .failure(let error):
+              
+              print(self, #function, error)
+            }
+          }
+          
+        case .none:
+          
+        APIService.shared.search(keyword: recommendName[indexPath.row], page: 0) { result in
+            
+            switch result {
+              
+            case .success(let data):
+              
+              guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
+              
+              print(self, data.result)
+              SearchManager.shared.searchText = recommendName[indexPath.row]
+              nextVC.newDataList = data.result
+              
+              self.hidesBottomBarWhenPushed = true
+              
+              self.navigationController?.pushViewController(nextVC, animated: true)
+              
+            case .failure(let error):
+              
+              print(self, #function, error)
+            }
+          }
+      }
+      
     }
   
   }

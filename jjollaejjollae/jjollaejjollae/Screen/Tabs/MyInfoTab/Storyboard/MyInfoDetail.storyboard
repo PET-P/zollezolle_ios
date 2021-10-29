@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,13 +49,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beu-dA-348">
-                                                <rect key="frame" x="0.0" y="231" width="414" height="577"/>
+                                                <rect key="frame" x="0.0" y="61" width="414" height="747"/>
                                                 <connections>
                                                     <segue destination="xpD-up-g4Y" kind="embed" id="ZzU-Dp-t2i"/>
                                                 </connections>
                                             </containerView>
                                             <segmentedControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hnj-HE-tyK">
-                                                <rect key="frame" x="0.0" y="200" width="414" height="32"/>
+                                                <rect key="frame" x="0.0" y="20" width="414" height="32"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <segments>
                                                     <segment title="내 정보"/>
@@ -67,51 +66,16 @@
                                                     <action selector="didTapInfoSegmentedControl:" destination="Y6W-OH-hqX" eventType="valueChanged" id="BdQ-bC-0Nb"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="J7h-wW-aZB">
-                                                <rect key="frame" x="0.0" y="20" width="414" height="160"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="160" id="Pt1-TB-nfn"/>
-                                                </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bhz-Cm-XKE">
-                                                    <size key="itemSize" width="128" height="128"/>
-                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                </collectionViewFlowLayout>
-                                                <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="BJ0-Oi-7Wd">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VY3-vU-uah">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                        </collectionViewCellContentView>
-                                                    </collectionViewCell>
-                                                </cells>
-                                            </collectionView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0L1-vK-uuh">
-                                                <rect key="frame" x="147" y="40" width="120" height="120"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="3ZY-zB-UmT"/>
-                                                    <constraint firstAttribute="height" constant="120" id="LFf-1H-0nU"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="J7h-wW-aZB" firstAttribute="leading" secondItem="iur-eq-b7w" secondAttribute="leading" id="0T2-BP-xlK"/>
                                             <constraint firstAttribute="trailing" secondItem="beu-dA-348" secondAttribute="trailing" id="2fC-dX-oQ0"/>
                                             <constraint firstAttribute="trailing" secondItem="Hnj-HE-tyK" secondAttribute="trailing" id="7My-La-OzQ"/>
-                                            <constraint firstItem="J7h-wW-aZB" firstAttribute="top" secondItem="iur-eq-b7w" secondAttribute="top" constant="20" id="GjZ-Wm-GaA"/>
-                                            <constraint firstItem="0L1-vK-uuh" firstAttribute="centerX" secondItem="iur-eq-b7w" secondAttribute="centerX" id="KQM-OX-tWX"/>
-                                            <constraint firstItem="Hnj-HE-tyK" firstAttribute="top" secondItem="0L1-vK-uuh" secondAttribute="bottom" constant="40" id="OUd-bq-Cts"/>
                                             <constraint firstItem="Hnj-HE-tyK" firstAttribute="leading" secondItem="iur-eq-b7w" secondAttribute="leading" id="UHe-Oe-jRo"/>
                                             <constraint firstAttribute="bottom" secondItem="beu-dA-348" secondAttribute="bottom" id="k0R-D2-avM"/>
-                                            <constraint firstItem="beu-dA-348" firstAttribute="top" secondItem="Hnj-HE-tyK" secondAttribute="bottom" id="osG-rW-wYk"/>
-                                            <constraint firstAttribute="trailing" secondItem="J7h-wW-aZB" secondAttribute="trailing" id="quP-s3-ova"/>
+                                            <constraint firstItem="Hnj-HE-tyK" firstAttribute="top" secondItem="iur-eq-b7w" secondAttribute="top" constant="20" id="oLC-h7-v3n"/>
+                                            <constraint firstItem="beu-dA-348" firstAttribute="top" secondItem="Hnj-HE-tyK" secondAttribute="bottom" constant="10" id="osG-rW-wYk"/>
                                             <constraint firstItem="beu-dA-348" firstAttribute="leading" secondItem="iur-eq-b7w" secondAttribute="leading" id="xNn-Nr-5Zf"/>
-                                            <constraint firstItem="Hnj-HE-tyK" firstAttribute="top" secondItem="J7h-wW-aZB" secondAttribute="bottom" constant="20" id="zT1-da-kpl"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -133,7 +97,6 @@
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="jeN-Hw-gDa" secondAttribute="trailing" id="0HP-vP-vRg"/>
                             <constraint firstItem="ysP-YS-JRe" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="EdB-4y-dXH"/>
-                            <constraint firstItem="0L1-vK-uuh" firstAttribute="top" secondItem="ysP-YS-JRe" secondAttribute="bottom" constant="40" id="ITz-4M-zvu"/>
                             <constraint firstItem="jeN-Hw-gDa" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="UCJ-Id-qGv"/>
                             <constraint firstItem="iur-eq-b7w" firstAttribute="width" secondItem="ysP-YS-JRe" secondAttribute="width" id="Xnp-IF-Hw3"/>
                             <constraint firstAttribute="bottom" secondItem="jeN-Hw-gDa" secondAttribute="bottom" id="ZYF-xM-Iiu"/>
@@ -144,9 +107,7 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="beu-dA-348" id="FqG-Ik-vhF"/>
-                        <outlet property="imageViewWhenOne" destination="0L1-vK-uuh" id="fdV-qP-boq"/>
                         <outlet property="infoSegmentedControl" destination="Hnj-HE-tyK" id="aE9-Yh-22K"/>
-                        <outlet property="profileCollectionView" destination="J7h-wW-aZB" id="vlt-fe-IVc"/>
                         <outlet property="scrollView" destination="jeN-Hw-gDa" id="S5V-rj-cPK"/>
                     </connections>
                 </viewController>
@@ -159,7 +120,7 @@
             <objects>
                 <viewController storyboardIdentifier="InfoPageViewController" id="xpD-up-g4Y" customClass="InfoPageViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LxP-fU-8wJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="577"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="747"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="sS9-CL-rx0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

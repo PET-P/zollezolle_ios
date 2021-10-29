@@ -26,7 +26,6 @@ class StarsSearchViewController: UIViewController, StoryboardInstantiable, Searc
     starTableView.dataSource = self
     list = searchManager.retrieveStarSearchArray()
   }
-  
 }
 
 extension StarsSearchViewController: UITableViewDelegate {
