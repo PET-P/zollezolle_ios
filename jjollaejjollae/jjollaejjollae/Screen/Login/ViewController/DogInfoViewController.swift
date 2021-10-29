@@ -158,6 +158,7 @@ class DogInfoViewController: FixModalViewController{
   //MARK: - Variables
   
   private let imagePickerController: UIImagePickerController = UIImagePickerController()
+  var mode = true
   private var sizeText: String = "소형" {
     didSet {
       petSizeButton.setTitle("\(sizeText)", for: .normal)
@@ -314,7 +315,15 @@ class DogInfoViewController: FixModalViewController{
   
   @IBAction func didTapSaveButton(_ sender: UIButton) {
     var flag = false
+    var representVerify = false
+    if dogProfile.count == 1 {
+      representVerify = true
+      dogProfile[0].isRepresent = true
+    }
     dogProfile.forEach { dogInfo in
+      if dogInfo.isRepresent == true {
+        representVerify = true
+      }
       if dogInfo.name == "" {
         let alertController = UIAlertController(title: nil, message: "이름을 입력하개", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
@@ -327,9 +336,24 @@ class DogInfoViewController: FixModalViewController{
         alertController.view.tintColor = .themeGreen
         self.present(alertController, animated: true, completion: nil)
         return
-      } else {
+      }
+      else {
         flag = true
       }
+    }
+    if !representVerify && flag == true {
+      flag = false
+      let alertController = UIAlertController(title: "대표를 고르개", message: "이름란의 왼쪽에 발바닥을 누르면 대표강아지를 고를 수 있습니다!🐶", preferredStyle: .alert)
+      alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+      let subview = alertController.view.subviews.first! as UIView
+      let alertContentView = subview.subviews.first! as UIView
+      alertContentView.setRounded(radius: 10)
+      alertContentView.overrideUserInterfaceStyle = .light
+      alertContentView.backgroundColor = UIColor.white
+      alertController.view.setRounded(radius: 10)
+      alertController.view.tintColor = .themeGreen
+      self.present(alertController, animated: true, completion: nil)
+      return
     }
     if flag {
       guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
