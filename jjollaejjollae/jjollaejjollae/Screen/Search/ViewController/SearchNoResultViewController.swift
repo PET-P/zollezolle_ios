@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searchable, SearchDataReceiveable,
                                     StoryboardInstantiable{
@@ -56,7 +57,7 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searc
     SearchResultTableView.register(nib, forCellReuseIdentifier: "resultCell")
     SearchResultTableView.rowHeight = UITableView.automaticDimension
     if #available(iOS 15.0, *) {
-      SearchResultTableView.sectionHeaderTopPadding = 0
+//      SearchResultTableView.sectionHeaderTopPadding = 0
     }
   }
   
@@ -111,6 +112,35 @@ extension SearchNoResultViewController: UITableViewDelegate {
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     scrollView.bounces = scrollView.contentOffset.y > 0
+  }
+  
+  /**
+   Cell 을 탭했을때, 상세페이지/장소 화면을 띄워준다
+   - Author: 박우찬
+   */
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    let placeId = newDataList[indexPath.row].id
+    
+    APIService.shared.fetchPlaceInfo(placeId: placeId) { result in
+      
+      switch result {
+        case .success(let data):
+          
+          guard let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController else { return }
+          
+          let data = JSON(data)
+          
+          let placeInfo = PlaceInfo.init(placeID: placeId, json: data)
+          
+          vc.placeInfo = placeInfo
+          
+          self.navigationController?.pushViewController(vc, animated: true)
+          
+        case .failure(let statusCode):
+          print(statusCode)
+      }
+    }
   }
   
 }

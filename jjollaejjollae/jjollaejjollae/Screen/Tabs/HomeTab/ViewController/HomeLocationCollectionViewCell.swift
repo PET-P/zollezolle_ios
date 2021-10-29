@@ -9,7 +9,7 @@ import UIKit
 
 class HomeLocationCollectionViewCell: UICollectionViewCell {
   
-  static let identifier = "HomeLocationCollectionViewCell"
+  static let identifier = String(describing: HomeLocationCollectionViewCell.self)
   
   @IBOutlet weak var mainImageView: UIImageView! {
     didSet{

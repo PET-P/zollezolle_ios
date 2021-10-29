@@ -166,8 +166,11 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func fetchPlaceInfo(token: String, userID: String, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
-//    let target = APITarget.fetchPlaceInfo(token: token, userId)
+  func fetchPlaceInfo(placeId: String, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
+    
+    let target = APITarget.fetchPlaceInfo(placeID: placeId)
+    
+    judgeGenericResponse(target, completion: completion)
   }
   
   func patchUser(token: String, userId: String, nick: String?, phone: String?, password: String?, completion: @escaping((NetworkResult<JSON>) -> (Void))) {

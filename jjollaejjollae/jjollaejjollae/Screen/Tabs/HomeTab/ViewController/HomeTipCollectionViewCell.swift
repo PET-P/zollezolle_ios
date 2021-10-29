@@ -9,7 +9,7 @@ import UIKit
 
 class HomeTipCollectionViewCell: UICollectionViewCell{
   
-  static var identifier = "HomeTipCollectionViewCell"
+  static let identifier = String(describing: HomeTipCollectionViewCell.self)
   
   @IBOutlet weak var titleLabel: UILabel!
 
@@ -75,6 +75,8 @@ extension HomeTipCollectionViewCell {
   
   static var tipDataList: [HomeTipData]  =
     [
-     HomeTipData.init(title: "비행기가\n처음인\n친구들을\n위해", urlString: "https://zolle.tistory.com/2", emoji: "✈️")
+     HomeTipData(title: "비행기가\n처음인\n친구들을\n위해", urlString: "https://zolle.tistory.com/2", emoji: "✈️"),
+      HomeTipData(title: "반려동물\n동반\n체크리스트", urlString: "https://zolle.tistory.com/3", emoji: "✅"),
+      HomeTipData(title: "여행 중\n응급상황\n대처 방법", urlString: "https://zolle.tistory.com/4", emoji: "🚨")
     ]
 }
