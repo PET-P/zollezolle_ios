@@ -178,6 +178,8 @@
 		DDBC9879272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBC9878272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift */; };
 		DDC4BFE92729760700431B91 /* PlaceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4BFE82729760700431B91 /* PlaceInfo.swift */; };
 		DDC4BFEB272976C200431B91 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC4BFEA272976C200431B91 /* Review.swift */; };
+		DDE8DCC3272C3F020036E8B0 /* UserReviewPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE8DCC2272C3F020036E8B0 /* UserReviewPhotoCollectionViewCell.swift */; };
+		DDE8DCC5272C63800036E8B0 /* UserReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE8DCC4272C63800036E8B0 /* UserReview.swift */; };
 		DDF24B9726C6D5E4007AB642 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */; };
 		DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */; };
 		DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */; };
@@ -380,6 +382,8 @@
 		DDBC9878272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		DDC4BFE82729760700431B91 /* PlaceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceInfo.swift; sourceTree = "<group>"; };
 		DDC4BFEA272976C200431B91 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		DDE8DCC2272C3F020036E8B0 /* UserReviewPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		DDE8DCC4272C63800036E8B0 /* UserReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReview.swift; sourceTree = "<group>"; };
 		DDF24B9626C6D5E4007AB642 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF24B9B26C6D61D007AB642 /* MyInfoTab.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyInfoTab.storyboard; sourceTree = "<group>"; };
 		DDF24B9D26C6D61D007AB642 /* MyInfoMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainViewController.swift; sourceTree = "<group>"; };
@@ -821,6 +825,7 @@
 			children = (
 				DDBC9873272AEC4B00D33EC2 /* AllReviews */,
 				DDBC9872272AEC2000D33EC2 /* CreateReview */,
+				DDE8DCC4272C63800036E8B0 /* UserReview.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -830,6 +835,7 @@
 			children = (
 				DDBC986E272AE8BA00D33EC2 /* CreateReviewViewController.swift */,
 				DDBC986F272AE8BA00D33EC2 /* CreateReview.storyboard */,
+				DDE8DCC2272C3F020036E8B0 /* UserReviewPhotoCollectionViewCell.swift */,
 			);
 			path = CreateReview;
 			sourceTree = "<group>";
@@ -1193,6 +1199,7 @@
 			files = (
 				DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */,
 				283F240D26F87F9C00CD8339 /* SimpleResponse.swift in Sources */,
+				DDE8DCC5272C63800036E8B0 /* UserReview.swift in Sources */,
 				28E0D27D2709F763007C4C2A /* MyInfoDetailViewController.swift in Sources */,
 				DDFFC17B26FB1C05001FD04A /* WishlistMainViewController.swift in Sources */,
 				28EA825026B429F900785666 /* UIFont+Extension.swift in Sources */,
@@ -1203,6 +1210,7 @@
 				28A4983F27105556008AC05B /* ReviewTableCell.swift in Sources */,
 				2884A3BB26D91F57004596C3 /* CalendarViewController.swift in Sources */,
 				DDC4BFE92729760700431B91 /* PlaceInfo.swift in Sources */,
+				DDE8DCC3272C3F020036E8B0 /* UserReviewPhotoCollectionViewCell.swift in Sources */,
 				28A49832270F4F7C008AC05B /* FoldersData.swift in Sources */,
 				2884A32D26D3FF07004596C3 /* RoundButton.swift in Sources */,
 				283F240026F8687800CD8339 /* NetworkResult.swift in Sources */,

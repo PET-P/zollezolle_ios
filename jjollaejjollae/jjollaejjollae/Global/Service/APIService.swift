@@ -166,12 +166,26 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
+  /**
+   - Author : 박우찬
+   */
   func fetchPlaceInfo(placeId: String, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
     
     let target = APITarget.fetchPlaceInfo(placeID: placeId)
     
     judgeGenericResponse(target, completion: completion)
   }
+  
+  /**
+   - Author : 박우찬
+   */
+  func createReview(token: String, userReview: UserReview, completion: @escaping ((NetworkResult<Any>) -> (Void))) {
+    
+    let target = APITarget.createReview(token: token, userReview: userReview.toDict())
+    
+    judgeSimpleResponse(target, completion: completion)
+  }
+  
   
   func patchUser(token: String, userId: String, nick: String?, phone: String?, password: String?, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
     let target = APITarget.patchUser(token: token, userId: userId, nick: nick, phone: phone, password: password)

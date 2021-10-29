@@ -142,13 +142,15 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let vc = segue.destination as? InnerReviewTableViewController {
       
+      vc.placeDetailTableVC = self
       vc.reviewList = placeInfo?.reviewList ?? ReviewCollection(value: [])
     }
   }
   
+  /**
+   [더 보기] 버튼을 클릭하면 해당 셀을 확장하거나 축소한다
+   */
   @IBAction func didTapExpandButton(_ sender: UIButton) {
-    
-//    descriptionLabel.numberOfLines = descriptionLabel.numberOfLines == 5 ? 0 : 5
     
     switch descriptionLabel.numberOfLines {
       case 0 :

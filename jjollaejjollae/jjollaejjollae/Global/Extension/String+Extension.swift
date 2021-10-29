@@ -17,4 +17,8 @@ extension String {
     let date: Date? = dateFormatter.date(from: self)
     return date
   }
+  
+  var isNotEmpty: Bool {
+    return !self.isEmpty
+  }
 }

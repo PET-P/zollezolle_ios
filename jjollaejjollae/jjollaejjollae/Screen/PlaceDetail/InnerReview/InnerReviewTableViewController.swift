@@ -29,6 +29,8 @@ extension ReviewListDataType {
 
 class InnerReviewTableViewController: UITableViewController {
   
+  weak var placeDetailTableVC: PlaceDetailTableViewController?
+  
   var reviewList: ReviewListDataType?
 
   @IBOutlet weak var numOfReviewsLabel: UILabel! {
@@ -66,10 +68,24 @@ class InnerReviewTableViewController: UITableViewController {
   }
   
   // MARK: - IBAction
+  
+  /**
+  [후기 작성하기] 버튼 탭 시 호출되는 메서드
+   - 사진데이터를 전달한다
+   - 장소 이름을 전달한다
+  */
 
   @IBAction func didTapCreateReviewButton(_ sender: UIButton) {
     
-    let vc = CreateReviewViewController.loadFromStoryboard()
+    guard let vc = CreateReviewViewController.loadFromStoryboard() as? CreateReviewViewController else { return }
+    
+    vc.mainImage = placeDetailTableVC?.mainImageView.image
+    
+    vc.placeTitle = placeDetailTableVC?.placeInfo?.title
+    
+    vc.placeId = placeDetailTableVC?.placeInfo?.id
+    
+    vc.category = placeDetailTableVC?.placeInfo?.category
     
     self.present(vc, animated: true, completion: nil)
   }
