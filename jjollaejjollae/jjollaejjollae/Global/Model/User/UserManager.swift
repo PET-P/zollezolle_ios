@@ -16,6 +16,12 @@ class UserManager {
   
   private init() { }
   
+  /**
+  위치 서비스
+  - Author: 박우찬
+   */
+  var locationService = LocationService.shared
+  
   //userid만 존재할때
   var userIdandToken: (userId: String?, token: String?)? {
     didSet {
