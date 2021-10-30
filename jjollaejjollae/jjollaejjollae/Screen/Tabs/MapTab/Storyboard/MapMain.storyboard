@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -29,33 +30,37 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFL-IP-l8U" customClass="NMFMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgK-ab-DiL">
+                                        <rect key="frame" x="25" y="580" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.8980392157" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rmd-xE-aQm">
                                 <rect key="frame" x="21" y="59" width="372" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mof-GM-zdq">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ecv-jO-r2F">
                                         <rect key="frame" x="0.0" y="0.0" width="372" height="45"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="지역 선택"/>
-                                    </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownArrow" translatesAutoresizingMaskIntoConstraints="NO" id="aIL-0O-e0q">
-                                        <rect key="frame" x="329" y="17" width="13" height="11"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="13" id="Cna-7u-pul"/>
-                                            <constraint firstAttribute="height" constant="11" id="O3J-ZR-3Ya"/>
-                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aIL-0O-e0q">
+                                        <rect key="frame" x="323.5" y="17.5" width="18.5" height="10.5"/>
+                                        <color key="tintColor" red="0.45738846059999999" green="0.54566711189999995" blue="0.39859527350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Ecv-jO-r2F" firstAttribute="top" secondItem="rmd-xE-aQm" secondAttribute="top" id="6u9-IO-HXN"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ecv-jO-r2F" secondAttribute="bottom" id="Aaj-ZR-rlX"/>
                                     <constraint firstAttribute="height" constant="45" id="Anx-nh-cXN"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mof-GM-zdq" secondAttribute="bottom" id="QGG-3T-lhh"/>
-                                    <constraint firstItem="Mof-GM-zdq" firstAttribute="leading" secondItem="rmd-xE-aQm" secondAttribute="leading" id="iCW-mS-0oO"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mof-GM-zdq" secondAttribute="trailing" id="jHr-kd-iXj"/>
-                                    <constraint firstItem="Mof-GM-zdq" firstAttribute="top" secondItem="rmd-xE-aQm" secondAttribute="top" id="rtH-WE-rBu"/>
+                                    <constraint firstItem="Ecv-jO-r2F" firstAttribute="leading" secondItem="rmd-xE-aQm" secondAttribute="leading" id="bpj-a7-jBZ"/>
                                     <constraint firstItem="aIL-0O-e0q" firstAttribute="centerY" secondItem="rmd-xE-aQm" secondAttribute="centerY" id="t9a-r6-m52"/>
                                     <constraint firstAttribute="trailing" secondItem="aIL-0O-e0q" secondAttribute="trailing" constant="30" id="taS-le-2yy"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ecv-jO-r2F" secondAttribute="trailing" id="zqt-kD-qEY"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xCu-SW-Gu6">
@@ -79,8 +84,11 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="FzU-nJ-Ukd"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="dMO-Za-XGg"/>
                             </scrollView>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7wT-V3-uAh">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wT-V3-uAh">
                                 <rect key="frame" x="0.0" y="622" width="414" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="VZI-40-mRC"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="87I-Pg-rOZ" kind="embed" id="Qgz-OQ-Cm4"/>
                                 </connections>
@@ -107,8 +115,9 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="7wT-V3-uAh" id="naO-xL-8Rt"/>
+                        <outlet property="containerViewHeightConstraint" destination="VZI-40-mRC" id="WSM-lj-WW9"/>
                         <outlet property="filterScrollView" destination="xCu-SW-Gu6" id="Ruf-ui-lqa"/>
-                        <outlet property="locationSelectButton" destination="Mof-GM-zdq" id="gxO-pS-wzo"/>
+                        <outlet property="locationSelectTextField" destination="Ecv-jO-r2F" id="SRa-Kz-M7v"/>
                         <outlet property="mapView" destination="ZFL-IP-l8U" id="d72-lc-JEw"/>
                     </connections>
                 </viewController>
@@ -246,12 +255,12 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="959" y="395"/>
+            <point key="canvasLocation" x="935" y="377"/>
         </scene>
     </scenes>
     <resources>
-        <image name="DownArrow" width="13" height="12"/>
         <image name="IMG_4930" width="3024" height="3024"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="star" width="29" height="29"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -136,7 +136,7 @@ extension APITarget: TargetType {
       return "/wishlist/folder/\(userId)"
     case .nearPlace:
       return "/places/near"
-      case .getFilterPlace:
+    case .getFilterPlace:
       return "/places"
     
     /**

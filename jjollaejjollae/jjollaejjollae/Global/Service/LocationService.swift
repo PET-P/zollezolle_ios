@@ -11,7 +11,7 @@ import CoreLocation
 
 final class LocationService: NSObject {
   
-  typealias Coordinate = (longitude: Double, latitude: Double )
+  typealias Coordinate = (latitude: Double, longitude: Double )
   
   static let shared = LocationService()
   
@@ -119,7 +119,7 @@ extension LocationService: CLLocationManagerDelegate {
       //10. 중요
       locationManager.stopUpdatingLocation()
       
-      self.currentLocation = (coordinate.longitude, coordinate.latitude)
+      self.currentLocation = (coordinate.latitude, coordinate.longitude)
       
       NotificationCenter.default.post(name: Self.didUpateCurrentLocation, object: self.currentLocation)
       
