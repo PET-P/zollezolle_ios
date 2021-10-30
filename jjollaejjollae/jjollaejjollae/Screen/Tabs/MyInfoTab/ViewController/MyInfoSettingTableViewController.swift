@@ -9,17 +9,19 @@ import UIKit
 
 class MyInfoSettingTableViewController: UITableViewController, StoryboardInstantiable {
   
-  @IBOutlet weak var alarmSwitch: JJollaeSwitch! {
-    didSet {
-      alarmSwitch.setButtonTitle(isOn: "", isOff: "")
-      alarmSwitch.setTitleFont(font: .robotoBold(size: 10))
-      alarmSwitch.setCircleFrame(frame: CGRect (x: 0, y: 2.5, width: 31, height: 31))
-      alarmSwitch.setCircleRadius(round: 15.5)
-      alarmSwitch.setOn(on: true, animated: true)
-      alarmSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .gray05)
-      alarmSwitch.setSwitchColor(onTextColor: .themeGreen, offTextColor: .gray03)
-    }
-  }
+  //알람스위치는 현재 기능이 없기 때문에 OFF 
+  
+//  @IBOutlet weak var alarmSwitch: JJollaeSwitch! {
+//    didSet {
+//      alarmSwitch.setButtonTitle(isOn: "", isOff: "")
+//      alarmSwitch.setTitleFont(font: .robotoBold(size: 10))
+//      alarmSwitch.setCircleFrame(frame: CGRect (x: 0, y: 2.5, width: 31, height: 31))
+//      alarmSwitch.setCircleRadius(round: 15.5)
+//      alarmSwitch.setOn(on: true, animated: true)
+//      alarmSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .gray05)
+//      alarmSwitch.setSwitchColor(onTextColor: .themeGreen, offTextColor: .gray03)
+//    }
+//  }
   @IBOutlet weak var versionLabel: UILabel!
   @IBOutlet var menuTitleLabels: [UILabel]! {
     didSet {
@@ -39,9 +41,8 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
     super.viewDidLoad()
     tableView.sectionFooterHeight = 0
     tableView.sectionHeaderHeight = 0
-    alarmSwitch.delegate = self
-    print("viewdidload", settingManager.alarmControl)
-    alarmSwitch.isOn = settingManager.alarmControl
+//    alarmSwitch.delegate = self
+//    alarmSwitch.isOn = settingManager.alarmControl
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,11 +69,11 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
   }
 }
 
-extension MyInfoSettingTableViewController: JJollaeButtonDelegate {
-  func isOnValueChage(isOn: Bool) {
-    print(isOn)
-    settingManager.alarmControl = isOn
-  }
-}
+//extension MyInfoSettingTableViewController: JJollaeButtonDelegate {
+//  func isOnValueChage(isOn: Bool) {
+//    print(isOn)
+//    settingManager.alarmControl = isOn
+//  }
+//}
 
 
