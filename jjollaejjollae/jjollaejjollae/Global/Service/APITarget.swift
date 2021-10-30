@@ -53,7 +53,7 @@ enum APITarget {
   case readReview(token: String, userId: String)
   case readPlaceReview(token: String, placeId: String)
   case noLoginReadReview(placeId: String)
-  case deleteReview(reviewId: String)
+  case deleteReview(token: String, reviewId: String)
   
   //담기 추가
   case addPlaceInFolder(token: String, userId: String, placeId: String, folderId: String)
@@ -130,7 +130,7 @@ extension APITarget: TargetType {
       return "/users/\(userId)"
     case .readReview(_, _), .noLoginReadReview(_), .readPlaceReview(_, _):
       return "/reviews"
-    case .deleteReview(let reviewId):
+    case .deleteReview(_, let reviewId):
       return "/reviews/\(reviewId)"
     case .deletePlaceInFolder(_, let userId, _,_):
       return "/wishlist/folder/\(userId)"
@@ -240,7 +240,7 @@ extension APITarget: TargetType {
     
     switch self {
       
-    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .patchPetInfo, .readAllPosts, .readPost,  .readAllUsers, .noLoginSearch, .noLoginReadReview, .deleteReview, .nearPlace, .createWishlistFolder, .getFilterPlace, .fetchPlaceInfo:
+    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .patchPetInfo, .readAllPosts, .readPost,  .readAllUsers, .noLoginSearch, .noLoginReadReview, .nearPlace, .createWishlistFolder, .getFilterPlace, .fetchPlaceInfo:
       
       return ["Content-Type" : "application/json"]
         
@@ -249,7 +249,7 @@ extension APITarget: TargetType {
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
       
-      case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _):
+    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .deleteReview(let token, _):
       
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
       

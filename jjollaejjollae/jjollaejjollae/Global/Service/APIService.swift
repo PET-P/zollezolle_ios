@@ -156,8 +156,8 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func deleteReview(reviewId: String, completion: @escaping((NetworkResult<Any>) -> (Void))) {
-    let target = APITarget.deleteReview(reviewId: reviewId)
+  func deleteReview(token: String, reviewId: String, completion: @escaping((NetworkResult<Any>) -> (Void))) {
+    let target = APITarget.deleteReview(token: token, reviewId: reviewId)
     judgeSimpleResponse(target, completion: completion)
   }
   
