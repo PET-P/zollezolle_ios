@@ -21,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return false}
         window?.rootViewController = loginVC
       } else {
-        //TODO: 여기다가 homeVC에 대한 내용 작성
-//        guard let homeVC = storyboard.instantiateViewController(identifier: "homeView") as? LoginViewController else {return false}
         window?.rootViewController = MainTabBarController()
       }
       window?.overrideUserInterfaceStyle = .light
@@ -43,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //네아로 설정
     //처음 정해준 urlscheme
-    kServiceAppUrlScheme
+    //kServiceAppUrlScheme
     instance?.serviceUrlScheme = kServiceAppUrlScheme
     //애플리케이션 등록 후 발급받은 클아이언트 아이디
     instance?.consumerKey = kConsumerKey
