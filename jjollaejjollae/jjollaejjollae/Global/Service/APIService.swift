@@ -191,6 +191,16 @@ struct APIService {
     judgeSimpleResponse(target, completion: completion)
   }
   
+  // FIXME: readReview(token:userId:completion:) 과 통합 필요
+  /**
+  - Author: 박우찬
+   */
+  
+  func readPlaceReview(token: String, placeId: String, completion: (@escaping(NetworkResult<UserReviewData>) -> (Void))) {
+    let target =  APITarget.readPlaceReview(token: token, placeId: placeId)
+    judgeGenericResponse(target, completion: completion)
+  }
+  
   
   func patchUser(token: String, userId: String, nick: String?, phone: String?, password: String?, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
     let target = APITarget.patchUser(token: token, userId: userId, nick: nick, phone: phone, password: password)

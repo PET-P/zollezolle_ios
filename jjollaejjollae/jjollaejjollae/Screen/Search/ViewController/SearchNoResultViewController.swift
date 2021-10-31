@@ -134,9 +134,7 @@ extension SearchNoResultViewController: UITableViewDelegate {
           
           guard let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController else { return }
           
-          let data = JSON(data)
-          
-          let placeInfo = PlaceInfo.init(placeID: placeId, json: data)
+          let placeInfo = PlaceInfo.init(placeID: placeId, data: data)
           
           vc.placeInfo = placeInfo
           

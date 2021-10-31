@@ -27,7 +27,7 @@ struct PlaceInfo {
 //  var room: [Any]?
   var reviewList: ReviewListDataType
   
-  var reviewPoint: Int
+  var reviewPoint: Float
   var reviewCount: Int
 }
 
@@ -38,7 +38,9 @@ extension PlaceInfo {
   - Author: 박우찬
    */
   
-  init(placeID: String, json: JSON) {
+  init(placeID: String, data: JSON) {
+    
+    let json = JSON(data)
     
     let address = json["address"].arrayValue.map {
       $0.stringValue
@@ -56,7 +58,7 @@ extension PlaceInfo {
     
     let category = json["category"].stringValue
     
-    let reviewPoint = json["reviewPoint"].intValue
+    let reviewPoint = json["reviewPoint"].floatValue
     let reviewCount = json["reviewCount"].intValue
     
     let location: [Double] = json["location"]["coordinates"].arrayValue.map {

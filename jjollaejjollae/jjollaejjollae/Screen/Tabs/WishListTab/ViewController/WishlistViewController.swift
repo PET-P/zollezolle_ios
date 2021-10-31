@@ -245,8 +245,41 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
   }
 }
 
+
+
 extension WishlistViewController: UITableViewDelegate {
-  //TODO: 그 장소 Detail화면으로 넘어가기
+  /**
+   - Author: 박우찬
+   */
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    LoadingIndicator.show()
+    
+    let placeId = newDataList[indexPath.row].id
+    
+    APIService.shared.fetchPlaceInfo(placeId: placeId) { result in
+      
+      switch result {
+        case .success(let data):
+
+          guard let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController else { return }
+
+          let placeInfo = PlaceInfo.init(placeID: placeId, data: data)
+          
+          vc.placeInfo = placeInfo
+          
+          self.navigationController?.pushViewController(vc, animated: true, completion: {
+            LoadingIndicator.hide()
+          })
+          
+        case .failure(let statusCode):
+          print(statusCode)
+      }
+    }
+  }
+  
+  
 }
 
 extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegate {

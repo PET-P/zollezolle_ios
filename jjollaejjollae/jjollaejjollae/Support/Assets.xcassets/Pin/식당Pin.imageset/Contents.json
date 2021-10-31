@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "Property 1=식당.pdf",
+      "filename" : "식당Pin.pdf",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

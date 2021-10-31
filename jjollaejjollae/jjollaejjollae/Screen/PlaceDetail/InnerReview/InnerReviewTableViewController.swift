@@ -29,16 +29,26 @@ extension ReviewListDataType {
 
 class InnerReviewTableViewController: UITableViewController {
   
-  weak var placeDetailTableVC: PlaceDetailTableViewController?
+//  var placeDetailTableVC: PlaceDetailTableViewController? {
+//    guard let vc = parent as? PlaceDetailTableViewController else { return nil }
+//
+//    return vc
+//  }
   
-  var reviewList: ReviewListDataType?
+//  var mainImage: UIImage?
+  
+  var placeInfo: PlaceInfo?
+  
+//  var reviewCount: Int?
+  
+//  var reviewList: ReviewListDataType?
 
   @IBOutlet weak var numOfReviewsLabel: UILabel! {
     didSet {
       
-      let numbOfReviews = reviewList?.numOfReviews ?? 0
+      let numOfReviews = placeInfo?.reviewCount ?? 0
       
-      numOfReviewsLabel.text = "총 \(numbOfReviews)개의 후기"
+      numOfReviewsLabel.text = "총 \(numOfReviews)개의 후기"
     }
   }
   
@@ -46,25 +56,26 @@ class InnerReviewTableViewController: UITableViewController {
   
   @IBOutlet weak var showAllReviewsButton: UIButton! {
     didSet {
-      guard let reviewList = reviewList else {
+      
+      guard let placeInfo = placeInfo, !placeInfo.reviewList.value.isEmpty else {
         
         showAllReviewsButton.isEnabled = false
+        chevronRightImageVIew.isHidden = true
+        
         return
       }
-      
-      if reviewList.value.isEmpty {
-        
-        showAllReviewsButton.isEnabled = false
-      } else {
-        
-        showAllReviewsButton.setTitle("후기 \(reviewList.numOfReviews)개 모두 보기", for: .normal)
-      }
+
+      showAllReviewsButton.setTitle("\(placeInfo.reviewCount)개의 후기 모두 보기 ", for: .normal)
     }
   }
+  
+  @IBOutlet weak var chevronRightImageVIew: UIImageView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.rowHeight = 114
+    
+//    parent as? Detail
   }
   
   // MARK: - IBAction
@@ -77,15 +88,28 @@ class InnerReviewTableViewController: UITableViewController {
 
   @IBAction func didTapCreateReviewButton(_ sender: UIButton) {
     
+    guard let token = UserManager.shared.userIdandToken?.token else {
+      
+      let controller = UIAlertController(title: "로그인 필요 🔑", message: "회원만 볼수 있는 페이지에요.", preferredStyle: .alert)
+      
+      let okAction = UIAlertAction(title: "알겠어요", style: .default, handler: nil)
+      
+      controller.addAction(okAction)
+      
+      self.present(controller, animated: true, completion: nil)
+      
+      return
+    }
+    
     guard let vc = CreateReviewViewController.loadFromStoryboard() as? CreateReviewViewController else { return }
     
-    vc.mainImage = placeDetailTableVC?.mainImageView.image
+    vc.placeInfo = placeInfo
     
-    vc.placeTitle = placeDetailTableVC?.placeInfo?.title
+    vc.placeTitle = placeInfo?.title
     
-    vc.placeId = placeDetailTableVC?.placeInfo?.id
+    vc.placeId = placeInfo?.id
     
-    vc.category = placeDetailTableVC?.placeInfo?.category
+    vc.category = placeInfo?.category
     
     vc.modalPresentationStyle = .fullScreen
     
@@ -95,8 +119,6 @@ class InnerReviewTableViewController: UITableViewController {
   @IBAction func didTapShowAllReviewsButton(_ sender: UIButton) {
     
     guard let vc = AllReviewsTableViewController.loadFromStoryboard() as? AllReviewsTableViewController else { return }
-    
-    vc.reviewList = reviewList
     
     self.parent?.navigationController?.pushViewController(vc, animated: true)
   }
@@ -111,9 +133,9 @@ class InnerReviewTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       // #warning Incomplete implementation, return the number of rows
     
-    guard let reviewList = reviewList else { return 0 }
+    guard let reviewList = placeInfo?.reviewList else { return 0 }
     
-    return reviewList.numOfReviews > 3 ? 3 : reviewList.numOfReviews
+    return reviewList.numOfReviews > 2 ? 2 : reviewList.numOfReviews
   }
   
   // MARK: - Table view delegate
@@ -123,7 +145,7 @@ class InnerReviewTableViewController: UITableViewController {
     /**
      리뷰 0개일때 대응
      */
-    if let review = reviewList?.value[indexPath.row] {
+    if let review = placeInfo?.reviewList.value[indexPath.row] {
       
       guard let innerReviewCell = tableView.dequeueReusableCell(withIdentifier: InnerReviewTableViewCell.identifier, for: indexPath) as? InnerReviewTableViewCell else { return UITableViewCell() }
       

@@ -12,6 +12,8 @@ import SwiftyJSON
 
 class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINavigationControllerDelegate {
   
+  var placeInfo: PlaceInfo?
+  
   var mainImage: UIImage?
   
   var placeTitle: String?
@@ -169,9 +171,9 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
   
   func setUpMainImageView() {
     
-    guard let image = mainImage else { return }
+    guard let partialURL = placeInfo?.imageURLs.first else { return }
     
-    mainImageView.image = image
+    mainImageView.setImage(with: partialURL)
   }
   
   func setUpPlaceTitle() {

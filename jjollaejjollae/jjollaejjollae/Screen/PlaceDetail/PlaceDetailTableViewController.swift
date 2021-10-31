@@ -48,10 +48,10 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
   
   @IBOutlet weak var innerReviewCellHeightConstraint: NSLayoutConstraint!
   
+  // MARK: - Life Cycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-//    tableView.tableHeaderView?.heightAnchor.
     
     setUpTableViewHeader()
     
@@ -67,8 +67,6 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
   /**
    테이블뷰의 헤더뷰의 정보를 채워넣는다
    */
-  
- 
   
   func setUpTableViewHeader() {
     
@@ -87,7 +85,7 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
       starWidthConstraint.constant = 0
       ratingLabel.text = "아직 등록된 평점이 없어요.😭"
     } else {
-      ratingLabel.text = "\(placeInfo.reviewPoint)(\(placeInfo.reviewCount))"
+      ratingLabel.text = "\(String(format: "%.1f", placeInfo.reviewPoint))(\(placeInfo.reviewCount))"
     }
   }
   
@@ -112,6 +110,11 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
       let marker = NMFMarker()
       
       marker.position = NMGLatLng(lat: lat, lng: lng)
+      
+      if let categoryType = CategoryType(rawValue: placeInfo.category),
+         let image = UIImage(named: categoryType.ImageDescription) {
+        marker.iconImage = NMFOverlayImage.init(image: image )
+      }
       
       marker.mapView = mapView
     }
@@ -140,12 +143,15 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
     if let vc = segue.destination as? InnerReviewTableViewController {
       
-      vc.placeDetailTableVC = self
-      vc.reviewList = placeInfo?.reviewList ?? ReviewCollection(value: [])
+      vc.placeInfo = placeInfo
+      
     }
   }
+  
+  // MARK: - IBAction
   
   /**
    [더 보기] 버튼을 클릭하면 해당 셀을 확장하거나 축소한다
@@ -170,6 +176,7 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
     
     self.navigationController?.popViewController(animated: true)
   }
+  
   /**
    리뷰 개수에 맞게 셀의 높이를 조정한다
    */
@@ -193,14 +200,6 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
     }
     
   }
-  
-  
-  
-  
-  
-  
-  
-  
 
   // MARK: - Table view data source
 

@@ -1,17 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "6c235a54-456c-4e1c-9019-a55625c4ab86.jpg",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "attraction.jpg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
