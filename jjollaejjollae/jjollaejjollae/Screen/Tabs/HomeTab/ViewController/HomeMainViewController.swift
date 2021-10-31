@@ -24,24 +24,7 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   
   @IBOutlet weak var mainLogoImageView: UIImageView!
   
-  @IBOutlet weak var mainImageView: UIImageView! {
-    didSet {
-      print(userManager.userInfo)
-      mainImageView.image = UIImage(named:"IMG_5869")!
-      //      // TODO: 프로필 사진 설정
-      //      guard let userInfo = userManager.userInfo else { return }
-      //
-      //      guard let pet = userInfo.pets.filter({ petData in
-      //        petData.isRepresent
-      //      }).first else { return }
-      //
-      //      guard let imageUrl = pet.imageUrl else { return }
-      //
-      //      mainImageView.setImage(with: imageUrl)
-      //
-      //      return
-    }
-  }
+  @IBOutlet weak var mainImageView: UIImageView!
   
   
   @IBOutlet weak var mainScrollView: UIScrollView! {
@@ -112,6 +95,8 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     
     super.viewDidLoad()
     
+    NotificationCenter.default.addObserver(self, selector: #selector(changeMainImage), name: UserManager.didSetAppUserNotification, object: nil)
+    
     updateRepresentedPet()
     
     mainScrollView.delegate = self
@@ -158,6 +143,21 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   }
   
   // MARK: - Custom
+  
+  @objc func changeMainImage() {
+    
+    guard let userInfo = userManager.userInfo else { return }
+
+    guard let pet = userInfo.pets.filter({ petData in
+      petData.isRepresent
+    }).first else { return }
+
+    guard let imageUrl = pet.imageUrl else { return }
+
+    mainImageView.setImage(with: imageUrl)
+
+    return
+  }
   
   private func updateMainImageView() {
     

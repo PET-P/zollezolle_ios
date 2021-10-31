@@ -14,6 +14,8 @@ class UserManager {
   
   static var shared = UserManager()
   
+  static let didSetAppUserNotification = NSNotification.Name("didSetAppUserNotification")
+  
   private init() { }
   
   /**
@@ -38,7 +40,11 @@ class UserManager {
     }
   }
   
-  private var appUser: UserData?
+  private var appUser: UserData? {
+    didSet {
+      NotificationCenter.default.post(name: UserManager.didSetAppUserNotification, object: nil)
+    }
+  }
   
   var isLogged: Bool {
     get {
