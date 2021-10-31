@@ -88,6 +88,19 @@ class InnerReviewTableViewController: UITableViewController {
 
   @IBAction func didTapCreateReviewButton(_ sender: UIButton) {
     
+    guard let token = UserManager.shared.userIdandToken?.token else {
+      
+      let controller = UIAlertController(title: "로그인 필요 🔑", message: "회원만 볼수 있는 페이지에요.", preferredStyle: .alert)
+      
+      let okAction = UIAlertAction(title: "알겠어요", style: .default, handler: nil)
+      
+      controller.addAction(okAction)
+      
+      self.present(controller, animated: true, completion: nil)
+      
+      return
+    }
+    
     guard let vc = CreateReviewViewController.loadFromStoryboard() as? CreateReviewViewController else { return }
     
     vc.placeInfo = placeInfo
