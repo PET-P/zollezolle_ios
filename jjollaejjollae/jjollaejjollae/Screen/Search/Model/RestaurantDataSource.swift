@@ -48,6 +48,7 @@ extension RestaurantDataSource: SearchResultCellDelegate {
       }
       wishListMainVC.setPlaceInfo(placeId: placeId)
       wishListMainVC.setMode(mode: .fromCell)
+      wishListMainVC.delegate = CallerVC as? SearchDataReceiveable
       CallerVC?.present(wishListMainVC, animated: true, completion: nil)
     }
   }
