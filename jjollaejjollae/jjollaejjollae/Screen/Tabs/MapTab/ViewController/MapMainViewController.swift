@@ -8,14 +8,57 @@
 import UIKit
 import NMapsMap
 
-class MapMainViewController: UIViewController, StoryboardInstantiable {
+final class MapMainViewController: UIViewController, StoryboardInstantiable {
   
-  // MARK: - IBOutlets
+  // MARK: - Variable
   
-  @IBOutlet weak var mapView: NMFMapView!
+  private let locationService: LocationService = LocationService.shared
+  
+  private var currentLocation: (latitude: Double, longitude: Double)? {
+    didSet {
+      
+      guard let currentLocation = currentLocation else { return }
+      
+      locationOverlay?.location = NMGLatLng(lat: currentLocation.latitude, lng: currentLocation.longitude)
+      
+      let latlng = NMGLatLng(lat: currentLocation.latitude, lng: currentLocation.longitude)
+      let cameraUpdate = NMFCameraUpdate(scrollTo: latlng)
+      
+      mapView.moveCamera(cameraUpdate)
+    }
+  }
+  
+  @IBOutlet weak var mapView: NMFMapView! {
+    
+    didSet {
+      
+      locationOverlay = mapView.locationOverlay
+      mapView.logoAlign = .rightBottom
+    }
+  }
+  
+  var locationOverlay: NMFLocationOverlay? {
+    
+    /**
+     오버레이 초기 값은 서울시청임
+     */
+    
+    didSet {
+      locationOverlay?.hidden = false
+      
+      locationOverlay?.icon = NMFOverlayImage(image: UIImage(named: "locationOverlayIcon") ?? UIImage(systemName: "circle.circle.fill")!)
+      
+      locationOverlay?.location = NMGLatLng(lat: LocationName.seoul.anchorPoint.latitude, lng: LocationName.seoul.anchorPoint.longitude)
+    }
+  }
+  
+  let mapDefautlZoomLevel: Double = 13
+  
   
   @IBOutlet weak var locationSelectTextField: UITextField! {
     didSet {
+      
+      locationSelectTextField.delegate = self
       
       locationSelectTextField.superview!.layer.masksToBounds = true
       
@@ -26,6 +69,9 @@ class MapMainViewController: UIViewController, StoryboardInstantiable {
       locationSelectTextField.textAlignment = .center
       
       locationSelectTextField.inputView = locationPickerView
+      locationSelectTextField.inputAccessoryView = locationPickerView.toolbar
+      
+      locationPickerView.reloadAllComponents()
       
       /**
       커서 지우기
@@ -35,16 +81,22 @@ class MapMainViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
-  lazy var locationPickerView: UIPickerView = {
-    let pickerView = UIPickerView()
+  lazy var locationPickerView: ToolbarPickerView = {
+    
+    let pickerView = ToolbarPickerView()
     
     pickerView.dataSource = self
     pickerView.delegate = self
+    pickerView.toolbarDelegate = self
+    
+
     
     return pickerView
   }()
   
   @IBOutlet weak var filterScrollView: UIScrollView!
+  
+  @IBOutlet weak var currentLocationButton: UIButton!
   
   @IBOutlet weak var containerView: UIView!
   
@@ -55,7 +107,9 @@ class MapMainViewController: UIViewController, StoryboardInstantiable {
   let containerViewOriginalHeight: CGFloat = 240
   
   var containerViewMaximumHeight: CGFloat {
+    
     get {
+      
       view.frame.maxY - filterScrollView.frame.minY
     }
   }
@@ -76,28 +130,34 @@ class MapMainViewController: UIViewController, StoryboardInstantiable {
     
     didSet {
       
-//      var markerList: [NMFMarker] = []
-//
-//      /**
-//       SearchResultData 에 좌표값이 제대로 들어있어야 작동함
-//       - .location.coordinates << 요위치
-//       */
-//
-//      nearPlaceList.forEach { resultData in
-//
-//        let coordinate = resultData.location.coordinates
-//
-//        guard coordinate.count == 2 else { return }
-//
-//        let latiitude = coordinate[0]
-//        let longitude = coordinate[1]
-//
-//        let marker = NMFMarker(position: NMGLatLng(lat: latiitude, lng: longitude))
-//
-//        markerList.append(marker)
-//      }
-//
-//      nearPlaceMarkerList = markerList
+      bottomSheetViewController?.nearPlaceList = nearPlaceList
+      
+      var markerList: [NMFMarker] = []
+
+      /**
+       SearchResultData 에 좌표값이 제대로 들어있어야 작동함
+       - .location.coordinates << 요위치
+       */
+
+      nearPlaceList.forEach { resultData in
+
+        let coordinate = resultData.location.coordinates
+
+        guard coordinate.count == 2 else { return }
+
+        let latiitude = coordinate[1]
+        let longitude = coordinate[0]
+
+        let marker = NMFMarker(position: NMGLatLng(lat: latiitude, lng: longitude))
+        
+        if let image = UIImage(named: resultData.category.ImageDescription) {
+          marker.iconImage = NMFOverlayImage(image: image)
+        }
+        
+        markerList.append(marker)
+      }
+
+      nearPlaceMarkerList = markerList
     }
   }
   
@@ -122,11 +182,23 @@ class MapMainViewController: UIViewController, StoryboardInstantiable {
     }
   }
   
+  var bottomSheetViewController: RecommendedPlaceViewController? {
+    
+    guard let vc = self.children.first! as? RecommendedPlaceViewController else { return nil }
+    
+    return vc
+    
+  }
+  
   // MARK: - Life Cycle
   
   override func viewDidLoad() {
     
     super.viewDidLoad()
+    
+    addObservers()
+    
+    setUpInitialUserLocation()
     
     setUpFilterScrollView()
     
@@ -134,34 +206,43 @@ class MapMainViewController: UIViewController, StoryboardInstantiable {
     
     setUpContainerView()
     
-    /**
-     마커 찍히는 코드 북한쪽으로 대각선 2시방향 (줌아웃해서 보셈)
-     */
-    
-//    var markerList = [NMFMarker]()
-//
-//    for i in (1...10) {
-//
-//      let constant: Double = Double(i)
-//
-//      let latitude = LocationName.seoul.anchorPoint.latitude + constant
-//      let longitude = LocationName.seoul.anchorPoint.longitude + constant
-//
-//      markerList.append(NMFMarker(position: NMGLatLng(lat: latitude, lng: longitude)))
-//    }
-//
-//    nearPlaceMarkerList = markerList
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     if let vc = segue.destination as? RecommendedPlaceViewController {
+      
       vc.mapMainVC = self
+      vc.nearPlaceList = nearPlaceList
     }
     
   }
   
+  // MARK: - IBAction
+  
+  @IBAction func didTapCurrentLocationButton(_ sender: Any) {
+    
+    locationService.updateCurrentLocation()
+  }
+  
+  
   // MARK: - Customs
+  
+  func addObservers() {
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(onUpdateCurrentLocation(noti:)), name: LocationService.didUpateCurrentLocation, object: nil)
+    
+  }
+  
+  func setUpInitialUserLocation() {
+    
+    currentLocation = (locationService.currentLocation.latitude , locationService.currentLocation.longitude)
+    
+    guard let currentLocation = currentLocation else { return }
+    
+    fetchNearPlaces(with: (currentLocation.latitude, currentLocation.longitude))
+  }
+  
   
   /**
     스크롤 뷰 설정 메서드
@@ -300,21 +381,29 @@ class MapMainViewController: UIViewController, StoryboardInstantiable {
   
         case .success(let data):
     
-            self.nearPlaceList = data
-    //
-    //        self.searchResultDataSource.newDataList = self.newDataList
-    //        self.SearchResultTableView.dataSource = self.searchResultDataSource
-            // indicator 끄기
-    
-          case .failure(let error):
+          self.nearPlaceList = data
+
+        case .failure(let error):
             print("error \(error)")
-          }
         }
+    }
+  }
+  
+  
+  @objc func onUpdateCurrentLocation(noti: Notification) {
+    
+    guard let coordinate = noti.object as? (latitude: Double, longitude: Double) else { return }
+    
+    currentLocation = (coordinate.latitude, coordinate.longitude)
+    
+    guard let currentLocation = currentLocation else { return }
+    
+    fetchNearPlaces(with: (currentLocation.latitude, currentLocation.longitude))
   }
 }
 
 // MARK: - UIPickerViewDataSource, UIPickerViewDelegate
-extension MapMainViewController: UIPickerViewDataSource, UIPickerViewDelegate  {
+extension MapMainViewController: UIPickerViewDataSource, UIPickerViewDelegate, ToolbarPickerViewDelegate  {
   
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
@@ -330,16 +419,44 @@ extension MapMainViewController: UIPickerViewDataSource, UIPickerViewDelegate  {
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     
-    let locationName = LocationName.allCases[row]
+//    let locationName = LocationName.allCases[row]
+//
+//    locationSelectTextField.placeholder = locationName.description
+//
+//    let (targetLatitude,targetLongitude) = locationName.anchorPoint
+//
+//    let cameraUpdate =  NMFCameraUpdate.init(position: NMFCameraPosition(NMGLatLng(lat: targetLatitude, lng: targetLongitude),
+//                                                                              zoom: mapDefautlZoomLevel))
+//
+//    mapView.moveCamera(cameraUpdate) { [weak self] value in
+//
+//      /**
+//      카메라의 이동이 사용자 방해없이 완료된 경우
+//       */
+//      if !value {
+//
+//        guard let self = self else { return }
+//
+//        self.fetchNearPlaces(with: (latitude: targetLatitude, longitude: targetLongitude))
+//      }
+//
+//    }
+//
+//    locationSelectTextField.resignFirstResponder()
+  }
+  
+  func didTapDone() {
     
-    locationSelectTextField.placeholder = locationName.description
+    let selectedRowIndex = locationPickerView.selectedRow(inComponent: 0)
     
-    let (targetLatitude,targetLongitude) = locationName.anchorPoint
+    guard (0 ..< LocationName.allCases.count).contains(selectedRowIndex) else { return }
     
-    let cameraUpdate =  NMFCameraUpdate.init(position: NMFCameraPosition.init(NMGLatLng(lat: targetLatitude, lng: targetLongitude), zoom: 10))
+    let (targetLatitude,targetLongitude) = LocationName.allCases[selectedRowIndex].anchorPoint
+    
+    let cameraUpdate =  NMFCameraUpdate.init(position: NMFCameraPosition(NMGLatLng(lat: targetLatitude, lng: targetLongitude),
+                                                                              zoom: mapDefautlZoomLevel))
     
     mapView.moveCamera(cameraUpdate) { [weak self] value in
-      
       /**
       카메라의 이동이 사용자 방해없이 완료된 경우
        */
@@ -349,11 +466,24 @@ extension MapMainViewController: UIPickerViewDataSource, UIPickerViewDelegate  {
         
         self.fetchNearPlaces(with: (latitude: targetLatitude, longitude: targetLongitude))
       }
-      
     }
-
+    
+    locationSelectTextField.placeholder = LocationName.allCases[selectedRowIndex].description
+    
+    locationSelectTextField.resignFirstResponder()
+  }
+  
+  func didTapCancel() {
+    
     locationSelectTextField.resignFirstResponder()
   }
   
 
+}
+
+extension MapMainViewController: UITextFieldDelegate {
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    return false
+  }
 }

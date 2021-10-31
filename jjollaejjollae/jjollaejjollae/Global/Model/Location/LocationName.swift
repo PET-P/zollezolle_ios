@@ -42,6 +42,9 @@ enum LocationName: CaseIterable {
   var anchorPoint: Coordinate {
     
     // FIXME: ReverseGeoCoding 적용해보기
+    /**
+     각 지역의 시청, 도청으로 설정함
+     */
     switch self {
       case .seoul:
         return (37.56665666626182, 126.9784119250907)

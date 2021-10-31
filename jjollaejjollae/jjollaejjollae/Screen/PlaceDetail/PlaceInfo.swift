@@ -38,7 +38,9 @@ extension PlaceInfo {
   - Author: 박우찬
    */
   
-  init(placeID: String, json: JSON) {
+  init(placeID: String, data: JSON) {
+    
+    let json = JSON(data)
     
     let address = json["address"].arrayValue.map {
       $0.stringValue

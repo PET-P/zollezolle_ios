@@ -497,7 +497,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="accomodation" width="700" height="360"/>
+        <image name="accomodation" width="1400" height="720"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="star" width="29" height="29"/>
         <systemColor name="systemBackgroundColor">
