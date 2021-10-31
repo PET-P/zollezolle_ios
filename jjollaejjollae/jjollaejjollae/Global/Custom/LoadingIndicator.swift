@@ -21,7 +21,7 @@ class LoadingIndicator {
   class func show() {
     let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
     let popupView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-    popupView.animate(withGIFNamed: "loading2", animationBlock:  {
+    popupView.animate(withGIFNamed: "loading", animationBlock:  {
       print("dog is walking🐕")
     })
     let loadingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
