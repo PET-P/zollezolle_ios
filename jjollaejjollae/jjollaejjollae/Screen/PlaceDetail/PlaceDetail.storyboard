@@ -318,16 +318,16 @@
         <scene sceneID="a3I-gY-bDE">
             <objects>
                 <tableViewController id="bxf-uj-dmC" customClass="InnerReviewTableViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="was-Ja-Hh3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="was-Ja-Hh3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="508"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Gge-YC-OMv">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="106"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gqD-jx-c1m">
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="gqD-jx-c1m">
                                     <rect key="frame" x="16" y="33" width="80" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="후기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKt-QO-FQY">
@@ -337,7 +337,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="총 #개의 후기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkj-YH-8a3">
-                                            <rect key="frame" x="0.0" y="23.5" width="80" height="16.5"/>
+                                            <rect key="frame" x="0.0" y="26.5" width="80" height="13.5"/>
                                             <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -368,26 +368,34 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEo-VK-Mii">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <rect key="frame" x="141.5" y="0.0" width="131" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="56" id="eXb-7e-lTo"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="14"/>
-                                    <state key="normal" title="후기 52개 모두 보기 ">
+                                    <color key="tintColor" red="0.45738846059999999" green="0.54566711189999995" blue="0.39859527350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="0개의 후기 모두 보기">
                                         <color key="titleColor" red="0.50975722069999996" green="0.50983387229999999" blue="0.50974047180000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
-                                    <state key="disabled" title="아직 등록된 리뷰가 없어요.😭"/>
+                                    <state key="disabled" title="등록된 후기가 아직 없어요 😭"/>
                                     <connections>
                                         <action selector="didTapShowAllReviewsButton:" destination="bxf-uj-dmC" eventType="touchUpInside" id="5ce-MJ-dGW"/>
                                     </connections>
                                 </button>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JSi-A2-wde">
+                                    <rect key="frame" x="278" y="22" width="12.5" height="16.5"/>
+                                    <color key="tintColor" red="0.45738846059999999" green="0.54566711189999995" blue="0.39859527350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="aEo-VK-Mii" firstAttribute="centerX" secondItem="7Nt-3X-acu" secondAttribute="centerX" id="1PP-uk-7wO"/>
+                                <constraint firstItem="aEo-VK-Mii" firstAttribute="centerY" secondItem="7Nt-3X-acu" secondAttribute="centerY" id="2jA-59-s0N"/>
                                 <constraint firstItem="aEo-VK-Mii" firstAttribute="top" secondItem="7Nt-3X-acu" secondAttribute="top" id="R29-y1-YLA"/>
                                 <constraint firstAttribute="bottom" secondItem="aEo-VK-Mii" secondAttribute="bottom" id="SwF-MP-JYA"/>
-                                <constraint firstItem="aEo-VK-Mii" firstAttribute="leading" secondItem="7Nt-3X-acu" secondAttribute="leading" id="hvZ-QD-hvK"/>
-                                <constraint firstAttribute="trailing" secondItem="aEo-VK-Mii" secondAttribute="trailing" id="qL2-yb-TGF"/>
+                                <constraint firstItem="JSi-A2-wde" firstAttribute="centerY" secondItem="7Nt-3X-acu" secondAttribute="centerY" id="UuM-O1-2bb"/>
+                                <constraint firstItem="JSi-A2-wde" firstAttribute="leading" secondItem="aEo-VK-Mii" secondAttribute="trailing" constant="5.5" id="dkq-qf-zvs"/>
+                                <constraint firstItem="aEo-VK-Mii" firstAttribute="leading" relation="lessThanOrEqual" secondItem="7Nt-3X-acu" secondAttribute="leading" constant="141.5" id="fnW-xF-Q1L"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -486,6 +494,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="chevronRightImageVIew" destination="JSi-A2-wde" id="WuF-Uh-TxU"/>
                         <outlet property="createReviewButton" destination="jI7-rh-fkE" id="QQ4-5A-TGn"/>
                         <outlet property="numOfReviewsLabel" destination="wkj-YH-8a3" id="ypy-nd-Twf"/>
                         <outlet property="showAllReviewsButton" destination="aEo-VK-Mii" id="SmD-tb-uHT"/>
@@ -493,12 +502,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="It5-ky-icc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528" y="42"/>
+            <point key="canvasLocation" x="527.536231884058" y="41.517857142857139"/>
         </scene>
     </scenes>
     <resources>
         <image name="accomodation" width="1400" height="720"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="star" width="29" height="29"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

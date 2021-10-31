@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "accommoSelect.pdf",
+      "filename" : "숙소PinSelect.pdf",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }

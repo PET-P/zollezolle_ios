@@ -27,7 +27,7 @@ struct PlaceInfo {
 //  var room: [Any]?
   var reviewList: ReviewListDataType
   
-  var reviewPoint: Int
+  var reviewPoint: Float
   var reviewCount: Int
 }
 
@@ -58,7 +58,7 @@ extension PlaceInfo {
     
     let category = json["category"].stringValue
     
-    let reviewPoint = json["reviewPoint"].intValue
+    let reviewPoint = json["reviewPoint"].floatValue
     let reviewCount = json["reviewCount"].intValue
     
     let location: [Double] = json["location"]["coordinates"].arrayValue.map {

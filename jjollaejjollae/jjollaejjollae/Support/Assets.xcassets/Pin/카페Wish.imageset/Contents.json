@@ -1,15 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "wishCafe.pdf",
+      "filename" : "카페Wish.pdf",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }
