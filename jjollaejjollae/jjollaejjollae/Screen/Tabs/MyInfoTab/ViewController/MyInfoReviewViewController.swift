@@ -220,12 +220,19 @@ class MyInfoReviewViewController: UIViewController, StoryboardInstantiable {
   
   // 지우고 바로 다음 즉시 업데이트가 안됨 이유는?
   @objc func deleteReview(_ notification: NSNotification) {
-    guard let deletedReviewIndex = notification.object as? Int else {return}
-    self.reviewTableView.beginUpdates()
-    self.reviewTableView.deleteRows(at: [IndexPath(row: deletedReviewIndex, section: 0)], with: .top)
-    self.reviewAndImageArray.remove(at: deletedReviewIndex)
-    self.reviewTableView.endUpdates()
-    print("삭제완료")
+    guard let deleteReviewIndex: Int = notification.userInfo?["index"] as? Int else {return}
+    guard let deleteReviewId: String = notification.userInfo?["reviewId"] as? String else {return}
+    guard let token = UserManager.shared.userIdandToken?.token else {return}
+    APIService.shared.deleteReview(token: token, reviewId: deleteReviewId) { [weak self] (result) in
+      guard let self = self else {return}
+      switch result {
+      case .success:
+        print("성공")
+        self.setupReviews()
+      case .failure(let error):
+        print(error)
+      }
+    }
   }
   
   private func setupReviews() {
@@ -297,6 +304,8 @@ extension MyInfoReviewViewController: UITableViewDelegate, UITableViewDataSource
     
     cell.reviewLabel.text = item.text
     cell.reviewId = item.id
+    cell.reviewIndex = indexPath.row
+    
     cell.dateLabel.text = item.createdAt.components(separatedBy: "T").first!
     cell.titleLabel.text = item.place.title
     if item.imagesURL.count == 0 {
@@ -310,7 +319,6 @@ extension MyInfoReviewViewController: UITableViewDelegate, UITableViewDataSource
         tag.isHidden = true
       }
     }
-    cell.reviewIndex = indexPath.row
     
     return cell
   }

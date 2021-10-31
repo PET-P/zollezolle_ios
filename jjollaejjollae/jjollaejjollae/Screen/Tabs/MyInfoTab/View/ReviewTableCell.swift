@@ -99,17 +99,6 @@ class ReviewTableCell: UITableViewCell {
   }
   
   @IBAction func didTapDeleteButton(_ sender: UIButton!) {
-    guard let token = UserManager.shared.userIdandToken?.token else {return}
-    APIService.shared.deleteReview(token: token, reviewId: reviewId) { [weak self] (result) in
-      guard let self = self else {return}
-      switch result {
-      case .success:
-        print("성공")
-        NotificationCenter.default.post(name: NSNotification.Name("deleteReviewNotification"), object: self.index)
-      case .failure(let error):
-        print(error)
-      }
-    }
+    NotificationCenter.default.post(name: NSNotification.Name("deleteReviewNotification"), object: nil, userInfo: ["index": self.reviewIndex, "reviewId": self.reviewId])
   }
-  
 }
