@@ -309,10 +309,8 @@ extension MyInfoReviewViewController: UITableViewDelegate, UITableViewDataSource
     cell.dateLabel.text = item.createdAt.components(separatedBy: "T").first!
     cell.titleLabel.text = item.place.title
     if item.imagesURL.count == 0 {
-      cell.reviewImageView.setImage(with: item.imagesURL.last ?? "noImage.png")
-    } else {
       cell.reviewImageView.isHidden = true
-    }
+    } 
     let satisfactionFactor: [String] = item.satisfaction
     for tag in cell.tags {
       if !satisfactionFactor.contains(tag.currentTitle!){
