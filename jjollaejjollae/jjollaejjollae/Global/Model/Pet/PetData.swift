@@ -13,7 +13,8 @@ import CoreMedia
 struct PetData: Codable, Hashable {
   let id: String
   var sex: Sex
-  var name, type: String
+  var name: String?
+  var type: String
   var size: Size
   var age: Int?
   var breed: String?
