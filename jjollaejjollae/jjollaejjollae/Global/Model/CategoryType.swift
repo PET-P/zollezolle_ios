@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CategoryType: String, Codable {
+enum CategoryType: String, Codable, CaseIterable{
   case accommodation = "숙소"
   case cafe = "카페"
   case landmark = "명소"
