@@ -41,7 +41,7 @@ extension SearchResultData {
     reviewCount = (try? container.decode(Int.self, forKey: .reviewCount)) ?? 0
     reviewPoint = (try? container.decode(Double.self, forKey: .reviewPoint)) ?? 0.0
     isWish = (try? container.decode(Bool.self, forKey: .isWish)) ?? false
-    location  = (try? container.decode(LocationData.self, forKey: .location)) ?? LocationData(type: "Point", coordinates: [127, 36])
+    location  = (try? container.decode(LocationData.self, forKey: .location)) ?? LocationData(type: "Point", coordinates: [])
     imagesUrl = (try? container.decode([String].self, forKey: .imagesUrl)) ?? []
   }
 }
