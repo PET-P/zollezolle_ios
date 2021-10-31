@@ -34,7 +34,11 @@ class InfoView: UIView {
     }
   }
   @IBOutlet weak var locationImageView: UIImageView!
-  @IBOutlet weak var heartButton: UIButton!
+  @IBOutlet weak var heartButton: UIButton! {
+    didSet {
+      if UserManager.shared.userInfo == nil { heartButton.isHidden = true }
+    }
+  }
   private var CallerVC: UIViewController?
   private var placeId = "0"
   internal func setCallerVC(viewController: UIViewController) {

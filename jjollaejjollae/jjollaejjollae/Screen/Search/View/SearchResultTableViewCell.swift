@@ -59,6 +59,11 @@ class SearchResultTableViewCell: UITableViewCell {
   }
   @IBOutlet weak var heartButton: UIButton! {
     didSet {
+      if UserManager.shared.userInfo == nil {
+        heartButton.isHidden = true
+      } else {
+        heartButton.isHidden = false
+      }
       heartButton.setImage(UIImage(named: "pinkLike"), for: .selected)
       heartButton.setImage(UIImage(named: "grayLike"), for: .normal)
     }
