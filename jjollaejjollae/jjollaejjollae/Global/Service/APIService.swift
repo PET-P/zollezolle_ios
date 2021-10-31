@@ -121,9 +121,14 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func deletePlaceInFolder(token: String, userId: String, folderId: String, placeId: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
-    let target = APITarget.deletePlaceInFolder(token: token, userId: userId, folderId: folderId, placeId: placeId)
-    judgeGenericResponse(target, completion: completion)
+  func deletePlaceInFolder(token: String, userId: String, folderId: String?, placeId: String, completion: @escaping((NetworkResult<WishlistData>) -> (Void))) {
+    if let folderId = folderId {
+      let target = APITarget.deletePlaceInFolder(token: token, userId: userId, folderId: folderId, placeId: placeId)
+      judgeGenericResponse(target, completion: completion)
+    } else {
+      let target = APITarget.deletePlaceInEntireFolder(token: token, userId: userId, placeId: placeId)
+      judgeGenericResponse(target, completion: completion)
+    }
   }
   
   func readUser(token: String, userId: String, completion: @escaping((NetworkResult<UserData>) -> (Void))) {
@@ -238,3 +243,4 @@ extension APIService {
   
   
 }
+

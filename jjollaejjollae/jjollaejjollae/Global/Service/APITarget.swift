@@ -61,6 +61,7 @@ enum APITarget {
   //담기 삭제
   case deletePlaceInFolder(token: String, userId: String, folderId: String, placeId: String)
   
+  case deletePlaceInEntireFolder(token: String, userId: String, placeId: String)
   
   /**
    - Author: 박우찬
@@ -132,7 +133,7 @@ extension APITarget: TargetType {
       return "/reviews"
     case .deleteReview(_, let reviewId):
       return "/reviews/\(reviewId)"
-    case .deletePlaceInFolder(_, let userId, _,_):
+    case .deletePlaceInFolder(_, let userId, _,_), .deletePlaceInEntireFolder(_, let userId, _):
       return "/wishlist/folder/\(userId)"
     case .nearPlace:
       return "/places/near"
@@ -162,7 +163,7 @@ extension APITarget: TargetType {
     case .patchPetInfo, .patchFolder, .patchUser:
       return .patch
       
-    case .deleteFolder, .deleteUser, .deleteReview, .deletePlaceInFolder:
+    case .deleteFolder, .deleteUser, .deleteReview, .deletePlaceInFolder, .deletePlaceInEntireFolder:
       return .delete
     }
   }
@@ -211,6 +212,9 @@ extension APITarget: TargetType {
       return .requestParameters(parameters: ["userId": userId, "placeId": placeId, "folderId": folderId], encoding: JSONEncoding.default)
     case .deletePlaceInFolder(_, _, let folderId, let placeId):
       return .requestParameters(parameters: ["folderId": folderId, "placeId": placeId], encoding: URLEncoding.queryString)
+    
+    case .deletePlaceInEntireFolder(_, _, let placeId):
+      return .requestParameters(parameters: ["placeId": placeId], encoding: URLEncoding.queryString)
       
     case .search(_, let keyword, let page), .noLoginSearch(let keyword, let page ):
       return .requestParameters(parameters: ["keyword": keyword, "page": page], encoding: URLEncoding.queryString)
@@ -249,7 +253,7 @@ extension APITarget: TargetType {
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
       
-    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .deleteReview(let token, _):
+    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .deleteReview(let token, _), .deletePlaceInEntireFolder(let token,_,_):
       
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
       
