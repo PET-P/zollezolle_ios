@@ -158,7 +158,6 @@ class DogInfoViewController: FixModalViewController{
   //MARK: - Variables
   
   private let imagePickerController: UIImagePickerController = UIImagePickerController()
-  var mode = true
   private var sizeText: String = "소형" {
     didSet {
       petSizeButton.setTitle("\(sizeText)", for: .normal)

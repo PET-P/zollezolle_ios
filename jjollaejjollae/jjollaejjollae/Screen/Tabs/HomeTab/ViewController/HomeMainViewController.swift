@@ -26,23 +26,24 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   
   @IBOutlet weak var mainImageView: UIImageView! {
     didSet {
+      print(userManager.userInfo)
       mainImageView.image = UIImage(named:"IMG_5869")!
-//      // TODO: 프로필 사진 설정
-//      guard let userInfo = userManager.userInfo else { return }
-//
-//      guard let pet = userInfo.pets.filter({ petData in
-//        petData.isRepresent
-//      }).first else { return }
-//
-//      guard let imageUrl = pet.imageUrl else { return }
-//
-//      mainImageView.setImage(with: imageUrl)
-//
-//      return
+      //      // TODO: 프로필 사진 설정
+      //      guard let userInfo = userManager.userInfo else { return }
+      //
+      //      guard let pet = userInfo.pets.filter({ petData in
+      //        petData.isRepresent
+      //      }).first else { return }
+      //
+      //      guard let imageUrl = pet.imageUrl else { return }
+      //
+      //      mainImageView.setImage(with: imageUrl)
+      //
+      //      return
     }
   }
   
-
+  
   @IBOutlet weak var mainScrollView: UIScrollView! {
     didSet {
       
@@ -83,9 +84,9 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     // MainPhoto 유무 확인하는 로직
     return true
   }
-
+  
   /**
-      사용자가 설정한 대표 반려동물
+   사용자가 설정한 대표 반려동물
    */
   
   private var representedPet: PetData? {
@@ -97,14 +98,14 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   
   
   /**
-    Author : 박우찬
-    NibName 과 reuseIdentifier 를 동일하게 설정
+   Author : 박우찬
+   NibName 과 reuseIdentifier 를 동일하게 설정
    */
-//  private let homeLocationCellNibName = "HomeLocationCell"
+  //  private let homeLocationCellNibName = "HomeLocationCell"
   
-//  private let homeTipCellNibName = "HomeTipCell"
+  //  private let homeTipCellNibName = "HomeTipCell"
   
-
+  
   // MARK: - Life Cycle
   
   override func viewDidLoad() {
@@ -114,7 +115,7 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     updateRepresentedPet()
     
     mainScrollView.delegate = self
-
+    
     setUpLocationCollectionView()
     
     setUpHomeTipCollectionView()
@@ -176,7 +177,7 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   }
   
   /**
-    LocationCollectionView 기본 셋업 메서드
+   LocationCollectionView 기본 셋업 메서드
    */
   func setUpLocationCollectionView() {
     
@@ -198,8 +199,8 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   
   /**
    HoneyTipCollectionView 기본 셋업 메서드
-  */
- 
+   */
+  
   
   func setUpHomeTipCollectionView() {
     
@@ -222,7 +223,7 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   
   
   /**
-    RecommendedCollectionView 기본 셋업 메서드
+   RecommendedCollectionView 기본 셋업 메서드
    */
   
   func setUpRecommendedCollectionView() {
@@ -270,18 +271,18 @@ extension HomeMainViewController: UICollectionViewDataSource {
       
       switch self {
         
-        case .goodRestaurant:
-          return "맛집"
-        case .cafe:
-          return "카페"
-        case .attraction:
-          return "관광지"
-        case .accomodation:
-          return "숙소"
+      case .goodRestaurant:
+        return "맛집"
+      case .cafe:
+        return "카페"
+      case .attraction:
+        return "관광지"
+      case .accomodation:
+        return "숙소"
       }
     }
   }
-
+  
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
     if collectionView === locationCollectionView {
@@ -295,10 +296,10 @@ extension HomeMainViewController: UICollectionViewDataSource {
     if collectionView === recommendedPlaceCollectionView {
       return LocationType.allCases.count
     }
-
+    
     return 10
   }
-
+  
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
@@ -360,55 +361,65 @@ extension HomeMainViewController: UICollectionViewDelegate {
       
       switch UserManager.shared.userIdandToken {
         
-        case .some( _, let token):
+      case .some( _, let token):
+        
+        guard let token = token else { return }
+        
+        LoadingIndicator.show()
+        
+        APIService.shared.search(token: token, keyword: locationName, page: 0) { result in
           
-          guard let token = token else { return }
-          
-          APIService.shared.search(token: token, keyword: locationName, page: 0) { result in
+          switch result {
             
-            switch result {
-              
-            case .success(let data):
-              
-              guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
-              
-              print(self, data.result)
-              
-              nextVC.newDataList = data.result
-              
-              self.hidesBottomBarWhenPushed = true
-              
-              self.navigationController?.pushViewController(nextVC, animated: true)
-              
-            case .failure(let error):
-              
-              print(self, #function, error)
-            }
-          }
-          
-        case .none:
-          
-          APIService.shared.search(keyword: locationName, page: 0) { result in
+          case .success(let data):
             
-            switch result {
-              
-            case .success(let data):
-              
-              guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
-              
-              print(self, data.result)
-              
-              nextVC.newDataList = data.result
-              
-              self.hidesBottomBarWhenPushed = true
-              
-              self.navigationController?.pushViewController(nextVC, animated: true)
-              
-            case .failure(let error):
-              
-              print(self, #function, error)
+            guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
+            
+            print(self, data.result)
+            
+            nextVC.newDataList = data.result
+            
+            self.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(nextVC, animated: true) {
+              LoadingIndicator.hide()
             }
+            
+          case .failure(let error):
+            
+            print(self, #function, error)
+            LoadingIndicator.hide()
           }
+        }
+        
+      case .none:
+        
+        LoadingIndicator.show()
+        
+        APIService.shared.search(keyword: locationName, page: 0) { result in
+          
+          switch result {
+            
+          case .success(let data):
+            
+            guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
+            
+            print(self, data.result)
+            
+            nextVC.newDataList = data.result
+            
+            self.hidesBottomBarWhenPushed = true
+            
+            self.navigationController?.pushViewController(nextVC, animated: true) {
+              LoadingIndicator.hide()
+            }
+            
+          case .failure(let error):
+            
+            print(self, #function, error)
+            LoadingIndicator.hide()
+          }
+        }
       }
     }
     
@@ -432,65 +443,42 @@ extension HomeMainViewController: UICollectionViewDelegate {
     
     if collectionView === recommendedPlaceCollectionView {
       
-      let recommendName = ["맛집", "카페", "명소", "숙소"]
+      let recommendName = ["식당", "카페", "명소", "숙소"]
       
-      switch UserManager.shared.userIdandToken {
+      let lat = UserManager.shared.locationService.currentLocation.latitude
+      let lng = UserManager.shared.locationService.currentLocation.longitude
+      
+      LoadingIndicator.show()
+      
+      APIService.shared.nearPlace(latitude: lat, longitude: lng) { (result) in
         
-        case .some( _, let token):
+        switch result {
           
-          guard let token = token else { return }
+        case .success(let data):
           
-        APIService.shared.search(token: token, keyword: recommendName[indexPath.row], page: 0) { result in
-            
-            switch result {
-              
-            case .success(let data):
-              
-              guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
-              SearchManager.shared.searchText = recommendName[indexPath.row]
-              print(self, data.result)
-              
-              nextVC.newDataList = data.result
-              
-              self.hidesBottomBarWhenPushed = true
-              
-              self.navigationController?.pushViewController(nextVC, animated: true)
-              
-            case .failure(let error):
-              
-              print(self, #function, error)
-            }
-          }
+          SearchManager.shared.searchText = recommendName[indexPath.row]
           
-        case .none:
+          let filteredData = data.filter({ (data) in
+            return data.category.rawValue == recommendName[indexPath.row]
+          })
           
-        APIService.shared.search(keyword: recommendName[indexPath.row], page: 0) { result in
-            
-            switch result {
-              
-            case .success(let data):
-              
-              guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController & SearchDataReceiveable else { return }
-              
-              print(self, data.result)
-              SearchManager.shared.searchText = recommendName[indexPath.row]
-              nextVC.newDataList = data.result
-              
-              self.hidesBottomBarWhenPushed = true
-              
-              self.navigationController?.pushViewController(nextVC, animated: true)
-              
-            case .failure(let error):
-              
-              print(self, #function, error)
-            }
-          }
+          guard let nextVC = SearchResultViewController.loadFromStoryboard() as? SearchResultViewController else {return}
+          nextVC.setMode(from: self)
+          nextVC.newDataList = filteredData
+          
+          self.hidesBottomBarWhenPushed = true
+          
+          self.navigationController?.pushViewController(nextVC, animated: true) { LoadingIndicator.hide() }
+          
+        case .failure(let error):
+          
+          print(self, #function, error)
+          LoadingIndicator.hide()
+          
+        }
       }
-      
     }
-  
   }
-  
 }
 
 

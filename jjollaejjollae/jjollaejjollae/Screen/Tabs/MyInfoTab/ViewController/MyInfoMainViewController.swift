@@ -83,12 +83,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   lazy var disclosureIndicator: UIImageView = {
     let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
     imageview.contentMode = .scaleAspectFit
-    StorageService.shared.downloadUIImageWithURL(with: "//Users/abc/Desktop/Hack/애견동반숙소/애견카페/애견카페 세종시/헤이미쉬독/7ZGh1o63ZY7yX4Aes2VRFWil.jpg", imageCompletion: { (image) in
-      guard let image = image else {
-        return
-      }
-      imageview.image = image
-    })
+    imageview.image = UIImage(named: "disclosure Indicator")
     imageview.isUserInteractionEnabled = true
     imageview.translatesAutoresizingMaskIntoConstraints = false
     return imageview
