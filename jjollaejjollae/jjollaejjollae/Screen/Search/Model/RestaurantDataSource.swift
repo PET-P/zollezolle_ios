@@ -31,6 +31,16 @@ extension RestaurantDataSource: SearchResultCellDelegate {
   func didTapHeart(for placeId: String, like: Bool) {
     if like {
       likes[placeId] = false
+      guard let token = UserManager.shared.userIdandToken?.token,
+            let userId = UserManager.shared.userIdandToken?.userId else {return}
+      APIService.shared.deletePlaceInFolder(token: token, userId: userId, folderId: nil, placeId: placeId) { result in
+        switch result {
+        case .success(let data):
+          print(data)
+        case .failure(let error):
+          print(error)
+        }
+      }
     } else {
       likes[placeId] = true
       guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
@@ -56,7 +66,7 @@ extension RestaurantDataSource: SearchResultCellDelegate {
     cell.locationNameLabel.text = item.title
     cell.locationTypeLabel.text = nil
     cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"
-    cell.starPointLabel.text = " \(item.reviewPoint ?? 0)"
+    cell.starPointLabel.text = String(format: "%.1f", item.reviewPoint ?? 0)
     
     cell.isWish = likes[cell.placeId] == true
     newDataList[indexPath.row].isWish = likes[cell.placeId] == true //이것의 이유?

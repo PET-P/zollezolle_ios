@@ -65,7 +65,7 @@ class InfoView: UIView {
       placeId = data?.id ?? "0"
       addressLabel.text = data?.address[0...2].joined(separator: " ")
       locationNameLabel.text = data?.title
-      starPointLabel.text = "\(data?.reviewPoint ?? 0)"
+      starPointLabel.text = String(format: "%.1f", data?.reviewPoint ?? 0)
       numberOfReviewLabel.text = "\(data?.reviewCount ?? 0)"
       locationImageView.setImage(with: data?.imagesUrl.first ?? "default")
       if data?.isWish == true{
@@ -79,6 +79,16 @@ class InfoView: UIView {
     //여기서 db와통신? 해야하는지?
     if sender.isSelected == true {
       isWish = false
+      guard let token = UserManager.shared.userIdandToken?.token,
+            let userId = UserManager.shared.userIdandToken?.userId else {return}
+      APIService.shared.deletePlaceInFolder(token: token, userId: userId, folderId: nil, placeId: placeId) { result in
+        switch result {
+        case .success(let data):
+          print(data)
+        case .failure(let error):
+          print(error)
+        }
+      }
     } else  {
       isWish = true
       guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {

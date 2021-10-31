@@ -34,7 +34,16 @@ extension LandmarkDataSource: SearchResultCellDelegate {
     //WISHLIST: 프로퍼티리스트를 바로바로 update시키고싶다
     if like {
       likes[placeId] = false
-      
+      guard let token = UserManager.shared.userIdandToken?.token,
+            let userId = UserManager.shared.userIdandToken?.userId else {return}
+      APIService.shared.deletePlaceInFolder(token: token, userId: userId, folderId: nil, placeId: placeId) { result in
+        switch result {
+        case .success(let data):
+          print(data)
+        case .failure(let error):
+          print(error)
+        }
+      }
       //모델의 likes에 대한 Update
     } else {
       likes[placeId] = true
@@ -62,7 +71,7 @@ extension LandmarkDataSource: SearchResultCellDelegate {
     cell.locationNameLabel.text = item.title
     cell.locationTypeLabel.text = nil
     cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"
-    cell.starPointLabel.text = " \(item.reviewPoint ?? 0)"
+    cell.starPointLabel.text = String(format: "%.1f", item.reviewPoint ?? 0)
     
     cell.isWish = likes[cell.placeId] == true
     newDataList[indexPath.row].isWish = likes[cell.placeId] == true //이것의 이유?

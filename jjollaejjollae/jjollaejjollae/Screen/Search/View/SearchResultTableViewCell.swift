@@ -92,9 +92,9 @@ class SearchResultTableViewCell: UITableViewCell {
   // 그래서 결국에는 셀이 true false를 가지고있고
   // 셀의 상태를 계속봐서 버튼색을 초기화해주는 친구가 필요할 것 같다
   
-  override func prepareForReuse() {
-   cellImageView.image = UIImage.colorImage(color: CGColor.init(gray: 0.5, alpha: 0.5), size: cellImageView.bounds.size)
-  }
+//  override func prepareForReuse() {
+//   cellImageView.image = UIImage.colorImage(color: CGColor.init(gray: 0.5, alpha: 0.5), size: cellImageView.bounds.size)
+//  }
   
   weak var delegate : SearchResultCellDelegate?
   var index : Int? //얘를 key(디비에 장소의 id)
