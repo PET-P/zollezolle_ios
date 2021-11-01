@@ -29,19 +29,7 @@ extension ReviewListDataType {
 
 class InnerReviewTableViewController: UITableViewController {
   
-//  var placeDetailTableVC: PlaceDetailTableViewController? {
-//    guard let vc = parent as? PlaceDetailTableViewController else { return nil }
-//
-//    return vc
-//  }
-  
-//  var mainImage: UIImage?
-  
   var placeInfo: PlaceInfo?
-  
-//  var reviewCount: Int?
-  
-//  var reviewList: ReviewListDataType?
 
   @IBOutlet weak var numOfReviewsLabel: UILabel! {
     didSet {
@@ -75,7 +63,6 @@ class InnerReviewTableViewController: UITableViewController {
     super.viewDidLoad()
     tableView.rowHeight = 114
     
-//    parent as? Detail
   }
   
   // MARK: - IBAction
@@ -161,12 +148,11 @@ class InnerReviewTableViewController: UITableViewController {
   // MARK: - Table view data source
 
   override func numberOfSections(in tableView: UITableView) -> Int {
-      // #warning Incomplete implementation, return the number of sections
+    
       return 1
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      // #warning Incomplete implementation, return the number of rows
     
     guard let reviewList = placeInfo?.reviewList else { return 0 }
     

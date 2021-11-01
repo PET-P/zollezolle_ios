@@ -459,6 +459,8 @@
 		2834ED0526BFE39600E948B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD268227272FB6B2004156AD /* Place */,
+				DD268226272FB6A0004156AD /* Review */,
 				DD331F80272D86D100882E99 /* Location */,
 				DDF52B59272B4BCE0085D77D /* User */,
 				DDF52B58272B3F590085D77D /* Pet */,
@@ -783,6 +785,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DD268226272FB6A0004156AD /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				DDCABA1D272EE8E00055D7B5 /* TotalReview.swift */,
+				DDBC9867272ABB2500D33EC2 /* ReviewCollection.swift */,
+				DDE8DCC4272C63800036E8B0 /* UserReview.swift */,
+				DDC4BFEA272976C200431B91 /* Review.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		DD268227272FB6B2004156AD /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				DDC4BFE82729760700431B91 /* PlaceInfo.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
 		DD331F80272D86D100882E99 /* Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -816,9 +837,6 @@
 				DDBC9862272AB0DA00D33EC2 /* InnerReview */,
 				DDB38F212729652A004482B3 /* PlaceDetailTableViewController.swift */,
 				DDB38F232729653A004482B3 /* PlaceDetail.storyboard */,
-				DDC4BFE82729760700431B91 /* PlaceInfo.swift */,
-				DDC4BFEA272976C200431B91 /* Review.swift */,
-				DDBC9867272ABB2500D33EC2 /* ReviewCollection.swift */,
 			);
 			path = PlaceDetail;
 			sourceTree = "<group>";
@@ -837,7 +855,6 @@
 			children = (
 				DDBC9873272AEC4B00D33EC2 /* AllReviews */,
 				DDBC9872272AEC2000D33EC2 /* CreateReview */,
-				DDE8DCC4272C63800036E8B0 /* UserReview.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -858,7 +875,6 @@
 				DDBC9874272AEC8500D33EC2 /* AllReviewsTableViewController.swift */,
 				DDBC9876272AEC8F00D33EC2 /* AllReviews.storyboard */,
 				DDBC9878272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift */,
-				DDCABA1D272EE8E00055D7B5 /* TotalReview.swift */,
 			);
 			path = AllReviews;
 			sourceTree = "<group>";
