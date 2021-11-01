@@ -53,6 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           
           UserManager.shared.userIdandToken = (data.userId, newAccessToken)
           LoginManager.shared.saveInKeychain(account: newAccessToken, value: "accessToken")
+          LoginManager.shared.saveInKeychain(account: refreshToken, value: "refreshToken")
  
           let mainTabBar = MainTabBarController()
           
@@ -61,16 +62,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           
         case .failure(let error):
           
-          let navigationController = UINavigationController()
-          
-          let loginViewController = LoginViewController.loadFromStoryboard()
-          
-          navigationController.viewControllers = [loginViewController]
-          
-          navigationController.navigationBar.isHidden = true
-          
-          self?.window?.rootViewController = navigationController
-          self?.window?.makeKeyAndVisible()
+          if error == 401 {
+            let navigationController = UINavigationController()
+            
+            let loginViewController = LoginViewController.loadFromStoryboard()
+            
+            navigationController.viewControllers = [loginViewController]
+            
+            navigationController.navigationBar.isHidden = true
+            
+            self?.window?.rootViewController = navigationController
+            self?.window?.makeKeyAndVisible()
+          } else {
+            let mainTabBar = MainTabBarController()
+            
+            self?.window?.rootViewController = mainTabBar
+            self?.window?.makeKeyAndVisible()
+          }
         }
         
       }

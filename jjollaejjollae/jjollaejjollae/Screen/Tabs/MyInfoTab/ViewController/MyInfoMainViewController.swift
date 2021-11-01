@@ -41,7 +41,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     profileImageView.setImage(with: getRepresentImageUrl())
     infoTableView.tableFooterView = UIView(frame: CGRect.zero)
     if #available(iOS 15.0, *) {
-//      infoTableView.sectionHeaderTopPadding = 0
+      infoTableView.sectionHeaderTopPadding = 0
     }
     infoTableView.sectionFooterHeight = .leastNonzeroMagnitude
     infoTableView.alwaysBounceVertical = false

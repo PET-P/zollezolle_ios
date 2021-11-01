@@ -286,7 +286,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
     headerLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 6).isActive = true
     resultTableView.tableHeaderView = header
     if #available(iOS 15.0, *) {
-//      resultTableView.sectionHeaderTopPadding = 0
+      resultTableView.sectionHeaderTopPadding = 0
     }
   }
   

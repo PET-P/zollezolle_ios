@@ -12,7 +12,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     var window: UIWindow?
-    Thread.sleep(forTimeInterval: 1.0)
     if #available(iOS 13, *){
       
     } else {
