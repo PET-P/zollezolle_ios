@@ -36,6 +36,7 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable{
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     userInfo = UserManager.shared.userInfo
+
   }
   
   override func viewWillDisappear(_ animated: Bool) {

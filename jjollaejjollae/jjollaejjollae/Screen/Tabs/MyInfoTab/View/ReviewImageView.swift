@@ -10,7 +10,11 @@ import SwiftUI
 
 class ReviewImageView: UIView {
   private var imageArray: [UIImageView]!
-  private var myImageView: UIImageView!
+  private var myImages: [UIImage]?
+  
+  var myImageView: UIImageView!
+
+  
   private var verticalStackView: UIStackView?
   private var topHorizontalStackView: UIStackView?
   private var bottomHorizontalStackView: UIStackView?
@@ -23,19 +27,24 @@ class ReviewImageView: UIView {
     super.init(frame: frame)
   }
   
-  convenience init(frame: CGRect, numberOfImage: Int) {
+  convenience init(frame: CGRect, images: [UIImage]) {
     self.init(frame: frame)
-    switch numberOfImage {
+    switch images.count {
     case 1:
       OneImageInit(frame: frame)
+      myImages = images
     case 2:
       TwoImageInit(frame: frame)
+      myImages = images
     case 3:
       ThirdImageInit(frame: frame)
+      myImages = images
     case 4:
       FourthImageInit(frame: frame)
+      myImages = images
     default:
       OneImageInit(frame: frame)
+      myImages = images
     }
   }
   
@@ -52,15 +61,31 @@ class ReviewImageView: UIView {
     imageData = data
     self.imageNumber = imageNumber
   }
+  
+  func setImages(image: [UIImage]) {
+    self.myImages = image
+    guard let myImages = myImages else {
+      return
+    }
+    switch myImages.count {
+    case 1:
+      OneImageInit(frame: self.bounds)
+    case 2:
+      TwoImageInit(frame: self.bounds)
+    case 3:
+      ThirdImageInit(frame: self.bounds)
+    case 4:
+      FourthImageInit(frame: self.bounds)
+    default:
+      OneImageInit(frame: self.bounds)
+    }
+  }
 
   private func OneImageInit(frame: CGRect) {
-    print(#function)
+    
     let imageviewHeight: CGFloat = 343
     myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: imageviewHeight))
-//    guard let imageData = imageData?.first else {
-//      return
-//    }
-    myImageView.image = UIImage(data: defaultImageData!)
+    myImageView.image = myImages?.first ?? UIImage(data: defaultImageData!)!
     setupImage(imageView: myImageView)
     self.addSubview(myImageView)
     myImageView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -74,7 +99,7 @@ class ReviewImageView: UIView {
     let imageview2 = UIImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: (imageViewHeight - gap) / 2))
     imageArray = [myImageView, imageview2]
     for index in imageArray.indices {
-      imageArray[index].image = UIImage(data: (imageData?[index] ?? defaultImageData)!)
+    imageArray[index].image = myImages?[index] ?? UIImage(data: defaultImageData!)!
      setupImage(imageView: imageArray[index])
     }
     let stackView = UIStackView(arrangedSubviews: imageArray)
@@ -98,7 +123,7 @@ class ReviewImageView: UIView {
     let imageview3 = UIImageView(frame: CGRect(x: 0, y: 0, width: (imageViewWidth - gap) / 2, height: (imageViewHeight - gap) / 2))
     imageArray = [myImageView, imageview2, imageview3]
     for index in imageArray.indices {
-      imageArray[index].image = UIImage(data: (imageData?[index] ?? defaultImageData)!)
+      imageArray[index].image = myImages?[index] ?? UIImage(data: defaultImageData!)!
       setupImage(imageView: imageArray[index])
     }
     let horizontalStackView = UIStackView(arrangedSubviews: [imageArray[1], imageArray[2]])
@@ -123,8 +148,8 @@ class ReviewImageView: UIView {
     let imageview4 = UIImageView(frame: CGRect(x: 0, y: 0, width: (imageViewWidth - gap) / 2, height: (imageViewHeight - gap) / 2))
     imageArray = [myImageView, imageview2, imageview3, imageview4]
     for index in imageArray.indices {
-      imageArray[index].image = UIImage(data: (imageData?[index] ?? defaultImageData)!)
-      setupImage(imageView: imageArray[index])
+      imageArray[index].image = myImages?[index] ?? UIImage(data: defaultImageData!)!
+     setupImage(imageView: imageArray[index])
     }
     let horizontalStackView1 = UIStackView(arrangedSubviews: [imageArray[0], imageArray[1]])
     setupStackView(horizontalStackView1, axis: .horizontal)

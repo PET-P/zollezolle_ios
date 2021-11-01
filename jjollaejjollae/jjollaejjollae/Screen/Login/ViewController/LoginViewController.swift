@@ -17,7 +17,7 @@ import SafariServices
 @available(iOS 13.0, *)
 
 class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDelegate{
- 
+  
   private var naverUser: SocialUser?
   private var completionHandler: (() -> Void)?
   
@@ -187,8 +187,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
   
   @IBAction private func didTapGotoHome(_ sender: UIButton) {
     let sceneDelegate = UIApplication.shared.connectedScenes
-            .first!.delegate as! SceneDelegate
-        sceneDelegate.window!.rootViewController = MainTabBarController()
+      .first!.delegate as! SceneDelegate
+    sceneDelegate.window!.rootViewController = MainTabBarController()
   }
   
   @IBAction private func didTapNaverLoginButton(_ sender: UIButton) {
@@ -210,33 +210,29 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
           }
         } else {
           print("토큰 유효성 체크 성공")
+          self?.kakaoUserInfo(completion: { email, nick, phone in
+            APIService.shared.socialLogin(email: email, nick: nick, phone: phone,
+                                          accountType: AccountType.kakao) { [weak self]result in
+              guard let self = self else {return}
+              switch result {
+              case .success(let data):
+                guard let accessToken = data.accessToken else {return}
+                guard let refreshToken = data.refreshToken else {return}
+                LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
+                LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+                UserManager.shared.userIdandToken = (data.id, data.accessToken)
+                self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+              case .failure(let error):
+                print(error)
+              }
+            }
+          })
         }
       }
     } else {
       print("토큰없어서 로그인 필요")
       self.kakaoLogin()
     }
-    dispatchGroup.notify(queue: .main) { [weak self] in
-      self?.kakaoUserInfo(completion: { email, nick, phone in
-        APIService.shared.socialLogin(email: email, nick: nick, phone: phone,
-                                      accountType: AccountType.kakao) { result in
-          switch result {
-          case .success(let data):
-            guard let accessToken = data.accessToken else {return}
-            guard let refreshToken = data.refreshToken else {return}
-            LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
-            LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
-            UserManager.shared.userIdandToken = (data.id, data.accessToken)
-            guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
-                    DogInfoViewController else {return}
-            self?.navigationController?.pushViewController(dogInfoVC, animated: true)
-          case .failure(let error):
-            print(error)
-          }
-        }
-      })
-    }
-//    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
   }
   
   @IBAction private func didTapAppleLoginButton(_ sender: UIButton) {
@@ -281,9 +277,6 @@ extension LoginViewController {
       continueButtonColor = .themeGreen
       self.errorText = ""
     }
-    //    if continueButton.currentTitle == "회원가입" {
-    //      continueButton.setTitle("계속하기", for: .normal)
-    //    }
   }
 }
 
@@ -292,16 +285,12 @@ extension LoginViewController {
 extension LoginViewController: StoryboardInstantiable {
   func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
     print("[Success] : Success Naver Login")
-    getNaverInfo()
-    guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
-            DogInfoViewController else {return}
-    self.navigationController?.pushViewController(dogInfoVC, animated: true)
+    getNaverInfo(isUser: false)
   }
   
   func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
     print("이미 로그인되어있다")
-    getNaverInfo()
-    self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+    getNaverInfo(isUser: true)
   }
   
   func oauth20ConnectionDidFinishDeleteToken() {
@@ -313,7 +302,7 @@ extension LoginViewController: StoryboardInstantiable {
     print("Error : ", error.localizedDescription)
   }
   
-  private func getNaverInfo() {
+  private func getNaverInfo(isUser: Bool) {
     guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else {return}
     if !isValidAccessToken {
       return
@@ -356,6 +345,13 @@ extension LoginViewController: StoryboardInstantiable {
           LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
           LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
           UserManager.shared.userIdandToken = (data.id, accessToken)
+          if isUser {
+            self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+          } else {
+            guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
+                    DogInfoViewController else {return}
+            self.navigationController?.pushViewController(dogInfoVC, animated: true)
+          }
         case .failure(let error):
           print(error)
         }
@@ -368,28 +364,59 @@ extension LoginViewController: StoryboardInstantiable {
   private func kakaoLogin() {
     //로그인?
     if UserApi.isKakaoTalkLoginAvailable() {
-      // 카카오톡이 있는 경우
-      dispatchGroup.enter()
       UserApi.shared.loginWithKakaoTalk { [weak self] (oauthToken, error) in
         if let error = error {
           print(error)
         }
         else {
           print("loginwithKakaoTalk() success.")
-          self?.dispatchGroup.leave()
+          self?.kakaoUserInfo(completion: { email, nick, phone in
+            APIService.shared.socialLogin(email: email, nick: nick, phone: phone,
+                                          accountType: AccountType.kakao) { result in
+              switch result {
+              case .success(let data):
+                guard let accessToken = data.accessToken else {return}
+                guard let refreshToken = data.refreshToken else {return}
+                LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
+                LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+                UserManager.shared.userIdandToken = (data.id, data.accessToken)
+                guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
+                        DogInfoViewController else {return}
+                self?.navigationController?.pushViewController(dogInfoVC, animated: true)
+              case .failure(let error):
+                print(error)
+              }
+            }
+          })
           _ = oauthToken
         }
       }
     } else {
       // 카카오톡이 없는 경우
-      dispatchGroup.enter()
       UserApi.shared.loginWithKakaoAccount { [weak self] (oauthToken, error) in
         if let error = error {
           print(error)
         }
         else {
           print("loginWithKakaoTalk() success")
-          self?.dispatchGroup.leave()
+          self?.kakaoUserInfo(completion: { email, nick, phone in
+            APIService.shared.socialLogin(email: email, nick: nick, phone: phone,
+                                          accountType: AccountType.kakao) { result in
+              switch result {
+              case .success(let data):
+                guard let accessToken = data.accessToken else {return}
+                guard let refreshToken = data.refreshToken else {return}
+                LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
+                LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+                UserManager.shared.userIdandToken = (data.id, data.accessToken)
+                guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
+                        DogInfoViewController else {return}
+                self?.navigationController?.pushViewController(dogInfoVC, animated: true)
+              case .failure(let error):
+                print(error)
+              }
+            }
+          })
           _ = oauthToken
         }
       }
@@ -400,7 +427,6 @@ extension LoginViewController: StoryboardInstantiable {
     
     var email: String = ""
     var nick: String = ""
-    dispatchGroup.enter()
     UserApi.shared.me { [weak self] (user, error) in
       if let error = error {
         print("kakaoError \(error)")
@@ -412,9 +438,6 @@ extension LoginViewController: StoryboardInstantiable {
         guard let _nick = user?.properties?["nickname"] else { return }
         email = _email
         nick = _nick
-        self?.dispatchGroup.leave()
-      }
-      self?.dispatchGroup.notify(queue: .main) {
         completion(email, nick, "")
       }
     }
@@ -445,7 +468,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate,
     dispatchGroup.leave()
     
     // 로그인이 되서 관련 정보를 받아왔다면 블록풀어주고 우리서버와 통신시작
+    
     dispatchGroup.notify(queue: .main) {
+      
+      //애플아이디로그인은 첫로그인 이후에는 user-identification만 주기 때문에 분기처리를 고고링한다.
+      
       APIService.shared.socialLogin(email: ID, nick: nick, phone: "",
                                     accountType: AccountType.apple) { [self] (result) in
         switch result {
@@ -455,18 +482,22 @@ extension LoginViewController: ASAuthorizationControllerDelegate,
           LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
           LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
           UserManager.shared.userIdandToken = (data.id, accessToken)
-          guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
-                  DogInfoViewController else {return}
-          self.navigationController?.pushViewController(dogInfoVC, animated: true)
+          if givenName == "" && familyName == "" {
+            self.navigationController?.pushViewController(MainTabBarController(), animated: true)
+          } else {
+            guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
+                    DogInfoViewController else {return}
+            self.navigationController?.pushViewController(dogInfoVC, animated: true)
+          }
         case .failure(let error):
           print(error)
         }
       }
     }
   }
-  
-  //로그인 실패
-  func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-    print("Apple login failed")
-  }
+
+//로그인 실패
+func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+  print("Apple login failed")
+}
 }

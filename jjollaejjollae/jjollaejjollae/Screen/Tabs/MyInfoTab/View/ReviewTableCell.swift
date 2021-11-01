@@ -10,7 +10,7 @@ import UIKit
 class ReviewTableCell: UITableViewCell {
   
   static let nibName = "ReviewTableCell"
-  private var defaultImageData = UIImage(named: "IMG_4930")?.jpegData(compressionQuality: 0.5)
+  internal var defaultImageData = UIImage(named: "IMG_4930")!
   
   @IBOutlet weak var titleLabel: UILabel! {
     didSet {
@@ -69,20 +69,27 @@ class ReviewTableCell: UITableViewCell {
       }
     }
   }
+  @IBOutlet weak var reviewImageView: UIImageView!{
+    didSet {
+      setupImage(imageView: reviewImageView)
+    }
+  }
+  
   
   var reviewIndex: Int = 0
   var reviewId: String = ""
-  var imagesCount = 0
   
-  var reviewImageView = ReviewImageView()
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    reviewImageView = ReviewImageView(frame: CGRect(x: 0, y: 0, width: 300, height: 343), numberOfImage: imagesCount)
-    reviewImageView.translatesAutoresizingMaskIntoConstraints = false
-    contentStackView.insertArrangedSubview(reviewImageView, at: 2)
-    reviewImageView.trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor).isActive = true
-    reviewImageView.heightAnchor.constraint(equalToConstant: 343).isActive = true
+  }
+  
+  private func setupImage(imageView: UIImageView) {
+    imageView.contentMode = .scaleAspectFill
+    imageView.layer.masksToBounds = true
+    imageView.clipsToBounds = true
+    imageView.layer.cornerRadius = 10
+    imageView.translatesAutoresizingMaskIntoConstraints = false
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -92,7 +99,6 @@ class ReviewTableCell: UITableViewCell {
   }
   
   @IBAction func didTapDeleteButton(_ sender: UIButton!) {
-    NotificationCenter.default.post(name: NSNotification.Name("deleteReviewNotification"), object: index)
+    NotificationCenter.default.post(name: NSNotification.Name("deleteReviewNotification"), object: nil, userInfo: ["index": self.reviewIndex, "reviewId": self.reviewId])
   }
-  
 }

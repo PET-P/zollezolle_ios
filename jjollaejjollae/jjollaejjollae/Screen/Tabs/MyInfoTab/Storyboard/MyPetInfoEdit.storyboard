@@ -18,29 +18,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vpe-8W-BLO">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdm-gC-Lia">
+                                <rect key="frame" x="0.0" y="39" width="414" height="818"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="rM9-Il-2hh">
-                                        <rect key="frame" x="0.0" y="49" width="414" height="603.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="4NC-GX-LQb">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="614.5"/>
                                         <subviews>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bxo-QX-dp3" customClass="dogInfoCollectionView" customModule="jjollaejjollae" customModuleProvider="target">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="akw-Hc-fDL" customClass="dogInfoCollectionView" customModule="jjollaejjollae" customModuleProvider="target">
                                                 <rect key="frame" x="42" y="0.0" width="330" height="150"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="lJ1-MU-DPg"/>
+                                                    <constraint firstAttribute="width" constant="330" id="IhJ-Tz-iRB"/>
+                                                    <constraint firstAttribute="height" constant="150" id="t4p-tw-2sF"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FwH-4R-ppX">
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2CP-uU-qfT">
                                                     <size key="itemSize" width="128" height="128"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="carouseCell" id="uTn-ax-YcE" customClass="CaraouselCell" customModule="jjollaejjollae" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="carouseCell" id="gNS-lH-xGW" customClass="CaraouselCell" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LFU-Xu-4Gq">
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="G2p-97-x9J">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </collectionViewCellContentView>
@@ -48,37 +50,40 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DKO-t9-QFv">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUx-Ne-nVv">
                                                 <rect key="frame" x="87" y="157" width="240" height="2"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="2" id="3Zx-pY-vgd"/>
+                                                    <constraint firstAttribute="height" constant="2" id="ldk-GG-3p3"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nfF-KN-5ag">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vlu-IW-XTX">
                                                 <rect key="frame" x="139.5" y="166" width="135" height="40"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="92W-E9-0SW"/>
-                                                    <constraint firstAttribute="width" constant="135" id="Pyc-fk-llx"/>
+                                                    <constraint firstAttribute="width" constant="135" id="5hM-nB-9CV"/>
+                                                    <constraint firstAttribute="height" constant="40" id="Ss1-Ln-5fe"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="didChangePetName:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="Wgf-0y-9fp"/>
+                                                </connections>
                                             </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPQ-Jk-hfK">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRx-sk-qef">
                                                 <rect key="frame" x="87" y="213" width="240" height="14"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="14" id="eR2-fT-1mq"/>
+                                                    <constraint firstAttribute="height" constant="14" id="Xee-ac-zqs"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="ZqF-If-L0n">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="tQC-Ez-u88">
                                                 <rect key="frame" x="42" y="234" width="330" height="65.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1K0-U5-ctY">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="d5b-4J-NXl">
                                                         <rect key="frame" x="0.0" y="0.0" width="154.5" height="65.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPJ-XA-mox" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNo-Y4-t16" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="154.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -98,20 +103,23 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i7O-Xv-w9t">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="seb-zG-HF4">
                                                                 <rect key="frame" x="0.0" y="25.5" width="154.5" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="9Vm-Ln-9Zh"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="tst-k9-QKR"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                <connections>
+                                                                    <action selector="didChangePetAge:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="cvK-qH-qvg"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Qbc-yi-oMT">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XPr-aa-aYM">
                                                         <rect key="frame" x="175.5" y="0.0" width="154.5" height="65.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6p-cx-rvh" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYh-Zm-pbM" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="154.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -131,30 +139,30 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJA-ni-loY" customClass="JJollaeSwitch" customModule="jjollaejjollae" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqu-fZ-QA5" customClass="JJollaeSwitch" customModule="jjollaejjollae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="25.5" width="154.5" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="5E4-56-IsF"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="Iec-Mo-q5k"/>
                                                                 </constraints>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EnB-SM-TJJ">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZh-ia-CoX">
                                                 <rect key="frame" x="87" y="306.5" width="240" height="14"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="14" id="AX2-pz-ct8"/>
+                                                    <constraint firstAttribute="height" constant="14" id="p3w-oY-Og5"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="hSL-s1-TQl">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="Qsy-Xb-EIS">
                                                 <rect key="frame" x="42" y="327.5" width="330" height="65.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Sz7-qr-tdF">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xDS-YR-Nz4">
                                                         <rect key="frame" x="0.0" y="0.0" width="154.5" height="65.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlH-du-GMH" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uET-Jp-1Lw" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="154.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -174,16 +182,19 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNR-Ia-jaT">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqt-3f-4F8">
                                                                 <rect key="frame" x="0.0" y="25.5" width="154.5" height="40"/>
                                                                 <state key="normal" title="Button"/>
+                                                                <connections>
+                                                                    <action selector="didTapPetSizeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="z3c-DM-1de"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="g3o-Ut-GU4">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NcQ-eA-O1W">
                                                         <rect key="frame" x="175.5" y="0.0" width="154.5" height="65.5"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyg-c7-aG6" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjs-cd-Tg5" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="154.5" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -203,26 +214,29 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7X4-Ln-Eb5">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BvK-Ii-pzb">
                                                                 <rect key="frame" x="0.0" y="25.5" width="154.5" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                                <connections>
+                                                                    <action selector="didChangePetWeight:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="Tf5-VO-sfZ"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2t-2L-R0I">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAG-JB-2Vq">
                                                 <rect key="frame" x="87" y="400" width="240" height="14"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="14" id="VMo-1y-Rxt"/>
+                                                    <constraint firstAttribute="height" constant="14" id="dNt-Bl-s1l"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PCd-kc-Mhw">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3ZF-pi-mU3">
                                                 <rect key="frame" x="42" y="421" width="330" height="65.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cQ-fz-Pdm" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqT-Ph-myT" customClass="PaddingLabel" customModule="jjollaejjollae" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="330" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -242,83 +256,114 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrZ-D9-5xO">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbS-5R-8tV">
                                                         <rect key="frame" x="0.0" y="25.5" width="330" height="40"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avu-sa-Gdx">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KU3-A4-Pvm">
                                                                 <rect key="frame" x="0.0" y="0.0" width="99" height="40"/>
                                                                 <state key="normal" title="Button"/>
+                                                                <connections>
+                                                                    <action selector="didTapPetTypeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="EbL-e7-kko"/>
+                                                                </connections>
                                                             </button>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j79-86-qBK">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9hm-ZD-dLs">
                                                                 <rect key="frame" x="99" y="0.0" width="231" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="didChangePetBreed:" destination="Y6W-OH-hqX" eventType="editingDidEnd" id="FGE-hj-xCu"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="Avu-sa-Gdx" firstAttribute="width" secondItem="UrZ-D9-5xO" secondAttribute="width" multiplier="0.3" id="8fL-sf-Q0d"/>
+                                                            <constraint firstItem="KU3-A4-Pvm" firstAttribute="width" secondItem="mbS-5R-8tV" secondAttribute="width" multiplier="0.3" id="edL-zG-Vdg"/>
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyY-QG-Sml">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ep6-AM-45h">
                                                 <rect key="frame" x="87" y="493.5" width="240" height="32"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="SZJ-f3-NAf"/>
+                                                    <constraint firstAttribute="height" constant="32" id="bUH-HG-XGh"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dR1-BQ-AS5">
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="95" translatesAutoresizingMaskIntoConstraints="NO" id="IaA-zn-E4o">
                                                 <rect key="frame" x="42" y="532.5" width="330" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Eb3-pa-zgJ"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jct-9l-ljA">
-                                                <rect key="frame" x="87" y="589.5" width="240" height="14"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jot-qJ-FSy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="ScK-LM-mIK"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COu-xr-8ei">
+                                                        <rect key="frame" x="150" y="0.0" width="180" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="180" id="BtF-Ab-4aQ"/>
+                                                            <constraint firstAttribute="height" constant="50" id="b32-bM-XHa"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hRL-AT-NDy">
+                                                <rect key="frame" x="87" y="589.5" width="240" height="25"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="14" id="vP0-Fa-WRw"/>
+                                                    <constraint firstAttribute="height" constant="25" id="niS-9I-QsS"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="hSL-s1-TQl" firstAttribute="leading" secondItem="PCd-kc-Mhw" secondAttribute="leading" id="5jJ-9a-4Kh"/>
-                                            <constraint firstItem="ZqF-If-L0n" firstAttribute="leading" secondItem="hSL-s1-TQl" secondAttribute="leading" id="64S-co-CxD"/>
-                                            <constraint firstItem="hNR-Ia-jaT" firstAttribute="height" secondItem="i7O-Xv-w9t" secondAttribute="height" id="6e4-hq-b1p"/>
-                                            <constraint firstItem="Avu-sa-Gdx" firstAttribute="height" secondItem="i7O-Xv-w9t" secondAttribute="height" id="GOq-FZ-bIq"/>
-                                            <constraint firstItem="PCd-kc-Mhw" firstAttribute="leading" secondItem="dR1-BQ-AS5" secondAttribute="leading" id="GZh-qT-AOI"/>
-                                            <constraint firstItem="Bxo-QX-dp3" firstAttribute="leading" secondItem="i7O-Xv-w9t" secondAttribute="leading" id="GxP-1I-O8A"/>
-                                            <constraint firstItem="hSL-s1-TQl" firstAttribute="trailing" secondItem="PCd-kc-Mhw" secondAttribute="trailing" id="Q5I-i9-aMH"/>
-                                            <constraint firstItem="PCd-kc-Mhw" firstAttribute="trailing" secondItem="dR1-BQ-AS5" secondAttribute="trailing" id="bvc-1u-0U0"/>
-                                            <constraint firstAttribute="trailing" secondItem="dR1-BQ-AS5" secondAttribute="trailing" constant="42" id="gX8-MH-s45"/>
-                                            <constraint firstItem="dR1-BQ-AS5" firstAttribute="leading" secondItem="rM9-Il-2hh" secondAttribute="leading" constant="42" id="jyF-SU-Ten"/>
-                                            <constraint firstItem="ZqF-If-L0n" firstAttribute="trailing" secondItem="hSL-s1-TQl" secondAttribute="trailing" id="pGP-0V-a9L"/>
+                                            <constraint firstItem="KU3-A4-Pvm" firstAttribute="height" secondItem="seb-zG-HF4" secondAttribute="height" id="8bp-AI-DeX"/>
+                                            <constraint firstItem="Qsy-Xb-EIS" firstAttribute="leading" secondItem="3ZF-pi-mU3" secondAttribute="leading" id="D9P-ty-9hr"/>
+                                            <constraint firstItem="tQC-Ez-u88" firstAttribute="trailing" secondItem="Qsy-Xb-EIS" secondAttribute="trailing" id="EL2-gn-g3l"/>
+                                            <constraint firstAttribute="trailing" secondItem="IaA-zn-E4o" secondAttribute="trailing" constant="42" id="LNq-nk-vWS"/>
+                                            <constraint firstItem="mbS-5R-8tV" firstAttribute="leading" secondItem="IaA-zn-E4o" secondAttribute="leading" id="Tff-BA-zUz"/>
+                                            <constraint firstItem="Qsy-Xb-EIS" firstAttribute="trailing" secondItem="3ZF-pi-mU3" secondAttribute="trailing" id="X9L-Pp-dp4"/>
+                                            <constraint firstItem="IaA-zn-E4o" firstAttribute="leading" secondItem="4NC-GX-LQb" secondAttribute="leading" constant="42" id="br4-km-ksg"/>
+                                            <constraint firstItem="gqt-3f-4F8" firstAttribute="height" secondItem="seb-zG-HF4" secondAttribute="height" id="mJM-cB-OBD"/>
+                                            <constraint firstItem="tQC-Ez-u88" firstAttribute="leading" secondItem="Qsy-Xb-EIS" secondAttribute="leading" id="s4z-OD-peI"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="rM9-Il-2hh" firstAttribute="top" secondItem="Gtc-WW-8C9" secondAttribute="top" constant="49" id="7av-fF-nKK"/>
-                                    <constraint firstItem="rM9-Il-2hh" firstAttribute="bottom" secondItem="Gtc-WW-8C9" secondAttribute="bottom" id="C2h-Rc-Lca"/>
-                                    <constraint firstItem="rM9-Il-2hh" firstAttribute="width" secondItem="Vpe-8W-BLO" secondAttribute="width" id="CMQ-30-aUA"/>
-                                    <constraint firstItem="rM9-Il-2hh" firstAttribute="height" secondItem="Hb9-Qu-kTW" secondAttribute="height" priority="1" id="PmA-Go-I7Z"/>
-                                    <constraint firstItem="rM9-Il-2hh" firstAttribute="leading" secondItem="Gtc-WW-8C9" secondAttribute="leading" id="R40-vd-ado"/>
-                                    <constraint firstItem="rM9-Il-2hh" firstAttribute="trailing" secondItem="Gtc-WW-8C9" secondAttribute="trailing" id="hmQ-r7-DEj"/>
+                                    <constraint firstItem="4NC-GX-LQb" firstAttribute="leading" secondItem="9ff-Sg-lUb" secondAttribute="leading" id="1gG-oP-Zck"/>
+                                    <constraint firstItem="4NC-GX-LQb" firstAttribute="bottom" secondItem="9ff-Sg-lUb" secondAttribute="bottom" id="7MJ-L0-mfn"/>
+                                    <constraint firstItem="4NC-GX-LQb" firstAttribute="height" secondItem="Tjq-ia-hLU" secondAttribute="height" priority="1" id="8zF-gY-ESb"/>
+                                    <constraint firstItem="4NC-GX-LQb" firstAttribute="top" secondItem="9ff-Sg-lUb" secondAttribute="top" id="bJ1-eu-FJH"/>
+                                    <constraint firstItem="4NC-GX-LQb" firstAttribute="trailing" secondItem="9ff-Sg-lUb" secondAttribute="trailing" id="vOW-z9-END"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="Gtc-WW-8C9"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Hb9-Qu-kTW"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="9ff-Sg-lUb"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Tjq-ia-hLU"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Vpe-8W-BLO" secondAttribute="bottom" id="6Z9-CG-fLw"/>
-                            <constraint firstItem="Vpe-8W-BLO" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="6zY-UP-Sm7"/>
-                            <constraint firstItem="Vpe-8W-BLO" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="9I9-GB-ykE"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Vpe-8W-BLO" secondAttribute="trailing" id="dKs-sQ-BSF"/>
+                            <constraint firstItem="4NC-GX-LQb" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="W9l-g8-UWw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dogProfileCollectionView" destination="akw-Hc-fDL" id="fnV-oi-Jup"/>
+                        <outlet property="myPetNameTextField" destination="vlu-IW-XTX" id="K6U-CJ-0GW"/>
+                        <outlet property="petAgeLabel" destination="nNo-Y4-t16" id="y43-zB-TOF"/>
+                        <outlet property="petAgeTextField" destination="seb-zG-HF4" id="Pyu-L8-BLu"/>
+                        <outlet property="petGenderLabel" destination="OYh-Zm-pbM" id="wqM-rj-EVg"/>
+                        <outlet property="petGenderSwitch" destination="xqu-fZ-QA5" id="dOz-cx-eCt"/>
+                        <outlet property="petSizeButton" destination="gqt-3f-4F8" id="02M-bp-f34"/>
+                        <outlet property="petSizeLabel" destination="uET-Jp-1Lw" id="OXn-V0-ZrY"/>
+                        <outlet property="petTypeButton" destination="KU3-A4-Pvm" id="NjL-DC-B9m"/>
+                        <outlet property="petTypeLabel" destination="mqT-Ph-myT" id="HQM-2e-syi"/>
+                        <outlet property="petTypeTextField" destination="9hm-ZD-dLs" id="aSh-wk-sAa"/>
+                        <outlet property="petWeightLabel" destination="sjs-cd-Tg5" id="yh5-5q-ifO"/>
+                        <outlet property="petWeightTextField" destination="BvK-Ii-pzb" id="FT8-Fh-2Cp"/>
+                        <outlet property="refreshButton" destination="jot-qJ-FSy" id="31u-Kn-rTF"/>
+                        <outlet property="saveButton" destination="COu-xr-8ei" id="P2e-rC-K66"/>
+                        <outlet property="scrollView" destination="fdm-gC-Lia" id="2Wg-2b-bHd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

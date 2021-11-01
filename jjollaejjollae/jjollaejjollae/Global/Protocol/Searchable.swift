@@ -10,6 +10,7 @@ import UIKit
 protocol SearchDataReceiveable: NSObject {
   var newDataList: [SearchResultData] {get set}
   func gotoSearchVC(from caller: UIViewController)
+  func returnHeart(placeId: String)
 }
 
 extension SearchDataReceiveable {
@@ -27,9 +28,10 @@ extension Searchable {
   func sendRightVC(from viewController: UIViewController, by region: String, regionCount: Int, with result: [SearchResultData]) -> UIViewController {
     let afterTrimText = region.trimmingCharacters(in: .whitespacesAndNewlines)
     let locationlist = LocationName.allCases.map({$0.description})
+    let categoryList = CategoryType.allCases.map({$0.rawValue})
     
     //결과X, region도 없을때
-    if result.count == 0 && !locationlist.contains(afterTrimText.components(separatedBy: " ")[0]) {
+    if result.count == 0 && !locationlist.contains(afterTrimText.components(separatedBy: " ")[0]) && !categoryList.contains(SearchManager.shared.searchText) {
       guard let noSearchVC = SearchNoResultViewController.loadFromStoryboard() as? SearchNoResultViewController else {return SearchNoResultViewController()}
       return noSearchVC
     } else {

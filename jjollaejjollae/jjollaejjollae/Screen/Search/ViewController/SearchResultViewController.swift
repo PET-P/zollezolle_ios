@@ -14,7 +14,7 @@ enum Mode {
   case Fromsearch
 }
 
-class SearchResultViewController: UIViewController, StoryboardInstantiable, SearchDataReceiveable {
+class SearchResultViewController: UIViewController, StoryboardInstantiable {
   
   //MARK: - IBOUTLET
   
@@ -76,6 +76,22 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   
   //MARK: - variable & constant
   
+  lazy var noResultLabel: UILabel = {
+    let label = UILabel()
+    label.font = .robotoBold(size: 18)
+    label.textColor = .gray03
+    let modifiedCategoryName = SearchManager.shared.searchText.appendedPostPositionTextForCategory()
+    if let userInfo = UserManager.shared.userInfo {
+      label.text = "\(userInfo.nick)님의 주변에 \(modifiedCategoryName) 없습니다."
+    } else {
+      // guest
+      label.text = "이용자님의 주변에 \(modifiedCategoryName) 없습니다."
+    }
+    label.isHidden = true
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
   let goToMapButton: UIButton = {
     let goButton = UIButton()
     goButton.backgroundColor = UIColor.themeYellow
@@ -92,7 +108,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   
   
   var newDataList: [SearchResultData] = []
-  lazy var likes: [Int : Int] = [:]
+  lazy var likes: [String : Bool] = [:]
   private var fetchMore = true
   private var page = 0
   lazy var region = "제주"
@@ -163,7 +179,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
   func setMode(from viewController: UIViewController) {
     let text = SearchManager.shared.searchText
     switch text {
-    case "카페", "맛집", "레스토랑", "숙소", "명소", "관광지":
+    case "카페", "맛집", "레스토랑", "숙소", "명소", "관광지", "식당":
       self.mode = .Fromkeyword
     default:
       if viewController is SearchWithLocationViewController {
@@ -200,15 +216,19 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable, Sear
     goToMapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     goToMapButton.addTarget(self, action: #selector(tapGoToMapButton), for: .touchUpInside)
     updatedModeUI()
+    
+    //MARK: - noResultLabel setting
+    view.addSubview(noResultLabel)
+    noResultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    noResultLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    if mode == .Fromkeyword && newDataList.isEmpty {
+      noResultLabel.isHidden = false
+      goToMapButton.isHidden = true
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    LoadingIndicator.show()
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-      LoadingIndicator.hide()
-    }
   }
   
   
@@ -604,6 +624,8 @@ extension SearchResultViewController: UITableViewDelegate {
     
     let placeId = newDataList[indexPath.row].id
     
+    LoadingIndicator.show()
+    
     APIService.shared.fetchPlaceInfo(placeId: placeId) { result in
       
       switch result {
@@ -615,10 +637,13 @@ extension SearchResultViewController: UITableViewDelegate {
           
           vc.placeInfo = placeInfo
           
-          self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true) {
+          LoadingIndicator.hide()
+        }
           
         case .failure(let statusCode):
           print(statusCode)
+          LoadingIndicator.hide()
       }
     }
   }
@@ -631,6 +656,59 @@ extension SearchResultViewController: UITextFieldDelegate, Searchable {
     gotoSearchVC(from: self)
   }
 }
+
+//MARK: - PROTOCOL SearchDataReceiveable
+
+extension SearchResultViewController: SearchDataReceiveable {
+  func returnHeart(placeId: String) {
+    
+    var returnHeartIndex = 0
+    for index in newDataList.indices {
+      if newDataList[index].id == placeId {
+        newDataList[index].isWish = false
+        likes[placeId] = false
+        returnHeartIndex = index
+        return
+      }
+    }
+    
+    switch mode {
+    case .Fromkeyword:
+      self.searchResultDataSource.newDataList = newDataList
+      self.dataList = self.searchResultDataSource.newDataList
+      resultTableView.beginUpdates()
+      resultTableView.reloadRows(at: [IndexPath(row: returnHeartIndex, section: 0)], with: .none)
+      resultTableView.endUpdates()
+    case .Fromlocation:
+      if restaurantButton.isSelected {
+        self.restaurantDataSource.newDataList = newDataList
+        self.dataList = self.restaurantDataSource.newDataList
+      } else if accommodationButton.isSelected {
+        self.accommodationDataSource.newDataList = newDataList
+        self.dataList = self.accommodationDataSource.newDataList
+      } else if cafeButton.isSelected {
+        self.cafeDataSource.newDataList = newDataList
+        self.dataList = self.cafeDataSource.newDataList
+      } else {
+        self.landmarkDataSource.newDataList = newDataList
+        self.dataList = self.landmarkDataSource.newDataList
+      }
+      resultTableView.beginUpdates()
+      resultTableView.reloadRows(at: [IndexPath(row: returnHeartIndex, section: 0)], with: .none)
+      resultTableView.endUpdates()
+    case .Fromsearch:
+      self.searchResultDataSource.newDataList = newDataList
+      self.dataList = self.searchResultDataSource.newDataList
+      resultTableView.beginUpdates()
+      resultTableView.reloadRows(at: [IndexPath(row: returnHeartIndex, section: 0)], with: .none)
+      resultTableView.endUpdates()
+    }
+    
+    
+  }
+}
+
+
 
 
 

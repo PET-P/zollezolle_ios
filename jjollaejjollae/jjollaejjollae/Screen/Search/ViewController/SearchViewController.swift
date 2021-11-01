@@ -145,6 +145,7 @@ extension SearchViewController: UITextFieldDelegate {
     guard let searchText = searchTextField.text else {return true}
     searchManager.searchText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
     searchManager.saveSearchHistory(with: searchTextField.text)
+    LoadingIndicator.show()
     if let token = LoginManager.shared.loadFromKeychain(account: "accessToken") {
       APIService.shared.search(token: token, keyword: searchText, page: 0) { result in
         switch result{
@@ -153,12 +154,16 @@ extension SearchViewController: UITextFieldDelegate {
           print(self, data.result)
           nextVC.newDataList = data.result
           self.hidesBottomBarWhenPushed = true
-          self.navigationController?.pushViewController(nextVC, animated: true)
+          self.navigationController?.pushViewController(nextVC, animated: true) {
+            LoadingIndicator.hide()
+          }
         case .failure(let error):
           print(self, #function, error)
+          LoadingIndicator.hide()
         }
       }
     } else {
+      LoadingIndicator.show()
       APIService.shared.search(keyword: searchText, page: 0) { (result) in
         switch result {
         case .success(let data):
@@ -166,9 +171,12 @@ extension SearchViewController: UITextFieldDelegate {
           nextVC.newDataList = data.result
           SearchManager.shared.searchText = searchText
           self.hidesBottomBarWhenPushed = true
-          self.navigationController?.pushViewController(nextVC, animated: true)
+          self.navigationController?.pushViewController(nextVC, animated: true) {
+            LoadingIndicator.hide()
+          }
         case .failure(let error):
           print(self, #function, error)
+          LoadingIndicator.hide()
         }
       }
     }

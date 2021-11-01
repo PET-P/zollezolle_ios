@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class SearchWithLocationViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate, Searchable, SearchDataReceiveable {
+class SearchWithLocationViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate, Searchable {
   
   var newDataList: [SearchResultData] = [] {
     didSet {
@@ -39,6 +39,7 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
       headView.backgroundColor = .themePaleGreen
     }
   }
+  
   @IBOutlet weak var searchTextField: UITextField! {
     didSet {
       searchTextField.setRounded(radius: nil)
@@ -47,13 +48,16 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
       searchTextField.delegate = self
     }
   }
+  
   @IBOutlet weak var backButton: UIView!
+  
   @IBOutlet weak var headerLabel: UILabel! {
     didSet {
       headerLabel.font = .robotoBold(size: 18)
       headerLabel.textColor = .gray02
     }
   }
+  
   @IBOutlet weak var separateLine: UIView! {
     didSet {
       separateLine.backgroundColor = .gray06
@@ -75,6 +79,7 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
       locationLabel.font = .robotoBold(size: 18)
     }
   }
+  
   @IBOutlet weak var locationNumLabel: UILabel! {
     didSet {
       locationNumLabel.text = "178개의 장소"
@@ -82,6 +87,7 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
       locationNumLabel.font = .robotoMedium(size: 12)
     }
   }
+  
   @IBOutlet weak var notFoundLabel: UILabel! {
     didSet {
       notFoundLabel.font = .robotoRegular(size: 16)
@@ -133,6 +139,7 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
   }
   
   @objc func didTapLocationView(_ sender: Any?) {
+    LoadingIndicator.show()
     APIService.shared.getFilterPlace(region: region, category: .accommodation, filter: "리뷰 많은순", page: 0) { [weak self] (result) in
       guard let self = self else {return}
       switch result {
@@ -142,9 +149,12 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
         nextVC.setMode(from: self)
         nextVC.newDataList = data
         nextVC.setPlaceCount(count: self.locationNum)
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        self.navigationController?.pushViewController(nextVC, animated: true) {
+          LoadingIndicator.hide()
+        }
       case .failure(let error):
         print("error ", error)
+        LoadingIndicator.hide()
       }
     }
   }
@@ -159,8 +169,25 @@ extension SearchWithLocationViewController: UITableViewDelegate, UITableViewData
   func didTapHeart(for placeId: String, like: Bool) {
     if like {
       likes[placeId] = true
+      guard let token = UserManager.shared.userIdandToken?.token,
+            let userId = UserManager.shared.userIdandToken?.userId else {return}
+      APIService.shared.deletePlaceInFolder(token: token, userId: userId, folderId: nil, placeId: placeId) { result in
+        switch result {
+        case .success(let data):
+          print(data)
+        case .failure(let error):
+          print(error)
+        }
+      }
     } else {
       likes[placeId] = false
+      guard let wishListMainVC = WishlistMainViewController.loadFromStoryboard() as? WishlistMainViewController else {
+        return
+      }
+      wishListMainVC.setPlaceInfo(placeId: placeId)
+      wishListMainVC.setMode(mode: .fromCell)
+      wishListMainVC.delegate = self
+      self.present(wishListMainVC, animated: true, completion: nil)
     }
   }
   
@@ -180,7 +207,8 @@ extension SearchWithLocationViewController: UITableViewDelegate, UITableViewData
     cell.locationNameLabel.text = item.title
     cell.locationTypeLabel.text = nil
     cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"
-    cell.starPointLabel.text = " \(item.reviewPoint ?? 0)"
+    cell.starPointLabel.text =  String(format: "%.1f", item.reviewPoint ?? 0)
+   
     
     cell.isWish = likes[cell.placeId] == true
     newDataList[indexPath.row].isWish = likes[cell.placeId] == true //이것의 이유?
@@ -212,7 +240,7 @@ extension SearchWithLocationViewController: UITableViewDelegate, UITableViewData
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
     let placeId = newDataList[indexPath.row].id
-    
+    LoadingIndicator.show()
     APIService.shared.fetchPlaceInfo(placeId: placeId) { result in
       
       switch result {
@@ -224,10 +252,13 @@ extension SearchWithLocationViewController: UITableViewDelegate, UITableViewData
           
           vc.placeInfo = placeInfo
           
-          self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true) {
+          LoadingIndicator.hide()
+        }
           
         case .failure(let statusCode):
           print(statusCode)
+          LoadingIndicator.hide()
       }
     }
   }
@@ -281,5 +312,25 @@ extension SearchWithLocationViewController {
         fetchData()
       }
     }
+  }
+}
+
+extension SearchWithLocationViewController: SearchDataReceiveable {
+  
+  func returnHeart(placeId: String) {
+    
+    var returnHeartIndex = 0
+    for index in newDataList.indices {
+      if newDataList[index].id == placeId {
+        newDataList[index].isWish = false
+        likes[placeId] = false
+        returnHeartIndex = index
+        break
+      }
+    }
+    resultTableView.beginUpdates()
+    resultTableView.reloadRows(at: [IndexPath(row: returnHeartIndex, section: 0)], with: .none)
+    resultTableView.endUpdates()
+    
   }
 }

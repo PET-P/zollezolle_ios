@@ -81,25 +81,33 @@ extension RecentSearchViewController: UITableViewDelegate {
     let text =  list[indexPath.row]
     SearchManager.shared.searchText = text
     if let token = UserManager.shared.userIdandToken?.token {
+      LoadingIndicator.show()
       APIService.shared.search(token: token, keyword: text, page: 0) { result in
         switch result{
         case .success(let data):
           guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
           if data.result.count != 0 {nextVC.newDataList = data.result}
-          self.navigationController?.pushViewController(nextVC, animated: true)
+          self.navigationController?.pushViewController(nextVC, animated: true) {
+            LoadingIndicator.hide()
+          }
         case .failure(let error):
           print("error: ",error)
+          LoadingIndicator.hide()
         }
       }
     } else {
+      LoadingIndicator.show()
       APIService.shared.search(keyword: text, page: 0) { (result) in
         switch result {
         case .success(let data):
           guard let nextVC = self.sendRightVC(from: self, by: data.region, regionCount: data.regionCount, with: data.result) as? UIViewController&SearchDataReceiveable else {return}
           if data.result.count != 0 {nextVC.newDataList = data.result}
-          self.navigationController?.pushViewController(nextVC, animated: true)
+          self.navigationController?.pushViewController(nextVC, animated: true) {
+            LoadingIndicator.hide()
+          }
         case .failure(let error):
           print(self, #function, error)
+          LoadingIndicator.hide()
         }
       }
     }

@@ -335,7 +335,7 @@ extension WishlistViewController: UITableViewDataSource, SearchResultCellDelegat
     cell.locationNameLabel.text = item.title
     cell.locationTypeLabel.text = nil
     cell.numberOfReviewsLabel.text = "(\(item.reviewCount))"
-    cell.starPointLabel.text = " \(item.reviewPoint ?? 0)"
+    cell.starPointLabel.text = String(format: "%.1f", item.reviewPoint ?? 0)
     
     cell.isWish = likes[cell.placeId] == true
     

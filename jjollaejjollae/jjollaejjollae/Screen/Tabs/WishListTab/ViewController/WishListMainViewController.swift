@@ -72,13 +72,18 @@ class WishlistMainViewController: UIViewController {
     self.mode = mode
   }
   func setPlaceInfo(placeId: String){
-    // region이랑 placeId 가져오기
+    // placeId 가져오기
     self.placeId = placeId
   }
   
+  weak var delegate: SearchDataReceiveable?
+  
   
   @IBAction func didTapCloseButton(_ sender: UIButton) {
-    self.dismiss(animated: true, completion: nil)
+    
+    self.dismiss(animated: true) {
+      self.delegate?.returnHeart(placeId: self.placeId)
+    }
   }
   
   @IBAction func didTapAddWishlist(_ sender: UIButton) {
@@ -158,13 +163,17 @@ extension WishlistMainViewController: UICollectionViewDelegate {
     switch mode {
     case .fromTab:
       guard let wishlistVC = WishlistViewController.loadFromStoryboard() as? WishlistViewController else {return}
+      LoadingIndicator.show()
       APIService.shared.readFolder(token: token, userId: userId, folderId: folderId) { (result) in
         switch result {
         case .success(let data):
           wishlistVC.folderData = data
-          self.navigationController?.pushViewController(wishlistVC, animated: true)
+          self.navigationController?.pushViewController(wishlistVC, animated: true) {
+            LoadingIndicator.hide()
+          }
         case .failure(let error):
           print(error)
+          LoadingIndicator.hide()
         }
       }
     case .fromCell:

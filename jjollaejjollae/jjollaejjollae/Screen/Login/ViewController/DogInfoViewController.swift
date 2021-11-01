@@ -158,7 +158,6 @@ class DogInfoViewController: FixModalViewController{
   //MARK: - Variables
   
   private let imagePickerController: UIImagePickerController = UIImagePickerController()
-  var mode = true
   private var sizeText: String = "소형" {
     didSet {
       petSizeButton.setTitle("\(sizeText)", for: .normal)
@@ -552,7 +551,7 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
       return}
     self.dogProfile[self.middleIndex.row].imageData = newImage.jpegData(compressionQuality: 0.1)
     self.cellType[self.middleIndex.row] = State.old
-    self.dogProfile[self.middleIndex.row].imageUrl = "\(self.user?.id ?? "쫄래쫄래")_\(Date())_\(self.dogProfile[self.middleIndex.row].name)"
+    self.dogProfile[self.middleIndex.row].imageUrl = "\(self.user?.id ?? "쫄래쫄래")_\(Date())"
     picker.dismiss(animated: true) {
       self.dogProfileCollectionView.reloadData()
     }

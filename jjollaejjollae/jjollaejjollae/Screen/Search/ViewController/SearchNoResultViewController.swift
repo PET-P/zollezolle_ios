@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searchable, SearchDataReceiveable,
+class SearchNoResultViewController: UIViewController, UITextFieldDelegate,
                                     StoryboardInstantiable{
   
   var newDataList: [SearchResultData] = []
@@ -64,7 +64,10 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate, Searc
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     // indicator 띄우기
-    APIService.shared.nearPlace(latitude: 37.526986862211146, longitude: 126.92225852592222) { [weak self](result) in
+    let currentLocation = UserManager.shared.locationService.currentLocation
+    let lng = currentLocation.longitude
+    let lat = currentLocation.latitude
+    APIService.shared.nearPlace(latitude: lat, longitude: lng) { [weak self](result) in
       guard let self = self else {return}
       switch result {
       case .success(let data):
@@ -122,6 +125,8 @@ extension SearchNoResultViewController: UITableViewDelegate {
     
     let placeId = newDataList[indexPath.row].id
     
+    LoadingIndicator.show()
+    
     APIService.shared.fetchPlaceInfo(placeId: placeId) { result in
       
       switch result {
@@ -133,12 +138,35 @@ extension SearchNoResultViewController: UITableViewDelegate {
           
           vc.placeInfo = placeInfo
           
-          self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true) {
+          LoadingIndicator.hide()
+        }
           
         case .failure(let statusCode):
           print(statusCode)
+          LoadingIndicator.hide()
       }
     }
   }
   
+}
+
+extension SearchNoResultViewController: SearchDataReceiveable {
+  func returnHeart(placeId: String) {
+    
+    var returnHeartIndex = 0
+    for index in newDataList.indices {
+      if newDataList[index].id == placeId {
+        likes[placeId] = false
+        newDataList[index].isWish = false
+        returnHeartIndex = index
+        return
+      }
+    }
+    
+    SearchResultTableView.beginUpdates()
+    SearchResultTableView.reloadRows(at: [IndexPath(row: returnHeartIndex, section: 0)], with: .none)
+    SearchResultTableView.endUpdates()
+    
+  }
 }
