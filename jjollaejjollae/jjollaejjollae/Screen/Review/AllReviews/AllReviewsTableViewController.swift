@@ -113,6 +113,8 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
     cell.likeButton.tag = indexPath.row
     
     cell.likeButton.addTarget(self, action: #selector(didTapLikeButton(sender:)), for: .touchUpInside)
+    
+    cell.reportButton.tag = indexPath.row
 
     return cell
     
@@ -215,7 +217,52 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
         })
     }
   }
-
+  
+  /**
+  메일로 신고하기 기능
+   - Author: 박우찬
+   */
+  
+  @IBAction func didTapReportButton(_ sender: UIButton) {
+    
+    let base = "mailto:zolle@kakao.com"
+    
+    guard let review = totalReviewList?.reviews[sender.tag] else {
+      
+      let alertController = UIAlertController(title: "리뷰 정보 불러오기 실패", message: "조금 후에 다시 시도해주세요", preferredStyle: .alert)
+      
+      let okAction = UIAlertAction(title: "알겠어요", style: .default, handler: nil)
+      
+      alertController.addAction(okAction)
+      
+      self.present(alertController, animated: true, completion: nil)
+      
+      return
+    }
+    
+    
+    let subject = "?report: \(review.userNick.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)), \(review.id)"
+    
+    let body = "&body: \("불편하셨던 내용을 입력해주세요".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))"
+    
+    if let url = URL(string: base + subject + body) {
+      
+      
+      "?cc=bar@example.com&subject=Greetings%20from%20Cupertino!&body=Wish%20you%20were%20here!"
+      
+      UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+        
+        let alertController = UIAlertController(title: "신고하기", message: "부적절한 리뷰를 신고해주세요.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "알겠어요", style: .default, handler: nil)
+        
+        alertController.addAction(okAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+      })
+    }
+  }
+  
 }
 
 extension AllReviewsTableViewController {

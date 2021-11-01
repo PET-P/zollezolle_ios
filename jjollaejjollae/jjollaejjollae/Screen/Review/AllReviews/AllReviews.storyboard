@@ -178,6 +178,9 @@
                                             <state key="normal" title="신고">
                                                 <color key="titleColor" red="0.39604109529999998" green="0.39610227939999998" blue="0.39602765439999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="didTapReportButton:" destination="umx-pd-sFO" eventType="touchUpInside" id="ZOK-O7-Weg"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -209,6 +212,7 @@
                                     <outlet property="nickNameLabel" destination="7nL-s1-nae" id="96E-nc-rrj"/>
                                     <outlet property="photoImageView" destination="pkF-1E-0dv" id="A4i-Gv-qIH"/>
                                     <outlet property="ratingStarImageView" destination="gG4-0X-LUS" id="7Gg-DE-ylc"/>
+                                    <outlet property="reportButton" destination="Ed5-di-7z7" id="T5x-Z0-jml"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

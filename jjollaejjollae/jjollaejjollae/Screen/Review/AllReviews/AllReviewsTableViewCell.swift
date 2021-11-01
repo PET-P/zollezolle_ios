@@ -11,6 +11,8 @@ final class AllReviewsTableViewCell: UITableViewCell {
   
   static let  identifier: String = String(describing: AllReviewsTableViewCell.self)
   
+  @IBOutlet weak var reportButton: UIButton!
+  
   @IBOutlet private weak var nickNameLabel: UILabel!
   
   @IBOutlet weak var photoImageView: UIImageView! {
