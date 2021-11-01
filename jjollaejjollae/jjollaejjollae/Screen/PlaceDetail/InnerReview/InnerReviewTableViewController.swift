@@ -170,6 +170,10 @@ class InnerReviewTableViewController: UITableViewController {
       
       guard let innerReviewCell = tableView.dequeueReusableCell(withIdentifier: InnerReviewTableViewCell.identifier, for: indexPath) as? InnerReviewTableViewCell else { return UITableViewCell() }
       
+      if let imageUrl = review.imageURLs.first {
+        innerReviewCell.thumbnailImageView.setImage(with: imageUrl)
+      }
+
       innerReviewCell.nickNameLabel.text = review.nickname
       
       innerReviewCell.ratingPoint = review.point
