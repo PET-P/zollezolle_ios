@@ -190,7 +190,6 @@ class MyInfoReviewViewController: UIViewController, StoryboardInstantiable {
   
   private var starImageList: [UIImage] = []
   private var myReviews: [ReviewData] = []
-  private var reviewAndImageArray: [(review: ReviewData, images: [UIImage])] = []
   private var token: String = ""
   private var userId: String = ""
   private var imageList: [UIImage] = []
@@ -247,34 +246,14 @@ class MyInfoReviewViewController: UIViewController, StoryboardInstantiable {
           self.reviewTableView.alpha = 0
           self.reviewNumber = 0
           self.helpNumber = 0
-          return
         }
-        for myReview in self.myReviews {
-          var tempVal: (review: ReviewData, images: [UIImage]) = (myReview, [])
-          for imageURL in myReview.imagesURL {
-            StorageService.shared.downloadUIImageWithURL(with: imageURL) { (image) in
-              if let image = image {
-                tempVal.images.append(image)
-              } else {
-                tempVal.images.append(self.defaultImage)
-              }
-            }
-          }
-          self.reviewAndImageArray.append(tempVal)
-        }
-        self.dispatchGroup.leave()
+        self.reviewTableView.reloadData()
       case .failure(let error):
         // 없다는 이야기
         self.reviewTableView.alpha = 0
         self.reviewNumber = 0
         self.helpNumber = 0
       }
-    }
-    dispatchGroup.notify(queue: .main) { [weak self] in
-      self?.reviewTableView.reloadData()
-      self?.reviewAndImageArray.forEach({ (result) in
-        print(result.images)
-      })
     }
   }
   
@@ -286,17 +265,18 @@ class MyInfoReviewViewController: UIViewController, StoryboardInstantiable {
 
 extension MyInfoReviewViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return reviewAndImageArray.count
+    return myReviews.count
   }
   
   
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as? ReviewTableCell else {return UITableViewCell()}
-    let item = reviewAndImageArray[indexPath.row].review
-    let images = reviewAndImageArray[indexPath.row].images
+    let item = myReviews[indexPath.row]
     
     cell.starImageView.image = starImageList[item.point - 1]
+    cell.deleteButton.tag = indexPath.row
+    
     
     cell.thumbLabel.helpNumber = item.likeCnt[0]
     cell.hundredLabel.helpNumber = item.likeCnt[1]
@@ -310,7 +290,9 @@ extension MyInfoReviewViewController: UITableViewDelegate, UITableViewDataSource
     cell.titleLabel.text = item.place.title
     if item.imagesURL.count == 0 {
       cell.reviewImageView.isHidden = true
-    } 
+    } else {
+      cell.reviewImageView.setImage(with: item.imagesURL.first!)
+    }
     let satisfactionFactor: [String] = item.satisfaction
     for tag in cell.tags {
       if !satisfactionFactor.contains(tag.currentTitle!){

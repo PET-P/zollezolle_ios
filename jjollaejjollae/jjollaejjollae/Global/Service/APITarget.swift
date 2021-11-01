@@ -70,6 +70,9 @@ enum APITarget {
    */
   case fetchPlaceInfo(placeID: String)
   case createReview(token: String, userReview: [String: Any])
+  
+  case likeReview(token: String, reviewId: String)
+  case unlikeReview(token: String, reviewId: String)
 }
 
 extension APITarget: TargetType {
@@ -150,7 +153,11 @@ extension APITarget: TargetType {
     
     case .createReview:
       return "/reviews"
+      
+    case .likeReview( _, let reviewId), .unlikeReview( _, let reviewId):
+      return "/reviews/\(reviewId)/like"
     }
+    
   }
   
   var method: Moya.Method {
@@ -159,13 +166,14 @@ extension APITarget: TargetType {
       case .refreshToken, .tempPassword, .naver, .search, .noLoginSearch, .readAllPosts, .readPost, .readWishlist, .readFolder, .readUser, .readAllUsers, .readPets, .readReview, .readPlaceReview, .noLoginReadReview, .nearPlace, .getFilterPlace, .fetchPlaceInfo:
       return .get
         
-      case .email, .login, .findPassword, .signup, .socialLogin, .addPlaceInFolder, .createPet, .createWishlistFolder, .createReview:
+      case .email, .login, .findPassword, .signup, .socialLogin, .addPlaceInFolder, .createPet, .createWishlistFolder, .createReview, .likeReview:
       return .post
       
     case .patchPetInfo, .patchFolder, .patchUser, .patchPetInfoWithNoImage:
       return .patch
       
-    case .deleteFolder, .deleteUser, .deleteReview, .deletePlaceInFolder, .deletePlaceInEntireFolder:
+
+      case .deleteFolder, .deleteUser, .deleteReview, .deletePlaceInFolder, .deletePlaceInEntireFolder, .unlikeReview:
       return .delete
     }
   }
@@ -192,7 +200,7 @@ extension APITarget: TargetType {
     case .findPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
       
-      case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .deleteUser, .deleteReview, .fetchPlaceInfo:
+      case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .deleteUser, .deleteReview, .fetchPlaceInfo, .unlikeReview:
       return .requestPlain
         
     case .socialLogin(let email, let nick, let phone, let accountType):
@@ -238,7 +246,12 @@ extension APITarget: TargetType {
       
       case .createReview( _ , let userReview):
         return .requestParameters(parameters: userReview, encoding: JSONEncoding.prettyPrinted)
+        
+      case .likeReview:
+      return .requestParameters(parameters: ["option": 2], encoding: JSONEncoding.default)
     }
+    
+
   }
     
   var validationType: ValidationType {
@@ -258,7 +271,7 @@ extension APITarget: TargetType {
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
       
-    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .deleteReview(let token, _), .deletePlaceInEntireFolder(let token,_,_), .patchPetInfo(let token,_,_,_,_,_,_,_,_,_,_,_), .patchPetInfoWithNoImage(let token,_,_,_,_,_,_,_,_,_,_):
+    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .deleteReview(let token, _), .deletePlaceInEntireFolder(let token,_,_), .patchPetInfo(let token,_,_,_,_,_,_,_,_,_,_,_), .patchPetInfoWithNoImage(let token,_,_,_,_,_,_,_,_,_,_), .unlikeReview(let token, _), .likeReview(let token, _):
       
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
       

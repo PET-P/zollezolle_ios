@@ -111,13 +111,11 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
   
   private var previousContentOffset: CGPoint = CGPoint(x: 0, y: 0)
   
-//  private var ratingFactorsDict: [String: Bool] = ["Service": true, "Clean": true, "Mood": true, "Location": true]
-  
-  private var userSatisfactionDict: [UserReview.SatisfactionType: Bool] = {
+  private var userSatisfactionDict: [SatisfactionType: Bool] = {
     
-    var dict = [UserReview.SatisfactionType: Bool]()
+    var dict = [SatisfactionType: Bool]()
     
-    UserReview.SatisfactionType.allCases.forEach { satisfaction in
+    SatisfactionType.allCases.forEach { satisfaction in
       dict.updateValue(true, forKey: satisfaction)
     }
     
@@ -199,15 +197,6 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
     
     userReviewPhotoCollectionView.dataSource = self
     userReviewPhotoCollectionView.delegate = self
-    
-    
-    
-//    guard let layout = userReviewPhotoCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-//
-//    layout.itemSize = CGSize(width: (self.userReviewPhotoCollectionView.frame.width - (10 * 2)) / 3,
-//                             height: self.userReviewPhotoCollectionView.frame.width - (10 * 2))
-//
-//    userReviewPhotoCollectionView.collectionViewLayout = layout
   }
   
   // MARK: - Target-Action
@@ -284,16 +273,12 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
         
         toggleButtons(sender, first: first, second: second)
         
-//        ratingFactorsDict.updateValue(sender == first, forKey: "Service")
-        
         userSatisfactionDict.updateValue(sender == first, forKey: .service)
         
       case cleanButtonStack :
         guard let (first, second) = bindButton(in: cleanButtonStack) else { return }
         
         toggleButtons(sender, first: first, second: second)
-        
-//        ratingFactorsDict.updateValue(sender == first, forKey: "Clean")
       
         userSatisfactionDict.updateValue(sender == first, forKey: .cleanliness)
         
@@ -302,8 +287,6 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
         guard let (first, second) = bindButton(in: moodButtonStack) else { return }
         
         toggleButtons(sender, first: first, second: second)
-        
-//        ratingFactorsDict.updateValue(sender == first, forKey: "Mood")
       
         userSatisfactionDict.updateValue(sender == first, forKey: .mood)
         
@@ -311,8 +294,6 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
         guard let (first, second) = bindButton(in: locationButtonStack) else { return }
         
         toggleButtons(sender, first: first, second: second)
-        
-//        ratingFactorsDict.updateValue(sender == first, forKey: "Location")
         
         userSatisfactionDict.updateValue(sender == first, forKey: .location)
 
@@ -403,7 +384,25 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
       value == true
     }.map { $0.key }
     
-    let review = UserReview.init(rating: numOfStars, satisfactionList: satisfactionList, reviewImages: userReviewPhotoList, reviewText: reviewText, userId: userId, placeId: placeId, category: category)
+    
+    /**
+     UserReivewPhotoURLList 만들기
+     */
+    
+    var userReviewPhotoUrlList = [String]()
+    
+    
+    userReviewPhotoList.forEach { image in
+      
+      let imageName = "\(userId)_\(Date())"
+      
+      StorageService.shared.uploadImage(img: image, imageName: imageName)
+      
+      userReviewPhotoUrlList.append(imageName)
+    }
+    
+    
+    let review = UserReview.init(rating: numOfStars, satisfactionList: satisfactionList, reviewImages: userReviewPhotoUrlList, reviewText: reviewText, userId: userId, placeId: placeId, category: category)
     
     guard let token = UserManager.shared.userIdandToken?.token else { return }
     
@@ -416,23 +415,12 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
           let data = JSON(data)
           
           print(data["message"].stringValue)
+        
+          self.dismiss(animated: true, completion: nil)
           
         case .failure(let statusCode):
           print(statusCode)
       }
-    }
-    
-    /**
-     PlaceDetailVC 의 placeInfo 를 새로 업데이트해야함
-     */
-    
-    self.dismiss(animated: true) { [self] in
-      
-//      guard let vc = presentingViewController as? PlaceDetailTableViewController else { return }
-//
-//      guard let innerVC = vc.children.first as? InnerReviewTableViewController else { return }
-//
-//      innerVC.tableView.reloadData()
     }
   }
   
@@ -523,34 +511,6 @@ extension CreateReviewViewController : UIGestureRecognizerDelegate {
   }
 }
 
-//@available(iOS 14.0, *)
-//extension CreateReviewViewController: PHPickerViewControllerDelegate {
-//
-//  func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-//
-//    picker.dismiss(animated: true, completion: nil)
-//
-//    results.forEach { result in
-//
-//      let itemProvider = result.itemProvider
-//
-//      if itemProvider.canLoadObject(ofClass: UIImage.self) {
-//
-//        itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-//
-//          if let error = error {
-//            fatalError(error.localizedDescription)
-//          }
-//
-//          self.selectedPhotos.append(image as! UIImage)
-//        }
-//      } else {
-//        print(#function,"- Cannot Load PhotoObject")
-//      }
-//    }
-//  }
-//}
-
 extension CreateReviewViewController: UIImagePickerControllerDelegate {
   
   /**
@@ -562,34 +522,19 @@ extension CreateReviewViewController: UIImagePickerControllerDelegate {
     guard let image = info[.originalImage] as? UIImage else { return }
     
     /**
-     다운 샘플링
-     */
-    
-    guard let downSampledImageData = image.jpegData(compressionQuality: 0.1) else { return }
-    
-    guard let downSampledImage = UIImage(data: downSampledImageData) else { return }
-    
-    
-    /**
      userReviewPhotoList에 사진 추가
 
      */
     guard let presentingVC = picker.presentingViewController as? CreateReviewViewController else { return }
    
-    presentingVC.userReviewPhotoList.append(downSampledImage)
-
+    presentingVC.userReviewPhotoList.append(image)
     
-    /**
-     원한다면 completion 핸들러에서 구현해주어도 됨
-     */
     picker.dismiss(animated: true, completion: nil)
   }
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     
     guard let presentingVC = picker.presentingViewController as? CreateReviewViewController else { return }
-    
-    presentingVC.userReviewPhotoList.append(#imageLiteral(resourceName: "cafe"))
     
     picker.dismiss(animated: true, completion: nil)
   }

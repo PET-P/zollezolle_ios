@@ -40,7 +40,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     setupHeader()
     infoTableView.tableFooterView = UIView(frame: CGRect.zero)
     if #available(iOS 15.0, *) {
-      infoTableView.sectionHeaderTopPadding = 0
+//      infoTableView.sectionHeaderTopPadding = 0
     }
     infoTableView.sectionFooterHeight = .leastNonzeroMagnitude
     infoTableView.alwaysBounceVertical = false
@@ -192,7 +192,7 @@ extension MyInfoMainViewController: UITableViewDelegate {
       case 1:
         print("이메일")
       case 2:
-        guard let settingVC = MyInfoSettingViewController.loadFromStoryboard() as? MyInfoSettingViewController else {return}
+        guard let settingVC = MyInfoSettingTableViewController.loadFromStoryboard() as? MyInfoSettingTableViewController else {return}
         self.navigationController?.pushViewController(settingVC, animated: true)
       default: return
     }

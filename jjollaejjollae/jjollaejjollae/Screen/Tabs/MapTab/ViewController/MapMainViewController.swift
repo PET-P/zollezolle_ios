@@ -139,7 +139,7 @@ final class MapMainViewController: UIViewController, StoryboardInstantiable {
        - .location.coordinates << 요위치
        */
 
-      nearPlaceList.forEach { resultData in
+      nearPlaceList.enumerated().forEach { (index, resultData) in
 
         let coordinate = resultData.location.coordinates
 
@@ -150,8 +150,54 @@ final class MapMainViewController: UIViewController, StoryboardInstantiable {
 
         let marker = NMFMarker(position: NMGLatLng(lat: latiitude, lng: longitude))
         
+        marker.tag = UInt(index)
+        
         if let image = UIImage(named: resultData.category.ImageDescription) {
           marker.iconImage = NMFOverlayImage(image: image)
+        }
+        
+        marker.touchHandler = { [weak self] _ in
+          
+          guard let self = self else { return true }
+          
+          let alertContoller = UIAlertController(title: self.nearPlaceList[Int(marker.tag)].title, message: "상세 정보를 보시겠어요?", preferredStyle: .alert)
+          
+          let okAction = UIAlertAction(title: "볼래요", style: .default) { _ in
+            
+            LoadingIndicator.show()
+
+    
+            APIService.shared.fetchPlaceInfo(placeId: self.nearPlaceList[Int(marker.tag)].id) { result in
+              
+              switch result {
+                case .success(let data):
+                  
+                  guard let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController else { return }
+
+                  let placeInfo = PlaceInfo.init(placeID: self.nearPlaceList[Int(marker.tag)].id, data: data)
+                  
+                  vc.placeInfo = placeInfo
+                  
+                  self.navigationController?.pushViewController(vc, animated: true)
+                  
+                  LoadingIndicator.hide()
+                  
+                case .failure(let statusCode):
+                  print(statusCode)
+                  LoadingIndicator.hide()
+              }
+            }
+          }
+          
+          let cancelAction = UIAlertAction(title: "안볼래요", style: .cancel, handler: nil)
+
+          
+          alertContoller.addAction(okAction)
+          alertContoller.addAction(cancelAction)
+          
+          self.present(alertContoller, animated: true, completion: nil)
+          
+          return true
         }
         
         markerList.append(marker)

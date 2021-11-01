@@ -51,6 +51,7 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
   // MARK: - Life Cycle
   
   override func viewDidLoad() {
+    
     super.viewDidLoad()
     
     setUpTableViewHeader()
@@ -204,12 +205,12 @@ class PlaceDetailTableViewController: UITableViewController, StoryboardInstantia
   // MARK: - Table view data source
 
   override func numberOfSections(in tableView: UITableView) -> Int {
-      // #warning Incomplete implementation, return the number of sections
+    
       return 1
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      // #warning Incomplte implementation, return the number of rows
+    
       return 3
   }
   

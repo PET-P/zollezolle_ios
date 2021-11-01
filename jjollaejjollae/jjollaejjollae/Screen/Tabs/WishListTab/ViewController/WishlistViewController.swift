@@ -131,7 +131,7 @@ class WishlistViewController: UIViewController, StoryboardInstantiable {
     wishListTableView.dataSource = self
     wishListTableView.register(nib, forCellReuseIdentifier: "resultCell")
     if #available(iOS 15.0, *) {
-      wishListTableView.sectionHeaderTopPadding = 0
+//      wishListTableView.sectionHeaderTopPadding = 0
     }
     wishListTableView.separatorStyle = .none
     wishListTableView.tableFooterView = UIView(frame: CGRect.zero)

@@ -7,22 +7,11 @@
 
 import UIKit
 
+
 class MyInfoSettingTableViewController: UITableViewController, StoryboardInstantiable {
-  
-  //알람스위치는 현재 기능이 없기 때문에 OFF 
-  
-//  @IBOutlet weak var alarmSwitch: JJollaeSwitch! {
-//    didSet {
-//      alarmSwitch.setButtonTitle(isOn: "", isOff: "")
-//      alarmSwitch.setTitleFont(font: .robotoBold(size: 10))
-//      alarmSwitch.setCircleFrame(frame: CGRect (x: 0, y: 2.5, width: 31, height: 31))
-//      alarmSwitch.setCircleRadius(round: 15.5)
-//      alarmSwitch.setOn(on: true, animated: true)
-//      alarmSwitch.setSwitchColor(onColor: .themePaleGreen, offColor: .gray05)
-//      alarmSwitch.setSwitchColor(onTextColor: .themeGreen, offTextColor: .gray03)
-//    }
-//  }
+
   @IBOutlet weak var versionLabel: UILabel!
+  
   @IBOutlet var menuTitleLabels: [UILabel]! {
     didSet {
       menuTitleLabels.forEach { (label) in
@@ -30,50 +19,98 @@ class MyInfoSettingTableViewController: UITableViewController, StoryboardInstant
       }
     }
   }
+  
   @IBOutlet var menuSubtitleLabel: UILabel! {
     didSet {
       menuSubtitleLabel.textColor = .gray03
     }
   }
+  
   private let settingManager = SettingManager.shared
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    tableView.sectionFooterHeight = 0
-    tableView.sectionHeaderHeight = 0
-//    alarmSwitch.delegate = self
-//    alarmSwitch.isOn = settingManager.alarmControl
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    guard let info = sender as? (url: URL, title: String) else { return }
+    
+    guard let vc = segue.destination as? SettingWebViewController else { return }
+    
+    vc.targetUrl = info.url
+    vc.title = info.title
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    switch indexPath.row {
-    case 0:
-      return
-    case 1:
-      return
-    case 2:
-      print("?");
-    case 3:
-      if let url  = URL(string: "https://guttural-tumble-39b.notion.site/288b40e5a7ab48f39eb8d4616153d006") {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    
+    guard let cellType = SettingCellType(rawValue: indexPath.row) else { return }
+    
+    let title = cellType.description
+    
+    switch cellType {
+      
+      case .versionInfo:
+        return
+        
+      case .termsAndConditions:
+        let targetURL = URL(string: "https://zolle.tistory.com/8")
+        performSegue(withIdentifier: SettingWebViewController.segueIdentifier, sender: (url: targetURL, title: title))
+        
+      case .privacyPolicy:
+        let targetURL = URL(string: "https://zolle.tistory.com/7")
+        performSegue(withIdentifier: SettingWebViewController.segueIdentifier, sender: (url: targetURL, title: title))
+        
+      case .notice:
+        let targetURL = URL(string: "https://zolle.tistory.com/category/" + "공지사항".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
+        
+        performSegue(withIdentifier: SettingWebViewController.segueIdentifier, sender: (url: targetURL, title: title))
+        
+      case .openSourceLicense:
+        let targetURL = URL(string: "https://zolle.tistory.com/category/" + "공지사항".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
+        performSegue(withIdentifier: SettingWebViewController.segueIdentifier, sender: (url: targetURL, title: title))
+    }
+  }
+  
+  
+  @IBAction func didTapCloseButton(_ sender: Any) {
+    
+    self.navigationController?.popViewController(animated: true)
+  }
+  
+}
+
+extension MyInfoSettingTableViewController {
+  
+  enum SettingCellType: Int, CaseIterable {
+    
+    case versionInfo
+    case termsAndConditions
+    case privacyPolicy
+    case openSourceLicense
+    case notice
+    
+    var description: String {
+      
+      switch self {
+        
+        case .versionInfo:
+          return "버전정보"
+          
+        case .termsAndConditions:
+          return "이용약관"
+          
+        case .privacyPolicy:
+          return "개인정보 보호방침"
+          
+        case .openSourceLicense:
+          return "오픈소스 라이센스"
+          
+        case .notice:
+          return "공지사항"
       }
-    case 4:
-      print("오픈소스")
-      guard let testVC = SearchWithLocationViewController.loadFromStoryboard() as? SearchWithLocationViewController else {return}
-      self.navigationController?.pushViewController(testVC, animated: true)
-    case 5:
-      print("공지사항")
-    default:
-      return
     }
   }
 }
-
-//extension MyInfoSettingTableViewController: JJollaeButtonDelegate {
-//  func isOnValueChage(isOn: Bool) {
-//    print(isOn)
-//    settingManager.alarmControl = isOn
-//  }
-//}
 
 

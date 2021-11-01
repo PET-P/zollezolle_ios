@@ -177,19 +177,23 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
+  func patchUser(token: String, userId: String, nick: String?, phone: String?, password: String?, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
+    let target = APITarget.patchUser(token: token, userId: userId, nick: nick, phone: phone, password: password)
+    judgeGenericResponse(target, completion: completion)
+  }
+  
+  
   /**
-   - Author : 박우찬
+  - Author: 박우찬
    */
+  
   func fetchPlaceInfo(placeId: String, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
     
     let target = APITarget.fetchPlaceInfo(placeID: placeId)
     
     judgeGenericResponse(target, completion: completion)
   }
-  
-  /**
-   - Author : 박우찬
-   */
+
   func createReview(token: String, userReview: UserReview, completion: @escaping ((NetworkResult<Any>) -> (Void))) {
     
     let target = APITarget.createReview(token: token, userReview: userReview.toDict())
@@ -198,20 +202,29 @@ struct APIService {
   }
   
   // FIXME: readReview(token:userId:completion:) 과 통합 필요
-  /**
-  - Author: 박우찬
-   */
-  
-  func readPlaceReview(token: String, placeId: String, completion: (@escaping(NetworkResult<UserReviewData>) -> (Void))) {
+
+  func readPlaceReview(token: String, placeId: String, completion: (@escaping(NetworkResult<JSON>) -> (Void))) {
+    
     let target =  APITarget.readPlaceReview(token: token, placeId: placeId)
+    
     judgeGenericResponse(target, completion: completion)
   }
+
   
-  
-  func patchUser(token: String, userId: String, nick: String?, phone: String?, password: String?, completion: @escaping((NetworkResult<JSON>) -> (Void))) {
-    let target = APITarget.patchUser(token: token, userId: userId, nick: nick, phone: phone, password: password)
-    judgeGenericResponse(target, completion: completion)
+  func likeReview(token: String, reviewId: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    
+    let target = APITarget.likeReview(token: token, reviewId: reviewId)
+    
+    judgeSimpleResponse(target, completion: completion)
   }
+
+  func unlikeReview(token: String, reviewId: String, completion: @escaping (NetworkResult<Any>) -> Void) {
+    
+    let target = APITarget.unlikeReview(token: token, reviewId: reviewId)
+    
+    judgeSimpleResponse(target, completion: completion)
+  }
+
 }
 
 extension APIService {
