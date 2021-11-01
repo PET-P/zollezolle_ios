@@ -155,7 +155,8 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     guard let imageUrl = pet.imageUrl else { return }
 
     mainImageView.setImage(with: imageUrl)
-
+    mainLogoImageView.isHidden = true
+    LoadingIndicator.hide()
     return
   }
   
@@ -163,6 +164,7 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     
     if let imageUrl = representedPet!.imageUrl {
       mainImageView.setImage(with:imageUrl)
+      mainLogoImageView.isHidden = true
     }
   }
   
@@ -490,9 +492,10 @@ extension HomeMainViewController: UIScrollViewDelegate {
     
     mainImageView.alpha = ((mainImageView.frame.height - mainImageMinHeight) / (mainImageMaxHeight - mainImageMinHeight))
     
-    mainLogoImageView.alpha = ((mainImageView.frame.height - mainImageMinHeight) / (mainImageMaxHeight - mainImageMinHeight))
-    
-    
+    if !mainLogoImageView.isHidden {
+      mainLogoImageView.alpha = ((mainImageView.frame.height - mainImageMinHeight) / (mainImageMaxHeight - mainImageMinHeight))
+    }
+
     let value = mainImageMaxHeight - scrollView.contentOffset.y.rounded(.up) - CGFloat(356)
     
     if value >= mainImageMinHeight && value <= mainImageMaxHeight {

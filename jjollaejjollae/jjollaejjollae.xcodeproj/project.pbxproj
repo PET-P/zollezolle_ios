@@ -110,7 +110,6 @@
 		28B2E784270D915C003AE0B0 /* MyInfoSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2E783270D915B003AE0B0 /* MyInfoSettingViewController.swift */; };
 		28B2E786270D92A0003AE0B0 /* MyInfoSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2E785270D92A0003AE0B0 /* MyInfoSettingTableViewController.swift */; };
 		28B2E788270D9EA7003AE0B0 /* Provisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2E787270D9EA7003AE0B0 /* Provisions.swift */; };
-		28B2E78A270DA434003AE0B0 /* Provision.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28B2E789270DA434003AE0B0 /* Provision.storyboard */; };
 		28B2E78C270DBD54003AE0B0 /* MyInfoReservation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28B2E78B270DBD54003AE0B0 /* MyInfoReservation.storyboard */; };
 		28B2E78E270DBD9F003AE0B0 /* MyInfoReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B2E78D270DBD9F003AE0B0 /* MyInfoReservationViewController.swift */; };
 		28B2E790270DC12E003AE0B0 /* MyInfoReview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28B2E78F270DC12E003AE0B0 /* MyInfoReview.storyboard */; };
@@ -122,7 +121,6 @@
 		28C6F62E2719790C00A961AB /* HomeTipCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28C6F62C2719790C00A961AB /* HomeTipCollectionViewCell.xib */; };
 		28C6F6312719795800A961AB /* HomeLocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C6F62F2719795800A961AB /* HomeLocationCollectionViewCell.swift */; };
 		28C6F6322719795800A961AB /* HomeTipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C6F6302719795800A961AB /* HomeTipCollectionViewCell.swift */; };
-		28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF852A26E7882F00ED200F /* ProvisionViewController.swift */; };
 		28E0D27D2709F763007C4C2A /* MyInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E0D27C2709F763007C4C2A /* MyInfoDetailViewController.swift */; };
 		28E0D27F2709F78C007C4C2A /* UISegmentedControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E0D27E2709F78C007C4C2A /* UISegmentedControl+Extension.swift */; };
 		28E0D2812709F7C6007C4C2A /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E0D2802709F7C6007C4C2A /* UIImage+Extension.swift */; };
@@ -313,7 +311,6 @@
 		28B2E783270D915B003AE0B0 /* MyInfoSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSettingViewController.swift; sourceTree = "<group>"; };
 		28B2E785270D92A0003AE0B0 /* MyInfoSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoSettingTableViewController.swift; sourceTree = "<group>"; };
 		28B2E787270D9EA7003AE0B0 /* Provisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provisions.swift; sourceTree = "<group>"; };
-		28B2E789270DA434003AE0B0 /* Provision.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Provision.storyboard; sourceTree = "<group>"; };
 		28B2E78B270DBD54003AE0B0 /* MyInfoReservation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyInfoReservation.storyboard; sourceTree = "<group>"; };
 		28B2E78D270DBD9F003AE0B0 /* MyInfoReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoReservationViewController.swift; sourceTree = "<group>"; };
 		28B2E78F270DC12E003AE0B0 /* MyInfoReview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyInfoReview.storyboard; sourceTree = "<group>"; };
@@ -326,7 +323,6 @@
 		28C6F62C2719790C00A961AB /* HomeTipCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTipCollectionViewCell.xib; sourceTree = "<group>"; };
 		28C6F62F2719795800A961AB /* HomeLocationCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeLocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		28C6F6302719795800A961AB /* HomeTipCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTipCollectionViewCell.swift; sourceTree = "<group>"; };
-		28CF852A26E7882F00ED200F /* ProvisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvisionViewController.swift; sourceTree = "<group>"; };
 		28E0D27C2709F763007C4C2A /* MyInfoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoDetailViewController.swift; sourceTree = "<group>"; };
 		28E0D27E2709F78C007C4C2A /* UISegmentedControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extension.swift"; sourceTree = "<group>"; };
 		28E0D2802709F7C6007C4C2A /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -537,7 +533,6 @@
 				286011A126BEA58E002774EA /* AdditionalInfo.storyboard */,
 				286011C926BFBF16002774EA /* FindPassword.storyboard */,
 				2834ED0A26C0004400E948B0 /* DogInfo.storyboard */,
-				28B2E789270DA434003AE0B0 /* Provision.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -551,7 +546,6 @@
 				286011A326BEA5B5002774EA /* AdditionalInfoViewController.swift */,
 				286011CB26BFBF56002774EA /* FindPasswordViewController.swift */,
 				2834ED0C26C0035800E948B0 /* DogInfoViewController.swift */,
-				28CF852A26E7882F00ED200F /* ProvisionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1157,7 +1151,6 @@
 				28317F132704C71A009319CB /* CategoryTabbar.xib in Resources */,
 				DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */,
 				2877C3AE270094DD000E3233 /* SearchWithLocation.storyboard in Resources */,
-				28B2E78A270DA434003AE0B0 /* Provision.storyboard in Resources */,
 				28B2E78C270DBD54003AE0B0 /* MyInfoReservation.storyboard in Resources */,
 				28E0D289270ADF66007C4C2A /* MyPetInfoEdit.storyboard in Resources */,
 				28C6F62E2719790C00A961AB /* HomeTipCollectionViewCell.xib in Resources */,
@@ -1338,7 +1331,6 @@
 				283F241026F8AE8C00CD8339 /* LaunchScreenViewController.swift in Sources */,
 				287AE21F26EC857B0038B39F /* CarouselLayout.swift in Sources */,
 				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
-				28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */,
 				DD331F7F272D01C900882E99 /* LocationService.swift in Sources */,
 				28A4983C2710221C008AC05B /* PetData.swift in Sources */,
 				DDBC9875272AEC8500D33EC2 /* AllReviewsTableViewController.swift in Sources */,

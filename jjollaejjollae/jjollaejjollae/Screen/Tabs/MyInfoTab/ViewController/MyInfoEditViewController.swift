@@ -313,6 +313,8 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     }
   }
   
+  private var dogProfile: [(pet: PetData, image: UIImage?)] = []
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     dogProfileImage.setRounded(radius: nil)
@@ -321,30 +323,42 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     applyGrayStyle(to: [nickTextField, currentPWTextField, newPWTextField])
     verifySocial()
     guard let userId = UserManager.shared.userIdandToken?.userId, let token = UserManager.shared.userIdandToken?.token else {return}
-    //여기서는 한마리만 따오고,
     if self.dogImage != nil {return}
+    LoadingIndicator.show()
     APIService.shared.readPets(token: token, userId: userId) { [weak self] (result) in
       guard let self = self else {return}
+      var index = 0
       switch result {
       case .success(let data):
-        for i in data {
-          if i.isRepresent == true {
-            StorageService.shared.downloadUIImageWithURL(with: i.imageUrl ?? "default.") { (image) in
-              guard let image = image else {
-                return
+        for pet in data {
+          var temp: (pet: PetData, image: UIImage?) = (pet: pet, image:nil)
+          StorageService.shared.downloadUIImageWithURL(with: pet.imageUrl ?? "default") { (image) in
+            guard let image = image else {
+              if pet.isRepresent == true {
+                self.dogProfileImage.image = UIImage(named: "default")!
               }
-              self.dogImage = image
-              self.dogProfileImage.image = self.dogImage
+              temp.image = UIImage(named: "default")!
+              LoadingIndicator.hide()
               return
             }
+            if pet.isRepresent == true {
+              self.dogImage = image
+              self.dogProfileImage.image = self.dogImage
+            }
+            temp.image = image
+            self.dogProfile.append(temp)
+            if index == data.count - 1 {
+              PagingManager.shared.setDogTuples(dogTuples: self.dogProfile)
+              LoadingIndicator.hide()
+            }
+            index += 1
           }
-          self.dogImage = UIImage(named: "default")
-          self.dogProfileImage.image = self.dogImage
         }
       case .failure(let error):
         self.dogImage = UIImage(named: "default")
         self.dogProfileImage.image = self.dogImage
         print(error)
+        LoadingIndicator.hide()
       }
     }
   }

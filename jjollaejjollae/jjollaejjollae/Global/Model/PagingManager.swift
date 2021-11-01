@@ -14,7 +14,11 @@ class PagingManager {
   var myInfoVC: UIViewController?
   var myPetInfoVC: UIViewController?
   
-  private var dogTuples: [(petdata: PetData, image: UIImage?)] = []
+  private var dogTuples: [(pet: PetData, image: UIImage?)] = [] {
+    didSet {
+      print(dogTuples)
+    }
+  }
   
   private var dogRepresent: UIImage?
   
@@ -26,11 +30,11 @@ class PagingManager {
     return self.dogRepresent ?? UIImage(named: "default")!
   }
   
-  func setDogTuples(dogTuples: [(petdata: PetData, image: UIImage?)]) {
+  func setDogTuples(dogTuples: [(pet: PetData, image: UIImage?)]) {
     self.dogTuples = dogTuples
   }
   
-  func getDogTuples() -> [(petdata: PetData, image: UIImage?)] {
+  func getDogTuples() -> [(pet: PetData, image: UIImage?)] {
     return dogTuples
   }
 }

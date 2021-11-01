@@ -22,29 +22,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(windowScene: windowScene)
     
-    
-    
+
     //인터넷연결 오류시 발생하는 것
-//    guard DeviceManager.shared.networkStatus == true else{
-//      let attributedString =
-//        NSAttributedString(string: "인터넷 연결 오류",
-//                           attributes: [NSAttributedString.Key.font: UIFont.robotoBold(size: 20),
-//                                        NSAttributedString.Key.foregroundColor: UIColor.themeGreen])
-//      let AlertController = UIAlertController(title: "",
-//                                                message: nil,
-//                                                preferredStyle: .alert)
-//      AlertController.setValue(attributedString, forKey: "attributedTitle")
-//      let mainTabBarController = MainTabBarController()
-//      self.window?.rootViewController = mainTabBarController
-//      self.window?.makeKeyAndVisible()
-//      mainTabBarController.present(AlertController, animated: true, completion: nil)
-//      return
-//    }
+    guard DeviceManager.shared.networkStatus == true else{
+      let attributedString =
+        NSAttributedString(string: "인터넷 연결 오류",
+                           attributes: [NSAttributedString.Key.font: UIFont.robotoBold(size: 20),
+                                        NSAttributedString.Key.foregroundColor: UIColor.themeGreen])
+      let AlertController = UIAlertController(title: "",
+                                                message: nil,
+                                                preferredStyle: .alert)
+      AlertController.setValue(attributedString, forKey: "attributedTitle")
+      let mainTabBarController = MainTabBarController()
+      self.window?.rootViewController = mainTabBarController
+      self.window?.makeKeyAndVisible()
+      mainTabBarController.present(AlertController, animated: true, completion: nil)
+      return
+    }
     
     if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken"),
        let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
-      LoginManager.shared.deleteFromKeyChain(account: "accessToken")
-      LoginManager.shared.deleteFromKeyChain(account: "refreshToken")
       waitingGroup.enter()
       APIService.shared.refreshToken(refreshToken: refreshToken,
                                      accessToken: accessToken) { [weak self] (result) in
