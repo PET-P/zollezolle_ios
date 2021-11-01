@@ -15,12 +15,19 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
     
     didSet {
       
-      guard let totalReviewList = totalReviewList else { return }
+      guard totalReviewList != nil else { return }
       
-      numOfTotalReviewLabel.text = "총 \(totalReviewList.numOfTotalReview)개의 후기"
+      numOfTotalReviewLabel.text = "총 \(totalReviewList!.numOfTotalReview)개의 후기"
       
-      ratingPointLabel.text = String(format: "%.1f", totalReviewList.avgPoint)
+      ratingPointLabel.text = String(format: "%.1f", totalReviewList!.avgPoint)
       
+      if let sortingOrder = SortingOrder(rawValue: sortingSegmentedControl.selectedSegmentIndex) {
+        
+        guard let reviews = sortedReviewList(by: sortingOrder)  else { return }
+        
+        totalReviewList!.reviews = reviews
+      }
+
       tableView.reloadData()
       
     }
@@ -30,21 +37,27 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
   
   @IBOutlet weak var ratingPointLabel: UILabel!
   
+  @IBOutlet weak var sortingSegmentedControl: UISegmentedControl!
+  
   private let dateFormatter: DateFormatter = {
     
     let formatter = DateFormatter()
-    formatter.dateFormat = .some("yyyy-MM-dd")
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     return formatter
     
   }()
   
   override func viewDidLoad() {
+    
     super.viewDidLoad()
     
     self.navigationItem.backBarButtonItem?.tintColor = .black
-    
+
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+  }
   
   @IBAction func didTapBackButton(_ sender: UIButton) {
     
@@ -76,6 +89,8 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
 
     if let imageUrl = review.imagesURL.first {
       cell.photoImageView.setImage(with: imageUrl)
+    } else {
+      cell.photoImageView.image = nil
     }
 
     cell.dateText = trimStringDate(with: review.createdAt)
@@ -150,7 +165,9 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
     
     guard let sortingOrder = SortingOrder(rawValue: sender.selectedSegmentIndex) else { return }
     
-    sortReviewList(by: sortingOrder)
+    guard totalReviewList != nil, let reviews = sortedReviewList(by: sortingOrder)  else { return }
+    
+    totalReviewList!.reviews = reviews
   }
   
   func trimStringDate(with: String) -> String {
@@ -163,13 +180,15 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
     return 216
   }
   
-  func sortReviewList(by sortingOder: SortingOrder) {
+  func sortedReviewList(by sortingOrder: SortingOrder) -> [PlaceReview]? {
     
-    switch sortingOder {
+    guard totalReviewList != nil else { return nil }
+    
+    switch sortingOrder {
       
       case .latest:
         
-        totalReviewList?.reviews.sort(by: { lhs, rhs in
+        return totalReviewList?.reviews.sorted(by: { lhs, rhs in
           
           guard let lhsDate = dateFormatter.date(from: lhs.createdAt), let rhsDate = dateFormatter.date(from: rhs.createdAt) else { return  true }
           
@@ -178,21 +197,21 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
         
       case .recommended:
         
-        totalReviewList?.reviews.sort(by: { lhs, rhs in
+        return totalReviewList?.reviews.sorted(by: { lhs, rhs in
           
-          return lhs.numOfLikes > rhs.numOfLikes
+          lhs.numOfLikes > rhs.numOfLikes
         })
         
       case .highRated:
-        totalReviewList?.reviews.sort(by: { lhs, rhs in
+        return totalReviewList?.reviews.sorted(by: { lhs, rhs in
           
-          return lhs.point > rhs.point
+         lhs.point > rhs.point
         })
         
       case .lowRated:
-        totalReviewList?.reviews.sort(by: { lhs, rhs in
+        return totalReviewList?.reviews.sorted(by: { lhs, rhs in
           
-          return lhs.point < rhs.point
+          lhs.point < rhs.point
         })
     }
   }
