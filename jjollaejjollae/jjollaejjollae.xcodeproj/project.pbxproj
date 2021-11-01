@@ -162,7 +162,6 @@
 		30FCDB8E355777FF3F41AC7B /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67F1C944608B050ECA22BF89 /* Pods_jjollaejjollae.framework */; };
 		DD331F7F272D01C900882E99 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD331F7E272D01C900882E99 /* LocationService.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
-		DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */; };
 		DDB38F1727282778004482B3 /* TipWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB38F1627282777004482B3 /* TipWebViewController.swift */; };
 		DDB38F222729652A004482B3 /* PlaceDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB38F212729652A004482B3 /* PlaceDetailTableViewController.swift */; };
 		DDB38F242729653A004482B3 /* PlaceDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB38F232729653A004482B3 /* PlaceDetail.storyboard */; };
@@ -368,7 +367,6 @@
 		72189274F24C07562205F172 /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
 		DD331F7E272D01C900882E99 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
-		DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibInstantiatable.swift; sourceTree = "<group>"; };
 		DDB38F1627282777004482B3 /* TipWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipWebViewController.swift; sourceTree = "<group>"; };
 		DDB38F212729652A004482B3 /* PlaceDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailTableViewController.swift; sourceTree = "<group>"; };
 		DDB38F232729653A004482B3 /* PlaceDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceDetail.storyboard; sourceTree = "<group>"; };
@@ -824,7 +822,6 @@
 		DD741C2926FB04CC00776827 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				DD741C2B26FB04DF00776827 /* NibInstantiatable.swift */,
 				DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */,
 				28AF8DF3271B000B00FF7247 /* Searchable.swift */,
 			);
@@ -1366,7 +1363,6 @@
 				2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */,
 				28F9E93F26C8027000D9E693 /* SearchViewController.swift in Sources */,
 				DDFFC11E26FB0734001FD04A /* MapNavigationController.swift in Sources */,
-				DD741C2D26FB04DF00776827 /* NibInstantiatable.swift in Sources */,
 				2884A2FE26C8EC71004596C3 /* SearchManager.swift in Sources */,
 				DDBC986C272AE8B100D33EC2 /* ZollaeCustomSwitch.swift in Sources */,
 				28B2E792270DC400003AE0B0 /* MyInfoReviewViewController.swift in Sources */,
