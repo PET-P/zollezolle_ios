@@ -13,15 +13,26 @@ class InnerReviewTableViewCell: UITableViewCell {
     return String(describing: InnerReviewTableViewCell.self)
   }
   
-  @IBOutlet weak var thumbnailImageView: UIImageView!
+  @IBOutlet weak var thumbnailImageView: UIImageView! {
+    didSet {
+      thumbnailImageView.layer.masksToBounds = true
+      thumbnailImageView.layer.cornerRadius = 8
+    }
+  }
   
   @IBOutlet weak var nickNameLabel: UILabel!
   
+  @IBOutlet weak var ratingStarImageView: UIImageView!
+  
   @IBOutlet weak var dateLabel: UILabel!
   
-  @IBOutlet weak var ratingLabel: UILabel!
-  
   @IBOutlet weak var descriptionLabel: UILabel!
+  
+  var ratingPoint: Int = 5 {
+    didSet {
+      ratingStarImageView.image = UIImage(named: "star\(ratingPoint)") ?? nil
+    }
+  }
   
   override func awakeFromNib() {
     super.awakeFromNib()

@@ -180,7 +180,7 @@ class InnerReviewTableViewController: UITableViewController {
       
       innerReviewCell.nickNameLabel.text = review.nickname
       
-      innerReviewCell.ratingLabel.text = "\(review.point)"
+      innerReviewCell.ratingPoint = review.point
       
       innerReviewCell.descriptionLabel.text = review.text
       
