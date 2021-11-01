@@ -325,13 +325,19 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     guard let userId = UserManager.shared.userIdandToken?.userId, let token = UserManager.shared.userIdandToken?.token else {return}
     if self.dogImage != nil {return}
     LoadingIndicator.show()
+    
     APIService.shared.readPets(token: token, userId: userId) { [weak self] (result) in
+      
       guard let self = self else {return}
+      
       var index = 0
+      
       switch result {
       case .success(let data):
+        
         for pet in data {
           var temp: (pet: PetData, image: UIImage?) = (pet: pet, image:nil)
+          
           StorageService.shared.downloadUIImageWithURL(with: pet.imageUrl ?? "default") { (image) in
             guard let image = image else {
               if pet.isRepresent == true {
@@ -341,19 +347,27 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
               LoadingIndicator.hide()
               return
             }
+            
             if pet.isRepresent == true {
               self.dogImage = image
               self.dogProfileImage.image = self.dogImage
             }
+            
             temp.image = image
             self.dogProfile.append(temp)
+            
             if index == data.count - 1 {
               PagingManager.shared.setDogTuples(dogTuples: self.dogProfile)
               LoadingIndicator.hide()
             }
             index += 1
+            
           }
+          
+          LoadingIndicator.hide()
+          
         }
+        
       case .failure(let error):
         self.dogImage = UIImage(named: "default")
         self.dogProfileImage.image = self.dogImage

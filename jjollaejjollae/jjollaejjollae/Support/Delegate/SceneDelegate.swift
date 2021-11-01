@@ -42,28 +42,50 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken"),
        let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
+      
       APIService.shared.refreshToken(refreshToken: refreshToken,
                                      accessToken: accessToken) { [weak self] (result) in
         switch result {
+          
         case .success(let data):
-          guard let newAccessToken = data.accessToken else {return}
+          
+          guard let newAccessToken = data.accessToken else { return }
+          
           UserManager.shared.userIdandToken = (data.userId, newAccessToken)
           LoginManager.shared.saveInKeychain(account: newAccessToken, value: "accessToken")
-          self?.isLogged = true
-          guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
-          let navigationController = UINavigationController(rootViewController: loginVC)
-          navigationController.setNavigationBarHidden(true, animated: false)
-          self?.window?.rootViewController = navigationController
+ 
+          let mainTabBar = MainTabBarController()
+          
+          self?.window?.rootViewController = mainTabBar
           self?.window?.makeKeyAndVisible()
+          
         case .failure(let error):
-          print(error)
-          self?.isLogged = false
-          let mainTabBarController = MainTabBarController()
-          self?.window?.rootViewController = mainTabBarController
+          
+          let navigationController = UINavigationController()
+          
+          let loginViewController = LoginViewController.loadFromStoryboard()
+          
+          navigationController.viewControllers = [loginViewController]
+          
+          navigationController.navigationBar.isHidden = true
+          
+          self?.window?.rootViewController = navigationController
           self?.window?.makeKeyAndVisible()
         }
         
       }
+    } else {
+      
+      let navigationController = UINavigationController()
+      
+      let loginViewController = LoginViewController.loadFromStoryboard()
+      
+      navigationController.viewControllers = [loginViewController]
+      
+      navigationController.navigationBar.isHidden = true
+      
+      self.window?.rootViewController = navigationController
+      self.window?.makeKeyAndVisible()
     }
   }
   

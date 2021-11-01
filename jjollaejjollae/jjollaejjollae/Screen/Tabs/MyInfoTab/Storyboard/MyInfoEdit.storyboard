@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,8 +35,9 @@
                                                     <constraint firstAttribute="height" constant="30" id="63j-dW-Psx"/>
                                                 </constraints>
                                             </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q5z-gJ-Mdg">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="q5z-gJ-Mdg">
                                                 <rect key="frame" x="137" y="40" width="140" height="140"/>
+                                                <color key="backgroundColor" red="0.80392156859999997" green="0.8980392157" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="140" id="sGx-SJ-vV6"/>
                                                 </constraints>
@@ -273,6 +274,7 @@
                                             <constraint firstItem="Nzs-8L-ZCT" firstAttribute="leading" secondItem="xzA-o5-LSo" secondAttribute="leading" id="VHb-jg-VD6"/>
                                             <constraint firstItem="Ebi-H7-bu8" firstAttribute="leading" secondItem="a8M-T9-iUb" secondAttribute="leading" id="d1Q-jy-KKD"/>
                                             <constraint firstItem="5rq-MY-bBp" firstAttribute="leading" secondItem="H9Q-d1-jOz" secondAttribute="leading" id="ebR-Eo-GSn"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="jjf-nB-3BY"/>
                                             <constraint firstItem="i0l-nx-8UU" firstAttribute="leading" secondItem="xzA-o5-LSo" secondAttribute="leading" id="lAn-Wu-BJv"/>
                                             <constraint firstItem="q5z-gJ-Mdg" firstAttribute="width" secondItem="q5z-gJ-Mdg" secondAttribute="height" multiplier="1:1" id="rBc-Mz-J86"/>
                                             <constraint firstItem="P0r-Fa-NCI" firstAttribute="leading" secondItem="xzA-o5-LSo" secondAttribute="leading" id="yQt-4O-LbK"/>
@@ -283,9 +285,7 @@
                                 <constraints>
                                     <constraint firstItem="NuC-SZ-gwc" firstAttribute="top" secondItem="0y8-pS-zYq" secondAttribute="top" id="DAY-62-dgc"/>
                                     <constraint firstItem="NuC-SZ-gwc" firstAttribute="trailing" secondItem="0y8-pS-zYq" secondAttribute="trailing" id="FvR-Ad-Ahb"/>
-                                    <constraint firstItem="NuC-SZ-gwc" firstAttribute="top" secondItem="1dM-v0-Ypi" secondAttribute="top" id="PXY-ds-B0J"/>
                                     <constraint firstItem="NuC-SZ-gwc" firstAttribute="leading" secondItem="0y8-pS-zYq" secondAttribute="leading" id="ROd-dD-jVY"/>
-                                    <constraint firstItem="NuC-SZ-gwc" firstAttribute="height" secondItem="1dM-v0-Ypi" secondAttribute="height" priority="1" id="jhY-fK-uvs"/>
                                     <constraint firstItem="NuC-SZ-gwc" firstAttribute="bottom" secondItem="0y8-pS-zYq" secondAttribute="bottom" id="sph-uJ-q5Q"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="0y8-pS-zYq"/>
@@ -334,6 +334,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="default" width="1000" height="1000"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
