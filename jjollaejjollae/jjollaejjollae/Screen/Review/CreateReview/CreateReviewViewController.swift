@@ -420,19 +420,6 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
           print(statusCode)
       }
     }
-    
-    /**
-     PlaceDetailVC 의 placeInfo 를 새로 업데이트해야함
-     */
-    
-    self.dismiss(animated: true) { [self] in
-      
-//      guard let vc = presentingViewController as? PlaceDetailTableViewController else { return }
-//
-//      guard let innerVC = vc.children.first as? InnerReviewTableViewController else { return }
-//
-//      innerVC.tableView.reloadData()
-    }
   }
   
   
@@ -533,15 +520,6 @@ extension CreateReviewViewController: UIImagePickerControllerDelegate {
     guard let image = info[.originalImage] as? UIImage else { return }
     
     /**
-     다운 샘플링
-     */
-    
-//    guard let downSampledImageData = image.jpegData(compressionQuality: 0.1) else { return }
-//
-//    guard let downSampledImage = UIImage(data: downSampledImageData) else { return }
-    
-    
-    /**
      userReviewPhotoList에 사진 추가
 
      */
@@ -549,17 +527,12 @@ extension CreateReviewViewController: UIImagePickerControllerDelegate {
    
     presentingVC.userReviewPhotoList.append(image)
     
-    /**
-     원한다면 completion 핸들러에서 구현해주어도 됨
-     */
     picker.dismiss(animated: true, completion: nil)
   }
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     
     guard let presentingVC = picker.presentingViewController as? CreateReviewViewController else { return }
-    
-    presentingVC.userReviewPhotoList.append(#imageLiteral(resourceName: "attraction"))
     
     picker.dismiss(animated: true, completion: nil)
   }
