@@ -240,12 +240,15 @@ class AllReviewsTableViewController: UITableViewController, StoryboardInstantiab
       return
     }
     
+    guard let userNick = review.userNick.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
     
-//    let subject = "?subject=report:\(review.userNick.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)),\(review.id)"
-//
-//    let body = "&body=\("불편하셨던 내용을 입력해주세요".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))"
+    let subject = "?subject=report:\(userNick)_\(review.id)"
     
-    if let url = URL(string: base) {
+    guard let bodyString = "불편하셨던 내용을 입력해주세요".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+
+    let body = "&body=\(bodyString)"
+    
+    if let url = URL(string: base + subject + body) {
       
       UIApplication.shared.open(url, options: [:], completionHandler: { _ in
         

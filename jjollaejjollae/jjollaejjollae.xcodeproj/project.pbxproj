@@ -35,7 +35,6 @@
 		283F240926F8725C00CD8339 /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240826F8725C00CD8339 /* SignUpData.swift */; };
 		283F240B26F8732E00CD8339 /* RefreshTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240A26F8732E00CD8339 /* RefreshTokenData.swift */; };
 		283F240D26F87F9C00CD8339 /* SimpleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240C26F87F9C00CD8339 /* SimpleResponse.swift */; };
-		283F241026F8AE8C00CD8339 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F240F26F8AE8C00CD8339 /* LaunchScreenViewController.swift */; };
 		2841598E26BA745700F027DB /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2841598D26BA745700F027DB /* Login.storyboard */; };
 		2841599626BA7BDD00F027DB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599526BA7BDD00F027DB /* LoginViewController.swift */; };
 		2841599826BA8A3F00F027DB /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841599726BA8A3F00F027DB /* UITextField+extension.swift */; };
@@ -236,7 +235,6 @@
 		283F240826F8725C00CD8339 /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		283F240A26F8732E00CD8339 /* RefreshTokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenData.swift; sourceTree = "<group>"; };
 		283F240C26F87F9C00CD8339 /* SimpleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleResponse.swift; sourceTree = "<group>"; };
-		283F240F26F8AE8C00CD8339 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		2841598D26BA745700F027DB /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		2841599526BA7BDD00F027DB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2841599726BA8A3F00F027DB /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
@@ -496,7 +494,6 @@
 		2837FC4126BA6CF400C1C0B0 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				283F240E26F8AE7600CD8339 /* ViewController */,
 				2837FC4226BA6D0100C1C0B0 /* Storyboard */,
 			);
 			path = Splash;
@@ -508,14 +505,6 @@
 				2827C89326B03C3E0001E077 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
-			sourceTree = "<group>";
-		};
-		283F240E26F8AE7600CD8339 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				283F240F26F8AE8C00CD8339 /* LaunchScreenViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		2841598A26BA73C600F027DB /* Login */ = {
@@ -1348,7 +1337,6 @@
 				DDF24BB226C6D61D007AB642 /* MyInfoMainViewController.swift in Sources */,
 				286011A426BEA5B5002774EA /* AdditionalInfoViewController.swift in Sources */,
 				284159AC26BE52FD00F027DB /* UILabel+Extension.swift in Sources */,
-				283F241026F8AE8C00CD8339 /* LaunchScreenViewController.swift in Sources */,
 				287AE21F26EC857B0038B39F /* CarouselLayout.swift in Sources */,
 				2884A31626CD6F51004596C3 /* SearchResultDataSource.swift in Sources */,
 				28CF852B26E7882F00ED200F /* ProvisionViewController.swift in Sources */,
@@ -1438,7 +1426,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1493,7 +1481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
