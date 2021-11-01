@@ -88,19 +88,19 @@ class InnerReviewTableViewController: UITableViewController {
 
   @IBAction func didTapCreateReviewButton(_ sender: UIButton) {
     
-    guard let token = UserManager.shared.userIdandToken?.token else {
-      
+    guard (UserManager.shared.userIdandToken?.token) != nil else {
+
       let controller = UIAlertController(title: "로그인 필요 🔑", message: "회원만 볼수 있는 페이지에요.", preferredStyle: .alert)
-      
+
       let okAction = UIAlertAction(title: "알겠어요", style: .default, handler: nil)
-      
+
       controller.addAction(okAction)
-      
+
       self.present(controller, animated: true, completion: nil)
-      
+
       return
     }
-    
+
     guard let vc = CreateReviewViewController.loadFromStoryboard() as? CreateReviewViewController else { return }
     
     vc.placeInfo = placeInfo
@@ -118,7 +118,36 @@ class InnerReviewTableViewController: UITableViewController {
   
   @IBAction func didTapShowAllReviewsButton(_ sender: UIButton) {
     
+    guard let token = UserManager.shared.userIdandToken?.token else {
+
+      let controller = UIAlertController(title: "로그인 필요 🔑", message: "회원만 볼수 있는 페이지에요.", preferredStyle: .alert)
+
+      let okAction = UIAlertAction(title: "알겠어요", style: .default, handler: nil)
+
+      controller.addAction(okAction)
+
+      self.present(controller, animated: true, completion: nil)
+
+      return
+    }
+    
     guard let vc = AllReviewsTableViewController.loadFromStoryboard() as? AllReviewsTableViewController else { return }
+    
+    guard let placeId = placeInfo?.id else { return }
+   
+    APIService.shared.readPlaceReview(token: token, placeId: placeId) { result in
+      
+      switch result {
+        
+        case .success(let json):
+          
+          let totalReview = TotalPlaceReview(with: json)
+          vc.totalReviewList = totalReview
+          
+        case .failure(let statusCode):
+          print(statusCode)
+      }
+    }
     
     self.parent?.navigationController?.pushViewController(vc, animated: true)
   }

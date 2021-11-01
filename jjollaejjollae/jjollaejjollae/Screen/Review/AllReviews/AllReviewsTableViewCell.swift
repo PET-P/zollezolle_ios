@@ -9,11 +9,18 @@ import UIKit
 
 final class AllReviewsTableViewCell: UITableViewCell {
   
+  static let  identifier: String = String(describing: AllReviewsTableViewCell.self)
+  
   @IBOutlet private weak var nickNameLabel: UILabel!
   
-  @IBOutlet weak var photoImageView: UIImageView!
+  @IBOutlet weak var photoImageView: UIImageView! {
+    didSet {
+      photoImageView.layer.masksToBounds = true
+      photoImageView.layer.cornerRadius = 8
+    }
+  }
   
-  @IBOutlet private weak var ratingLabel: UILabel!
+  @IBOutlet weak var ratingStarImageView: UIImageView!
   
   @IBOutlet weak var descriptionLabel: UILabel!
   
@@ -22,12 +29,6 @@ final class AllReviewsTableViewCell: UITableViewCell {
   var nickName: String = "" {
     didSet {
       nickNameLabel.text = nickName
-    }
-  }
-  
-  var ratingPoint = 0 {
-    didSet {
-      ratingLabel.text = "평점 : \(ratingPoint)"
     }
   }
   
@@ -43,19 +44,41 @@ final class AllReviewsTableViewCell: UITableViewCell {
     }
   }
   
-  static var identifier: String {
-    return String(describing: AllReviewsTableViewCell.self)
+  @IBOutlet weak var likeButton: UIButton! {
+    didSet {
+      
+      likeButton.layer.cornerRadius = likeButton.frame.height / 2
+      likeButton.layer.borderWidth = 1
+    }
   }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+  
+  var isLikeButtonSelected: Bool = false {
+    didSet {
+      likeButton.layer.borderColor = isLikeButtonSelected ? UIColor.themeGreen.cgColor : UIColor.gray06.cgColor
+      
+      if isLikeButtonSelected {
+        numOfLikes += 1
+      }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+  }
+  
+  var numOfLikes: Int = 0 {
+    didSet {
+      likeButton.setTitle("도움돼요 \(numOfLikes)", for: .normal)
     }
-
+  }
+  
+  var ratingPoint: Int = 5 {
+    
+    didSet {
+      ratingStarImageView.image = UIImage(named: "star\(ratingPoint)") ?? nil
+    }
+    
+  }
+  
+  
+  override func awakeFromNib() {
+      super.awakeFromNib()
+      // Initialization code
+  }
 }

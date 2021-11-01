@@ -68,7 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
           let navigationController = UINavigationController(rootViewController: loginVC)
           navigationController.setNavigationBarHidden(true, animated: false)
-          self.window?.rootViewController = loginVC
+//          self.window?.rootViewController = loginVC
           self.window?.rootViewController = navigationController
         } else {
           let mainTabBarController = MainTabBarController()

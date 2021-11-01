@@ -113,11 +113,11 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
   
 //  private var ratingFactorsDict: [String: Bool] = ["Service": true, "Clean": true, "Mood": true, "Location": true]
   
-  private var userSatisfactionDict: [UserReview.SatisfactionType: Bool] = {
+  private var userSatisfactionDict: [SatisfactionType: Bool] = {
     
-    var dict = [UserReview.SatisfactionType: Bool]()
+    var dict = [SatisfactionType: Bool]()
     
-    UserReview.SatisfactionType.allCases.forEach { satisfaction in
+    SatisfactionType.allCases.forEach { satisfaction in
       dict.updateValue(true, forKey: satisfaction)
     }
     
