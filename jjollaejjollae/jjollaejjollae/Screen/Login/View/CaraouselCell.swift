@@ -55,14 +55,14 @@ class CaraouselCell: UICollectionViewCell {
     self.delegate?.didTapImageView(indexPath: selectedIndexPath)
   }
   
-//  override func layoutSubviews() {
-//    super.layoutSubviews()
-//    self.dogImageView.layer.cornerRadius = self.frame.height * 0.85 / 2
-//    self.dogImageView.layer.masksToBounds = true
-//    self.dogImageView.clipsToBounds = true
-//    self.layer.borderColor = UIColor.clear.cgColor
-//    self.layer.masksToBounds = true
-//    self.clipsToBounds = true
-//    layoutIfNeeded()
-//  }
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    self.dogImageView.layer.cornerRadius = self.frame.height * 0.85 / 2
+    self.dogImageView.layer.masksToBounds = true
+    self.dogImageView.clipsToBounds = true
+    self.layer.borderColor = UIColor.clear.cgColor
+    self.layer.masksToBounds = true
+    self.clipsToBounds = true
+    layoutIfNeeded()
+  }
 }
