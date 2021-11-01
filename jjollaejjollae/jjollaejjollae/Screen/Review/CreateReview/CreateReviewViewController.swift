@@ -415,6 +415,8 @@ class CreateReviewViewController: UIViewController, StoryboardInstantiable, UINa
           let data = JSON(data)
           
           print(data["message"].stringValue)
+        
+          self.dismiss(animated: true, completion: nil)
           
         case .failure(let statusCode):
           print(statusCode)

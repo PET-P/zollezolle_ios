@@ -23,14 +23,13 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable{
   private var userInfo: UserData?
   private var representDogImage: UIImage?
   
-  private var dogTuples: [(petdata: PetData, image: UIImage?)] = []
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     NotificationCenter.default.addObserver(self, selector: #selector(getpageIndex(_:)),
                                            name: NSNotification.Name("SegControlNotification"),
                                            object: nil)
     PagingManager.shared.mainVC = self
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {

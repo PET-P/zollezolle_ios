@@ -61,9 +61,15 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
-  func patchPetInfo(token: String, userId: String, petId: String, pets: [PetData], completion: @escaping ((NetworkResult<UserData>) -> (Void))) {
-    let target = APITarget.patchPetInfo(token: token, userId: userId, petId: petId, pets: pets)
-    judgeGenericResponse(target, completion: completion)
+  func patchPetInfo(token: String, userId: String, petId: String, name: String?, age: Int?, sex: Sex?, size: Size?, weight: Double?, type: String?, breed: String?, imageUrl: String?, isRepresent: Bool?, completion: @escaping ((NetworkResult<Any>) -> (Void))) {
+    if let imageUrl = imageUrl {
+      let target = APITarget.patchPetInfo(token: token, userId: userId, petId: petId, name: name, age: age, sex: sex?.rawValue, size: size?.rawValue, weight: weight, type: type, breed: breed, imageUrl: imageUrl, isRepresent:  isRepresent)
+      judgeSimpleResponse(target, completion: completion)
+    } else {
+      let target = APITarget.patchPetInfoWithNoImage(token: token, userId: userId, petId: petId, name: name, age: age, sex: sex?.rawValue, size: size?.rawValue, weight: weight, type: type, breed: breed, isRepresent:  isRepresent)
+      judgeSimpleResponse(target, completion: completion)
+    }
+    
   }
   
   func search(token: String, keyword: String, page: Int, completion: @escaping((NetworkResult<SearchData>) -> (Void))) {

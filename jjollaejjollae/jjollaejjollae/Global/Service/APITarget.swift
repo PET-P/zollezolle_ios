@@ -27,7 +27,9 @@ enum APITarget {
   
   case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
   case readPets(token: String, userId: String)
-  case patchPetInfo(token: String, userId: String, petId: String, pets: [PetData])
+  case patchPetInfo(token: String, userId: String, petId: String, name: String?, age: Int?, sex: String?, size: String?, weight: Double?, type: String?, breed: String?, imageUrl: String?, isRepresent: Bool?)
+  case patchPetInfoWithNoImage(token: String, userId: String, petId: String, name: String?, age: Int?, sex: String?, size: String?, weight: Double?, type: String?, breed: String?, isRepresent: Bool?)
+
   
   case search(token: String, keyword: String, page: Int)
   case noLoginSearch(keyword: String, page: Int)
@@ -104,7 +106,7 @@ extension APITarget: TargetType {
       return ""
     case .socialLogin:
       return "/auth/social"
-    case .patchPetInfo(_, let userId, let petId, _):
+    case .patchPetInfo(_, let userId, let petId, _, _, _, _, _, _ ,_,_,_), .patchPetInfoWithNoImage(_, let userId, let petId, _, _, _, _, _, _ ,_,_):
       return "/users/\(userId)/pets/\(petId)"
     case .search, .noLoginSearch:
       return "/search"
@@ -167,7 +169,7 @@ extension APITarget: TargetType {
       case .email, .login, .findPassword, .signup, .socialLogin, .addPlaceInFolder, .createPet, .createWishlistFolder, .createReview, .likeReview:
       return .post
       
-      case .patchPetInfo, .patchFolder, .patchUser:
+    case .patchPetInfo, .patchFolder, .patchUser, .patchPetInfoWithNoImage:
       return .patch
       
 
@@ -207,8 +209,11 @@ extension APITarget: TargetType {
       return .requestParameters(parameters: ["name": name, "age": age, "sex": sex, "size": size, "weight": weight , "type": type, "breed": breed, "imageUrl": imageUrl, "isRepresent": isRepresent], encoding: JSONEncoding.default)
     case .tempPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: URLEncoding.queryString)
-    case .patchPetInfo(_, _, _, let pets):
-      return .requestParameters(parameters: ["pets": pets], encoding: JSONEncoding.default)
+    case .patchPetInfo(_, _, _, let name, let age, let sex, let size, let weight, let type, let breed, let imageUrl, let isRepresent):
+      return .requestParameters(parameters: ["name": name, "age": age, "sex": sex, "size": size, "weight": weight , "type": type, "breed": breed, "imageUrl": imageUrl, "isRepresent": isRepresent], encoding: JSONEncoding.default)
+      
+    case .patchPetInfoWithNoImage(_, _, _, let name, let age, let sex, let size, let weight, let type, let breed, let isRepresent):
+      return .requestParameters(parameters: ["name": name, "age": age, "sex": sex, "size": size, "weight": weight , "type": type, "breed": breed, "isRepresent": isRepresent], encoding: JSONEncoding.default)
       
     case .createWishlistFolder(let userId, let folder):
       return .requestParameters(parameters: ["userId": userId, "folder": folder], encoding: JSONEncoding.default)
@@ -257,7 +262,7 @@ extension APITarget: TargetType {
     
     switch self {
       
-    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .patchPetInfo, .readAllPosts, .readPost,  .readAllUsers, .noLoginSearch, .noLoginReadReview, .nearPlace, .createWishlistFolder, .getFilterPlace, .fetchPlaceInfo:
+    case .login, .email, .findPassword, .tempPassword, .signup, .socialLogin, .readAllPosts, .readPost,  .readAllUsers, .noLoginSearch, .noLoginReadReview, .nearPlace, .createWishlistFolder, .getFilterPlace, .fetchPlaceInfo:
       
       return ["Content-Type" : "application/json"]
         
@@ -266,7 +271,7 @@ extension APITarget: TargetType {
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
       
-    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .likeReview(let token, _), .deleteReview(let token, _), .deletePlaceInEntireFolder(let token,_,_), .unlikeReview(let token, _):
+    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .deleteReview(let token, _), .deletePlaceInEntireFolder(let token,_,_), .patchPetInfo(let token,_,_,_,_,_,_,_,_,_,_,_), .patchPetInfoWithNoImage(let token,_,_,_,_,_,_,_,_,_,_), .unlikeReview(let token, _), .likeReview(let token, _):
       
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
       

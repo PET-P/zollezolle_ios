@@ -38,6 +38,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     infoTableView.delegate = self
     infoTableView.dataSource = self
     setupHeader()
+    profileImageView.setImage(with: getRepresentImageUrl())
     infoTableView.tableFooterView = UIView(frame: CGRect.zero)
     if #available(iOS 15.0, *) {
 //      infoTableView.sectionHeaderTopPadding = 0
@@ -107,6 +108,18 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   
   deinit{
     print(self, #function)
+  }
+  
+  private func getRepresentImageUrl() -> String {
+    guard let userInfo = UserManager.shared.userInfo else { return ""}
+
+    guard let pet = userInfo.pets.filter({ petData in
+      petData.isRepresent
+    }).first else { return ""}
+
+    guard let imageUrl = pet.imageUrl else { return ""}
+    
+    return imageUrl
   }
   
   private func setupHeader() {

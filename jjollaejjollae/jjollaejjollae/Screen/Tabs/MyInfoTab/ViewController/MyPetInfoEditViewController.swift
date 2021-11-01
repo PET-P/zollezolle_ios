@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KakaoSDKUser
 
 class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
   
@@ -124,7 +125,7 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
       saveButton.titleLabel?.font = UIFont.robotoBold(size: 18)
       saveButton.titleLabel?.textColor = UIColor.white
       saveButton.tintColor = UIColor.white
-      saveButton.setRounded(radius: 25)
+      saveButton.setRounded(radius: 5)
       saveButton.backgroundColor = UIColor.themeGreen
     }
   }
@@ -156,12 +157,11 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    dogProfile = PagingManager.shared.getDogTuples()
     setPickerContents()
     addToobar()
     setKeyboard()
     myPetNameTextField.addSubview(representPetButton)
-    representPetButton.isSelected = false
-    // Do any additional setup after loading the view.
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -218,9 +218,10 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
   private var visibleIndex: [IndexPath] = []
   private var clickedIndexPath: IndexPath?
   private var middleIndex: IndexPath = [0,0]
-  
+  private var tempImageUrl: String = ""
   private var weightList = [Double]()
   private var ageList = [Int]()
+  private var newImage: UIImage?
   
   
   lazy var agePicker: UIPickerView = {
@@ -287,6 +288,57 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
     self.showAlertController(style: UIAlertController.Style.actionSheet, AlertList: ["강아지", "고양이"])
   }
   
+  @IBAction func didTapRefreshButton(_ sender: UIButton) {
+    clearForm()
+  }
+  
+  @IBAction func didTapSaveButton(_ sender: UIButton) {
+    guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
+    let profile = dogProfile[middleIndex.row]
+    guard let name = profile.pet.name else {
+      return}
+    if profile.pet.id == "1" {
+      // create
+      APIService.shared.createPet(token: token, userId: userId, name: name, age: profile.pet.age, sex: profile.pet.sex, size: profile.pet.size, weight: profile.pet.weight, type: profile.pet.type, breed: profile.pet.breed, imageUrl: tempImageUrl , isRepresent: profile.pet.isRepresent) { [weak self](result) in
+        guard let self = self else {return}
+        switch result {
+        case .success(let data):
+          print(data)
+          guard let newImage = self.newImage else {
+            return
+          }
+          StorageService.shared.uploadImage(img: newImage, imageName: self.tempImageUrl)
+        case .failure(let error):
+          print(error)
+        }
+      }
+    } else {
+      if tempImageUrl == "" {
+        APIService.shared.patchPetInfo(token: token, userId: userId, petId: profile.pet.id, name: name, age: profile.pet.age, sex: profile.pet.sex, size: profile.pet.size, weight: profile.pet.weight, type: profile.pet.type, breed: profile.pet.breed, imageUrl: nil, isRepresent: profile.pet.isRepresent) { (result) in
+          switch result {
+          case .success(let data):
+            print(data)
+          case .failure(let error):
+            print(error)
+          }
+        }
+      } else {
+        APIService.shared.patchPetInfo(token: token, userId: userId, petId: profile.pet.id, name: name, age: profile.pet.age, sex: profile.pet.sex, size: profile.pet.size, weight: profile.pet.weight, type: profile.pet.type, breed: profile.pet.breed, imageUrl: tempImageUrl, isRepresent: profile.pet.isRepresent) { (result) in
+          switch result {
+          case .success(let data):
+            print(data)
+            guard let newImage = self.newImage else {
+              return
+            }
+            StorageService.shared.uploadImage(img: newImage, imageName: self.tempImageUrl)
+          case .failure(let error):
+            print(error)
+          }
+        }
+      }
+    }
+  }
+  
   private func updateForm(cellType: String) {
     if cellType == "plus" {
      clearForm()
@@ -313,6 +365,8 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
     petTypeTextField.text = nil
     representPetButton.isSelected = false
   }
+  
+
   
   
   
@@ -494,7 +548,10 @@ extension MyPetInfoEditViewController: UIImagePickerControllerDelegate, UINaviga
     self.dogProfile[self.middleIndex.row].image = newImage
     self.cellType[self.middleIndex.row] = .old
     guard let userId = UserManager.shared.userIdandToken?.userId else {return}
-    self.dogProfile[self.middleIndex.row].pet.imageUrl = "\(userId)_\(Date())"
+    
+//    self.dogProfile[self.middleIndex.row].pet.imageUrl = "\(userId)_\(Date())"
+    self.tempImageUrl = "\(userId)_\(Date())"
+    self.newImage = newImage
     picker.dismiss(animated: true) {
       self.dogProfileCollectionView.reloadData()
     }
@@ -522,6 +579,30 @@ extension MyPetInfoEditViewController: UICollectionViewDelegate, UICollectionVie
     let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(longpressedCell(_:)))
     longPressGesture.minimumPressDuration = 1
     cell.addGestureRecognizer(longPressGesture)
+    
+    cell.dogImageView.isUserInteractionEnabled = true
+    
+    if cellType[indexPath.row] != .old {
+      cell.dogImageView.image = UIImage(named: cellType[indexPath.row].rawValue)
+    } else {
+      if let image = self.dogProfile[indexPath.row].image {
+        cell.dogImageView.image = image
+      } else {
+        cell.dogImageView.image = UIImage(named: State.camera.rawValue)
+      }
+    }
+    setMiddleIndex(cell, indexPath: indexPath)
+    
+    //+버튼일 경우 다른 곳은 터치가 안되서 기입할 수가 없음
+    if cellType[indexPath.row] == .plus && indexPath == middleIndex {
+      isEditEnable(isOn: false)
+    } else {
+      isEditEnable(isOn: true)
+    }
+    
+    if indexPath == middleIndex {
+      updateForm(cellType: cellType[middleIndex.row].rawValue)
+    }
     
     cell.delegate = self
     cell.selectedIndexPath = indexPath
@@ -567,10 +648,10 @@ extension MyPetInfoEditViewController: UICollectionViewDelegate, UICollectionVie
   private func addCollectionView() {
     let layout = CarouselLayout()
     layout.itemSize = CGSize(width: dogProfileCollectionView.frame.size.width*0.5, height: dogProfileCollectionView.frame.size.height)
-    layout.sideItemScale = 0.7
-    layout.spacing = -40
+    layout.sideItemScale = 0.8
+    layout.spacing = -50
     layout.isPagingEnabled = true
-    layout.sideItemAlpha = 0.5
+    layout.sideItemAlpha = 0.3
     
     dogProfileCollectionView.collectionViewLayout = layout
     

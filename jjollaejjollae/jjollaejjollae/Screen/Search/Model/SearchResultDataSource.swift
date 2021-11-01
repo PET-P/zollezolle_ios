@@ -72,6 +72,7 @@ extension SearchResultDataSource: SearchResultCellDelegate {
       }
       wishListMainVC.setMode(mode: .fromCell)
       wishListMainVC.setPlaceInfo(placeId: placeId)
+      wishListMainVC.delegate = CallerVC as? SearchDataReceiveable
       CallerVC?.present(wishListMainVC, animated: true, completion: nil)
       //모델의 likes에 대한 Update
     }

@@ -195,6 +195,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
     super.viewDidLoad()
     setLocationFilterButtonUI()
     updatedModeUI()
+    updateButtonUI(accommodationButton)
     setupReviewTableView()
     if mode != .Fromlocation {
       setupheader()
@@ -248,6 +249,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
                                  landmarkDataSource]
       accommodationDataSource.newDataList = self.newDataList
       self.dataList = accommodationDataSource.newDataList
+      self.accommodationButton.isSelected = true
     } else {
       searchResultDataSource.setCallerVC(viewController: self)
       searchResultDataSource.newDataList = newDataList
@@ -668,7 +670,7 @@ extension SearchResultViewController: SearchDataReceiveable {
         newDataList[index].isWish = false
         likes[placeId] = false
         returnHeartIndex = index
-        return
+        break
       }
     }
     
@@ -682,15 +684,19 @@ extension SearchResultViewController: SearchDataReceiveable {
     case .Fromlocation:
       if restaurantButton.isSelected {
         self.restaurantDataSource.newDataList = newDataList
+        self.restaurantDataSource.likes[placeId] = false
         self.dataList = self.restaurantDataSource.newDataList
       } else if accommodationButton.isSelected {
         self.accommodationDataSource.newDataList = newDataList
+        self.accommodationDataSource.likes[placeId] = false
         self.dataList = self.accommodationDataSource.newDataList
       } else if cafeButton.isSelected {
         self.cafeDataSource.newDataList = newDataList
+        self.cafeDataSource.likes[placeId] = false
         self.dataList = self.cafeDataSource.newDataList
       } else {
         self.landmarkDataSource.newDataList = newDataList
+        self.landmarkDataSource.likes[placeId] = false
         self.dataList = self.landmarkDataSource.newDataList
       }
       resultTableView.beginUpdates()
@@ -698,6 +704,7 @@ extension SearchResultViewController: SearchDataReceiveable {
       resultTableView.endUpdates()
     case .Fromsearch:
       self.searchResultDataSource.newDataList = newDataList
+      self.searchResultDataSource.likes[placeId] = false
       self.dataList = self.searchResultDataSource.newDataList
       resultTableView.beginUpdates()
       resultTableView.reloadRows(at: [IndexPath(row: returnHeartIndex, section: 0)], with: .none)

@@ -18,18 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdm-gC-Lia">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdm-gC-Lia">
                                 <rect key="frame" x="0.0" y="39" width="414" height="818"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="4NC-GX-LQb">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="614.5"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="akw-Hc-fDL" customClass="dogInfoCollectionView" customModule="jjollaejjollae" customModuleProvider="target">
-                                                <rect key="frame" x="42" y="0.0" width="330" height="150"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="330" id="IhJ-Tz-iRB"/>
                                                     <constraint firstAttribute="height" constant="150" id="t4p-tw-2sF"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2CP-uU-qfT">
@@ -288,15 +286,18 @@
                                                     <constraint firstAttribute="height" constant="32" id="bUH-HG-XGh"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="95" translatesAutoresizingMaskIntoConstraints="NO" id="IaA-zn-E4o">
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="IaA-zn-E4o">
                                                 <rect key="frame" x="42" y="532.5" width="330" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jot-qJ-FSy">
-                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jot-qJ-FSy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="ScK-LM-mIK"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didTapRefreshButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wqh-Pn-zFw"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COu-xr-8ei">
                                                         <rect key="frame" x="150" y="0.0" width="180" height="50"/>
@@ -305,6 +306,9 @@
                                                             <constraint firstAttribute="height" constant="50" id="b32-bM-XHa"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="didTapSaveButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Gp1-9t-mCK"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -323,16 +327,17 @@
                                             <constraint firstAttribute="trailing" secondItem="IaA-zn-E4o" secondAttribute="trailing" constant="42" id="LNq-nk-vWS"/>
                                             <constraint firstItem="mbS-5R-8tV" firstAttribute="leading" secondItem="IaA-zn-E4o" secondAttribute="leading" id="Tff-BA-zUz"/>
                                             <constraint firstItem="Qsy-Xb-EIS" firstAttribute="trailing" secondItem="3ZF-pi-mU3" secondAttribute="trailing" id="X9L-Pp-dp4"/>
+                                            <constraint firstItem="akw-Hc-fDL" firstAttribute="leading" secondItem="4NC-GX-LQb" secondAttribute="leading" id="Xcr-Eo-JHj"/>
                                             <constraint firstItem="IaA-zn-E4o" firstAttribute="leading" secondItem="4NC-GX-LQb" secondAttribute="leading" constant="42" id="br4-km-ksg"/>
                                             <constraint firstItem="gqt-3f-4F8" firstAttribute="height" secondItem="seb-zG-HF4" secondAttribute="height" id="mJM-cB-OBD"/>
                                             <constraint firstItem="tQC-Ez-u88" firstAttribute="leading" secondItem="Qsy-Xb-EIS" secondAttribute="leading" id="s4z-OD-peI"/>
+                                            <constraint firstAttribute="trailing" secondItem="akw-Hc-fDL" secondAttribute="trailing" id="tKC-lk-EZ2"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="4NC-GX-LQb" firstAttribute="leading" secondItem="9ff-Sg-lUb" secondAttribute="leading" id="1gG-oP-Zck"/>
                                     <constraint firstItem="4NC-GX-LQb" firstAttribute="bottom" secondItem="9ff-Sg-lUb" secondAttribute="bottom" id="7MJ-L0-mfn"/>
-                                    <constraint firstItem="4NC-GX-LQb" firstAttribute="height" secondItem="Tjq-ia-hLU" secondAttribute="height" priority="1" id="8zF-gY-ESb"/>
                                     <constraint firstItem="4NC-GX-LQb" firstAttribute="top" secondItem="9ff-Sg-lUb" secondAttribute="top" id="bJ1-eu-FJH"/>
                                     <constraint firstItem="4NC-GX-LQb" firstAttribute="trailing" secondItem="9ff-Sg-lUb" secondAttribute="trailing" id="vOW-z9-END"/>
                                 </constraints>
@@ -343,6 +348,10 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fdm-gC-Lia" secondAttribute="trailing" id="0rf-s0-csv"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="fdm-gC-Lia" secondAttribute="top" constant="5" id="6xi-7j-8y0"/>
+                            <constraint firstItem="fdm-gC-Lia" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="RdW-4E-dFb"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="fdm-gC-Lia" secondAttribute="bottom" constant="5" id="Tm9-A1-xq3"/>
                             <constraint firstItem="4NC-GX-LQb" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" id="W9l-g8-UWw"/>
                         </constraints>
                     </view>

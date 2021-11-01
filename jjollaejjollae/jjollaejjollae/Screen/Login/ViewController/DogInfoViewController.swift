@@ -178,6 +178,9 @@ class DogInfoViewController: FixModalViewController{
     button.setImage(UIImage(named: "pawChecked"), for: .selected)
     button.frame = CGRect(x: 0, y: 5, width: 16, height: 20)
     button.contentEdgeInsets = UIEdgeInsets(top: 5, left: spacing, bottom: 5, right: spacing)
+    if isFirst == 0 {
+      button.isSelected = true
+    }
     myPetNameTextField.leftView = button
     myPetNameTextField.leftViewMode = .always
     button.addTarget(self, action: #selector(self.didTaprepresentPetButton(_:)), for: .touchUpInside)
@@ -186,6 +189,7 @@ class DogInfoViewController: FixModalViewController{
 
 
   private var user: UserData?
+  private var isFirst: Int = 0
   private var cellType: [State] = [.plus]
   private var dogProfile: [PetInfo] = []
   private var visibleIndex: [IndexPath] = []
@@ -210,6 +214,9 @@ class DogInfoViewController: FixModalViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     user = UserManager.shared.userInfo
+    print("********************************")
+    print(user)
+    print("********************************")
     for i in 1...100 {
       ageList.append(i)
     }
@@ -223,7 +230,7 @@ class DogInfoViewController: FixModalViewController{
     addToobar()
     setKeyboard()
     myPetNameTextField.addSubview(representPetButton)
-    representPetButton.isSelected = false
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -356,10 +363,27 @@ class DogInfoViewController: FixModalViewController{
     }
     if flag {
       guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
+      var loadingIndex = 0
+      LoadingIndicator.show()
       for pet in self.dogProfile {
         if let imageData = pet.imageData, let imageUrl = pet.imageUrl {
-          StorageService.shared.uploadImageWithData(imageData: imageData, imageName: imageUrl)
-        } 
+          StorageService.shared.uploadImageWithData(imageData: imageData, imageName: imageUrl) {
+            if loadingIndex == self.dogProfile.count - 1 {
+              APIService.shared.readUser(token: token, userId: userId) { (result) in
+                switch result {
+                case .success(let data):
+                  UserManager.shared.userInfo = data
+                case .failure(let error):
+                  print("error")
+                }
+              }
+              let sceneDelegate = UIApplication.shared.connectedScenes
+                      .first!.delegate as! SceneDelegate
+                  sceneDelegate.window!.rootViewController = MainTabBarController()
+            }
+            loadingIndex += 1
+          }
+        }
         APIService.shared.createPet(token: token, userId: userId, name: pet.name, age: pet.age, sex: pet.sex, size: pet.size, weight: pet.weight, type: pet.type, breed: pet.breed, imageUrl: pet.imageUrl, isRepresent: pet.isRepresent) { (result) in
           switch result {
           case .success(let petdata):
@@ -368,9 +392,6 @@ class DogInfoViewController: FixModalViewController{
               case .success(let data):
                 UserManager.shared.userInfo = data
                 UserManager.shared.representDog = pet.imageUrl ?? "default"
-                let sceneDelegate = UIApplication.shared.connectedScenes
-                        .first!.delegate as! SceneDelegate
-                    sceneDelegate.window!.rootViewController = MainTabBarController()
               case .failure(let error):
                 fatalError("Error \(error)")
               }
@@ -551,7 +572,7 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
       return}
     self.dogProfile[self.middleIndex.row].imageData = newImage.jpegData(compressionQuality: 0.1)
     self.cellType[self.middleIndex.row] = State.old
-    self.dogProfile[self.middleIndex.row].imageUrl = "\(self.user?.id ?? "쫄래쫄래")_\(Date())"
+    self.dogProfile[self.middleIndex.row].imageUrl = "\(UserManager.shared.userIdandToken?.userId ?? "zzollezzolle")_\(Date())"
     picker.dismiss(animated: true) {
       self.dogProfileCollectionView.reloadData()
     }
@@ -694,7 +715,11 @@ extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDel
     if let indexPath = indexPath {
       if cellType[indexPath.row] == .plus && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         cellType.insert(.camera, at: cellType.count - 1)
-        dogProfile.append(PetInfo())
+        if isFirst == 0 {
+          dogProfile.append(PetInfo(isRepresent: true))
+          isFirst += 1
+        } else {
+          dogProfile.append(PetInfo(isRepresent: false))}
       } else if cellType[indexPath.row] == .camera && dogProfileCollectionView.cellForItem(at: indexPath)?.alpha ?? 0.8 > 0.9 {
         let myPetImagePickerController: UIImagePickerController = UIImagePickerController()
         myPetImagePickerController.allowsEditing = true
