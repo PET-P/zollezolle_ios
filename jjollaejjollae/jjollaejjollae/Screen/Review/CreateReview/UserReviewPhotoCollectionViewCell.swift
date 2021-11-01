@@ -20,10 +20,4 @@ final class UserReviewPhotoCollectionViewCell: UICollectionViewCell {
       mainImageView.image = mainImage
     }
   }
-  
-  override func awakeFromNib() {
-    
-//    self.layer.cornerRadius = 5
-//    self.layer.masksToBounds = true
-  }
 }

@@ -36,7 +36,7 @@ struct UserReview {
   
   var satisfactionList: [SatisfactionType]
   
-  var reviewImages: [UIImage]
+  var reviewImages: [String]
   
   var reviewText: String
   
@@ -53,8 +53,8 @@ extension UserReview {
   
   func toDict() -> [String: Any] {
     
-    var dict : [String: Any] = [ "point" : self.rating,
-                 "imagesUrl" : [],
+    let dict: [String: Any] = [ "point" : self.rating,
+                 "imagesUrl" : self.reviewImages,
                  "userId": self.userId,
                  "placeId": self.placeId,
                  "text" : self.reviewText,
