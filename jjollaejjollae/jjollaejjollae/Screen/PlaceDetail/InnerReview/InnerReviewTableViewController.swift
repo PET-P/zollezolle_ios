@@ -133,6 +133,10 @@ class InnerReviewTableViewController: UITableViewController {
     
     guard let vc = AllReviewsTableViewController.loadFromStoryboard() as? AllReviewsTableViewController else { return }
     
+    LoadingIndicator.show()
+    
+    self.parent?.navigationController?.pushViewController(vc, animated: true)
+    
     guard let placeId = placeInfo?.id else { return }
    
     APIService.shared.readPlaceReview(token: token, placeId: placeId) { result in
@@ -144,12 +148,14 @@ class InnerReviewTableViewController: UITableViewController {
           let totalReview = TotalPlaceReview(with: json)
           vc.totalReviewList = totalReview
           
+          LoadingIndicator.hide()
+          
         case .failure(let statusCode):
           print(statusCode)
       }
     }
     
-    self.parent?.navigationController?.pushViewController(vc, animated: true)
+
   }
   
   // MARK: - Table view data source
