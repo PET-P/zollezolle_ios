@@ -13,7 +13,7 @@ end
 
 target 'jjollaejjollae' do
   pod 'SwiftLint'
-  pod 'Kingfisher', '~> 6.0'
+  pod 'Kingfisher', :git => 'https://github.com/onevcat/Kingfisher.git', :branch => 'version6-xcode13'
   pod 'Moya', '~> 14.0'
   pod 'FSCalendar'
   pod 'NMapsMap'

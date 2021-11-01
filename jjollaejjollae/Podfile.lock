@@ -133,7 +133,7 @@ DEPENDENCIES:
   - KakaoSDKCommon
   - KakaoSDKTalk
   - KakaoSDKUser
-  - Kingfisher (~> 6.0)
+  - Kingfisher (from `https://github.com/onevcat/Kingfisher.git`, branch `version6-xcode13`)
   - Moya (~> 14.0)
   - naveridlogin-sdk-ios
   - NMapsMap
@@ -161,7 +161,6 @@ SPEC REPOS:
     - KakaoSDKTalk
     - KakaoSDKTemplate
     - KakaoSDKUser
-    - Kingfisher
     - Moya
     - nanopb
     - naveridlogin-sdk-ios
@@ -170,6 +169,16 @@ SPEC REPOS:
     - SwiftLint
     - SwiftyJSON
     - Toast-Swift
+
+EXTERNAL SOURCES:
+  Kingfisher:
+    :branch: version6-xcode13
+    :git: https://github.com/onevcat/Kingfisher.git
+
+CHECKOUT OPTIONS:
+  Kingfisher:
+    :commit: 5ecd8df18f1750efaa57d1b9623090156da01ef3
+    :git: https://github.com/onevcat/Kingfisher.git
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
@@ -190,7 +199,7 @@ SPEC CHECKSUMS:
   KakaoSDKTalk: ce1e863c3fa689745192caf36b30a3e4c34afbca
   KakaoSDKTemplate: a5b84073ce3fa521d26c2531346bf866e7775025
   KakaoSDKUser: 937f1acc1380192d38483480d5bf01b141471829
-  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  Kingfisher: 8b783c3d7be73a99b2172a743a5bc0a4dd331d79
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
@@ -200,6 +209,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 4638f4239ebce9221e2e57495d158427ffa1055d
+PODFILE CHECKSUM: 097085cd1ef662ede7ef5d75c61624b25134a943
 
 COCOAPODS: 1.11.2
