@@ -33,7 +33,7 @@ class StorageService {
     }
   }
   
-  func uploadImageWithData(imageData: Data, imageName: String) {
+  func uploadImageWithData(imageData: Data, imageName: String, completion: @escaping () -> Void) {
     guard let filePath = imageName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {return}
     let metaData = StorageMetadata()
     metaData.contentType = "image/jpeg"
@@ -43,6 +43,7 @@ class StorageService {
         print(error.localizedDescription)
       } else {
         print("성공")
+        completion()
       }
     }
   }
