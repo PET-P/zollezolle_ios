@@ -121,7 +121,18 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
     }
     print("😀Test", newDataList)
     setupGesture()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     
+    
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    self.hidesBottomBarWhenPushed = false
   }
   
   func setRegion(region: String){
@@ -135,6 +146,7 @@ class SearchWithLocationViewController: UIViewController, StoryboardInstantiable
   }
   
   @IBAction func didTapBackButton(_ sender: UIButton) {
+    
     self.navigationController?.popViewController(animated: true)
   }
   

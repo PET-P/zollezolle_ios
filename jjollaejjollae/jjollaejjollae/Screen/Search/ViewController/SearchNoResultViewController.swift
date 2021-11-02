@@ -81,6 +81,12 @@ class SearchNoResultViewController: UIViewController, UITextFieldDelegate,
     }
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    self.hidesBottomBarWhenPushed = false
+  }
+  
   @IBAction func didTapBackButton(_ sender: UIButton) {
     gotoSearchVC(from: self)
   }

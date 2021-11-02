@@ -73,7 +73,7 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController {
   
   override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-    
+
     if item.title == mapTab.mapTabTitle {
       
       mapTab.mapMainVC.setInitialContainerViewHeight()

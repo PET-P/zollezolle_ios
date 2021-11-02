@@ -227,9 +227,11 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
       goToMapButton.isHidden = true
     }
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    self.hidesBottomBarWhenPushed = false
   }
   
   
@@ -418,7 +420,9 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
   }
   
   @IBAction private func didTapBackButton(_ sender: UIButton) {
+    
     self.navigationController?.popViewController(animated: true)
+    self.tabBarController?.tabBar.isHidden = false
   }
   
   

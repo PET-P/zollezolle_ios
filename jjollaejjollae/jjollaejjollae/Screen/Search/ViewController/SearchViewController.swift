@@ -65,7 +65,8 @@ class SearchViewController: UIViewController, StoryboardInstantiable, Searchable
   }
   
   override func viewWillDisappear(_ animated: Bool) {
-    self.tabBarController?.tabBar.isHidden = false
+    
+    self.hidesBottomBarWhenPushed = false
   }
   
 }
@@ -133,8 +134,10 @@ extension SearchViewController: UICollectionViewDelegate,
 
 //MARK: - Actions
 extension SearchViewController {
+  
   @IBAction private func didTapBackButton(_ sender: UIButton) {
     self.navigationController?.popViewController(animated: true)
+    self.tabBarController?.tabBar.isHidden = true
   }
 }
 

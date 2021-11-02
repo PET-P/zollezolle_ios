@@ -84,11 +84,7 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
    Author : 박우찬
    NibName 과 reuseIdentifier 를 동일하게 설정
    */
-  //  private let homeLocationCellNibName = "HomeLocationCell"
-  
-  //  private let homeTipCellNibName = "HomeTipCell"
-  
-  
+
   // MARK: - Life Cycle
   
   override func viewDidLoad() {
@@ -116,14 +112,11 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    if self.tabBarController?.tabBar.isHidden == true {
-      self.tabBarController?.tabBar.isHidden = false
-      self.tabBarController?.tabBar.isTranslucent = false
-    }
+    
+    self.tabBarController?.tabBar.isHidden = false
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
     
     if let vc = segue.destination as? UINavigationController, let url = sender as? String {
       
@@ -139,7 +132,9 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
   @IBAction func didTapSearchButton(_ sender: UIButton!) {
     guard let searchVC = SearchViewController.loadFromStoryboard() as? SearchViewController else { return }
     
+    searchVC.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(searchVC, animated: true)
+
   }
   
   // MARK: - Custom
@@ -380,8 +375,8 @@ extension HomeMainViewController: UICollectionViewDelegate {
             print(self, data.result)
             
             nextVC.newDataList = data.result
-            
-            self.hidesBottomBarWhenPushed = true
+              
+            nextVC.hidesBottomBarWhenPushed = true
             
             self.navigationController?.pushViewController(nextVC, animated: true) {
               LoadingIndicator.hide()
@@ -409,8 +404,8 @@ extension HomeMainViewController: UICollectionViewDelegate {
             print(self, data.result)
             
             nextVC.newDataList = data.result
-            
-            self.hidesBottomBarWhenPushed = true
+
+            nextVC.hidesBottomBarWhenPushed = true
             
             self.navigationController?.pushViewController(nextVC, animated: true) {
               LoadingIndicator.hide()
@@ -468,7 +463,7 @@ extension HomeMainViewController: UICollectionViewDelegate {
           nextVC.setMode(from: self)
           nextVC.newDataList = filteredData
           
-          self.hidesBottomBarWhenPushed = true
+          nextVC.hidesBottomBarWhenPushed = true
           
           self.navigationController?.pushViewController(nextVC, animated: true) { LoadingIndicator.hide() }
           

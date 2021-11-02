@@ -16,6 +16,7 @@ protocol SearchDataReceiveable: NSObject {
 extension SearchDataReceiveable {
   func gotoSearchVC(from caller: UIViewController) {
     caller.navigationController?.popViewController(animated: true)
+    caller.tabBarController?.tabBar.isHidden = false
   }
 }
 
