@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		072884FF125CB2D88004C554 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACABE7C431BA41521AD1869C /* Pods_jjollaejjollae.framework */; };
 		280556AA27233B6600CFCC22 /* SearchNoResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A30B26CA406B004596C3 /* SearchNoResultViewController.swift */; };
 		280556AB27233B9400CFCC22 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2884A31726CE532E004596C3 /* SearchResultViewController.swift */; };
 		2827C88926B03C390001E077 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827C88826B03C390001E077 /* AppDelegate.swift */; };
@@ -200,6 +199,7 @@
 		DDFFC17A26FB1C05001FD04A /* WishCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17026FB1C05001FD04A /* WishCalendarViewController.swift */; };
 		DDFFC17B26FB1C05001FD04A /* WishlistMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17126FB1C05001FD04A /* WishlistMainViewController.swift */; };
 		DDFFC17C26FB1C05001FD04A /* WishlistNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC17226FB1C05001FD04A /* WishlistNavigationController.swift */; };
+		E9E9338C7D661804D7CBFE97 /* Pods_jjollaejjollae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226FDDBF9C160ABF260D377 /* Pods_jjollaejjollae.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -355,9 +355,9 @@
 		28FEC64627143E8D00C10B32 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28FEC648271441E600C10B32 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		28FF9FE726B931650062BC28 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
-		ACABE7C431BA41521AD1869C /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF202D4D9A1DBC5B292CCF67 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
-		BC3F03D77BAD672D401AD562 /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
+		9226FDDBF9C160ABF260D377 /* Pods_jjollaejjollae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jjollaejjollae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8FE39168F38CDE9A6164E32 /* Pods-jjollaejjollae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.release.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.release.xcconfig"; sourceTree = "<group>"; };
+		BA1276B82B4777094FCC8552 /* Pods-jjollaejjollae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jjollaejjollae.debug.xcconfig"; path = "Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae.debug.xcconfig"; sourceTree = "<group>"; };
 		DD268228272FC80B004156AD /* SettingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWebViewController.swift; sourceTree = "<group>"; };
 		DD331F7E272D01C900882E99 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
@@ -409,28 +409,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				072884FF125CB2D88004C554 /* Pods_jjollaejjollae.framework in Frameworks */,
+				E9E9338C7D661804D7CBFE97 /* Pods_jjollaejjollae.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0AAB39B1B5DDD82FD7E2BC43 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				ACABE7C431BA41521AD1869C /* Pods_jjollaejjollae.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2827C87C26B03C390001E077 = {
 			isa = PBXGroup;
 			children = (
 				285CE12726B858B80022DA2E /* .swiftlint.yml */,
 				2827C88726B03C390001E077 /* jjollaejjollae */,
 				766BE68EF9C2E22146929949 /* Pods */,
-				0AAB39B1B5DDD82FD7E2BC43 /* Frameworks */,
+				C38242C1E1241CD275A4F537 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -760,10 +752,18 @@
 		766BE68EF9C2E22146929949 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BC3F03D77BAD672D401AD562 /* Pods-jjollaejjollae.debug.xcconfig */,
-				AF202D4D9A1DBC5B292CCF67 /* Pods-jjollaejjollae.release.xcconfig */,
+				BA1276B82B4777094FCC8552 /* Pods-jjollaejjollae.debug.xcconfig */,
+				B8FE39168F38CDE9A6164E32 /* Pods-jjollaejjollae.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C38242C1E1241CD275A4F537 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9226FDDBF9C160ABF260D377 /* Pods_jjollaejjollae.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DD268226272FB6A0004156AD /* Review */ = {
@@ -1054,11 +1054,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2827C89926B03C3E0001E077 /* Build configuration list for PBXNativeTarget "jjollaejjollae" */;
 			buildPhases = (
-				C1A32F7602785557B7B70B15 /* [CP] Check Pods Manifest.lock */,
+				4E4FE5B1916A24C2D5D221EE /* [CP] Check Pods Manifest.lock */,
 				2827C88126B03C390001E077 /* Sources */,
 				2827C88226B03C390001E077 /* Frameworks */,
 				2827C88326B03C390001E077 /* Resources */,
-				5D6BA1903FD49F01AD3DD07E /* [CP] Embed Pods Frameworks */,
+				480AA80CC036A5AC4E1433EC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1167,7 +1167,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5D6BA1903FD49F01AD3DD07E /* [CP] Embed Pods Frameworks */ = {
+		480AA80CC036A5AC4E1433EC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1184,7 +1184,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-jjollaejjollae/Pods-jjollaejjollae-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C1A32F7602785557B7B70B15 /* [CP] Check Pods Manifest.lock */ = {
+		4E4FE5B1916A24C2D5D221EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1485,7 +1485,7 @@
 		};
 		2827C89A26B03C3E0001E077 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC3F03D77BAD672D401AD562 /* Pods-jjollaejjollae.debug.xcconfig */;
+			baseConfigurationReference = BA1276B82B4777094FCC8552 /* Pods-jjollaejjollae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1507,7 +1507,7 @@
 		};
 		2827C89B26B03C3E0001E077 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF202D4D9A1DBC5B292CCF67 /* Pods-jjollaejjollae.release.xcconfig */;
+			baseConfigurationReference = B8FE39168F38CDE9A6164E32 /* Pods-jjollaejjollae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
