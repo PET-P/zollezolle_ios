@@ -25,8 +25,8 @@
                     <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRZ-fD-CZJ">
                         <rect key="frame" x="0.0" y="0.0" width="116" height="120"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행 꿀팁 여행 꿀팁 여행 꿀팁 여행 꿀팁" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6c-7r-tQa">
-                                <rect key="frame" x="16" y="16" width="84" height="72.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="여행 꿀팁 여행 꿀팁 여행 꿀팁 여행 꿀팁" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6c-7r-tQa">
+                                <rect key="frame" x="16" y="16" width="84" height="61"/>
                                 <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -40,7 +40,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Q6c-7r-tQa" secondAttribute="trailing" constant="16" id="LR4-Va-2vJ"/>
-                            <constraint firstItem="PHx-9d-WdN" firstAttribute="top" secondItem="Q6c-7r-tQa" secondAttribute="bottom" id="OLr-Ij-ZBp"/>
+                            <constraint firstItem="PHx-9d-WdN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Q6c-7r-tQa" secondAttribute="bottom" id="OLr-Ij-ZBp"/>
                             <constraint firstItem="Q6c-7r-tQa" firstAttribute="top" secondItem="WRZ-fD-CZJ" secondAttribute="top" constant="16" id="PPx-3c-y7S"/>
                             <constraint firstAttribute="trailing" secondItem="PHx-9d-WdN" secondAttribute="trailing" constant="16" id="e1T-ae-wFP"/>
                             <constraint firstItem="Q6c-7r-tQa" firstAttribute="leading" secondItem="WRZ-fD-CZJ" secondAttribute="leading" constant="16" id="fev-7B-9JB"/>
