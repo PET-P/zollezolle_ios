@@ -44,7 +44,7 @@ class HomeTipCollectionViewCell: UICollectionViewCell{
     
     self.layer.shadowOpacity = 0.5
     
-    self.layer.shadowRadius = figmaCornerRadius
+    self.layer.shadowRadius = 2
     
     // contentView
     self.contentView.layer.cornerRadius = figmaCornerRadius
