@@ -22,7 +22,7 @@ enum APITarget {
   case findPassword(email: String) //비밀번호 찾기
   case tempPassword(email: String) //임시비밀번호
   case naver(authorization: String)
-  case socialLogin(email: String, nick: String, phone: String, accountType: String)
+  case socialLogin(email: String, nick: String, accountType: String)
   
   
   case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
@@ -203,8 +203,8 @@ extension APITarget: TargetType {
       case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .deleteUser, .deleteReview, .fetchPlaceInfo, .unlikeReview:
       return .requestPlain
         
-    case .socialLogin(let email, let nick, let phone, let accountType):
-      return .requestParameters(parameters: ["email": email, "nick": nick, "phone": phone, "accountType": accountType], encoding: JSONEncoding.default)
+    case .socialLogin(let email, let nick, let accountType):
+      return .requestParameters(parameters: ["email": email, "nick": nick, "accountType": accountType], encoding: JSONEncoding.default)
     case .createPet(_, _, let name, let age, let sex, let size, let weight, let type, let breed, let imageUrl, let isRepresent):
       return .requestParameters(parameters: ["name": name, "age": age, "sex": sex, "size": size, "weight": weight , "type": type, "breed": breed, "imageUrl": imageUrl, "isRepresent": isRepresent], encoding: JSONEncoding.default)
     case .tempPassword(let email):

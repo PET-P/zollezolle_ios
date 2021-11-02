@@ -56,8 +56,8 @@ struct APIService {
     judgeSimpleResponse(target, completion: completion)
   }
   
-  func socialLogin(email: String, nick: String, phone: String, accountType: AccountType, completion: @escaping ((NetworkResult<SignUpData>) -> (Void))) {
-    let target = APITarget.socialLogin(email: email, nick: nick, phone: phone, accountType: accountType.rawValue)
+  func socialLogin(email: String, nick: String, accountType: AccountType, completion: @escaping ((NetworkResult<SignUpData>) -> (Void))) {
+    let target = APITarget.socialLogin(email: email, nick: nick, accountType: accountType.rawValue)
     judgeGenericResponse(target, completion: completion)
   }
   

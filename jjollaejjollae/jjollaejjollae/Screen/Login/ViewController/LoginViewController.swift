@@ -210,8 +210,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
           }
         } else {
           print("토큰 유효성 체크 성공")
-          self?.kakaoUserInfo(completion: { email, nick, phone in
-            APIService.shared.socialLogin(email: email, nick: nick, phone: phone,
+          self?.kakaoUserInfo(completion: { email, nick in
+            APIService.shared.socialLogin(email: email, nick: nick,
                                           accountType: AccountType.kakao) { [weak self]result in
               guard let self = self else {return}
               switch result {
@@ -317,28 +317,24 @@ extension LoginViewController: StoryboardInstantiable {
                          encoding: JSONEncoding.default,
                          headers: ["Authorization": authorization])
     
-    dispatchGroup.enter()
     req.responseJSON { [weak self] response in
+      guard let self = self else {return}
       guard let result = response.value as? [String: Any] else {return}
       guard let object = result["response"] as? [String: Any] else { return }
       guard let _email = object["email"] as? String else { return }
       guard let _nickname = object["nickname"] as? String else { return }
-      guard let _mobile = object["mobile"] as? String else { return }
       
-      let socialUser = SocialUser(email: _email, nick: _nickname, phone: _mobile)
-      self?.naverUser = socialUser
-      self?.dispatchGroup.leave()
-    }
-    
-    dispatchGroup.notify(queue: .main) { [weak self] in
-      guard let self = self else {
-        return}
+      let socialUser = SocialUser(email: _email, nick: _nickname)
+      self.naverUser = socialUser
+      
       guard let naverUser = self.naverUser else {
         return}
+      
       APIService.shared.socialLogin(email: naverUser.email,
                                     nick: naverUser.nick,
-                                    phone: naverUser.phone, accountType: AccountType.naver) { (result) in
+                                     accountType: AccountType.naver){(result) in
         switch result {
+          
         case .success(let data):
           guard let accessToken = data.accessToken else {return}
           guard let refreshToken = data.refreshToken else {return}
@@ -370,8 +366,8 @@ extension LoginViewController: StoryboardInstantiable {
         }
         else {
           print("loginwithKakaoTalk() success.")
-          self?.kakaoUserInfo(completion: { email, nick, phone in
-            APIService.shared.socialLogin(email: email, nick: nick, phone: phone,
+          self?.kakaoUserInfo(completion: { email, nick in
+            APIService.shared.socialLogin(email: email, nick: nick,
                                           accountType: AccountType.kakao) { result in
               switch result {
               case .success(let data):
@@ -399,8 +395,8 @@ extension LoginViewController: StoryboardInstantiable {
         }
         else {
           print("loginWithKakaoTalk() success")
-          self?.kakaoUserInfo(completion: { email, nick, phone in
-            APIService.shared.socialLogin(email: email, nick: nick, phone: phone,
+          self?.kakaoUserInfo(completion: { email, nick in
+            APIService.shared.socialLogin(email: email, nick: nick,
                                           accountType: AccountType.kakao) { result in
               switch result {
               case .success(let data):
@@ -423,7 +419,7 @@ extension LoginViewController: StoryboardInstantiable {
     }
   }
   
-  private func kakaoUserInfo(completion: @escaping (String, String, String) -> Void) {
+  private func kakaoUserInfo(completion: @escaping (String, String) -> Void) {
     
     var email: String = ""
     var nick: String = ""
@@ -438,7 +434,7 @@ extension LoginViewController: StoryboardInstantiable {
         guard let _nick = user?.properties?["nickname"] else { return }
         email = _email
         nick = _nick
-        completion(email, nick, "")
+        completion(email, nick)
       }
     }
   }
@@ -473,7 +469,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate,
       
       //애플아이디로그인은 첫로그인 이후에는 user-identification만 주기 때문에 분기처리를 고고링한다.
       
-      APIService.shared.socialLogin(email: ID, nick: nick, phone: "",
+      APIService.shared.socialLogin(email: ID, nick: nick,
                                     accountType: AccountType.apple) { [self] (result) in
         switch result {
         case .success(let data):
