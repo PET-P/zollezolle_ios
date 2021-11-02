@@ -52,7 +52,7 @@ class MainTabBarController: UITabBarController {
     
     super.viewDidLoad()
     
-    self.setViewControllers( [homeTab, mapTab, wishlistTab, myInfoTab], animated: true)
+    self.setViewControllers( [homeTab, mapTab, wishlistTab, myInfoTab], animated: false)
     setTabBar()
   }
   
