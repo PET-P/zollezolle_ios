@@ -185,6 +185,9 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     layout.itemSize = CGSize(width: 138, height: 72)
     layout.minimumLineSpacing = 15
     layout.scrollDirection = .horizontal
+    layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 40)
+    
+    locationCollectionView.collectionViewLayout = layout
     
     locationCollectionView.delegate = self
     locationCollectionView.dataSource = self
@@ -208,6 +211,9 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     layout.itemSize = CGSize(width: 116, height: 120)
     layout.minimumLineSpacing = 15
     layout.scrollDirection = .horizontal
+    layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 20)
+    
+    homeTipCollectionView.collectionViewLayout = layout
     
     homeTipCollectionView.delegate = self
     homeTipCollectionView.dataSource = self
@@ -232,6 +238,9 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     layout.itemSize = CGSize(width: 138, height: 72)
     layout.minimumLineSpacing = 15
     layout.scrollDirection = .horizontal
+    layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 20)
+    
+    recommendedPlaceCollectionView.collectionViewLayout = layout
     
     recommendedPlaceCollectionView.delegate = self
     recommendedPlaceCollectionView.dataSource = self
@@ -476,7 +485,30 @@ extension HomeMainViewController: UICollectionViewDelegate {
       }
     }
   }
+  
 }
+
+extension HomeMainViewController: UICollectionViewDelegateFlowLayout {
+  
+//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//    return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+//  }
+  
+//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//    switch collectionView {
+//      case locationCollectionView:
+//        return CGSize(width: 137, height: 72)
+//      case homeTipCollectionView:
+//        return CGSize(width: 137, height: 72)
+//      case recommendedPlaceCollectionView:
+//        return CGSize(width: 137, height: 72)
+//      default:
+//        <#code#>
+//    }
+//  }
+}
+
 
 
 // MARK: - UIScrollViewDelegate
