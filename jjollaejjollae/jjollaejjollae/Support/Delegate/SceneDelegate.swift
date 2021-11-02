@@ -40,61 +40,80 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       return
     }
     
-    if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken"),
-       let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
-      
-      APIService.shared.refreshToken(refreshToken: refreshToken,
-                                     accessToken: accessToken) { [weak self] (result) in
-        switch result {
-          
-        case .success(let data):
-          
-          guard let newAccessToken = data.accessToken else { return }
-          
-          UserManager.shared.userIdandToken = (data.userId, newAccessToken)
-          LoginManager.shared.saveInKeychain(account: newAccessToken, value: "accessToken")
-          LoginManager.shared.saveInKeychain(account: refreshToken, value: "refreshToken")
- 
-          let mainTabBar = MainTabBarController()
-          
-          self?.window?.rootViewController = mainTabBar
-          self?.window?.makeKeyAndVisible()
-          
-        case .failure(let error):
-          
-          if error == 401 {
-            let navigationController = UINavigationController()
-            
-            let loginViewController = LoginViewController.loadFromStoryboard()
-            
-            navigationController.viewControllers = [loginViewController]
-            
-            navigationController.navigationBar.isHidden = true
-            
-            self?.window?.rootViewController = navigationController
-            self?.window?.makeKeyAndVisible()
-          } else {
-            let mainTabBar = MainTabBarController()
-            
-            self?.window?.rootViewController = mainTabBar
-            self?.window?.makeKeyAndVisible()
-          }
-        }
-        
-      }
-    } else {
-      
-      let navigationController = UINavigationController()
-      
-      let loginViewController = LoginViewController.loadFromStoryboard()
-      
-      navigationController.viewControllers = [loginViewController]
-      
-      navigationController.navigationBar.isHidden = true
-      
-      self.window?.rootViewController = navigationController
-      self.window?.makeKeyAndVisible()
+    if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken") {
+      LoginManager.shared.deleteFromKeyChain(account: "accessToken")
     }
+    if let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
+      LoginManager.shared.deleteFromKeyChain(account: "refreshToken")
+    }
+    
+    
+    
+    let navigationController = UINavigationController()
+    
+    let loginViewController = LoginViewController.loadFromStoryboard()
+    
+    navigationController.viewControllers = [loginViewController]
+    
+    navigationController.navigationBar.isHidden = true
+    
+    self.window?.rootViewController = navigationController
+    self.window?.makeKeyAndVisible()
+    
+//    if let accessToken = LoginManager.shared.loadFromKeychain(account: "accessToken"),
+//       let refreshToken = LoginManager.shared.loadFromKeychain(account: "refreshToken") {
+//      APIService.shared.refreshToken(refreshToken: refreshToken,
+//                                     accessToken: accessToken) { [weak self] (result) in
+//        switch result {
+//
+//        case .success(let data):
+//
+//          guard let newAccessToken = data.accessToken else { return }
+//
+//          UserManager.shared.userIdandToken = (data.userId, newAccessToken)
+//          LoginManager.shared.saveInKeychain(account: newAccessToken, value: "accessToken")
+//          LoginManager.shared.saveInKeychain(account: refreshToken, value: "refreshToken")
+//
+//          let mainTabBar = MainTabBarController()
+//
+//          self?.window?.rootViewController = mainTabBar
+//          self?.window?.makeKeyAndVisible()
+//
+//        case .failure(let error):
+//
+//          if error == 401 {
+//            let navigationController = UINavigationController()
+//
+//            let loginViewController = LoginViewController.loadFromStoryboard()
+//
+//            navigationController.viewControllers = [loginViewController]
+//
+//            navigationController.navigationBar.isHidden = true
+//
+//            self?.window?.rootViewController = navigationController
+//            self?.window?.makeKeyAndVisible()
+//          } else {
+//            let mainTabBar = MainTabBarController()
+//
+//            self?.window?.rootViewController = mainTabBar
+//            self?.window?.makeKeyAndVisible()
+//          }
+//        }
+//
+//      }
+//    } else {
+//
+//      let navigationController = UINavigationController()
+//
+//      let loginViewController = LoginViewController.loadFromStoryboard()
+//
+//      navigationController.viewControllers = [loginViewController]
+//
+//      navigationController.navigationBar.isHidden = true
+//
+//      self.window?.rootViewController = navigationController
+//      self.window?.makeKeyAndVisible()
+//    }
   }
   
   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -130,3 +149,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   
 }
+

@@ -97,6 +97,7 @@ class PasswordViewController: UIViewController, StoryboardInstantiable {
   @IBAction private func didTapLoginButton(_ sender: UIButton) {
     guard let passwordStr = passwordTextField.text else {return}
     let password = LoginManager.shared.StringToSha256(string: passwordStr)
+    
     APIService.shared.login(email, password) { [weak self] (result) in
       guard let self = self else {return}
       switch result {
@@ -199,3 +200,4 @@ extension PasswordViewController: UITextFieldDelegate {
     }
   }
 }
+

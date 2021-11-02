@@ -324,7 +324,12 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     verifySocial()
     guard let userId = UserManager.shared.userIdandToken?.userId, let token = UserManager.shared.userIdandToken?.token else {return}
     if self.dogImage != nil {return}
+    
     LoadingIndicator.show()
+    
+    DispatchQueue.main.asyncAfter(deadline: .now()+3){
+      LoadingIndicator.hide()
+    }
     
     APIService.shared.readPets(token: token, userId: userId) { [weak self] (result) in
       
@@ -344,7 +349,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
                 self.dogProfileImage.image = UIImage(named: "default")!
               }
               temp.image = UIImage(named: "default")!
-              LoadingIndicator.hide()
+              
               return
             }
             
@@ -358,13 +363,13 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
             
             if index == data.count - 1 {
               PagingManager.shared.setDogTuples(dogTuples: self.dogProfile)
-              LoadingIndicator.hide()
+              
             }
             index += 1
             
           }
           
-          LoadingIndicator.hide()
+          
           
         }
         
@@ -372,7 +377,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
         self.dogImage = UIImage(named: "default")
         self.dogProfileImage.image = self.dogImage
         print(error)
-        LoadingIndicator.hide()
+       
       }
     }
   }
@@ -389,4 +394,5 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   
   
 }
+
 

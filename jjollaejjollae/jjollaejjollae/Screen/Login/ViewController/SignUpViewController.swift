@@ -108,10 +108,14 @@ class SignUpViewController: UIViewController, StoryboardInstantiable {
   
   @IBAction private func didTapSignUpContinueButton(_ sender: UIButton) {
     // pop the controller
-    signUpModel.password = passwordTextField.text ?? "imshipassword??"
+    
+    guard let password = passwordTextField.text else {return}
+    signUpModel.password = password
+    if !LoginManager.shared.isValidPassword(password: password) {return}
     let additionalInfoStoryboard = UIStoryboard.init(name: "AdditionalInfo", bundle: nil)
     guard let additionalInfoVC = additionalInfoStoryboard.instantiateViewController(identifier: "AdditionalInfoViewController") as? AdditionalInfoViewController else {return}
     signUpModel.password = LoginManager.shared.StringToSha256(string: signUpModel.password)
+    
     additionalInfoVC.setData(data: signUpModel)
     self.navigationController?.pushViewController(additionalInfoVC, animated: true)
   }
@@ -202,5 +206,6 @@ extension SignUpViewController: UITextFieldDelegate {
     }
   }
 }
+
 
 
