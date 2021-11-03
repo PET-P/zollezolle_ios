@@ -192,21 +192,67 @@ extension MyInfoMainViewController: UITableViewDataSource {
   }
 }
 
+
+// MARK: - UITableViewDelegate
+
 extension MyInfoMainViewController: UITableViewDelegate {
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       switch indexPath.row {
       case 0:
-        if isLogged == false {return}
+          
+        if isLogged == false {
+          
+          let alertController = UIAlertController(title: "로그인 상태 확인", message: "로그인이 필요해요", preferredStyle: .alert)
+          
+          let okAction = UIAlertAction(title: "알겠어요", style: .default, handler: nil)
+          
+          alertController.addAction(okAction)
+          
+          present(alertController, animated: true, completion: nil)
+          
+          return
+        }
+          
         guard let myReviewVC = MyInfoReviewViewController.loadFromStoryboard() as? MyInfoReviewViewController else {return}
+          
         guard let userId = UserManager.shared.userIdandToken?.userId else {return}
+          
         guard let token = UserManager.shared.userIdandToken?.token else {return}
+          
         myReviewVC.getTokenAndUserId(token: token, userId: userId)
+          
         self.navigationController?.pushViewController(myReviewVC, animated: true)
+          
       case 1:
-        print("이메일")
+          
+          let base = "mailto:zolle@kakao.com"
+          
+          let subject = "?subject=\("[문의하기] :".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)"
+          
+          guard let bodyString = "불편하셨던 내용을 입력해주세요".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else { return }
+
+          let body = "&body=\(bodyString)"
+          
+          if let url = URL(string: base + subject + body) {
+            
+            let alertController = UIAlertController(title: "문의", message: "메일 앱으로 이동합니다.", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "알겠어요", style: .default, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+          }
+        
       case 2:
+          
         guard let settingVC = MyInfoSettingTableViewController.loadFromStoryboard() as? MyInfoSettingTableViewController else {return}
+          
         self.navigationController?.pushViewController(settingVC, animated: true)
+          
       default: return
     }
   }
