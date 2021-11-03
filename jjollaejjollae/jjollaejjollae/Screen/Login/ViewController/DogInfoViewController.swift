@@ -42,7 +42,7 @@ class DogInfoViewController: FixModalViewController{
       petAgeLabel.font = UIFont.robotoMedium(size: 14)
     }
   }
-
+  
   @IBOutlet weak var petAgeTextField: UITextField! {
     didSet {
       petAgeTextField.borderStyle = .none
@@ -186,8 +186,8 @@ class DogInfoViewController: FixModalViewController{
     button.addTarget(self, action: #selector(self.didTaprepresentPetButton(_:)), for: .touchUpInside)
     return button
   }()
-
-
+  
+  
   private var user: UserData?
   private var isFirst: Int = 0
   private var cellType: [State] = [.plus]
@@ -210,7 +210,7 @@ class DogInfoViewController: FixModalViewController{
   }()
   
   //MARK: - View LifeCycle
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     user = UserManager.shared.userInfo
@@ -306,15 +306,15 @@ class DogInfoViewController: FixModalViewController{
   
   @IBAction func didTapContinueWithoutSaveButton(_ sender: UIButton) {
     let sceneDelegate = UIApplication.shared.connectedScenes
-            .first!.delegate as! SceneDelegate
-        sceneDelegate.window!.rootViewController = MainTabBarController()
+      .first!.delegate as! SceneDelegate
+    sceneDelegate.window!.rootViewController = MainTabBarController()
   }
   
   @IBAction func didTapPetSizeButton(_ sender: UIButton) {
     self.showAlertController(style: UIAlertController.Style.actionSheet)
   }
   
-
+  
   @IBAction func didTapPetTypeButton(_ sender: UIButton) {
     self.showAlertController(style: UIAlertController.Style.actionSheet, AlertList: ["강아지", "고양이"])
   }
@@ -364,40 +364,46 @@ class DogInfoViewController: FixModalViewController{
     if flag {
       guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
       var loadingIndex = 0
-      LoadingIndicator.show()
+      var dispatchGroup = DispatchGroup()
+      
       for pet in self.dogProfile {
-        if let imageData = pet.imageData, let imageUrl = pet.imageUrl {
-          StorageService.shared.uploadImageWithData(imageData: imageData, imageName: imageUrl) {
-            if loadingIndex == self.dogProfile.count - 1 {
-              APIService.shared.readUser(token: token, userId: userId) { (result) in
-                switch result {
-                case .success(let data):
-                  UserManager.shared.userInfo = data
-                case .failure(let error):
-                  print("error")
-                }
-              }
-              let sceneDelegate = UIApplication.shared.connectedScenes
-                      .first!.delegate as! SceneDelegate
-                  sceneDelegate.window!.rootViewController = MainTabBarController()
+        dispatchGroup.enter()
+          APIService.shared.createPet(token: token, userId: userId, name: pet.name, age: pet.age, sex: pet.sex, size: pet.size, weight: pet.weight, type: pet.type, breed: pet.breed, imageUrl: pet.imageUrl, isRepresent: pet.isRepresent) { (result) in
+            switch result {
+            case .success(let petdata):
+              print(petdata)
+            case .failure(let Error):
+              LoadingIndicator.hide()
+              self.view.makeToast("네트워크오류가 생겼습니다. 다시 시도해주세요")
+              print("errorCode: ", Error)
             }
-            loadingIndex += 1
+            dispatchGroup.leave()
           }
         }
-        APIService.shared.createPet(token: token, userId: userId, name: pet.name, age: pet.age, sex: pet.sex, size: pet.size, weight: pet.weight, type: pet.type, breed: pet.breed, imageUrl: pet.imageUrl, isRepresent: pet.isRepresent) { (result) in
-          switch result {
-          case .success(let petdata):
-            APIService.shared.readUser(token: token, userId: userId) { (readuserResult) in
-              switch readuserResult {
-              case .success(let data):
-                UserManager.shared.userInfo = data
-                UserManager.shared.representDog = pet.imageUrl ?? "default"
-              case .failure(let error):
-                fatalError("Error \(error)")
-              }
-            }
-          case .failure(let Error):
-            print("errorCode: ", Error)
+      
+      for pet in self.dogProfile {
+        if let imageData = pet.imageData, let imageUrl = pet.imageUrl {
+          dispatchGroup.enter()
+          StorageService.shared.uploadImageWithData(imageData: imageData, imageName: imageUrl) {
+            print("\(imageUrl)가 firebase에 올라감")
+            dispatchGroup.leave()
+          }
+        }
+      }
+      
+      
+      dispatchGroup.notify(queue: .main) {
+        APIService.shared.readUser(token: token, userId: userId) { (readuserResult) in
+          switch readuserResult {
+          case .success(let data):
+            UserManager.shared.userInfo = data
+            let sceneDelegate = UIApplication.shared.connectedScenes
+              .first!.delegate as! SceneDelegate
+            sceneDelegate.window!.rootViewController = MainTabBarController()
+          case .failure(let error):
+            LoadingIndicator.hide()
+            self.view.makeToast("네트워크오류가 생겼습니다. 다시 시도해주세요")
+            fatalError("Error \(error)")
           }
         }
       }
@@ -411,7 +417,7 @@ class DogInfoViewController: FixModalViewController{
   // carousel돌릴때마다 updateform
   private func updateForm(cellType: String) {
     if cellType == "plus" {
-     clearForm()
+      clearForm()
     } else {
       let data = dogProfile[middleIndex.row]
       myPetNameTextField.text = data.name
@@ -506,7 +512,7 @@ extension DogInfoViewController: UITextFieldDelegate {
     petAgeTextField.delegate = self
     petTypeTextField.delegate = self
     petWeightTextField.delegate = self
-  
+    
     let tapGesture = UITapGestureRecognizer(
       target: view,
       action: #selector(view.endEditing(_:)))
@@ -518,26 +524,26 @@ extension DogInfoViewController: UITextFieldDelegate {
       forName: UIResponder.keyboardWillShowNotification,
       object: nil,
       queue: OperationQueue.main) { (notification) in
-      guard let userInfo = notification.userInfo else {
-        return
+        guard let userInfo = notification.userInfo else {
+          return
+        }
+        guard let keyboardFrame =
+                userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+        
+        let contentInset = UIEdgeInsets(
+          top: 0.0,
+          left: 0.0,
+          bottom: keyboardFrame.size.height,
+          right: 0.0
+        )
+        self.scrollView.contentInset = contentInset
+        self.scrollView.scrollIndicatorInsets = contentInset
+        guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
+                as? TimeInterval else {return}
+        UIView.animate(withDuration: duration) {
+          self.view.layoutIfNeeded()
+        }
       }
-      guard let keyboardFrame =
-              userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
-      
-      let contentInset = UIEdgeInsets(
-        top: 0.0,
-        left: 0.0,
-        bottom: keyboardFrame.size.height,
-        right: 0.0
-      )
-      self.scrollView.contentInset = contentInset
-      self.scrollView.scrollIndicatorInsets = contentInset
-      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
-              as? TimeInterval else {return}
-      UIView.animate(withDuration: duration) {
-        self.view.layoutIfNeeded()
-      }
-    }
     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
                                            object: nil,
                                            queue: OperationQueue.main) { (notification) in
@@ -582,7 +588,7 @@ extension DogInfoViewController: UIImagePickerControllerDelegate, UINavigationCo
 //MARK: - CollectionView
 
 extension DogInfoViewController: UICollectionViewDataSource, UICollectionViewDelegate, CarouselCellTapDelegate {
- 
+  
   //MARK: - DataSource
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -751,7 +757,7 @@ extension DogInfoViewController: JJollaeButtonDelegate {
 }
 
 extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-
+  
   private func addToobar() {
     //toobar 위치잡아주기
     self.agePicker.backgroundColor = .white
@@ -769,24 +775,24 @@ extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     done.title = "완료"
     done.target = self
     done.action = #selector(pickerDone)
-
+    
     toolbar.setItems([flexSpace, done], animated: true)
   }
-
+  
   @objc private func pickerDone(_ sneder: Any) {
     self.view.endEditing(true)
   }
-
+  
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
-
+  
   func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
     let pickerLabel = UILabel()
     pickerLabel.textAlignment = .center
     pickerLabel.textColor = .themeGreen
     pickerLabel.font = .robotoMedium(size: 24)
-
+    
     if pickerView == agePicker {
       pickerLabel.text = "\(self.ageList[row])살"
     } else {
@@ -794,7 +800,7 @@ extension DogInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     return pickerLabel
   }
-
+  
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     if pickerView == agePicker {
       return self.ageList.count

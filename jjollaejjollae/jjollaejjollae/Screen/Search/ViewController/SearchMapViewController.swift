@@ -107,7 +107,7 @@ class SearchMapViewController: MapViewController {
   }
   
   private func mapExtent() {
-    guard let dataList = dataList else {
+    guard let dataList = dataList, dataList.count != 0 else {
       return
     }
     // lat 중에 가장 큰것은 first, 가장 작은것은 last

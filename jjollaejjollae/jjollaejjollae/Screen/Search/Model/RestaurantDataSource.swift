@@ -13,6 +13,13 @@ class RestaurantDataSource: NSObject, UITableViewDataSource {
       newDataList.forEach { (data) in
         likes.updateValue(data.isWish ?? false, forKey: data.id)
       }
+      if newDataList.isEmpty {
+        guard let vc = CallerVC as? SearchResultViewController else {return}
+        vc.goToMapButton.isHidden = true
+      } else {
+        guard let vc = CallerVC as? SearchResultViewController else {return}
+        vc.goToMapButton.isHidden = false
+      }
     }
   }
   lazy var likes: [String: Bool] = [:]
