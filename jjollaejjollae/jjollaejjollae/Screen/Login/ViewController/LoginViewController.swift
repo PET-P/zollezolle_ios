@@ -365,22 +365,31 @@ extension LoginViewController: StoryboardInstantiable {
           print(error)
         }
         else {
+          
           print("loginwithKakaoTalk() success.")
+          
           self?.kakaoUserInfo(completion: { email, nick in
             APIService.shared.socialLogin(email: email, nick: nick,
                                           accountType: AccountType.kakao) { result in
               switch result {
               case .success(let data):
+                
                 guard let accessToken = data.accessToken else {return}
                 guard let refreshToken = data.refreshToken else {return}
+                
                 LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
                 LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+                
                 UserManager.shared.userIdandToken = (data.id, data.accessToken)
+                
                 guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
                         DogInfoViewController else {return}
                 self?.navigationController?.pushViewController(dogInfoVC, animated: true)
+                
               case .failure(let error):
+                
                 print(error)
+                
               }
             }
           })
@@ -400,14 +409,19 @@ extension LoginViewController: StoryboardInstantiable {
                                           accountType: AccountType.kakao) { result in
               switch result {
               case .success(let data):
+                
                 guard let accessToken = data.accessToken else {return}
                 guard let refreshToken = data.refreshToken else {return}
+                
                 LoginManager.shared.saveInKeychain(account: "accessToken", value: accessToken)
                 LoginManager.shared.saveInKeychain(account: "refreshToken", value: refreshToken)
+                
                 UserManager.shared.userIdandToken = (data.id, data.accessToken)
+                
                 guard let dogInfoVC = DogInfoViewController.loadFromStoryboard() as?
                         DogInfoViewController else {return}
                 self?.navigationController?.pushViewController(dogInfoVC, animated: true)
+                
               case .failure(let error):
                 print(error)
               }
@@ -430,8 +444,10 @@ extension LoginViewController: StoryboardInstantiable {
       }
       else {
         print("me() success.")
+        
         guard let _email = user?.kakaoAccount?.email else { return }
         guard let _nick = user?.properties?["nickname"] else { return }
+        
         email = _email
         nick = _nick
         completion(email, nick)

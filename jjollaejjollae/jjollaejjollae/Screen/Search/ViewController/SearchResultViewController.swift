@@ -92,7 +92,7 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
     return label
   }()
   
-  let goToMapButton: UIButton = {
+  var goToMapButton: UIButton = {
     let goButton = UIButton()
     goButton.backgroundColor = UIColor.themeYellow
     goButton.titleLabel?.font = UIFont.robotoBold(size: 14)
@@ -201,231 +201,238 @@ class SearchResultViewController: UIViewController, StoryboardInstantiable {
       setupheader()
     }
     searchTextField.text = searchManager.searchText
-    //    defaultHeight = HeightTobeDynamioc.constant
-    
-    //MARK: - gotoMapButton setting
-    
-    view.addSubview(goToMapButton)
-    goToMapButton.translatesAutoresizingMaskIntoConstraints = false
-    goToMapButton.roundedButton(cornerRadius: nil)
-    goToMapButton.bottomAnchor.constraint(
-      equalTo: self.view.bottomAnchor, constant: -78).isActive = true
-    goToMapButton.widthAnchor.constraint(
-      equalToConstant: self.view.frame.width * 121 / 375).isActive = true
-    goToMapButton.heightAnchor.constraint(equalTo: goToMapButton.widthAnchor,
-                                          multiplier: 52 / 121).isActive = true
-    goToMapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    goToMapButton.addTarget(self, action: #selector(tapGoToMapButton), for: .touchUpInside)
+    setupGoToMapButton()
     updatedModeUI()
     
     //MARK: - noResultLabel setting
     view.addSubview(noResultLabel)
     noResultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     noResultLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    if mode == .Fromkeyword && newDataList.isEmpty {
-      noResultLabel.isHidden = false
-      goToMapButton.isHidden = true
-    }
+    
   }
-
+  
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
     self.hidesBottomBarWhenPushed = false
   }
   
-  
-  //MARK: - resultTableView setup
-  private func setupReviewTableView() {
-    resultTableView.delegate = self
-    resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
-    resultTableView.isUserInteractionEnabled = true
-    if mode == .Fromlocation {
-      accommodationDataSource.setCallerVC(viewController: self)
-      restaurantDataSource.setCallerVC(viewController: self)
-      landmarkDataSource.setCallerVC(viewController: self)
-      cafeDataSource.setCallerVC(viewController: self)
-      searchResultDataSources = [accommodationDataSource,
-                                 restaurantDataSource,
-                                 cafeDataSource,
-                                 landmarkDataSource]
-      accommodationDataSource.newDataList = self.newDataList
-      self.dataList = accommodationDataSource.newDataList
-      self.accommodationButton.isSelected = true
-    } else {
-      searchResultDataSource.setCallerVC(viewController: self)
-      searchResultDataSource.newDataList = newDataList
-      self.dataList = searchResultDataSource.newDataList
-      searchResultDataSources = [searchResultDataSource]
-    }
-    resultTableView.dataSource = searchResultDataSources[0]
-    resultTableView.tableFooterView = UIView(frame: CGRect.zero)
-    resultTableView.separatorStyle = .none
-    numberOfResultLabel.text = "\(placeCount)개의 장소"
+//MARK: - resultTableView setup
+private func setupGoToMapButton() {
+  view.addSubview(goToMapButton)
+  goToMapButton.translatesAutoresizingMaskIntoConstraints = false
+  goToMapButton.roundedButton(cornerRadius: nil)
+  goToMapButton.bottomAnchor.constraint(
+    equalTo: self.view.bottomAnchor, constant: -78).isActive = true
+  goToMapButton.widthAnchor.constraint(
+    equalToConstant: self.view.frame.width * 121 / 375).isActive = true
+  goToMapButton.heightAnchor.constraint(equalTo: goToMapButton.widthAnchor,
+                                        multiplier: 52 / 121).isActive = true
+  goToMapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+  goToMapButton.addTarget(self, action: #selector(tapGoToMapButton), for: .touchUpInside)
+}
+
+
+private func setupReviewTableView() {
+  resultTableView.delegate = self
+  resultTableView.register(nib, forCellReuseIdentifier: "resultCell")
+  resultTableView.isUserInteractionEnabled = true
+  if mode == .Fromlocation {
+    accommodationDataSource.setCallerVC(viewController: self)
+    restaurantDataSource.setCallerVC(viewController: self)
+    landmarkDataSource.setCallerVC(viewController: self)
+    cafeDataSource.setCallerVC(viewController: self)
+    searchResultDataSources = [accommodationDataSource,
+                               restaurantDataSource,
+                               cafeDataSource,
+                               landmarkDataSource]
+    accommodationDataSource.newDataList = self.newDataList
+    self.dataList = accommodationDataSource.newDataList
+    self.accommodationButton.isSelected = true
+  } else {
+    searchResultDataSource.setCallerVC(viewController: self)
+    searchResultDataSource.newDataList = newDataList
+    self.dataList = searchResultDataSource.newDataList
+    searchResultDataSources = [searchResultDataSource]
   }
+  resultTableView.dataSource = searchResultDataSources[0]
+  hideGoToMapButton(dataList: self.dataList)
+  resultTableView.tableFooterView = UIView(frame: CGRect.zero)
+  resultTableView.separatorStyle = .none
+  numberOfResultLabel.text = "\(placeCount)개의 장소"
+}
   
-  func setPlaceCount(count: Int) {
-    self.placeCount = count
-  }
-  
-  private var placeCount = 0
-  private func setupheader() {
-    let header = UIView(frame: CGRect(x: 0, y: 0, width: resultTableView.frame.width, height: 40))
-    let headerLabel = UILabel()
-    headerLabel.translatesAutoresizingMaskIntoConstraints = false
-    if mode == .Fromkeyword {
-      headerLabel.text = "내 근처 \(self.searchTextField.text == "" ? "갈만한 곳" : self.searchTextField.text ?? "갈만한 곳")"
-    } else {
-      headerLabel.text = "검색 결과"
-    }
-    
-    headerLabel.font = .robotoBold(size: 18)
-    headerLabel.textColor = .gray02
-    header.backgroundColor = .white
-    header.addSubview(headerLabel)
-    
-    headerLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16).isActive = true
-    headerLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 6).isActive = true
-    resultTableView.tableHeaderView = header
-    if #available(iOS 15.0, *) {
-      resultTableView.sectionHeaderTopPadding = 0
-    }
-  }
-  
-  private func updatedModeUI() {
-    if mode == .Fromlocation {
-      NumberLabelfilterStackView.isHidden = false
-      filterStackView.isHidden = false
-      separateLine.isHidden = false
-      setOrderButton.isHidden = false
-      tableViewTop.constant = defaultHeight
-    } else {
-      NumberLabelfilterStackView.isHidden = true
-      filterStackView.isHidden = true
-      separateLine.isHidden = true
-      setOrderButton.isHidden = true
-      tableViewTop.constant = 0 - (headerHeight + 10)
-    }
-  }
-  
-  override func viewDidLayoutSubviews() {
-    goToMapButton.setRounded(radius: nil)
-    goToMapButton.addShadow()
-  }
-  
-  @objc private func tapGoToMapButton() {
-    // TODO Map으로 넘어가기
-    let searchMapStoryboard = UIStoryboard(name: "SearchMap", bundle: nil)
-    guard let searchMapVC = searchMapStoryboard.instantiateViewController(
-      identifier: "SearchMapViewController") as? SearchMapViewController else {
-        return
-      }
-    searchMapVC.setDataList(with: self.dataList)
-    present(searchMapVC, animated: true)
-  }
-  
-  private func setLocationFilterButtonUI() {
-    buttons = [restaurantButton, landMarkButton, cafeButton, accommodationButton]
-    buttons.forEach { (button) in
-      button.layer.borderColor = UIColor.themePaleGreen.cgColor
-      button.layer.borderWidth = 1.0
-      button.backgroundColor = .white
-      button.tintColor = .gray01
-      button.titleLabel?.font = .robotoMedium(size: 13)
-    }
-    buttons.last?.backgroundColor = UIColor.themePaleGreen
-  }
-  
-  private func updateButtonUI(_ sender: UIButton) {
-    buttons.forEach { button in
-      button.setTitleColor(.gray01, for: .selected)
-      button.setTitleColor(.gray01, for: .normal)
-      if button == sender {
-        button.backgroundColor = .themePaleGreen
-        button.tintColor = .themePaleGreen
-        button.isSelected = true
-      } else {
-        button.backgroundColor = .white
-        button.tintColor = .white
-        button.isSelected = false
+  private func hideGoToMapButton(dataList: [SearchResultData]) {
+    if newDataList.isEmpty {
+      goToMapButton.isHidden = true
+      if mode == .Fromkeyword {
+        noResultLabel.isHidden = false
       }
     }
   }
-  
-  private func updateSelected(_ sender: UIButton){
-    let buttons = [restaurantButton, landMarkButton, accommodationButton, cafeButton]
-    for button in buttons {
-      if sender == button{
-        button?.isSelected = true
-      } else {
-        button?.isSelected = false
-      }
-    }
+
+func setPlaceCount(count: Int) {
+  self.placeCount = count
+}
+
+private var placeCount = 0
+private func setupheader() {
+  let header = UIView(frame: CGRect(x: 0, y: 0, width: resultTableView.frame.width, height: 40))
+  let headerLabel = UILabel()
+  headerLabel.translatesAutoresizingMaskIntoConstraints = false
+  if mode == .Fromkeyword {
+    headerLabel.text = "내 근처 \(self.searchTextField.text == "" ? "갈만한 곳" : self.searchTextField.text ?? "갈만한 곳")"
+  } else {
+    headerLabel.text = "검색 결과"
   }
   
-  @IBAction private func didTapFilterButtons(_ sender: UIButton) {
-    //초기화작업
-    page = 0
-    self.dataList = []
-    resultTableView.reloadData()
-    updateSelected(sender)
-    switch sender {
-    case restaurantButton:
-      
-      resultTableView.dataSource = searchResultDataSources[1]
-      APIService.shared.getFilterPlace(region: region, category: .restaurant, filter: filter, page: 0) { [weak self](result) in
-        guard let self = self else {return}
-        switch result {
-        case .success(let data):
-          self.fetchDatasource(paging: false, category: .restaurant, with: data)
-        case .failure(let error):
-          print(self,#function, error)
-        }
-      }
-    case landMarkButton:
-      resultTableView.dataSource = searchResultDataSources[3]
-      APIService.shared.getFilterPlace(region: region, category: .landmark, filter: filter, page: 0) { [weak self](result) in
-        guard let self = self else {return}
-        switch result {
-        case .success(let data):
-          self.fetchDatasource(paging: false, category: .landmark, with: data)
-        case .failure(let error):
-          print(self,#function, error)
-        }
-      }
-    case cafeButton:
-      resultTableView.dataSource = searchResultDataSources[2]
-      APIService.shared.getFilterPlace(region: region, category: .cafe, filter: filter, page: 0) { (result) in
-        switch result {
-        case .success(let data):
-          self.fetchDatasource(paging: false, category: .cafe, with: data)
-        case .failure(let error):
-          print(self,#function, error)
-        }
-      }
-    case accommodationButton:
-      resultTableView.dataSource = searchResultDataSources[0]
-      APIService.shared.getFilterPlace(region: region, category: .accommodation, filter: filter, page: 0) { (result) in
-        switch result {
-        case .success(let data):
-          self.fetchDatasource(paging: false, category: .accommodation, with: data)
-        case .failure(let error):
-          print(self,#function, error)
-        }
-      }
-    default:
+  headerLabel.font = .robotoBold(size: 18)
+  headerLabel.textColor = .gray02
+  header.backgroundColor = .white
+  header.addSubview(headerLabel)
+  
+  headerLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 16).isActive = true
+  headerLabel.topAnchor.constraint(equalTo: header.topAnchor, constant: 6).isActive = true
+  resultTableView.tableHeaderView = header
+  if #available(iOS 15.0, *) {
+    resultTableView.sectionHeaderTopPadding = 0
+  }
+}
+
+private func updatedModeUI() {
+  if mode == .Fromlocation {
+    NumberLabelfilterStackView.isHidden = false
+    filterStackView.isHidden = false
+    separateLine.isHidden = false
+    setOrderButton.isHidden = false
+    tableViewTop.constant = defaultHeight
+  } else {
+    NumberLabelfilterStackView.isHidden = true
+    filterStackView.isHidden = true
+    separateLine.isHidden = true
+    setOrderButton.isHidden = true
+    tableViewTop.constant = 0 - (headerHeight + 10)
+  }
+}
+
+override func viewDidLayoutSubviews() {
+  goToMapButton.setRounded(radius: nil)
+  goToMapButton.addShadow()
+}
+
+@objc private func tapGoToMapButton() {
+  // TODO Map으로 넘어가기
+  let searchMapStoryboard = UIStoryboard(name: "SearchMap", bundle: nil)
+  guard let searchMapVC = searchMapStoryboard.instantiateViewController(
+    identifier: "SearchMapViewController") as? SearchMapViewController else {
       return
     }
-    updateButtonUI(sender)
+  searchMapVC.setDataList(with: self.dataList)
+  present(searchMapVC, animated: true)
+}
+
+private func setLocationFilterButtonUI() {
+  buttons = [restaurantButton, landMarkButton, cafeButton, accommodationButton]
+  buttons.forEach { (button) in
+    button.layer.borderColor = UIColor.themePaleGreen.cgColor
+    button.layer.borderWidth = 1.0
+    button.backgroundColor = .white
+    button.tintColor = .gray01
+    button.titleLabel?.font = .robotoMedium(size: 13)
   }
-  
-  @IBAction private func didTapBackButton(_ sender: UIButton) {
+  buttons.last?.backgroundColor = UIColor.themePaleGreen
+}
+
+private func updateButtonUI(_ sender: UIButton) {
+  buttons.forEach { button in
+    button.setTitleColor(.gray01, for: .selected)
+    button.setTitleColor(.gray01, for: .normal)
+    if button == sender {
+      button.backgroundColor = .themePaleGreen
+      button.tintColor = .themePaleGreen
+      button.isSelected = true
+    } else {
+      button.backgroundColor = .white
+      button.tintColor = .white
+      button.isSelected = false
+    }
+  }
+}
+
+private func updateSelected(_ sender: UIButton){
+  let buttons = [restaurantButton, landMarkButton, accommodationButton, cafeButton]
+  for button in buttons {
+    if sender == button{
+      button?.isSelected = true
+    } else {
+      button?.isSelected = false
+    }
+  }
+}
+
+@IBAction private func didTapFilterButtons(_ sender: UIButton) {
+  //초기화작업
+  page = 0
+  self.dataList = []
+  resultTableView.reloadData()
+  updateSelected(sender)
+  switch sender {
+  case restaurantButton:
     
-    self.navigationController?.popViewController(animated: true)
-    self.tabBarController?.tabBar.isHidden = false
+    resultTableView.dataSource = searchResultDataSources[1]
+    APIService.shared.getFilterPlace(region: region, category: .restaurant, filter: filter, page: 0) { [weak self](result) in
+      guard let self = self else {return}
+      switch result {
+      case .success(let data):
+        self.fetchDatasource(paging: false, category: .restaurant, with: data)
+      case .failure(let error):
+        print(self,#function, error)
+      }
+    }
+  case landMarkButton:
+    resultTableView.dataSource = searchResultDataSources[3]
+    APIService.shared.getFilterPlace(region: region, category: .landmark, filter: filter, page: 0) { [weak self](result) in
+      guard let self = self else {return}
+      switch result {
+      case .success(let data):
+        self.fetchDatasource(paging: false, category: .landmark, with: data)
+      case .failure(let error):
+        print(self,#function, error)
+      }
+    }
+  case cafeButton:
+    resultTableView.dataSource = searchResultDataSources[2]
+    APIService.shared.getFilterPlace(region: region, category: .cafe, filter: filter, page: 0) { (result) in
+      switch result {
+      case .success(let data):
+        self.fetchDatasource(paging: false, category: .cafe, with: data)
+      case .failure(let error):
+        print(self,#function, error)
+      }
+    }
+  case accommodationButton:
+    resultTableView.dataSource = searchResultDataSources[0]
+    APIService.shared.getFilterPlace(region: region, category: .accommodation, filter: filter, page: 0) { (result) in
+      switch result {
+      case .success(let data):
+        self.fetchDatasource(paging: false, category: .accommodation, with: data)
+      case .failure(let error):
+        print(self,#function, error)
+      }
+    }
+  default:
+    return
   }
+  updateButtonUI(sender)
+}
+
+@IBAction private func didTapBackButton(_ sender: UIButton) {
   
-  
+  self.navigationController?.popViewController(animated: true)
+  self.tabBarController?.tabBar.isHidden = false
+}
+
+
 }
 
 extension SearchResultViewController {
@@ -635,21 +642,21 @@ extension SearchResultViewController: UITableViewDelegate {
     APIService.shared.fetchPlaceInfo(placeId: placeId) { result in
       
       switch result {
-        case .success(let data):
-          
-          guard let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController else { return }
-          
-          let placeInfo = PlaceInfo.init(placeID: placeId, data: data)
-          
-          vc.placeInfo = placeInfo
-          
+      case .success(let data):
+        
+        guard let vc = PlaceDetailTableViewController.loadFromStoryboard() as? PlaceDetailTableViewController else { return }
+        
+        let placeInfo = PlaceInfo.init(placeID: placeId, data: data)
+        
+        vc.placeInfo = placeInfo
+        
         self.navigationController?.pushViewController(vc, animated: true) {
           LoadingIndicator.hide()
         }
-          
-        case .failure(let statusCode):
-          print(statusCode)
-          LoadingIndicator.hide()
+        
+      case .failure(let statusCode):
+        print(statusCode)
+        LoadingIndicator.hide()
       }
     }
   }
