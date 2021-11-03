@@ -52,17 +52,6 @@ class UserManager {
     }
   }
   
-  private var representDogImageUrl: String?
-  
-  var representDog: String {
-    get {
-      return representDogImageUrl ?? "default"
-    }
-    set {
-      representDogImageUrl = newValue
-    }
-  }
-  
   //User를 직접 받을 수 있을때
   var userInfo: UserData? {
     get {
