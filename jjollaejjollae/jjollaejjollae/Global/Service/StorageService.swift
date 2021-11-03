@@ -33,6 +33,23 @@ class StorageService {
     }
   }
   
+  func uploadImage(img: UIImage, imageName: String,  completion: @escaping () -> Void) {
+    var data = Data()
+    data = img.jpegData(compressionQuality: 0.1)!
+    guard let filePath = imageName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {return}
+    let metaData = StorageMetadata()
+    metaData.contentType = "image/jpeg"
+    storage.reference().child("images/\(filePath)").putData(data, metadata: metaData){
+      (metaData, error) in
+      if let error = error {
+        print(error.localizedDescription)
+      } else {
+        print("성공")
+        completion()
+      }
+    }
+  }
+  
   func uploadImageWithData(imageData: Data, imageName: String, completion: @escaping () -> Void) {
     guard let filePath = imageName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {return}
     let metaData = StorageMetadata()

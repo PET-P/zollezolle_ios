@@ -307,9 +307,20 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
           guard let newImage = self.newImage else {
             return
           }
-          StorageService.shared.uploadImage(img: newImage, imageName: self.tempImageUrl)
+          StorageService.shared.uploadImage(img: newImage, imageName: self.tempImageUrl) {
+            APIService.shared.readUser(token: token, userId: userId) { (result) in
+              switch result {
+              case .success(let userdata):
+                UserManager.shared.userInfo = userdata
+                self.navigationController?.popViewController(animated: true)
+              case .failure(let error):
+                self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
+              }
+            }
+          }
         case .failure(let error):
           print(error)
+          self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
         }
       }
     } else {
@@ -317,8 +328,10 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
         APIService.shared.patchPetInfo(token: token, userId: userId, petId: profile.pet.id, name: name, age: profile.pet.age, sex: profile.pet.sex, size: profile.pet.size, weight: profile.pet.weight, type: profile.pet.type, breed: profile.pet.breed, imageUrl: nil, isRepresent: profile.pet.isRepresent) { (result) in
           switch result {
           case .success(let data):
+            self.navigationController?.popViewController(animated: true)
             print(data)
           case .failure(let error):
+            self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
             print(error)
           }
         }
@@ -330,9 +343,20 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
             guard let newImage = self.newImage else {
               return
             }
-            StorageService.shared.uploadImage(img: newImage, imageName: self.tempImageUrl)
+            StorageService.shared.uploadImage(img: newImage, imageName: self.tempImageUrl) {
+              APIService.shared.readUser(token: token, userId: userId) { (result) in
+                switch result {
+                case .success(let userdata):
+                  UserManager.shared.userInfo = userdata
+                  self.navigationController?.popViewController(animated: true)
+                case .failure(let error):
+                  self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
+                }
+              }
+            }
           case .failure(let error):
             print(error)
+            self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
           }
         }
       }
