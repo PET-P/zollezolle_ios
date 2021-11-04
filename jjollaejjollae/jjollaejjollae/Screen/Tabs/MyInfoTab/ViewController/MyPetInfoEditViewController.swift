@@ -573,7 +573,6 @@ extension MyPetInfoEditViewController: UIImagePickerControllerDelegate, UINaviga
     self.cellType[self.middleIndex.row] = .old
     guard let userId = UserManager.shared.userIdandToken?.userId else {return}
     
-//    self.dogProfile[self.middleIndex.row].pet.imageUrl = "\(userId)_\(Date())"
     self.tempImageUrl = "\(userId)_\(Date())"
     self.newImage = newImage
     picker.dismiss(animated: true) {
