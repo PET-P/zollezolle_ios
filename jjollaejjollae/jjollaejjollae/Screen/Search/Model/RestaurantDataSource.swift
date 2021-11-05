@@ -15,9 +15,11 @@ class RestaurantDataSource: NSObject, UITableViewDataSource {
       }
       if newDataList.isEmpty {
         guard let vc = CallerVC as? SearchResultViewController else {return}
+        vc.view.makeToast("검색결과가 없습니다")
         vc.goToMapButton.isHidden = true
       } else {
         guard let vc = CallerVC as? SearchResultViewController else {return}
+        vc.view.hideToast()
         vc.goToMapButton.isHidden = false
       }
     }
