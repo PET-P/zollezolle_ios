@@ -13,7 +13,7 @@ import KakaoSDKUser
 import AuthenticationServices
 import SwiftyJSON
 
-class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UITextFieldDelegate {
+class MyInfoEditViewController: UIViewController, StoryboardInstantiable {
   
   var infoData: UserData? {
     didSet {
@@ -28,20 +28,27 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   @IBOutlet weak var nickTextField: UITextField! {
     didSet {
       nickTextField.text = UserManager.shared.userInfo?.nick
+      nickTextField.delegate = self
     }
   }
   @IBOutlet weak var emailTextField: UITextField! {
     didSet {
       emailTextField.isUserInteractionEnabled = false
       emailTextField.text = UserManager.shared.userInfo?.email
+      emailTextField.delegate = self
     }
   }
   
-  @IBOutlet weak var currentPWTextField: UITextField!
+  @IBOutlet weak var currentPWTextField: UITextField! {
+    didSet {
+      currentPWTextField.delegate = self
+    }
+  }
   @IBOutlet weak var newPWTextField: UITextField! {
     didSet {
       newPWTextField.placeholder = "문자, 숫자를 모두 포함한 8자이상"
       newPWTextField.setPlaceholderColor(.gray03)
+      newPWTextField.delegate = self
     }
   }
   @IBOutlet var infoItemsLabel: [UILabel]! {
@@ -58,12 +65,16 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
       errorLabel.text = " "
     }
   }
-
+  
   @IBOutlet weak var dogProfileImage: UIImageView!
   @IBOutlet weak var passwordLabel: UILabel!
   @IBOutlet weak var passwordStackView: UIStackView!
   @IBOutlet weak var newpasswordStackView: UIStackView!
-  @IBOutlet weak var phoneTextField: UITextField!
+  @IBOutlet weak var phoneTextField: UITextField! {
+    didSet {
+      
+    }
+  }
   @IBOutlet weak var blockView: UIView!
   @IBOutlet weak var blockView2: UIView!
   @IBOutlet weak var logoutButton: UIButton! {
@@ -105,6 +116,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
       textfield.backgroundColor = .gray06
     }
   }
+  @IBOutlet weak var infoEditScrollView: UIScrollView!
   
   private var dogImage: UIImage?
   
@@ -120,11 +132,21 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
           guard let self = self else {return}
           self.infoData?.nick = newText
           guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
-          APIService.shared.patchUser(token: token, userId: userId, nick: newText, phone: nil, password: nil) { (result) in
+          APIService.shared.patchUser(token: token, userId: userId, nick: newText, phone: nil, password: nil) { [weak self](result) in
+            guard let self = self else {return}
             switch result {
             case .success(let data):
               let data = JSON(data)
-              print(data.rawValue)
+              APIService.shared.readUser(token: token, userId: userId) { (result) in
+                switch result {
+                case .success(let userdata):
+                  UserManager.shared.userInfo = userdata
+                  self.nickTextField.text = "\(data["nick"])"
+                  self.navigationController?.popViewController(animated: true)
+                case .failure(let error):
+                  print(error)
+                }
+              }
             case .failure(let error):
               print(error)
             }
@@ -142,10 +164,12 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
         alert.addAction(UIAlertAction(title: "네", style: .default, handler: { [weak self](action) in
           self?.infoData?.nick = newText
           guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
-          APIService.shared.patchUser(token: token, userId: userId, nick: nil, phone: nil, password: newText) { (result) in
+          APIService.shared.patchUser(token: token, userId: userId, nick: nil, phone: nil, password: newText) { [weak self] (result) in
             switch result {
             case .success(let data):
               let data = JSON(data)
+              self?.passwordLabel.text = data.rawString()
+              self?.newPasswordTextfield.text = nil
               print(data.rawValue)
             case .failure(let error):
               print(error)
@@ -183,8 +207,20 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   }
   
   @IBAction func didTapLogoutButton(_ sender: UIButton) {
-    UserManager.shared.deleteUser()
-    print("logout")
+    
+    let alert = UIAlertController(title: "로그아웃", message: "로그아웃을 하시겠습니까?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "네", style: .default, handler: {
+      [weak self] (action) in
+      UserManager.shared.deleteUser()
+      guard let loginVC = LoginViewController.loadFromStoryboard() as? LoginViewController else {return}
+      let newNaviController = UINavigationController(rootViewController: loginVC)
+      newNaviController.isNavigationBarHidden = true
+      let sceneDelegate = UIApplication.shared.connectedScenes
+              .first!.delegate as! SceneDelegate
+      sceneDelegate.window!.rootViewController = newNaviController
+    }))
+    alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
+    self.present(alert, animated: true, completion: nil)
   }
   
   
@@ -204,7 +240,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
           print(error)
         }
       }
-
+      
     }))
     alert.addAction(UIAlertAction(title: "아니요", style: .cancel, handler: { [weak self](action) in
       self?.phoneTextField.text = self?.infoData?.phone
@@ -239,10 +275,7 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     var secessionAlertController: UIAlertController!
     var ok: UIAlertAction!
     if usertype == .local {
-      secessionAlertController = UIAlertController(title: "탈퇴하기", message: "회원탈퇴를 하시려면 안내 및 동의가 필요합니다.비밀번호를 입력해주세요", preferredStyle: .alert)
-      secessionAlertController.addTextField { (password) in
-        print("서버와 연동해서 password가 맞는지 확인을해야한딩")
-      }
+      secessionAlertController = UIAlertController(title: "탈퇴하기", message: "회원탈퇴를 하시려면 안내 및 동의가 필요합니다", preferredStyle: .alert)
       ok = UIAlertAction(title: "진행하기", style: .default) { [weak self](ok) in
         guard let token = UserManager.shared.userIdandToken?.token else {return}
         guard let self = self else {return}
@@ -315,8 +348,20 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
   
   private var dogProfile: [(pet: PetData, image: UIImage?)] = []
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    LoadingIndicator.show()
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+      LoadingIndicator.hide()
+    }
     dogProfileImage.setRounded(radius: nil)
     infoData = UserManager.shared.userInfo
     applyNoneSyle(to: [emailTextField, phoneTextField])
@@ -324,13 +369,6 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
     verifySocial()
     guard let userId = UserManager.shared.userIdandToken?.userId, let token = UserManager.shared.userIdandToken?.token else {return}
     if self.dogImage != nil {return}
-    
-    LoadingIndicator.show()
-    
-    DispatchQueue.main.asyncAfter(deadline: .now()+3){
-      LoadingIndicator.hide()
-    }
-    
     APIService.shared.readPets(token: token, userId: userId) { [weak self] (result) in
       
       guard let self = self else {return}
@@ -342,57 +380,117 @@ class MyInfoEditViewController: UIViewController, StoryboardInstantiable, UIText
         
         for pet in data {
           var temp: (pet: PetData, image: UIImage?) = (pet: pet, image:nil)
-          
-          StorageService.shared.downloadUIImageWithURL(with: pet.imageUrl ?? "default") { (image) in
-            guard let image = image else {
-              if pet.isRepresent == true {
-                self.dogProfileImage.image = UIImage(named: "default")!
+          if let imageurl = pet.imageUrl {
+            StorageService.shared.downloadUIImageWithURL(with: imageurl) { (image) in
+              guard let image = image else {
+                if pet.isRepresent == true {
+                  self.dogProfileImage.image = UIImage(named: "default")!
+                }
+                temp.image = UIImage(named: "default")!
+                
+                return
               }
-              temp.image = UIImage(named: "default")!
               
-              return
+              if pet.isRepresent == true {
+                
+                self.dogProfileImage.setImage(with: imageurl)
+                
+              }
+              
+              temp.image = image
+              self.dogProfile.append(temp)
+              
+              if index == data.count - 1 {
+                PagingManager.shared.setDogTuples(dogTuples: self.dogProfile)
+                
+              }
+              index += 1
+              
             }
-            
+          } else {
             if pet.isRepresent == true {
-              self.dogImage = image
-              self.dogProfileImage.image = self.dogImage
+              self.dogProfileImage.image = UIImage(named: "default")
             }
-            
-            temp.image = image
             self.dogProfile.append(temp)
-            
             if index == data.count - 1 {
               PagingManager.shared.setDogTuples(dogTuples: self.dogProfile)
               
             }
             index += 1
-            
           }
-          
-          
-          
+ 
         }
         
       case .failure(let error):
         self.dogImage = UIImage(named: "default")
         self.dogProfileImage.image = self.dogImage
         print(error)
-       
+        
       }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      textField.resignFirstResponder()
+      return true
+    }
+    
+    //네이버용
+    func oauth20ConnectionDidFinishDeleteToken() {
+      print("네이버 회원탈퇴 석세스")
     }
   }
   
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    textField.resignFirstResponder()
-    return true
-  }
-  
-  //네이버용
-  func oauth20ConnectionDidFinishDeleteToken() {
-    print("네이버 회원탈퇴 석세스")
-  }
-  
-  
 }
 
+//MARK: - KEYBOARD SETTING
+
+extension MyInfoEditViewController: UITextFieldDelegate {
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    textField.becomeFirstResponder()
+  }
+
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+  }
+  private func setKeyboard() {
+    let tapGesture = UITapGestureRecognizer(
+      target: view,
+      action: #selector(view.endEditing(_:)))
+    view.addGestureRecognizer(tapGesture)
+    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
+                                           object: nil,
+                                           queue: OperationQueue.main) { (notification) in
+      guard let userInfo = notification.userInfo else { return }
+      guard let keyboardFrame =
+        userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+        
+      let contentInset = UIEdgeInsets(
+        top: 0.0,
+        left: 0.0,
+        bottom: keyboardFrame.size.height,
+        right: 0.0
+      )
+      self.infoEditScrollView.contentInset = contentInset
+      self.infoEditScrollView.scrollIndicatorInsets = contentInset
+      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
+              as? TimeInterval else {return}
+      UIView.animate(withDuration: duration) {
+        self.view.layoutIfNeeded()
+      }
+    }
+    NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
+                                           object: nil,
+                                           queue: OperationQueue.main) { (notification) in
+      guard let userInfo = notification.userInfo else { return }
+      let contentInset = UIEdgeInsets.zero
+      self.infoEditScrollView.contentInset = contentInset
+      self.infoEditScrollView.scrollIndicatorInsets = contentInset
+      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
+              as? TimeInterval else {return}
+      UIView.animate(withDuration: duration) {
+        self.view.layoutIfNeeded()
+      }
+    }
+  }
+}
 

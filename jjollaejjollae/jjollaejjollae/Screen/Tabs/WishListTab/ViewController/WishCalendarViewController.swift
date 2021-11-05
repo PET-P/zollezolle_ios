@@ -552,7 +552,6 @@ extension WishCalendarViewController {
 extension WishCalendarViewController {
   func showAlert() {
     var alert = UIAlertController(title: "이름을 적으시개", message: nil, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "아니요", style: .default, handler: nil))
     alert.addAction(UIAlertAction(title: "네", style: .default))
     self.present(alert, animated: true, completion: nil)
   }

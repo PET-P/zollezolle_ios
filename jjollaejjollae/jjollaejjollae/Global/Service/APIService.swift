@@ -182,6 +182,10 @@ struct APIService {
     judgeGenericResponse(target, completion: completion)
   }
   
+  func deletePet(token: String, userId: String, petId: String, completion: (@escaping (NetworkResult<[PetData]>) -> (Void))) {
+    let target = APITarget.deletePet(token: token, userId: userId, petId: petId)
+    judgeGenericResponse(target, completion: completion)
+  }
   
   /**
   - Author: 박우찬

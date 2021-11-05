@@ -180,7 +180,7 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
       // dogprofile에 처음들어가는 상황이 아님// 여기서 그냥 하나 그냥 생성 X
       for i in dogProfile.indices {
         // 이미지 설정이 되어있지 않다면?
-        if dogProfile[i].pet.imageUrl == nil {
+        if dogProfile[i].pet.imageUrl == nil || dogProfile[i].pet.imageUrl == "" {
           tempCellType.append(.camera)
         } else { //이미지설정이 되어있다면?
           tempCellType.append(.old)
@@ -215,6 +215,7 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
   
   private var cellType: [State] = [.plus]
   private var dogProfile: [(pet: PetData, image: UIImage?)] = []
+  private var petTempImage: [String: UIImage] = [:]
   private var visibleIndex: [IndexPath] = []
   private var clickedIndexPath: IndexPath?
   private var middleIndex: IndexPath = [0,0]
@@ -243,7 +244,6 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
         self.dogProfile[i].pet.isRepresent = false
       }
       self.dogProfile[middleIndex.row].pet.isRepresent = true
-      print(self.dogProfile[middleIndex.row])
       representPetButton.isSelected = !representPetButton.isSelected
     }
   }
@@ -283,7 +283,7 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
     self.showAlertController(style: UIAlertController.Style.actionSheet)
   }
   
-
+  
   @IBAction func didTapPetTypeButton(_ sender: UIButton) {
     self.showAlertController(style: UIAlertController.Style.actionSheet, AlertList: ["강아지", "고양이"])
   }
@@ -294,70 +294,127 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
   
   @IBAction func didTapSaveButton(_ sender: UIButton) {
     guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
-    let profile = dogProfile[middleIndex.row]
-    guard let name = profile.pet.name else {
-      return}
-    if profile.pet.id == "1" {
-      // create
-      APIService.shared.createPet(token: token, userId: userId, name: name, age: profile.pet.age, sex: profile.pet.sex, size: profile.pet.size, weight: profile.pet.weight, type: profile.pet.type, breed: profile.pet.breed, imageUrl: tempImageUrl , isRepresent: profile.pet.isRepresent) { [weak self](result) in
-        guard let self = self else {return}
-        switch result {
-        case .success(let data):
-          print(data)
-          guard let newImage = self.newImage else {
-            return
-          }
-          StorageService.shared.uploadImage(img: newImage, imageName: self.tempImageUrl) {
-            APIService.shared.readUser(token: token, userId: userId) { (result) in
-              switch result {
-              case .success(let userdata):
-                UserManager.shared.userInfo = userdata
-                self.navigationController?.popViewController(animated: true)
-              case .failure(let error):
-                self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
+    var represent = false
+    dogProfile.forEach { (pettuple) in
+      if pettuple.pet.name == "" || pettuple.pet.name == nil {
+        let alertController = UIAlertController(title: nil, message: "이름을 입력하개", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        let subview = alertController.view.subviews.first! as UIView
+        let alertContentView = subview.subviews.first! as UIView
+        alertContentView.setRounded(radius: 10)
+        alertContentView.overrideUserInterfaceStyle = .light
+        alertContentView.backgroundColor = UIColor.white
+        alertController.view.setRounded(radius: 10)
+        alertController.view.tintColor = .themeGreen
+        self.present(alertController, animated: true, completion: nil)
+        return
+      }
+      represent = pettuple.pet.isRepresent
+    }
+    if !represent {
+      return
+    }
+    LoadingIndicator.show()
+    let dogDispatchGroup = DispatchGroup()
+    for index in dogProfile.indices {
+      var profile = dogProfile[index].pet
+      var profileImage = dogProfile[index].image
+      guard let name = profile.name else {
+        return}
+      dogDispatchGroup.enter()
+      if profile.id == "1" {
+        // create
+        print(index, profile.name)
+        if profile.imageUrl != nil || profile.imageUrl != "" { //create 강아지 있음
+          APIService.shared.createPet(token: token, userId: userId, name: name, age: profile.age, sex: profile.sex, size: profile.size, weight: profile.weight, type: profile.type, breed: profile.breed, imageUrl: profile.imageUrl , isRepresent: profile.isRepresent) { [weak self](result) in
+            guard let self = self else {return}
+            switch result {
+            case .success(let data):
+              print("****************************")
+              print("\(profile.id)의 강아지 created")
+              print("****************************")
+              let image = profileImage ?? UIImage(named: "default")!
+              if let imageurl = profile.imageUrl {
+                StorageService.shared.uploadImage(img: image, imageName: imageurl) {
+                  print("저장")
+                  dogDispatchGroup.leave()
+                }
+              } else {
+                
               }
+              
+            case .failure(let error):
+              print(error)
+              self.view.makeToast("createpet 네트워크 오류입니다 다시 시도해주세요😂")
             }
           }
-        case .failure(let error):
-          print(error)
-          self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
-        }
-      }
-    } else {
-      if tempImageUrl == "" {
-        APIService.shared.patchPetInfo(token: token, userId: userId, petId: profile.pet.id, name: name, age: profile.pet.age, sex: profile.pet.sex, size: profile.pet.size, weight: profile.pet.weight, type: profile.pet.type, breed: profile.pet.breed, imageUrl: nil, isRepresent: profile.pet.isRepresent) { (result) in
-          switch result {
-          case .success(let data):
-            self.navigationController?.popViewController(animated: true)
-            print(data)
-          case .failure(let error):
-            self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
-            print(error)
+        } else { //create 강아지 없음
+          APIService.shared.createPet(token: token, userId: userId, name: name, age: profile.age, sex: profile.sex, size: profile.size, weight: profile.weight, type: profile.type, breed: profile.breed, imageUrl: nil , isRepresent: profile.isRepresent) { [weak self](result) in
+            guard let self = self else {return}
+            switch result {
+            case .success(let data):
+              print("****************************")
+              print("\(profile.id)의 강아지 created 강아지 없음")
+              print("****************************")
+              dogDispatchGroup.leave()
+            case .failure(let error):
+              print(error)
+              self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂 creatpet")
+              dogDispatchGroup.leave()
+            }
           }
         }
       } else {
-        APIService.shared.patchPetInfo(token: token, userId: userId, petId: profile.pet.id, name: name, age: profile.pet.age, sex: profile.pet.sex, size: profile.pet.size, weight: profile.pet.weight, type: profile.pet.type, breed: profile.pet.breed, imageUrl: tempImageUrl, isRepresent: profile.pet.isRepresent) { (result) in
-          switch result {
-          case .success(let data):
-            print(data)
-            guard let newImage = self.newImage else {
-              return
-            }
-            StorageService.shared.uploadImage(img: newImage, imageName: self.tempImageUrl) {
-              APIService.shared.readUser(token: token, userId: userId) { (result) in
-                switch result {
-                case .success(let userdata):
-                  UserManager.shared.userInfo = userdata
-                  self.navigationController?.popViewController(animated: true)
-                case .failure(let error):
-                  self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
+          if profile.imageUrl != nil || profile.imageUrl != "" {
+            APIService.shared.patchPetInfo(token: token, userId: userId, petId: profile.id, name: name, age: profile.age, sex: profile.sex, size: profile.size, weight: profile.weight, type: profile.type, breed: profile.breed, imageUrl: profile.imageUrl, isRepresent: profile.isRepresent) { [weak self](result) in
+              guard let self = self else {return}
+              switch result {
+              case .success(let data):
+               
+                if let profileImage = profileImage, let imageurl = profile.imageUrl {
+                  StorageService.shared.uploadImage(img: profileImage, imageName: imageurl) {
+                    print("이미지 저장")
+                    dogDispatchGroup.leave()
+                  }
+                } else {
+                  print("이미지url은 존재하지만 이미지가 없다")
+                  dogDispatchGroup.leave()
                 }
+              case .failure(let error):
+                print(error)
+                self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂 patch")
+                dogDispatchGroup.leave()
               }
             }
-          case .failure(let error):
-            print(error)
-            self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
-          }
+          } else {
+            APIService.shared.patchPetInfo(token: token, userId: userId, petId: profile.id, name: name, age: profile.age, sex: profile.sex, size: profile.size, weight: profile.weight, type: profile.type, breed: profile.breed, imageUrl: profile.imageUrl, isRepresent: profile.isRepresent) { [weak self](result) in
+              guard let self = self else {return}
+              switch result {
+              case .success(let data):
+                let image = profileImage ?? UIImage(named: "default")!
+                StorageService.shared.uploadImage(img: image, imageName: profile.imageUrl!) {
+                  print("이미지 저장")
+                  dogDispatchGroup.leave()
+                }
+              case .failure(let error):
+                print(error)
+                self.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂 patch")
+                dogDispatchGroup.leave()
+              }
+            }
+        }
+      }
+    }
+    dogDispatchGroup.notify(queue: .main) {
+      LoadingIndicator.hide()
+      APIService.shared.readUser(token: token, userId: userId) { [weak self] (result) in
+        switch result {
+        case .success(let userdata):
+          UserManager.shared.userInfo = userdata
+          self?.navigationController?.popViewController(animated: true)
+        case .failure(let error):
+          print("error")
+          self?.view.makeToast("네트워크 오류입니다 다시 시도해주세요😂")
         }
       }
     }
@@ -365,7 +422,7 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
   
   private func updateForm(cellType: String) {
     if cellType == "plus" {
-     clearForm()
+      clearForm()
     } else {
       let data = dogProfile[middleIndex.row].pet
       myPetNameTextField.text = data.name
@@ -389,12 +446,6 @@ class MyPetInfoEditViewController: UIViewController, StoryboardInstantiable {
     petTypeTextField.text = nil
     representPetButton.isSelected = false
   }
-  
-
-  
-  
-  
-  
 }
 
 
@@ -502,7 +553,7 @@ extension MyPetInfoEditViewController: UITextFieldDelegate {
     petAgeTextField.delegate = self
     petTypeTextField.delegate = self
     petWeightTextField.delegate = self
-  
+    
     let tapGesture = UITapGestureRecognizer(
       target: view,
       action: #selector(view.endEditing(_:)))
@@ -514,26 +565,26 @@ extension MyPetInfoEditViewController: UITextFieldDelegate {
       forName: UIResponder.keyboardWillShowNotification,
       object: nil,
       queue: OperationQueue.main) { (notification) in
-      guard let userInfo = notification.userInfo else {
-        return
+        guard let userInfo = notification.userInfo else {
+          return
+        }
+        guard let keyboardFrame =
+                userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+        
+        let contentInset = UIEdgeInsets(
+          top: 0.0,
+          left: 0.0,
+          bottom: keyboardFrame.size.height,
+          right: 0.0
+        )
+        self.scrollView.contentInset = contentInset
+        self.scrollView.scrollIndicatorInsets = contentInset
+        guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
+                as? TimeInterval else {return}
+        UIView.animate(withDuration: duration) {
+          self.view.layoutIfNeeded()
+        }
       }
-      guard let keyboardFrame =
-              userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
-      
-      let contentInset = UIEdgeInsets(
-        top: 0.0,
-        left: 0.0,
-        bottom: keyboardFrame.size.height,
-        right: 0.0
-      )
-      self.scrollView.contentInset = contentInset
-      self.scrollView.scrollIndicatorInsets = contentInset
-      guard let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]
-              as? TimeInterval else {return}
-      UIView.animate(withDuration: duration) {
-        self.view.layoutIfNeeded()
-      }
-    }
     NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification,
                                            object: nil,
                                            queue: OperationQueue.main) { (notification) in
@@ -574,6 +625,7 @@ extension MyPetInfoEditViewController: UIImagePickerControllerDelegate, UINaviga
     guard let userId = UserManager.shared.userIdandToken?.userId else {return}
     
     self.tempImageUrl = "\(userId)_\(Date())"
+    self.dogProfile[self.middleIndex.row].pet.imageUrl = "\(userId)_\(Date())"
     self.newImage = newImage
     picker.dismiss(animated: true) {
       self.dogProfileCollectionView.reloadData()
@@ -656,12 +708,30 @@ extension MyPetInfoEditViewController: UICollectionViewDelegate, UICollectionVie
       if cellType[index] != .plus {
         let alert = UIAlertController(title: "프로필삭제", message: "입력한 정보를 삭제하시겠습니까?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "취소", style: .destructive, handler: nil))
-        alert.addAction(UIAlertAction(title: "삭제", style: .default, handler: { [weak self] (action) in
+        alert.addAction(UIAlertAction(title: "삭제", style: .default) { [weak self] (action) in
           guard let self = self else {return}
-          self.cellType.remove(at: index)
-          self.dogProfile.remove(at: index)
-          self.dogProfileCollectionView.reloadData()
-        }))
+          guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
+          APIService.shared.deletePet(token: token, userId: userId, petId: self.dogProfile[index].pet.id) { (result) in
+            switch result {
+            case .success(let petdataArray):
+              
+              APIService.shared.readUser(token: token, userId: userId) { result in
+                switch result {
+                case .success(let userdata):
+                  UserManager.shared.userInfo = userdata
+                  self.view.makeToast("삭제가 완료되었습니다.")
+                  self.navigationController?.popViewController(animated: true)
+                case .failure(let error):
+                  print("error \(error)")
+                  self.view.makeToast("네크워크 오류입니다. 다시 시도해주세요")
+                }
+              }
+            case .failure(let error):
+              self.view.makeToast("네트워크 오류입니다. 다시시도해주세요")
+              print("error \(error)")
+            }
+          }
+        })
         self.present(alert, animated: true, completion: nil)
       }
     }
@@ -710,7 +780,7 @@ extension MyPetInfoEditViewController: UICollectionViewDelegate, UICollectionVie
   }
   
   //MARK: - Delegate
-
+  
   func didTapImageView(indexPath: IndexPath?) {
     
     if let indexPath = indexPath {

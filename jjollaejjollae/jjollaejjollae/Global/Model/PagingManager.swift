@@ -12,7 +12,7 @@ class PagingManager {
   public init() {}
   var mainVC: UIViewController?
   var myInfoVC: UIViewController?
-  var myPetInfoVC: UIViewController?
+  private var Pets: [(pet: PetData, image: UIImage?)] = []
   
   private var dogTuples: [(pet: PetData, image: UIImage?)] = [] {
     didSet {
@@ -37,4 +37,6 @@ class PagingManager {
   func getDogTuples() -> [(pet: PetData, image: UIImage?)] {
     return dogTuples
   }
+  
+  
 }
