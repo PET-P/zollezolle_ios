@@ -39,9 +39,9 @@ final class PlaceTableViewCell: UITableViewCell {
     }
   }
   
-  var reviewPoint: Double = 0.0 {
+  var reviewPointText: String = "0.0" {
     didSet {
-      reviewPointLabel.text = "\(reviewPoint)"
+      reviewPointLabel.text = reviewPointText
     }
   }
   

@@ -136,9 +136,13 @@ extension RecommendedPlaceViewController: UITableViewDataSource {
     if let partialImageURL = data.imagesUrl.first {
       cell.mainImageView.setImage(with: partialImageURL)
     }
+    
     cell.placeTitle = data.title
+    
     cell.category = data.category.rawValue
-    cell.reviewPoint = data.reviewPoint ?? 0.0
+    
+    cell.reviewPointText = String(format: "%.1f", data.reviewPoint ?? 0.0)
+    
     cell.reviewCount = data.reviewCount
     
     return cell
