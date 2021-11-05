@@ -22,6 +22,7 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable{
   @IBOutlet weak var scrollView: UIScrollView!
   private var userInfo: UserData?
   private var representDogImage: UIImage?
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,17 +30,19 @@ class MyInfoDetailViewController: UIViewController, StoryboardInstantiable{
                                            name: NSNotification.Name("SegControlNotification"),
                                            object: nil)
     PagingManager.shared.mainVC = self
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     userInfo = UserManager.shared.userInfo
-
+    
   }
+  
+  
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
+    self.hidesBottomBarWhenPushed = false
   }
 }
 //MARK: - IBACTION & OBJC

@@ -20,7 +20,7 @@ class LoadingIndicator {
   
   class func show() {
     let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-    let popupView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+    let popupView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
     popupView.animate(withGIFNamed: "loading", animationBlock:  {
       print("dog is walking🐕")
     })

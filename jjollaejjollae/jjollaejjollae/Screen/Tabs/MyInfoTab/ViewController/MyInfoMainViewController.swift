@@ -33,6 +33,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   override func viewDidLoad() {
     super.viewDidLoad()
     print("\(self)", #function)
+    NotificationCenter.default.addObserver(self, selector: #selector(changeMainProfile), name: UserManager.didSetAppUserNotification, object: nil)
     userInfo = UserManager.shared.userInfo
     nicknameLabel.text = userInfo?.nick ?? "쫄래쫄래1"
     infoTableView.delegate = self
@@ -61,6 +62,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     isLogged = UserManager.shared.isLogged
+    tabBarController?.tabBar.isHidden = false
   }
   
   
@@ -122,6 +124,23 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     return imageUrl
   }
   
+  @objc func changeMainProfile() {
+    
+    guard let userInfo = UserManager.shared.userInfo else { return }
+
+    guard let pet = userInfo.pets.filter({ petData in
+      petData.isRepresent
+    }).first else { return }
+
+    guard let imageUrl = pet.imageUrl else { return }
+
+    profileImageView.setImage(with: imageUrl)
+    
+    nicknameLabel.text = userInfo.nick
+    
+    return
+  }
+  
   private func setupHeader() {
     let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 260))
     header.backgroundColor = .white
@@ -151,6 +170,7 @@ class MyInfoMainViewController: UIViewController, StoryboardInstantiable {
     } else  {
       guard let detailVC = MyInfoDetailViewController.loadFromStoryboard() as?
               MyInfoDetailViewController else {return}
+      detailVC.hidesBottomBarWhenPushed = true
       self.navigationController?.pushViewController(detailVC, animated: true)
     }
   }

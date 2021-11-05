@@ -62,6 +62,14 @@ class UserManager {
     }
   }
   
+  func setNick(nick: String) {
+    guard var appUser = appUser else {
+      return
+    }
+    appUser.nick = nick
+  }
+
+  
   func deleteUser(){
     //전역변수 제거
     userIdandToken = nil

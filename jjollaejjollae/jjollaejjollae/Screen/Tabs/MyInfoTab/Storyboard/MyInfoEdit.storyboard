@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -310,6 +310,7 @@
                         <outlet property="editPhoneButton" destination="1xW-Go-3Uy" id="S3e-Im-3jP"/>
                         <outlet property="emailTextField" destination="H9Q-d1-jOz" id="0gj-NZ-KHf"/>
                         <outlet property="errorLabel" destination="4W9-zP-p5S" id="WPH-oo-G8H"/>
+                        <outlet property="infoEditScrollView" destination="qh0-1i-bs1" id="oTJ-KH-geP"/>
                         <outlet property="logoutButton" destination="5Zx-C8-WZJ" id="Slw-rc-DKK"/>
                         <outlet property="newPWTextField" destination="86J-mE-uAs" id="I0H-OT-4nh"/>
                         <outlet property="newPasswordTextfield" destination="86J-mE-uAs" id="YUr-gO-8Rk"/>

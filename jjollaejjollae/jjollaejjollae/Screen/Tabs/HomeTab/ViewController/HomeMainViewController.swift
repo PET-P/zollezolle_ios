@@ -148,9 +148,12 @@ final class HomeMainViewController: UIViewController, StoryboardInstantiable, Se
     }).first else { return }
 
     guard let imageUrl = pet.imageUrl else { return }
+    updateRepresentedPet()
 
     mainImageView.setImage(with: imageUrl)
     mainLogoImageView.isHidden = true
+    
+    
     LoadingIndicator.hide()
     return
   }

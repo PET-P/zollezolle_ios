@@ -27,6 +27,7 @@ enum APITarget {
   
   case createPet(token: String, userId: String, name: String, age: Int?, sex: String, size: String, weight: Double?, type: String, breed: String?, imageUrl: String?, isRepresent: Bool)
   case readPets(token: String, userId: String)
+  case deletePet(token: String, userId: String, petId: String)
   case patchPetInfo(token: String, userId: String, petId: String, name: String?, age: Int?, sex: String?, size: String?, weight: Double?, type: String?, breed: String?, imageUrl: String?, isRepresent: Bool?)
   case patchPetInfoWithNoImage(token: String, userId: String, petId: String, name: String?, age: Int?, sex: String?, size: String?, weight: Double?, type: String?, breed: String?, isRepresent: Bool?)
 
@@ -106,7 +107,7 @@ extension APITarget: TargetType {
       return ""
     case .socialLogin:
       return "/auth/social"
-    case .patchPetInfo(_, let userId, let petId, _, _, _, _, _, _ ,_,_,_), .patchPetInfoWithNoImage(_, let userId, let petId, _, _, _, _, _, _ ,_,_):
+    case .patchPetInfo(_, let userId, let petId, _, _, _, _, _, _ ,_,_,_), .patchPetInfoWithNoImage(_, let userId, let petId, _, _, _, _, _, _ ,_,_), .deletePet(_, let userId,let petId):
       return "/users/\(userId)/pets/\(petId)"
     case .search, .noLoginSearch:
       return "/search"
@@ -173,7 +174,7 @@ extension APITarget: TargetType {
       return .patch
       
 
-      case .deleteFolder, .deleteUser, .deleteReview, .deletePlaceInFolder, .deletePlaceInEntireFolder, .unlikeReview:
+    case .deleteFolder, .deleteUser, .deleteReview, .deletePlaceInFolder, .deletePlaceInEntireFolder, .unlikeReview, .deletePet:
       return .delete
     }
   }
@@ -200,7 +201,7 @@ extension APITarget: TargetType {
     case .findPassword(let email):
       return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
       
-      case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .deleteUser, .deleteReview, .fetchPlaceInfo, .unlikeReview:
+    case .naver, .readAllPosts, .readPost, .readWishlist, .refreshToken, .readUser, .readAllUsers, .readPets, .deleteUser, .deleteReview, .fetchPlaceInfo, .unlikeReview, .deletePet:
       return .requestPlain
         
     case .socialLogin(let email, let nick, let accountType):
@@ -271,7 +272,7 @@ extension APITarget: TargetType {
       return ["Content-Type" : "application/json", "Refresh" : refreshToken,
               "Authorization" : "Bearer \(accessToken)"]
       
-    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .deleteReview(let token, _), .deletePlaceInEntireFolder(let token,_,_), .patchPetInfo(let token,_,_,_,_,_,_,_,_,_,_,_), .patchPetInfoWithNoImage(let token,_,_,_,_,_,_,_,_,_,_), .unlikeReview(let token, _), .likeReview(let token, _):
+    case .readUser(let token, _), .deleteUser(let token, _), .createPet(let token, _, _, _, _, _, _, _, _, _, _), .readPets(let token, _), .readFolder(let token,_,_), .search(let token, _, _), .readReview(let token, _), .readPlaceReview(let token, _), .readWishlist(let token, _), .addPlaceInFolder(let token, _, _, _), .patchFolder(let token, _, _, _, _, _), .deleteFolder(let token, _, _), .deletePlaceInFolder(let token, _, _, _), .patchUser(let token, _, _, _ ,_), .createReview(let token, _), .deleteReview(let token, _), .deletePlaceInEntireFolder(let token,_,_), .patchPetInfo(let token,_,_,_,_,_,_,_,_,_,_,_), .patchPetInfoWithNoImage(let token,_,_,_,_,_,_,_,_,_,_), .unlikeReview(let token, _), .likeReview(let token, _), .deletePet(let token,_,_):
       
       return ["Content-Type" : "application/json", "Authorization" : "Bearer \(token)"]
       

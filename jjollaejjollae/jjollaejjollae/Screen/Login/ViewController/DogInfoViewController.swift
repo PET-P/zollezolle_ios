@@ -214,9 +214,6 @@ class DogInfoViewController: FixModalViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     user = UserManager.shared.userInfo
-    print("********************************")
-    print(user)
-    print("********************************")
     for i in 1...100 {
       ageList.append(i)
     }
@@ -363,8 +360,7 @@ class DogInfoViewController: FixModalViewController{
     }
     if flag {
       guard let token = UserManager.shared.userIdandToken?.token, let userId = UserManager.shared.userIdandToken?.userId else {return}
-      var loadingIndex = 0
-      var dispatchGroup = DispatchGroup()
+      let dispatchGroup = DispatchGroup()
       
       for pet in self.dogProfile {
         dispatchGroup.enter()

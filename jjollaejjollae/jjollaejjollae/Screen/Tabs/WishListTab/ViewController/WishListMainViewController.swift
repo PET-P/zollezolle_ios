@@ -184,6 +184,7 @@ extension WishlistMainViewController: UICollectionViewDelegate {
         case .success(let data):
           self.wishlistFolders = data.folder
           self.wishlistCollectionView.reloadData()
+          self.view.makeToast("위시리스트에 저장되었습니다🐶")
           self.dismiss(animated: true, completion: nil)
         case .failure(let error):
           print("error", self, #function, error)
