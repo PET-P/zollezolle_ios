@@ -100,6 +100,14 @@ final class MapMainViewController: UIViewController, StoryboardInstantiable {
   
   @IBOutlet weak var containerView: UIView!
   
+  @IBOutlet weak var containerUpperRoundView: UIView! {
+    
+    didSet {
+      containerUpperRoundView.layer.cornerRadius = containerUpperRoundView.frame.height / 2
+    }
+  }
+  
+  
   // MARK: - Properties
   
   @IBOutlet weak var containerViewHeightConstraint: NSLayoutConstraint!

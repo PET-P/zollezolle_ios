@@ -51,8 +51,6 @@ class RecommendedPlaceViewController: UIViewController {
     super.viewDidLoad()
     
     setUpPlaceTableView()
-    
-    view.layer.cornerRadius = 19
   }
   
   private func setUpPlaceTableView() {
@@ -86,6 +84,7 @@ class RecommendedPlaceViewController: UIViewController {
           
         } else {
           mapMainVC.setInitialContainerViewHeight()
+          placeTableView.contentOffset = CGPoint(x: 0.0, y: 0.0)
           placeTableView.isUserInteractionEnabled = false
         }
         // 현재 컨테이너뷰 높이가  초기 높이 미만일 때
@@ -150,12 +149,12 @@ extension RecommendedPlaceViewController: UITableViewDataSource {
     
     let yOffset = scrollView.contentOffset.y
     
-    if yOffset < 0 {
-      
-      mapMainVC.setInitialContainerViewHeight()
-      placeTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-      placeTableView.isUserInteractionEnabled = false
-    }
+//    if yOffset < 0 {
+//
+//      mapMainVC.setInitialContainerViewHeight()
+//      placeTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+//      placeTableView.isUserInteractionEnabled = false
+//    }
   }
 }
 

@@ -184,6 +184,7 @@
 		DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */; };
 		DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */; };
 		DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */; };
+		DDFF34382735711700A46A39 /* RecommendedPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF34372735711700A46A39 /* RecommendedPlaceTableViewController.swift */; };
 		DDFFC11B26FB0734001FD04A /* MapMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC11626FB0734001FD04A /* MapMain.storyboard */; };
 		DDFFC11C26FB0734001FD04A /* MapMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11826FB0734001FD04A /* MapMainViewController.swift */; };
 		DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */; };
@@ -387,6 +388,7 @@
 		DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeMain.storyboard; sourceTree = "<group>"; };
 		DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMainViewController.swift; sourceTree = "<group>"; };
 		DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabNavigationController.swift; sourceTree = "<group>"; };
+		DDFF34372735711700A46A39 /* RecommendedPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceTableViewController.swift; sourceTree = "<group>"; };
 		DDFFC11626FB0734001FD04A /* MapMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MapMain.storyboard; sourceTree = "<group>"; };
 		DDFFC11826FB0734001FD04A /* MapMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMainViewController.swift; sourceTree = "<group>"; };
 		DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceViewController.swift; sourceTree = "<group>"; };
@@ -951,10 +953,10 @@
 		DDF24BA226C6D61D007AB642 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
+				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
 				28C6F62F2719795800A961AB /* HomeLocationCollectionViewCell.swift */,
 				28C6F6302719795800A961AB /* HomeTipCollectionViewCell.swift */,
-				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
-				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
 				DDB38F1627282777004482B3 /* TipWebViewController.swift */,
 			);
 			path = ViewController;
@@ -1002,6 +1004,7 @@
 				DDFFC11826FB0734001FD04A /* MapMainViewController.swift */,
 				DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */,
 				DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */,
+				DDFF34372735711700A46A39 /* RecommendedPlaceTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1274,6 +1277,7 @@
 				DDBC9879272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift in Sources */,
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
 				2877C3A826FF7A09000E3233 /* SignUp.swift in Sources */,
+				DDFF34382735711700A46A39 /* RecommendedPlaceTableViewController.swift in Sources */,
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				DDFFC17926FB1C05001FD04A /* WishMapViewController.swift in Sources */,
