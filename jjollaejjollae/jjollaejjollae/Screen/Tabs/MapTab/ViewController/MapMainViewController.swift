@@ -100,6 +100,14 @@ final class MapMainViewController: UIViewController, StoryboardInstantiable {
   
   @IBOutlet weak var containerView: UIView!
   
+  @IBOutlet weak var containerUpperRoundView: UIView! {
+    
+    didSet {
+      containerUpperRoundView.layer.cornerRadius = containerUpperRoundView.frame.height / 2
+    }
+  }
+  
+  
   // MARK: - Properties
   
   @IBOutlet weak var containerViewHeightConstraint: NSLayoutConstraint!
@@ -361,49 +369,30 @@ final class MapMainViewController: UIViewController, StoryboardInstantiable {
   
   func setInitialContainerViewHeight() {
     
-    // TabBarController Delegate Method 최초 호출 시에 필요
-    guard let _ = containerView else { return }
+    containerViewHeightConstraint.constant = containerViewOriginalHeight
     
-    invalidateContainerViewHeightConstraint()
-    
-    containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: containerViewOriginalHeight)
-    
-    containerViewHeightConstraint?.isActive = true
+    currentLocationButton.isHidden = false
   }
   
   func setTemporalContainerViewHeight(with constant: CGFloat) {
     
-    invalidateContainerViewHeightConstraint()
+    containerViewHeightConstraint.constant = constant
     
-    containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: constant)
-    
-    containerViewHeightConstraint?.isActive = true
+    currentLocationButton.isHidden = false
   }
   
   func setMaximumContainerViewHeight() {
     
-    invalidateContainerViewHeightConstraint()
+    containerViewHeightConstraint.constant = containerViewMaximumHeight
     
-//    let maximumHeight = view.frame.maxY - filterScrollView.frame.minY
-    
-    containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: containerViewMaximumHeight)
-    
-    containerViewHeightConstraint?.isActive = true
+    currentLocationButton.isHidden = true
   }
   
   func setZeroContainerViewHeight() {
     
-    invalidateContainerViewHeightConstraint()
+    containerViewHeightConstraint.constant = CGFloat.zero
     
-    containerViewHeightConstraint = containerView.heightAnchor.constraint(equalToConstant: CGFloat.zero)
-    
-    containerViewHeightConstraint?.isActive = true
-  }
-  
-  func invalidateContainerViewHeightConstraint() {
-    if let constraint = containerViewHeightConstraint {
-      constraint.isActive = false
-    }
+    currentLocationButton.isHidden = false
   }
 
   @objc private func didTapFilterButton(sender: MapTabFilterTypeButton) {

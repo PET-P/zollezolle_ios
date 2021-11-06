@@ -60,6 +60,11 @@
 	<string>리뷰를 등록하기 위해서 사진에 접근하려고 해요.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SpoqaHanSansNeo-Bold.ttf</string>
+		<string>SpoqaHanSansNeo-Regular.ttf</string>
+		<string>SpoqaHanSansNeo-Thin.ttf</string>
+		<string>SpoqaHanSansNeo-Light.ttf</string>
+		<string>SpoqaHanSansNeo-Medium.ttf</string>
 		<string>Roboto Mono Bold for Powerline.ttf</string>
 		<string>Roboto Mono Bold Italic for Powerline.ttf</string>
 		<string>Roboto Mono for Powerline.ttf</string>

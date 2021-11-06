@@ -76,7 +76,10 @@ extension MainTabBarController {
 
     if item.title == mapTab.mapTabTitle {
       
-      mapTab.mapMainVC.setInitialContainerViewHeight()
+      if mapTab.mapMainVC.containerView != nil {
+        
+        mapTab.mapMainVC.setInitialContainerViewHeight()
+      }
     }
   }
 }

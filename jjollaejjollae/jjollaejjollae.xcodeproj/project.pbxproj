@@ -158,6 +158,11 @@
 		DD268229272FC80B004156AD /* SettingWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD268228272FC80B004156AD /* SettingWebViewController.swift */; };
 		DD331F7F272D01C900882E99 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD331F7E272D01C900882E99 /* LocationService.swift */; };
 		DD741C2C26FB04DF00776827 /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */; };
+		DD86D3A727357AAA00333482 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD86D3A127357AA900333482 /* SpoqaHanSansNeo-Medium.ttf */; };
+		DD86D3A827357AAA00333482 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD86D3A227357AA900333482 /* SpoqaHanSansNeo-Regular.ttf */; };
+		DD86D3A927357AAA00333482 /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD86D3A327357AAA00333482 /* SpoqaHanSansNeo-Thin.ttf */; };
+		DD86D3AA27357AAA00333482 /* SpoqaHanSansNeo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD86D3A427357AAA00333482 /* SpoqaHanSansNeo-Light.ttf */; };
+		DD86D3AC27357AAA00333482 /* SpoqaHanSansNeo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD86D3A627357AAA00333482 /* SpoqaHanSansNeo-Bold.ttf */; };
 		DDB38F1727282778004482B3 /* TipWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB38F1627282777004482B3 /* TipWebViewController.swift */; };
 		DDB38F222729652A004482B3 /* PlaceDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB38F212729652A004482B3 /* PlaceDetailTableViewController.swift */; };
 		DDB38F242729653A004482B3 /* PlaceDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDB38F232729653A004482B3 /* PlaceDetail.storyboard */; };
@@ -184,6 +189,7 @@
 		DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */; };
 		DDF24BB526C6D61D007AB642 /* HomeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */; };
 		DDF24BB626C6D61D007AB642 /* HomeTabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */; };
+		DDFF34382735711700A46A39 /* RecommendedPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFF34372735711700A46A39 /* RecommendedPlaceTableViewController.swift */; };
 		DDFFC11B26FB0734001FD04A /* MapMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDFFC11626FB0734001FD04A /* MapMain.storyboard */; };
 		DDFFC11C26FB0734001FD04A /* MapMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11826FB0734001FD04A /* MapMainViewController.swift */; };
 		DDFFC11D26FB0734001FD04A /* RecommendedPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */; };
@@ -361,6 +367,11 @@
 		DD268228272FC80B004156AD /* SettingWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWebViewController.swift; sourceTree = "<group>"; };
 		DD331F7E272D01C900882E99 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		DD741C2A26FB04DF00776827 /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
+		DD86D3A127357AA900333482 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; };
+		DD86D3A227357AA900333482 /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; };
+		DD86D3A327357AAA00333482 /* SpoqaHanSansNeo-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.ttf"; sourceTree = "<group>"; };
+		DD86D3A427357AAA00333482 /* SpoqaHanSansNeo-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.ttf"; sourceTree = "<group>"; };
+		DD86D3A627357AAA00333482 /* SpoqaHanSansNeo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Bold.ttf"; sourceTree = "<group>"; };
 		DDB38F1627282777004482B3 /* TipWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipWebViewController.swift; sourceTree = "<group>"; };
 		DDB38F212729652A004482B3 /* PlaceDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailTableViewController.swift; sourceTree = "<group>"; };
 		DDB38F232729653A004482B3 /* PlaceDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlaceDetail.storyboard; sourceTree = "<group>"; };
@@ -387,6 +398,7 @@
 		DDF24BA126C6D61D007AB642 /* HomeMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeMain.storyboard; sourceTree = "<group>"; };
 		DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeMainViewController.swift; sourceTree = "<group>"; };
 		DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabNavigationController.swift; sourceTree = "<group>"; };
+		DDFF34372735711700A46A39 /* RecommendedPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceTableViewController.swift; sourceTree = "<group>"; };
 		DDFFC11626FB0734001FD04A /* MapMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MapMain.storyboard; sourceTree = "<group>"; };
 		DDFFC11826FB0734001FD04A /* MapMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapMainViewController.swift; sourceTree = "<group>"; };
 		DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedPlaceViewController.swift; sourceTree = "<group>"; };
@@ -662,6 +674,11 @@
 		28EA825226B42B9D00785666 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				DD86D3A627357AAA00333482 /* SpoqaHanSansNeo-Bold.ttf */,
+				DD86D3A427357AAA00333482 /* SpoqaHanSansNeo-Light.ttf */,
+				DD86D3A127357AA900333482 /* SpoqaHanSansNeo-Medium.ttf */,
+				DD86D3A227357AA900333482 /* SpoqaHanSansNeo-Regular.ttf */,
+				DD86D3A327357AAA00333482 /* SpoqaHanSansNeo-Thin.ttf */,
 				28EA825626B42BF600785666 /* Roboto Mono Bold for Powerline.ttf */,
 				28EA825A26B42BF700785666 /* Roboto Mono Bold Italic for Powerline.ttf */,
 				28EA825826B42BF700785666 /* Roboto Mono for Powerline.ttf */,
@@ -951,10 +968,10 @@
 		DDF24BA226C6D61D007AB642 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
+				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
 				28C6F62F2719795800A961AB /* HomeLocationCollectionViewCell.swift */,
 				28C6F6302719795800A961AB /* HomeTipCollectionViewCell.swift */,
-				DDF24BA326C6D61D007AB642 /* HomeMainViewController.swift */,
-				DDF24BA426C6D61D007AB642 /* HomeTabNavigationController.swift */,
 				DDB38F1627282777004482B3 /* TipWebViewController.swift */,
 			);
 			path = ViewController;
@@ -1002,6 +1019,7 @@
 				DDFFC11826FB0734001FD04A /* MapMainViewController.swift */,
 				DDFFC11926FB0734001FD04A /* RecommendedPlaceViewController.swift */,
 				DDFFC11A26FB0734001FD04A /* MapNavigationController.swift */,
+				DDFF34372735711700A46A39 /* RecommendedPlaceTableViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1106,10 +1124,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD86D3AA27357AAA00333482 /* SpoqaHanSansNeo-Light.ttf in Resources */,
 				28E0D28B270AE565007C4C2A /* MyInfoEdit.storyboard in Resources */,
 				DDB38F242729653A004482B3 /* PlaceDetail.storyboard in Resources */,
 				2884A31A26CE696B004596C3 /* SearchResult.storyboard in Resources */,
 				28C6F62D2719790C00A961AB /* HomeLocationCollectionViewCell.xib in Resources */,
+				DD86D3A827357AAA00333482 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 				28EA826326B42BF700785666 /* Roboto Mono Thin Italic for Powerline.ttf in Resources */,
 				2884A32B26D3FC8B004596C3 /* Filter.storyboard in Resources */,
 				286011CA26BFBF16002774EA /* FindPassword.storyboard in Resources */,
@@ -1123,6 +1143,7 @@
 				DDFFC17626FB1C05001FD04A /* WishMap.storyboard in Resources */,
 				28FEC64727143E8D00C10B32 /* GoogleService-Info.plist in Resources */,
 				286A940227085E2600AFA312 /* MyInfoMain.storyboard in Resources */,
+				DD86D3A927357AAA00333482 /* SpoqaHanSansNeo-Thin.ttf in Resources */,
 				DDFFC17526FB1C05001FD04A /* Wishlist.storyboard in Resources */,
 				289970A5272BAE7B008D877B /* loading.gif in Resources */,
 				DDF24BB126C6D61D007AB642 /* MyInfoTab.storyboard in Resources */,
@@ -1152,8 +1173,10 @@
 				2884A30A26CA404D004596C3 /* SearchNoResult.storyboard in Resources */,
 				28317F132704C71A009319CB /* CategoryTabbar.xib in Resources */,
 				DDF24BB426C6D61D007AB642 /* HomeMain.storyboard in Resources */,
+				DD86D3A727357AAA00333482 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				2877C3AE270094DD000E3233 /* SearchWithLocation.storyboard in Resources */,
 				28B2E78C270DBD54003AE0B0 /* MyInfoReservation.storyboard in Resources */,
+				DD86D3AC27357AAA00333482 /* SpoqaHanSansNeo-Bold.ttf in Resources */,
 				28E0D289270ADF66007C4C2A /* MyPetInfoEdit.storyboard in Resources */,
 				28C6F62E2719790C00A961AB /* HomeTipCollectionViewCell.xib in Resources */,
 				286011A226BEA58E002774EA /* AdditionalInfo.storyboard in Resources */,
@@ -1274,6 +1297,7 @@
 				DDBC9879272AF8CB00D33EC2 /* AllReviewsTableViewCell.swift in Sources */,
 				2877831326C824BE001BF582 /* StarsSearchViewController.swift in Sources */,
 				2877C3A826FF7A09000E3233 /* SignUp.swift in Sources */,
+				DDFF34382735711700A46A39 /* RecommendedPlaceTableViewController.swift in Sources */,
 				287AE22126EC85DF0038B39F /* CaraouselCell.swift in Sources */,
 				28EA824B26B3D32600785666 /* UIButton+Extension.swift in Sources */,
 				DDFFC17926FB1C05001FD04A /* WishMapViewController.swift in Sources */,

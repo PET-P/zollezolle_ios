@@ -18,6 +18,12 @@
         <array key="Roboto Mono for Powerline.ttf">
             <string>RobotoMonoForPowerline-Regular</string>
         </array>
+        <array key="SpoqaHanSansNeo-Bold.ttf">
+            <string>SpoqaHanSansNeo-Bold</string>
+        </array>
+        <array key="SpoqaHanSansNeo-Regular.ttf">
+            <string>SpoqaHanSansNeo-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Map Main View Controller-->
@@ -48,7 +54,7 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ecv-jO-r2F">
                                         <rect key="frame" x="0.0" y="0.0" width="372" height="45"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aIL-0O-e0q">
@@ -87,13 +93,20 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="FzU-nJ-Ukd"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="dMO-Za-XGg"/>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eny-eJ-48I">
+                                <rect key="frame" x="0.0" y="612.5" width="414" height="19"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="8b3-8b-mEK"/>
+                                </constraints>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7wT-V3-uAh">
                                 <rect key="frame" x="0.0" y="622" width="414" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="VZI-40-mRC"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="87I-Pg-rOZ" kind="embed" id="Qgz-OQ-Cm4"/>
+                                    <segue destination="87I-Pg-rOZ" kind="embed" id="FO5-WU-kMg"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -104,6 +117,7 @@
                             <constraint firstItem="ZFL-IP-l8U" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="2b0-st-i7j"/>
                             <constraint firstItem="bgK-ab-DiL" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.15" id="9E0-R8-0bW"/>
                             <constraint firstItem="ZFL-IP-l8U" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="9Oz-0I-41d"/>
+                            <constraint firstItem="Eny-eJ-48I" firstAttribute="leading" secondItem="7wT-V3-uAh" secondAttribute="leading" id="Bll-Ow-HYJ"/>
                             <constraint firstItem="bgK-ab-DiL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Dmk-lO-sAM"/>
                             <constraint firstItem="7wT-V3-uAh" firstAttribute="top" secondItem="bgK-ab-DiL" secondAttribute="bottom" constant="10" id="Ez9-zK-S4u"/>
                             <constraint firstItem="xCu-SW-Gu6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="OjK-X7-33A"/>
@@ -111,7 +125,9 @@
                             <constraint firstItem="rmd-xE-aQm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="21" id="RpB-i5-Ga8"/>
                             <constraint firstItem="xCu-SW-Gu6" firstAttribute="top" secondItem="rmd-xE-aQm" secondAttribute="bottom" constant="16" id="Uwo-0v-ef3"/>
                             <constraint firstItem="ZFL-IP-l8U" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="afc-fK-DJT"/>
+                            <constraint firstItem="Eny-eJ-48I" firstAttribute="centerY" secondItem="7wT-V3-uAh" secondAttribute="top" id="bG4-P3-BKr"/>
                             <constraint firstItem="rmd-xE-aQm" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="ffT-ii-473"/>
+                            <constraint firstItem="Eny-eJ-48I" firstAttribute="trailing" secondItem="7wT-V3-uAh" secondAttribute="trailing" id="gCn-aN-mLS"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rmd-xE-aQm" secondAttribute="trailing" constant="21" id="k3A-na-SXT"/>
                             <constraint firstItem="7wT-V3-uAh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="qAo-un-LL6"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="xCu-SW-Gu6" secondAttribute="trailing" id="vHu-Sq-iwU"/>
@@ -120,6 +136,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerUpperRoundView" destination="Eny-eJ-48I" id="jIc-G9-wjQ"/>
                         <outlet property="containerView" destination="7wT-V3-uAh" id="naO-xL-8Rt"/>
                         <outlet property="containerViewHeightConstraint" destination="VZI-40-mRC" id="WSM-lj-WW9"/>
                         <outlet property="currentLocationButton" destination="bgK-ab-DiL" id="rYG-LD-Nzi"/>
@@ -140,23 +157,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="780"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPU-Sx-4m0">
-                                <rect key="frame" x="20" y="35" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쫄랭이의 주변 추천장소📍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4o-7x-xHi">
-                                <rect key="frame" x="20" y="37" width="374" height="21"/>
-                                <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="267" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-iy-79c">
-                                <rect key="frame" x="0.0" y="85" width="414" height="675"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgz-Ga-krd">
+                                <rect key="frame" x="191.5" y="3" width="31" height="3"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="31" id="MaX-TT-mdf"/>
+                                    <constraint firstAttribute="height" constant="3" id="OON-DC-Tm4"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MMB-ty-PGF">
+                                <rect key="frame" x="20" y="28" width="374" height="39.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="쫄랭이의 주변 추천장소📍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thP-H9-wQu">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="23"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="집사님의 반려동물을 위해 준비했어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fF5-PB-kJo">
+                                        <rect key="frame" x="0.0" y="23" width="374" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="13"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="267" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-iy-79c">
+                                <rect key="frame" x="0.0" y="75.5" width="414" height="704.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaceTableViewCell" rowHeight="267" id="rd7-ox-abC" customClass="PlaceTableViewCell" customModule="jjollaejjollae" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlaceTableViewCell" rowHeight="267" id="rd7-ox-abC" customClass="PlaceTableViewCell" customModule="jjollaejjollae" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="267"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rd7-ox-abC" id="fRd-vG-FNM">
@@ -164,7 +196,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="71R-tW-AZ2">
-                                                    <rect key="frame" x="20" y="231" width="18" height="18"/>
+                                                    <rect key="frame" x="20" y="232.5" width="18" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="18" id="DN6-0w-FlJ"/>
                                                         <constraint firstAttribute="width" secondItem="71R-tW-AZ2" secondAttribute="height" multiplier="1:1" id="qID-kW-MQt"/>
@@ -176,27 +208,27 @@
                                                         <constraint firstAttribute="height" constant="165" id="id2-60-QqY"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아지멍카페" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMJ-UY-UDH">
-                                                    <rect key="frame" x="20" y="204" width="69.5" height="19"/>
-                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아지멍카페아지멍카페아지멍카페" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMJ-UY-UDH">
+                                                    <rect key="frame" x="20" y="204" width="221" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="커피/브랜치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFb-2X-KTG">
-                                                    <rect key="frame" x="95.5" y="205.5" width="64.5" height="16"/>
-                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="13"/>
+                                                    <rect key="frame" x="247" y="206" width="65" height="16.5"/>
+                                                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdf-KP-zLN">
-                                                    <rect key="frame" x="43" y="233" width="22" height="14"/>
-                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="12"/>
+                                                    <rect key="frame" x="43" y="234" width="18" height="15.5"/>
+                                                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Bold" family="Spoqa Han Sans Neo" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(52)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUc-Zp-pLA">
-                                                    <rect key="frame" x="67" y="234" width="24.5" height="12"/>
-                                                    <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="10"/>
+                                                    <rect key="frame" x="63" y="235" width="19" height="13"/>
+                                                    <fontDescription key="fontDescription" name="SpoqaHanSansNeo-Regular" family="Spoqa Han Sans Neo" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -229,39 +261,20 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgz-Ga-krd">
-                                <rect key="frame" x="191.5" y="12" width="31" height="3"/>
-                                <color key="backgroundColor" systemColor="labelColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="31" id="MaX-TT-mdf"/>
-                                    <constraint firstAttribute="height" constant="3" id="OON-DC-Tm4"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="집사님의 반려동물을 위해 준비했어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fF5-PB-kJo">
-                                <rect key="frame" x="20" y="59" width="374" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uAP-0m-wDG"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Tgz-Ga-krd" firstAttribute="centerX" secondItem="LcP-xU-Pl1" secondAttribute="centerX" id="0hN-2z-Eew"/>
-                            <constraint firstItem="fF5-PB-kJo" firstAttribute="top" secondItem="q4o-7x-xHi" secondAttribute="bottom" constant="1" id="0ke-4N-DTo"/>
-                            <constraint firstItem="q4o-7x-xHi" firstAttribute="top" secondItem="rPU-Sx-4m0" secondAttribute="bottom" constant="2" id="0tw-8x-deq"/>
+                            <constraint firstItem="uAP-0m-wDG" firstAttribute="trailing" secondItem="MMB-ty-PGF" secondAttribute="trailing" constant="20" id="5Ic-OR-50b"/>
+                            <constraint firstItem="vKJ-iy-79c" firstAttribute="top" secondItem="MMB-ty-PGF" secondAttribute="bottom" constant="8" id="7DO-2V-d9s"/>
                             <constraint firstItem="vKJ-iy-79c" firstAttribute="trailing" secondItem="uAP-0m-wDG" secondAttribute="trailing" id="8UI-mx-dRw"/>
                             <constraint firstItem="vKJ-iy-79c" firstAttribute="leading" secondItem="uAP-0m-wDG" secondAttribute="leading" id="COb-uX-TYQ"/>
-                            <constraint firstItem="rPU-Sx-4m0" firstAttribute="leading" secondItem="uAP-0m-wDG" secondAttribute="leading" constant="20" id="DCQ-Vz-iV4"/>
-                            <constraint firstItem="uAP-0m-wDG" firstAttribute="trailing" secondItem="q4o-7x-xHi" secondAttribute="trailing" constant="20" id="OgY-bt-FwS"/>
-                            <constraint firstItem="fF5-PB-kJo" firstAttribute="trailing" secondItem="q4o-7x-xHi" secondAttribute="trailing" id="TsA-Gp-Di0"/>
-                            <constraint firstItem="q4o-7x-xHi" firstAttribute="leading" secondItem="rPU-Sx-4m0" secondAttribute="leading" id="U4T-MW-87Q"/>
-                            <constraint firstItem="vKJ-iy-79c" firstAttribute="top" secondItem="fF5-PB-kJo" secondAttribute="bottom" constant="10" id="XL7-HM-mdX"/>
-                            <constraint firstItem="Tgz-Ga-krd" firstAttribute="top" secondItem="LcP-xU-Pl1" secondAttribute="top" constant="12" id="jGm-Kx-cQX"/>
-                            <constraint firstItem="fF5-PB-kJo" firstAttribute="leading" secondItem="q4o-7x-xHi" secondAttribute="leading" id="mqn-Ru-3df"/>
-                            <constraint firstItem="rPU-Sx-4m0" firstAttribute="top" secondItem="LcP-xU-Pl1" secondAttribute="top" constant="35" id="pwh-5U-dl8"/>
-                            <constraint firstItem="uAP-0m-wDG" firstAttribute="bottom" secondItem="vKJ-iy-79c" secondAttribute="bottom" constant="20" id="xnY-0A-EKM"/>
+                            <constraint firstItem="MMB-ty-PGF" firstAttribute="top" secondItem="Tgz-Ga-krd" secondAttribute="bottom" constant="22" id="JFW-9b-VU8"/>
+                            <constraint firstItem="Tgz-Ga-krd" firstAttribute="top" secondItem="LcP-xU-Pl1" secondAttribute="top" constant="3" id="jGm-Kx-cQX"/>
+                            <constraint firstItem="MMB-ty-PGF" firstAttribute="leading" secondItem="uAP-0m-wDG" secondAttribute="leading" constant="20" id="rWf-Oh-R7C"/>
+                            <constraint firstItem="uAP-0m-wDG" firstAttribute="bottom" secondItem="vKJ-iy-79c" secondAttribute="bottom" id="xnY-0A-EKM"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="fAb-ef-GKR" appends="YES" id="F7h-1N-fjO"/>
@@ -280,7 +293,141 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="934.78260869565224" y="376.33928571428572"/>
+            <point key="canvasLocation" x="889.85507246376824" y="324.77678571428572"/>
+        </scene>
+        <!--Recommended Place Table View Controller-->
+        <scene sceneID="Rqr-88-BKB">
+            <objects>
+                <tableViewController storyboardIdentifier="RecommendedPlaceTableViewController" id="HVB-2m-WSG" customClass="RecommendedPlaceTableViewController" customModule="jjollaejjollae" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="wvh-1u-9Nr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="fw4-QK-zQy">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxx-gr-knB">
+                                    <rect key="frame" x="191.5" y="12" width="31" height="3"/>
+                                    <color key="backgroundColor" systemColor="labelColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="31" id="Bol-GG-tZS"/>
+                                        <constraint firstAttribute="height" constant="3" id="GXx-8k-4az"/>
+                                    </constraints>
+                                </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oma-7S-HSo">
+                                    <rect key="frame" x="20" y="37" width="374" height="39"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="쫄랭이의 주변 추천장소📍" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeH-OS-pa6">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="집사님의 반려동물을 위해 준비했어요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyz-hC-960">
+                                            <rect key="frame" x="0.0" y="20.5" width="374" height="18.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="lxx-gr-knB" firstAttribute="centerX" secondItem="fw4-QK-zQy" secondAttribute="centerX" id="N9l-c0-Trx"/>
+                                <constraint firstAttribute="trailing" secondItem="oma-7S-HSo" secondAttribute="trailing" constant="20" id="TOi-ni-PM8"/>
+                                <constraint firstItem="lxx-gr-knB" firstAttribute="top" secondItem="fw4-QK-zQy" secondAttribute="top" constant="12" id="Z4q-Gf-oy9"/>
+                                <constraint firstItem="oma-7S-HSo" firstAttribute="leading" secondItem="fw4-QK-zQy" secondAttribute="leading" constant="20" id="aFF-4m-k8s"/>
+                                <constraint firstAttribute="bottom" secondItem="oma-7S-HSo" secondAttribute="bottom" constant="10" id="gC8-Zj-v7z"/>
+                                <constraint firstItem="oma-7S-HSo" firstAttribute="top" secondItem="lxx-gr-knB" secondAttribute="bottom" constant="22" id="ge7-dS-X14"/>
+                                <constraint firstItem="oma-7S-HSo" firstAttribute="centerX" secondItem="fw4-QK-zQy" secondAttribute="centerX" id="zLv-R3-T5H"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaceTableViewCell" rowHeight="267" id="Rvg-XU-Fmt" customClass="PlaceTableViewCell" customModule="jjollaejjollae" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="130.5" width="414" height="267"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rvg-XU-Fmt" id="f7p-KI-BZC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="267"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="Wwy-QO-M03">
+                                            <rect key="frame" x="20" y="231" width="18" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="18" id="OJe-eu-p4n"/>
+                                                <constraint firstAttribute="width" secondItem="Wwy-QO-M03" secondAttribute="height" multiplier="1:1" id="aWq-Gb-5T5"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cgr-Fb-oHg">
+                                            <rect key="frame" x="20" y="21" width="374" height="165"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="165" id="HHK-xZ-kVP"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아지멍카페" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-dS-Z6x">
+                                            <rect key="frame" x="20" y="204" width="69.5" height="19"/>
+                                            <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="커피/브랜치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4F-Hw-GeW">
+                                            <rect key="frame" x="95.5" y="206" width="64.5" height="15.5"/>
+                                            <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Medium" family="Roboto Mono Medium for Powerline" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8Z-qd-39F">
+                                            <rect key="frame" x="43" y="233" width="22" height="14.5"/>
+                                            <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Bold" family="Roboto Mono for Powerline" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(52)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9a2-J5-4An">
+                                            <rect key="frame" x="67" y="234" width="24.5" height="12"/>
+                                            <fontDescription key="fontDescription" name="RobotoMonoForPowerline-Regular" family="Roboto Mono for Powerline" pointSize="10"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Wwy-QO-M03" firstAttribute="top" secondItem="eMN-dS-Z6x" secondAttribute="bottom" constant="8" symbolic="YES" id="8iL-qT-Bz8"/>
+                                        <constraint firstItem="x8Z-qd-39F" firstAttribute="leading" secondItem="Wwy-QO-M03" secondAttribute="trailing" constant="5" id="8x9-ZY-025"/>
+                                        <constraint firstItem="Q4F-Hw-GeW" firstAttribute="centerY" secondItem="eMN-dS-Z6x" secondAttribute="centerY" id="CZT-0C-82l"/>
+                                        <constraint firstItem="cgr-Fb-oHg" firstAttribute="leading" secondItem="f7p-KI-BZC" secondAttribute="leading" constant="20" symbolic="YES" id="Etc-rs-Pfm"/>
+                                        <constraint firstItem="9a2-J5-4An" firstAttribute="leading" secondItem="x8Z-qd-39F" secondAttribute="trailing" constant="2" id="FZn-iR-g7q"/>
+                                        <constraint firstAttribute="trailing" secondItem="cgr-Fb-oHg" secondAttribute="trailing" constant="20" symbolic="YES" id="ISq-sD-33Z"/>
+                                        <constraint firstItem="eMN-dS-Z6x" firstAttribute="top" secondItem="cgr-Fb-oHg" secondAttribute="bottom" constant="18" id="JZd-4B-l1S"/>
+                                        <constraint firstItem="cgr-Fb-oHg" firstAttribute="top" secondItem="f7p-KI-BZC" secondAttribute="top" constant="21" id="XYT-2O-TW7"/>
+                                        <constraint firstItem="Q4F-Hw-GeW" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="cgr-Fb-oHg" secondAttribute="trailing" id="YX6-Gv-XxP"/>
+                                        <constraint firstItem="x8Z-qd-39F" firstAttribute="centerY" secondItem="Wwy-QO-M03" secondAttribute="centerY" id="aoL-Xy-A3a"/>
+                                        <constraint firstItem="Q4F-Hw-GeW" firstAttribute="leading" secondItem="eMN-dS-Z6x" secondAttribute="trailing" constant="6" id="iKI-O5-6i6"/>
+                                        <constraint firstItem="Wwy-QO-M03" firstAttribute="leading" secondItem="eMN-dS-Z6x" secondAttribute="leading" id="xZb-Ko-In8"/>
+                                        <constraint firstItem="9a2-J5-4An" firstAttribute="centerY" secondItem="x8Z-qd-39F" secondAttribute="centerY" id="zOo-gO-gh0"/>
+                                        <constraint firstItem="eMN-dS-Z6x" firstAttribute="leading" secondItem="cgr-Fb-oHg" secondAttribute="leading" id="zam-F7-zQG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryLabel" destination="Q4F-Hw-GeW" id="Wj0-Zr-gEq"/>
+                                    <outlet property="mainImageView" destination="cgr-Fb-oHg" id="3or-oU-crQ"/>
+                                    <outlet property="reviewCountLabel" destination="9a2-J5-4An" id="ogP-6e-lsO"/>
+                                    <outlet property="reviewPointLabel" destination="x8Z-qd-39F" id="TOH-ec-apa"/>
+                                    <outlet property="titleLabel" destination="eMN-dS-Z6x" id="e3u-4M-uHd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HVB-2m-WSG" id="sbq-02-DRL"/>
+                            <outlet property="delegate" destination="HVB-2m-WSG" id="VAG-Y0-Fg1"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="headerView" destination="fw4-QK-zQy" id="R6t-pe-sCy"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D6q-Qd-egk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1661" y="285"/>
         </scene>
     </scenes>
     <resources>
