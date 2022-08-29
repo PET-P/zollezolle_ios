@@ -1,13 +1,22 @@
 # 쫄래쫄래 - 반려동물 동반여행 O2O 서비스
 
+
 ![Generic badge](https://img.shields.io/badge/Xcode-12.5.1-blue.svg)  ![Generic badge](https://img.shields.io/badge/iOS-13.0-yellow.svg)  ![Generic badge](https://img.shields.io/badge/Swift-5-green.svg)  ![Generic badge](https://img.shields.io/badge/Moya-14.0-red.svg)  ![Generic badge](https://img.shields.io/badge/Kingfisher-6.0-orange.svg)
 
+
+[191(드래그함).pdf](https://github.com/PET-P/zollezolle_ios/files/9441958/191.pdf)
+
+
 '쫄래쫄래'앱은 반려동물과 사람이 함께 여행을 갈 수 있도록 도움을 주는 앱입니다. 반려동물 정보와 위치정보를 통해서 반려동물 동반 가능 장소를 추천해주고, 앱을 통해서 반려동물 동반여행을 계획할 수 있습니다.
+
+
 
 **앱스토어 바로가기 현재 version 1.0.2**
 
 
 version 1.0.2 (2022.3.10)
+
+
 vesions 1.0.1 (2021.11.7)
 
 <a href="https://apps.apple.com/kr/app/%EC%AB%84%EB%9E%98%EC%AB%84%EB%9E%98-%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC-%EB%8F%99%EB%B0%98-%EC%9E%85%EC%9E%A5-%EC%9E%A5%EC%86%8C-%EB%AA%A8%EC%9D%8C-%ED%94%8C%EB%9E%AB%ED%8F%BC/id1593023162" target="_blank"><img src="https://user-images.githubusercontent.com/42762236/127537585-a07753d1-d0af-4cdc-8f53-24fbfae72be8.png" width="200px" /></a>
@@ -91,7 +100,7 @@ vesions 1.0.1 (2021.11.7)
 
 ## 배운점
 ### 협업능력
-
+기획자, 디자이너, iOS 개발자, 서버 개발자와 협업을 진행하면서, 협업 능력을 키울 수 있었다. 협업을 하면서 WBS, 스토리보드를 확인하면서 어떻게 해야지만, 사용자에게 사랑을 받는 앱을 만들 수 있는지 생각할 수 있었다. 결국 '쫄래쫄래'를 개발하면서, 기획파트, 디자인파트 개발파트에 모두 참여를 하였고 앱 개발의 A-Z를 경험할 수 있었다.
 ### 앱 배포의 경험
 첫 앱 배포를 진행하면서 어떻게 앱 배포를 할 수 있는지, 앱 배포를 할 때 어떤 주의사항이 필요한지를 알 수 있었다. 첫 앱 배포를 하면서 해결해야했던 문제는 자동로그인과 Auth2.0 문제였고, 이를 해결하기 위해서 Request Token, Access Token과 이메일로그인, 소셜로그인에 대한 분기문을 모두 만들었다. 
 ### 네트워크 통신에 대한 이해
