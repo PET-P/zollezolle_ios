@@ -4,7 +4,7 @@
 ![Generic badge](https://img.shields.io/badge/Xcode-12.5.1-blue.svg)  ![Generic badge](https://img.shields.io/badge/iOS-13.0-yellow.svg)  ![Generic badge](https://img.shields.io/badge/Swift-5-green.svg)  ![Generic badge](https://img.shields.io/badge/Moya-14.0-red.svg)  ![Generic badge](https://img.shields.io/badge/Kingfisher-6.0-orange.svg)
 
 
-[191(드래그함).pdf](https://github.com/PET-P/zollezolle_ios/files/9441958/191.pdf)
+![191_드래그함_](https://user-images.githubusercontent.com/69891604/187135017-b395a333-bbac-4b5e-8dd5-90eacabbfced.png)
 
 
 '쫄래쫄래'앱은 반려동물과 사람이 함께 여행을 갈 수 있도록 도움을 주는 앱입니다. 반려동물 정보와 위치정보를 통해서 반려동물 동반 가능 장소를 추천해주고, 앱을 통해서 반려동물 동반여행을 계획할 수 있습니다.
