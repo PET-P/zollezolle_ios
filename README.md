@@ -21,6 +21,18 @@ vesions 1.0.1 (2021.11.7)
 
 <a href="https://apps.apple.com/kr/app/%EC%AB%84%EB%9E%98%EC%AB%84%EB%9E%98-%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC-%EB%8F%99%EB%B0%98-%EC%9E%85%EC%9E%A5-%EC%9E%A5%EC%86%8C-%EB%AA%A8%EC%9D%8C-%ED%94%8C%EB%9E%AB%ED%8F%BC/id1593023162" target="_blank"><img src="https://user-images.githubusercontent.com/42762236/127537585-a07753d1-d0af-4cdc-8f53-24fbfae72be8.png" width="200px" /></a>
 
+
+<p class='center'> 
+    <img src="https://user-images.githubusercontent.com/69891604/187135661-df86b6f2-0e1f-419a-9356-ce7907ec7877.png" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187135672-003b60c4-a1dc-4434-86ff-df294198c6db.png" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187135685-56df498e-a9a4-430c-8db8-89e75d423ef6.png" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187135695-5715fe66-3576-463d-9eb6-0dc023577379.png" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187135708-86a9c150-28cf-4eb9-b10c-c0264074d968.png" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187135717-81683af0-fc8f-46f6-9a57-63948d9e8930.png" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187135719-55e0f434-7e42-4086-a95f-dfd9f8216d81.png" width="200" height="400"/>
+</p>
+
+
 ## 기획의도
 1500만 반려인의 55%가 반려동물 양육 시 외출/여행의 어려움을 호소한다. 또한 검색 시 업체 수 대비 과도한 콘텐츠 양 및 불필요 광고용 컨텐츠에 고객은 노출된다. 따라서 앱에서 반려동물 정보와 위치정보를 통해서 반려동물 동반 가능 장소를 추천 및 검색을 가능하게하여, 반려동물 동반 여행을 계획할 수 있는 앱을 기획하였다.
 
