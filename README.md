@@ -5,6 +5,8 @@
 '쫄래쫄래'앱은 반려동물과 사람이 함께 여행을 갈 수 있도록 도움을 주는 앱입니다. 반려동물 정보와 위치정보를 통해서 반려동물 동반 가능 장소를 추천해주고, 앱을 통해서 반려동물 동반여행을 계획할 수 있습니다.
 
 **앱스토어 바로가기 현재 version 1.0.2**
+
+
 version 1.0.2 (2022.3.10)
 vesions 1.0.1 (2021.11.7)
 
@@ -123,17 +125,27 @@ KingFisher 라이브러리를 사용하면서 이미지 캐시처리를 진행�
 Firebase 스토리지에 이미지를 넘기고, 관련 url과 메타데이터를 서버에 넘기면서 이미지를 저장하였다. 이 방법을 사용하면서, 서버로 직접 이미지 데이터를 보낼 필요 없게 되었고, 편리한 방식이라고 생각한다. 
 ### 다양한 애니메이션
 다양한 애니메이션을 활용을 하였다. 원하는 느낌을 애니메이션으로 만드는 것이 난이도가 있었다. 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/69891604/187131763-5d348401-7c93-4a69-b1fb-480ca060caa5.gif)
-![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/69891604/187131772-9598126c-ac95-4917-b364-bf75467a6240.gif)
-![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/69891604/187131783-5b84758c-0882-458b-9239-cab8c4229e7d.gif)
-![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/69891604/187131792-487dfb18-6118-4b45-81fc-bb8a8f1708de.gif)
+
+
+<p class='center'> 
+    <img src="https://user-images.githubusercontent.com/69891604/187131763-5d348401-7c93-4a69-b1fb-480ca060caa5.gif" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187131772-9598126c-ac95-4917-b364-bf75467a6240.gif" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187131783-5b84758c-0882-458b-9239-cab8c4229e7d.gif" width="200" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187131792-487dfb18-6118-4b45-81fc-bb8a8f1708de.gif" width="200" height="400"/>
+</p>
+
 
 ### 달력
 달력은 FSCanlendar 라이브러리를 사용했다. FSCanlendar를 사용하더라도 안에서 사용되는 로직과 스타일은 다 커스텀이 필요했다. FSCalendar를 사용하면서 후에는 FSCalendar 라이브러리 코드를 참고하여 달력을 직접만드는게 오히려 편할 수 있겠다는 생각이들었다. 그 중에 어려웠던 로직은 여행계획을 짤때 사용되는 달력이었다. 어떨때 달력의 Cell 종류를 바꿔줘야할지, 초기화할지 등 복잡한 로직이이었다.
 관련 로직은 `Screen/Tabs/WishlistTab/ViewController/WishCalendarViewController`에 존재한다. 
   `func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)` 에는 달력의 셀을 선택했을때 필요한 로직, `func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition)`에는 선택을 취소했을때 필요한 로직이 존재한다. 
-  ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/69891604/187132167-cf184d6b-9f6f-4547-ba4f-7d1005658ef4.gif)
-
+  
+  
+  <p class='center'> 
+      <img src="https://user-images.githubusercontent.com/69891604/187132167-cf184d6b-9f6f-4547-ba4f-7d1005658ef4.gif" width="200" height="400"/>
+  </p>
+  
+  
 ## 수상이력
 '쫄래쫄래' 우수상(2021 펫 아이디어 경진대회, 건국대학교), 2021.12
 '쫄래쫄래' 우수상(2021 세종-하계 Start-up camp), 2021.07
