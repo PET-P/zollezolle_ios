@@ -4,7 +4,9 @@
 
 '쫄래쫄래'앱은 반려동물과 사람이 함께 여행을 갈 수 있도록 도움을 주는 앱입니다. 반려동물 정보와 위치정보를 통해서 반려동물 동반 가능 장소를 추천해주고, 앱을 통해서 반려동물 동반여행을 계획할 수 있습니다.
 
-** 앱스토어 바로가기 현재 version 1.0.2**
+**앱스토어 바로가기 현재 version 1.0.2**
+version 1.0.2 (2022.3.10)
+vesions 1.0.1 (2021.11.7)
 
 <a href="https://apps.apple.com/kr/app/%EC%AB%84%EB%9E%98%EC%AB%84%EB%9E%98-%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC-%EB%8F%99%EB%B0%98-%EC%9E%85%EC%9E%A5-%EC%9E%A5%EC%86%8C-%EB%AA%A8%EC%9D%8C-%ED%94%8C%EB%9E%AB%ED%8F%BC/id1593023162" target="_blank"><img src="https://user-images.githubusercontent.com/42762236/127537585-a07753d1-d0af-4cdc-8f53-24fbfae72be8.png" width="200px" /></a>
 
@@ -86,15 +88,58 @@
 ```
 
 ## 배운점
+### 협업능력
+
 ### 앱 배포의 경험
+첫 앱 배포를 진행하면서 어떻게 앱 배포를 할 수 있는지, 앱 배포를 할 때 어떤 주의사항이 필요한지를 알 수 있었다. 첫 앱 배포를 하면서 해결해야했던 문제는 자동로그인과 Auth2.0 문제였고, 이를 해결하기 위해서 Request Token, Access Token과 이메일로그인, 소셜로그인에 대한 분기문을 모두 만들었다. 
 ### 네트워크 통신에 대한 이해
+첫 앱을 만들면서 어려웠던 부분 중 하나는 네트워크 통신의 문제였다. 네트워크 통신 관련 코드를 Github에서 찾아보면서 다양한 코드를 발견할 수 있었고, 그중에 협업하기도 좋아보이는 Moya를 채택한 코드, 그리고 제네릭을 활용한 코드를 참고해서 쫄래쫄래만의 네트워크 매니저 객체를 만들 수 있었다.
+특히 서버 개발자와 Response 형식을 맞추고, 제너릭한 코드를 사용하면서 재사용성이 편한 코드를 짰다. 
+``` swift
+  func judgeGenericResponse<T: Codable>(_ target: APITarget,
+                                        completion: @escaping ((NetworkResult<T>) -> Void)) {
+    provider.request(target) { response in
+      switch response {
+      case .success(let result):
+        do {
+          let decoder = JSONDecoder()
+          let body = try decoder.decode(GenericResponse<T>.self, from: result.data)
+          if let data = body.data {
+            completion(.success(data))
+          }
+        } catch {
+          print("구조체를 확인하세요")
+        }
+      case .failure(let error):
+        print("\(#function), error: \(error)")
+        completion(.failure(error.response?.statusCode ?? -1))
+      }
+    }
+  }
+```
 ### 이미지 캐시처리
+KingFisher 라이브러리를 사용하면서 이미지 캐시처리를 진행하였다.  
 ### Firebase 스토리지에 이미지 저장과 메타데이터
+Firebase 스토리지에 이미지를 넘기고, 관련 url과 메타데이터를 서버에 넘기면서 이미지를 저장하였다. 이 방법을 사용하면서, 서버로 직접 이미지 데이터를 보낼 필요 없게 되었고, 편리한 방식이라고 생각한다. 
 ### 다양한 애니메이션
+다양한 애니메이션을 활용을 하였다. 원하는 느낌을 애니메이션으로 만드는 것이 난이도가 있었다. 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/69891604/187131763-5d348401-7c93-4a69-b1fb-480ca060caa5.gif)
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/69891604/187131772-9598126c-ac95-4917-b364-bf75467a6240.gif)
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/69891604/187131783-5b84758c-0882-458b-9239-cab8c4229e7d.gif)
+![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/69891604/187131792-487dfb18-6118-4b45-81fc-bb8a8f1708de.gif)
+
 ### 달력
+달력은 FSCanlendar 라이브러리를 사용했다. FSCanlendar를 사용하더라도 안에서 사용되는 로직과 스타일은 다 커스텀이 필요했다. FSCalendar를 사용하면서 후에는 FSCalendar 라이브러리 코드를 참고하여 달력을 직접만드는게 오히려 편할 수 있겠다는 생각이들었다. 그 중에 어려웠던 로직은 여행계획을 짤때 사용되는 달력이었다. 어떨때 달력의 Cell 종류를 바꿔줘야할지, 초기화할지 등 복잡한 로직이이었다.
+관련 로직은 `Screen/Tabs/WishlistTab/ViewController/WishCalendarViewController`에 존재한다. 
+  `func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition)` 에는 달력의 셀을 선택했을때 필요한 로직, `func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition)`에는 선택을 취소했을때 필요한 로직이 존재한다. 
+  ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/69891604/187132167-cf184d6b-9f6f-4547-ba4f-7d1005658ef4.gif)
 
 ## 수상이력
 '쫄래쫄래' 우수상(2021 펫 아이디어 경진대회, 건국대학교), 2021.12
 '쫄래쫄래' 우수상(2021 세종-하계 Start-up camp), 2021.07
 '쫄래쫄래' 3등-한국콘텐츠학회장상 (9th K-Hackathon Software Contest), 2021.12
+
+## 아쉬운점
+* 처음으로 규모가 있는 iOS 프로젝트를 진행하고, 해커톤에 일정을 맞추면서 시간이 부족하다는 것을 느꼈다. 그로 인해서 구현이 어려운 부분을 디지아너, 기획자와 서로 협의를 하면서 줄여나갔다. 또한 MVC 패턴을 사용하면서 ViewController에 엄청난 로직이 많이 들어가는 과정을 직접 파악하면서, 더 유지보수가 나은 코드, 아키텍처의 당위성이 매우 대두되었다. 특히 여러가지 기능이 존재하는 ViewController에서는 각각의 기능들이 잘 나눠져있어야하고, 그 기능들의 유기적인 연결이 어떠한 기준에 맞춰져 있어야한다는 것을 느꼈다. 개발 도중에, MVC보다는 더 각각의 기능에 맞춰서 세분화가 되어있는 아키텍처, 패턴이 필요하다는 것을 느끼면서, 이 프로젝트를 통해서 MVVM, Clean Architecture, DI Patterns, RIBs를 공부해보는 계기가 되었다. 
+ 
 
