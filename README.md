@@ -21,7 +21,7 @@ vesions 1.0.1 (2021.11.7)
 
 <a href="https://apps.apple.com/kr/app/%EC%AB%84%EB%9E%98%EC%AB%84%EB%9E%98-%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC-%EB%8F%99%EB%B0%98-%EC%9E%85%EC%9E%A5-%EC%9E%A5%EC%86%8C-%EB%AA%A8%EC%9D%8C-%ED%94%8C%EB%9E%AB%ED%8F%BC/id1593023162" target="_blank"><img src="https://user-images.githubusercontent.com/42762236/127537585-a07753d1-d0af-4cdc-8f53-24fbfae72be8.png" width="200px" /></a>
 
-
+# 앱 화면
 <p class='center'> 
     <img src="https://user-images.githubusercontent.com/69891604/187135661-df86b6f2-0e1f-419a-9356-ce7907ec7877.png" width="200" height="400"/>
     <img src="https://user-images.githubusercontent.com/69891604/187135672-003b60c4-a1dc-4434-86ff-df294198c6db.png" width="200" height="400"/>
