@@ -116,9 +116,9 @@ vesions 1.0.1 (2021.11.7)
 
 
 <p class='center'> 
-    <img src="https://user-images.githubusercontent.com/69891604/187137599-81d79b05-6ba9-4562-9b14-47841271297a.png" width="400" height="300"/>
-    <img src="https://user-images.githubusercontent.com/69891604/187137604-7b83e506-d0fb-40be-a7e7-d306be7dbe2a.png" width="400" height="300"/>
-    <img src="https://user-images.githubusercontent.com/69891604/187137616-11808727-02dc-4773-8e29-e1dc651e33be.png" width="400" height="300"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187137599-81d79b05-6ba9-4562-9b14-47841271297a.png" height="400"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187137604-7b83e506-d0fb-40be-a7e7-d306be7dbe2a.png" height="300"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187137616-11808727-02dc-4773-8e29-e1dc651e33be.png" height="300"/>
 </p>
 
 
