@@ -113,6 +113,15 @@ vesions 1.0.1 (2021.11.7)
 ## 배운점
 ### 협업능력
 기획자, 디자이너, iOS 개발자, 서버 개발자와 협업을 진행하면서, 협업 능력을 키울 수 있었다. 협업을 하면서 WBS, 스토리보드를 확인하면서 어떻게 해야지만, 사용자에게 사랑을 받는 앱을 만들 수 있는지 생각할 수 있었다. 결국 '쫄래쫄래'를 개발하면서, 기획파트, 디자인파트 개발파트에 모두 참여를 하였고 앱 개발의 A-Z를 경험할 수 있었다.
+
+
+<p class='center'> 
+    <img src="https://user-images.githubusercontent.com/69891604/187137599-81d79b05-6ba9-4562-9b14-47841271297a.png" width="400" height="300"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187137604-7b83e506-d0fb-40be-a7e7-d306be7dbe2a.png" width="400" height="300"/>
+    <img src="https://user-images.githubusercontent.com/69891604/187137616-11808727-02dc-4773-8e29-e1dc651e33be.png" width="400" height="300"/>
+</p>
+
+
 ### 앱 배포의 경험
 첫 앱 배포를 진행하면서 어떻게 앱 배포를 할 수 있는지, 앱 배포를 할 때 어떤 주의사항이 필요한지를 알 수 있었다. 첫 앱 배포를 하면서 해결해야했던 문제는 자동로그인과 Auth2.0 문제였고, 이를 해결하기 위해서 Request Token, Access Token과 이메일로그인, 소셜로그인에 대한 분기문을 모두 만들었다. 
 ### 네트워크 통신에 대한 이해
